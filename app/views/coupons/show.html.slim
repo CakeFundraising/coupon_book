@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Position:
+  = @coupon.position
+p
+  strong Title:
+  = @coupon.title
+p
+  strong Description:
+  = @coupon.description
+p
+  strong Terms and conditions:
+  = @coupon.terms_and_conditions
+p
+  strong Url:
+  = @coupon.url
+p
+  strong Expires at:
+  = @coupon.expires_at
+
+= link_to 'Edit', edit_coupon_path(@coupon)
+'|
+= link_to 'Back', coupons_path

@@ -1,0 +1,31 @@
+h1 Listing coupons
+
+table
+  thead
+    tr
+      th Position
+      th Title
+      th Description
+      th Terms and conditions
+      th Url
+      th Expires at
+      th
+      th
+      th
+
+  tbody
+    - @coupons.each do |coupon|
+      tr
+        td = coupon.position
+        td = coupon.title
+        td = coupon.description
+        td = coupon.terms_and_conditions
+        td = coupon.url
+        td = coupon.expires_at
+        td = link_to 'Show', coupon
+        td = link_to 'Edit', edit_coupon_path(coupon)
+        td = link_to 'Destroy', coupon, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Coupon', new_coupon_path

@@ -12,5 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+
 //= require turbolinks
+
+//= require bootstrap
+
+//= require bootstrap-datepicker/core
+
+//= require cake_coupon_book
+
+//= require ./datepicker
+//= require ./coupons
+//= require ./validations
+
 //= require_tree .

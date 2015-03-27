@@ -13,15 +13,25 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'therubyracer', platforms: :ruby
 
+#JS
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
+
 #Views
 gem 'slim'
 gem 'slim-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
+gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
+gem 'draper'
 
 #Storage
 gem 'pg'
 
 #Servers
 gem 'thin', group: :development
+
+#Utils
+gem 'american_date'
+gem 'jquery-validation-rails'
 
 group :doc do
   gem 'sdoc', require: false
