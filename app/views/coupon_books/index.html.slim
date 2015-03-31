@@ -1,0 +1,28 @@
+h1 Coupon Book
+
+h1.dash-head
+  span Coupon Categories
+  /.page-cta
+  /  = link_to 'Add a New Coupon Category', new_coupon_category_path(coupon_book_id: @coupon_book), class:'btn btn-primary btn-md'
+
+
+/- if @coupon_book.coupon_categories.any?
+/  = render partial: 'coupon_categories/tables/table'
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @coupon_books.each do |coupon_book|
+      tr
+        td = link_to 'Show', coupon_book
+        td = link_to 'Edit', edit_coupon_book_path(coupon_book)
+        td = link_to 'Destroy', coupon_book, data: {:confirm => 'Are you sure?'}, :method => :delete
+/
+/br
+
+= link_to 'New Coupon book', new_coupon_book_path

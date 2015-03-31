@@ -1,0 +1,9 @@
+= form_for @coupon_book do |f|
+  - if @coupon_book.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@coupon_book.errors.count, "error")} prohibited this coupon_book from being saved:"
+      ul
+        - @coupon_book.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

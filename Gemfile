@@ -32,6 +32,7 @@ gem 'thin', group: :development
 #Utils
 gem 'american_date'
 gem 'jquery-validation-rails'
+gem 'acts_as_list'
 
 group :doc do
   gem 'sdoc', require: false

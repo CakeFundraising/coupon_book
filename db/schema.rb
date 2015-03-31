@@ -11,10 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326233751) do
+ActiveRecord::Schema.define(version: 20150330170431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "coupon_books", force: :cascade do |t|
+    t.integer  "coupon_book_campaign_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coupon_categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.integer  "coupon_book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "coupons", force: :cascade do |t|
     t.integer  "position"
@@ -24,6 +38,9 @@ ActiveRecord::Schema.define(version: 20150326233751) do
     t.string   "promo_code"
     t.text     "terms_and_conditions"
     t.string   "url"
+    t.integer  "coupon_categories_mask", limit: 8
+    t.integer  "coupon_book_id"
+    t.integer  "coupon_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

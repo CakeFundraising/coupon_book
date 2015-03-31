@@ -8,6 +8,9 @@ class CreateCoupons < ActiveRecord::Migration
       t.string :promo_code
       t.text :terms_and_conditions
       t.string :url
+      t.integer :coupon_categories_mask, limit: 8
+      t.integer :coupon_book_id
+      t.integer :coupon_category_id
       t.timestamps
     end
   end

@@ -12,7 +12,10 @@ class CouponsController < ApplicationController
 
   # GET /coupons/new
   def new
-    @coupon = Coupon.new
+    @coupon_category = CouponCategory.find(params[:coupon_category_id])
+    @coupon_book = @coupon_category.coupon_book
+    @coupon = Coupon.new(coupon_book_id: @coupon_book.id, coupon_category_id: @coupon_category.id)
+    # @coupon = Coupon.new
   end
 
   # GET /coupons/1/edit
@@ -53,6 +56,6 @@ class CouponsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def coupon_params
-      params.require(:coupon).permit(:position, :title, :description, :terms_and_conditions, :url, :expires_at)
+      params.require(:coupon).permit(:position, :title, :description, :promo_code, :terms_and_conditions, :url, :expires_at, :coupon_book_id, :coupon_category_id)
     end
 end

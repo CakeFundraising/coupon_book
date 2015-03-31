@@ -1,0 +1,10 @@
+tr
+  td = category.name
+  td
+    = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
+      span.glyphicon.glyphicon-pencil
+    = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+      span.glyphicon.glyphicon-trash
+    = c.input :position, as: :hidden
+  td
+    = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'

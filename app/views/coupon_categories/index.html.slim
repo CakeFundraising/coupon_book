@@ -1,0 +1,42 @@
+/h1 Listing coupon_categories
+/
+/table
+/  thead
+/    tr
+/      th Name
+/      /th Position
+/      /th Coupon book
+/      /th
+/      th
+/      th
+/
+/  tbody
+/    - @coupon_categories.each do |coupon_category|
+/      tr
+/        td = coupon_category.name
+/        /td = coupon_category.position
+/        /td = coupon_category.coupon_book_id
+/        /td = link_to 'Show', coupon_category
+/        td = link_to 'Edit', edit_coupon_category_path(coupon_category)
+/        td = link_to 'Destroy', coupon_category, data: {:confirm => 'Are you sure?'}, :method => :delete
+/
+/br
+/
+/= link_to 'New Coupon category', new_coupon_category_path
+
+/h1.dash-head
+/  span Coupon Categories
+/  .page-cta
+/    = link_to 'Add a New Coupon Category', new_coupon_category_path, class:'btn btn-primary btn-md'
+/
+/- if @coupon_categories.any?
+/  = render partial: 'coupon_categories/tables/table'
+
+/#fr_sponsors.panel-group role="tablist" aria-multiselectable="true"
+/  - if @fr_sponsors.any?
+/    = render partial:'fr_sponsors/collapse', collection: @fr_sponsors, as: :sponsor
+/  - else
+/    = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.fr_sponsors')}
+
+br
+br
