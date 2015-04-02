@@ -48,6 +48,7 @@ class CouponBooksController < ApplicationController
 
   def update_coupon_order
     @coupon_book = CouponBook.find(params[:id])
+
     params[:coupon_categories].each do |cat_id, pos|
       position = pos[:position]
 
@@ -58,6 +59,16 @@ class CouponBooksController < ApplicationController
 
       p category.inspect
     end
+
+    params[:coupons].each do |coupon_id, pos|
+      position = pos[:position]
+
+      coupon = Coupon.find(coupon_id)
+
+      coupon.insert_at(position.to_i)
+
+    end
+
     redirect_to @coupon_book
   end
 

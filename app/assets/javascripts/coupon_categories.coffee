@@ -10,6 +10,6 @@ CakeCouponBook.coupon_categories.reorder = ->
   return
 
 CakeCouponBook.coupon_categories.init = ->
-  $("#coupon_categories_table").tableDnD();
+  $(".coupon_categories_table").tableDnD();
   CakeCouponBook.coupon_categories.reorder();
   return

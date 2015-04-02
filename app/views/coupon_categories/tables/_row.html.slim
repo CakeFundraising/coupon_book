@@ -1,4 +1,4 @@
-tr
+tr.accordion-toggle data-toggle="collapse" data-target="#category_#{category.id}_toggle"
   td = category.name
   td
     = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
@@ -8,3 +8,12 @@ tr
     = c.input :position, as: :hidden
   td
     = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
+
+tr
+  td.hiddenRow colspan="12"
+    .accordian-body.collapse id="category_#{category.id}_toggle"
+      table.coupon_categories_table.table.table-hover.table-bordered.table-striped.data-table
+        tbody
+          - category.coupons.each do |coupon|
+            = semantic_fields_for 'coupons[]', coupon do |f|
+              = render partial: 'coupons/tables/row', locals: {category: category, coupon: coupon, f: f}
