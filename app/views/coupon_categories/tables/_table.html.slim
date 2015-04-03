@@ -14,6 +14,7 @@
     ul.connectedSortable2 id="categories"
       - @coupon_categories.each do |cat|
         = semantic_fields_for 'coupon_categories[]', cat do |c|
+          = c.input :position, as: :hidden
           = render partial: 'coupon_categories/tables/row', locals: {category: cat, c: c}
     .col-md-2
   .text-center
