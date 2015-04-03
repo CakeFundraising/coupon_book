@@ -11,6 +11,7 @@ gem 'sass-rails', '~> 5.0.1'
 gem 'uglifier', '~> 2.6.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0.3'
+gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
 
 #JS

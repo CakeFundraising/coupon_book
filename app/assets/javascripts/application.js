@@ -19,6 +19,8 @@
 
 //= require bootstrap
 
+//= require jquery-ui
+
 //= require bootstrap-datepicker/core
 
 //= require cake_coupon_book

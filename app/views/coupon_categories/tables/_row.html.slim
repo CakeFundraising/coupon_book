@@ -1,19 +1,14 @@
-tr.accordion-toggle data-toggle="collapse" data-target="#category_#{category.id}_toggle"
-  td = category.name
-  td
-    = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
-      span.glyphicon.glyphicon-pencil
-    = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
-      span.glyphicon.glyphicon-trash
-    = c.input :position, as: :hidden
-  td
-    = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
+.coupon_category
+  = category.name
+  = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
+    span.glyphicon.glyphicon-pencil
+  = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+    span.glyphicon.glyphicon-trash
+  = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
+  = c.input :position, as: :hidden
 
-tr
-  td.hiddenRow colspan="12"
-    .accordian-body.collapse id="category_#{category.id}_toggle"
-      table.coupon_categories_table.table.table-hover.table-bordered.table-striped.data-table
-        tbody
-          - category.coupons.each do |coupon|
-            = semantic_fields_for 'coupons[]', coupon do |f|
-              = render partial: 'coupons/tables/row', locals: {category: category, coupon: coupon, f: f}
+  ul.connectedSortable id="category_#{category.id}_container"
+    - if category.coupons.any?
+      - category.coupons.each do |coupon|
+        = semantic_fields_for 'coupons[]', coupon do |f|
+          = render partial: 'coupons/tables/row', locals: {category: category, coupon: coupon, f: f}
