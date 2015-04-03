@@ -11,10 +11,15 @@ CakeCouponBook.coupon_categories.reorder = ->
 
 CakeCouponBook.coupon_categories.init = ->
   $( "#coupons_1, #coupons_2, #coupons_3" ).sortable({
+    items: "li:not(.ui-state-disabled)",
     connectWith: ".connectedSortable"
   }).disableSelection();
-  $( "#category_1, #category_2, #category_3" ).sortable({
+  $( "#categories" ).sortable({
+#    items: "a:not(.btn)",
     connectWith: ".connectedSortable2"
   }).disableSelection();
+#  $( "ul a" ).sortable({
+#    disabled: true
+#  });
 #  CakeCouponBook.coupon_categories.reorder();
   return

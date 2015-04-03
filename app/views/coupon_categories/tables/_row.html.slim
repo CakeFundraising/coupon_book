@@ -1,12 +1,15 @@
 li.ui-state-default
   ul.connectedSortable id="coupons_#{category.id}"
-    = category.name
-    = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
-      span.glyphicon.glyphicon-pencil
-    = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
-      span.glyphicon.glyphicon-trash
-    = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
-    = c.input :position, as: :hidden
+    li.ui-state-disabled
+      /ul.no-sort
+      /  li.ui-state-disabled
+      /    = c.input :position, as: :hidden
+      = category.name
+      = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
+        span.glyphicon.glyphicon-pencil
+      = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+        span.glyphicon.glyphicon-trash
+      = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
     - if category.coupons.any?
       - category.coupons.each do |coupon|
         = semantic_fields_for 'coupons[]', coupon do |f|

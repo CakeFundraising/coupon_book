@@ -11,11 +11,10 @@
       /        th
       /        th
       /    tbody
-
+    ul.connectedSortable2 id="categories"
       - @coupon_categories.each do |cat|
-        ul.connectedSortable2 id="category_#{cat.id}"
-          = semantic_fields_for 'coupon_categories[]', cat do |c|
-            = render partial: 'coupon_categories/tables/row', locals: {category: cat, c: c}
+        = semantic_fields_for 'coupon_categories[]', cat do |c|
+          = render partial: 'coupon_categories/tables/row', locals: {category: cat, c: c}
     .col-md-2
   .text-center
     = f.actions do
