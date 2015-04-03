@@ -1,16 +1,29 @@
 CakeCouponBook.coupon_categories ?= {}
 
-CakeCouponBook.coupon_categories.reorder = ->
+CakeCouponBook.coupon_categories.saveCouponBookOrder = ->
   $(".coupon_book").submit ->
-#    console.log("Position: ");
-    $("#categories > .ui-state-default").each ->
-      position = $(this).index('.ui-state-default');
-#      $(this).find("input").val(position);
-      input_id = "#" + $(this).children('ul').attr('id') + "_position";
-      $(input_id).val(position);
-      console.log("Id: " + input_id);
-      console.log("Position: " + position);
-      return
+    CakeCouponBook.coupon_categories.saveCategoriesOrder();
+  return
+
+CakeCouponBook.coupon_categories.saveCategoriesOrder = ->
+  $("#categories").find("ul").each ->
+#    console.log($(this).attr('id'));
+    category = $(this);
+    category_position = category.parent().index();
+    category_input_id = "#" + category.attr('id') + "_position";
+    $(category_input_id).val(category_position);
+
+    CakeCouponBook.coupon_categories.saveCouponsOrder(category);
+    return
+  return
+
+CakeCouponBook.coupon_categories.saveCouponsOrder = (category) ->
+  category.children(".ui-state-default").each ->
+#    console.log($(this).attr('id'));
+    coupon = $(this);
+    coupon_position = coupon.index();
+    coupon_input_id = "#" + coupon.attr('id') + "_position";
+    $(coupon_input_id).val(coupon_position);
     return
   return
 
@@ -19,12 +32,10 @@ CakeCouponBook.coupon_categories.init = ->
     items: "li:not(.ui-state-disabled)",
     connectWith: ".connectedSortable"
   }).disableSelection();
+  
   $( "#categories" ).sortable({
-#    items: "a:not(.btn)",
     connectWith: ".connectedSortable2"
   }).disableSelection();
-#  $( "ul a" ).sortable({
-#    disabled: true
-#  });
-  CakeCouponBook.coupon_categories.reorder();
+
+  CakeCouponBook.coupon_categories.saveCouponBookOrder();
   return
