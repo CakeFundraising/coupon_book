@@ -7,7 +7,7 @@
   = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
   = c.input :position, as: :hidden
 
-  ul.connectedSortable id="category_#{category.id}_container"
+  ul.connectedSortable id="coupons_#{category.id}"
     - if category.coupons.any?
       - category.coupons.each do |coupon|
         = semantic_fields_for 'coupons[]', coupon do |f|
