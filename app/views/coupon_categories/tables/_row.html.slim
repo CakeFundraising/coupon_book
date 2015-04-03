@@ -13,4 +13,5 @@ li.ui-state-default
       - category.coupons.each do |coupon|
         = semantic_fields_for 'coupons[]', coupon do |f|
           = f.input :position, as: :hidden
+          = f.input :coupon_category_id, as: :hidden
           = render partial: 'coupons/tables/row', locals: {category: category, coupon: coupon, f: f}

@@ -1,21 +1,12 @@
 = semantic_form_for(@coupon_book, :url => { :action => 'update_coupon_order' }) do |f|
-  /= f.input :id, as: :hidden
   .row
     .col-md-2
     .col-md-8
-      /#no-more-tables
-      /  table.coupon_categories_table.table.table-hover.table-bordered.table-striped.data-table
-      /    thead.cf
-      /      tr
-      /        th Name
-      /        th
-      /        th
-      /    tbody
-    ul.connectedSortable2 id="categories"
-      - @coupon_categories.each do |cat|
-        = semantic_fields_for 'coupon_categories[]', cat do |c|
-          = c.input :position, as: :hidden
-          = render partial: 'coupon_categories/tables/row', locals: {category: cat, c: c}
+      ul.connectedSortable2 id="categories"
+        - @coupon_categories.each do |cat|
+          = semantic_fields_for 'coupon_categories[]', cat do |c|
+            = c.input :position, as: :hidden
+            = render partial: 'coupon_categories/tables/row', locals: {category: cat, c: c}
     .col-md-2
   .text-center
     = f.actions do
