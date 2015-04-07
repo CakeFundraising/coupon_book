@@ -1,5 +1,14 @@
 CakeCouponBook.coupon_categories ?= {}
 
+CakeCouponBook.coupon_categories.getCategoryIds = ->
+  category_ids = [];
+  category_ids.push($("#sponsor_coupons"));
+
+  $("#categories").find("ul.connectedSortable").each ->
+    category_ids.push($(this));
+    return
+  return category_ids
+
 CakeCouponBook.coupon_categories.spCouponsRowMatchHeight = ->
   row_height = $("#categories").find('tr').height();
   $("#sponsor_coupons").find('tr').height(row_height);
@@ -35,7 +44,10 @@ CakeCouponBook.coupon_categories.saveCouponsOrder = (category) ->
   return
 
 CakeCouponBook.coupon_categories.init = ->
-  $( "#coupon_categories__1, #coupon_categories__2, #coupon_categories__3, #sponsor_coupons" ).sortable({
+
+  category_ids = CakeCouponBook.coupon_categories.getCategoryIds();
+
+  $( category_ids ).sortable({
     items: "li:not(.ui-state-disabled)",
     connectWith: ".connectedSortable"
   }).disableSelection();
