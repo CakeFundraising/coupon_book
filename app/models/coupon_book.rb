@@ -1,5 +1,4 @@
 class CouponBook < ActiveRecord::Base
-
   has_many :coupon_categories, -> { order("position ASC") }, validate: false, dependent: :destroy
   has_many :coupons, dependent: :destroy
 

@@ -2,9 +2,8 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 gem 'turbolinks', '~> 2.5.3'
-
 
 #Assets
 gem 'sass-rails', '~> 5.0.1'
@@ -20,15 +19,31 @@ gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 #Views
 gem 'slim'
 gem 'slim-rails'
-gem 'bootstrap-sass', '~> 3.1.1'
+gem 'bootstrap-sass', '~> 3.3.4.1'
+gem 'formtastic'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'draper'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 
 #Storage
 gem 'pg'
 
 #Servers
 gem 'thin', group: :development
+
+#Payments
+gem 'stripe-rails'
+
+#CLI
+gem 'pry-rails'
+
+#Utils
+gem 'prawn'
+
+group :development do
+  gem 'quiet_assets'
+end
 
 #Utils
 gem 'american_date'
@@ -41,5 +56,11 @@ end
 
 group :development, :test do
   gem 'byebug'
+end
+
+group :production do
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+  gem 'rails_12factor'
 end
 

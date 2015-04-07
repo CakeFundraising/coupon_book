@@ -1,4 +1,6 @@
 CakeCouponBook::Application.routes.draw do
+  root to:'home#index'
+
   resources :coupon_books do
     member do
       patch :update_coupon_order
