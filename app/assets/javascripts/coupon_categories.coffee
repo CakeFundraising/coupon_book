@@ -1,5 +1,10 @@
 CakeCouponBook.coupon_categories ?= {}
 
+CakeCouponBook.coupon_categories.spCouponsRowMatchHeight = ->
+  row_height = $("#categories").find('tr').height();
+  $("#sponsor_coupons").find('tr').height(row_height);
+  return
+
 CakeCouponBook.coupon_categories.saveCouponBookOrder = ->
   $(".coupon_book").submit ->
     CakeCouponBook.coupon_categories.saveCategoriesOrder();
@@ -40,4 +45,5 @@ CakeCouponBook.coupon_categories.init = ->
   }).disableSelection();
 
   CakeCouponBook.coupon_categories.saveCouponBookOrder();
+  CakeCouponBook.coupon_categories.spCouponsRowMatchHeight();
   return
