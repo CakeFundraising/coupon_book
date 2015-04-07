@@ -30,7 +30,7 @@ CakeCouponBook.coupon_categories.saveCouponsOrder = (category) ->
   return
 
 CakeCouponBook.coupon_categories.init = ->
-  $( "#coupon_categories__1, #coupon_categories__2, #coupon_categories__3" ).sortable({
+  $( "#coupon_categories__1, #coupon_categories__2, #coupon_categories__3, #sponsor_coupons" ).sortable({
     items: "li:not(.ui-state-disabled)",
     connectWith: ".connectedSortable"
   }).disableSelection();
