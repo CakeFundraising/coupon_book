@@ -1,19 +1,10 @@
 class Fundraiser
-  include ActiveModel::Model
-  include ActiveModel::Associations
+  include ActiveModelable
 
   attr_accessor :id, :name
   attr_reader :coupon_book_ids
+  attr_reader :user_ids
 
   has_many :coupon_books
-
-  # need hash like accessor, used internal Rails
-  def [](attr)
-    self.send(attr)
-  end
-
-  # need hash like accessor, used internal Rails
-  def []=(attr, value)
-    self.send("#{attr}=", value)
-  end
+  has_many :users
 end
