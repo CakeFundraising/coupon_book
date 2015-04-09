@@ -32,6 +32,10 @@ gem 'pg'
 #Servers
 gem 'thin', group: :development
 
+#Image processing
+gem 'jcrop-rails-v2'
+gem 'cloudinary'
+
 #Payments
 gem 'stripe-rails'
 
@@ -49,6 +53,9 @@ end
 gem 'american_date'
 gem 'jquery-validation-rails'
 gem 'acts_as_list'
+
+#Admin panel
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 group :doc do
   gem 'sdoc', require: false

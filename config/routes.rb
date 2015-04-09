@@ -9,6 +9,12 @@ CakeCouponBook::Application.routes.draw do
 
   resources :coupon_categories
 
-  resources :coupons
+  resources :coupons do
+    member do
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
+  end
 
 end

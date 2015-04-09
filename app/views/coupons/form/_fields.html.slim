@@ -28,3 +28,16 @@
           = f.input :coupon_book_id, as: :hidden
           = f.input :coupon_category_id, as: :hidden
       .col-md-2
+    .row.section-wrapper.coupon-uploads.text-center
+      h2 Coupon Images
+      br
+      .col-md-2
+      .col-sm-4
+        .coupon-images
+          h5 Primary Image
+          = render partial: 'pictures/avatar_form', locals: {f: f}
+      .col-sm-4
+        .coupon-images
+          h5 Upload a QR Code or a second image (Optional)
+          = render partial: 'pictures/qrcode_form', locals: {f: f}
+      .col-md-2

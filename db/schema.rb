@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330170431) do
+ActiveRecord::Schema.define(version: 20150409183044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,30 @@ ActiveRecord::Schema.define(version: 20150330170431) do
     t.integer  "coupon_categories_mask", limit: 8
     t.integer  "coupon_book_id"
     t.integer  "coupon_category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string   "avatar"
+    t.string   "avatar_caption"
+    t.string   "banner"
+    t.string   "banner_caption"
+    t.string   "picturable_type"
+    t.integer  "picturable_id"
+    t.integer  "avatar_crop_x"
+    t.integer  "avatar_crop_y"
+    t.integer  "avatar_crop_w"
+    t.integer  "avatar_crop_h"
+    t.integer  "banner_crop_x"
+    t.integer  "banner_crop_y"
+    t.integer  "banner_crop_w"
+    t.integer  "banner_crop_h"
+    t.string   "qrcode"
+    t.integer  "qrcode_crop_x"
+    t.integer  "qrcode_crop_y"
+    t.integer  "qrcode_crop_w"
+    t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

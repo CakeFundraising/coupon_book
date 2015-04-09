@@ -8,6 +8,7 @@ html lang="en"
     = csrf_meta_tags
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    = cloudinary_js_config
 
   body.fixed
     = render partial: 'layouts/main_nav'
@@ -15,7 +16,7 @@ html lang="en"
     - if content_for? :header
       header
         = yield :header
-    
+
     - if content_for? :sidebar
       .container#main-container
         .row
@@ -64,7 +65,7 @@ html lang="en"
             / li
             /   = link_to "Fundraising Help & Training", help_page_path('fr_help')
         .col-md-4.col-sm-4.col-xs-4
-          h4 Follow Us  
+          h4 Follow Us
           div.addthis_custom_follow
           br
         /.col-md-3
@@ -75,7 +76,7 @@ html lang="en"
 
       .row.Colophon
         .col-md-9
-          h4.boldest CakeCauseMarketing.com 
+          h4.boldest CakeCauseMarketing.com
           p makes it easy to launch and manage exciting "pay-per-click" cause marketing campaigns that produce great results for your organizations and your corporate sponsors.
         .col-md-3
           .hidden#today = Date.today
