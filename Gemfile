@@ -40,6 +40,7 @@ gem 'pry-rails'
 
 #Utils
 gem 'prawn'
+gem 'activemodel-associations'
 
 group :development do
   gem 'quiet_assets'
