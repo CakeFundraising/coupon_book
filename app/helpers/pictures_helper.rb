@@ -25,7 +25,7 @@ module PicturesHelper
     else
       content_tag(:div, class:'overlay-effects', id:'effect-6') do
         content_tag(:div, class:'overlay-img') do
-          avatar_tag_for(picture) +
+          picture +
 
           content_tag(:div, class:'effect-overlay') do
             link_to url, target: :_blank, class:'expand extra_click_link' do

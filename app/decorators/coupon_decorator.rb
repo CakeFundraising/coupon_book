@@ -1,7 +1,5 @@
 class CouponDecorator < ApplicationDecorator
   delegate_all
-  decorates_association :pledge
-  decorates_association :sponsor
   decorates_association :picture
 
   def trunc_title
