@@ -13,3 +13,7 @@ h1.dash-head
 
 - if @coupon_book.coupon_categories.any?
   = render partial: 'coupon_categories/tables/table'
+
+
+javascript:
+  CakeCouponBook.coupon_categories.init();
