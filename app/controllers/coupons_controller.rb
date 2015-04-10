@@ -57,6 +57,17 @@ class CouponsController < InheritedResources::Base
     redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'
   end
 
+  def download
+    # extra_click(resource.url, resource.pledge, redirect=false)
+
+    # respond_with(resource) do |format|
+    #   format.html do
+    #     pdf = CouponPdf.new(resource.decorate)
+    #     send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
+    #   end
+    # end
+  end
+
 
   def permitted_params
     params.permit(

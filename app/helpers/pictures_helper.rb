@@ -18,4 +18,22 @@ module PicturesHelper
     options = {quality: "jpegmini:0", sign_url: true, class: "qr"}
     cl_image_tag(object.qrcode, options)
   end
+
+  def picture_rollover(picture, url, &text)
+    if url.blank?
+      picture
+    else
+      content_tag(:div, class:'overlay-effects', id:'effect-6') do
+        content_tag(:div, class:'overlay-img') do
+          avatar_tag_for(picture) +
+
+          content_tag(:div, class:'effect-overlay') do
+            link_to url, target: :_blank, class:'expand extra_click_link' do
+              text.call
+            end
+          end
+        end
+      end
+    end
+  end
 end

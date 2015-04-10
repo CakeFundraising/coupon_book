@@ -12,7 +12,6 @@
  *
  *= require formtastic-bootstrap
  *= require bootstrap-datepicker3
- *= require_tree .
  *= require_self
  *= require jquery.Jcrop
  *= require bootstrap_and_overrides

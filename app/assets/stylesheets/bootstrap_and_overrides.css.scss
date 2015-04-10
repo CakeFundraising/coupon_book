@@ -2033,7 +2033,7 @@ ul.share-coupon {
   position: absolute;
   top: 0;
   right: 15px;
-  background-image: image-url('coupon-edge.png');
+  background-image: image_url('coupon-edge.png');
   height: 100%;
   width: 7px;
   -webkit-background-size: cover;
@@ -3815,5 +3815,25 @@ ul#share-block {
   }
   .sidebar-bkg.campaign-sidebar{
     margin-top: 0;
+  }
+}
+
+
+// Coupon Book
+
+ul.connectedSortable {
+  margin-top: 20px;
+  list-style-type: none;
+
+  li {
+    padding: 5px;
+  }
+}
+
+ul.connectedSortable2 {
+  list-style-type: none;
+
+  li {
+    padding: 5px;
   }
 }

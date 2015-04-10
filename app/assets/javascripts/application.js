@@ -32,10 +32,9 @@
 
 //= require ./cloudinary_crop
 //= require ./coupons
+//= require ./coupon_categories
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker
 //= require ./validations
 //= require ./utils
-
-//= require_tree .
