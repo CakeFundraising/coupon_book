@@ -70,7 +70,6 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       $(this).find(".remove-from-book").click ->
         coupon_id = $(this).attr('id').replace(/\D/g, '')
         $("#categories").find(".coupons__" + coupon_id).remove()
-#        console.log($("#my_coupons").find(".coupons__" + coupon_id).length)
         $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
   }).disableSelection()
 
@@ -89,6 +88,11 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
     drag: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
       ui.helper.remove() if $("#categories").find("." + coupon_class).length > 2
+    ,
+    stop: (even, ui) ->
+      coupon_class = $(this).attr('class').split(' ')[1]
+      $(this).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 0
+
   }).disableSelection()
 
   $( "#categories" ).sortable({
