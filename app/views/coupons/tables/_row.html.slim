@@ -1,11 +1,19 @@
-li.ui-state-default id="coupons__#{coupon.id}"
-  span
-    = coupon.title
-
-    /.thank-sp
-    a data-toggle='modal' data-target='#preview_coupon_modal'
-      button.btn.btn-success.btn-sm Preview
-    = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
-      span.glyphicon.glyphicon-pencil
-    = link_to coupon, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-sm btn-danger'
-      span.glyphicon.glyphicon-trash
+= semantic_fields_for 'coupons[]', coupon do |f|
+  li.ui-state-default class="coupons__#{coupon.id}"
+    table.table.table-hover.table-bordered.table-striped.data-table
+      tr.coupon-input
+        td
+          = f.input :position, as: :hidden
+      tr.coupon-input
+        td
+          = f.input :coupon_category_id, as: :hidden
+      tr
+        td.coupon-row-title
+          span = coupon.title
+        td.coupon-actions
+          a data-toggle='modal' data-target='#preview_coupon_modal'
+            button.btn.btn-success.btn-sm Preview
+          = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
+            span.glyphicon.glyphicon-pencil
+          = link_to coupon, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-sm btn-danger'
+            span.glyphicon.glyphicon-trash

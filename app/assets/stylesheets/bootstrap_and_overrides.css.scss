@@ -128,6 +128,10 @@ hr{
   text-align: left;
 }
 
+.text-right{
+  text-align: right;
+}
+
 .float-left {
   float: left;
 }
@@ -3821,19 +3825,34 @@ ul#share-block {
 
 // Coupon Book
 
-ul.connectedSortable {
-  margin-top: 20px;
-  list-style-type: none;
-
-  li {
-    padding: 5px;
-  }
+.coupon-actions {
+  width: 162px;
+  text-align: right;
 }
 
-ul.connectedSortable2 {
-  list-style-type: none;
+.category-actions {
+  width: 189px;
+  text-align: right;
+}
 
-  li {
-    padding: 5px;
-  }
+.coupon-input {
+  display: none;
+}
+
+ul.sortableCoupons {
+  margin-top: 20px;
+  list-style-type: none;
+  padding-left: initial;
+
+  //li {
+  //  padding: 5px;
+  //}
+}
+
+ul.sortableCategories {
+  list-style-type: none;
+  //
+  //li {
+  //  padding: 5px;
+  //}
 }

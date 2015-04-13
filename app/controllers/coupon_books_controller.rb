@@ -8,6 +8,7 @@ class CouponBooksController < ApplicationController
 
   # GET /coupon_books/1
   def show
+    @coupons = Coupon.all
     @coupon_categories = @coupon_book.coupon_categories
   end
 

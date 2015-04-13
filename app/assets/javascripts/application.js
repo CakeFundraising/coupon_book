@@ -32,7 +32,7 @@
 
 //= require ./cloudinary_crop
 //= require ./coupons
-//= require ./coupon_categories
+//= require ./coupon_books
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker

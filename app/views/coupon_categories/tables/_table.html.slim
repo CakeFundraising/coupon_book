@@ -2,16 +2,18 @@
   .container
     .row
       .col-md-6
-        ul.connectedSortable2
+        ul.sortableCategories
           li.ui-state-default
-            ul.connectedSortable id="sponsor_coupons"
+            ul.sortableCoupons id="my_coupons"
               li.ui-state-disabled
                 table.table.table-hover.table-bordered.table-striped.data-table
                   tr
                     td
-                      span My Sponsors Coupons
+                      span My Coupons
+              /li.ui-state-disabled
+              = render partial: 'coupons/tables/row', collection: @coupons, as: :coupon
       .col-md-6
-        ul.connectedSortable2 id="categories"
+        ul.sortableCategories id="categories"
           - @coupon_categories.each do |cat|
             = semantic_fields_for 'coupon_categories[]', cat do |c|
               = c.input :position, as: :hidden
