@@ -50,10 +50,15 @@ CakeCouponBook.coupon_books.saveCouponsOrder = (category) ->
     return
   return
 
+CakeCouponBook.coupon_books.greyOutUsedCoupons = (categories) ->
+  $(categories).find(".ui-state-default").each ->
+    $("#my_coupons").find("." + $(this).attr('class').split(' ')[1]).fadeTo(0, 0.2)
+
 CakeCouponBook.coupon_books.removeFromBook = ->
   $(".remove-from-book").click ->
     coupon_id = $(this).attr('id').replace(/\D/g, '')
     $("#categories").find(".coupons__" + coupon_id).remove()
+    $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
   return
 
 CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
@@ -65,6 +70,8 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       $(this).find(".remove-from-book").click ->
         coupon_id = $(this).attr('id').replace(/\D/g, '')
         $("#categories").find(".coupons__" + coupon_id).remove()
+#        console.log($("#my_coupons").find(".coupons__" + coupon_id).length)
+        $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
   }).disableSelection()
 
   $( my_coupons ).draggable({
@@ -77,6 +84,7 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
     start: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
       ui.helper.remove() if $("#categories").find("." + coupon_class).length == 1
+      $(this).fadeTo(500, 0.2)
     ,
     drag: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
@@ -93,6 +101,7 @@ CakeCouponBook.coupon_books.init = ->
   my_coupons = CakeCouponBook.coupon_books.getCouponCollection()
   categories = CakeCouponBook.coupon_books.getCategories()
 
+  CakeCouponBook.coupon_books.greyOutUsedCoupons(categories)
   CakeCouponBook.coupon_books.initDragAndDrop(my_coupons, categories)
   CakeCouponBook.coupon_books.removeFromBook()
 
