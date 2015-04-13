@@ -58,15 +58,27 @@ class CouponBooksController < ApplicationController
       category.insert_at(position.to_i)
     end
 
-    params[:coupons].each do |coupon_id, vals|
-      position = vals[:position]
-      category_id = vals[:coupon_category_id]
 
-      coupon = Coupon.find(coupon_id)
+    filter = []
+    if params[:coupons]
+      params[:coupons].each do |coupon_id, vals|
+        position = vals[:position]
+        category_id = vals[:coupon_category_id]
 
-      coupon.update_attribute(:coupon_category_id, category_id)
+        coupon = Coupon.find(coupon_id)
+        filter.push(coupon_id.to_i)
 
-      coupon.insert_at(position.to_i)
+        coupon.update_attribute(:coupon_category_id, category_id)
+
+        coupon.insert_at(position.to_i)
+      end
+
+    end
+
+    @unused_coupons = Coupon.all.select { |coupon| not filter.include?(coupon.id) }
+
+    @unused_coupons.each do |unused_coupon|
+      unused_coupon.update_attribute(:coupon_category_id, 0)
     end
 
     redirect_to @coupon_book
