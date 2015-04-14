@@ -9,4 +9,8 @@ class User
   def self.find(id)
     nil
   end
+
+  def new_session!(credentials)
+    Cake::Api::Session.new(credentials).new_session
+  end
 end

@@ -12,6 +12,7 @@ CakeCouponBook::Application.routes.draw do
   resources :coupons
 
   scope :users, controller: :users do
+    get :sign_in
     post :new_session
   end
 
