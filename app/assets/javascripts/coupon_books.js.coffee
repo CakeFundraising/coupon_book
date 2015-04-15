@@ -61,6 +61,9 @@ CakeCouponBook.coupon_books.removeFromBook = ->
     $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
   return
 
+CakeCouponBook.coupon_books.getCouponClass = (coupon) ->
+  $(coupon).attr('class').split(' ')[1]
+
 CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
 
   $( categories ).sortable({
@@ -76,7 +79,9 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
 
   $( my_coupons ).draggable({
     connectToSortable: ".sortableCoupons",
-    revert: "invalid",
+    revert: (socketObj) ->
+      $(this).addClass("ui-state-reverted")
+    ,
     helper: (event) ->
       original = if $(event.target).hasClass("ui-draggable") then $(event.target) else $(event.target).closest(".ui-draggable")
       original.clone().css({ width: original.width() })
@@ -97,7 +102,10 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       $("#my_coupons").find("." + coupon_class).fadeTo(0, 0.2) if $("#categories").find("." + coupon_class).length == 1
 
       $('#categories').find(".ui-state-default").on("remove", ->
-        $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 1
+        if $(this).hasClass("ui-state-reverted")
+          $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 1
+          $(this).removeClass("ui-state-reverted")
+          return
         return
       )
 
