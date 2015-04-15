@@ -71,6 +71,7 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
         coupon_id = $(this).attr('id').replace(/\D/g, '')
         $("#categories").find(".coupons__" + coupon_id).remove()
         $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
+
   }).disableSelection()
 
   $( my_coupons ).draggable({
@@ -89,9 +90,16 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       coupon_class = $(this).attr('class').split(' ')[1]
       ui.helper.remove() if $("#categories").find("." + coupon_class).length > 2
     ,
-    stop: (even, ui) ->
+    stop: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
-      $(this).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 0
+
+      $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 0
+      $("#my_coupons").find("." + coupon_class).fadeTo(0, 0.2) if $("#categories").find("." + coupon_class).length == 1
+
+      $('#categories').find(".ui-state-default").on("remove", ->
+        $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 1
+        return
+      )
 
   }).disableSelection()
 
