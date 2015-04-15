@@ -8,7 +8,7 @@
 
   .row.choose-role
     .col-md-6.signup-wrap.divider-vert
-      = semantic_form_for(@user, url: new_session_path) do |f|
+      = semantic_form_for(:user, url: new_session_path) do |f|
         = f.inputs 'Sign In With Email' do
           = f.input :email, label:'Email Address'
           = f.input :password

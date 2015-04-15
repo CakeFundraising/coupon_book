@@ -28,6 +28,7 @@ gem 'bootstrap-kaminari-views'
 
 #Storage
 gem 'pg'
+gem 'ohm'
 
 #Servers
 gem 'thin', group: :development
@@ -40,11 +41,9 @@ gem 'pry-rails'
 
 #Utils
 gem 'prawn'
-gem 'activemodel-associations'
-gem 'rest-client'
 
 #Authentication
-gem 'omniauth-oauth2'
+gem 'oauth2'
 
 group :development do
   gem 'quiet_assets'

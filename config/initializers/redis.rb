@@ -1,8 +1,10 @@
-unless Rails.env.test?
-  Dir[Rails.root.join('app/jobs/*.rb')].each { |file| require file }
+require "ohm"
 
-  redis_url = ENV["REDISTOGO_URL"] || "redis://localhost:6379/0/cake"
+unless Rails.env.test?
+  redis_url = ENV["REDISTOGO_URL"] || "redis://localhost:6379/0/coupon_book"
 
   CakeCouponBook::Application.config.cache_store = :redis_store, redis_url
   CakeCouponBook::Application.config.session_store :redis_store, redis_server: redis_url
+
+  Ohm.redis = Redic.new(redis_url)
 end
