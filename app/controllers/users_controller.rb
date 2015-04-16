@@ -7,7 +7,6 @@ class UsersController < ApplicationController
 
     if token.present?
       session[:access_token] = token
-      User.create_from_token(token)
       flash[:notice] = 'Signed in successfully.'
     else
       flash[:alert] = 'There was an error when signing in, please try again'

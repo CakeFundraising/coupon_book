@@ -18,18 +18,27 @@ class User < Ohm::Model
   def self.create_from_token(access_token)
     data = Cake::Oauth::User.new(access_token).self
 
-    unless data.nil? or self[data["id"]].present?
-      self.create(
-        id:                data["id"],
-        full_name:         data["info"]["full_name"],
-        email:             data["info"]["email"],
-        cake_access_token: access_token,
-        fundraiser_id:     data["info"]["fundraiser_id"],
-        sponsor_id:        data["info"]["sponsor_id"]
-      )
-      Fundraiser.create_from_data(data["extra"].try(:[], "fundraiser"))
-      Sponsor.create_from_data(data["extra"].try(:[], "sponsor"))
+    if data.blank?
+      user = nil
+    else
+      if self[data["id"]].present?
+        user = self[data["id"]]
+        user.update(cake_access_token: access_token)
+      else
+        Fundraiser.create_from_data(data["extra"].try(:[], "fundraiser"))
+        Sponsor.create_from_data(data["extra"].try(:[], "sponsor"))
+        user = self.create(
+          id:                data["id"],
+          full_name:         data["info"]["full_name"],
+          email:             data["info"]["email"],
+          cake_access_token: access_token,
+          fundraiser_id:     data["info"]["fundraiser_id"],
+          sponsor_id:        data["info"]["sponsor_id"]
+        )
+      end
     end
+
+    user
   end
 
   def self.find_by_access_token(access_token)

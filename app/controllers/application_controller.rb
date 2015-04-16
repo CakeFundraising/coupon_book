@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :current_fundraiser, :current_sponsor
 
   def current_user
-    #session[:access_token] = nil
     @current_user ||= User.find_by_access_token(session[:access_token])
   end
 
