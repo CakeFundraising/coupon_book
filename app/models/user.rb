@@ -12,13 +12,13 @@ class User < Ohm::Model
   alias_method :destroy, :delete
 
   def fetch(cake_id)
-    self[cake_id] || self.fetch_and_create!(cake_id)
+    self[cake_id]
   end
 
   def self.create_from_token(access_token)
     data = Cake::Oauth::User.new(access_token).self
 
-    unless data.nil?
+    unless data.nil? or self[data["id"]].present?
       self.create(
         id:                data["id"],
         full_name:         data["info"]["full_name"],

@@ -19,11 +19,9 @@ class Fundraiser < Ohm::Model
   end
 
   def self.fetch_and_create!(cake_id)
-    data = Cake::Oauth::Fundraiser.new(self.users.first.access_token).find(cake_id)
+    data = Cake::Oauth::Fundraiser.new(self.users.first.cake_access_token).find(cake_id)
 
-    if data.nil?
-      nil
-    else
+    unless data.nil?
       self.create(
         id:   cake_id,
         name: data["name"]
@@ -32,7 +30,7 @@ class Fundraiser < Ohm::Model
   end
 
   def self.create_from_data(data)
-    unless data.nil?
+    unless data.nil? or self[data["id"]].present?
       self.create(
         id:   data["id"],
         name: data["name"]
