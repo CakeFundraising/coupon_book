@@ -8,11 +8,13 @@
         td
           = f.input :coupon_category_id, as: :hidden
       tr
-        td.coupon-row-title
-          span = coupon.title
+        td
+          span.coupon-sp Sponsor Name
+          br
+          span.coupon-title = coupon.title
         td.coupon-actions
-          a data-toggle='modal' data-target='#preview_coupon_modal'
-            button.btn.btn-success.btn-sm Preview
+          a.btn.btn-sm.btn-success data-toggle='modal' data-target='#preview_coupon_modal'
+            span.glyphicon.glyphicon-eye-open
           = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
             span.glyphicon.glyphicon-pencil
           a.btn.btn-sm.btn-danger.remove-from-book id="remove__#{coupon.id}"

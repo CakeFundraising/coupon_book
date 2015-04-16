@@ -3826,7 +3826,7 @@ ul#share-block {
 // Coupon Book
 
 .coupon-actions {
-  width: 162px;
+  width: 131px;
   text-align: right;
 }
 
@@ -3855,4 +3855,19 @@ ul.sortableCategories {
   //li {
   //  padding: 5px;
   //}
+}
+
+.category-title {
+  color: #fff;
+  font-size: 2.5em;
+}
+
+.coupon-title, .coupon-sp {
+  font-size: 1em;
+  font-family: "museo_sans700"
+}
+
+.in-book {
+  opacity: 0.2;
+  transition: opacity 0.500s linear;
 }

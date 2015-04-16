@@ -7,9 +7,10 @@
             ul.sortableCoupons id="my_coupons"
               li.ui-state-disabled
                 table.table.table-hover.table-bordered.table-striped.data-table
-                  tr
-                    td
-                      span My Coupons
+                  thead.cf
+                    tr
+                      th
+                        span.category-title My Coupons
               = render partial: 'coupons/tables/row', collection: @coupons, as: :coupon
       .col-md-6
         ul.sortableCategories id="categories"

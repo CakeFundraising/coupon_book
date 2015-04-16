@@ -2,15 +2,16 @@ li.ui-state-default
   ul.sortableCoupons id="coupon_categories__#{category.id}"
     li.ui-state-disabled
       table.table.table-hover.table-bordered.table-striped.data-table
-        tr
-          td.category-row-title
-            span = category.name
-          td.category-actions
-            = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
-              span.glyphicon.glyphicon-pencil
-            = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
-              span.glyphicon.glyphicon-trash
-            = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
+        thead.cf
+          tr
+            th
+              span.category-title = category.name
+            th.category-actions
+              = link_to edit_coupon_category_path(category), class:'btn btn-sm btn-primary' do
+                span.glyphicon.glyphicon-pencil
+              = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+                span.glyphicon.glyphicon-trash
+              = link_to 'Add Coupon', new_coupon_path(coupon_category_id: category), class: 'btn btn-success btn-sm'
 
     - if category.coupons.any?
       - category.coupons.each do |coupon|

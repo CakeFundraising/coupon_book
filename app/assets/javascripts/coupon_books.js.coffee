@@ -52,13 +52,14 @@ CakeCouponBook.coupon_books.saveCouponsOrder = (category) ->
 
 CakeCouponBook.coupon_books.greyOutUsedCoupons = (categories) ->
   $(categories).find(".ui-state-default").each ->
-    $("#my_coupons").find("." + $(this).attr('class').split(' ')[1]).fadeTo(0, 0.2)
+    coupon = $("#my_coupons").find("." + $(this).attr('class').split(' ')[1])
+    coupon.addClass('in-book')
 
 CakeCouponBook.coupon_books.removeFromBook = ->
   $(".remove-from-book").click ->
     coupon_id = $(this).attr('id').replace(/\D/g, '')
     $("#categories").find(".coupons__" + coupon_id).remove()
-    $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
+    $("#my_coupons").find(".coupons__" + coupon_id).removeClass('in-book')
   return
 
 CakeCouponBook.coupon_books.getCouponClass = (coupon) ->
@@ -73,41 +74,31 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       $(this).find(".remove-from-book").click ->
         coupon_id = $(this).attr('id').replace(/\D/g, '')
         $("#categories").find(".coupons__" + coupon_id).remove()
-        $("#my_coupons").find(".coupons__" + coupon_id).fadeTo(500, 1)
+        $("#my_coupons").find(".coupons__" + coupon_id).removeClass('in-book')
 
   }).disableSelection()
 
   $( my_coupons ).draggable({
     connectToSortable: ".sortableCoupons",
-    revert: (socketObj) ->
-      $(this).addClass("ui-state-reverted")
-    ,
+    revert: "invalid",
+    cancel: ".in-book",
     helper: (event) ->
       original = if $(event.target).hasClass("ui-draggable") then $(event.target) else $(event.target).closest(".ui-draggable")
       original.clone().css({ width: original.width() })
     ,
     start: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
-      ui.helper.remove() if $("#categories").find("." + coupon_class).length == 1
-      $(this).fadeTo(500, 0.2)
-    ,
-    drag: (event, ui) ->
-      coupon_class = $(this).attr('class').split(' ')[1]
-      ui.helper.remove() if $("#categories").find("." + coupon_class).length > 2
+      $(this).addClass('in-book')
+
+      ui.helper.on("remove", ->
+        coupon_class = $(this).attr('class').split(' ')[1]
+        $("#my_coupons").find("." + coupon_class).removeClass("in-book")
+      )
     ,
     stop: (event, ui) ->
       coupon_class = $(this).attr('class').split(' ')[1]
+      $("#my_coupons").find("." + coupon_class).removeClass("in-book") if $("#categories").find("." + coupon_class).length == 0
 
-      $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 0
-      $("#my_coupons").find("." + coupon_class).fadeTo(0, 0.2) if $("#categories").find("." + coupon_class).length == 1
-
-      $('#categories').find(".ui-state-default").on("remove", ->
-        if $(this).hasClass("ui-state-reverted")
-          $("#my_coupons").find("." + coupon_class).fadeTo(500, 1) if $("#categories").find("." + coupon_class).length == 1
-          $(this).removeClass("ui-state-reverted")
-          return
-        return
-      )
 
   }).disableSelection()
 
