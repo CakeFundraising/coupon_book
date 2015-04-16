@@ -49,7 +49,7 @@ module Cake
       end
 
       def self
-        @access_token.get('api/v1/users/me').parsed.simbolize_keys!
+        @access_token.get('api/v1/users/me').parsed
       end
     end
 
@@ -59,7 +59,17 @@ module Cake
       end
 
       def find(id)
-        @access_token.get("api/v1/fundraisers/#{id}").parsed.simbolize_keys!
+        @access_token.get("api/v1/fundraisers/#{id}").parsed
+      end
+    end
+
+    class Sponsor < Dispatcher
+      def initialize(access_token)
+        super(access_token)
+      end
+
+      def find(id)
+        @access_token.get("api/v1/sponsors/#{id}").parsed
       end
     end
 

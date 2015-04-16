@@ -14,6 +14,7 @@ CakeCouponBook::Application.routes.draw do
   scope :users, controller: :users do
     get :sign_in
     post :new_session
+    delete :sign_out
   end
 
 end

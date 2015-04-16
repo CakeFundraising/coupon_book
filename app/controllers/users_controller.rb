@@ -3,15 +3,21 @@ class UsersController < ApplicationController
   end
 
   def new_session
-    session[:access_token] = Cake::Oauth::Session.new(params[:user]).access_token
+    token = Cake::Oauth::Session.new(params[:user]).access_token
 
-    if session[:access_token].present?
-      User.fetch_and_create!(session[:access_token])
-      flash[:notice] = 'Sign in successful'
+    if token.present?
+      session[:access_token] = token
+      User.create_from_token(token)
+      flash[:notice] = 'Signed in successfully.'
     else
       flash[:alert] = 'There was an error when signing in, please try again'
     end
 
     redirect_to root_path
+  end
+
+  def sign_out
+    session.delete(:access_token)
+    redirect_to root_path, notice: 'Signed Out successfully.'
   end
 end

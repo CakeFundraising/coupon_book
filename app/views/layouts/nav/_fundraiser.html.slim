@@ -1,23 +1,25 @@
-- cache :default_navbar do 
-  #navbar-collapse.collapse.navbar-collapse
-    ul.nav.navbar-nav.navbar-left
-      li
-        a data-toggle="modal" data-target="#how_it_works" href=''
-          span.glyphicon.glyphicon-play-circle
-          span  Watch the Video
-      li.dropdown
-        a.dropdown-toggle data-toggle="dropdown" href="#"
-          | About Cake
-          span.caret
-        ul.dropdown-menu
-          = menu_item "About", about_page_path('cake')
-          = menu_item "Questions", help_page_path('faq')
-          = menu_item "Success Stories", about_page_path('success_stories')
-    ul.nav.navbar-nav
-      = menu_item "Promote Your Business!", about_page_path('sponsoring')
-      = menu_item "Raise Money to do Good Deeds!", about_page_path('fundraising')
-      /= menu_item "Earn Money", "#"
-    ul.nav-cta.navbar-right
-      = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}
-      = menu_item t("links.user.sign_up"), new_user_registration_path, {class: "btn-signup btn btn-success"}
-      br
+#bs-example-navbar-collapse-1.collapse.navbar-collapse
+  ul.nav.navbar-nav
+    = menu_item "My Dashboard", nil
+    = menu_item "Active Campaigns", nil
+    = menu_item "Pledges", nil
+    = menu_item "Quick Pledges", nil
+  ul.nav.navbar-nav.navbar-right
+    li.dropdown
+      a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
+        = current_user.full_name
+        span.glyphicon.glyphicon-cog
+        span.caret
+      ul.dropdown-menu
+        = menu_item "My Dashboard", nil
+        = menu_item "Billing", nil
+        = menu_item "History", nil
+        li.divider
+        = menu_item "Public Profile", nil
+        = menu_item "Edit Profile", nil
+        = menu_item "Account Settings", nil
+        = menu_item "Email Notifications", nil
+        li.divider
+        = menu_item 'Start a New Campaign', nil
+        li.divider
+        = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
