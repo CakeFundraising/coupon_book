@@ -44,9 +44,9 @@ CakeCouponBook.coupon_books.saveCouponsOrder = (category) ->
     coupon = $(this)
     coupon_position = coupon.index()
     coupon_input_id = "#" + coupon.attr('class').split(' ')[1] + "_position"
-    coupon_category_input_id = "#" + coupon.attr('class').split(' ')[1] + "_coupon_category_id"
+    category_input_id = "#" + coupon.attr('class').split(' ')[1] + "_category_id"
     $(category).find(coupon_input_id).val(coupon_position)
-    $(category).find(coupon_category_input_id).val(category_id)
+    $(category).find(category_input_id).val(category_id)
     return
   return
 
@@ -87,6 +87,16 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
       original.clone().css({ width: original.width() })
     ,
     start: (event, ui) ->
+      ui.helper.find("input").each ->
+        collection_id = $(this).attr('id')
+        collection_name = $(this).attr('name')
+        category_id = collection_id.replace(/collections/g, "categories")
+        category_name = collection_name.replace(/collections/g, "categories")
+        category_id = category_id.replace(/collection/g, "category")
+        category_name = category_name.replace(/collection/g, "category")
+        $(this).attr("id", category_id)
+        $(this).attr('name', category_name)
+
       coupon_class = $(this).attr('class').split(' ')[1]
       $(this).addClass('in-book')
 

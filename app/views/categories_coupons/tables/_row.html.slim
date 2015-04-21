@@ -1,4 +1,4 @@
-= semantic_fields_for 'coupons[]', coupon do |f|
+= semantic_fields_for 'categories_coupons[]', categories_coupon do |f|
   = render partial:'coupons/modal', locals:{coupon: coupon}
   li.ui-state-default class="coupons__#{coupon.id}"
     table.table.table-hover.table-bordered.table-striped.data-table
@@ -8,6 +8,9 @@
       tr.coupon-input
         td
           = f.input :category_id, as: :hidden
+      tr.coupon-input
+        td
+          = f.input :coupon_id, as: :hidden
       tr
         td
           span.coupon-sp Sponsor Name

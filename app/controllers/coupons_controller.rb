@@ -10,10 +10,12 @@ class CouponsController < InheritedResources::Base
 
   # GET /coupons/new
   def new
-    @coupon_category = CouponCategory.find(params[:coupon_category_id])
-    @coupon_book = @coupon_category.coupon_book
-    @coupon = Coupon.new(coupon_book_id: @coupon_book.id, coupon_category_id: @coupon_category.id)
-    # @coupon = Coupon.new
+    # @category = Category.find(params[:category_id])
+    # @coupon_book = CouponBook.find(@category.coupon_book)
+    # @coupon = Coupon.new(coupon_book_id: @coupon_book.id, category_id: @category.id)
+    @collection = Collection.first
+    @coupon = Coupon.new
+    # @category_coupon = CategoriesCoupons.new(category_id: @category, coupon_id: @coupon)
   end
 
   def edit
@@ -21,13 +23,21 @@ class CouponsController < InheritedResources::Base
   end
 
   def create
-    @coupon = Coupon.new(coupon_params)
+    @collection = Collection.first
 
-    if @coupon.save
-      redirect_to @coupon, notice: 'Coupon was successfully created.'
-    else
-      render :new
+    create! do |success, failure|
+      success.html do
+        CollectionsCoupon.create!(collection_id: resource.id, coupon_id: @coupon.id)
+        redirect_to coupon_book_path(1)
+      end
     end
+    # @coupon = resource
+    #
+    # if @coupon.save
+    #   redirect_to @coupon, notice: 'Coupon was successfully created.'
+    # else
+    #   render :new
+    # end
   end
 
   # # PATCH/PUT /coupons/1
@@ -42,10 +52,10 @@ class CouponsController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        redirect_to coupon_book_path(resource.coupon_book)
+        redirect_to coupon_book_path(1)
       end
       failure.html do
-        @coupon_book = resource.coupon_book
+        @coupon_book = coupon_book_path(1)
         render :edit
       end
     end
@@ -72,7 +82,7 @@ class CouponsController < InheritedResources::Base
   def permitted_params
     params.permit(
       coupon: [
-        :position, :title, :description, :promo_code, :terms_and_conditions, :url, :expires_at, :coupon_book_id, :coupon_category_id,
+        :position, :title, :description, :promo_code, :terms_and_conditions, :url, :expires_at, :coupon_book_id, :category_id,
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,

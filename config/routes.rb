@@ -7,7 +7,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :coupon_categories
+  resources :categories
 
   resources :coupons do
     member do

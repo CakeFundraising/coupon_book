@@ -1,5 +1,5 @@
-class CouponBooksController < ApplicationController
-  before_action :set_coupon_book, only: [:show, :edit, :update, :destroy, :update_coupon_order]
+class CouponBooksController < InheritedResources::Base
+  # before_action :set_coupon_book, only: [:show, :edit, :update, :destroy, :update_coupon_order]
 
   # GET /coupon_books
   def index
@@ -8,13 +8,18 @@ class CouponBooksController < ApplicationController
 
   # GET /coupon_books/1
   def show
-    @coupons = Coupon.all
-    @coupon_categories = @coupon_book.coupon_categories
+    @collection = Collection.first
+    @collections_coupons = CollectionsCoupon.where(collection_id: @collection.id)
+    @categories = Category.where(coupon_book_id: resource.id)
+    p @categories.inspect
+    @categories_coupons = CategoriesCoupon.all
+    # @categories_coupons = CategoriesCoupon.where(category_id: )
   end
 
   # GET /coupon_books/new
   def new
     @coupon_book = CouponBook.new
+    @collection = Collection.create!
   end
 
   # GET /coupon_books/1/edit
@@ -23,12 +28,10 @@ class CouponBooksController < ApplicationController
 
   # POST /coupon_books
   def create
-    @coupon_book = CouponBook.new(coupon_book_params)
-
-    if @coupon_book.save
-      redirect_to @coupon_book, notice: 'Coupon book was successfully created.'
-    else
-      render :new
+    create! do |success, failure|
+      success.html do
+        redirect_to resource
+      end
     end
   end
 
@@ -50,36 +53,44 @@ class CouponBooksController < ApplicationController
   def update_coupon_order
     @coupon_book = CouponBook.find(params[:id])
 
-    params[:coupon_categories].each do |cat_id, vals|
+    params[:categories].each do |cat_id, vals|
       position = vals[:position]
 
-      category = CouponCategory.find(cat_id)
+      category = Category.find(cat_id)
 
       category.insert_at(position.to_i)
     end
 
 
     filter = []
-    if params[:coupons]
-      params[:coupons].each do |coupon_id, vals|
+    if params[:categories_coupons]
+      params[:categories_coupons].each do |categories_coupon, vals|
         position = vals[:position]
-        category_id = vals[:coupon_category_id]
+        category_id = vals[:category_id]
+        coupon_id = vals[:coupon_id]
 
-        coupon = Coupon.find(coupon_id)
+        categories_coupon = CategoriesCoupon.find_by(category_id: category_id, coupon_id: coupon_id)
+
+        if categories_coupon.nil?
+          CategoriesCoupon.create!(category_id: category_id, coupon_id: coupon_id, position: position)
+        else
+          categories_coupon.update_attribute(:position, position)
+          categories_coupon.insert_at(position.to_i)
+        end
         filter.push(coupon_id.to_i)
 
-        coupon.update_attribute(:coupon_category_id, category_id)
 
-        coupon.insert_at(position.to_i)
+
+
       end
 
     end
 
-    @unused_coupons = Coupon.all.select { |coupon| not filter.include?(coupon.id) }
-
-    @unused_coupons.each do |unused_coupon|
-      unused_coupon.update_attribute(:coupon_category_id, 0)
-    end
+    # @unused_coupons = Coupon.all.select { |coupon| not filter.include?(coupon.id) }
+    #
+    # @unused_coupons.each do |unused_coupon|
+    #   unused_coupon.update_attribute(:category_id, 0)
+    # end
 
     redirect_to @coupon_book
   end

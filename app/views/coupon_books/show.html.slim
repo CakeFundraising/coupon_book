@@ -8,11 +8,11 @@
 h1.dash-head
   span Coupon Categories
   .page-cta
-    = link_to 'Add a New Coupon Category', new_coupon_category_path(coupon_book_id: @coupon_book), class:'btn btn-primary btn-md'
+    = link_to 'Add a New Coupon Category', new_category_path(coupon_book_id: @coupon_book), class:'btn btn-primary btn-md'
 
 
-- if @coupon_book.coupon_categories.any?
-  = render partial: 'coupon_categories/tables/table'
+- if @coupon_book.categories.any?
+  = render partial: 'categories/tables/table'
 
 
 javascript:
