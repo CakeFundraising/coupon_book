@@ -28,6 +28,7 @@ gem 'bootstrap-kaminari-views'
 
 #Storage
 gem 'pg'
+gem 'ohm'
 
 #Servers
 gem 'thin', group: :development
@@ -40,7 +41,9 @@ gem 'pry-rails'
 
 #Utils
 gem 'prawn'
-gem 'activemodel-associations'
+
+#Authentication
+gem 'oauth2'
 
 group :development do
   gem 'quiet_assets'
@@ -51,12 +54,31 @@ gem 'american_date'
 gem 'jquery-validation-rails'
 gem 'acts_as_list'
 
+#Test related
+gem 'database_cleaner'
+gem 'faker'
+
 group :doc do
   gem 'sdoc', require: false
 end
 
-group :development, :test do
+group :test, :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'callback_skipper'
   gem 'byebug'
+end
+
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'sunspot_test'
+  gem 'pickle'
+  gem 'capybara'
+  gem 'webmock'
+  gem 'selenium-webdriver'
+  gem 'simplecov', require: false
+  gem 'shoulda-matchers', require: false
+  gem 'launchy'
 end
 
 group :production do

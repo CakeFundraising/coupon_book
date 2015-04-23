@@ -1,9 +1,12 @@
 class CouponBook < ActiveRecord::Base
-  belongs_to :fundraiser
   has_many :coupon_categories, -> { order("position ASC") }, validate: false, dependent: :destroy
   has_many :coupons, dependent: :destroy
 
   validate :categories_count_within_bounds, on: :create
+
+  def fundraiser
+    Fundraiser.fetch(self.fundraiser_id)
+  end
 
   private
 

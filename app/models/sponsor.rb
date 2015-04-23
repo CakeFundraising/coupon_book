@@ -1,4 +1,4 @@
-class Fundraiser < Ohm::Model
+class Sponsor < Ohm::Model
   attribute :name
   # attribute :mission
   # attribute :website
@@ -8,7 +8,6 @@ class Fundraiser < Ohm::Model
   # attribute :location
 
   collection :users, :User
-  collection :coupon_books, :CouponBook
 
   index :name
 
@@ -19,7 +18,7 @@ class Fundraiser < Ohm::Model
   end
 
   def self.fetch_and_create!(cake_id)
-    data = Cake::Oauth::Fundraiser.new(self.users.first.cake_access_token).find(cake_id)
+    data = Cake::Oauth::Sponsor.new(self.users.first.cake_access_token).find(cake_id)
 
     unless data.nil?
       self.create(
