@@ -10,17 +10,23 @@ else
       PROVIDER_HOST = ENV['CAKE_HOST']
 
       class ErrorDecorator
-        attr_accessor :error
+        attr_accessor :error, :klass
 
         def initialize(error)
           @error = error
+          @klass = error.class.name
         end
 
         def message
-          case @error.code
-          when 'invalid_grant'
-            I18n.t('flash.auth.failed.invalid_grant')
+          if @klass == 'OAuth2::Error' and @error.code.present?
+            case @error.code
+            when 'invalid_grant'
+              I18n.t('flash.auth.failed.invalid_grant')
+            else
+              I18n.t('flash.error.default')
+            end
           else
+            Rails.logger.error("Cake Auth Error: #{@error.message}")
             I18n.t('flash.error.default')
           end
         end
@@ -46,7 +52,7 @@ else
         def authenticate!
           begin
             {granted: true, token: get_token, error: nil}
-          rescue OAuth2::Error => e
+          rescue Exception => e
             {granted: false, token: nil, error: ErrorDecorator.new(e).message}
           end
         end
