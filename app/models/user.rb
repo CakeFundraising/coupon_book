@@ -16,7 +16,7 @@ class User < Ohm::Model
   end
 
   def self.create_from_token(access_token)
-    data = Cake::Oauth::User.new(access_token).self
+    data = self.current_user_data(access_token)
 
     if data.blank?
       user = nil
@@ -60,6 +60,12 @@ class User < Ohm::Model
 
   def sponsor?
     self.sponsor_id.present?
+  end
+
+  private
+
+  def self.current_user_data(access_token)
+    Cake::Oauth::User.new(access_token).self
   end
 
 end

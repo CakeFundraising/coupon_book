@@ -27,3 +27,10 @@ en:
       sign_in: Sign In
       sign_out: Sign Out
       sign_up:  Sign Up For Free
+  flash:
+    error:
+      default: We're sorry but there was an error. Please try again.
+    auth:
+      successful: Signed in successfully.
+      failed:
+        invalid_grant: 'Invalid email or password.'

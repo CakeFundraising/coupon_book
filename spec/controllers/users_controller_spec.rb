@@ -1,3 +1,5 @@
+require "rails_helper"
+
 RSpec.describe UsersController, type: :controller do
   describe 'POST #new_session' do
     context "Valid Crendentials" do
@@ -22,7 +24,7 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "should redirect to root_path" do
-        expect(action_call).to redirect_to(root_path)
+        expect(action_call).to redirect_to(sign_in_path)
       end
     end
   end

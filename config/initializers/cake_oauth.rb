@@ -9,6 +9,23 @@ else
       APP_SECRET = ENV['DOORKEEPER_APP_SECRET'] || '246a664471dcfb2edcc771c6c8463bd4036733607c6069a4e78b8350af2dff5a'
       PROVIDER_HOST = ENV['CAKE_HOST'] || 'http://localhost:3000'
 
+      class ErrorDecorator
+        attr_accessor :error
+
+        def initialize(error)
+          @error = error
+        end
+
+        def message
+          case @error.code
+          when 'invalid_grant'
+            I18n.t('flash.auth.failed.invalid_grant')
+          else
+            I18n.t('flash.error.default')
+          end
+        end
+      end
+
       class OauthClient
         attr_accessor :client
 
@@ -25,14 +42,23 @@ else
           @email = credentials[:email]
           @password = credentials[:password]
         end
-        
-        def access_token
-          @access_token = @client.password.get_token(@email, @password)
-          @access_token.token
-        end
 
+        def authenticate!
+          begin
+            {granted: true, token: get_token, error: nil}
+          rescue OAuth2::Error => e
+            {granted: false, token: nil, error: ErrorDecorator.new(e).message}
+          end
+        end
+        
         def get_user
           @access_token.get('api/v1/users/me').parsed
+        end
+
+        private
+
+        def get_token
+          @client.password.get_token(@email, @password).token
         end
       end
 

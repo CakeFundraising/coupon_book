@@ -1,9 +1,9 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-    = menu_item "My Dashboard", nil
-    = menu_item "Active Campaigns", nil
-    = menu_item "Pledges", nil
-    = menu_item "Quick Pledges", nil
+    = menu_item "My Dashboard", root_path
+    = menu_item "Active Campaigns", root_path
+    = menu_item "Pledges", root_path
+    = menu_item "Quick Pledges", root_path
   ul.nav.navbar-nav.navbar-right
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
@@ -11,15 +11,15 @@
         span.glyphicon.glyphicon-cog
         span.caret
       ul.dropdown-menu
-        = menu_item "My Dashboard", nil
-        = menu_item "Billing", nil
-        = menu_item "History", nil
+        = menu_item "My Dashboard", root_path
+        = menu_item "Billing", root_path
+        = menu_item "History", root_path
         li.divider
-        = menu_item "Public Profile", nil
-        = menu_item "Edit Profile", nil
-        = menu_item "Account Settings", nil
-        = menu_item "Email Notifications", nil
+        = menu_item "Public Profile", root_path
+        = menu_item "Edit Profile", root_path
+        = menu_item "Account Settings", root_path
+        = menu_item "Email Notifications", root_path
         li.divider
-        = menu_item 'Start a New Campaign', nil
+        = menu_item 'Start a New Campaign', root_path
         li.divider
-        = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete
+        = menu_item t("links.user.sign_out"), sign_out_path, method: :delete

@@ -9,8 +9,12 @@ module Cake
         @password = credentials[:password]
       end
       
-      def access_token
-        SecureRandom.base64(32) if valid_credentials?
+      def authenticate!
+        if valid_credentials?
+          {granted: true, token: SecureRandom.base64(32), error: nil}
+        else
+          {granted: false, token: nil, error: I18n.t('flash.auth.failed.invalid_grant')}
+        end
       end
 
       private
