@@ -5,9 +5,9 @@ else
   module Cake
     module Oauth
 
-      APP_ID = ENV['DOORKEEPER_APP_ID'] || '5cdb5507dc11f938b341cb9f81baea22829b5dddd2ba00aaca7a7ac465c76a03'
-      APP_SECRET = ENV['DOORKEEPER_APP_SECRET'] || '246a664471dcfb2edcc771c6c8463bd4036733607c6069a4e78b8350af2dff5a'
-      PROVIDER_HOST = ENV['CAKE_HOST'] || 'http://localhost:3000'
+      APP_ID = ENV['DOORKEEPER_APP_ID']
+      APP_SECRET = ENV['DOORKEEPER_APP_SECRET']
+      PROVIDER_HOST = ENV['CAKE_HOST']
 
       class ErrorDecorator
         attr_accessor :error
@@ -71,7 +71,6 @@ else
           @access_token = OAuth2::AccessToken.new(@client, @flat_access_token)
         end
       end
-
 
       class User < Dispatcher
         def initialize(access_token)
