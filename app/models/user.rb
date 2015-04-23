@@ -37,7 +37,6 @@ class User < Ohm::Model
         )
       end
     end
-
     user
   end
 
