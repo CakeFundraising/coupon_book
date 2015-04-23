@@ -35,3 +35,5 @@ staging.dump
 
 .com.apple.timemachine.supported
 *.psd
+
+env_vars.sh
