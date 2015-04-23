@@ -1,0 +1,13 @@
+li.ui-state-default
+  ul.sortableCoupons id="my_coupons"
+    li.ui-state-disabled
+      table.table.table-hover.table-bordered.table-striped.data-table
+        thead.cf
+          tr
+            th
+              span.category-title My Coupons
+            th.category-actions
+              .btn.btn-sm.btn-primary
+                span.glyphicon.glyphicon-pencil
+              = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm'
+    = render partial: 'collections_coupons/tables/row', collection: @collections_coupons, as: :collections_coupon

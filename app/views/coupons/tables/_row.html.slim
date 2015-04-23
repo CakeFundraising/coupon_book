@@ -1,7 +1,22 @@
-li.ui-state-default id="coupons__#{coupon.id}"
-  span
-    = coupon.title
-    = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
-      span.glyphicon.glyphicon-pencil
-    = link_to coupon, data: {:confirm => 'Are you sure?'}, :method => :delete, class: 'btn btn-sm btn-danger'
-      span.glyphicon.glyphicon-trash
+= semantic_fields_for 'coupons[]', coupon do |f|
+  = render partial:'coupons/modal', locals:{coupon: coupon}
+  li.ui-state-default class="coupons__#{coupon.id}"
+    table.table.table-hover.table-bordered.table-striped.data-table
+      tr.coupon-input
+        td
+          = f.input :position, as: :hidden
+      tr.coupon-input
+        td
+          = f.input :category_id, as: :hidden
+      tr
+        td
+          span.coupon-sp Sponsor Name
+          br
+          span.coupon-title = coupon.title
+        td.coupon-actions
+          a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{coupon.id}"
+            span.glyphicon.glyphicon-eye-open
+          = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
+            span.glyphicon.glyphicon-pencil
+          a.btn.btn-sm.btn-danger.remove-from-book id="remove__#{coupon.id}"
+            span.glyphicon.glyphicon-trash

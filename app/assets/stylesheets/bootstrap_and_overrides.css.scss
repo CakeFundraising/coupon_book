@@ -1,4 +1,8 @@
+@import 'fonts';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import 'variables';
+@import "bootstrap-sprockets";
 @import 'bootstrap';
 @import 'mixins';
 @import 'mixins-buttons';
@@ -122,6 +126,10 @@ hr{
 
 .text-left{
   text-align: left;
+}
+
+.text-right{
+  text-align: right;
 }
 
 .float-left {
@@ -2029,7 +2037,7 @@ ul.share-coupon {
   position: absolute;
   top: 0;
   right: 15px;
-  background-image: image-url('coupon-edge.png');
+  background-image: image_url('coupon-edge.png');
   height: 100%;
   width: 7px;
   -webkit-background-size: cover;
@@ -3811,5 +3819,78 @@ ul#share-block {
   }
   .sidebar-bkg.campaign-sidebar{
     margin-top: 0;
+  }
+}
+
+
+// Coupon Book
+
+.coupon-actions {
+  width: 131px;
+  text-align: right;
+}
+
+.category-actions {
+  width: 189px;
+  text-align: right;
+}
+
+.coupon-input {
+  display: none;
+}
+
+ul.sortableCoupons {
+  margin-top: 20px;
+  list-style-type: none;
+  padding-left: initial;
+
+  //li {
+  //  padding: 5px;
+  //}
+}
+
+ul.sortableCategories {
+  list-style-type: none;
+  //
+  //li {
+  //  padding: 5px;
+  //}
+}
+
+.category-title {
+  color: #fff;
+  font-size: 2.5em;
+}
+
+.coupon-title, .coupon-sp {
+  font-size: 1em;
+  font-family: "museo_sans700"
+}
+
+.in-book {
+  opacity: 0.2;
+  transition: opacity 0.500s linear;
+}
+
+li.ui-state-default {
+  cursor: move;
+}
+
+.coupon-modal {
+
+  .modal-content {
+    width: 180%;
+    left: -40%;
+  }
+
+  h3{
+    font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+  }
+  .modal-body{
+    padding: 20px;
+  }
+  .lead{
+    font-size: 18px;
   }
 }

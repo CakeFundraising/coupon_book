@@ -1,0 +1,10 @@
+.modal.fade.coupon-modal id="preview-coupon-#{coupon.id}"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h3.modal-title = coupon.title
+      .modal-body
+        #coupons.row-fluid
+          = render partial: 'coupons/show/box', locals: {coupon: coupon.decorate}
+          = render partial: 'coupons/show/terms'

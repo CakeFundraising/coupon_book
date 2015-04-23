@@ -14,8 +14,13 @@
 //= require jquery_ujs
 //= require jquery.validate
 //= require jquery.validate.additional-methods
+//= require jquery.Jcrop
 
 //= require turbolinks
+
+//= require cloudinary/jquery.ui.widget
+//= require cloudinary/jquery.iframe-transport
+//= require cloudinary/jquery.fileupload
 
 //= require bootstrap
 
@@ -25,8 +30,11 @@
 
 //= require cake_coupon_book
 
-//= require ./datepicker
+//= require ./cloudinary_crop
 //= require ./coupons
+//= require ./coupon_books
+//= require ./pictures
+//= require ./jquery.cloudinary
+//= require ./datepicker
 //= require ./validations
-
-//= require_tree .
+//= require ./utils

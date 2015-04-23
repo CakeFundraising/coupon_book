@@ -20,6 +20,7 @@ gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem 'slim'
 gem 'slim-rails'
 gem 'bootstrap-sass', '~> 3.3.4.1'
+gem 'font-awesome-sass'
 gem 'formtastic'
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'draper'
@@ -32,6 +33,10 @@ gem 'ohm'
 
 #Servers
 gem 'thin', group: :development
+
+#Image processing
+gem 'jcrop-rails-v2'
+gem 'cloudinary'
 
 #Payments
 gem 'stripe-rails'
@@ -53,6 +58,9 @@ end
 gem 'american_date'
 gem 'jquery-validation-rails'
 gem 'acts_as_list'
+
+#Admin panel
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 #Test related
 gem 'database_cleaner'

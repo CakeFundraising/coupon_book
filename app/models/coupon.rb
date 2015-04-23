@@ -1,8 +1,8 @@
 class Coupon < ActiveRecord::Base
-  belongs_to :coupon_book, touch: true
-  belongs_to :coupon_category
+  has_many :categories_coupons
+  has_many :collections_coupons
 
-  acts_as_list scope: :coupon_category
+  include Picturable
 
   validates :title, :description, :expires_at, presence: true
 end

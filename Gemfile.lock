@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/josevalim/inherited_resources.git
+  revision: d43bd6d1adfd90e0d73ec9e6191a3c9eb612c375
+  specs:
+    inherited_resources (1.6.0)
+      actionpack (>= 3.2, < 5)
+      has_scope (~> 0.6.0.rc)
+      railties (>= 3.2, < 5)
+      responders
+
+GIT
   remote: git://github.com/mjbellantoni/formtastic-bootstrap.git
   revision: 8134e3fd9af1115ee4fa019d6ef994bdc0045099
   specs:
@@ -51,6 +61,7 @@ GEM
     autoprefixer-rails (5.1.8)
       execjs
       json
+    aws_cf_signer (0.1.3)
     bootstrap-datepicker-rails (1.3.0.2)
       railties (>= 3.0)
     bootstrap-kaminari-views (0.0.5)
@@ -62,6 +73,9 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    cloudinary (1.0.80)
+      aws_cf_signer
+      rest-client
     callback_skipper (1.0.0)
       activerecord (>= 3.0)
     capybara (2.4.4)
@@ -109,6 +123,8 @@ GEM
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.5.0)
+    font-awesome-sass (4.3.2.1)
+      sass (~> 3.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -126,11 +142,15 @@ GEM
       multi_json (~> 1.3)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    has_scope (0.6.0)
+      actionpack (>= 3.2, < 5)
+      activesupport (>= 3.2, < 5)
     hike (1.2.3)
     hiredis (0.6.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    jcrop-rails-v2 (0.9.12.3)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -233,6 +253,8 @@ GEM
       hiredis
     ref (1.0.5)
     request_store (1.1.0)
+    responders (2.1.0)
+      railties (>= 4.2.0, < 5)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -363,16 +385,20 @@ DEPENDENCIES
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.3.4.1)
   byebug
+  cloudinary
   callback_skipper
   capybara
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner
   draper
+  font-awesome-sass
   factory_girl_rails
   faker
   formtastic
   formtastic-bootstrap!
+  inherited_resources!
+  jcrop-rails-v2
   jquery-rails (~> 4.0.3)
   jquery-ui-rails
   jquery-validation-rails

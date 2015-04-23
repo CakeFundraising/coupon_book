@@ -7,9 +7,17 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :coupon_categories
+  resources :categories
 
-  resources :coupons
+  resources :coupons do
+    member do
+      get :download
+
+      scope :pictures, controller: :cropping do
+        post :crop
+      end
+    end
+  end
 
   scope :users, controller: :users do
     get :sign_in
