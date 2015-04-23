@@ -42,37 +42,26 @@ html lang="en"
           h4 Company
           ul
             li
-              /= link_to "About Cake", about_page_path('cake')
+              = link_to "About Cake", cake_about_page_path('cake')
             li
-              /= link_to "Blog", "http://blog.cakecausemarketing.com"
+              = link_to "Blog", "http://blog.cakecausemarketing.com"
             li
-              /= link_to "Press", about_page_path('press')
+              = link_to "Press", cake_about_page_path('press')
             li
-              /= link_to "Contact", about_page_path('contact')
+              = link_to "Contact", cake_about_page_path('contact')
             li
-              /= link_to "Privacy", about_page_path('privacy')
+              = link_to "Privacy", cake_about_page_path('privacy')
             li
-              /= link_to "Terms of Use", about_page_path('terms_of_use')
+              = link_to "Terms of Use", cake_about_page_path('terms_of_use')
         .col-md-4.col-sm-4.col-xs-4
           h4 Learn
           ul
             li
-              /= link_to "FAQs", help_page_path('faq')
-            / li
-            /   = link_to "How to Find Sponsors", help_page_path('find_sponsors')
-            / li
-            /   = link_to "Sponsors Help & Training", help_page_path('sp_help')
-            / li
-            /   = link_to "Fundraising Help & Training", help_page_path('fr_help')
+              = link_to "FAQs", cake_help_page_path('faq')
         .col-md-4.col-sm-4.col-xs-4
           h4 Follow Us
           div.addthis_custom_follow
           br
-        /.col-md-3
-        /  h4 Subscribe To Our Newsletter
-        /  p Quarterly news and updates. No Spam.
-        /  .form-group
-        /    input.form-control type="text" placeholder="Enter your email..."
 
       .row.Colophon
         .col-md-9

@@ -4,6 +4,10 @@ class CouponBook < ActiveRecord::Base
 
   validate :categories_count_within_bounds, on: :create
 
+  def fundraiser
+    Fundraiser.fetch(self.fundraiser_id)
+  end
+
   private
 
   def categories_count_within_bounds

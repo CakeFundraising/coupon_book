@@ -19,4 +19,10 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  scope :users, controller: :users do
+    get :sign_in
+    post :new_session
+    delete :sign_out
+  end
+
 end

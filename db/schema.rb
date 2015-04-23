@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150420201756) do
     t.integer  "coupon_book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fundraiser_id"
   end
 
   create_table "categories_coupons", force: :cascade do |t|
