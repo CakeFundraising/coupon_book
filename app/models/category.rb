@@ -3,7 +3,6 @@ class Category < ActiveRecord::Base
 
   has_many :categories_coupons
   has_many :coupons, -> { order("position ASC") }, through: :categories_coupons
-  # has_many :coupons, -> { order("position ASC") }
 
   acts_as_list scope: :coupon_book
 

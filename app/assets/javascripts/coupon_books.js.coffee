@@ -18,20 +18,20 @@ CakeCouponBook.coupon_books.spCouponsRowMatchHeight = ->
 
 CakeCouponBook.coupon_books.saveCouponBookOrder = ->
   $(".coupon_book").submit ->
-    CakeCouponBook.coupon_books.removeOriginalInputs()
+#    CakeCouponBook.coupon_books.removeOriginalInputs()
     CakeCouponBook.coupon_books.saveCategoriesOrder()
   return
 
-CakeCouponBook.coupon_books.removeOriginalInputs = ->
-  $("#my_coupons").find("input").each ->
-    $(this).remove()
-  return
+#CakeCouponBook.coupon_books.removeOriginalInputs = ->
+#  $("#my_coupons").find("input").each ->
+#    $(this).remove()
+#  return
 
 CakeCouponBook.coupon_books.saveCategoriesOrder = ->
   $("#categories").find("ul").each ->
     category = $(this)
     category_position = category.parent().index()
-    category_input_id = "#" + category.attr('id') + "_position"
+    category_input_id = "#" + category.attr('id').replace(/coupon_/, "") + "_position"
     $(category_input_id).val(category_position)
     CakeCouponBook.coupon_books.saveCouponsOrder(category)
     return

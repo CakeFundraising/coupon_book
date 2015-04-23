@@ -3,7 +3,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :coupon_books do
     member do
-      patch :update_coupon_order
+      patch :update_coupon_book_order
     end
   end
 

@@ -4,6 +4,9 @@
     table.table.table-hover.table-bordered.table-striped.data-table
       tr.coupon-input
         td
+          = f.input :id, as: :hidden
+      tr.coupon-input
+        td
           = f.input :position, as: :hidden
       tr.coupon-input
         td

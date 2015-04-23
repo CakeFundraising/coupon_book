@@ -1,4 +1,4 @@
-= semantic_form_for(@coupon_book, :url => { :action => 'update_coupon_order' }) do |f|
+= semantic_form_for(@coupon_book, :url => { :action => 'update_coupon_book_order' }) do |f|
   .container
     .row
       .col-md-6
@@ -6,7 +6,7 @@
           = render partial: 'collections/tables/table'
       .col-md-6
         ul.sortableCategories id="categories"
-          - @categories_coupons.each do |category|
+          - @categories.each do |category|
             = semantic_fields_for 'categories[]', category do |c|
               = c.input :position, as: :hidden
               = render partial: 'categories/tables/row', locals: {category: category, c: c}

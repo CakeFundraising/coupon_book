@@ -50,41 +50,34 @@ class CouponBooksController < InheritedResources::Base
     redirect_to coupon_books_url, notice: 'Coupon book was successfully destroyed.'
   end
 
-  def update_coupon_order
+  def update_coupon_book_order
     @coupon_book = CouponBook.find(params[:id])
 
-    params[:categories].each do |cat_id, vals|
-      position = vals[:position]
+    update_categories_order
 
-      category = Category.find(cat_id)
-
-      category.insert_at(position.to_i)
-    end
-
-
-    filter = []
-    if params[:categories_coupons]
-      params[:categories_coupons].each do |categories_coupon, vals|
-        position = vals[:position]
-        category_id = vals[:category_id]
-        coupon_id = vals[:coupon_id]
-
-        categories_coupon = CategoriesCoupon.find_by(category_id: category_id, coupon_id: coupon_id)
-
-        if categories_coupon.nil?
-          CategoriesCoupon.create!(category_id: category_id, coupon_id: coupon_id, position: position)
-        else
-          categories_coupon.update_attribute(:position, position)
-          categories_coupon.insert_at(position.to_i)
-        end
-        filter.push(coupon_id.to_i)
-
-
-
-
-      end
-
-    end
+    # filter = []
+    # if params[:categories_coupons]
+    #   params[:categories_coupons].each do |categories_coupon, vals|
+    #     position = vals[:position]
+    #     category_id = vals[:category_id]
+    #     coupon_id = vals[:coupon_id]
+    #
+    #     categories_coupon = CategoriesCoupon.find_by(category_id: category_id, coupon_id: coupon_id)
+    #
+    #     if categories_coupon.nil?
+    #       CategoriesCoupon.create!(category_id: category_id, coupon_id: coupon_id, position: position)
+    #     else
+    #       categories_coupon.update_attribute(:position, position)
+    #       categories_coupon.insert_at(position.to_i)
+    #     end
+    #     filter.push(coupon_id.to_i)
+    #
+    #
+    #
+    #
+    #   end
+    #
+    # end
 
     # @unused_coupons = Coupon.all.select { |coupon| not filter.include?(coupon.id) }
     #
@@ -96,13 +89,24 @@ class CouponBooksController < InheritedResources::Base
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_coupon_book
-      @coupon_book = CouponBook.find(params[:id])
+
+  def update_categories_order
+    params[:categories].each do |id, category|
+      position = category[:position]
+      c = Category.find(id)
+      c.insert_at(position.to_i)
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def coupon_book_params
-      params[:coupon_book]
-    end
+  end
+
+
+    # # Use callbacks to share common setup or constraints between actions.
+    # def set_coupon_book
+    #   @coupon_book = CouponBook.find(params[:id])
+    # end
+    #
+    # # Only allow a trusted parameter "white list" through.
+    # def coupon_book_params
+    #   params[:coupon_book]
+    # end
 end
