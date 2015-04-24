@@ -5,6 +5,6 @@ h1.dash-head
 
 #coupon_books.panel-group role="tablist" aria-multiselectable="true"
   - if @coupon_books.any?
-    = render partial:'coupon_books/collapse', collection: @coupon_books, as: :coupon_book
+    = render partial:'coupon_books/show/collapse', collection: @coupon_books, as: :coupon_book
   - else
     = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.coupon_books')}

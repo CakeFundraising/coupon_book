@@ -1,0 +1,13 @@
+- unless coupon_book.past?
+  = status_buttons(coupon_book)
+
+= visibility_buttons(coupon_book)
+
+= link_to edit_coupon_book_path(coupon_book), class:"btn btn-sm btn-primary" do 
+  span.glyphicon.glyphicon-pencil
+  
+button.btn.btn-sm.btn-warning data-target="#coupon_book_modal_#{coupon_book.id}" data-toggle="modal" Share
+= render partial:'coupon_books/show/share_modal', locals:{coupon_book: coupon_book}
+
+= link_to coupon_book, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+  span.glyphicon.glyphicon-trash

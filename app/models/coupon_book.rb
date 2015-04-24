@@ -7,7 +7,7 @@ class CouponBook < ActiveRecord::Base
   has_statuses :incomplete, :pending, :launched, :past
 
   has_many :categories, -> { order("position ASC") }, dependent: :destroy
-  has_many :coupons, dependent: :destroy
+  has_many :coupons, through: :categories, dependent: :destroy
 
   monetize :goal_cents, numericality: {greater_than: 0}
 

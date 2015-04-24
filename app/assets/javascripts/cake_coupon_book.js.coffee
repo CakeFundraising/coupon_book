@@ -5,6 +5,7 @@ CakeCouponBook.init = ->
   CakeCouponBook.validations.init()
   CakeCouponBook.crop.init()
   CakeCouponBook.utils.init()
+  CakeCouponBook.coupon_books.init()
   return
 
 $(document).ready(CakeCouponBook.init)

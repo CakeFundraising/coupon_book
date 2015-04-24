@@ -28,6 +28,37 @@ CakeCouponBook.coupon_books.validation = ->
   )
   return
 
+visibility = ->
+  containers = $('.visibility_buttons')
+  links = containers.find('a')
+
+  console.log 'Hola'
+
+  links.on("ajax:success", (e, data, status, xhr) ->
+    current = $(this)
+    opposite = current.siblings("a")
+
+    opposite.removeClass "hidden"
+    current.addClass "hidden"
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert "There were an error when updating coupon_book, please reload this page and try again."
+    return
+  return
+
+launch = ->
+  buttons = $('.launch_button')
+  launched_button = '<div class="btn btn-sm btn-success disabled">Launched</div>'
+
+  buttons.on("ajax:success", (e, data, status, xhr) ->
+    current = $(this)
+    current.closest('td').html(launched_button)
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert "There were an error when updating coupon_book, please reload this page and try again."
+    return
+  return
+
 CakeCouponBook.coupon_books.getCouponCollection = ->
   my_coupons = []
 
@@ -88,7 +119,6 @@ CakeCouponBook.coupon_books.getCouponClass = (coupon) ->
   $(coupon).attr('class').split(' ')[1]
 
 CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
-
   $( categories ).sortable({
     items: "li:not(.ui-state-disabled)",
     connectWith: ".sortableCoupons",
@@ -139,8 +169,7 @@ CakeCouponBook.coupon_books.initDragAndDrop = (my_coupons, categories) ->
   }).disableSelection()
   return
 
-CakeCouponBook.coupon_books.init = ->
-
+CakeCouponBook.coupon_books.build = ->
   my_coupons = CakeCouponBook.coupon_books.getCouponCollection()
   categories = CakeCouponBook.coupon_books.getCategories()
 
@@ -150,4 +179,9 @@ CakeCouponBook.coupon_books.init = ->
 
   CakeCouponBook.coupon_books.saveCouponBookOrder()
   CakeCouponBook.coupon_books.spCouponsRowMatchHeight()
+  return
+
+CakeCouponBook.coupon_books.init = ->
+  visibility()
+  launch()
   return
