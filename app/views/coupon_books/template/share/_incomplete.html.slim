@@ -1,0 +1,17 @@
+.row
+  .col-md-12
+    .row.text-center
+      .col-md-2
+      .col-md-8
+        h1 This Campaign is incomplete!
+        p.text-muted Please return to step 2 and complete all required fields.
+        - unless @coupon_book.valid?
+          .text-left
+            = semantic_form_for @coupon_book do |f|
+              = f.semantic_errors *f.object.errors.keys
+        hr
+        .row.text-center
+          = link_to "Go to Step 2", tell_your_story_coupon_book_path(@coupon_book), class:'btn btn-primary'
+        br
+        br
+      .col-md-2

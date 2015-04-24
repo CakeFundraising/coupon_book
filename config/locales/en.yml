@@ -6,6 +6,12 @@ en:
       sign_in: Sign In
       sign_out: Sign Out
       sign_up:  Sign Up For Free
+    wizards:
+      coupon_book: 
+        basic_info: Basic Information
+        tell_your_story: Tell Your Story
+        launch: Launch Book
+        share: Find Sponsors
   flash:
     error:
       default: We're sorry but there was an error. Please try again.
@@ -13,3 +19,7 @@ en:
       successful: Signed in successfully.
       failed:
         invalid_grant: Invalid email or password.
+  titles:
+    empty_results:
+      coupon_books: Coupon Books
+      coupons: Coupons

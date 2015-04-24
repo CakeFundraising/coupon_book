@@ -1,5 +1,8 @@
 class DashboardController < ApplicationController
-  def dashboard
+  def home
     render 'fundraiser'
+  end
+
+  def history
   end
 end

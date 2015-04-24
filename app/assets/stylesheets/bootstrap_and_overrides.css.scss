@@ -103,6 +103,14 @@ hr{
 
 //Helpers ----------------------------------------------------------------------------
 
+ul.pretty-list{
+  margin-top: 20px;
+  padding-left: 20px;
+  li{
+    font-size: 16px;
+  }
+}
+
 .ten-b {
   margin-bottom: 10px;
 }
@@ -206,19 +214,6 @@ hr{
     }
     a:hover{
       text-decoration: none !important;
-    }
-  }
-}
-
-.campaign-nav {
-
-  ul.nav.nav-pills {
-    background-color: #ffffff;
-    padding: 20px 30px;
-    border: 1px solid #f1f1f1;
-    border-radius: 15px;
-    li{
-      padding:0 5px;
     }
   }
 }
@@ -2777,6 +2772,7 @@ ul#share-block {
   }
 }
 
+.coupon-book-steps,
 .campaign-steps {
   padding: 20px 50px;
   @media (min-width: $screen-lg-min) {
@@ -2792,12 +2788,19 @@ ul#share-block {
     padding: 0 50px 20px;
   }
 }
-
+.coupon-book-nav,
 .campaign-nav {
-  .nav{
+  ul.nav.nav-pills {
     display:inline-block;
     margin-top: 0px;
     margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border: 1px solid #f1f1f1;
+    border-radius: 15px;
+    li{
+      padding:0 5px;
+    }
   }
 }
 
@@ -2818,17 +2821,14 @@ ul#share-block {
   padding: 8px 45px 8px 20px;
 }
 
-#campaign_launch_date_input {
-  /*padding: 10px 0 0;*/
-}
-#campaign_launch_date {
-  width: 49%;
-  float: left;
-  margin-right: 5px;
-}
-#campaign_end_date {
-  width: 49%;
-  margin-right: 5px;
+.input-daterange{
+  input{
+    width: 49%;
+    margin-right: 5px;
+    &:first-child{
+      float: left;
+    }
+  }
 }
 
 #campaign_scopes_input {
@@ -2842,7 +2842,10 @@ ul#share-block {
 #campaign_video_attributes_url {
   width: 50%;
 }
-#campaign_picture_attributes_banner_input, #pledge_picture_attributes_banner_input {
+
+#coupon_book_picture_attributes_banner_input,
+#campaign_picture_attributes_banner_input, 
+#pledge_picture_attributes_banner_input {
   .banner {
     width: 100%;
     height: auto;

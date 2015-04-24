@@ -1,12 +1,15 @@
 class CouponBooksController < InheritedResources::Base
-  # before_action :set_coupon_book, only: [:show, :edit, :update, :destroy, :update_coupon_order]
+  TEMPLATE_STEPS = [
+    :basic_info,
+    :tell_your_story,
+    :launch_coupon_book,
+    :share
+  ]
 
-  # GET /coupon_books
   def index
-    @coupon_books = CouponBook.all
+    @coupon_books = current_fundraiser.coupon_books.latest.decorate
   end
 
-  # GET /coupon_books/1
   def show
     @coupon_book = resource
     @collection = Collection.first
@@ -14,38 +17,59 @@ class CouponBooksController < InheritedResources::Base
     @categories = @coupon_book.categories
   end
 
-  # GET /coupon_books/new
-  def new
-    @coupon_book = CouponBook.new
-    @collection = Collection.create!
+  #Template steps
+  def basic_info
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/basic_info'
   end
 
-  # GET /coupon_books/1/edit
-  def edit
+  def tell_your_story
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/tell_your_story'
   end
 
-  # POST /coupon_books
+  def launch_coupon_book
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/launch'
+  end
+
+  def share
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/share'
+  end
+
+  #Default actions
   def create
+    @coupon_book = current_fundraiser.coupon_books.build(*resource_params)
+
     create! do |success, failure|
       success.html do
-        redirect_to resource
+        redirect_to tell_your_story_coupon_book_path(@coupon_book)
+      end
+      failure.html do
+        render action: :new
       end
     end
   end
 
-  # PATCH/PUT /coupon_books/1
   def update
-    if @coupon_book.update(coupon_book_params)
-      redirect_to @coupon_book, notice: 'Coupon book was successfully updated.'
-    else
-      render :edit
+    update! do |success, failure|
+      success.html do
+        redirect_to controller: :coupon_books, action: params[:coupon_book][:step], id: resource
+      end
+      failure.html do
+        step_action = TEMPLATE_STEPS[TEMPLATE_STEPS.index(params[:coupon_book][:step].to_sym)-1].to_s
+        render 'coupon_books/template/' + step_action
+      end
     end
   end
 
-  # DELETE /coupon_books/1
   def destroy
-    @coupon_book.destroy
-    redirect_to coupon_books_url, notice: 'Coupon book was successfully destroyed.'
+    destroy! do |success, failure|
+      success.html do
+        redirect_to coupon_books_path, notice: 'Coupon book was successfully destroyed.'
+      end
+    end
   end
 
   def update_coupon_book_order
@@ -97,6 +121,42 @@ class CouponBooksController < InheritedResources::Base
     end
 
     redirect_to @coupon_book
+  end
+
+  #Special Actions
+  def save_for_launch
+    resource.pending!
+    redirect_to share_coupon_book_path(resource), notice: 'Coupon Book saved!'
+  end
+
+  def launch
+    resource.launch!
+    #update_coupon_book_screenshot(resource)
+
+    if request.xhr?
+      render nothing: true
+    else
+      redirect_to share_coupon_book_path(resource), notice: 'Coupon Book launched!'
+    end
+  end
+
+  def toggle_visibility
+    resource.toggle! :visible
+    render nothing: true
+  end
+
+  private
+
+  def permitted_params
+    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
+      :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, causes: [],
+      scopes: [], video_attributes: [:id, :url, :auto_show],
+      picture_attributes: [
+        :id, :banner, :avatar, :avatar_caption,
+        :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
+        :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
+      ]
+    ])
   end
 
 end

@@ -1,21 +1,21 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-    = menu_item "My Dashboard", dashboard_path
-    = menu_item "Active Books", root_path
-    = menu_item "All Sponsors", root_path
-    = menu_item "History", root_path
+    = menu_item "My Dashboard", home_path
+    = menu_item "Active Books", coupon_books_path
+    = menu_item "All Sponsors", coupon_sponsors_path
+    = menu_item "History", history_path
   ul.nav.navbar-nav.navbar-right
-    = menu_item 'New Coupon Book', root_path
+    = menu_item 'New Coupon Book', new_coupon_book_path
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
         = current_user.full_name
         span.glyphicon.glyphicon-cog
         span.caret
       ul.dropdown-menu
-        = menu_item "My Dashboard", dashboard_path
-        = menu_item "Active Books", root_path
-        = menu_item "All Sponsors", root_path
-        = menu_item "History", root_path
+        = menu_item "My Dashboard", home_path
+        = menu_item "Active Books", coupon_books_path
+        = menu_item "All Sponsors", coupon_sponsors_path
+        = menu_item "History", history_path
         li.divider
         = menu_item "Public Profile", root_path
         = menu_item "Edit Profile", root_path

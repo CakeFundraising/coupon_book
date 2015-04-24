@@ -46,6 +46,7 @@ gem 'pry-rails'
 
 #Utils
 gem 'prawn'
+gem 'money-rails'
 
 #Authentication
 gem 'oauth2'

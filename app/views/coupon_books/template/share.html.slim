@@ -1,0 +1,13 @@
+/= display_meta("Campaign Setup")
+
+= render partial:'coupon_books/template/nav'
+    
+.tab-content.coupon_book-wizard-wrap
+  #share.tab-pane.active
+    = render partial:"coupon_books/template/share/#{@coupon_book.object.status}"
+
+    - unless @coupon_book.incomplete?
+      .row.section-wrapper.text-center
+        .row.solicit-choose
+          .col-md-12.text-center
+            = link_to "Go to My Account", home_path, class:'btn btn-success'

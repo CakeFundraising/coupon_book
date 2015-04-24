@@ -1,0 +1,25 @@
+.row
+  .col-md-12
+    .row.text-center
+      .col-md-2
+      .col-md-8
+        h1 Find Sponsors
+        p.text-muted It's time to Find Sponsors for your Campaign. Ask Sponsors you may know to make a donation per click Pledge supporting your Campaign by following this link below!
+        /.row.text-left
+        /  = render partial:'coupon_books/show/media', locals:{coupon_book: @coupon_book}
+        .toggle-container.text-left
+          label Campaign Url: 
+          input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
+          .row.text-center
+            button.clipboard.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
+      .col-md-2
+    .row.section-wrapper.text-center
+      .col-md-2
+      .col-md-8
+        h2 Search for Sponsors
+        p.text-muted Request Pledges from Active Sponsors already on Cake
+        br
+        /= link_to "Search for sponsors", search_sponsors_path, class:'btn btn-primary'
+
+      .col-md-2
+

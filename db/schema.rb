@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420201756) do
+ActiveRecord::Schema.define(version: 20150424162803) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.integer  "coupon_book_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories_coupons", force: :cascade do |t|
     t.integer  "category_id"
@@ -40,14 +48,17 @@ ActiveRecord::Schema.define(version: 20150420201756) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fundraiser_id"
-  end
-
-  create_table "coupon_categories", force: :cascade do |t|
     t.string   "name"
-    t.integer  "position"
-    t.integer  "coupon_book_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "launch_date"
+    t.datetime "end_date"
+    t.string   "url"
+    t.string   "headline"
+    t.text     "story"
+    t.string   "status",                  default: "incomplete"
+    t.text     "mission"
+    t.boolean  "visible",                 default: false
+    t.integer  "goal_cents",              default: 0,            null: false
+    t.string   "goal_currency",           default: "USD",        null: false
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -58,9 +69,6 @@ ActiveRecord::Schema.define(version: 20150420201756) do
     t.string   "promo_code"
     t.text     "terms_and_conditions"
     t.string   "url"
-    t.integer  "coupon_categories_mask", limit: 8
-    t.integer  "coupon_book_id"
-    t.integer  "coupon_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

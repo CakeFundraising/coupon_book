@@ -1,0 +1,14 @@
+- if @coupon_book.valid?
+  = render partial: "coupon_books/template/launch/pending"
+- else
+  .text-center
+    h1 This Campaign is incomplete!
+    p.text-muted Please return to step 2 and complete all required fields.
+    .text-left
+      = semantic_form_for @coupon_book do |f|
+        = f.semantic_errors *f.object.errors.keys
+    hr
+    .row.text-center
+      = link_to "Go to Step 2", tell_your_story_coupon_book_path(@coupon_book), class:'btn btn-primary'
+    br
+    br

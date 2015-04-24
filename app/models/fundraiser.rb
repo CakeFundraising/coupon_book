@@ -8,7 +8,6 @@ class Fundraiser < Ohm::Model
   # attribute :location
 
   collection :users, :User
-  collection :coupon_books, :CouponBook
 
   index :name
 
@@ -38,4 +37,7 @@ class Fundraiser < Ohm::Model
     end
   end
 
+  def coupon_books
+    CouponBook.where(fundraiser_id: self.id.to_i)
+  end
 end

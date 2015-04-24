@@ -1,7 +1,7 @@
 CakeCouponBook.pictures ?= {}
 
 CakeCouponBook.pictures.added_images = (stored_images)->
-  form = $('.formtastic.pledge, .formtastic.campaign, .formtastic.fundraiser, .formtastic.sponsor')
+  form = $('.formtastic.coupon_book, .formtastic.coupon')
   file_inputs = form.find('input[type="file"]')
 
   file_inputs.each ->
@@ -71,12 +71,8 @@ CakeCouponBook.pictures.validation.coupons = ->
 
 CakeCouponBook.pictures.validation.init = ->
   forms = [
-    '.formtastic.pledge',
-    '.formtastic.campaign',
-    '.formtastic.fundraiser',
-    '.formtastic.sponsor',
-    '.formtastic.quick_pledge',
-    '.formtastic.pledge_news'
+    '.formtastic.coupon',
+    '.formtastic.coupon_book'
   ]
 
   avatarValidator = new PictureValidation(

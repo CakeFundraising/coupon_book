@@ -1,0 +1,20 @@
+.row
+  .col-xs-12.coupon-book-steps
+    = render partial:'coupon_books/template/actions' unless @coupon_book.incomplete?
+  .coupon-book-nav.text-center  
+    - if @coupon_book.persisted?
+        ul.nav.nav-pills
+          = wizard_menu_item(edit_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.basic_info'))
+          = wizard_menu_item(tell_your_story_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.tell_your_story'))
+          = wizard_menu_item(launch_coupon_book_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launch'))
+          = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share'))
+    - else
+        ul.nav.nav-pills
+          li.active
+            a data-toggle="tab" href="#main" = t('links.wizards.coupon_book.basic_info')
+          li 
+            a href="" = t('links.wizards.coupon_book.tell_your_story')
+          li 
+            a href="" = t('links.wizards.coupon_book.launch')
+          li
+            a href="" = t('links.wizards.coupon_book.share')

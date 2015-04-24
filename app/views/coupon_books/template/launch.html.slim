@@ -1,0 +1,15 @@
+/= display_meta("Campaign Setup")
+
+= render partial:'coupon_books/template/nav'
+    
+.tab-content.coupon_book-wizard-solicit-wrap
+  - if @coupon_book.pending?
+    #launch.tab-pane.active
+      .text-center
+        h1 Congratulations on your new Campaign! 
+  .row
+    .col-md-12
+      .col-md-2
+      .col-md-8
+        = render partial:"coupon_books/template/launch/#{@coupon_book.object.status}"
+      .col-md-2
