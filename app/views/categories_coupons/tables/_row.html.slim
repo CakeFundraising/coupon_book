@@ -1,25 +1,28 @@
 = semantic_fields_for 'categories_coupons[]', categories_coupon do |f|
-  = render partial:'coupons/modal', locals:{coupon: coupon}
-  li.ui-state-default class="coupons__#{coupon.id}"
+  = render partial:'coupons/modal', locals:{coupon: categories_coupon.coupon}
+  li.ui-state-default class="coupons__#{categories_coupon.coupon.id}"
     table.table.table-hover.table-bordered.table-striped.data-table
       tr.coupon-input
         td
+          = f.input :id, as: :hidden
+      tr.coupon-input.position-input
+        td
           = f.input :position, as: :hidden
-      tr.coupon-input
+      tr.coupon-input.category_id-input
         td
           = f.input :category_id, as: :hidden
-      tr.coupon-input
+      tr.coupon-input.coupon_id-input
         td
           = f.input :coupon_id, as: :hidden
       tr
         td
           span.coupon-sp Sponsor Name
           br
-          span.coupon-title = coupon.title
+          span.coupon-title = categories_coupon.coupon.title
         td.coupon-actions
-          a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{coupon.id}"
+          a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{categories_coupon.coupon.id}"
             span.glyphicon.glyphicon-eye-open
-          = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
+          = link_to edit_coupon_path(categories_coupon.coupon), class: 'btn btn-sm btn-primary' do
             span.glyphicon.glyphicon-pencil
-          a.btn.btn-sm.btn-danger.remove-from-book id="remove__#{coupon.id}"
+          a.btn.btn-sm.btn-danger.remove-from-book id="remove__#{categories_coupon.coupon.id}"
             span.glyphicon.glyphicon-trash

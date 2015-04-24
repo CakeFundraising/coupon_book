@@ -5,4 +5,6 @@ class Coupon < ActiveRecord::Base
   include Picturable
 
   validates :title, :description, :expires_at, presence: true
+
+  attr_accessor :collection_id
 end
