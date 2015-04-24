@@ -25,4 +25,6 @@ CakeCouponBook::Application.routes.draw do
     delete :sign_out
   end
 
+  get :dashboard, controller: :dashboard
+
 end

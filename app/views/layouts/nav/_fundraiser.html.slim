@@ -1,18 +1,20 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-    = menu_item "My Dashboard", root_path
-    = menu_item "Active Campaigns", root_path
-    = menu_item "Pledges", root_path
-    = menu_item "Quick Pledges", root_path
+    = menu_item "My Dashboard", dashboard_path
+    = menu_item "Active Books", root_path
+    = menu_item "All Sponsors", root_path
+    = menu_item "History", root_path
   ul.nav.navbar-nav.navbar-right
+    = menu_item 'New Coupon Book', root_path
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
         = current_user.full_name
         span.glyphicon.glyphicon-cog
         span.caret
       ul.dropdown-menu
-        = menu_item "My Dashboard", root_path
-        = menu_item "Billing", root_path
+        = menu_item "My Dashboard", dashboard_path
+        = menu_item "Active Books", root_path
+        = menu_item "All Sponsors", root_path
         = menu_item "History", root_path
         li.divider
         = menu_item "Public Profile", root_path
@@ -20,6 +22,6 @@
         = menu_item "Account Settings", root_path
         = menu_item "Email Notifications", root_path
         li.divider
-        = menu_item 'Start a New Campaign', root_path
+        = menu_item 'New Coupon Book', root_path
         li.divider
         = menu_item t("links.user.sign_out"), sign_out_path, method: :delete
