@@ -8,12 +8,10 @@ class CouponBooksController < InheritedResources::Base
 
   # GET /coupon_books/1
   def show
+    @coupon_book = resource
     @collection = Collection.first
     @collections_coupons = CollectionsCoupon.where(collection_id: @collection.id)
-    @categories = Category.where(coupon_book_id: resource.id)
-    p @categories.inspect
-    @categories_coupons = CategoriesCoupon.all
-    # @categories_coupons = CategoriesCoupon.where(category_id: )
+    @categories = @coupon_book.categories
   end
 
   # GET /coupon_books/new
@@ -52,61 +50,57 @@ class CouponBooksController < InheritedResources::Base
 
   def update_coupon_book_order
     @coupon_book = CouponBook.find(params[:id])
+    book_categories = Category.where(coupon_book_id: @coupon_book.id)
 
-    update_categories_order
+    params[:categories].each do |id, category|
+      position = category[:position]
+      c = Category.find_by_id(id)
+      c.insert_at(position.to_i)
+    end
 
-    # filter = []
-    # if params[:categories_coupons]
-    #   params[:categories_coupons].each do |categories_coupon, vals|
-    #     position = vals[:position]
-    #     category_id = vals[:category_id]
-    #     coupon_id = vals[:coupon_id]
-    #
-    #     categories_coupon = CategoriesCoupon.find_by(category_id: category_id, coupon_id: coupon_id)
-    #
-    #     if categories_coupon.nil?
-    #       CategoriesCoupon.create!(category_id: category_id, coupon_id: coupon_id, position: position)
-    #     else
-    #       categories_coupon.update_attribute(:position, position)
-    #       categories_coupon.insert_at(position.to_i)
-    #     end
-    #     filter.push(coupon_id.to_i)
-    #
-    #
-    #
-    #
-    #   end
-    #
-    # end
 
-    # @unused_coupons = Coupon.all.select { |coupon| not filter.include?(coupon.id) }
-    #
-    # @unused_coupons.each do |unused_coupon|
-    #   unused_coupon.update_attribute(:category_id, 0)
-    # end
+    filter = []
+    if params[:categories_coupons]
+      params[:categories_coupons].each do |id, category_coupon|
+        position = category_coupon[:position]
+        category = category_coupon[:category_id]
+        coupon = category_coupon[:coupon_id]
+
+        category_coupon = CategoriesCoupon.find_by_id(id)
+        filter.push(id.to_i)
+
+        if category_coupon.present?
+          # p category_coupon
+          category_coupon.update_attributes(position: position, category_id: category)
+          category_coupon.insert_at(position.to_i)
+
+        else
+          # other_categories = Category.where(coupon_book_id: @coupon_book.id)
+          book_categories.each do |bc|
+            CategoriesCoupon.where(category_id: bc, coupon_id: coupon).delete_all
+          end
+          category_coupon = CategoriesCoupon.create!(coupon_id: coupon, category_id: category, position: position)
+          filter.push(category_coupon.id.to_i)
+          category_coupon.insert_at(position.to_i)
+        end
+      end
+    end
+
+
+    cat_ids = []
+    book_categories.each do |bc|
+      cat_ids.push(bc.id)
+    end
+
+    @unused_coupons = CategoriesCoupon.select { |coupon|  cat_ids.include?(coupon.category_id) and (not filter.include?(coupon.id)) }
+
+    p @unused_coupons
+
+    @unused_coupons.each do |unused_coupon|
+      CategoriesCoupon.destroy(unused_coupon.id)
+    end
 
     redirect_to @coupon_book
   end
 
-  private
-
-  def update_categories_order
-    params[:categories].each do |id, category|
-      position = category[:position]
-      c = Category.find(id)
-      c.insert_at(position.to_i)
-    end
-
-  end
-
-
-    # # Use callbacks to share common setup or constraints between actions.
-    # def set_coupon_book
-    #   @coupon_book = CouponBook.find(params[:id])
-    # end
-    #
-    # # Only allow a trusted parameter "white list" through.
-    # def coupon_book_params
-    #   params[:coupon_book]
-    # end
 end

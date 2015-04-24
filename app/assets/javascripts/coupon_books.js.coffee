@@ -43,10 +43,16 @@ CakeCouponBook.coupon_books.saveCouponsOrder = (category) ->
   category.children(".ui-state-default").each ->
     coupon = $(this)
     coupon_position = coupon.index()
-    coupon_input_id = "#" + coupon.attr('class').split(' ')[1] + "_position"
-    category_input_id = "#" + coupon.attr('class').split(' ')[1] + "_category_id"
-    $(category).find(coupon_input_id).val(coupon_position)
-    $(category).find(category_input_id).val(category_id)
+    position_input_id = $(this).find('.position-input').find('input')
+    category_input_id = $(this).find('.category_id-input').find('input')
+#    category_input_id = "#" + coupon.attr('class').split(' ')[1] + "_category_id"
+#    $(category).find(position_input_id).val(coupon_position)
+#    $(category).find(category_input_id).val(category_id)
+    position_input_id.val(coupon_position)
+    category_input_id.val(category_id)
+
+    console.log(position_input_id.val())
+    console.log(category_input_id.val())
     return
   return
 
