@@ -5,14 +5,14 @@ li.ui-state-default
         thead.cf
           tr
             th
-              span.category-title = category.category.name
+              span.category-title = category.name
             th.category-actions
-              = link_to edit_category_path(category.category), class:'btn btn-sm btn-primary' do
+              = link_to edit_category_path(category), class:'btn btn-sm btn-primary' do
                 span.glyphicon.glyphicon-pencil
-              = link_to category.category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
+              = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
                 span.glyphicon.glyphicon-trash
               /= link_to 'Add Coupon', new_coupon_path(category_id: category), class: 'btn btn-success btn-sm'
 
-    - if category.category.coupons.any?
-      - category.category.coupons.each do |coupon|
-        = render partial: 'categories_coupons/tables/row', locals: {categories_coupon: category, coupon: coupon}
+    - if category.categories_coupons.any?
+      - category.categories_coupons.each do |categories_coupon|
+        = render partial: 'categories_coupons/tables/row', locals: {categories_coupon: categories_coupon, coupon: categories_coupon.coupon}

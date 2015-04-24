@@ -4,11 +4,14 @@
     table.table.table-hover.table-bordered.table-striped.data-table
       tr.coupon-input
         td
+          = f.input :id, as: :hidden
+      tr.coupon-input.position-input
+        td
           = f.input :position, as: :hidden
-      tr.coupon-input
+      tr.coupon-input.category_id-input
         td
           = f.input :collection_id, as: :hidden
-      tr.coupon-input
+      tr.coupon-input.coupon_id-input
         td
           = f.input :coupon_id, as: :hidden
       tr

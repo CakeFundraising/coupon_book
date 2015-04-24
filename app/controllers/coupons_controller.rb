@@ -10,12 +10,7 @@ class CouponsController < InheritedResources::Base
 
   # GET /coupons/new
   def new
-    # @category = Category.find(params[:category_id])
-    # @coupon_book = CouponBook.find(@category.coupon_book)
-    # @coupon = Coupon.new(coupon_book_id: @coupon_book.id, category_id: @category.id)
-    @collection = Collection.first
     @coupon = Coupon.new
-    # @category_coupon = CategoriesCoupons.new(category_id: @category, coupon_id: @coupon)
   end
 
   def edit
@@ -23,21 +18,14 @@ class CouponsController < InheritedResources::Base
   end
 
   def create
-    @collection = Collection.first
+    @collection = params[:coupon][:collection_id]
 
     create! do |success, failure|
       success.html do
-        CollectionsCoupon.create!(collection_id: resource.id, coupon_id: @coupon.id)
+        CollectionsCoupon.create!(collection_id: @collection, coupon_id: @coupon.id)
         redirect_to coupon_book_path(1)
       end
     end
-    # @coupon = resource
-    #
-    # if @coupon.save
-    #   redirect_to @coupon, notice: 'Coupon was successfully created.'
-    # else
-    #   render :new
-    # end
   end
 
   # # PATCH/PUT /coupons/1
