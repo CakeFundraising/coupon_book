@@ -70,12 +70,10 @@ class CouponBooksController < InheritedResources::Base
         filter.push(id.to_i)
 
         if category_coupon.present?
-          # p category_coupon
           category_coupon.update_attributes(position: position, category_id: category)
           category_coupon.insert_at(position.to_i)
 
         else
-          # other_categories = Category.where(coupon_book_id: @coupon_book.id)
           book_categories.each do |bc|
             CategoriesCoupon.where(category_id: bc, coupon_id: coupon).delete_all
           end
@@ -93,8 +91,6 @@ class CouponBooksController < InheritedResources::Base
     end
 
     @unused_coupons = CategoriesCoupon.select { |coupon|  cat_ids.include?(coupon.category_id) and (not filter.include?(coupon.id)) }
-
-    p @unused_coupons
 
     @unused_coupons.each do |unused_coupon|
       CategoriesCoupon.destroy(unused_coupon.id)
