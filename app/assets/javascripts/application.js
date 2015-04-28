@@ -17,6 +17,9 @@
 //= require jquery.Jcrop
 
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
@@ -32,6 +35,7 @@
 
 //= require ./cloudinary_crop
 //= require ./coupons
+//= require ./categories
 //= require ./coupon_books
 //= require ./pictures
 //= require ./jquery.cloudinary

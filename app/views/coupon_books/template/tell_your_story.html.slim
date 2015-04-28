@@ -54,7 +54,7 @@
         /       = f.input :visitor_action, label: 'I want my visitors to', as: :select, collection: Campaign::VISITOR_ACTIONS, input_html: {size: 1, class: 'dropdown'}, include_blank: true
         /       = f.input :visitor_url, label: 'By Going To This Website', placeholder: 'Enter your URL here...', input_html: { :size => "60" }
 
-        = f.input :step, as: :hidden, input_html:{value: :launch_coupon_book} 
+        = f.input :step, as: :hidden, input_html:{value: :coupons}
         br
         = f.actions do
           .text-center

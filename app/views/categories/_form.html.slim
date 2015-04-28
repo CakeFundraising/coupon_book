@@ -1,13 +1,8 @@
 = semantic_form_for @category do |f|
-  - if @category.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
-      ul
-        - @category.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :name
-    = f.text_field :name
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :name
     = f.input :coupon_book_id, as: :hidden
-  .actions = f.submit
+  = f.actions do
+    .text-center
+      = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

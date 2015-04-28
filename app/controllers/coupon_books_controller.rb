@@ -2,6 +2,7 @@ class CouponBooksController < InheritedResources::Base
   TEMPLATE_STEPS = [
     :basic_info,
     :tell_your_story,
+    :coupons,
     :launch_coupon_book,
     :share
   ]
@@ -11,10 +12,6 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def show
-    @coupon_book = resource
-    @collection = Collection.first
-    @collections_coupons = CollectionsCoupon.where(collection_id: @collection.id)
-    @categories = @coupon_book.categories
   end
 
   #Template steps
@@ -26,6 +23,15 @@ class CouponBooksController < InheritedResources::Base
   def tell_your_story
     @coupon_book = resource.decorate
     render 'coupon_books/template/tell_your_story'
+  end
+
+  def coupons
+    @coupon_book = resource
+    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collections_coupons = @collection.collections_coupons
+    @categories = @coupon_book.categories.persisted
+    
+    render 'coupon_books/template/coupons'
   end
 
   def launch_coupon_book
@@ -155,7 +161,8 @@ class CouponBooksController < InheritedResources::Base
         :id, :banner, :avatar, :avatar_caption,
         :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
-      ]
+      ],
+      categories_attributes: [:position]
     ])
   end
 

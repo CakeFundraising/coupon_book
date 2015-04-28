@@ -1,0 +1,19 @@
+.category_modal.modal.fade id="category-#{category.id}"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true" &times;
+        h4.modal-title Add Category
+      .modal-body
+        = semantic_form_for category do |f|
+          = f.semantic_errors *f.object.errors.keys
+          = f.inputs do
+            = f.input :name
+            = f.input :coupon_book_id, as: :hidden
+          = f.actions do
+            .text-center
+              = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

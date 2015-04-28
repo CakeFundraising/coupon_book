@@ -37,7 +37,20 @@ class Fundraiser < Ohm::Model
     end
   end
 
+  #Associations
   def coupon_books
     CouponBook.where(fundraiser_id: self.id.to_i)
+  end
+
+  def coupon_collection
+    Collection.where(owner_type: 'Fundraiser', owner_id: self.id.to_i).first
+  end
+
+  def build_coupon_collection
+    Collection.new(owner_type: 'Fundraiser', owner_id: self.id.to_i)
+  end
+
+  def create_coupon_collection
+    Collection.create(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
 end

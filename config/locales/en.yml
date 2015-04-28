@@ -23,3 +23,8 @@ en:
     empty_results:
       coupon_books: Coupon Books
       coupons: Coupons
+  activerecord: 
+    models:
+    attributes:
+      category:
+        name: Category Name

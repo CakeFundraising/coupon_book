@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
+gem 'react-rails'
 
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'

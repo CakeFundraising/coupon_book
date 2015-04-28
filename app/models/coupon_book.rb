@@ -11,6 +11,8 @@ class CouponBook < ActiveRecord::Base
 
   monetize :goal_cents, numericality: {greater_than: 0}
 
+  accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
+
   validates :categories, length: {maximum: 5}
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }

@@ -1,0 +1,40 @@
+= render partial:'coupon_books/template/nav'
+
+h1.dash-head
+  span Coupon Categories
+  .page-cta
+    a.btn.btn-primary.btn-md data-toggle='modal' data-target='#category-' Add a New Coupon Category
+
+= render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
+
+.container
+  .row
+    .col-md-6
+      ul.sortableCategories
+        table.table.table-hover.table-bordered.table-striped.data-table
+          thead.cf
+            tr
+              th
+                span.category-title My Coupons
+              th.category-actions
+                .btn.btn-sm.btn-primary
+                  span.glyphicon.glyphicon-pencil
+                = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm'
+
+        li.ui-state-default
+          ul.sortableCoupons id="my_coupons"
+            = render partial: 'categories_coupons/tables/row', locals:{categories_coupons: @collections_coupons} if @collections_coupons.any?
+
+    .col-md-6
+      = semantic_form_for(@coupon_book) do |f|
+        ul.sortableCategories id="categories"
+          = f.semantic_fields_for :categories, @categories do |c|
+            = render partial:'categories/form/coupon_book/category_row', locals: {c: c, category: c.object}
+        .row.text-center
+          = f.input :step, as: :hidden, input_html:{value: :launch_coupon_book}
+          = f.actions do
+            = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+
+
+javascript:
+  CakeCouponBook.coupon_books.build();
