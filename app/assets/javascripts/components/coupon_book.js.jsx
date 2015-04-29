@@ -2,7 +2,7 @@ if (CakeCouponBook.React == null) {
   CakeCouponBook.React = {};
 }
 
-var Category, CategoryList, Coupon, CouponCollection;
+var Category, CategoryList, CouponList, Coupon, CouponCollection;
 
 Coupon = React.createClass({
   render: function() {
@@ -28,9 +28,6 @@ Coupon = React.createClass({
 
 Category = React.createClass({
   render: function() {
-    var coupons = this.props.coupons.map(function(coupon, index) {
-      return <Coupon coupon={coupon} sponsor={coupon.sponsor} key={index}></Coupon>;
-    });
     var categoryDeletePath = "/categories/" + this.props.category.id
 
     return <div className="category">
@@ -47,10 +44,23 @@ Category = React.createClass({
           </tr>
         </thead>
       </table> 
-      <ul className="coupons">
+      <CouponList coupons={this.props.coupons}></CouponList>
+    </div>;
+  }
+});
+
+CouponList = React.createClass({
+  render: function() {
+    var coupons = this.props.coupons.map(function(coupon, index) {
+      return (
+        <Coupon coupon={coupon} sponsor={coupon.sponsor} key={index}></Coupon>
+      );
+    });
+    return (
+      <ul className="coupons-list">
         {coupons}
       </ul>
-    </div>;
+    );
   }
 });
 
