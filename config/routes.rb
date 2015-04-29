@@ -13,7 +13,13 @@ CakeCouponBook::Application.routes.draw do
       patch :save_for_launch
       patch :toggle_visibility
       patch :update_order
+
+      get :categories
     end
+  end
+
+  scope :fundraisers, controller: :fundraisers do
+    get :collection_coupons
   end
 
   resources :categories

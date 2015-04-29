@@ -25,15 +25,18 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/tell_your_story'
   end
 
+  #Build coupon book
   def coupons
     @coupon_book = resource
     @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
-    @collections_coupons = @collection.collections_coupons
-    @categories = @coupon_book.categories.persisted
-    
     render 'coupon_books/template/coupons'
   end
 
+  def categories
+    @categories = resource.categories.latest
+  end
+
+  #Launch 
   def launch_coupon_book
     @coupon_book = resource.decorate
     render 'coupon_books/template/launch'

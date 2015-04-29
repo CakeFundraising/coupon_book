@@ -11,4 +11,5 @@ class Category < ActiveRecord::Base
   validates :name, :coupon_book_id, presence: true
 
   scope :persisted, ->{ where.not(id: nil) }
+  scope :latest, ->{ order('categories.created_at DESC') }
 end

@@ -8,4 +8,6 @@ class Coupon < ActiveRecord::Base
   has_many :coupon_books, through: :categories
 
   validates :title, :description, :expires_at, presence: true
+
+  scope :latest, ->{ order('coupons.created_at DESC') }
 end
