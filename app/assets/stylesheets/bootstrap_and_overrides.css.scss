@@ -111,6 +111,14 @@ ul.pretty-list{
   }
 }
 
+ul.no-list{
+  margin-top: 0px;
+  padding-left: 20px;
+  li{
+    list-style: none;
+  }
+}
+
 .ten-b {
   margin-bottom: 10px;
 }

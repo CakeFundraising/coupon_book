@@ -3,8 +3,8 @@
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h3.modal-title = coupon.title
+        h3.modal-title #{coupon} Preview
       .modal-body
         #coupons.row-fluid
-          = render partial: 'coupons/show/box', locals: {coupon: coupon.decorate}
+          = render partial: 'coupons/show/box', locals: {coupon: coupon}
           = render partial: 'coupons/show/terms'

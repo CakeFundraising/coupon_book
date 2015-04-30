@@ -17,8 +17,6 @@
 //= require jquery.Jcrop
 
 //= require turbolinks
-//= require react
-//= require react_ujs
 
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
@@ -32,13 +30,10 @@
 
 //= require cake_coupon_book
 
-//= require components
-
 //= require ./cloudinary_crop
 //= require ./coupons
 //= require ./categories
 //= require ./coupon_books
-//= require ./coupon_book_builder
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker

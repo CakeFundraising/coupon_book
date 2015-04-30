@@ -1,18 +1,15 @@
 li.ui-state-default
-  ul.sortableCoupons id="coupon_categories__#{category.id}"
-    li.ui-state-disabled
-      table.table.table-hover.table-bordered.table-striped.data-table
-        thead.cf
-          tr
-            th
-              span.category-title = category.name
-            th.category-actions
-              = link_to edit_category_path(category), class:'btn btn-sm btn-primary' do
-                span.glyphicon.glyphicon-pencil
-              = link_to category, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
-                span.glyphicon.glyphicon-trash
-              /= link_to 'Add Coupon', new_coupon_path(category_id: category), class: 'btn btn-success btn-sm'
+  table.table.table-hover.table-bordered.table-striped.data-table
+    thead.cf
+      tr
+        th
+          span.category-title = category
+        th.category-actions
+          = link_to edit_category_path(category), class:'btn btn-sm btn-primary' do
+            span.glyphicon.glyphicon-pencil
+          = link_to category, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
+            span.glyphicon.glyphicon-trash
+          /= link_to 'Add Coupon', new_coupon_path(category_id: category), class: 'btn btn-success btn-sm'
 
-    - if category.categories_coupons.any?
-      - category.categories_coupons.each do |categories_coupon|
-        = render partial: 'categories_coupons/tables/row', locals: {categories_coupon: categories_coupon, coupon: categories_coupon.coupon}
+  ul.sortableCoupons id="coupon_categories__#{category.id}"
+    = render partial: 'categories_coupons/coupon_row', collection: category.coupons, as: :coupon

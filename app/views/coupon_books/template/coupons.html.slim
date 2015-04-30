@@ -17,9 +17,9 @@ h1.dash-head
               span.category-title My Coupons
             th.category-actions
               = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm'
-      #collection-coupons
-    #categories.col-md-6
+      ul#collection-coupons.no-list
+        = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
+    .col-md-6
+      ul#categories.no-list
+        = render partial:'categories/tables/row', collection: @categories, as: :category
 
-
-javascript:
-  CakeCouponBook.couponBookBuilder.init("#{@coupon_book.id}");

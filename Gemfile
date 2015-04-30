@@ -12,7 +12,6 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails', '~> 4.0.3'
 gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
-gem 'react-rails'
 gem 'jbuilder'
 
 #JS

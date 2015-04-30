@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   belongs_to :coupon_book
 
-  has_many :categories_coupons, -> { order("position ASC") }
+  has_many :categories_coupons, -> { order("categories_coupons.position ASC") }
   has_many :coupons, through: :categories_coupons
 
   accepts_nested_attributes_for :categories_coupons, allow_destroy: true, reject_if: :all_blank
@@ -12,4 +12,5 @@ class Category < ActiveRecord::Base
 
   scope :persisted, ->{ where.not(id: nil) }
   scope :latest, ->{ order('categories.created_at DESC') }
+  scope :with_coupons, ->{ eager_load(:coupons) }
 end
