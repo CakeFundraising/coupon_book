@@ -1,4 +1,4 @@
-li.ui-state-default class="coupons__#{coupon.id}"
+li.ui-state-default class="coupons_#{coupon.id}"
   = render partial:'coupons/modal', locals:{coupon: coupon}
 
   table.table.table-hover.table-bordered.table-striped.data-table
@@ -24,5 +24,5 @@ li.ui-state-default class="coupons__#{coupon.id}"
           span.glyphicon.glyphicon-eye-open
         = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
           span.glyphicon.glyphicon-pencil
-        a.btn.btn-sm.btn-danger.remove-from-book id="remove__#{coupon.id}"
+        a.btn.btn-sm.btn-danger.remove-from-book
           span.glyphicon.glyphicon-trash

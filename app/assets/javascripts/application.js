@@ -34,6 +34,7 @@
 //= require ./coupons
 //= require ./categories
 //= require ./coupon_books
+//= require ./coupon_book_builder
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker

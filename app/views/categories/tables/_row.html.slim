@@ -1,7 +1,8 @@
-li.ui-state-default
+li.category.ui-state-default id="cat_#{category.id}"
   table.table.table-hover.table-bordered.table-striped.data-table
     thead.cf
       tr
+        = hidden_field('coupon_book[categories_attributes]', :position, value: category.position)
         th
           span.category-title = category
         th.category-actions
@@ -11,5 +12,5 @@ li.ui-state-default
             span.glyphicon.glyphicon-trash
           /= link_to 'Add Coupon', new_coupon_path(category_id: category), class: 'btn btn-success btn-sm'
 
-  ul.sortableCoupons id="coupon_categories__#{category.id}"
+  ul.sortableCoupons id="coupon_categories_#{category.id}"
     = render partial: 'categories_coupons/coupon_row', collection: category.coupons, as: :coupon

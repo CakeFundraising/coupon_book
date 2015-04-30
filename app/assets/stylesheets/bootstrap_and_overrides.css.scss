@@ -3854,18 +3854,11 @@ ul.sortableCoupons {
   margin-top: 20px;
   list-style-type: none;
   padding-left: initial;
-
-  //li {
-  //  padding: 5px;
-  //}
+  min-height: 75px;
 }
 
 ul.sortableCategories {
   list-style-type: none;
-  //
-  //li {
-  //  padding: 5px;
-  //}
 }
 
 .category-title {
@@ -3904,4 +3897,11 @@ li.ui-state-default {
   .lead{
     font-size: 18px;
   }
+}
+
+.drag-here{
+  margin-bottom: 20px;
+  border: 1px dashed #ccc;
+  padding: 11px;
+  font-size: 20px;
 }
