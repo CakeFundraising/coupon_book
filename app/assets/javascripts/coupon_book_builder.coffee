@@ -14,10 +14,19 @@ class CategorizedCoupon
     return
 
   init: ->
-    self = this
+    @removeDestroyAttrs()
+    @setUpRemoveFromCategoryLink()
+    @replaceTrashIcon()
+    return
+
+  removeDestroyAttrs: ->
     @removeLink.removeAttr('data-confirm')
     @removeLink.removeAttr('data-method')
     @removeLink.removeAttr('href')
+    return
+
+  setUpRemoveFromCategoryLink: ->
+    self = this
     @removeLink.click ->
       self.destroy()
       return
@@ -26,6 +35,10 @@ class CategorizedCoupon
   destroy: ->
     @coupon.remove()
     @originalCopy.showInCollection()
+    return
+
+  replaceTrashIcon: ->
+    @removeLink.find('span').removeClass('glyphicon-trash').addClass('glyphicon-remove')
     return
 
 class CouponBook
