@@ -2852,7 +2852,7 @@ ul#share-block {
 }
 
 #coupon_book_picture_attributes_banner_input,
-#campaign_picture_attributes_banner_input, 
+#campaign_picture_attributes_banner_input,
 #pledge_picture_attributes_banner_input {
   .banner {
     width: 100%;
@@ -3904,4 +3904,16 @@ li.ui-state-default {
   border: 1px dashed #ccc;
   padding: 11px;
   font-size: 20px;
+}
+
+.btn-active {
+  color: #fff;
+  background-color: $brand-success;
+  border-color: #7e8e27;
+}
+
+.btn-active:hover {
+  color: #fff;
+  background-color: #97aa2e;
+  border-color: #7e8e27;
 }

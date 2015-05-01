@@ -32,6 +32,7 @@
 
 //= require ./cloudinary_crop
 //= require ./coupons
+//= require ./collections
 //= require ./categories
 //= require ./coupon_books
 //= require ./coupon_book_builder

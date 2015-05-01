@@ -18,6 +18,10 @@ CakeCouponBook::Application.routes.draw do
 
   resources :categories
 
+  resources :collections do
+    get :add_coupon
+  end
+
   resources :coupons do
     member do
       get :download

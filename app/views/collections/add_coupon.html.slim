@@ -1,0 +1,39 @@
+.row.text-center
+  .col-md-2
+  .col-md-8
+    h1 Add coupons to your collection
+  .col-md-2
+.row.text-center.pad-top
+  .col-md-2
+  .col-md-8
+    .buttons.text-center
+      .toggle-container
+        .col-md-5
+          a.btn.btn-lg-choice.btn-active#add_existing_coupon Add a Coupon
+        .col-md-2
+          .vertical-divider
+            span or
+        .col-md-5
+          a.btn.btn-lg-choice#create_new_coupon Create a Coupon
+          .hidden
+.row.hidden
+  ul.nav.nav-tabs
+    li.active
+      a href="#tab1" data-toggle="tab" id="tab1_btn"
+    li
+      a href="#tab2" data-toggle="tab" id="tab2_btn"
+.row.pad-top
+  .col-md-1
+  .col-md-10
+    .tab-content
+      .tab-pane.active id="tab1"
+        .coupon
+          h3.text-center
+            span Add Coupons from Sponsors
+      .tab-pane id="tab2"
+        .row.text-center
+          = render partial: 'coupons/form', locals: {collection: @collection}
+  .col-md-1
+
+javascript:
+  CakeCouponBook.collections.init();
