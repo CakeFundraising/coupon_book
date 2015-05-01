@@ -12,5 +12,6 @@ class CollectionsController < InheritedResources::Base
 
   def add_coupon
     @coupon = Coupon.new(collection_id: @collection)
+    session[:return_to] ||= request.referer
   end
 end

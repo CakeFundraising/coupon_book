@@ -23,7 +23,7 @@ class CouponsController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         CollectionsCoupon.create!(collection_id: @collection, coupon_id: @coupon.id)
-        redirect_to coupon_book_path(1)
+        redirect_to session.delete(:return_to)
       end
     end
   end

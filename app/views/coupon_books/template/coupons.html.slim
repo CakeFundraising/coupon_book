@@ -16,7 +16,7 @@ h1.dash-head
             th
               span.category-title My Coupons
             th.category-actions
-              = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm'
+              = link_to 'Add Coupon', collection_add_coupon_path(@collection), class: 'btn btn-success btn-sm'
       ul#collection-coupons.no-list
         = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
     .col-md-6
