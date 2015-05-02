@@ -37,6 +37,12 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/coupons'
   end
 
+  def tree
+    @coupon_book = resource
+    @coupon_book.update_categories!(params[:tree])
+
+  end
+
   #Launch 
   def launch_coupon_book
     @coupon_book = resource.decorate

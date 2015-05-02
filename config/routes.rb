@@ -13,6 +13,8 @@ CakeCouponBook::Application.routes.draw do
       patch :save_for_launch
       patch :toggle_visibility
       patch :update_order
+
+      post :tree
     end
   end
 

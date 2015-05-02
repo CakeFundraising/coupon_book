@@ -23,5 +23,8 @@ h1.dash-head
       ul#categories.no-list
         = render partial:'categories/tables/row', collection: @categories, as: :category
 
+    .col-md-12
+      button.btn.btn-success.btn-lg#submit Save 
+
 javascript:
-  CakeCouponBook.coupon_books.build();
+  CakeCouponBook.coupon_books.build("#{@coupon_book.id}");

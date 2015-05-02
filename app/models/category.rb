@@ -13,4 +13,18 @@ class Category < ActiveRecord::Base
   scope :persisted, ->{ where.not(id: nil) }
   scope :latest, ->{ order('categories.created_at DESC') }
   scope :with_coupons, ->{ eager_load(:coupons) }
+
+  def update_coupons!(coupons)
+    coupons.each_with_index do |coupon, index|
+      coupon_position = index + 1
+      coupon_id = coupon.gsub('coupons_', '').to_i
+
+      if self.coupons.exists?(coupon_id)
+        cc = self.categories_coupons.by_coupon_and_category(coupon_id, self.id)
+        cc.set_list_position(coupon_position)
+      else
+        self.categories_coupons.create(coupon_id: coupon_id, position: coupon_position)
+      end
+    end
+  end
 end
