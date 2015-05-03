@@ -34,16 +34,16 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
-  #Sorting
-  def update_categories!(tree)
-    tree.each_with_index do |(category, coupons), index|
-      category_id = category.gsub('cat_', '').to_i
-      category_position = index + 1
-      category = Category.find(category_id)
+  # #Sorting
+  # def update_categories!(tree)
+  #   tree.each_with_index do |(category, coupons), index|
+  #     category_id = category.gsub('cat_', '').to_i
+  #     category_position = index + 1
+  #     category = Category.find(category_id)
 
-      category.set_list_position(category_position)
+  #     category.set_list_position(category_position)
 
-      category.update_coupons!(coupons) unless coupons.nil?
-    end
-  end
+  #     category.update_coupons!(coupons) unless coupons.nil?
+  #   end
+  # end
 end

@@ -21,10 +21,13 @@ h1.dash-head
         = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
     .col-md-6
       ul#categories.no-list
-        = render partial:'categories/tables/row', collection: @categories, as: :category
-
-    .col-md-12
-      button.btn.btn-success.btn-lg#submit Save 
+        = semantic_form_for @coupon_book do |f|
+          = f.inputs do
+            = f.semantic_fields_for :categories, @categories do |c|
+              = render partial:'categories/tables/row', locals:{f: c}
+          = f.actions do
+            .text-center
+              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
   CakeCouponBook.coupon_books.build("#{@coupon_book.id}");

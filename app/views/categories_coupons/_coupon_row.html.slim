@@ -1,28 +1,23 @@
-li.ui-state-default class="coupons_#{coupon.id}"
-  = render partial:'coupons/modal', locals:{coupon: coupon}
+.category_coupon_fields
+  = f.input :category_id, as: :hidden
+  = f.input :position, as: :hidden
 
-  table.table.table-hover.table-bordered.table-striped.data-table
-    tr.coupon-input
-      td
-        /= cc.input :id, as: :hidden
-    tr.coupon-input.position-input
-      td
-        /= cc.input :position, as: :hidden
-    tr.coupon-input.category_id-input
-      td
-        /= cc.input :category_id, as: :hidden
-    tr.coupon-input.coupon_id-input
-      td
-        /= cc.input :coupon_id, as: :hidden
-    tr
-      td
-        span.coupon-sp Sponsor Name
-        br
-        span.coupon-title = coupon.title
-      td.coupon-actions
-        a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{coupon.id}"
-          span.glyphicon.glyphicon-eye-open
-        = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
-          span.glyphicon.glyphicon-pencil
-        a.btn.btn-sm.btn-danger.remove-from-book
-          span.glyphicon.glyphicon-trash
+- if f.object.coupon.present?
+  - coupon = f.object.coupon
+
+  li.ui-state-default class="coupons_#{coupon.id}"
+    = render partial:'coupons/modal', locals:{coupon: coupon}
+
+    table.table.table-hover.table-bordered.table-striped.data-table
+      tr
+        td
+          span.coupon-sp Sponsor Name
+          br
+          span.coupon-title = coupon.title
+        td.coupon-actions
+          a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{coupon.id}"
+            span.glyphicon.glyphicon-eye-open
+          = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
+            span.glyphicon.glyphicon-pencil
+          a.btn.btn-sm.btn-danger.remove-from-book
+            span.glyphicon.glyphicon-trash

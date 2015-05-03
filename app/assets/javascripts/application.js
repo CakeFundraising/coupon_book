@@ -35,7 +35,6 @@
 //= require ./categories
 
 //= require ./coupon_books
-//= require_tree ./coupon_book_template
 //= require ./coupon_book_builder
 
 //= require ./pictures
