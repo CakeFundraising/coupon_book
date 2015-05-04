@@ -4,7 +4,7 @@
       h2 Coupon Information
       p.text-muted Please enter your coupon details
     .row
-      = f.input :collection_id, as: :hidden, input_html: { value: params[:collection_id] }
+      = f.input :collection_id, as: :hidden, input_html: { value: coupon.collection_id }
     .row
       .col-md-2
       .col-md-8.text-left

@@ -1,0 +1,16 @@
+h1.dash-head
+  span My Collection
+
+.container
+  .row
+    .col-md-6
+      table.table.table-hover.table-bordered.table-striped.data-table
+        thead.cf
+          tr
+            th
+              span.category-title My Coupons
+            th.category-actions
+              = link_to 'Add Coupon', add_coupons_collection_path(@collection), class: 'btn btn-success btn-sm'
+      ul.no-list
+        .sortableCoupons
+          = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon

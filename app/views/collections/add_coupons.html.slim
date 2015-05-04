@@ -1,15 +1,15 @@
-.row.text-center
-  .col-md-2
-  .col-md-8
-    h1 Add coupons to your collection
-  .col-md-2
+/.row.text-center
+/  .col-md-2
+/  .col-md-8
+/    h1 Add coupons to your collection
+/  .col-md-2
 .row.text-center.pad-top
   .col-md-2
   .col-md-8
     .buttons.text-center
       .toggle-container
         .col-md-5
-          a.btn.btn-lg-choice.btn-active#add_existing_coupon Add a Coupon
+          a.btn.btn-lg-choice.btn-active#add_universal_coupon Add Coupons
         .col-md-2
           .vertical-divider
             span or
@@ -23,17 +23,16 @@
     li
       a href="#tab2" data-toggle="tab" id="tab2_btn"
 .row.pad-top
-  .col-md-1
-  .col-md-10
+  .col-md-12
     .tab-content
       .tab-pane.active id="tab1"
-        .coupon
-          h3.text-center
-            span Add Coupons from Sponsors
+        .row.text-center
+          .add-coupons
+            h1.text-center Add Universal Coupons
+        = render partial: 'collections/coupons'
       .tab-pane id="tab2"
         .row.text-center
           = render partial: 'coupons/form', locals: {collection: @collection}
-  .col-md-1
 
 javascript:
   CakeCouponBook.collections.init();

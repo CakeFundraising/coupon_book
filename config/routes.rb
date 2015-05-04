@@ -19,7 +19,11 @@ CakeCouponBook::Application.routes.draw do
   resources :categories
 
   resources :collections do
-    get :add_coupon
+    member do
+      scope :edit do
+        get :add_coupons
+      end
+    end
   end
 
   resources :coupons do
