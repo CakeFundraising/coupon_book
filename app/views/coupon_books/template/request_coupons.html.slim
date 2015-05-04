@@ -1,0 +1,22 @@
+= render partial:'coupon_books/template/nav'
+
+.row.text-center
+  .col-md-2
+  .col-md-8
+    h1 Find Sponsors
+    p.text-muted It's time to Find Sponsors and share your Campaign. Ask them to follow your link to make a donation per click Pledge supporting your Campaign today!
+  .col-md-2
+.row.section-wrapper.text-center
+  .col-md-2
+  .col-md-8
+    h2 Share Your Campaign
+    p.text-muted Email your Campaign link directly to potential Sponsors
+    .toggle-container.text-left
+      label Campaign Url: 
+      input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
+      .row.text-center
+        br
+        button.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
+  .col-md-2
+.row.section-wrapper.text-center
+  = link_to 'Continue', launch_and_share_coupon_book_path(@coupon_book), class:'btn btn-success btn-lg'

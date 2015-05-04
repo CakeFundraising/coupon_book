@@ -1,4 +1,7 @@
 class CouponBook < ActiveRecord::Base
+  include Cause
+  include Scope
+  include Formats
   include Statusable
   include Picturable
 
@@ -10,6 +13,7 @@ class CouponBook < ActiveRecord::Base
   has_many :coupons, through: :categories, dependent: :destroy
 
   monetize :goal_cents, numericality: {greater_than: 0}
+  monetize :price_cents, numericality: {greater_than: 0}
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
 
@@ -34,16 +38,4 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
-  # #Sorting
-  # def update_categories!(tree)
-  #   tree.each_with_index do |(category, coupons), index|
-  #     category_id = category.gsub('cat_', '').to_i
-  #     category_position = index + 1
-  #     category = Category.find(category_id)
-
-  #     category.set_list_position(category_position)
-
-  #     category.update_coupons!(coupons) unless coupons.nil?
-  #   end
-  # end
 end

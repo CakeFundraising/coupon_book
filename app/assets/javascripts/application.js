@@ -41,4 +41,5 @@
 //= require ./jquery.cloudinary
 //= require ./datepicker
 //= require ./validations
+//= require ./overrides
 //= require ./utils

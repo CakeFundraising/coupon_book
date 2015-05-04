@@ -1,0 +1,14 @@
+li.coupon-row id="coupons_#{coupon.id}"
+  = render partial:'coupons/modal', locals:{coupon: coupon}
+
+  table.table.table-hover.table-bordered.table-striped.data-table
+    tr
+      td
+        span.coupon-sp Sponsor Name
+        br
+        span.coupon-title = coupon.title
+      td.coupon-actions
+        a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-coupon-#{coupon.id}"
+          span.glyphicon.glyphicon-eye-open
+        = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
+          span.glyphicon.glyphicon-pencil

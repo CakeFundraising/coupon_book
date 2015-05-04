@@ -59,6 +59,11 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.boolean  "visible",                 default: false
     t.integer  "goal_cents",              default: 0,            null: false
     t.string   "goal_currency",           default: "USD",        null: false
+    t.integer  "price_cents",             default: 0,            null: false
+    t.string   "price_currency",          default: "USD",        null: false
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
+    t.string   "main_cause"
   end
 
   create_table "coupons", force: :cascade do |t|

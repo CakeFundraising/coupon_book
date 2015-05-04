@@ -1,4 +1,4 @@
-/= display_meta("Campaign Setup")
+/= display_meta("Coupon Book Basic Data")
 
 = render partial:'coupon_books/template/nav'
 
@@ -7,8 +7,8 @@
     = semantic_form_for @coupon_book do |f|
       = f.inputs do
         .text-center
-          h1 Let's start your Campaign
-          p.text-muted Tell us about your Campaign. Don't worry, you can edit it whenever you want.
+          h1 Let’s start your new Digital Discount Book!
+          p.text-muted Don’t worry, you can change your selections whenever you like
           br
         .row
           .col-md-6
@@ -23,8 +23,14 @@
               = f.input :end_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.end_date}
             span.help-block.italic These dates are when your campaign starts and ends. You launch your Campaign only when you decide, and you can extend the End Date after you have launched your Campaign if you wish to do so.
         .row.section-wrapper.text-center
+          h2 Choose a retail sales price of your Digital Discount Book
+          .col-md-3
+          .col-md-6
+            = f.input :price, label: false, input_html:{placeholder: '10', class:'default-zero'}, :prepend => '$'
+          .col-md-3
+        .row.section-wrapper.text-center
           h2 Campaign Goal
-          p.text-muted How much do you want to raise for this Campaign? 
+          p.text-muted How much do you hope to raise?
           .col-md-3
           .col-md-6
             = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
@@ -35,35 +41,35 @@
           .col-md-6
             = f.input :url, label: 'Please direct new visitors to: ', input_html:{placeholder: 'Enter your URL'}
           .col-md-3
-        / .row.section-wrapper.text-center
-        /   h2 Your Primary Cause
-        /   p.text-muted  Choose the Cause Category that best represent your Campaign goals
-        /   .col-md-3
-        /   .col-md-6
-        /     = f.input :main_cause, as: :select, collection: Campaign::CAUSES, input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
-        /   .col-md-3
-        / .row.section-wrapper.text-center
-        /   h2 Secondary Causes
-        /   p.text-muted You can select more than one
-        /   .col-md-2
-        /   .col-md-8
-        /     .col-md-12
-        /       = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
-        /       = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
-        /     .col-md-12
-        /       = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
-        /       = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
-        /     .col-md-12
-        /       = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
-        /       = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
-        /     .col-md-2
-        / .row.section-wrapper.text-center
-        /   h2 Type of Campaign
-        /   p.text-muted Choose the geographic designations that best describes your organization's influence with supporters and consumers.
-        /   .col-md-2
-        /   .col-md-8
-        /     = f.input :scopes, as: :check_boxes, collection: Campaign::SCOPES, label: false, input_html: {class: 'checkbox-pill'}
-        /   .col-md-2
+        .row.section-wrapper.text-center
+          h2 Your Primary Cause
+          p.text-muted  Choose the Cause Category that best represent your Campaign goals
+          .col-md-3
+          .col-md-6
+            = f.input :main_cause, as: :select, collection: CouponBook::CAUSES, input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
+          .col-md-3
+        .row.section-wrapper.text-center
+          h2 Secondary Causes
+          p.text-muted You can select more than one
+          .col-md-2
+          .col-md-8
+            .col-md-12
+              = f.label CouponBook::CAUSES_HIERARCHY.keys.last, class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: CouponBook::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
+            .col-md-12
+              = f.label CouponBook::CAUSES_HIERARCHY.keys.first, class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: CouponBook::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
+            .col-md-12
+              = f.label CouponBook::CAUSES_HIERARCHY.keys[1], class:'control-label'
+              = f.input :causes, as: :check_boxes, collection: CouponBook::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
+            .col-md-2
+        .row.section-wrapper.text-center
+          h2 Type of Coupon Book
+          p.text-muted Choose the geographic designations that best describes your organization's influence with supporters and consumers.
+          .col-md-2
+          .col-md-8
+            = f.input :scopes, as: :check_boxes, collection: CouponBook::SCOPES, label: false, input_html: {class: 'checkbox-pill'}
+          .col-md-2s
         
         = f.input :step, as: :hidden, input_html:{value: :tell_your_story} 
         br

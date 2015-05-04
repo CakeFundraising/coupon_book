@@ -3,8 +3,8 @@ class CouponBooksController < InheritedResources::Base
     :basic_info,
     :tell_your_story,
     :coupons,
-    :launch_coupon_book,
-    :share
+    :request_coupons,
+    :launch_and_share
   ]
 
   def index
@@ -37,21 +37,15 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/coupons'
   end
 
-  def tree
-    @coupon_book = resource
-    @coupon_book.update_categories!(params[:tree])
-
+  def request_coupons
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/request_coupons'
   end
 
   #Launch 
-  def launch_coupon_book
+  def launch_and_share
     @coupon_book = resource.decorate
-    render 'coupon_books/template/launch'
-  end
-
-  def share
-    @coupon_book = resource.decorate
-    render 'coupon_books/template/share'
+    render 'coupon_books/template/launch_and_share'
   end
 
   #Default actions

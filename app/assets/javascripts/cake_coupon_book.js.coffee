@@ -7,6 +7,7 @@ CakeCouponBook.init = ->
   CakeCouponBook.utils.init()
   CakeCouponBook.coupon_books.init()
   CakeCouponBook.categories.init()
+  CakeCouponBook.overrides.init()
   return
 
 $(document).ready(CakeCouponBook.init)

@@ -10,5 +10,9 @@ class AddBasicDataToCouponBooks < ActiveRecord::Migration
     add_column :coupon_books, :mission, :text
     add_column :coupon_books, :visible, :boolean, default: false
     add_monetize :coupon_books, :goal
+    add_monetize :coupon_books, :price
+    add_column :coupon_books, :causes_mask, :integer
+    add_column :coupon_books, :scopes_mask, :integer
+    add_column :coupon_books, :main_cause, :string
   end
 end
