@@ -69,6 +69,7 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def update
+    # puts permitted_params.to_yaml
     update! do |success, failure|
       success.html do
         redirect_to controller: :coupon_books, action: params[:coupon_book][:step], id: resource
@@ -86,57 +87,6 @@ class CouponBooksController < InheritedResources::Base
         redirect_to coupon_books_path, notice: 'Coupon book was successfully destroyed.'
       end
     end
-  end
-
-  def update_coupon_book_order
-    @coupon_book = CouponBook.find(params[:id])
-    book_categories = Category.where(coupon_book_id: @coupon_book.id)
-
-    params[:categories].each do |id, category|
-      position = category[:position]
-      c = Category.find_by_id(id)
-      c.insert_at(position.to_i)
-    end
-
-
-    filter = []
-    if params[:categories_coupons]
-      params[:categories_coupons].each do |id, category_coupon|
-        position = category_coupon[:position]
-        category = category_coupon[:category_id]
-        coupon = category_coupon[:coupon_id]
-
-        category_coupon = CategoriesCoupon.find_by_id(id)
-        filter.push(id.to_i)
-
-        if category_coupon.present?
-          category_coupon.update_attributes(position: position, category_id: category)
-          category_coupon.insert_at(position.to_i)
-
-        else
-          book_categories.each do |bc|
-            CategoriesCoupon.where(category_id: bc, coupon_id: coupon).delete_all
-          end
-          category_coupon = CategoriesCoupon.create!(coupon_id: coupon, category_id: category, position: position)
-          filter.push(category_coupon.id.to_i)
-          category_coupon.insert_at(position.to_i)
-        end
-      end
-    end
-
-
-    cat_ids = []
-    book_categories.each do |bc|
-      cat_ids.push(bc.id)
-    end
-
-    @unused_coupons = CategoriesCoupon.select { |coupon|  cat_ids.include?(coupon.category_id) and (not filter.include?(coupon.id)) }
-
-    @unused_coupons.each do |unused_coupon|
-      CategoriesCoupon.destroy(unused_coupon.id)
-    end
-
-    redirect_to @coupon_book
   end
 
   #Special Actions
@@ -172,7 +122,7 @@ class CouponBooksController < InheritedResources::Base
         :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
-      categories_attributes: [:position]
+      categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ]
     ])
   end
 

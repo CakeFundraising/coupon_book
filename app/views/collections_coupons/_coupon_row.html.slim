@@ -5,13 +5,13 @@ li.collection-coupon.ui-state-default id="coupons_#{coupon.id}"
   table.table.table-hover.table-bordered.table-striped.data-table
     tr.coupon-input.position-input
       td
-        = hidden_field_tag "coupon_book[categories_attributes][#{coupon_counter}][categories_coupons][#{coupon_counter}][position]", ''
+        = hidden_field_tag "coupon_book[categories_attributes][category_counter][categories_coupons_attributes][#{coupon_counter}][position]", ''
     tr.coupon-input.category_id-input
       td
-        = hidden_field_tag "coupon_book[categories_attributes][#{coupon_counter}][categories_coupons][#{coupon_counter}][category_id]", ''
+        = hidden_field_tag "coupon_book[categories_attributes][category_counter][categories_coupons_attributes][#{coupon_counter}][category_id]", ''
     tr.coupon-input.coupon_id-input
       td
-        = hidden_field_tag "coupon_book[categories_attributes][#{coupon_counter}][categories_coupons][#{coupon_counter}][coupon_id]", coupon.id
+        = hidden_field_tag "coupon_book[categories_attributes][category_counter][categories_coupons_attributes][#{coupon_counter}][coupon_id]", coupon.id
     tr
       td
         span.coupon-sp Sponsor Name
