@@ -108,7 +108,7 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def permitted_params
-    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
+    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :price, :goal, 
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [

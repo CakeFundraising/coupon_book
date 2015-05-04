@@ -13,6 +13,7 @@ gem 'jquery-rails', '~> 4.0.3'
 gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'jbuilder'
+gem 'zeroclipboard-rails', '~> 0.1.0'
 
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'

@@ -2,6 +2,7 @@ window.CakeCouponBook ?= {}
 
 CakeCouponBook.init = ->
   CakeCouponBook.datepicker()
+  CakeCouponBook.clipboard()
   CakeCouponBook.validations.init()
   CakeCouponBook.crop.init()
   CakeCouponBook.utils.init()
@@ -12,3 +13,7 @@ CakeCouponBook.init = ->
 
 $(document).ready(CakeCouponBook.init)
 $(document).on('page:load', CakeCouponBook.init)
+
+$(document).on 'page:before-change', ->
+  ZeroClipboard.destroy()
+  return
