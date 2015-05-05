@@ -1,0 +1,42 @@
+#video_modal.modal.fade.video_modal
+  .modal-dialog
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h4.modal-title #{object} Video
+      .modal-body
+        = object.video.iframe
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
+
+javascript:
+  CakeCouponBook.videos.autoshow_setting = "#{object.video.auto_show}" === 'true' ? true : false;
+  var provider = "#{object.video.provider}";
+
+  var options = {
+    modal: '#video_modal',
+    provider: provider,
+    iframeId: "#{object.video.id}",
+    autoshow: false
+  };
+  //autoshow: CakeCouponBook.videos.autoshow_setting
+
+  var youtube_init = function(){
+    CakeCouponBook.videos.youtube(options);
+  };
+
+  if(provider === 'youtube'){
+    if(window.YT){
+      youtube_init();
+    }else{
+      CakeCouponBook.videos.youtubeApi();
+      if(provider === 'youtube') CakeCouponBook.videos.queueFunctions(youtube_init);
+
+      function onYouTubeIframeAPIReady(){
+        CakeCouponBook.videos.ytApiReady();
+      }
+    }
+  }else{
+    CakeCouponBook.videos.vimeo(options);
+  }

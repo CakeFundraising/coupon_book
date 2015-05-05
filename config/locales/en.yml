@@ -24,6 +24,9 @@ en:
     empty_results:
       coupon_books: Coupon Books
       coupons: Coupons
+  banners:
+    coupon_book:
+      header: "Help %{fr}! Enjoy special offers of %{no_discount} for %{price}!"
   activerecord: 
     models:
     attributes:

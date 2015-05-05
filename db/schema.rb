@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424162803) do
+ActiveRecord::Schema.define(version: 20150505191835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,6 +100,15 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string  "recordable_type"
+    t.integer "recordable_id"
+    t.string  "url"
+    t.string  "provider"
+    t.string  "thumbnail"
+    t.boolean "auto_show",       default: false
   end
 
 end

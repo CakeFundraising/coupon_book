@@ -9,6 +9,7 @@ class CouponBook < ActiveRecord::Base
 
   has_statuses :incomplete, :pending, :launched, :past
 
+  has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
   has_many :coupons, through: :categories, dependent: :destroy
 
@@ -38,4 +39,11 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
+  def current_sales
+    "40"
+  end
+
+  def thermometer
+    "68"
+  end
 end

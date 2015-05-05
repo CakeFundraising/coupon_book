@@ -1,6 +1,10 @@
 class CouponBookDecorator < ApplicationDecorator
   delegate_all
 
+  decorates_association :picture
+  decorates_association :video
+  decorates_association :fundraiser, with: FundraiserDecorator
+
   def launch_date
     object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
   end
@@ -21,8 +25,16 @@ class CouponBookDecorator < ApplicationDecorator
     object.name
   end
 
+  def current_sales
+    h.humanized_money_with_symbol object.current_sales
+  end
+
   def goal
     h.humanized_money_with_symbol object.goal
+  end
+
+  def no_discount_price
+    "$XXX"
   end
 
   def status

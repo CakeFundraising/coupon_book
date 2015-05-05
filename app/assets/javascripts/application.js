@@ -15,8 +15,11 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.Jcrop
+//= require ./jquery.countdown.min
+//= require ./jquery.expander.min
 
 //= require turbolinks
+//= require modernizr
 
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
@@ -45,3 +48,4 @@
 //= require ./validations
 //= require ./overrides
 //= require ./utils
+//= require ./videos

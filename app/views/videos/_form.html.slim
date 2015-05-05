@@ -1,0 +1,8 @@
+= f.semantic_fields_for :video, f.object.video || f.object.build_video do |v|
+  = v.inputs do
+    = v.label :url do
+      | Include a video - Optional
+    span.help-block Copy link for video from YouTube or Vimeo
+    = v.object.decorate.thumbnail
+    = v.input :url, label: false, input_html: {value: v.object.decorate.input_value}
+    /= v.input :auto_show, as: :boolean

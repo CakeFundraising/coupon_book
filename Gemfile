@@ -14,6 +14,7 @@ gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'jbuilder'
 gem 'zeroclipboard-rails', '~> 0.1.0'
+gem 'modernizr-rails', '~> 2.7.1'
 
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
@@ -52,6 +53,9 @@ gem 'money-rails'
 
 #Authentication
 gem 'oauth2'
+
+#User permissions
+gem 'cancancan'
 
 group :development do
   gem 'quiet_assets'
