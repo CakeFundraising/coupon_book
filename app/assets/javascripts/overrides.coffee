@@ -3,6 +3,51 @@ CakeCouponBook.overrides ?= {}
 CakeCouponBook.overrides.init = ->
   checkbox()
   hide_alert()
+  booleanButtonInput()
+  booleanCollapse()
+  return
+
+booleanButtonInput = ->
+  $('button.boolean-button-input').on 'click', (e) ->
+    e.preventDefault()
+
+    #Toggle classes
+    oppositeButton = $(this).closest('.boolean-button-container').find('button.boolean-button-input')
+
+    onClasses = $(this).data('on-classes')
+    offClasses = $(this).data('off-classes')
+
+    currentClasses = $.trim $(this).attr('class').replace('boolean-button-input', '').replace('btn', '')
+    newClasses = if currentClasses == onClasses then offClasses else onClasses
+
+    oppositeButton.removeClass().addClass("btn boolean-button-input #{currentClasses}")
+    $(this).removeClass().addClass("btn boolean-button-input #{newClasses}")
+
+    #Update hidden field
+    input = $(this).closest('.boolean_button').find('input[type=hidden]')
+
+    if input.length > 0
+      if input.val().toString() != $(this).data('value').toString()
+        input.val($(this).data('value')).trigger 'change'
+    return
+
+  return
+
+booleanCollapse = ->
+  input = $('#boolean-collapse-input')
+  panel = $('#boolean_collapse_panel')
+
+  if input.is(':checked')
+    panel.collapse('show')
+  else
+    panel.collapse('hide')
+
+  input.change ->
+    if this.checked
+      panel.collapse('show')
+    else
+      panel.collapse('hide')
+    return
   return
 
 hide_alert = ->

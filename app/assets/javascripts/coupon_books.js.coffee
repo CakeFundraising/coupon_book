@@ -40,7 +40,7 @@ visibility = ->
     current.addClass "hidden"
     return
   ).on "ajax:error", (e, xhr, status, error) ->
-    alert "There were an error when updating coupon_book, please reload this page and try again."
+    alert "There was an error when updating coupon_book, please reload this page and try again."
     return
   return
 
@@ -53,11 +53,33 @@ launch = ->
     current.closest('td').html(launched_button)
     return
   ).on "ajax:error", (e, xhr, status, error) ->
-    alert "There were an error when updating coupon_book, please reload this page and try again."
+    alert "There was an error when updating coupon_book, please reload this page and try again."
+    return
+  return
+
+launch_template = ->
+  button = $('a#launch-button')
+  waitColumn = $('#wait-col')
+  orColumn = $('#or-col')
+  launchColumn = $('#launch-col')
+  hiddenContent = $('#share-coupon-book')
+
+  hiddenContent.hide()
+
+  button.on("ajax:success", (e, data, status, xhr) ->
+    hiddenContent.show()
+    waitColumn.hide()
+    orColumn.hide()
+    launchColumn.removeClass('col-md-5').addClass('col-md-12')
+    $(this).text('Successfully Launched!').attr("disabled","disabled")
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    alert "There was an error on launch, please reload this page and try again."
     return
   return
 
 CakeCouponBook.coupon_books.init = ->
   visibility()
   launch()
+  launch_template()
   return
