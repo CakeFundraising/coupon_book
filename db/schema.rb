@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505191835) do
+ActiveRecord::Schema.define(version: 20150505212243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20150505191835) do
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
     t.string   "main_cause"
+    t.string   "visitor_url"
+    t.string   "visitor_action"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -100,6 +102,20 @@ ActiveRecord::Schema.define(version: 20150505191835) do
     t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "subscriptors", force: :cascade do |t|
+    t.string   "email"
+    t.string   "object_type"
+    t.integer  "object_id"
+    t.string   "phone"
+    t.string   "organization"
+    t.text     "message"
+    t.string   "name"
+    t.string   "origin_type"
+    t.integer  "origin_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "videos", force: :cascade do |t|

@@ -7,26 +7,25 @@
           span.boldest = @coupon_book.fundraiser
 .container
   .row.sponsor-profile
-    .col-md-8.col-sm-6.coupon_book-story
+    .col-md-8.col-sm-6.campaign-story
       /h3 = coupon_book_fr_website_link(@coupon_book.headline)
       h3 = @coupon_book.headline
       p.story.expander = @coupon_book.story
     .col-md-4.col-sm-6.col-xs-10.col-xs-push-1.col-sm-push-0
       .sidebar-bkg-2
         .avatar
-          / = picture_rollover(@coupon_book.picture.avatar, click_fundraiser_path(@coupon_book.fundraiser, coupon_book_id: @coupon_book)) do
-          /   div Please visit 
-          /   div our Website!
-          / end
-          = @coupon_book.picture.avatar
+          = picture_rollover(@coupon_book.picture.avatar, @coupon_book.url) do
+            div Please visit 
+            div our Website!
+          end
         .avatar-content
           .caption = @coupon_book.avatar_caption
           .fundraiser-name
             /h4 = coupon_book_fr_website_link(@coupon_book.fundraiser)
             h4 = @coupon_book.fundraiser
 
-          / .volunteer-with-us
-          /   a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
-          /     span.glyphicon.glyphicon-envelope 
-          /     span.clickable  #{@coupon_book.visitor_action}
-          /   = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+          .volunteer-with-us
+            a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
+              span.glyphicon.glyphicon-envelope 
+              span.clickable  #{@coupon_book.visitor_action}
+            = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}

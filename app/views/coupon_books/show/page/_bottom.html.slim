@@ -12,7 +12,7 @@
               b> Business Owners:
               | You can Partner with #{@coupon_book.fundraiser} too!
             a.btn.btn-primary data-toggle='modal' data-target='#coupon_book_partner_subs_modal' Learn How
-            /= render partial:'subscriptions/modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.partner'}
+            = render partial:'subscriptions/modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.partner'}
   .row
     .col-md-12
       / SHARE BUTTONS 

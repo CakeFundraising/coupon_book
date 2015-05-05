@@ -42,6 +42,10 @@ class Fundraiser < Ohm::Model
     CouponBook.where(fundraiser_id: self.id.to_i)
   end
 
+  def subscriptors
+    Subscriptor.where(object_type: 'Fundraiser', object_id: self.id.to_i)
+  end
+
   def coupon_collection
     Collection.where(owner_type: 'Fundraiser', owner_id: self.id.to_i).first
   end

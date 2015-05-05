@@ -17,7 +17,11 @@ class CouponBook < ActiveRecord::Base
   monetize :price_cents, numericality: {greater_than: 0}
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
 
+  validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
+  validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
+  validates :mission, :headline, :story, presence: true, if: :persisted?
   validates :categories, length: {maximum: 5}
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }

@@ -37,6 +37,7 @@ CakeCouponBook::Application.routes.draw do
   end
 
   resources :coupon_sponsors
+  resources :subscriptors, only: :create
 
   scope :dashboard, controller: :dashboard do
     get :home
