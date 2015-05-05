@@ -1,18 +1,5 @@
-- coupon = f.object.coupon
-
-li.categorized-coupon.ui-state-default id="coupons_#{coupon.id}"
+li.coupon-row id="coupons_#{coupon.id}"
   = render partial:'coupons/modal', locals:{coupon: coupon}
-
-  .category_coupon_fields
-    .id-input
-      = f.input :id, as: :hidden
-    .category_id-input
-      = f.input :category_id, as: :hidden
-    .position-input
-      = f.input :position, as: :hidden
-    ._destroy-input
-      = f.input :_destroy, as: :hidden
-
 
   table.table.table-hover.table-bordered.table-striped.data-table
     tr
@@ -25,5 +12,3 @@ li.categorized-coupon.ui-state-default id="coupons_#{coupon.id}"
           span.glyphicon.glyphicon-eye-open
         = link_to edit_coupon_path(coupon), class: 'btn btn-sm btn-primary' do
           span.glyphicon.glyphicon-pencil
-        a.btn.btn-sm.btn-danger.remove-from-book
-          span.glyphicon.glyphicon-remove

@@ -1,4 +1,7 @@
 class CouponBook < ActiveRecord::Base
+  include Cause
+  include Scope
+  include Formats
   include Statusable
   include Picturable
 
@@ -10,12 +13,14 @@ class CouponBook < ActiveRecord::Base
   has_many :coupons, through: :categories, dependent: :destroy
 
   monetize :goal_cents, numericality: {greater_than: 0}
+  monetize :price_cents, numericality: {greater_than: 0}
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
 
   validates :categories, length: {maximum: 5}
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }
+  scope :with_categories, ->{ eager_load(:categories) }
 
   def fundraiser
     Fundraiser.fetch(self.fundraiser_id)
@@ -32,4 +37,5 @@ class CouponBook < ActiveRecord::Base
       CampaignNotification.campaign_launched(self.id, user.id).deliver if user.sponsor_email_setting.campaign_launch
     end
   end
+
 end

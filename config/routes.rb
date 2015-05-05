@@ -6,13 +6,15 @@ CakeCouponBook::Application.routes.draw do
       scope :edit do
         get :tell_your_story
         get :coupons
-        get :launch_coupon_book, path: :launch
-        get :share
+        get :request_coupons
+        get :launch_and_share
       end
       patch :launch
       patch :save_for_launch
       patch :toggle_visibility
       patch :update_order
+
+      post :tree
     end
   end
 

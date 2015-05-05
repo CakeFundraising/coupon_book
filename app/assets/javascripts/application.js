@@ -26,6 +26,7 @@
 
 //= require jquery-ui
 
+//= require zeroclipboard
 //= require bootstrap-datepicker/core
 
 //= require cake_coupon_book
@@ -33,10 +34,14 @@
 //= require ./cloudinary_crop
 //= require ./coupons
 //= require ./categories
+
 //= require ./coupon_books
 //= require ./coupon_book_builder
+
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker
+//= require ./clipboard
 //= require ./validations
+//= require ./overrides
 //= require ./utils

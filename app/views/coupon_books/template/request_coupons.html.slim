@@ -1,0 +1,21 @@
+= render partial:'coupon_books/template/nav'
+
+.row.text-center
+  .col-md-2
+  .col-md-8
+    h1 Let’s Invite Business Partners You Know to Create Discount Offers To Include In Your Digital Discount Book!
+    p.text-muted Simply email your business contacts this link and invite them to create a discount offer
+  .col-md-2
+.row.text-center
+  .col-md-2
+  .col-md-8
+    .toggle-container.text-left
+      label Campaign Url: 
+      input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
+      .row.text-center
+        br
+        button.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
+    p.text-muted As your business Partners create offers, they will appear under your “Organize” Tab
+  .col-md-2
+.row.section-wrapper.text-center
+  = link_to 'Continue', launch_and_share_coupon_book_path(@coupon_book), class:'btn btn-success btn-lg'

@@ -6,10 +6,83 @@ class CollectionCoupon
     @coupon.removeClass('in-book')
     return
 
-class CategorizedCoupon
-  constructor: (@coupon) ->
-    @originalCopy = new CollectionCoupon($("#collection-coupons li.collection-coupon##{@coupon.attr('id')}"))
+  hideInCollection: ->
+    @coupon.addClass('in-book')
+    return
+
+class Category
+  constructor: (@category) ->
+    @id = @category.attr('id').replace('coupon_categories_', '')
+    @coupons = @category.find('li.collection-coupon')
+    @nestedFormCounter = @category.closest('li.category').find('.hidden.input input[type="hidden"]').attr('name').split('][')[1]
+    return
+
+  update: ->
+    couponsOrder = @category.sortable('toArray')
+    @updateCouponPosition(couponId, index) for couponId, index in couponsOrder
+    return
+
+  updateCouponPosition: (couponId, index)->
+    positionField = @category.find("##{couponId} .position-input input[type='hidden']")
+    positionField.val(index+1)
+    return
+
+class Coupon
+  constructor: (@coupon, category) ->
+    @category = new Category(category)
+    @categoryId = @category.id
+    @couponId = @coupon[0].id
+    @inCollection = new CollectionCoupon($("#collection-coupons li.collection-coupon##{@couponId}"))
+
+    @idField = @coupon.find('.id-input input[type="hidden"]')
+    @positionField = @coupon.find('.position-input input[type="hidden"]')
+    @categoryIdField = @coupon.find('.category_id-input input[type="hidden"]')
+    @couponIdField = @coupon.find('.coupon_id-input input[type="hidden"]')
+    return
+
+  update: ->
+    #Current Coupon updates
+    @updateFields()
+    #Siblings updates
+    @category.update()
+    return
+
+  updateFields: ->
+    @categoryIdField.val(@categoryId)
+
+    @replaceNestedFormCounter(@categoryIdField)
+    @replaceNestedFormCounter(@positionField)
+    @replaceNestedFormCounter(@couponIdField)
+    return
+
+  replaceNestedFormCounter: (field)->
+    unless field.attr('name') is undefined
+      newName = field.attr('name').replace(/\[categories_attributes\]\[(\d|category_counter)\]/, "[categories_attributes][#{@category.nestedFormCounter}]")
+      field.attr('name', newName)
+    return
+  
+class CategorizedCoupon extends Coupon
+  constructor: (@coupon, category) ->
+    super(@coupon, category)
+
+    @init()
+    return
+  
+  init: ->
+    @grayOutInCollection()
+    return
+
+  grayOutInCollection: ->
+    @inCollection.hideInCollection()
+    return
+
+
+class DraggedCoupon extends Coupon
+  constructor: (@coupon, category) ->
+    super(@coupon, category)
+
     @removeLink = @coupon.find('a.remove-from-book')
+
     @init()
     return
 
@@ -17,6 +90,7 @@ class CategorizedCoupon
     @removeDestroyAttrs()
     @setUpRemoveFromCategoryLink()
     @replaceTrashIcon()
+    @update()
     return
 
   removeDestroyAttrs: ->
@@ -28,22 +102,22 @@ class CategorizedCoupon
   setUpRemoveFromCategoryLink: ->
     self = this
     @removeLink.click ->
-      self.destroy()
+      self.removeFromBook()
       return
-    return
-
-  destroy: ->
-    @coupon.remove()
-    @originalCopy.showInCollection()
     return
 
   replaceTrashIcon: ->
     @removeLink.find('span').removeClass('glyphicon-trash').addClass('glyphicon-remove')
     return
 
+  removeFromBook: ->
+    @coupon.remove()
+    @inCollection.showInCollection()
+    return
+
 class CouponBook
-  constructor: ->
-    #@form = $('.formtastic.coupon_book')
+  constructor: (@couponBookId)->
+    @form = $('#drag-canvas .formtastic.coupon_book')
 
     @collection = $("#collection-coupons")
     @collectionCoupons = @collection.find("li.collection-coupon")
@@ -51,16 +125,16 @@ class CouponBook
     @categoriesWrappers = @categoriesContainer.find("ul.sortableCoupons")
     @categories = @categoriesContainer.find('li.category')
 
-    #@greyOutUsedCoupons()
-    @sortCategories()
-    @draggableCoupons()
-    #@removeFromBook()
-    #@saveCouponBookOrder()
+    @domCategorizedCoupons = @categoriesWrappers.find('li.categorized-coupon')
+    @categorizedCoupons = (new CategorizedCoupon($(coupon), $(coupon).closest('ul.sortableCoupons')) for coupon in @domCategorizedCoupons)
+
+    @init()
     return
 
-
-  getCategoriesPosition = ->
-    return @categoriesContainer.sortable('toArray')
+  init: ->
+    @sortCategories()
+    @draggableCoupons()
+    return
 
   sortCategories: (categories)->
     self = this
@@ -70,7 +144,7 @@ class CouponBook
       items: "li:not(.ui-state-disabled)",
       connectWith: ".sortableCoupons",
       update: (event, ui) ->
-        #self.removeFromBook($(this))
+        new DraggedCoupon(ui.item, $(this))
         return
     )
 
@@ -84,6 +158,7 @@ class CouponBook
 
   draggableCoupons: ->
     self = this
+
     #Collection Coupons dragging
     @collectionCoupons.draggable({
       connectToSortable: "#categories ul.sortableCoupons"
@@ -91,7 +166,6 @@ class CouponBook
       containment: '#drag-canvas'
       helper: (event) ->
         clone = $(this).clone().css({width: $(this).width()})
-        new CategorizedCoupon(clone)
         return clone
       revert: (valid, ui)->
         unless valid
@@ -104,65 +178,6 @@ class CouponBook
     })
     return
 
-  saveCouponBookOrder: ->
-    self = this
-
-    @form.submit (e)->
-      self.saveCategoriesOrder()
-      return true
-    return
-
-  saveCategoriesOrder: ->
-    self = this
-
-    @categoriesWrappers.each ->
-      category = $(this)
-      category_position = category.parent().index()
-      category_input_id = "#" + category.attr('id').replace(/coupon_/, "") + "_position"
-      $(category_input_id).val(category_position)
-      self.saveCouponsOrder(category)
-      return
-    return
-
-  saveCouponsOrder: (category)->
-    category_id = category.attr('id').replace(/\D/g, '')
-
-    category.children(".ui-state-default").each ->
-      coupon = $(this)
-      coupon_position = coupon.index()
-      position_input_id = $(this).find('.position-input').find('input')
-      category_input_id = $(this).find('.category_id-input').find('input')
-      position_input_id.val(coupon_position)
-      category_input_id.val(category_id)
-      return
-    return
-
-  greyOutUsedCoupons: ->
-    @categoriesContainer.find(".ui-state-default").each ->
-      couponSelector = $(this).attr('class').split(' ')[1]
-      coupon = @collection.find(".#{couponSelector}")
-      coupon.addClass('in-book')
-      return
-    return
-
-  removeFromBook: (container)->
-    container = $('body') if container is undefined
-
-    container.find("a.remove-from-book").click ->
-      coupon_id = $(this).attr('id').replace(/\D/g, '')
-      @categoriesContainer.find(".coupons__" + coupon_id).remove()
-      @collection.find(".coupons__" + coupon_id).removeClass('in-book')
-      return
-    return
-
-  removeFromCategory: (coupon)->
-    coupon_class = @getCouponClass(coupon)
-    @collection.find(".#{coupon_class}").removeClass("in-book")
-    return
-
-  getCouponClass: (coupon)->
-    return $(coupon).attr('class').split(' ')[1]
-
-CakeCouponBook.coupon_books.build = ->
-  new CouponBook()
+CakeCouponBook.coupon_books.build = (couponBookId)->
+  new CouponBook(couponBookId)
   return

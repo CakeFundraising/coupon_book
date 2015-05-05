@@ -1,12 +1,15 @@
 = render partial:'coupon_books/template/nav'
 
-h1.dash-head
-  span Coupon Categories
-  .page-cta
-    a.btn.btn-primary.btn-md data-toggle='modal' data-target='#category-' Add a New Coupon Category
+.page-cta
+  h1.dash-head.text-center Organize your Digital Discount Book, Create Discounts & Add Universal Discounts!
+  
+  div
+    a.btn.btn-default.btn-md data-toggle='modal' data-target='#category-' Add a New Coupon Category
 
 = render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
 
+br
+br
 .container
   .row#drag-canvas
     #my-collection.col-md-6
@@ -21,7 +24,14 @@ h1.dash-head
         = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
     .col-md-6
       ul#categories.no-list
-        = render partial:'categories/tables/row', collection: @categories, as: :category
+        = semantic_form_for @coupon_book do |f|
+          = f.inputs do
+            = f.semantic_fields_for :categories, @categories do |c|
+              = render partial:'categories/tables/row', locals:{f: c}
+            = f.input :step, as: :hidden, input_html:{value: :request_coupons}
+          = f.actions do
+            .text-center
+              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
 javascript:
-  CakeCouponBook.coupon_books.build();
+  CakeCouponBook.coupon_books.build("#{@coupon_book.id}");

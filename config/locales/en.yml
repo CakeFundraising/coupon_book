@@ -10,8 +10,9 @@ en:
       coupon_book: 
         basic_info: Basic Information
         tell_your_story: Tell Your Story
-        launch: Launch Book
-        share: Find Sponsors
+        coupons: Organize
+        request_coupons: Request Discounts
+        launch_and_share: Launch and Share
   flash:
     error:
       default: We're sorry but there was an error. Please try again.

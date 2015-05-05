@@ -4,7 +4,7 @@ class Category < ActiveRecord::Base
   has_many :categories_coupons, -> { order("categories_coupons.position ASC") }
   has_many :coupons, through: :categories_coupons
 
-  accepts_nested_attributes_for :categories_coupons, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :categories_coupons, allow_destroy: true, update_only: true, reject_if: :all_blank
 
   acts_as_list scope: :coupon_book
 
