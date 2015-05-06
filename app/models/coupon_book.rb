@@ -4,6 +4,7 @@ class CouponBook < ActiveRecord::Base
   include Formats
   include Statusable
   include Picturable
+  include VisitorActions
 
   attr_accessor :step
 
@@ -19,7 +20,7 @@ class CouponBook < ActiveRecord::Base
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
 
-  validates :title, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
+  validates :name, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
   validates :categories, length: {maximum: 5}

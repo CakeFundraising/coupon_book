@@ -4164,7 +4164,7 @@ ul.sortableCategories {
   list-style-type: none;
 }
 
-.category-title {
+.table-category-title {
   color: #fff;
   font-size: 2.5em;
 }
@@ -4209,4 +4209,18 @@ li.ui-state-default {
   font-size: 20px;
 }
 
+.category-show{
+  .category-title{
+    margin-top: 20px;
+    margin-bottom: 40px;
+    font-size: 4em;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+  }
+}
 
+.blue#coupons{
+  .buy-book{
+    margin-top: 20px;
+  }
+}

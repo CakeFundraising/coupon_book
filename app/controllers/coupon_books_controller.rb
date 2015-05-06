@@ -14,6 +14,7 @@ class CouponBooksController < InheritedResources::Base
   def show
     @coupon_book = resource.decorate
     @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+    @categories = @coupon_book.categories.with_coupons.decorate
   end
 
   #Template steps
@@ -33,7 +34,6 @@ class CouponBooksController < InheritedResources::Base
 
     @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
-
     @categories = resource.categories.with_coupons.decorate
 
     render 'coupon_books/template/coupons'

@@ -29,6 +29,10 @@ class CouponBookDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.current_sales
   end
 
+  def price
+    h.humanized_money_with_symbol object.price
+  end
+
   def goal
     h.humanized_money_with_symbol object.goal
   end
@@ -44,6 +48,12 @@ class CouponBookDecorator < ApplicationDecorator
   def visitor_action
     return "Join, Sign Up or Volunteer!" if object.visitor_action.blank?
     object.visitor_action
+  end
+
+  def visitor_url
+    unless object.visitor_url.blank?
+      (object.visitor_url=~/^https?:\/\//).nil? ? "http://#{object.visitor_url}" : object.visitor_url
+    end
   end
 
   def url
