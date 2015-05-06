@@ -4183,6 +4183,18 @@ li.ui-state-default {
   cursor: move;
 }
 
+.coupon_book.panel{
+  .visibility_buttons{
+    display: inline-block;
+  }
+  .panel-collapse{
+    li{
+      list-style: none;
+      margin-bottom: 20px;
+    }
+  }
+}
+
 .coupon-modal {
 
   .modal-content {

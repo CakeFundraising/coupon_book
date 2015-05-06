@@ -10,4 +10,45 @@ module ApplicationHelper
       end
     end
   end
+
+  #Auto helpers
+  def auto_link(object, opts={})
+    if opts.symbolize_keys![:truncate].present?
+      link_to truncate(object.to_s, length: opts[:truncate]), object, opts
+    else
+      link_to object.to_s, object, opts
+    end
+  end
+
+  def auto_attr_link(attribute, opts={})
+    link_to attribute, attribute, opts.symbolize_keys
+  end
+
+  def auto_mail(object)
+    mail_to object.email, object.email
+  end
+
+  # Set class in page
+  def active_in_page(path)
+    "active" if current_page?(path)
+  end
+
+  #Boolean helpers
+  def b(value, options = {})
+    options = {
+      :true => :yes,
+      :false => :no,
+      :scope => [:boolean],
+      :locale => I18n.locale
+    }.merge options
+
+    boolean = !!value
+    key = boolean.to_s.to_sym
+
+    t(options[key], :scope => options[:scope], :locale => options[:locale])
+  end
+
+  def to_boolean(string)
+    ActiveRecord::Type::Boolean.new.type_cast_from_database(string)
+  end
 end
