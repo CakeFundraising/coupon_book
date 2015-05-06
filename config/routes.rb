@@ -1,6 +1,8 @@
 CakeCouponBook::Application.routes.draw do
   root to:'home#index'
 
+  mount Resque::Server, at: "/resque"
+
   resources :coupon_books do
     member do
       scope :edit do

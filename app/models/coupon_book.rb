@@ -4,6 +4,7 @@ class CouponBook < ActiveRecord::Base
   include Formats
   include Statusable
   include Picturable
+  include Screenshotable
   include VisitorActions
 
   attr_accessor :step

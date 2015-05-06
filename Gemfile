@@ -34,8 +34,11 @@ gem 'bootstrap-kaminari-views'
 gem 'pg'
 gem 'ohm'
 
-#Servers
-gem 'thin', group: :development
+#Cron & Asynchronous tasks
+gem 'resque', '~> 1.25.2', require: 'resque/server'
+gem 'resque-retry'
+gem 'resque_mailer'
+gem 'resque-scheduler'
 
 #Image processing
 gem 'jcrop-rails-v2'
@@ -59,6 +62,7 @@ gem 'cancancan'
 
 group :development do
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 #Utils
