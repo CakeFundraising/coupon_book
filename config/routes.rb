@@ -29,6 +29,12 @@ CakeCouponBook::Application.routes.draw do
       scope :pictures, controller: :cropping do
         post :crop
       end
+      scope :edit do
+        get :sponsor
+        get :discount
+        get :news
+        get :launch
+      end
     end
   end
 

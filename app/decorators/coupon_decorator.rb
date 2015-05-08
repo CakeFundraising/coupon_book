@@ -11,7 +11,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def expires_at
-    object.expires_at.strftime("%B %d, %Y")
+    object.expires_at.strftime("%B %d, %Y") unless object.expires_at.nil?
   end
 
   def expires_at_american

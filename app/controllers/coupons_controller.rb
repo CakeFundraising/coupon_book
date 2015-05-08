@@ -1,50 +1,40 @@
 class CouponsController < InheritedResources::Base
+  TEMPLATE_STEPS = [
+    :sponsor,
+    :discount,
+    :news,
+    :launch
+  ]
 
-  def index
-    @coupons = Coupon.all
+  # Template Actions
+  def discount
+    @coupon = resource.decorate
+    render 'coupons/template/discount'
   end
 
-  # GET /coupons/1
-  def show
-  end
-
-  # GET /coupons/new
-  def new
-    @coupon = Coupon.new
-  end
-
-  def edit
-    @coupon = resource
-  end
-
+  #CRUD actions
   def create
-    @collection = params[:coupon][:collection_id]
-
     create! do |success, failure|
       success.html do
-        CollectionsCoupon.create!(collection_id: @collection, coupon_id: @coupon.id)
-        redirect_to coupon_book_path(1)
+        #update_screenshot(@coupon)
+        add_coupon_to_collection(resource)
+        redirect_to discount_coupon_path(@coupon)
+      end
+      failure.html do
+        render action: :new
       end
     end
   end
 
-  # # PATCH/PUT /coupons/1
-  # def update
-  #   if @coupon.update(coupon_params)
-  #     redirect_to @coupon, notice: 'Coupon was successfully updated.'
-  #   else
-  #     render :edit
-  #   end
-  # end
-
   def update
     update! do |success, failure|
       success.html do
-        redirect_to coupon_book_path(1)
+        #update_screenshot(@coupon)
+        redirect_to controller: :coupons, action: params[:coupon][:step], id: resource
       end
       failure.html do
-        @coupon_book = coupon_book_path(1)
-        render :edit
+        step_action = TEMPLATE_STEPS[TEMPLATE_STEPS.index(params[:coupon][:step].to_sym)-1].to_s
+        render 'coupons/template/' + step_action
       end
     end
   end
@@ -55,22 +45,19 @@ class CouponsController < InheritedResources::Base
     redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'
   end
 
-  def download
-    # extra_click(resource.url, resource.pledge, redirect=false)
+  private
 
-    # respond_with(resource) do |format|
-    #   format.html do
-    #     pdf = CouponPdf.new(resource.decorate)
-    #     send_data pdf.render, filename: "#{resource.sponsor.name.titleize}-#{resource.title.titleize}.pdf", type: 'application/pdf'
-    #   end
-    # end
+  def add_coupon_to_collection(coupon)
+    current_role = current_fundraiser || current_sponsor
+    CollectionsCoupon.create!(collection_id: current_role.coupon_collection.id, coupon_id: coupon.id)
   end
-
 
   def permitted_params
     params.permit(
       coupon: [
-        :position, :title, :description, :promo_code, :terms_and_conditions, :url, :expires_at, :coupon_book_id, :category_id,
+        :position, :title, :description, :promo_code, :terms, :url, :sponsor_url, 
+        :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
+        location_attributes: [:address, :city, :zip_code, :state_code],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
@@ -80,15 +67,4 @@ class CouponsController < InheritedResources::Base
       ]
     )
   end
-
-  # private
-  #   # Use callbacks to share common setup or constraints between actions.
-  #   def set_coupon
-  #     @coupon = Coupon.find(params[:id])
-  #   end
-  #
-  #   # Only allow a trusted parameter "white list" through.
-  #   def coupon_params
-  #     params.require(:coupon).permit(:position, :title, :description, :promo_code, :terms_and_conditions, :url, :expires_at, :coupon_book_id, :coupon_category_id)
-  #   end
 end

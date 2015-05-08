@@ -45,6 +45,11 @@ en:
       sign_out: Sign Out
       sign_up:  Sign Up For Free
     wizards:
+      coupon:
+        sponsor: Name/Location(s)
+        discount: Create a Discount
+        news: News
+        launch: Launch
       coupon_book: 
         basic_info: Basic Information
         tell_your_story: Tell Your Story
@@ -71,3 +76,9 @@ en:
     attributes:
       category:
         name: Category Name
+      coupon:
+        phone: Contact Phone
+        sponsor_url: "Please direct consumer traffic to my website: "
+        multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
+      location:
+        state_code: State

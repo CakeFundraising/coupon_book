@@ -53,6 +53,7 @@ gem 'pry-rails'
 #Utils
 gem 'prawn'
 gem 'money-rails'
+gem 'carmen-rails'
 
 #Authentication
 gem 'oauth2'

@@ -1,0 +1,6 @@
+= f.semantic_fields_for :location do |l|
+  = l.input :address
+  = l.input :city
+  = l.input :zip_code
+  = l.input :state_code, as: :select, collection: l.object.country.subregions, member_label: :name, member_value: :code
+

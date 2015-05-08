@@ -25,6 +25,9 @@ class Fundraiser < Ohm::Model
         id:   cake_id,
         name: data["name"]
       )
+      if data["picture"].present?
+        Picture.create(data["picture"])
+      end
     end
   end
 
@@ -42,10 +45,17 @@ class Fundraiser < Ohm::Model
     CouponBook.where(fundraiser_id: self.id.to_i)
   end
 
+  #Subscriptor
   def subscriptors
     Subscriptor.where(object_type: 'Fundraiser', object_id: self.id.to_i)
   end
 
+  #Picture
+  def picture
+    Picture.where(picturable_type: 'Fundraiser', picturable_id: self.id.to_i).first
+  end
+
+  #Collection
   def coupon_collection
     Collection.where(owner_type: 'Fundraiser', owner_id: self.id.to_i).first
   end
