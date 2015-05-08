@@ -81,9 +81,12 @@ ActiveRecord::Schema.define(version: 20150507205751) do
     t.string   "phone"
     t.string   "sponsor_url"
     t.string   "multiple_locations"
-    t.money    "retail_value",         scale: 2
-    t.boolean  "universal",                      default: false
-    t.string   "status",                         default: "incomplete"
+    t.boolean  "universal",                   default: false
+    t.string   "status",                      default: "incomplete"
+    t.text     "custom_terms"
+    t.integer  "merchandise_categories_mask"
+    t.integer  "price_cents",                 default: 0,            null: false
+    t.string   "price_currency",              default: "USD",        null: false
   end
 
   create_table "locations", force: :cascade do |t|

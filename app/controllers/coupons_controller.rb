@@ -12,6 +12,16 @@ class CouponsController < InheritedResources::Base
     render 'coupons/template/discount'
   end
 
+  def news
+    @coupon = resource.decorate
+    render 'coupons/template/news'
+  end
+
+  def launch
+    @coupon = resource.decorate
+    render 'coupons/template/launch'
+  end
+
   #CRUD actions
   def create
     create! do |success, failure|
@@ -41,8 +51,11 @@ class CouponsController < InheritedResources::Base
 
   # DELETE /coupons/1
   def destroy
-    @coupon.destroy
-    redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'
+    destroy! do |success, failure|
+      success.html do
+        redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'
+      end
+    end
   end
 
   private
@@ -57,6 +70,7 @@ class CouponsController < InheritedResources::Base
       coupon: [
         :position, :title, :description, :promo_code, :terms, :url, :sponsor_url, 
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
+        :price, :custom_terms, :merchandise_categories,
         location_attributes: [:address, :city, :zip_code, :state_code],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,

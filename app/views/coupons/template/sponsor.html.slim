@@ -4,6 +4,7 @@
   #main.container
     .col-md-12
       = semantic_form_for @coupon do |f|
+        = f.semantic_errors *f.object.errors.keys
         h1 Business Data & Location(s)
         = f.inputs do
           .row.section-wrapper
@@ -16,6 +17,7 @@
               = f.input :sponsor_url, input_html:{placeholder: 'e.g: www.mycompany.com/discounts'}
               = f.input :multiple_locations, input_html:{placeholder: 'e.g: All Baltimore. – 80 characters max', maxlength: 80}
           .row.section-wrapper.text-center
+            = f.input :step, as: :hidden, input_html:{value: :discount}
             = f.input :terms, as: :boolean, label:' I agree to Cake Terms of Use' if f.object.new_record?
         .row.text-center
           = f.actions do

@@ -21,5 +21,20 @@ CakeCouponBook.coupons.validation = ->
         required: true
       'coupon[terms]': 
         required: true
+      'coupon[title]': 
+        required: true
+      'coupon[expires_at]': 
+        required: true
+      'coupon[promo_code]': 
+        required: true
+      'coupon[description]': 
+        required: true
+      'coupon[url]': 
+        required: true
+        url: true
+      'coupon[price]': 
+        required: true
+      'coupon[merchandise_categories][]': 
+        required: true
   )
   return
