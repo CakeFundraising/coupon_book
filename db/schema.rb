@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507205751) do
+ActiveRecord::Schema.define(version: 20150508201743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,16 @@ ActiveRecord::Schema.define(version: 20150507205751) do
     t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pr_boxes", force: :cascade do |t|
+    t.string   "headline"
+    t.text     "story"
+    t.string   "url"
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "subscriptors", force: :cascade do |t|

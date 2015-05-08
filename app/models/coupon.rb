@@ -8,8 +8,10 @@ class Coupon < ActiveRecord::Base
   has_statuses :incomplete, :pending, :launched, :past
   
   has_one :location, as: :locatable, dependent: :destroy
-  has_many :categories_coupons
-  has_many :collections_coupons
+  has_one :pr_box, as: :parent, dependent: :destroy
+  
+  has_many :categories_coupons, dependent: :destroy
+  has_many :collections_coupons, dependent: :destroy
   has_many :categories, through: :categories_coupons
   has_many :coupon_books, through: :categories
 
@@ -20,7 +22,9 @@ class Coupon < ActiveRecord::Base
   validates :terms, acceptance: true, if: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :pr_box, update_only: true, reject_if: :all_blank
   validates_associated :location
+  validates_associated :pr_box
 
   monetize :price_cents
 

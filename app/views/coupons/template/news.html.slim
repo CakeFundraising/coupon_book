@@ -2,4 +2,10 @@
 
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active
-    h1.text-center Share Important News about your Company!
+    = semantic_form_for @coupon do |f|
+      .text-center
+        h1 Share Important News about your Company!
+        p.text-muted 
+          span I don't have any news for now.. 
+          = link_to 'Skip this', launch_coupon_path(@coupon)
+      = render partial:'pr_boxes/form', locals:{f: f}

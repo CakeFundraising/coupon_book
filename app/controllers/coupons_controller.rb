@@ -14,6 +14,7 @@ class CouponsController < InheritedResources::Base
 
   def news
     @coupon = resource.decorate
+    @pr_box = @coupon.pr_box || @coupon.build_pr_box
     render 'coupons/template/news'
   end
 
@@ -72,6 +73,15 @@ class CouponsController < InheritedResources::Base
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
         :price, :custom_terms, :merchandise_categories,
         location_attributes: [:address, :city, :zip_code, :state_code],
+        pr_box_attributes: [
+          :id, :headline, :story, :url,
+          picture_attributes: [
+            :id, :banner, :avatar, :qrcode, :avatar_caption,
+            :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
+            :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h,
+            :qrcode_crop_x, :qrcode_crop_y, :qrcode_crop_w, :qrcode_crop_h
+          ]
+        ],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,
           :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
