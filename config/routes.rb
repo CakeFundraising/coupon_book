@@ -31,6 +31,9 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  delete 'collections_coupons' => 'collections_coupons#destroy'
+  resources :collections_coupons
+
   resources :coupons do
     member do
       get :download

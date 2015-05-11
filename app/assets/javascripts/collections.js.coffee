@@ -30,8 +30,8 @@ CakeCouponBook.collections.initAddRemove = ->
     return
   return
 
-CakeCouponBook.collections.initAdd = (element) ->
-  element.one 'click', (e) ->
+CakeCouponBook.collections.initAdd = (coupon) ->
+  coupon.one 'click', (e) ->
     $(this).removeClass('add_coupon_btn')
     $(this).addClass('remove_coupon_btn')
     $(this).find('.click_to_help').text('Remove from collection')
@@ -42,13 +42,17 @@ CakeCouponBook.collections.initAdd = (element) ->
     thumbnail.addClass('in-collection')
 
     thumbnail.find('.label').removeClass('hidden', 500, 'linear')
+    
+    coupon_id = $(this).attr('id')
+    
+    CakeCouponBook.collections.createCollectionsCoupon(coupon_id)
 
     CakeCouponBook.collections.initRemove($(this))
     return
   return
 
-CakeCouponBook.collections.initRemove = (element) ->
-  element.one 'click', (e) ->
+CakeCouponBook.collections.initRemove = (coupon) ->
+  coupon.one 'click', (e) ->
     $(this).removeClass('remove_coupon_btn')
     $(this).addClass('add_coupon_btn')
     $(this).find('.click_to_help').text('Add to collection')
@@ -59,12 +63,46 @@ CakeCouponBook.collections.initRemove = (element) ->
     thumbnail.removeClass('in-collection')
     thumbnail.addClass('not-in-collection', 500, "easeInBack")
 
+    coupon_id = $(this).attr('id')
+    
+    CakeCouponBook.collections.deleteCollectionsCoupon(coupon_id)
+
     CakeCouponBook.collections.initAdd($(this))
     return
   return
 
-CakeCouponBook.collections.addRemoveCoupons = ->
+CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
 
+  collection_id = $('.collection').attr('id')
+
+  $.ajax
+    url: '/collections_coupons'
+    type: 'POST'
+    data:
+      collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
+    success: (data, status, response) ->
+      #todo
+    error: ->
+      #todo
+    dataType: 'json'
+
+  return
+
+CakeCouponBook.collections.deleteCollectionsCoupon = (coupon_id) ->
+
+  collection_id = $('.collection').attr('id')
+
+  $.ajax
+    url: '/collections_coupons'
+    type: 'DELETE'
+    data:
+      collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
+    success: (data, status, response) ->
+      #todo
+    error: ->
+      #todo
+    dataType: 'json'
+  
   return
 
 # Init function

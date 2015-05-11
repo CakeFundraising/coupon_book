@@ -24,7 +24,7 @@
             .avatar-container.overlay-img
               = coupon.picture.avatar
               .effect-overlay
-                a.expand.remove_coupon_btn
+                a.expand.remove_coupon_btn id="#{coupon.id}"
                   div.click_to_help Remove from collection
             = render partial: 'coupons/show/avatar_caption', locals: {coupon: coupon}
         - else
@@ -35,6 +35,6 @@
             .avatar-container.overlay-img
               = coupon.picture.avatar
               .effect-overlay
-                a.expand.add_coupon_btn
+                a.expand.add_coupon_btn id="#{coupon.id}"
                   div.click_to_help Add to collection
             = render partial: 'coupons/show/avatar_caption', locals: {coupon: coupon}
