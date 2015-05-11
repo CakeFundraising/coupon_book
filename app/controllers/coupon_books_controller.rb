@@ -29,7 +29,8 @@ class CouponBooksController < InheritedResources::Base
   def coupons
     @coupon_book = resource
 
-    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collection = Collection.first_or_create!
+    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
 
     @categories = resource.categories.with_coupons.decorate
@@ -37,7 +38,7 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/coupons'
   end
 
-  #Launch 
+  #Launch
   def launch_coupon_book
     @coupon_book = resource.decorate
     render 'coupon_books/template/launch'
@@ -158,7 +159,7 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def permitted_params
-    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, 
+    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [

@@ -32,6 +32,10 @@ gem 'bootstrap-kaminari-views'
 gem 'pg'
 gem 'ohm'
 
+#Solr
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 #Servers
 gem 'thin', group: :development
 

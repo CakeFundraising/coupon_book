@@ -1,6 +1,11 @@
 CakeCouponBook::Application.routes.draw do
   root to:'home#index'
 
+
+  scope :search, controller: :searches do
+    get :search_coupons, path:'coupons'
+  end
+
   resources :coupon_books do
     member do
       scope :edit do

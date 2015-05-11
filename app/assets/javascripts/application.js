@@ -39,5 +39,6 @@
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker
+//= require ./search
 //= require ./validations
 //= require ./utils

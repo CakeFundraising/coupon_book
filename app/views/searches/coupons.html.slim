@@ -12,10 +12,10 @@
           span.boldest #{@coupons.total_count} coupons 
           span match the criteria
 
-    /#filters.panel-group
-    /  = render partial:'layouts/search/filter', collection: @facets, as: :facet
-    /  hr
-    /  = link_to t('helpers.filters.clear'), search_coupons_path, class:'btn btn-primary'
+      /#filters.panel-group
+      /  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+      /  hr
+      /  = link_to t('helpers.filters.clear'), search_coupons_path, class:'btn btn-primary'
     .col-md-9
       .coupons-container.row-fluid.transitions-enabled
         .coupons

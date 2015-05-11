@@ -8,14 +8,16 @@ class CollectionsController < InheritedResources::Base
   end
 
   def edit
-    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collection = Collection.first_or_create!
+    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
   end
 
   def add_coupons
-    @coupons = Coupon.all.decorate
+    @coupons = CouponDecorator.decorate_collection Coupon.all.page(params[:page])
 
-    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collection = Collection.first_or_create!
+    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
 
     @collections_coupons = @collection.coupons.latest.decorate
 
