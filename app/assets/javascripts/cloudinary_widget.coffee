@@ -5,7 +5,7 @@ class Widget
   constructor: (options) ->
     @wrapper = $(options.wrapper)
     @preview = @wrapper.find(options.preview)
-    @opener = @wrapper.find(options.opener)
+    @opener = @wrapper.find('.upload-button')
 
     @uriField = @wrapper.find('.uri_input')
 
@@ -76,8 +76,6 @@ class Widget
       y: coordinates[1]
       width: coordinates[2]
       height: coordinates[3]
-      quality: 'jpegmini'
-      signature: upload.signature
       class: 'img-responsive img-thumbnail'
     )
 
