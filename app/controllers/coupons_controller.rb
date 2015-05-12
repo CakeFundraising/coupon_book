@@ -73,6 +73,7 @@ class CouponsController < InheritedResources::Base
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
         :price, :custom_terms, :merchandise_categories,
         location_attributes: [:address, :city, :zip_code, :state_code],
+        avatar_picture_attributes: [:id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h],
         pr_box_attributes: [
           :id, :headline, :story, :url,
           picture_attributes: [

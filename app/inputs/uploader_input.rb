@@ -100,7 +100,7 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def existing_html
-    medium_size = "Picture::#{method.upcase}_SIZES".constantize[:medium]
+    medium_size = "#{object.class.name}::#{method.upcase}_SIZES".constantize[:medium]
     template.content_tag(:div, class: method.to_s) do
       object.decorate.send(method) <<
           template.content_tag(:div, nil, class: "camera") <<

@@ -34,7 +34,8 @@
 
 //= require cake_coupon_book
 
-//= require ./cloudinary_crop
+// require ./cloudinary_crop
+//= require ./cloudinary_widget
 //= require ./coupons
 //= require ./categories
 

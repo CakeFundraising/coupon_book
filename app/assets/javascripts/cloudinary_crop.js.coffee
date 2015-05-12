@@ -2,7 +2,7 @@ CakeCouponBook.pictures ?= {}
 CakeCouponBook.crop ?= {}
 
 ########### Objects =================================================================
-CakeCouponBook.pictures.avatarConstants =
+CakeCouponBook.pictures.uriConstants = CakeCouponBook.pictures.avatarConstants =
   ratio: 1.5
   versions:
     medium:

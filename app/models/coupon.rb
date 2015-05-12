@@ -9,6 +9,7 @@ class Coupon < ActiveRecord::Base
   
   has_one :location, as: :locatable, dependent: :destroy
   has_one :pr_box, as: :parent, dependent: :destroy
+  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
   
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy
@@ -23,8 +24,11 @@ class Coupon < ActiveRecord::Base
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :pr_box, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
+  
   validates_associated :location
   validates_associated :pr_box
+  validates_associated :avatar_picture
 
   monetize :price_cents
 

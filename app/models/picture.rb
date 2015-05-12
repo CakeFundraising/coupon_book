@@ -2,20 +2,20 @@ class Picture < ActiveRecord::Base
   belongs_to :picturable, polymorphic: true, touch: true
 
   AVATAR_SIZES = {
-      ico: [25, 19],
-      thumb: [50, 38],
-      square: [120, 120],
-      medium: [300, 200]
+    ico: [25, 19],
+    thumb: [50, 38],
+    square: [120, 120],
+    medium: [300, 200]
   }
 
   BANNER_SIZES = {
-      large: [1400, 700],
-      medium: [280, 140]
+    large: [1400, 700],
+    medium: [280, 140]
   }
 
   QRCODE_SIZES = {
-      medium: [300, 300],
-      large: [600, 600]
+    medium: [300, 300],
+    large: [600, 600]
   }
 
   validates :avatar, presence: true, if: :persisted?
