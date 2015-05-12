@@ -8,7 +8,7 @@ class CouponsController < InheritedResources::Base
 
   # Template Actions
   def discount
-    @coupon = resource.decorate
+    @coupon = resource
     render 'coupons/template/discount'
   end
 

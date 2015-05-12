@@ -25,6 +25,6 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def hidden_field_html
-    template.hidden_field_tag(method, object.send(method), class: 'uri_input')
+    builder.input method, as: :hidden, input_html:{class: 'uri_input'}
   end
 end
