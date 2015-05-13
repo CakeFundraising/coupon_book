@@ -6,7 +6,7 @@ li.category.ui-state-default id="cat_#{category.id}"
       tr
         = f.input :position, as: :hidden
         th
-          span.category-title = category
+          span.table-category-title = category
         th.category-actions
           = link_to edit_category_path(category), class:'btn btn-sm btn-primary' do
             span.glyphicon.glyphicon-pencil

@@ -874,6 +874,8 @@ p.signup-social {
 .dash-head {
   padding: 10px 0px 0px;
   display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 40px;
 }
 
 h1 span {
@@ -2157,11 +2159,23 @@ a {
   }
 }
 
-.coupon {
+.coupon-box{
   padding: 15px;
   background-color: #fff;
   border-radius: $border-radius-base;
   box-shadow: 0px 0px 5px #ccc;
+  .sp-box{
+    padding-left: 0;
+    border-right: 1px dotted #ddd;
+    .sp_name{
+      clear: both;
+      padding-top: 10px;
+      margin-bottom: 3px;
+    }
+  }
+  .coupon_pic_col{
+    padding-right: 0;
+  }
   &.coupon-modal{
     .label-purple{
       padding: 6px;
@@ -2222,6 +2236,7 @@ a {
     color: $gray-light;
   }
 }
+
 #sweeps {
   position: relative;
 }
@@ -2280,7 +2295,7 @@ ul.share-coupon {
 .coupon-edge {
   position: absolute;
   top: 0;
-  right: 15px;
+  right: 0px;
   background-image: image-url('coupon-edge.png');
   height: 100%;
   width: 7px;
@@ -4128,9 +4143,28 @@ ul#share-block {
 }
 
 // Coupon Book
-.coupon-actions {
-  width: 131px;
-  text-align: right;
+ul.no-list{
+  padding-left: 0;
+  li{
+    list-style: none;
+  }
+}
+
+li.category{
+  list-style: none;
+  ul.sortableCoupons {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: initial;
+    min-height: 75px;
+  }
+  ul.sortableCategories {
+    list-style-type: none;
+  }
+  .coupon-title, .coupon-sp {
+    font-size: 1em;
+    font-family: "museo_sans700"
+  }
 }
 
 .category-actions {
@@ -4138,31 +4172,13 @@ ul#share-block {
   text-align: right;
 }
 
-.coupon-input {
-  display: none;
-}
-
-ul.sortableCoupons {
-  margin-top: 20px;
-  list-style-type: none;
-  padding-left: initial;
-  min-height: 75px;
-}
-
-ul.sortableCategories {
-  list-style-type: none;
-}
-
 .table-category-title {
   color: #fff;
   font-size: 2.5em;
 }
-
-.coupon-title, .coupon-sp {
-  font-size: 1em;
-  font-family: "museo_sans700"
+.coupon-input {
+  display: none;
 }
-
 .in-book {
   opacity: 0.2;
   transition: opacity 0.500s linear;
@@ -4218,10 +4234,21 @@ li.ui-state-default {
     font-weight: bold;
     border-bottom: 1px solid #ddd;
   }
+  .coupons{
+    margin-bottom: 30px;
+  }
 }
 
 .blue#coupons{
   .buy-book{
     margin-top: 20px;
+  }
+}
+
+.coupon_book_coupons_step{
+  h2{
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
   }
 }

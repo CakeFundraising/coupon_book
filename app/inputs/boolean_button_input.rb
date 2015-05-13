@@ -40,7 +40,7 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
   end
 
   def button_options(status)
-    options = {type: "button", data:{value: BOOLEAN_MAPPER[status], on_classes: input_html_options[:on_classes], off_classes: input_html_options[:off_classes]} }.merge(button_classes(status))
+    options = {type: "button", data:{value: BOOLEAN_MAPPER[status], on_classes: input_html_options[:on_classes], off_classes: input_html_options[:off_classes], toggle_js: input_html_options[:toggle_js]} }.merge(button_classes(status))
     
     options = options.merge({
       data: {

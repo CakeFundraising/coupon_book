@@ -1,6 +1,8 @@
 class CouponDecorator < ApplicationDecorator
   delegate_all
   decorates_association :picture
+  decorates_association :avatar_picture
+  decorates_association :location
 
   def trunc_title
     h.truncate(object.title, length: 37).html_safe
@@ -26,5 +28,15 @@ class CouponDecorator < ApplicationDecorator
     unless object.url.blank?
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
     end
+  end
+
+  def sponsor_url
+    unless object.sponsor_url.blank?
+      (object.sponsor_url=~/^https?:\/\//).nil? ? "http://#{object.sponsor_url}" : object.sponsor_url
+    end
+  end
+
+  def main_location
+    object.multiple_locations || object.location.to_s
   end
 end

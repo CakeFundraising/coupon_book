@@ -5,11 +5,13 @@ class Coupon < ActiveRecord::Base
 
   attr_accessor :collection_id, :terms
 
-  has_statuses :incomplete, :pending, :launched, :past
+  has_statuses :incomplete, :launched, :past
   
   has_one :location, as: :locatable, dependent: :destroy
   has_one :pr_box, as: :parent, dependent: :destroy
   has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
+
+  alias_method :sp_picture, :avatar_picture
   
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy

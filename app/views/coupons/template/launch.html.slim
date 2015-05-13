@@ -2,4 +2,25 @@
 
 .tab-content.campaign-wizard-wrap
   #main.tab-pane.active
-    h1.text-center Make this a Universal Discount!
+    - if current_sponsor.present?
+      .text-center
+        h1 Make this a Universal Discount!
+        p.text-muted Any other good cause may sell this discount while it remains valid
+        = semantic_form_for @coupon do |f|
+          = f.inputs do
+            .text-center
+              br
+              = f.input :universal, as: :boolean_button, label: false, input_html: {on_text: 'Yes!', off_text: 'No', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg', toggle_js: "CakeCouponBook.coupons.universal_toggle(#{@coupon.id})"}
+
+      hr
+
+    .text-center
+      - if @coupon.incomplete?
+        h1 Your coupon is ready to launch!
+        = link_to "Launch My Coupon", launch_coupon_path(@coupon), method: :patch, class:'btn btn-success btn-lg'
+        br
+        div
+          a data-toggle="modal" data-target="#preview-coupon-#{@coupon.id}" Preview
+      - else
+        h1 Your coupon is Launched!
+        

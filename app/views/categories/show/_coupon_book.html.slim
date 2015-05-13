@@ -2,9 +2,10 @@
 
 - if coupons.any?
   .row.category-show
-    .col-md-12
-      .col-md-10.col-xs-10.col-xs-push-1
-        h1.category-title = category
+    .col-md-10.col-xs-10.col-xs-push-1
+      .row
+        .col-md-12
+          h1.category-title = category
 
       .coupons
         = render partial:'coupons/show/box', collection: coupons, as: :coupon

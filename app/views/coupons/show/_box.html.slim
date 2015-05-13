@@ -1,9 +1,14 @@
 /- cache [:coupon_box, coupon] do
 .coupon-wrapper
-  .coupon_box.clearfix
-    .col-md-10.col-xs-10.col-xs-push-1.coupon
+  .coupon-box.clearfix
+    .col-md-3.col-sm-3.sp-box
+      = coupon_sp_pic(coupon)
+      h4.sp_name SP Name
+      .coupon_location
+        = coupon.main_location
+    .col-md-9.col-xs-9
       .row
-        .col-md-4.col-xs-12
+        .col-md-4.col-xs-12.coupon_pic_col
           = coupon_pic(coupon)
           /= render partial:'subscriptions/take_action_modal', locals: {pledge: @pledge}
           .coupon-edge.hidden-xs.hidden-sm

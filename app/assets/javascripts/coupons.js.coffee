@@ -38,3 +38,11 @@ CakeCouponBook.coupons.validation = ->
         required: true
   )
   return
+
+CakeCouponBook.coupons.universal_toggle = (couponId)->
+  url = "/coupons/#{couponId}/universal_toggle"
+  $.ajax
+    url: url
+    type: 'PATCH'
+    
+  return

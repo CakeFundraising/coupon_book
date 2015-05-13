@@ -1,28 +1,27 @@
 = render partial:'coupon_books/template/nav'
 
-.page-cta
-  h1.dash-head.text-center Organize your Digital Discount Book, Create Discounts & Add Universal Discounts!
+.page-cta.row
+  .col-md-10.col-md-push-1
+    h1.dash-head.text-center Organize your Digital Discount Book, Create Discounts & Add Universal Discounts!
   
-  div
-    a.btn.btn-default.btn-md data-toggle='modal' data-target='#category-' Add a New Coupon Category
-
 = render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
 
 br
 br
-.container
+.container.coupon_book_coupons_step
   .row#drag-canvas
     #my-collection.col-md-6
-      table.table.table-hover.table-bordered.table-striped.data-table
-        thead.cf
-          tr
-            th
-              span.category-title My Coupons
-            th.category-actions
-              = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm'
+      h2 
+        span My Coupons
+        = link_to 'Add Coupon', new_coupon_path(collection_id: @collection), class: 'btn btn-success btn-sm pull-right'
+
       ul#collection-coupons.no-list
         = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
     .col-md-6
+      h2 
+        span Coupon Categories
+        a.btn.btn-success.btn-sm.pull-right data-toggle='modal' data-target='#category-' Add Category
+
       ul#categories.no-list
         = semantic_form_for @coupon_book do |f|
           = f.inputs do

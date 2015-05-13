@@ -24,7 +24,7 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def tell_your_story
-    @coupon_book = resource.decorate
+    @coupon_book = resource
     render 'coupon_books/template/tell_your_story'
   end
 

@@ -33,8 +33,10 @@ CakeCouponBook::Application.routes.draw do
         get :sponsor
         get :discount
         get :news
-        get :launch
+        get :launch, action: :template_launch
       end
+      patch :launch
+      patch :universal_toggle
     end
   end
 
