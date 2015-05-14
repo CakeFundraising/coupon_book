@@ -729,6 +729,9 @@ form{
 .start-now-btn {
   border: 1px solid white;
   margin-top: 0px;
+  &.btn-lg{
+    padding: 10px 30px !important;
+  }
 }
 .divider-vert {
   border-right: 1px dotted $gray-light;
@@ -3015,7 +3018,7 @@ ul#share-block {
 
 .text-muted{
   margin-bottom: 5px;
-  font-size: 16px;
+  //font-size: 16px;
 }
 
 .campaign-wizard-wrap, .wizard-wrap {

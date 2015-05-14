@@ -109,6 +109,11 @@ class CouponBooksController < InheritedResources::Base
     render nothing: true
   end
 
+  #Sponsor landing
+  def sponsor_landing
+    @coupon_book = resource.decorate
+  end
+
   private
 
   def permitted_params

@@ -17,6 +17,7 @@ CakeCouponBook::Application.routes.draw do
       patch :update_order
 
       post :tree
+      get :sponsor_landing, path: :start_discount
     end
   end
 
