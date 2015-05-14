@@ -80,7 +80,7 @@ class CouponsController < InheritedResources::Base
       coupon: [
         :position, :title, :description, :promo_code, :terms, :url, :sponsor_url, 
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
-        :price, :custom_terms, merchandise_categories: [],
+        :price, :custom_terms, :sponsor_name, merchandise_categories: [],
         location_attributes: [:address, :city, :zip_code, :state_code],
         avatar_picture_attributes: [:id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h],
         pr_box_attributes: [

@@ -10,6 +10,13 @@ module CouponsHelper
     end
   end
 
+  def coupon_main_location(coupon)
+    content_tag(:div, class:'coupon_location') do
+      content_tag(:div, coupon.address) + 
+      content_tag(:div, coupon.main_location) 
+    end
+  end
+
   def coupon_sp_pic(coupon)
     picture_rollover(coupon.avatar_picture.uri, coupon.sponsor_url) do
       content_tag(:div, 'Visit our') + content_tag(:div, 'website!')

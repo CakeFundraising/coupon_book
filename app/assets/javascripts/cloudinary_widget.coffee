@@ -1,4 +1,3 @@
-CakeCouponBook.pictures ?= {}
 CakeCouponBook.widget ?= {}
 
 class Widget

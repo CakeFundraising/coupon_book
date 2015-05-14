@@ -953,7 +953,9 @@ $lines-to-show: 2;
     margin: 0;
   }
 }
-#fundraiser_picture_attributes_banner_input, #sponsor_picture_attributes_banner_input {
+
+#fundraiser_picture_attributes_banner_input, 
+#sponsor_picture_attributes_banner_input {
   .banner {
     width: 100%;
     height: auto;
@@ -963,11 +965,16 @@ $lines-to-show: 2;
     }
   }
 }
-#fundraiser_picture_attributes_avatar_input, #sponsor_picture_attributes_avatar_input {
+#fundraiser_picture_attributes_avatar_input, 
+#sponsor_picture_attributes_avatar_input {
   .avatar {
     width: 100%;
     height: auto;
-    /*margin-bottom: 10px;*/
+  }
+}
+#coupon_avatar_picture_attributes_uri_input{
+  .uri img{
+    width: 100%;
   }
 }
 .save-btn {
@@ -2173,6 +2180,11 @@ a {
       margin-bottom: 3px;
     }
   }
+  .multiple_locations{
+    border-top: 1px dotted #ccc;
+    margin-top: 12px;
+    padding-top: 10px;
+  }
   .coupon_pic_col{
     padding-right: 0;
   }
@@ -2224,13 +2236,12 @@ a {
   }
   .promo-code{
     font-size: 15px;
-    margin: 10px 0px;
+    margin: 0px 0px 10px;
     display: inline-block;
   }
 }
 .terms {
   font-size: $font-size-small;
-  margin-top: 15px;
   em {
     font-style: italic;
     color: $gray-light;

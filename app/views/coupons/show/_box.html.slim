@@ -1,12 +1,11 @@
 /- cache [:coupon_box, coupon] do
 .coupon-wrapper
   .coupon-box.clearfix
-    .col-md-3.col-sm-3.sp-box
+    .col-md-2.col-sm-2.sp-box
       = coupon_sp_pic(coupon)
-      h4.sp_name SP Name
-      .coupon_location
-        = coupon.main_location
-    .col-md-9.col-xs-9
+      h4.sp_name = coupon.sponsor_name
+      = coupon_main_location(coupon)
+    .col-md-10.col-xs-10
       .row
         .col-md-4.col-xs-12.coupon_pic_col
           = coupon_pic(coupon)
@@ -19,14 +18,18 @@
               |Expires: 
               span = coupon.expires_at_american
             hr
-            p = coupon.description
-            hr
-            .row.terms
-              .col-xs-12
-                a data-toggle="modal" data-target="#coupon_terms" View Terms & Conditions
-        .col-md-2.col-xs-12.text-right
+            p.expander-250 = coupon.description
+        .col-md-2.col-xs-12.text-center
           .hidden-xs.hidden-sm = coupon.picture.qrcode
           .promo-code
             .boldest Promo Code:
             span 
               = link_to 'Buy to Unlock', '#coupons', class:'btn btn-success'
+          .row.terms
+            .col-xs-12
+              a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
+    - if coupon.multiple_locations.present?
+      .row
+        .col-md-12
+          .multiple_locations
+            = coupon.multiple_locations

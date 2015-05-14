@@ -12,13 +12,14 @@
               h4 Business Logo
               = render partial:'avatar_pictures/form', locals:{f: f}
             .col-md-6
-              h4 Coupon Main Location
-              = render partial:'locations/form', locals:{f: f}
-              br
-              h4 Additional Business Data
+              h4 Business Data
+              = f.input :sponsor_name
               = f.input :phone
               = f.input :sponsor_url, input_html:{placeholder: 'e.g: www.mycompany.com/discounts'}
               = f.input :multiple_locations, input_html:{placeholder: 'e.g: All Baltimore. – 80 characters max', maxlength: 80}
+              br
+              h4 Coupon Main Location
+              = render partial:'locations/form', locals:{f: f}
           .row.section-wrapper.text-center
             = f.input :step, as: :hidden, input_html:{value: :discount}
             = f.input :terms, as: :boolean, label:' I agree to Cake Terms of Use' if f.object.new_record?

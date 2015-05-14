@@ -3,6 +3,7 @@ window.CakeCouponBook ?= {}
 CakeCouponBook.init = ->
   CakeCouponBook.datepicker()
   CakeCouponBook.clipboard()
+  CakeCouponBook.expander()
   CakeCouponBook.validations.init()
   CakeCouponBook.utils.init()
   CakeCouponBook.coupon_books.init()

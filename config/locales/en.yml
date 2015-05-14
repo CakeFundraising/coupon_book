@@ -77,6 +77,7 @@ en:
       category:
         name: Category Name
       coupon:
+        sponsor_name: Bussines Name
         phone: Contact Phone
         sponsor_url: "Please direct consumer traffic to my website: "
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "

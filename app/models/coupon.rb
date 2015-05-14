@@ -20,7 +20,7 @@ class Coupon < ActiveRecord::Base
 
   delegate :city, :state, :state_code, :country, :address, to: :locations
 
-  validates :phone, :sponsor_url, :multiple_locations, presence: true
+  validates :phone, :sponsor_name, :sponsor_url, presence: true
   validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: :persisted?
   validates :terms, acceptance: true, if: :new_record?
 

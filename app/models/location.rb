@@ -14,7 +14,7 @@ class Location < ActiveRecord::Base
   end
 
   def to_s
-    "#{address} #{city}, #{state.name} #{zip_code} #{country.name}"
+    "#{city} #{state_code} #{zip_code}"
   end
 
   after_initialize do

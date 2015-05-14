@@ -36,7 +36,15 @@ class CouponDecorator < ApplicationDecorator
     end
   end
 
+  def address
+    object.location.address
+  end
+
   def main_location
-    object.multiple_locations || object.location.to_s
+    object.location.to_s
+  end
+
+  def multiple_locations
+    "*#{object.multiple_locations}"
   end
 end

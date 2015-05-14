@@ -1,11 +1,21 @@
 CakeCouponBook.coupons ?= {}
 
 CakeCouponBook.coupons.validation = ->
+  jQuery.validator.addClassRules
+    coupon_merchandise_categories:
+      required: true
+
   $('.formtastic.coupon').validate(
+    ignore: []
     errorElement: "span"
     rules:
+      'coupon[sponsor_name]': 
+        required: true
       'coupon[phone]': 
         required: true
+      'coupon[sponsor_url]': 
+        required: true
+        url: true
       'coupon[location_attributes][address]': 
         required: true
       'coupon[location_attributes][city]': 
@@ -13,11 +23,6 @@ CakeCouponBook.coupons.validation = ->
       'coupon[location_attributes][zip_code]': 
         required: true
       'coupon[location_attributes][state_code]': 
-        required: true
-      'coupon[sponsor_url]': 
-        required: true
-        url: true
-      'coupon[multiple_locations]': 
         required: true
       'coupon[terms]': 
         required: true
@@ -34,7 +39,7 @@ CakeCouponBook.coupons.validation = ->
         url: true
       'coupon[price]': 
         required: true
-      'coupon[merchandise_categories][]': 
+      'coupon[avatar_picture_attributes][uri]':
         required: true
   )
   return
