@@ -18,7 +18,7 @@ class Fundraiser < Ohm::Model
   end
 
   def self.fetch_and_create!(cake_id)
-    data = Cake::Oauth::Fundraiser.new(self.users.first.cake_access_token).find(cake_id)
+    data = Cake::Oauth::Fundraiser.new.find(cake_id)
 
     unless data.nil?
       self.create(
@@ -26,7 +26,7 @@ class Fundraiser < Ohm::Model
         name: data["name"]
       )
       if data["picture"].present?
-        Picture.create(data["picture"])
+        Picture.create(data["picture"].merge(from_data: true))
       end
     end
   end

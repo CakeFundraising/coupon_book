@@ -35,7 +35,7 @@ else
       class OauthClient
         attr_accessor :client
 
-        def initialize(blah)
+        def initialize
           @client = OAuth2::Client.new(APP_ID, APP_SECRET, site: PROVIDER_HOST)
         end
       end
@@ -88,23 +88,23 @@ else
         end
       end
 
-      class Fundraiser < Dispatcher
-        def initialize(access_token)
-          super(access_token)
+      class Fundraiser < OauthClient
+        def initialize
+          super
         end
 
         def find(id)
-          @access_token.get("api/v1/fundraisers/#{id}").parsed
+          @client.get("api/v1/fundraisers/#{id}").parsed
         end
       end
 
-      class Sponsor < Dispatcher
-        def initialize(access_token)
-          super(access_token)
+      class Sponsor < OauthClient
+        def initialize
+          super
         end
 
         def find(id)
-          @access_token.get("api/v1/sponsors/#{id}").parsed
+          @client.get("api/v1/sponsors/#{id}").parsed
         end
       end
 
