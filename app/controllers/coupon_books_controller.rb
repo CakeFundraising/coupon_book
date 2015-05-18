@@ -112,6 +112,7 @@ class CouponBooksController < InheritedResources::Base
   #Sponsor landing
   def sponsor_landing
     @coupon_book = resource.decorate
+    @collection_id = @coupon_book.fundraiser.coupon_collection.id
   end
 
   private

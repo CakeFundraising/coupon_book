@@ -1,6 +1,8 @@
 class AvatarPicture < ActiveRecord::Base
   belongs_to :avatarable, polymorphic: true, touch: true
 
+  attr_accessor :bypass_clodinary_validation
+
   URI_SIZES = {
     ico: [25, 19],
     thumb: [50, 38],
@@ -11,7 +13,7 @@ class AvatarPicture < ActiveRecord::Base
   validates :uri, presence: true, if: :persisted?
 
   before_save do
-    unless Rails.env.test?
+    unless Rails.env.test? or self.bypass_clodinary_validation
       get_cloudinary_identifier if self.uri.present? and self.uri_changed?
     end
   end

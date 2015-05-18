@@ -11,4 +11,4 @@ br
   .col-md-6
     .sponsors-cir
       h2 I have a Cake account
-      = link_to 'Sign In', sign_in_path, class:'btn btn-success btn-lg start-now-btn'
+      = link_to 'Sign In', sign_in_path(redirect_to: "new_coupon_path", redirect_params: {collection_id: @collection_id}), class:'btn btn-success btn-lg start-now-btn'

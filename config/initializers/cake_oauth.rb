@@ -44,7 +44,7 @@ else
         attr_accessor :email, :password, :client
 
         def initialize(credentials)
-          super
+          super()
           @email = credentials[:email]
           @password = credentials[:password]
         end
@@ -72,7 +72,7 @@ else
         attr_accessor :model, :flat_access_token
 
         def initialize(access_token)
-          super
+          super()
           @flat_access_token = access_token
           @access_token = OAuth2::AccessToken.new(@client, @flat_access_token)
         end
@@ -89,20 +89,12 @@ else
       end
 
       class Fundraiser < OauthClient
-        def initialize
-          super
-        end
-
         def find(id)
           @client.get("api/v1/fundraisers/#{id}").parsed
         end
       end
 
       class Sponsor < OauthClient
-        def initialize
-          super
-        end
-
         def find(id)
           @client.get("api/v1/sponsors/#{id}").parsed
         end

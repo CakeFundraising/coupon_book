@@ -22,6 +22,7 @@
               = render partial:'locations/form', locals:{f: f}
           .row.section-wrapper.text-center
             = f.input :step, as: :hidden, input_html:{value: :discount}
+            = f.input :collection_id, as: :hidden, input_html:{value: params[:collection_id]}
             = f.input :terms, as: :boolean, label:' I agree to Cake Terms of Use' if f.object.new_record?
         .row.text-center
           = f.actions do
