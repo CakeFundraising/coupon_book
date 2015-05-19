@@ -39,4 +39,5 @@ class Coupon < ActiveRecord::Base
   after_initialize do
     self.build_location if self.location.nil?
   end
+
 end

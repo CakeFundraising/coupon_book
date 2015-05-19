@@ -22,13 +22,14 @@ class CouponsController < InheritedResources::Base
     render 'coupons/template/news'
   end
 
-  def template_launch
+  def launching
     @coupon = resource.decorate
     render 'coupons/template/launch'
   end
 
   def launch
-    redirect_to dashboard_path, notice: 'Coupon was launched successfully!' if resource.launch!
+    path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+    redirect_to path, notice: 'Coupon was launched successfully!' if resource.launched!
   end
 
   def universal_toggle

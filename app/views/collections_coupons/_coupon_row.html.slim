@@ -14,7 +14,7 @@ li.collection-coupon.ui-state-default id="coupons_#{coupon.id}"
         = hidden_field_tag "coupon_book[categories_attributes][category_counter][categories_coupons_attributes][#{coupon_counter}][coupon_id]", coupon.id
     tr
       td
-        span.coupon-sp Sponsor Name
+        span.coupon-sp = coupon.sponsor_name
         br
         span.coupon-title = coupon.title
       td.coupon-actions
