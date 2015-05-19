@@ -467,6 +467,7 @@ DEPENDENCIES
   resque-retry
   resque-scheduler
   resque_mailer
+  rest-client
   rspec-rails
   sass-rails (~> 5.0.1)
   sdoc

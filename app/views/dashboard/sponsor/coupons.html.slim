@@ -1,6 +1,8 @@
-h1 My Coupons
+h1 My Discounts
 
-.category-coupons
+= link_to 'Create a Discount', new_coupon_path, class:'btn btn-primary pull-right'
+
+.sponsor-coupons
   - if @coupons.any?
     = render partial:'coupons/show/sponsor/row', collection: @coupons, as: :coupon 
   - else

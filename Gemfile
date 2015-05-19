@@ -58,6 +58,9 @@ gem 'carmen-rails'
 #Authentication
 gem 'oauth2'
 
+#API
+gem 'rest-client'
+
 #User permissions
 gem 'cancancan'
 

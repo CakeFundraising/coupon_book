@@ -68,7 +68,8 @@ class CouponsController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to coupons_url, notice: 'Coupon was successfully destroyed.'
+        path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+        redirect_to path, notice: 'Coupon was successfully destroyed.'
       end
     end
   end
@@ -105,7 +106,7 @@ class CouponsController < InheritedResources::Base
       avatar_crop_y: sponsor.avatar_crop_y,
       avatar_crop_w: sponsor.avatar_crop_w,
       avatar_crop_h: sponsor.avatar_crop_h,
-      bypass_clodinary_validation: true
+      bypass_cloudinary_validation: true
     )
     coupon
   end
@@ -119,7 +120,7 @@ class CouponsController < InheritedResources::Base
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         avatar_picture_attributes: [
           :id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, 
-          :avatar_crop_w, :avatar_crop_h, :bypass_clodinary_validation
+          :avatar_crop_w, :avatar_crop_h, :bypass_cloudinary_validation
         ],
         pr_box_attributes: [
           :id, :headline, :story, :url,

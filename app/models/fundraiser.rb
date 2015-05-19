@@ -5,7 +5,13 @@ class Fundraiser < Ohm::Model
   attribute :phone
   attribute :email
   attribute :manager_id
+  
   attribute :location
+  attribute :location_address
+  attribute :location_city
+  attribute :location_zip_code
+  attribute :location_state_code
+  attribute :location_country_code
 
   attribute :avatar
   attribute :avatar_caption
@@ -45,6 +51,11 @@ class Fundraiser < Ohm::Model
         phone: data["phone"],
         manager_id: data["manager_id"],
         location: data["location"]["complete"],
+        location_address: data["location"]["address"],
+        location_city: data["location"]["city"],
+        location_zip_code: data["location"]["zip_code"],
+        location_state_code: data["location"]["state_code"],
+        location_country_code: data["location"]["country_code"],
         avatar: data["picture"]["avatar"],
         avatar_caption: data["picture"]["avatar_caption"],
         avatar_crop_x: data["picture"]["avatar_crop_x"],

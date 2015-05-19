@@ -88,15 +88,23 @@ else
         end
       end
 
-      class Fundraiser < OauthClient
-        def find(id)
-          @client.get("api/v1/fundraisers/#{id}").parsed
+      class RestClient
+        attr_accessor :client
+
+        def initialize
+          @client = ::RestClient::Resource.new(PROVIDER_HOST)
         end
       end
 
-      class Sponsor < OauthClient
+      class Fundraiser < RestClient
         def find(id)
-          @client.get("api/v1/sponsors/#{id}").parsed
+          JSON.parse @client["api/v1/fundraisers/#{id}"].get
+        end
+      end
+
+      class Sponsor < RestClient
+        def find(id)
+          JSON.parse @client["api/v1/sponsors/#{id}"].get
         end
       end
 
