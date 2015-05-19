@@ -50,9 +50,16 @@ CakeCouponBook::Application.routes.draw do
   resources :coupon_sponsors
   resources :subscriptors, only: :create
 
-  scope :dashboard, controller: :dashboard do
-    get :home
-    get :history
+  namespace :dashboard do
+    scope :fundraiser, controller: :fundraiser do
+      get :home, as: :fundraiser_home
+      get :history, as: :fundraiser_history
+    end
+    scope :sponsor, controller: :sponsor do
+      get :home, as: :sponsor_home
+      get :history, as: :sponsor_history
+      get :coupons, as: :sponsor_coupons
+    end
   end
 
 end

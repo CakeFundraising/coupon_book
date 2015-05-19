@@ -28,7 +28,7 @@
           .row.terms
             .col-xs-12
               a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
-    - if coupon.multiple_locations.present?
+    - unless coupon.multiple_locations.blank?
       .row
         .col-md-12
           .multiple_locations
