@@ -1,4 +1,7 @@
 class CouponBooksController < InheritedResources::Base
+  before_action :redirect_to_coupon_template, only: :sponsor_landing
+  before_action :redirect_to_billing, only: :launch
+
   TEMPLATE_STEPS = [
     :basic_info,
     :tell_your_story,
@@ -116,6 +119,14 @@ class CouponBooksController < InheritedResources::Base
   end
 
   private
+
+  def redirect_to_coupon_template
+    redirect_to new_coupon_path(collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
+  end
+
+  def redirect_to_billing
+    redirect_to cake_fundraiser_path(:billing) unless resource.fundraiser.stripe_publishable_key.present?
+  end
 
   def permitted_params
     params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :price, :goal, 

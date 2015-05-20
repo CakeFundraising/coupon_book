@@ -3,10 +3,6 @@
     - if resource.past?
       .col-md-12.text-center
         .main-cta.alert.alert-danger.ended_campaign This Campaign is Over
-    / - elsif not resource.hero_pledge?
-    /   .col-md-12.text-center
-    /     .main-cta
-    /       = link_to t('actions.make_pledge'), new_pledge_path(campaign: resource), class:'btn btn-success btn-xl'
     - else 
       .col-md-12.text-center
         .main-cta

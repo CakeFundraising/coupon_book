@@ -16,4 +16,8 @@ module CakeHelper
   def cake_new_user_registration_path
     "#{CAKE_ROOT_URL}/users/sign_up"
   end
+
+  def cake_fundraiser_path(page)
+    "#{CAKE_ROOT_URL}/fundraiser/#{page}"
+  end
 end
