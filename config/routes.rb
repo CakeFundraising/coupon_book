@@ -49,6 +49,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :coupon_sponsors
   resources :subscriptors, only: :create
+  resources :purchases, only: :create
 
   namespace :dashboard do
     scope :fundraiser, controller: :fundraiser do

@@ -16,7 +16,7 @@ class Purchase < ActiveRecord::Base
       currency: self.amount_currency.downcase,
       card: self.card_token,
       description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
-      application_fee: (self.amount_cents*Cake::APPLICATION_FEE).round # amount in cents
+      application_fee: (self.amount_cents*CakeCouponBook::APPLICATION_FEE).round # amount in cents
       },
       self.purchasable.fundraiser.stripe_token # user's access token from the Stripe Connect flow
     )

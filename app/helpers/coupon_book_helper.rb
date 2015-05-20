@@ -24,7 +24,4 @@ module CouponBookHelper
     end
   end
 
-  def buy_coupon_book_button(cb, options={})
-    link_to "#{cb.price} Buy Now!", nil, options
-  end
 end

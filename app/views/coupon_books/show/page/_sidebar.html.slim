@@ -6,8 +6,7 @@
     - else 
       .col-md-12.text-center
         .main-cta
-          = buy_coupon_book_button(resource, class:'btn btn-success btn-xl click_link')
-
+          = render partial:'coupon_books/show/page/buy_button', locals: {purchasable: resource}
   
   .row
     .col-md-12
