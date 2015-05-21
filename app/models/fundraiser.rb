@@ -6,8 +6,9 @@ class Fundraiser < Ohm::Model
   attribute :email
   attribute :manager_id
   
+  attribute :stripe_account_id
   attribute :stripe_publishable_key
-  attribute :stripe_token
+  attribute :stripe_account_token
 
   attribute :location
   attribute :location_address
@@ -71,8 +72,9 @@ class Fundraiser < Ohm::Model
         banner_crop_y: data["picture"]["banner_crop_y"],
         banner_crop_w: data["picture"]["banner_crop_w"],
         banner_crop_h: data["picture"]["banner_crop_h"],
-        stripe_publishable_key: data["stripe_publishable_key"],
-        stripe_token: data["stripe_token"]
+        stripe_account_id: data["stripe_account_uid"],
+        stripe_account_token: data["stripe_account_token"],
+        stripe_publishable_key: data["stripe_publishable_key"]
       )
     end
   end

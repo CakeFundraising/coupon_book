@@ -7,7 +7,5 @@
       = f.input :purchasable_id, as: :hidden
       = f.input :purchasable_type, as: :hidden
 
-  a.btn.btn-success.btn-xl.click_link#buy_button data-price=(purchasable.flat_price) #{purchasable.price} Buy Now!
-
 javascript:
   CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');

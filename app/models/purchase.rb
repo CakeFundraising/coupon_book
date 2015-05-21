@@ -11,20 +11,35 @@ class Purchase < ActiveRecord::Base
   private
 
   def stripe_charge_card
-    charge = Stripe::Charge.create({
-      amount: self.amount_cents,
-      currency: self.amount_currency.downcase,
-      card: self.card_token,
-      description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
-      application_fee: (self.amount_cents*CakeCouponBook::APPLICATION_FEE).round # amount in cents
+    begin
+      charge = Stripe::Charge.create({
+        amount: self.amount_cents,
+        currency: self.amount_currency.downcase,
+        source: self.card_token,
+        description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
+        metadata:{
+          email: self.email
+        },
+        receipt_email: self.email,
+        statement_descriptor: "Cake #{self.purchasable.class} ##{self.purchasable.id}",
+        application_fee: application_fee
       },
-      self.purchasable.fundraiser.stripe_token # user's access token from the Stripe Connect flow
-    )
-    store_transaction(charge) 
+        stripe_account: self.purchasable.fundraiser.stripe_account_id
+      )
+      store_transaction(charge)
+    rescue Stripe::CardError => e
+      # The card has been declined
+      self.card_token = nil # Force validation to fail
+    end
+  end
+
+  def application_fee
+    percentage = (self.purchasable.fee_percentage/100.0)
+    (self.amount_cents*percentage).round
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.fundraiser.stripe_account.token)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.purchasable.fundraiser.stripe_account_token)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,
@@ -38,4 +53,5 @@ class Purchase < ActiveRecord::Base
       fee_details: balance_transaction.fee_details.map(&:to_hash)
     ).save
   end
+
 end

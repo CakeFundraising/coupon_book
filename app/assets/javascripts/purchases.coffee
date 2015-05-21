@@ -6,10 +6,12 @@ class Purchase
     @name = resourceName
     @stripeHandler = @stripeCheckout(stripeKey, imagePath)
 
-    @emailInput = @form.find('#purchase_email_input')
-    @cardTokenInput = @form.find('#purchase_card_token_input')
+    @emailInput = @form.find('input#purchase_email_input')
+    @cardTokenInput = @form.find('input#purchase_card_token_input')
 
-    @button = $('#purchase-widget #buy_button')
+    @button = $('.buy_button')
+
+    @buttonClick()
     return
 
   stripeCheckout: (key, image)->

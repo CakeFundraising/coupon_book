@@ -30,7 +30,7 @@ class CouponBookDecorator < ApplicationDecorator
   end
 
   def flat_price
-    object.price
+    object.price.to_i
   end
 
   def price

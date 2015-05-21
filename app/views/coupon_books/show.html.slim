@@ -11,6 +11,8 @@
 
     = render partial:'coupon_books/show/page/bottom'
 
+    = render partial:'coupon_books/show/page/purchase_form', locals: {purchasable: @coupon_book}
+
 css:
   .hero{ background-image: url("#{@coupon_book.picture.banner_path}"); }
 

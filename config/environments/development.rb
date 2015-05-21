@@ -38,4 +38,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
+  config.stripe.secret_key = ENV['STRIPE_API_KEY']
 end

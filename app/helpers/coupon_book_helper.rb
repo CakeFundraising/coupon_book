@@ -24,4 +24,8 @@ module CouponBookHelper
     end
   end
 
+  def coupon_book_buy_button(coupon_book)
+    content_tag(:a, "#{coupon_book.price} Buy Now!", class: 'btn btn-success btn-xl buy_button', data: {price: coupon_book.flat_price})
+  end
+
 end
