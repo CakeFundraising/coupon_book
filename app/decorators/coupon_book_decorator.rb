@@ -26,7 +26,7 @@ class CouponBookDecorator < ApplicationDecorator
   end
 
   def current_sales
-    h.humanized_money_with_symbol object.current_sales
+    h.humanized_money_with_symbol (object.current_sales_cents/100)
   end
 
   def flat_price
@@ -42,7 +42,7 @@ class CouponBookDecorator < ApplicationDecorator
   end
 
   def no_discount_price
-    "$XXX"
+    h.humanized_money_with_symbol object.no_discount_price
   end
 
   def status

@@ -47,11 +47,15 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
-  def current_sales
-    "40"
+  def no_discount_price
+    coupons.sum(:price_cents)/100
+  end
+
+  def current_sales_cents
+    purchases.count*self.price_cents
   end
 
   def thermometer
-    "68"
+    (current_sales_cents.to_f/goal_cents)*100 unless goal_cents.zero?
   end
 end
