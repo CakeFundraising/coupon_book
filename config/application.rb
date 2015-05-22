@@ -27,6 +27,7 @@ module CakeCouponBook
 
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
+      #{config.root}/app/assets/attachments
     )
 
   end

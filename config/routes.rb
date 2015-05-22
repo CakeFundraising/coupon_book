@@ -18,6 +18,7 @@ CakeCouponBook::Application.routes.draw do
 
       post :tree
       get :sponsor_landing, path: :start_discount
+      get :download
     end
   end
 

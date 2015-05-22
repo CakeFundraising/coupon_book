@@ -118,6 +118,16 @@ class CouponBooksController < InheritedResources::Base
     @collection_id = @coupon_book.fundraiser.coupon_collection.id
   end
 
+  def download
+    ### Just for testing purposes ###
+    respond_with(resource) do |format|
+      format.html do
+        pdf = CouponBookPdf.new(resource.decorate)
+        send_data pdf.render, filename: "voucher.pdf", type: 'application/pdf'
+      end
+    end
+  end
+
   private
 
   def redirect_to_coupon_template

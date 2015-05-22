@@ -41,4 +41,15 @@ Rails.application.configure do
 
   config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
   config.stripe.secret_key = ENV['STRIPE_API_KEY']
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.mandrillapp.com',
+    port:                 587,
+    enable_starttls_auto: true,
+    user_name:            ENV['MANDRILL_USERNAME'],
+    password:             ENV['MANDRILL_PASSWORD'],
+    authentication:       'plain'
+  }
 end
