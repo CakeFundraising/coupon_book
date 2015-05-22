@@ -43,12 +43,14 @@
 //= require ./coupon_book_builder
 //= require ./purchases
 
+//= require ./addthis
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker
 //= require ./clipboard
 //= require ./expander
-//= require ./validations
 //= require ./overrides
+//= require ./subscriptors
 //= require ./utils
+//= require ./validations
 //= require ./videos
