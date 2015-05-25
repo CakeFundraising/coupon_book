@@ -51,4 +51,8 @@ module ApplicationHelper
   def to_boolean(string)
     ActiveRecord::Type::Boolean.new.type_cast_from_database(string)
   end
+
+  def is_boolean?(string)
+    ['true', 'false'].include?(string)
+  end
 end

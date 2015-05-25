@@ -1,26 +1,23 @@
 class SearchesController < ApplicationController
   def search_coupons
-    # facets = [:zip_code, :merchandise_categories]
+    facets = [:merchandise_categories]
 
     @search = Coupon.solr_search(include: [:picture]) do
       fulltext params[:search]
-      # with :status, :accepted
+      with :status, :launched
+      with :universal, true
       order_by :created_at, :desc
       paginate page: params[:page], per_page: 21
 
-      # facets.each do |f|
-      #   send(:facet, f)
-      #   send(:with, f, params[f]) if params[f].present?
-      # end
+      facets.each do |f|
+        send(:facet, f)
+        send(:with, f, params[f]) if params[f].present?
+      end
     end
 
-    # @facets = facets
-    # p @coupons
-
+    @facets = facets
     @collection = Collection.first
-
     @collections_coupons = @collection.coupons
-
     @coupons = CouponDecorator.decorate_collection @search.results
 
     if request.xhr?

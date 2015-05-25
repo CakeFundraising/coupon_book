@@ -18,7 +18,7 @@ class Coupon < ActiveRecord::Base
   has_many :categories, through: :categories_coupons
   has_many :coupon_books, through: :categories
 
-  delegate :city, :state, :state_code, :country, :address, to: :locations
+  delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location
 
   validates :phone, :sponsor_name, :sponsor_url, presence: true
   validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: :persisted?
@@ -38,8 +38,10 @@ class Coupon < ActiveRecord::Base
 
   searchable do
     text :title, boost: 2
-    text :promo_code, :description
-
+    text :promo_code, :description, :sponsor_url, :multiple_locations, :sponsor_name, :city, :state_code, :state, :zip_code
+    string :status
+    string :merchandise_categories, multiple: true
+    boolean :universal
     time :created_at
   end
 
