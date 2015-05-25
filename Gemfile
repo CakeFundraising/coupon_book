@@ -13,6 +13,8 @@ gem 'jquery-rails', '~> 4.0.3'
 gem 'jquery-ui-rails'
 gem 'therubyracer', platforms: :ruby
 gem 'jbuilder'
+gem 'zeroclipboard-rails', '~> 0.1.0'
+gem 'modernizr-rails', '~> 2.7.1'
 
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
@@ -36,8 +38,11 @@ gem 'ohm'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
-#Servers
-gem 'thin', group: :development
+#Cron & Asynchronous tasks
+gem 'resque', '~> 1.25.2', require: 'resque/server'
+gem 'resque-retry'
+gem 'resque_mailer'
+gem 'resque-scheduler'
 
 #Image processing
 gem 'jcrop-rails-v2'
@@ -52,12 +57,20 @@ gem 'pry-rails'
 #Utils
 gem 'prawn'
 gem 'money-rails'
+gem 'carmen-rails'
 
 #Authentication
 gem 'oauth2'
 
+#API
+gem 'rest-client'
+
+#User permissions
+gem 'cancancan'
+
 group :development do
   gem 'quiet_assets'
+  gem 'thin'
 end
 
 #Utils

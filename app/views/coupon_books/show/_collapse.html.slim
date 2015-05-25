@@ -10,13 +10,12 @@
             span = coupon_book.goal
           .stat
             span $2500
-          .stat
-            = render partial:'coupon_books/show/actions', locals:{coupon_book: coupon_book}
+          = render partial:'coupon_books/show/actions', locals:{coupon_book: coupon_book}
             
   .panel-collapse.collapse id=(coupon_book.id)
     .panel-body
       .content
         - if coupon_book.coupons.any?
-          = render partial:'coupons/tables/table', locals: {coupons: coupon_book.coupons.latest.decorate}
+          = render partial:'categories/show/row', collection: coupon_book.categories.with_coupons.decorate, as: :category
         - else
           = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.coupons'), in_profile: true}

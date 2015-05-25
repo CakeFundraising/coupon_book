@@ -13,6 +13,8 @@
           = f.input :email, label:'Email Address'
           = f.input :password
           /= f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+          = f.input :redirect_to, as: :hidden, input_html:{value: params[:redirect_to]}
+          = f.input :redirect_params, as: :hidden, input_html:{value: params[:redirect_params]}
         = f.actions do
           = f.action :submit, label: 'Sign in', button_html: {class: 'btn btn-success btn-lg btn-block'}
 

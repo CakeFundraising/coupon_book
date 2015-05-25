@@ -1,0 +1,16 @@
+/= display_meta("Campaign Setup")
+
+= render partial:'coupon_books/template/nav'
+    
+.tab-content.coupon_book-wizard-solicit-wrap
+  - if @coupon_book.pending?
+    #launch.tab-pane.active
+      .text-center
+        h1 Launch your Digital Discount Book when you are ready for consumers to purchase it!
+        p.text-muted When you launch all links go live. Make sure everything is the way you want it.
+  .row
+    .col-md-12
+      .col-md-2
+      .col-md-8
+        = render partial:"coupon_books/template/launch/#{@coupon_book.object.status}"
+      .col-md-2

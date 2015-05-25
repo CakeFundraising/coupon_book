@@ -1,0 +1,6 @@
+- if @coupon.persisted?
+  = link_to 'Delete', @coupon, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-danger pull-right simple-margin'
+  
+  - unless @coupon.title.blank?
+    a.btn.btn-primary.pull-right.simple-margin data-toggle="modal" data-target="#preview-coupon-#{@coupon.id}" Preview
+    = render partial:'coupons/modal', locals:{coupon: @coupon.decorate}

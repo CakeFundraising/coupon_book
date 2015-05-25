@@ -1,13 +1,38 @@
 class Coupon < ActiveRecord::Base
   include Picturable
-  attr_accessor :collection_id
+  include Statusable
+  include MerchandiseCategories
 
-  has_many :categories_coupons
-  has_many :collections_coupons
+  attr_accessor :collection_id, :terms
+
+  has_statuses :incomplete, :launched, :past
+  
+  has_one :location, as: :locatable, dependent: :destroy
+  has_one :pr_box, as: :parent, dependent: :destroy
+  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
+
+  alias_method :sp_picture, :avatar_picture
+  
+  has_many :categories_coupons, dependent: :destroy
+  has_many :collections_coupons, dependent: :destroy
   has_many :categories, through: :categories_coupons
   has_many :coupon_books, through: :categories
 
-  validates :title, :description, :expires_at, presence: true
+  delegate :city, :state, :state_code, :country, :address, to: :locations
+
+  validates :phone, :sponsor_name, :sponsor_url, presence: true
+  validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: :persisted?
+  validates :terms, acceptance: true, if: :new_record?
+
+  accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :pr_box, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
+  
+  validates_associated :location
+  validates_associated :pr_box
+  validates_associated :avatar_picture
+
+  monetize :price_cents
 
   scope :latest, ->{ order('coupons.created_at DESC') }
 
@@ -16,5 +41,9 @@ class Coupon < ActiveRecord::Base
     text :promo_code, :description
 
     time :created_at
+  end
+
+  after_initialize do
+    self.build_location if self.location.nil?
   end
 end

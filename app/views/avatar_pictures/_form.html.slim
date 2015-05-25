@@ -1,0 +1,21 @@
+#avatar_picture_form_wrapper
+  = f.semantic_fields_for :avatar_picture, f.object.avatar_picture || f.object.build_avatar_picture do |p|
+    = p.input :uri, as: :uploader
+    = p.input :caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
+    = p.input :bypass_cloudinary_validation, as: :hidden
+    .coords
+      = p.input :avatar_crop_x, as: :hidden, input_html:{class: 'crop_x'}
+      = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
+      = p.input :avatar_crop_w, as: :hidden, input_html:{class: 'crop_w'}
+      = p.input :avatar_crop_h, as: :hidden, input_html:{class: 'crop_h'}
+
+    - if f.object.errors.present?
+      = p.input :uri, as: :hidden
+
+    javascript:
+      var options = {
+        wrapper: '#avatar_picture_form_wrapper',
+        preview: '.uploader.input .uri',
+        ratio: 1.5
+      };
+      CakeCouponBook.widget.new(options);

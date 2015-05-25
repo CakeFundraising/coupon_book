@@ -1,0 +1,25 @@
+.container
+  .row.text-center
+    - if defined? direct_donations
+      .col-md-6.col-md-push-3
+        = render partial:'coupon_books/show_page/direct_donation', locals:{coupon_book: @coupon_book}
+      
+    .col-md-12
+      .make-pledge.well
+        .row
+          .col-md-12s
+            h4.attention-owners
+              b> Business Owners:
+              | You can Partner with #{@coupon_book.fundraiser} too!
+            a.btn.btn-primary data-toggle='modal' data-target='#coupon_book_partner_subs_modal' Learn How
+            = render partial:'subscriptions/modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.partner'}
+  .row
+    .col-md-12
+      / SHARE BUTTONS 
+      .text-center.med-hide 
+        h2 Please share our Campaign with your family and friends!
+        p.text-muted Working together, we can make a difference.
+        = render partial:'layouts/share_buttons'
+
+/ CAUSES/SPONSORS CIRCLES
+= render partial: 'layouts/choose_role'

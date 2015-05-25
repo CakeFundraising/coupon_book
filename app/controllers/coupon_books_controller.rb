@@ -1,10 +1,13 @@
 class CouponBooksController < InheritedResources::Base
+  before_action :redirect_to_coupon_template, only: :sponsor_landing
+  before_action :redirect_to_billing, only: :launch
+
   TEMPLATE_STEPS = [
     :basic_info,
     :tell_your_story,
     :coupons,
-    :launch_coupon_book,
-    :share
+    :request_coupons,
+    :launch_and_share
   ]
 
   def index
@@ -12,6 +15,9 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def show
+    @coupon_book = resource.decorate
+    @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+    @categories = @coupon_book.categories.with_coupons.decorate
   end
 
   #Template steps
@@ -21,7 +27,7 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def tell_your_story
-    @coupon_book = resource.decorate
+    @coupon_book = resource
     render 'coupon_books/template/tell_your_story'
   end
 
@@ -32,21 +38,20 @@ class CouponBooksController < InheritedResources::Base
     @collection = Collection.first_or_create!
     # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
-
     @categories = resource.categories.with_coupons.decorate
 
     render 'coupon_books/template/coupons'
   end
 
-  #Launch
-  def launch_coupon_book
+  def request_coupons
     @coupon_book = resource.decorate
-    render 'coupon_books/template/launch'
+    render 'coupon_books/template/request_coupons'
   end
 
-  def share
+  #Launch 
+  def launch_and_share
     @coupon_book = resource.decorate
-    render 'coupon_books/template/share'
+    render 'coupon_books/template/launch_and_share'
   end
 
   #Default actions
@@ -55,6 +60,7 @@ class CouponBooksController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
+        update_screenshot(@coupon_book)
         redirect_to tell_your_story_coupon_book_path(@coupon_book)
       end
       failure.html do
@@ -64,8 +70,10 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def update
+    # puts permitted_params.to_yaml
     update! do |success, failure|
       success.html do
+        update_screenshot(@coupon_book)
         redirect_to controller: :coupon_books, action: params[:coupon_book][:step], id: resource
       end
       failure.html do
@@ -83,57 +91,6 @@ class CouponBooksController < InheritedResources::Base
     end
   end
 
-  def update_coupon_book_order
-    @coupon_book = CouponBook.find(params[:id])
-    book_categories = Category.where(coupon_book_id: @coupon_book.id)
-
-    params[:categories].each do |id, category|
-      position = category[:position]
-      c = Category.find_by_id(id)
-      c.insert_at(position.to_i)
-    end
-
-
-    filter = []
-    if params[:categories_coupons]
-      params[:categories_coupons].each do |id, category_coupon|
-        position = category_coupon[:position]
-        category = category_coupon[:category_id]
-        coupon = category_coupon[:coupon_id]
-
-        category_coupon = CategoriesCoupon.find_by_id(id)
-        filter.push(id.to_i)
-
-        if category_coupon.present?
-          category_coupon.update_attributes(position: position, category_id: category)
-          category_coupon.insert_at(position.to_i)
-
-        else
-          book_categories.each do |bc|
-            CategoriesCoupon.where(category_id: bc, coupon_id: coupon).delete_all
-          end
-          category_coupon = CategoriesCoupon.create!(coupon_id: coupon, category_id: category, position: position)
-          filter.push(category_coupon.id.to_i)
-          category_coupon.insert_at(position.to_i)
-        end
-      end
-    end
-
-
-    cat_ids = []
-    book_categories.each do |bc|
-      cat_ids.push(bc.id)
-    end
-
-    @unused_coupons = CategoriesCoupon.select { |coupon|  cat_ids.include?(coupon.category_id) and (not filter.include?(coupon.id)) }
-
-    @unused_coupons.each do |unused_coupon|
-      CategoriesCoupon.destroy(unused_coupon.id)
-    end
-
-    redirect_to @coupon_book
-  end
-
   #Special Actions
   def save_for_launch
     resource.pending!
@@ -142,7 +99,7 @@ class CouponBooksController < InheritedResources::Base
 
   def launch
     resource.launch!
-    #update_coupon_book_screenshot(resource)
+    update_screenshot(resource)
 
     if request.xhr?
       render nothing: true
@@ -156,7 +113,31 @@ class CouponBooksController < InheritedResources::Base
     render nothing: true
   end
 
+  #Sponsor landing
+  def sponsor_landing
+    @coupon_book = resource.decorate
+    @collection_id = @coupon_book.fundraiser.coupon_collection.id
+  end
+
+  def download
+    ### Just for testing purposes ###
+    respond_with(resource) do |format|
+      format.html do
+        pdf = CouponBookPdf.new(resource.decorate)
+        send_data pdf.render, filename: "voucher.pdf", type: 'application/pdf'
+      end
+    end
+  end
+
   private
+
+  def redirect_to_coupon_template
+    redirect_to new_coupon_path(collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
+  end
+
+  def redirect_to_billing
+    redirect_to cake_fundraiser_path(:billing) unless resource.fundraiser.stripe_publishable_key.present?
+  end
 
   def permitted_params
     params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
@@ -167,8 +148,12 @@ class CouponBooksController < InheritedResources::Base
         :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
-      categories_attributes: [:position]
+      categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ]
     ])
+  end
+
+  def update_screenshot(coupon_book)
+    Resque.enqueue(ResqueSchedule::CouponBookScreenshot, coupon_book.id, coupon_book_url(coupon_book)) unless Rails.env.test?
   end
 
 end

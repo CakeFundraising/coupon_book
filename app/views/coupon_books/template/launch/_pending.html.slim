@@ -1,16 +1,13 @@
-.col-md-5
-  = link_to "Launch Your Campaign Now", launch_coupon_book_path(@coupon_book), method: :patch, class: 'btn btn-success'
-  ul.pretty-list
-    li Launch your Campaign now if you are organizing an informal, local Coupon Booklet.
-    li Accept Sponsor Pledges one by one.
-    li Sponsor Pledges are immediately live and clickable.
-.col-md-2
-  span or
-.col-md-5
-  = link_to "Wait and Find Sponsors First", save_for_launch_coupon_book_path(@coupon_book), method: :patch, class: 'btn btn-primary' 
-  ul.pretty-list
-    li Secure sponsors before you launch if you are organizing a larger Coupon Booklet.
-    li All Sponsor Pledges go live at the same time.
-    li Campaign and Pledge links are not live or clickable until you choose to officially launch your Campaign.
-  .screenshot.hidden
-    /= screenshot_tag_for @coupon_book
+br
+br
+.row
+  .col-md-5#wait-col
+    = link_to "Wait For Partners to Create Discounts", save_for_launch_coupon_book_path(@coupon_book), method: :patch, class: 'btn btn-primary btn-block' 
+  .col-md-2#or-col
+    span or
+  .col-md-5#launch-col
+    = link_to "Launch Now", launch_coupon_book_path(@coupon_book), method: :patch, remote: true, class: 'btn btn-success btn-block', id:'launch-button'
+
+#share-coupon-book.row
+  .col-md-12
+    = render partial:'coupon_books/template/share/launched'

@@ -1,17 +1,61 @@
 en:
   application:
     name: CakeCauseMarketing
+    terms_and_conditions:
+      standard: >
+        <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
+        <p>Please read these Terms and Conditions ('Agreement', 'Terms and Conditions') carefully before using CakeCauseMarketing.com ('the Site') operated by CakeCauseMarketing ('us','we', or 'our'). This Agreement sets forth the legally binding terms and conditions for your use of the Site at CakeCauseMarketing.com.</p>
+        <p>By accessing or using the Site in any manner, including, but not limited to, visiting or browsing the Site or contributing content or other materials to the Site, you agree to be bound by these Terms and Conditions. Capitalized terms are defined in this Agreement.</p>
+        <p><strong>Intellectual Property</strong><br />The Site and its original content, features and functionality are owned by CakeCauseMarketing and are protected by international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws.</p>
+        <p><strong>Termination</strong><br />We may terminate your access to the Site, without cause or notice, which may result in the forfeiture and destruction of all information associated with you. All provisions of this Agreement that by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
+        <p><strong>Links To Other Sites</strong><br />Our Site may contain links to third-party sites that are not owned or controlled by CakeCauseMarketing.</p>
+        <p>CakeCauseMarketing has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party sites or services. We strongly advise you to read the terms and conditions and privacy policy of any third-party site that you visit.</p>
+        <p><strong>Governing Law</strong><br />This Agreement (and any further rules, polices, or guidelines incorporated by reference) shall be governed and construed in accordance with the laws of Maryland, United States, without giving effect to any principles of conflicts of law.</p>
+        <p><strong>Changes To This Agreement</strong><br />We reserve the right, at our sole discretion, to modify or replace these Terms and Conditions by posting the updated terms on the Site. Your continued use of the Site after any such changes constitutes your acceptance of the new Terms and Conditions.</p>
+        <p>Please review this Agreement periodically for changes. If you do not agree to any of this Agreement or any changes to this Agreement, do not use, access or continue to access the Site or discontinue any use of the Site immediately.</p>
+        <p><strong>Contact Us</strong><br />If you have any questions about this Agreement, please contact us.</p>
+      coupons: >
+        The following terms apply to all social campaigns coupons (each, a "coupon"), in addition to the specific terms on 
+        the face of the coupon and any requirements of applicable law: Unless 
+        otherwise stated on the face of the coupon or as required by applicable law, the following terms 
+        apply: after the coupon expiration date, the coupon may not be redeemed; coupons for specific 
+        events, such as concerts or sporting events, can no longer be redeemed once the event date passes 
+        and have no value; coupons cannot be refunded for cash; coupons cannot be combined with 
+        any other coupons or promotions and duplicate use of a coupon is prohibited; the coupon may 
+        not be applied toward shipping fees, tips or gratuities, taxes, or outstanding balances owed; the 
+        coupon may not be redeemed for products or services other than those specified on the coupon; 
+        and the coupon is freely transferable by the purchaser. Use of a coupon for alcohol is at the sole 
+        discretion of the merchant, which may be limited by applicable law. Coupons for alcohol may 
+        only be applied by individuals of legal drinking age.Purchasers under the age of 18 must obtain 
+        permission from their parents or guardians before using a coupon. Neither Cake,
+        Inc. nor the merchant is responsible for lost or stolen coupons or coupon reference numbers. 
+        The merchant reserves the right to withdraw and/or refuse payments for coupons due to fraud 
+        or errors. The coupon is in no way sponsored, endorsed or administered by, or associated with, 
+        Cake, Inc. and you release Cake, Inc. from claims arising from any
+        coupon or act or omission of the merchant in connection with the coupon. All coupons are 
+        promotional in nature and are issued by the merchant through Cake, Inc. as a service
+        provider. The merchant is the holder and issuer of the coupon and under no circumstances shall 
+        Cake, Inc. be deemed the holder, issuer or seller of the coupon. The applicability
+        and compliance with any applicable law relating to any coupon is solely determined by and 
+        complied with by the merchant. Campaign participants acknowledge that the coupon is issued for 
+        loyalty, award, or promotional purposes.
   links:
     user:
       sign_in: Sign In
       sign_out: Sign Out
       sign_up:  Sign Up For Free
     wizards:
+      coupon:
+        sponsor: Name/Location(s)
+        discount: Create a Discount
+        news: News
+        launch: Launch
       coupon_book: 
         basic_info: Basic Information
         tell_your_story: Tell Your Story
-        launch: Launch Book
-        share: Find Sponsors
+        coupons: Organize
+        request_coupons: Request Discounts
+        launch_and_share: Launch and Share
   flash:
     error:
       default: We're sorry but there was an error. Please try again.
@@ -23,8 +67,19 @@ en:
     empty_results:
       coupon_books: Coupon Books
       coupons: Coupons
+  banners:
+    coupon_book:
+      header: "Help <span class='boldest'>%{fr}!</span> Enjoy special offers of <span class='boldest'>%{no_discount}</span> for <span class='boldest'>%{price}!</span>"
+      coupons: "Help <span class='boldest'>%{fr}!</span> Enjoy special offers below valued at <span class='boldest'>%{no_discount}</span> just for <span class='boldest'>%{price}!</span>"
   activerecord: 
     models:
     attributes:
       category:
         name: Category Name
+      coupon:
+        sponsor_name: Bussines Name
+        phone: Contact Phone
+        sponsor_url: "Please direct consumer traffic to my website: "
+        multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
+      location:
+        state_code: State

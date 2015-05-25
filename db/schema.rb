@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424162803) do
+ActiveRecord::Schema.define(version: 20150521160707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "avatar_pictures", force: :cascade do |t|
+    t.string   "uri"
+    t.string   "caption"
+    t.integer  "avatar_crop_x"
+    t.integer  "avatar_crop_y"
+    t.integer  "avatar_crop_w"
+    t.integer  "avatar_crop_h"
+    t.string   "avatarable_type"
+    t.integer  "avatarable_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -31,6 +44,26 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "charges", force: :cascade do |t|
+    t.string   "stripe_id"
+    t.string   "balance_transaction_id"
+    t.string   "kind"
+    t.integer  "amount_cents",           default: 0,     null: false
+    t.string   "amount_currency",        default: "USD", null: false
+    t.integer  "total_fee_cents",        default: 0,     null: false
+    t.string   "total_fee_currency",     default: "USD", null: false
+    t.boolean  "paid"
+    t.boolean  "captured"
+    t.json     "fee_details"
+    t.string   "chargeable_type"
+    t.integer  "chargeable_id"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
+  add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.integer "owner_id"
@@ -59,6 +92,14 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.boolean  "visible",                 default: false
     t.integer  "goal_cents",              default: 0,            null: false
     t.string   "goal_currency",           default: "USD",        null: false
+    t.integer  "price_cents",             default: 0,            null: false
+    t.string   "price_currency",          default: "USD",        null: false
+    t.integer  "causes_mask"
+    t.integer  "scopes_mask"
+    t.string   "main_cause"
+    t.string   "visitor_url"
+    t.string   "visitor_action"
+    t.integer  "fee_percentage",          default: 17
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -71,6 +112,28 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone"
+    t.string   "sponsor_url"
+    t.string   "multiple_locations"
+    t.boolean  "universal",                   default: false
+    t.string   "status",                      default: "incomplete"
+    t.text     "custom_terms"
+    t.integer  "merchandise_categories_mask"
+    t.integer  "price_cents",                 default: 0,            null: false
+    t.string   "price_currency",              default: "USD",        null: false
+    t.string   "sponsor_name"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string   "address"
+    t.string   "country_code"
+    t.string   "state_code"
+    t.string   "zip_code"
+    t.string   "city"
+    t.string   "locatable_type"
+    t.integer  "locatable_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -95,6 +158,50 @@ ActiveRecord::Schema.define(version: 20150424162803) do
     t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pr_boxes", force: :cascade do |t|
+    t.string   "headline"
+    t.text     "story"
+    t.string   "url"
+    t.string   "parent_type"
+    t.integer  "parent_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "purchases", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_token"
+    t.integer  "amount_cents",     default: 0,     null: false
+    t.string   "amount_currency",  default: "USD", null: false
+    t.string   "purchasable_type"
+    t.integer  "purchasable_id"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+  end
+
+  create_table "subscriptors", force: :cascade do |t|
+    t.string   "email"
+    t.string   "object_type"
+    t.integer  "object_id"
+    t.string   "phone"
+    t.string   "organization"
+    t.text     "message"
+    t.string   "name"
+    t.string   "origin_type"
+    t.integer  "origin_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "videos", force: :cascade do |t|
+    t.string  "recordable_type"
+    t.integer "recordable_id"
+    t.string  "url"
+    t.string  "provider"
+    t.string  "thumbnail"
+    t.boolean "auto_show",       default: false
   end
 
 end

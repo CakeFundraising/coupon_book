@@ -1,0 +1,13 @@
+.blue#coupons
+  .container
+    .row.pledgebluestripe.coupon_book
+      .col-md-12.text-center
+        span.h1 = I18n.t('banners.coupon_book.coupons', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+      .col-md-4.col-md-push-4
+        .buy-book 
+          = coupon_book_buy_button(@coupon_book)
+
+.row
+  .col-md-12
+    = render partial:'coupons/show/terms'
+    = render partial:'categories/show/coupon_book', collection: @categories, as: :category

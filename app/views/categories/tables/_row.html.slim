@@ -1,10 +1,12 @@
+- category = f.object
+
 li.category.ui-state-default id="cat_#{category.id}"
   table.table.table-hover.table-bordered.table-striped.data-table
     thead.cf
       tr
-        = hidden_field('coupon_book[categories_attributes]', :position, value: category.position)
+        = f.input :position, as: :hidden
         th
-          span.category-title = category
+          span.table-category-title = category
         th.category-actions
           = link_to edit_category_path(category), class:'btn btn-sm btn-primary' do
             span.glyphicon.glyphicon-pencil
@@ -13,4 +15,5 @@ li.category.ui-state-default id="cat_#{category.id}"
           /= link_to 'Add Coupon', new_coupon_path(category_id: category), class: 'btn btn-success btn-sm'
 
   ul.sortableCoupons id="coupon_categories_#{category.id}"
-    = render partial: 'categories_coupons/coupon_row', collection: category.coupons, as: :coupon
+    = f.semantic_fields_for :categories_coupons do |cc|
+      = render partial: 'categories_coupons/coupon_row', locals:{f: cc}

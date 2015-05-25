@@ -65,7 +65,11 @@ class User < Ohm::Model
   private
 
   def self.current_user_data(access_token)
-    Cake::Oauth::User.new(access_token).self
+    begin
+      Cake::Oauth::User.new(access_token).self
+    rescue OAuth2::Error => e
+      nil
+    end
   end
 
 end
