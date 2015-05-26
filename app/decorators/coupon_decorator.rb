@@ -10,7 +10,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def trunc_description
-    h.truncate(object.description, length: 100).html_safe
+    h.truncate(object.description, length: 75).html_safe
   end
 
   def expires_at
@@ -47,5 +47,9 @@ class CouponDecorator < ApplicationDecorator
 
   def multiple_locations
     "*#{object.multiple_locations}"
+  end
+
+  def location
+    object.multiple_locations.blank? ? main_location : object.multiple_locations
   end
 end
