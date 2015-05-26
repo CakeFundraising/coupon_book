@@ -1,7 +1,7 @@
-.coupon-text
-  .row
-    .coupon-grid-title
-      h4 = coupon.title
-  .row
-    .sponsor-name
-      a href="#" Sponsor Name
+.caption
+  /h4.truncate = link_to coupon, coupon_book_path(coupon.coupon_book, anchor: :coupons)
+  h4.truncate = coupon
+  .sponsor = coupon.owner
+  .location.truncate = [coupon.owner.location_city, coupon.owner.location_state_code].join(', ')
+  hr
+  .description.truncate = coupon.trunc_description

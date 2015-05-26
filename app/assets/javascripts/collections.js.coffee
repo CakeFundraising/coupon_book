@@ -78,13 +78,13 @@ CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
   $.ajax
     url: '/collections_coupons'
     type: 'POST'
+    dataType: 'json'
     data:
       collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
     success: (data, status, response) ->
       #todo
     error: ->
       #todo
-    dataType: 'json'
 
   return
 
@@ -95,13 +95,13 @@ CakeCouponBook.collections.deleteCollectionsCoupon = (coupon_id) ->
   $.ajax
     url: '/collections_coupons'
     type: 'DELETE'
+    dataType: 'json'
     data:
       collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
     success: (data, status, response) ->
       #todo
     error: ->
       #todo
-    dataType: 'json'
   
   return
 

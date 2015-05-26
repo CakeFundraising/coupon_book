@@ -17,7 +17,7 @@
        hr
        = link_to t('helpers.filters.clear'), search_coupons_path, class:'btn btn-primary'
     .col-md-9
-      .coupons-container.row-fluid.transitions-enabled
+      .coupons-container.row.transitions-enabled
         .coupons
           - if @coupons.any?
             = render partial: "coupons/show/grid", collection: @coupons, as: :coupon
