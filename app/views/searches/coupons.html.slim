@@ -1,7 +1,7 @@
 /= display_meta("Search Coupons")
 
 #search_coupons
-  h1.dash-head Search Discounts
+  h1.dash-head Universal Discounts
 
   .row
     .col-md-3
@@ -20,7 +20,8 @@
       .coupons-container.row.transitions-enabled
         .coupons
           - if @coupons.any?
-            = render partial: "coupons/show/grid", collection: @coupons, as: :coupon
+            /= render partial: "coupons/show/grid", collection: @coupons, as: :coupon
+            = render partial: "coupons/show/fundraiser/grid", collection: @coupons, as: :coupon
           - else
             .alert.alert-info No results found.
 

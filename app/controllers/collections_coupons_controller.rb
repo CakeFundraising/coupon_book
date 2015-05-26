@@ -3,7 +3,7 @@ class CollectionsCouponsController < InheritedResources::Base
   respond_to :json
 
   def create
-    @collections_coupon = CollectionsCoupon.new(permitted_params[:collections_coupon])
+    @collections_coupon = collection.collections_coupons.build(permitted_params[:collections_coupon])
 
     create! do |success, failure|
       success.json do
@@ -13,9 +13,7 @@ class CollectionsCouponsController < InheritedResources::Base
   end
   
   def destroy
-    @collections_coupon = 
-        CollectionsCoupon.find_by_coupon_id_and_collection_id(permitted_params[:collections_coupon][:coupon_id], 
-                                                              permitted_params[:collections_coupon][:collection_id])
+    @collections_coupon = CollectionsCoupon.find_by_coupon_id_and_collection_id(permitted_params[:collections_coupon][:coupon_id], collection.id)
 
     destroy! do |success, failure|
       success.json do
@@ -25,6 +23,10 @@ class CollectionsCouponsController < InheritedResources::Base
   end
   
   private
+
+  def collection
+    current_fundraiser.coupon_collection
+  end
 
   def permitted_params
     params.permit(collections_coupon: [:coupon_id, :collection_id])

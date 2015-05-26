@@ -1,9 +1,7 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-    = menu_item "My Dashboard", dashboard_fundraiser_home_path
     = menu_item "Active Books", coupon_books_path
-    = menu_item "All Sponsors", coupon_sponsors_path
-    = menu_item "History", dashboard_fundraiser_history_path
+    = menu_item "Universal Discounts", search_coupons_path
   ul.nav.navbar-nav.navbar-right
     = menu_item 'New Coupon Book', new_coupon_book_path
     li.dropdown
@@ -12,16 +10,17 @@
         span.glyphicon.glyphicon-cog
         span.caret
       ul.dropdown-menu
-        = menu_item "My Dashboard", dashboard_fundraiser_home_path
+        = menu_item "My Dashboard", cake_fundraiser_path('home')
         = menu_item "Active Books", coupon_books_path
-        = menu_item "All Sponsors", coupon_sponsors_path
-        = menu_item "History", dashboard_fundraiser_history_path
+        = menu_item "Universal Discounts", search_coupons_path
+        = menu_item "Billing", cake_fundraiser_path('billing')
+        = menu_item "History", cake_fundraiser_path('history')
         li.divider
-        = menu_item "Public Profile", root_path
-        = menu_item "Edit Profile", root_path
-        = menu_item "Account Settings", root_path
-        = menu_item "Email Notifications", root_path
+        = menu_item "Public Profile", cake_profile_path(current_fundraiser)
+        = menu_item "Edit Profile", cake_settings_path('public_profile')
+        = menu_item "Account Settings", cake_settings_path('account')
+        = menu_item "Email Notifications", cake_settings_path('fundraiser_email_setting/edit')
         li.divider
-        = menu_item 'New Coupon Book', root_path
+        = menu_item 'New Coupon Book', new_coupon_book_path
         li.divider
         = menu_item t("links.user.sign_out"), sign_out_path, method: :delete

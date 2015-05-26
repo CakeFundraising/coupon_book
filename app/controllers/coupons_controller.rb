@@ -3,7 +3,7 @@ class CouponsController < InheritedResources::Base
     :sponsor,
     :discount,
     :news,
-    :launch
+    :launching
   ]
 
   def new

@@ -132,7 +132,7 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
   end
 
   def redirect_to_billing

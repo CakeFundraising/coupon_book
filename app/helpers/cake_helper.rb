@@ -20,4 +20,16 @@ module CakeHelper
   def cake_fundraiser_path(page)
     "#{CAKE_ROOT_URL}/fundraiser/#{page}"
   end
+
+  def cake_sponsor_path(page)
+    "#{CAKE_ROOT_URL}/sponsor/#{page}"
+  end
+
+  def cake_settings_path(page)
+    "#{CAKE_ROOT_URL}/settings/#{page}"
+  end
+
+  def cake_profile_path(role)
+    "#{CAKE_ROOT_URL}/#{role.class.name.downcase.pluralize}/#{role.id}"
+  end
 end

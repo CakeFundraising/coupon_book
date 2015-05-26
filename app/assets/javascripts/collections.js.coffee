@@ -72,15 +72,12 @@ CakeCouponBook.collections.initRemove = (coupon) ->
   return
 
 CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
-
-  collection_id = $('.collection').attr('id')
-
   $.ajax
     url: '/collections_coupons'
     type: 'POST'
     dataType: 'json'
     data:
-      collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
+      collections_coupon: { "coupon_id": coupon_id }
     success: (data, status, response) ->
       #todo
     error: ->
@@ -89,15 +86,12 @@ CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
   return
 
 CakeCouponBook.collections.deleteCollectionsCoupon = (coupon_id) ->
-
-  collection_id = $('.collection').attr('id')
-
   $.ajax
     url: '/collections_coupons'
     type: 'DELETE'
     dataType: 'json'
     data:
-      collections_coupon: { "coupon_id": coupon_id, "collection_id": collection_id }
+      collections_coupon: { "coupon_id": coupon_id }
     success: (data, status, response) ->
       #todo
     error: ->

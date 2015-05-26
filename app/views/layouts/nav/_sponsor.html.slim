@@ -1,6 +1,5 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
-    = menu_item "My Dashboard", dashboard_sponsor_home_path
     = menu_item "My Coupons", dashboard_sponsor_coupons_path
     /= menu_item "Pledge Requests", root_path
   ul.nav.navbar-nav.navbar-right
@@ -10,14 +9,15 @@
         span.glyphicon.glyphicon-cog
         span.caret
       ul.dropdown-menu
-        = menu_item "My Dashboard", dashboard_sponsor_home_path
-        = menu_item "Billing", root_path
-        = menu_item "History", dashboard_sponsor_history_path
+        = menu_item "My Dashboard", cake_sponsor_path('home')
+        = menu_item "My Coupons", dashboard_sponsor_coupons_path
+        = menu_item "Billing", cake_sponsor_path('billing')
+        = menu_item "History", cake_sponsor_path('history')
         li.divider
-        = menu_item "Public Profile", root_path
-        = menu_item "Edit Profile", root_path
-        = menu_item "Account Settings", root_path
-        = menu_item "Email Notifications", root_path
+        = menu_item "Public Profile", cake_profile_path(current_sponsor)
+        = menu_item "Edit Profile", cake_settings_path('public_profile')
+        = menu_item "Account Settings", cake_settings_path('account')
+        = menu_item "Email Notifications", cake_settings_path('sponsor_email_setting/edit')
         /li.divider
         /= menu_item 'Create a New Pledge', root_path
         li.divider

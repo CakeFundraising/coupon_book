@@ -4,8 +4,8 @@ class SearchesController < ApplicationController
 
     @search = Coupon.solr_search(include: [:picture]) do
       fulltext params[:search]
-      #with :status, :launched
-      #with :universal, true
+      with :status, :launched
+      with :universal, true
       order_by :created_at, :desc
       paginate page: params[:page], per_page: 21
 
@@ -18,10 +18,8 @@ class SearchesController < ApplicationController
     @facets = facets
     @coupons = CouponDecorator.decorate_collection @search.results
 
-    if current_fundraiser.present?
-      @collection = current_fundraiser.coupon_collection
-      @collections_coupons = @collection.coupons
-    end
+    
+    @collections_coupons = current_fundraiser.coupon_collection.coupons if current_fundraiser.present?
 
     if request.xhr?
       render "searches/coupons", layout: false
