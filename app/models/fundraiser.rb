@@ -47,7 +47,7 @@ class Fundraiser < Ohm::Model
 
   def self.create_from_data(data)
     unless data.nil? or self[data["id"]].present?
-      self.create(
+      fundraiser = self.create(
         id:   data["id"],
         name: data["name"],
         mission: data["mission"],
@@ -76,6 +76,7 @@ class Fundraiser < Ohm::Model
         stripe_account_token: data["stripe_account_token"],
         stripe_publishable_key: data["stripe_publishable_key"]
       )
+      fundraiser.create_coupon_collection if fundraiser.coupon_collection.nil?
     end
   end
 

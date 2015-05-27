@@ -35,8 +35,8 @@ class CouponBooksController < InheritedResources::Base
   def coupons
     @coupon_book = resource
 
-    @collection = Collection.first_or_create!
-    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    #@collection = Collection.first_or_create!
+    @collection = current_fundraiser.coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
     @categories = resource.categories.with_coupons.decorate
 

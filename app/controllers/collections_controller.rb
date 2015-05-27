@@ -1,7 +1,7 @@
 class CollectionsController < InheritedResources::Base
 
   def index
-    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collection = current_fundraiser.coupon_collection
   end
 
   def show

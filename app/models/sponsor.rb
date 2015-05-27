@@ -43,7 +43,7 @@ class Sponsor < Ohm::Model
 
   def self.create_from_data(data)
     unless data.nil? or self[data["id"]].present?
-      self.create(
+      sponsor = self.create(
         id:   data["id"],
         name: data["name"],
         mission: data["mission"],
@@ -69,6 +69,7 @@ class Sponsor < Ohm::Model
         banner_crop_w: data["picture"]["banner_crop_w"],
         banner_crop_h: data["picture"]["banner_crop_h"]
       )
+      sponsor.create_coupon_collection if sponsor.coupon_collection.nil?
     end
   end
 
