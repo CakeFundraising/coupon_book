@@ -1,35 +1,36 @@
-/- cache [:coupon_box, coupon] do
-.coupon-wrapper
-  .coupon-box.clearfix
-    .col-md-2.col-sm-2.sp-box
-      = coupon_sp_pic(coupon)
-      h4.sp_name = coupon.sponsor_name
-      = coupon_main_location(coupon)
-    .col-md-10.col-xs-10
-      .row
-        .col-md-4.col-xs-12.coupon_pic_col
-          = coupon_pic(coupon)
-          /= render partial:'subscriptions/take_action_modal', locals: {pledge: @pledge}
-          .coupon-edge.hidden-xs.hidden-sm
-        .col-md-6.col-xs-12
-          div.coupon-content
-            h2 = coupon
-            h3
-              |Expires: 
-              span = coupon.expires_at_american
-            hr
-            p.expander-250 = coupon.description
-        .col-md-2.col-xs-12.text-center
-          .hidden-xs.hidden-sm = coupon.picture.qrcode
-          .promo-code
-            .boldest Promo Code:
-            span 
-              = link_to 'Buy to Unlock', '#coupons', class:'btn btn-success'
-          .row.terms
-            .col-xs-12
-              a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
-    - unless coupon.multiple_locations.blank?
-      .row
-        .col-md-12
-          .multiple_locations
-            = coupon.multiple_locations
+- cache [:coupon_box, coupon] do
+  .coupon-wrapper
+    .coupon-box.clearfix
+      .col-md-2.col-sm-2.sp-box
+        = coupon_sp_pic(coupon)
+        h4.sp_name = coupon.sponsor_name
+        = coupon_main_location(coupon)
+      .col-md-10.col-xs-10
+        .row
+          .col-md-4.col-xs-12.coupon_pic_col
+            = coupon_pic(coupon)
+            /= render partial:'subscriptions/take_action_modal', locals: {pledge: @pledge}
+            .coupon-edge.hidden-xs.hidden-sm
+          .col-md-6.col-xs-12
+            div.coupon-content
+              h2 = coupon
+              h3
+                |Expires: 
+                span = coupon.expires_at_american
+              hr
+              p.expander-250 = coupon.description
+          .col-md-2.col-xs-12.text-center
+            .hidden-xs.hidden-sm = coupon.picture.qrcode
+            .promo-code
+              .boldest Promo Code:
+              span 
+                = link_to 'Buy to Unlock', '#coupons', class:'btn btn-success'
+            .row.terms
+              .col-xs-12
+                a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
+      
+      - unless coupon.object.multiple_locations.blank?
+        .row
+          .col-md-12
+            .multiple_locations
+              = coupon.multiple_locations
