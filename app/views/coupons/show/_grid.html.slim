@@ -1,4 +1,7 @@
-- cache [:box, coupon] do
+- if @collections_coupons.any?
+  = render partial:'coupons/show/fundraiser/grid', locals:{coupon: coupon}
+- else
+  /- cache [:box, coupon] do
   .coupon_grid.col-md-4
     .thumbnail
       .avatar-container

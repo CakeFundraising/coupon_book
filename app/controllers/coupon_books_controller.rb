@@ -35,7 +35,8 @@ class CouponBooksController < InheritedResources::Base
   def coupons
     @coupon_book = resource
 
-    @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    @collection = Collection.first_or_create!
+    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
     @collections_coupons = @collection.coupons.latest.decorate
     @categories = resource.categories.with_coupons.decorate
 
@@ -131,7 +132,7 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.coupon_collection.id) if current_sponsor.present?
   end
 
   def redirect_to_billing
@@ -139,7 +140,7 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :price, :goal, 
+    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [

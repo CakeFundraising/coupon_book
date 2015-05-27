@@ -37,6 +37,7 @@
 // require ./cloudinary_crop
 //= require ./cloudinary_widget
 //= require ./coupons
+//= require ./collections
 //= require ./categories
 
 //= require ./coupon_books
@@ -47,6 +48,7 @@
 //= require ./pictures
 //= require ./jquery.cloudinary
 //= require ./datepicker
+//= require ./search
 //= require ./clipboard
 //= require ./expander
 //= require ./overrides

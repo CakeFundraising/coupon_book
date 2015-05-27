@@ -1,6 +1,10 @@
 CakeCouponBook::Application.routes.draw do
   root to:'home#index'
 
+  scope :search, controller: :searches do
+    get :search_coupons, path:'coupons'
+  end
+
   mount Resque::Server, at: "/resque"
 
   resources :coupon_books do
@@ -23,6 +27,17 @@ CakeCouponBook::Application.routes.draw do
   end
 
   resources :categories
+
+  resources :collections do
+    member do
+      scope :edit do
+        get :add_coupons
+      end
+    end
+  end
+
+  delete 'collections_coupons' => 'collections_coupons#destroy'
+  resources :collections_coupons
 
   resources :coupons do
     member do

@@ -8,4 +8,8 @@ class ApplicationDecorator < Draper::Decorator
   def updated_at
     object.updated_at.strftime("%B %d, %Y")
   end
+
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
 end

@@ -1,0 +1,7 @@
+.caption
+  /h4.truncate = link_to coupon, coupon_book_path(coupon.coupon_book, anchor: :coupons)
+  h4.truncate = link_to coupon.owner, cake_profile_path(coupon.owner.object)
+  strong.truncate = coupon.trunc_title
+  .location.truncate = coupon.location
+  hr
+  .description = coupon.trunc_description

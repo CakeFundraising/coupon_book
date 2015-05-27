@@ -12,9 +12,13 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-!/log/.keep
+/log
 /tmp
+/solr
+*~
+
+# Ignore carrierwave uploads
+/public/uploads/*
 
 # Ignore configuration files
 /config/database.yml

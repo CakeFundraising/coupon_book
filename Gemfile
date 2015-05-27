@@ -34,6 +34,10 @@ gem 'bootstrap-kaminari-views'
 gem 'pg'
 gem 'ohm'
 
+#Solr
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
 #Cron & Asynchronous tasks
 gem 'resque', '~> 1.25.2', require: 'resque/server'
 gem 'resque-retry'

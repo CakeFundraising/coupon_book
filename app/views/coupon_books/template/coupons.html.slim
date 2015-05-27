@@ -14,7 +14,6 @@ br
       h2 
         span My Coupons
         = link_to 'Add Coupon', new_coupon_path, class: 'btn btn-success btn-sm pull-right'
-
       ul#collection-coupons.no-list
         = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
     .col-md-6

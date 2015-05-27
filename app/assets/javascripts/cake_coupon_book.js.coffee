@@ -9,6 +9,7 @@ CakeCouponBook.init = ->
   CakeCouponBook.utils.init()
   CakeCouponBook.coupon_books.init()
   CakeCouponBook.categories.init()
+  CakeCouponBook.search.init()
   CakeCouponBook.overrides.init()
   return
 

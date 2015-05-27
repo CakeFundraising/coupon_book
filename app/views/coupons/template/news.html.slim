@@ -7,11 +7,11 @@
         h1 Share Important News about your Company!
         p.text-muted 
           span I don't have any news for now.. 
-          = link_to 'Skip this', launch_coupon_path(@coupon)
+          = link_to 'Skip this', launching_coupon_path(@coupon)
 
       = render partial:'pr_boxes/form', locals:{f: f}
 
-      = f.input :step, as: :hidden, input_html:{value: :launch}
+      = f.input :step, as: :hidden, input_html:{value: :launching}
 
       .text-center
         = f.actions do

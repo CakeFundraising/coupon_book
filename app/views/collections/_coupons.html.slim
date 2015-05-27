@@ -1,0 +1,31 @@
+/= display_meta("Search Coupons")
+
+#search_coupons
+  h1.dash-head Search Discounts
+
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :coupons
+
+      .controls
+        .counter
+          span.boldest #{@coupons.total_count} coupons 
+          span match the criteria
+
+    /#filters.panel-group
+    /  = render partial:'layouts/search/filter', collection: @facets, as: :facet
+    /  hr
+    /  = link_to t('helpers.filters.clear'), search_coupons_path, class:'btn btn-primary'
+    .col-md-9
+      .coupons-container.row-fluid.transitions-enabled
+        .coupons
+          - if @coupons.any?
+            = render partial: "coupons/show/grid", collection: @coupons, as: :coupon
+          - else
+            .alert.alert-info No results found.
+
+    = pagination(@coupons)
+
+javascript:
+  CakeCouponBook.collections.init();
+  CakeCouponBook.search.page("#coupons-search", "#search_coupons");

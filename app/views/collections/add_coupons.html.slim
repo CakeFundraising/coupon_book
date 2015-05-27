@@ -1,0 +1,39 @@
+/.row.text-center
+/  .col-md-2
+/  .col-md-8
+/    h1 Add coupons to your collection
+/  .col-md-2
+.row.text-center.pad-top
+  .col-md-2
+  .col-md-8
+    .buttons.text-center
+      .toggle-container
+        .col-md-5
+          a.btn.btn-lg-choice.btn-active#add_universal_coupon Add Coupons
+        .col-md-2
+          .vertical-divider
+            span or
+        .col-md-5
+          a.btn.btn-lg-choice#create_new_coupon Create a Coupon
+          .hidden
+.row.hidden
+  ul.nav.nav-tabs
+    li.active
+      a href="#tab1" data-toggle="tab" id="tab1_btn"
+    li
+      a href="#tab2" data-toggle="tab" id="tab2_btn"
+.row.pad-top
+  .collection id="#{@collection.id}"
+  .col-md-12
+    .tab-content
+      .tab-pane.active id="tab1"
+        .row.text-center
+          .add-coupons
+            h1.text-center Add Universal Coupons
+        = render partial: 'collections/coupons'
+        .row.text-center.pad-top
+          .col-md-12
+            = link_to 'Done', session.delete(:return_to), class: 'btn btn-success btn-lg'
+      .tab-pane id="tab2"
+        .row.text-center
+          = render partial: 'coupons/form', locals: {collection: @collection}
