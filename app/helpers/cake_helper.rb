@@ -1,5 +1,5 @@
 module CakeHelper
-  CAKE_ROOT_URL = 'https://www.cakecausemarketing.com'
+  CAKE_ROOT_URL = ENV['CAKE_HOST']
 
   def cake_about_page_path(page)
     "#{CAKE_ROOT_URL}/about/#{page}"
