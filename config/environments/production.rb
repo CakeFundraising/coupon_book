@@ -78,5 +78,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
-  config.stripe.secret_key = ENV['STRIPE_API_KEY']
+  config.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
 end

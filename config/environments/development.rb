@@ -40,7 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.stripe.publishable_key = ENV['STRIPE_PUBLISHABLE_KEY']
-  config.stripe.secret_key = ENV['STRIPE_API_KEY']
+  config.stripe.secret_key = ENV['STRIPE_SECRET_KEY']
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp
