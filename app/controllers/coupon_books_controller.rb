@@ -94,7 +94,7 @@ class CouponBooksController < InheritedResources::Base
   #Special Actions
   def save_for_launch
     resource.pending!
-    redirect_to share_coupon_book_path(resource), notice: 'Coupon Book saved!'
+    redirect_to resource, notice: 'Coupon Book saved!'
   end
 
   def launch
@@ -104,7 +104,7 @@ class CouponBooksController < InheritedResources::Base
     if request.xhr?
       render nothing: true
     else
-      redirect_to share_coupon_book_path(resource), notice: 'Coupon Book launched!'
+      redirect_to resource, notice: 'Coupon Book launched!'
     end
   end
 
