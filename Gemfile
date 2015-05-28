@@ -66,6 +66,9 @@ gem 'oauth2'
 #API
 gem 'rest-client'
 
+#User registration
+gem 'devise'
+
 #User permissions
 gem 'cancancan'
 
@@ -80,6 +83,7 @@ gem 'jquery-validation-rails'
 gem 'acts_as_list'
 
 #Admin panel
+gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 #Test related
