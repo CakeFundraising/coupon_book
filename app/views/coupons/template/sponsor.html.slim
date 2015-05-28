@@ -16,7 +16,7 @@
               = f.input :sponsor_name
               = f.input :phone
               = f.input :sponsor_url, input_html:{placeholder: 'e.g: www.mycompany.com/discounts'}
-              = f.input :multiple_locations, input_html:{placeholder: 'e.g: All Baltimore. – 80 characters max', maxlength: 80}
+              = f.input :multiple_locations, input_html:{class: 'autogrow coupon_description', rows: 2, cols: 0, maxlength: 500, size: 500, placeholder: 'e.g: All Baltimore. – 500 characters max'}
               br
               h4 Coupon Main Location
               = render partial:'locations/form', locals:{f: f}

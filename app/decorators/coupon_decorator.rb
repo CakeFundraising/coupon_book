@@ -46,7 +46,11 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def multiple_locations
-    "*#{object.multiple_locations}"
+    "* Valid at the following locations: #{object.multiple_locations}"
+  end
+
+  def retail_value
+    h.humanized_money_with_symbol object.price
   end
 
   def location

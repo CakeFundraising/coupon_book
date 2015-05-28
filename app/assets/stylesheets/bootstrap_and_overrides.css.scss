@@ -528,7 +528,7 @@ p.signup-social span:before, p.signup-social span:after {
 }
 
 .main-cta{
-  margin-bottom:15px;
+  margin-bottom:5px;
 
   &.ended_campaign{
     font-size: 20px;
@@ -549,9 +549,9 @@ p.signup-social span:before, p.signup-social span:after {
   }
 
   &.buy_button{
-    font-size: 30px !important;
+    font-size: 38px !important;
     text-transform: uppercase;
-    padding: 10px 0px !important;
+    padding: 5px 0px !important;
     font-weight: bold;
 
     @media (max-width: $screen-sm-max) {
@@ -1139,7 +1139,7 @@ h1.name {
   }
   .learn-more{
     float: none;
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 12px;
   }
 }
@@ -1383,7 +1383,6 @@ table.performance-summary {
 .campaign-banner{
   background-color: $brand-primary;
   color: white;
-  padding: 10px 0px;
   .h1{
     @media (min-width: $screen-md-min) {
       margin-left: -76px;
@@ -1431,7 +1430,11 @@ table.performance-summary {
 .green {
   background-color: $brand-success;
   margin-bottom: 30px;
-  padding: 18px 5px;
+  padding: 8px 5px 18px;
+  h3{
+    color: white;
+    margin: 0;
+  }
 }
 
 .green:after {
@@ -1513,6 +1516,7 @@ table.performance-summary {
 
 #learn-more-banner{
   margin-top: -1px;
+  padding-top: 18px;
 }
 
 .make-pledge {
@@ -2147,6 +2151,9 @@ a {
 }
 
 // Coupon Styles ---------------------------------------
+.coupon-label{
+  font-size: 18px;
+}
 .coupon-wrapper{
   .coupon-actions{
     position: absolute;
@@ -2189,6 +2196,9 @@ a {
     margin-top: 12px;
     padding-top: 10px;
   }
+  .coupon_location{
+    font-size: 16px;
+  }
   .coupon_pic_col{
     padding-right: 0;
   }
@@ -2213,6 +2223,9 @@ a {
   .pledge-news-content,
   .coupon-content{
     margin:10px 0px;
+    p{
+      font-size: 16px;
+    }
   }
   hr{
     margin-top: 10px;
@@ -4260,3 +4273,41 @@ li.ui-state-default {
   border-color: #7e8e27;
 }
 
+.buy-book{
+  margin-top: 2px;
+}
+
+h1.category-title{
+  color: $brand-primary;
+  text-align: center;
+  font-size: 60px;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 17px;
+}
+
+span.banner-heading{
+  font-size: 45px;
+}
+
+.top_banner{
+  margin: 0;
+  font-size: 32px;
+  .first{
+    margin: 0;
+    font-size: 43px;
+  }
+  .last{
+    margin-top: -10px;
+    span.boldest{
+      font-size: 38px;
+    }
+  }
+}
+
+.flag-label{
+  position:absolute;
+  padding:10px;
+  margin: -7px;
+  z-index: 99;
+}
