@@ -1,4 +1,6 @@
 class CouponsController < InheritedResources::Base
+  load_and_authorize_resource
+  
   TEMPLATE_STEPS = [
     :sponsor,
     :discount,

@@ -1,4 +1,5 @@
 class CouponBooksController < InheritedResources::Base
+  load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :sponsor_landing
   before_action :redirect_to_billing, only: :launch
 
