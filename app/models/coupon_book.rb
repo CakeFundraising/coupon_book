@@ -31,6 +31,9 @@ class CouponBook < ActiveRecord::Base
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
 
+  scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
+  scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
+
   def fundraiser
     Fundraiser.fetch(self.fundraiser_id)
   end
