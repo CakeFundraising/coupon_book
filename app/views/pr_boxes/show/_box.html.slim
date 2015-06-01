@@ -1,0 +1,17 @@
+- cache [:pr_box, pr_box] do 
+  .coupon-wrapper
+    .coupon_box.clearfix
+      .col-md-10.col-xs-10.col-xs-push-1.coupon
+        .row
+          .col-md-3.col-xs-12
+            = pr_box_pic(pr_box)
+            .pr_box-edge
+          .col-md-7.col-xs-12
+            .pledge-news-content
+              h2 = pr_box
+              hr
+              p 
+                span = pr_box.story
+                span = link_to 'Read more', click_pr_box_path(pr_box), target: :_blank
+          .col-md-2.hidden-xs.hidden-sm.text-right
+            = pr_box.picture.qrcode
