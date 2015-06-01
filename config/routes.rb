@@ -57,6 +57,8 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :pr_boxes, except: [:index, :show]
+
   scope :users, controller: :users do
     get :sign_in
     post :new_session

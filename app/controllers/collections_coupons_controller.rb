@@ -25,7 +25,7 @@ class CollectionsCouponsController < InheritedResources::Base
   private
 
   def collection
-    current_fundraiser.coupon_collection
+    current_fundraiser.collection
   end
 
   def permitted_params

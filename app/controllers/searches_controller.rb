@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
     @facets = facets
     @coupons = CouponDecorator.decorate_collection @search.results
     
-    @collections_coupons = current_fundraiser.coupon_collection.coupons if current_fundraiser.present?
+    @collections_coupons = current_fundraiser.collection.coupons if current_fundraiser.present?
 
     if request.xhr?
       render "searches/coupons", layout: false

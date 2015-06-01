@@ -10,12 +10,28 @@ br
 br
 .container.coupon_book_coupons_step
   .row#drag-canvas
-    #my-collection.col-md-6
-      h2 
-        span All Discounts
-        = link_to 'Add Discount', new_coupon_path, class: 'btn btn-success btn-sm pull-right'
-      ul#collection-coupons.no-list
-        = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
+    .col-md-6 role="tabpanel" 
+      /! Nav tabs
+      ul.nav.nav-tabs role="tablist" 
+        li.active role="presentation" 
+          a aria-controls="discounts" data-toggle="tab" href="#my-discounts" role="tab" All Discounts
+        li role="presentation" 
+          a aria-controls="pr-boxes" data-toggle="tab" href="#pr-boxes" role="tab" PR Boxes
+      /! Tab panes
+      .tab-content
+        #my-discounts.tab-pane.active role="tabpanel"
+          h2 
+            span All Discounts
+            = link_to 'Add Discount', new_coupon_path, class: 'btn btn-success btn-sm pull-right'
+          ul#collection-coupons.no-list
+            = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
+        #pr-boxes.tab-pane role="tabpanel"
+          h2 
+            span PR Boxes
+            = link_to 'Add PR Box', new_pr_box_path(redirect_to: coupons_coupon_book_path(@coupon_book.id)), class: 'btn btn-success btn-sm pull-right'
+          ul.no-list
+            /= render partial: 'pr_boxes/show/row', collection: @collections_coupons, as: :coupon
+
     .col-md-6
       h2 
         span Discount Book Categories

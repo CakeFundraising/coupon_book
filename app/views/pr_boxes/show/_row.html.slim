@@ -1,0 +1,12 @@
+li.pr_box-row id="pr_boxes_#{pr_box.id}"
+  = render partial:'pr_boxes/modal', locals:{pr_box: pr_box.decorate}
+
+  table.table.table-hover.table-bordered.table-striped.data-table
+    tr
+      td
+        span.pr_box-title = pr_box.title
+      td.pr_box-actions
+        a.btn.btn-sm.btn-success data-toggle='modal' data-target="#preview-pr_box-#{pr_box.id}"
+          span.glyphicon.glyphicon-eye-open
+        = link_to edit_pr_box_path(pr_box), class: 'btn btn-sm btn-primary' do
+          span.glyphicon.glyphicon-pencil

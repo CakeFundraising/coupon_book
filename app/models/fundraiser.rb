@@ -76,7 +76,7 @@ class Fundraiser < Ohm::Model
         stripe_account_token: data["stripe_account_token"],
         stripe_publishable_key: data["stripe_publishable_key"]
       )
-      fundraiser.create_coupon_collection if fundraiser.coupon_collection.nil?
+      fundraiser.create_collection if fundraiser.collection.nil?
     end
   end
 
@@ -96,15 +96,15 @@ class Fundraiser < Ohm::Model
   end
 
   #Collection
-  def coupon_collection
+  def collection
     Collection.where(owner_type: 'Fundraiser', owner_id: self.id.to_i).first
   end
 
-  def build_coupon_collection
+  def build_collection
     Collection.new(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
 
-  def create_coupon_collection
+  def create_collection
     Collection.create(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
 end

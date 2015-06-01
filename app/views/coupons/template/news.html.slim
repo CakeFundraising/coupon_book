@@ -9,7 +9,7 @@
           span I don't have any news for now.. 
           = link_to 'Skip this', launching_coupon_path(@coupon)
 
-      = render partial:'pr_boxes/form', locals:{f: f}
+      = render partial:'pr_boxes/fields', locals:{f: f}
 
       = f.input :step, as: :hidden, input_html:{value: :launching}
 

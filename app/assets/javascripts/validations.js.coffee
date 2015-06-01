@@ -39,4 +39,5 @@ CakeCouponBook.validations.init = ->
   CakeCouponBook.coupons.validation()
   CakeCouponBook.coupon_books.validation()
   CakeCouponBook.pictures.validation.init()
+  CakeCouponBook.pr_boxes.validation()
   return

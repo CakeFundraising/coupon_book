@@ -1,7 +1,7 @@
 class CollectionsController < InheritedResources::Base
 
   def index
-    @collection = current_fundraiser.coupon_collection
+    @collection = current_fundraiser.collection
   end
 
   def show
@@ -9,7 +9,7 @@ class CollectionsController < InheritedResources::Base
 
   def edit
     @collection = Collection.first_or_create!
-    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    # @collection = current_fundraiser.collection || current_fundraiser.create_collection
     @collections_coupons = @collection.coupons.latest.decorate
   end
 
@@ -17,7 +17,7 @@ class CollectionsController < InheritedResources::Base
     @coupons = CouponDecorator.decorate_collection Coupon.all.page(params[:page])
 
     @collection = Collection.first_or_create!
-    # @collection = current_fundraiser.coupon_collection || current_fundraiser.create_coupon_collection
+    # @collection = current_fundraiser.collection || current_fundraiser.create_collection
 
     @collections_coupons = @collection.coupons.latest.decorate
 

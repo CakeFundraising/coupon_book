@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150528201750) do
+ActiveRecord::Schema.define(version: 20150601142903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,12 @@ ActiveRecord::Schema.define(version: 20150528201750) do
 
   add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
+
+  create_table "collection_pr_boxes", force: :cascade do |t|
+    t.integer "collection_id"
+    t.integer "pr_box_id"
+    t.integer "position"
+  end
 
   create_table "collections", force: :cascade do |t|
     t.integer "owner_id"
@@ -165,10 +171,10 @@ ActiveRecord::Schema.define(version: 20150528201750) do
     t.string   "headline"
     t.text     "story"
     t.string   "url"
-    t.string   "parent_type"
-    t.integer  "parent_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "flag"
+    t.integer  "collection_id"
   end
 
   create_table "purchases", force: :cascade do |t|

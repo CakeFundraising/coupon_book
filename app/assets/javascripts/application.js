@@ -52,6 +52,7 @@
 //= require ./clipboard
 //= require ./expander
 //= require ./overrides
+//= require ./pr_boxes
 //= require ./subscriptors
 //= require ./utils
 //= require ./validations

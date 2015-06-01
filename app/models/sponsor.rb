@@ -69,20 +69,20 @@ class Sponsor < Ohm::Model
         banner_crop_w: data["picture"]["banner_crop_w"],
         banner_crop_h: data["picture"]["banner_crop_h"]
       )
-      sponsor.create_coupon_collection if sponsor.coupon_collection.nil?
+      sponsor.create_collection if sponsor.collection.nil?
     end
   end
 
   #Collection
-  def coupon_collection
+  def collection
     Collection.where(owner_type: 'Sponsor', owner_id: self.id.to_i).first
   end
 
-  def build_coupon_collection
+  def build_collection
     Collection.new(owner_type: 'Sponsor', owner_id: self.id.to_i)
   end
 
-  def create_coupon_collection
+  def create_collection
     Collection.create(owner_type: 'Sponsor', owner_id: self.id.to_i)
   end
 
@@ -93,7 +93,7 @@ class Sponsor < Ohm::Model
 
   #Coupons
   def coupons
-    coupon_collection.coupons
+    collection.coupons
   end
 
 end

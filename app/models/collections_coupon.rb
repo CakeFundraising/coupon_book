@@ -4,5 +4,5 @@ class CollectionsCoupon < ActiveRecord::Base
 
   acts_as_list scope: :collection
 
-  validates :coupon, :coupon, presence: true
+  validates :collection, :coupon, presence: true
 end

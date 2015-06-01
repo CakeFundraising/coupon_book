@@ -36,8 +36,9 @@ class CouponBooksController < InheritedResources::Base
   def coupons
     @coupon_book = resource
 
-    @collection = current_fundraiser.coupon_collection
+    @collection = current_fundraiser.collection
     @collections_coupons = @collection.coupons.latest.decorate
+
     @categories = resource.categories.with_coupons.decorate
 
     render 'coupon_books/template/coupons'
@@ -116,7 +117,7 @@ class CouponBooksController < InheritedResources::Base
   #Sponsor landing
   def sponsor_landing
     @coupon_book = resource.decorate
-    @collection_id = @coupon_book.fundraiser.coupon_collection.id
+    @collection_id = @coupon_book.fundraiser.collection.id
   end
 
   def download
@@ -132,7 +133,7 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.coupon_collection.id) if current_user.present? and current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
   end
 
   def redirect_to_billing
