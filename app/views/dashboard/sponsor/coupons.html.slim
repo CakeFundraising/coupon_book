@@ -2,7 +2,7 @@ h1 My Discounts
 
 = link_to 'Create a Discount', new_coupon_path, class:'btn btn-primary pull-right'
 
-.sponsor-coupons
+ul.no-list.sponsor-coupons
   - if @coupons.any?
     = render partial:'coupons/show/sponsor/row', collection: @coupons, as: :coupon 
   - else

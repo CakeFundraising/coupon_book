@@ -96,4 +96,8 @@ class Sponsor < Ohm::Model
     collection.coupons
   end
 
+  def pr_boxes
+    collection.pr_boxes
+  end
+
 end

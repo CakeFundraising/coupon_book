@@ -1,0 +1,9 @@
+h1 My PR Boxes
+
+/= link_to 'Create a Discount', new_coupon_path, class:'btn btn-primary pull-right'
+
+ul.no-list.sponsor-pr-boxes
+  - if @pr_boxes.any?
+    = render partial:'pr_boxes/show/row', collection: @pr_boxes, as: :pr_box 
+  - else
+    = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pr_boxes'), in_profile: true}

@@ -1,7 +1,7 @@
 class PrBox < ActiveRecord::Base
   include Picturable
 
-  attr_accessor :coupon_id
+  attr_accessor :fr_collection_id, :coupon_book_id
 
   FLAG_OPTIONS = [
     "Thank You!",
@@ -26,4 +26,12 @@ class PrBox < ActiveRecord::Base
   validates :flag, inclusion: {in: FLAG_OPTIONS} 
 
   delegate :owner, to: :origin_collection
+
+  after_create :add_to_collection
+
+  private
+
+  def add_to_collection
+    self.collection_pr_boxes.create(collection_id: self.collection_id) #Add coupon to owner's collection
+  end
 end

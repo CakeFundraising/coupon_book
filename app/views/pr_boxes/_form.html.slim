@@ -34,6 +34,9 @@
             h5 Upload a second image (Optional)
             = render partial:'pictures/qrcode_form', locals:{f: f}
         .col-md-2
+        
+      = f.input :fr_collection_id, as: :hidden, input_html:{value: params[:fr_collection_id]} if current_sponsor.present?
+      = f.input :coupon_book_id, as: :hidden, input_html:{value: params[:coupon_book_id]} if current_fundraiser.present?
     .text-center
       = f.actions do
         = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

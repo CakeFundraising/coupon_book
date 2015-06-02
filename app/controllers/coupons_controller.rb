@@ -4,17 +4,11 @@ class CouponsController < InheritedResources::Base
   TEMPLATE_STEPS = [
     :sponsor,
     :discount,
-    :news,
     :launching
   ]
 
   def new
-    @coupon = if current_sponsor.present? 
-      session[:fr_collection_id] = params[:fr_collection_id] if params[:fr_collection_id].present?
-      Coupon.build_sp_coupon(current_sponsor) 
-    else
-      Coupon.build_fr_coupon(current_fundraiser)
-    end
+    @coupon = current_sponsor.present? ? Coupon.build_sp_coupon(current_sponsor) : Coupon.build_fr_coupon(current_fundraiser)
   end
 
   # Template Actions
@@ -23,14 +17,7 @@ class CouponsController < InheritedResources::Base
     render 'coupons/template/discount'
   end
 
-  def news
-    @coupon = resource.decorate
-    @pr_box = PrBox.new
-    render 'coupons/template/news'
-  end
-
   def launching
-    session.delete(:fr_collection_id) if session[:fr_collection_id].present?
     @coupon = resource.decorate
     render 'coupons/template/launch'
   end
@@ -99,15 +86,6 @@ class CouponsController < InheritedResources::Base
         avatar_picture_attributes: [
           :id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, 
           :avatar_crop_w, :avatar_crop_h, :bypass_cloudinary_validation
-        ],
-        pr_box_attributes: [
-          :id, :headline, :story, :url,
-          picture_attributes: [
-            :id, :banner, :avatar, :qrcode, :avatar_caption,
-            :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
-            :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h,
-            :qrcode_crop_x, :qrcode_crop_y, :qrcode_crop_w, :qrcode_crop_h
-          ]
         ],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,

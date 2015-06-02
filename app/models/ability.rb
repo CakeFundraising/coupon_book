@@ -21,6 +21,6 @@ class Ability
     end
 
     can :read, :all
-    can :sponsor_landing, CouponBook
+    can [:start_discount, :start_pr_box], CouponBook
   end
 end

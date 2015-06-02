@@ -21,7 +21,8 @@ CakeCouponBook::Application.routes.draw do
       patch :update_order
 
       post :tree
-      get :sponsor_landing, path: :start_discount
+      get :start_discount
+      get :start_pr_box
       get :download
     end
   end
@@ -82,6 +83,7 @@ CakeCouponBook::Application.routes.draw do
       get :home, as: :sponsor_home
       get :history, as: :sponsor_history
       get :coupons, as: :sponsor_coupons
+      get :pr_boxes, as: :sponsor_pr_boxes
     end
   end
 

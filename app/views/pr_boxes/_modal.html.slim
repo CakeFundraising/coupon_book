@@ -1,18 +1,14 @@
-- cache [:pr_box, :modal, pr_box] do 
-  .coupon-wrapper
-    /= render partial:'pr_box/form/actions', locals: {pr_box: pr_box}
-    .coupon-box.clearfix
-      .col-xs-12.coupon.coupon-modal
-        .row
-          .col-md-4.col-xs-12
-            = pr_box_pic(pr_box)
-            .pr_box-edge
-          .col-md-6.col-xs-12
-            div.pr_box-content
-              h2 = pr_box
-              hr
-              p
-                span = pr_box.story
-                span = link_to 'Read more', pr_box.url, target: :_blank
-          .col-md-2.hidden-xs.hidden-sm.text-right
-            = pr_box.picture.qrcode
+.modal.fade id="preview-pr-box-#{pr_box.id}"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title PR Box preview
+      .modal-body
+        = render partial:'pr_boxes/show/modal_box', locals:{pr_box: pr_box}
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

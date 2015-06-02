@@ -71,10 +71,7 @@
                 = render partial:'pictures/qrcode_form', locals:{f: f}
             .col-md-1
             
-      - if current_sponsor.present?
-        = f.input :step, as: :hidden, input_html:{value: :news}
-      - else
-        = f.input :step, as: :hidden, input_html:{value: :launching}
+      = f.input :step, as: :hidden, input_html:{value: :launching}
 
       .text-center
         = f.actions do

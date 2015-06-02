@@ -1,33 +1,14 @@
 class PrBoxesController < InheritedResources::Base
   before_action :set_collection, only: :create
 
-  def new
-    session[:redirect_to] = params[:redirect_to]
-    @pr_box = PrBox.new
-  end
-
   def create
-    @pr_box = @collection.pr_boxes.build(permitted_params[:pr_box])
+    @pr_box = PrBox.new(permitted_params[:pr_box])
     @pr_box.origin_collection = @collection
 
     create! do |success, failure|
       success.html do
+        add_pr_box_to_collection(@pr_box)
         redirect_to after_create_path, notice: 'Pr Box created successfully.'
-        session.delete(:redirect_to)
-      end
-    end
-  end
-
-  def sp_create
-    @pr_box = PrBox.new(permitted_params[:pr_box])
-    @pr_box.origin_collection = current_sponsor.collection
-
-    @collection = Collection.find(session[:fr_collection_id])
-    @collection.pr_boxes << @pr_box
-
-    create! do |success, failure|
-      success.html do
-        redirect_to launching_coupon_path(params[:pr_box][:coupon_id]), notice: 'Pr Box created successfully.'
       end
     end
   end
@@ -40,7 +21,12 @@ class PrBoxesController < InheritedResources::Base
   end
 
   def after_create_path
-    session[:redirect_to]
+    current_fundraiser.present? ? coupons_coupon_book_path(params[:pr_box][:coupon_book_id]) : dashboard_sponsor_pr_boxes_path
+  end
+
+  def add_pr_box_to_collection(pr_box)
+    # Add PR Box to FR collection when SP's PR Box
+    CollectionPrBox.create(collection_id: params[:pr_box][:fr_collection_id], pr_box_id: pr_box.id) if params[:pr_box][:fr_collection_id].present?
   end
 
   def permitted_params

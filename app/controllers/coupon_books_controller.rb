@@ -1,6 +1,7 @@
 class CouponBooksController < InheritedResources::Base
   load_and_authorize_resource
-  before_action :redirect_to_coupon_template, only: :sponsor_landing
+  before_action :redirect_to_coupon_template, only: :start_discount
+  before_action :redirect_to_pr_box_template, only: :start_pr_box
   before_action :redirect_to_billing, only: :launch
 
   TEMPLATE_STEPS = [
@@ -115,7 +116,12 @@ class CouponBooksController < InheritedResources::Base
   end
 
   #Sponsor landing
-  def sponsor_landing
+  def start_discount
+    @coupon_book = resource.decorate
+    @collection_id = @coupon_book.fundraiser.collection.id
+  end
+
+  def start_pr_box
     @coupon_book = resource.decorate
     @collection_id = @coupon_book.fundraiser.collection.id
   end
@@ -134,6 +140,10 @@ class CouponBooksController < InheritedResources::Base
 
   def redirect_to_coupon_template
     redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
+  end
+
+  def redirect_to_pr_box_template
+    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
   end
 
   def redirect_to_billing

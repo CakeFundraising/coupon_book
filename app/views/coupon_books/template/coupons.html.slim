@@ -28,7 +28,7 @@ br
         #pr-boxes.tab-pane role="tabpanel"
           h2 
             span PR Boxes
-            = link_to 'Add PR Box', new_pr_box_path(redirect_to: coupons_coupon_book_path(@coupon_book.id)), class: 'btn btn-success btn-sm pull-right'
+            = link_to 'Add PR Box', new_pr_box_path(coupon_book_id: @coupon_book.id), class: 'btn btn-success btn-sm pull-right'
           ul.no-list
             /= render partial: 'pr_boxes/show/row', collection: @collections_coupons, as: :coupon
 
