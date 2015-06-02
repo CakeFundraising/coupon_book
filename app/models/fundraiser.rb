@@ -107,4 +107,5 @@ class Fundraiser < Ohm::Model
   def create_collection
     Collection.create(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
+
 end

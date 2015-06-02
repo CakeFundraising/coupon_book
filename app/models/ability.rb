@@ -8,7 +8,7 @@ class Ability
     if user.fundraiser?
       #CouponBook
       can :create, CouponBook
-      can [:update, :destroy, :launch, :save_for_launch, :toggle_visibility] + CouponBooksController::TEMPLATE_STEPS, CouponBook, fundraiser_id: user.fundraiser.id
+      can [:update, :destroy, :launch, :save_for_launch, :toggle_visibility, :categories] + CouponBooksController::TEMPLATE_STEPS, CouponBook, fundraiser_id: user.fundraiser.id
 
       #Coupon
       can :create, Coupon

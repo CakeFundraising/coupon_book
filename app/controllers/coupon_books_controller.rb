@@ -45,6 +45,11 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/coupons'
   end
 
+  def categories
+    @categories = resource.categories
+    render 'coupon_books/show/categories'
+  end
+
   def request_coupons
     @coupon_book = resource.decorate
     render 'coupon_books/template/request_coupons'

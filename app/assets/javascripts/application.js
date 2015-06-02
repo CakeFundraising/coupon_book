@@ -19,6 +19,9 @@
 //= require ./jquery.expander.min
 
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require modernizr
 
 //= require cloudinary/jquery.ui.widget

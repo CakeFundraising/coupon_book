@@ -20,9 +20,9 @@ CakeCouponBook::Application.routes.draw do
       patch :toggle_visibility
       patch :update_order
 
-      post :tree
       get :start_discount
       get :start_pr_box
+      get :categories, format: :json
       get :download
     end
   end
@@ -58,11 +58,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :pr_boxes, except: [:index, :show] do
-    collection do
-      post :sp_create
-    end
-  end
+  resources :pr_boxes, except: [:index, :show]
 
   scope :users, controller: :users do
     get :sign_in
@@ -73,6 +69,11 @@ CakeCouponBook::Application.routes.draw do
   resources :coupon_sponsors
   resources :subscriptors, only: :create
   resources :purchases, only: :create
+
+  scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
+    get :collection_coupons
+    get :collection_pr_boxes
+  end
 
   namespace :dashboard do
     scope :fundraiser, controller: :fundraiser do
