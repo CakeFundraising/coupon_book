@@ -8,7 +8,6 @@ class Coupon < ActiveRecord::Base
   has_statuses :incomplete, :launched, :past
   
   has_one :location, as: :locatable, dependent: :destroy
-  #has_one :pr_box, as: :parent, dependent: :destroy
   has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
   
   belongs_to :origin_collection, class_name: 'Collection', foreign_key: :collection_id
@@ -25,11 +24,9 @@ class Coupon < ActiveRecord::Base
   validates :terms, acceptance: true, if: :new_record?
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
-  #accepts_nested_attributes_for :pr_box, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
   
   validates_associated :location
-  #validates_associated :pr_box
   validates_associated :avatar_picture
 
   monetize :price_cents

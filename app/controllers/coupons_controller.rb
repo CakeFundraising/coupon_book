@@ -9,7 +9,12 @@ class CouponsController < InheritedResources::Base
   ]
 
   def new
-    @coupon = current_sponsor.present? ? Coupon.build_sp_coupon(current_sponsor) : Coupon.build_fr_coupon(current_fundraiser)
+    @coupon = if current_sponsor.present? 
+      session[:fr_collection_id] = params[:fr_collection_id] if params[:fr_collection_id].present?
+      Coupon.build_sp_coupon(current_sponsor) 
+    else
+      Coupon.build_fr_coupon(current_fundraiser)
+    end
   end
 
   # Template Actions
@@ -20,11 +25,12 @@ class CouponsController < InheritedResources::Base
 
   def news
     @coupon = resource.decorate
-    @pr_box = @coupon.pr_box || @coupon.build_pr_box
+    @pr_box = PrBox.new
     render 'coupons/template/news'
   end
 
   def launching
+    session.delete(:fr_collection_id) if session[:fr_collection_id].present?
     @coupon = resource.decorate
     render 'coupons/template/launch'
   end

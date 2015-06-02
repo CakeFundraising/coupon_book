@@ -1,6 +1,8 @@
 class PrBox < ActiveRecord::Base
   include Picturable
 
+  attr_accessor :coupon_id
+
   FLAG_OPTIONS = [
     "Thank You!",
     "Important News!",

@@ -18,6 +18,20 @@ class PrBoxesController < InheritedResources::Base
     end
   end
 
+  def sp_create
+    @pr_box = PrBox.new(permitted_params[:pr_box])
+    @pr_box.origin_collection = current_sponsor.collection
+
+    @collection = Collection.find(session[:fr_collection_id])
+    @collection.pr_boxes << @pr_box
+
+    create! do |success, failure|
+      success.html do
+        redirect_to launching_coupon_path(params[:pr_box][:coupon_id]), notice: 'Pr Box created successfully.'
+      end
+    end
+  end
+
   private
 
   def set_collection
