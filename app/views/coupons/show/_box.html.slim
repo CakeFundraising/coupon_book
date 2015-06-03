@@ -23,11 +23,10 @@
         .order-up-label 
           = image_tag 'orderup.png'
       .coupon-box.clearfix
-        - unless coupon.pr_box_flag
-          .col-md-2.col-sm-2.sp-box
-            = coupon_sp_pic(coupon)
-            h4.sp_name = coupon.sponsor_name
-            = coupon_main_location(coupon)
+        .col-md-2.col-sm-2.sp-box
+          = coupon_sp_pic(coupon)
+          h4.sp_name = coupon.sponsor_name
+          = coupon_main_location(coupon)          
         .col-md-10.col-xs-10
           .row
             .col-md-4.col-xs-12.coupon_pic_col
@@ -36,26 +35,20 @@
             .col-md-6.col-xs-12
               div.coupon-content
                 h2 = coupon
-                - unless coupon.pr_box_flag
-                  h3
-                    |Expires: 
-                    span = coupon.expires_at_american
+                h3
+                  |Expires: 
+                  span = coupon.expires_at_american                  
                 hr
                 p.expander-250 = coupon.description
             .col-md-2.col-xs-12.text-center
               .hidden-xs.hidden-sm = coupon.picture.qrcode
-              - unless coupon.pr_box_flag
-                .promo-code
-                  .boldest Promo Code:
-                  - if coupon.order_up
-                    = link_to '#coupons' do 
-                      = image_tag 'orderup.png', class:'orderup-logo'
-                  - else
-                    span 
-                      = link_to 'Buy to Unlock', '#coupons', class:'btn btn-success'
-                .row.terms
-                  .col-xs-12
-                    a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
+              .promo-code
+                .boldest Promo Code:
+                span 
+                  = link_to 'Buy to Unlock', '#coupons', class:'btn btn-success'
+              .row.terms
+                .col-xs-12
+                  a data-toggle="modal" data-target="#coupon_terms" Terms & Conditions
         
         - unless coupon.object.multiple_locations.blank?
           .row
