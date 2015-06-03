@@ -605,12 +605,12 @@ p.signup-social span:before, p.signup-social span:after {
     margin-right: 0px;
     .stat {
       display: inline-block;
-      margin: 10px 10px 5px 30px;
+      margin: 10px 10px 5px 10px;
       text-align: center;
       border-left: 1px solid #cccccc;
-      padding-left: 50px;
-      span{
-
+      padding-left: 10px;
+      &:first-child{
+        border-left: none;
       }
       a{
         margin: 2px;
