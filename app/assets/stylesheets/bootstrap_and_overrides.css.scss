@@ -513,6 +513,17 @@ p.signup-social span:before, p.signup-social span:after {
   }
 }
 
+.btn-transparent-dark{
+  background: rgba(0,0,0,0.5);
+  border: 1px solid;
+  color: white;
+  &:hover{
+    background: rgba(0,0,0,0.2) !important;
+    color: white;
+    background: none;
+  }
+}
+
 .pagination{
   float: right;
   padding-right: 20px;
@@ -1010,15 +1021,9 @@ $lines-to-show: 2;
 }
 
 .pull-up {
-  margin-top: -270px;
-  &.pull-up-hero{
-   margin-top: -315px; 
-  }
-  &.pull-up-pledge{
-    margin-top: -315px;
-  }
+  margin-top: -319px;
   @media (max-width: $screen-sm-max) {
-    margin-top: -330px;
+    margin-top: -380px;
     &.pull-up-hero{
      margin-top: -375px; 
     }
@@ -1048,7 +1053,7 @@ h1.name {
 }
 
 .campaign-intro {
-  bottom: -265px;
+  margin-top: 65px;
   .name {
     color: #fff;
     display: inline-table;
@@ -1100,13 +1105,12 @@ h1.name {
   border: 1px solid #dddddd;
   border-radius: $border-radius-base;
   margin-bottom: 10px;
-  /*height: 300px;*/
   hr {
     margin-top:10px;  
     margin-bottom:10px;  
   }
   &.campaign-sidebar{
-    margin-top: -80px;
+    margin-top: -85px;
     margin-bottom: 0;
     box-shadow: 0px 0px 15px $gray-dark;
     &.regular-campaign-sidebar{
@@ -1434,6 +1438,9 @@ table.performance-summary {
   h3{
     color: white;
     margin: 0;
+  }
+  &#coupons{
+    margin-top: -1px;
   }
 }
 
