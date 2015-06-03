@@ -2174,12 +2174,12 @@ a {
   }
   .order-up-label{
     position: absolute;
-    right: 0;
-    width: 110px;
+    right: 5px;
+    width: 75px;
     z-index: 9;
-    margin-top: -35px;
-    img{
-      width: 110px;
+    margin-top: -24px;
+    img, .orderup-logo{
+      width: 75px;
     }
   }
 }
@@ -2187,6 +2187,10 @@ a {
   .news-actions{
     left: 103px;
   }
+}
+
+.orderup-logo{
+  width: 75px !important;
 }
 
 .coupon-box{
@@ -4328,4 +4332,8 @@ span.banner-heading{
   padding:10px;
   margin: -7px;
   z-index: 99;
+}
+
+.pr_box_pic_col{
+  padding-left: 0;
 }
