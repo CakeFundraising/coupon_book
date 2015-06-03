@@ -10,6 +10,7 @@
           = f.semantic_errors *f.object.errors.keys
           = f.inputs do
             = f.input :name, input_html:{size: 30, maxlength: 30, placeholder: '30 characters or less'}
+            = f.input :subtitle, input_html:{size: 100, maxlength: 100, placeholder: '100 characters or less'}
             = f.input :coupon_book_id, as: :hidden
           = f.actions do
             .text-center
