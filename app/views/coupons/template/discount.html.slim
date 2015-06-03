@@ -65,10 +65,12 @@
               .coupon-images
                 h4 Primary Image
                 = render partial:'pictures/avatar_form', locals:{f: f}
+                = f.input :order_up
             .col-sm-5
               .coupon-images
                 h4 Upload a QR Code or a second image (Optional)
                 = render partial:'pictures/qrcode_form', locals:{f: f}
+                = f.input :pr_box_flag
             .col-md-1
             
       - if current_sponsor.present?

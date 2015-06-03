@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150603163141) do
+ActiveRecord::Schema.define(version: 20150603165841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,8 @@ ActiveRecord::Schema.define(version: 20150603163141) do
     t.string   "price_currency",              default: "USD",        null: false
     t.string   "sponsor_name"
     t.integer  "collection_id"
+    t.boolean  "order_up",                    default: false
+    t.boolean  "pr_box_flag",                 default: false
   end
 
   create_table "locations", force: :cascade do |t|

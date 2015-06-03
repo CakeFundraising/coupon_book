@@ -2155,6 +2155,9 @@ a {
   font-size: 18px;
 }
 .coupon-wrapper{
+  &.orderup-coupon{
+    margin-top: 20px;
+  }
   .coupon-actions{
     position: absolute;
     right: 120px;
@@ -2169,6 +2172,16 @@ a {
       margin-bottom: 7px;
     }
   }
+  .order-up-label{
+    position: absolute;
+    right: 0;
+    width: 110px;
+    z-index: 9;
+    margin-top: -35px;
+    img{
+      width: 110px;
+    }
+  }
 }
 .coupons_section{
   .news-actions{
@@ -2181,7 +2194,7 @@ a {
   background-color: #fff;
   border-radius: $border-radius-base;
   box-shadow: 0px 0px 5px #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   .sp-box{
     padding-left: 0;
     border-right: 1px dotted #ddd;
