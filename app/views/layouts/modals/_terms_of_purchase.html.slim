@@ -1,0 +1,14 @@
+#terms_of_purchase_modal.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Terms of Purchase
+      .modal-body
+        = t('application.terms_and_conditions.top').html_safe
+      .modal-footer
+        button.btn.btn-default data-dismiss="modal" type="button"  Close
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

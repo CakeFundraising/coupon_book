@@ -34,6 +34,71 @@ customMethods = ->
 
   return
 
+class IncompleteTemplate
+  constructor: (options) ->
+    @model = options.model
+    @form = $(".formtastic.#{@model}")
+    @status = options.status
+    @deleteUrl = options.deleteUrl
+    @message = "Are you sure you want to leave? \n Your changes will not be saved."
+
+    @onWindowClosing()
+    @init()
+    return
+
+  init: ->
+    self = this
+    if @status is 'Incomplete' and @formInvalid()
+      #Turbolinks
+      $(document).on "page:before-change", (e)->
+        e.preventDefault()
+        self.showMessage()
+        return
+      #Normal links
+      $('a[data-no-turbolink="true"]').click (e)->
+        e.preventDefault()
+        self.showMessage()
+        return
+      #Closing page
+      # window.onbeforeunload = ->
+      #   e = $.Event('cake:page:closing')
+      #   $(window).trigger e
+      #   #return e.message || self.message if e.isDefaultPrevented()
+      #   return
+    return
+
+  showMessage: ->
+    r = confirm(@message)
+    @deleteObject() if r
+    return
+
+  onWindowClosing: ->
+    self = this
+    $(window).on 'cake:page:closing', (e) ->
+      e.preventDefault()
+      self.deleteObject()
+      return
+    return
+
+  formInvalid: ->
+    eval("CakeCouponBook."+ @model + "s.validation()")
+    return !@form.valid()
+  
+  deleteObject: ->
+    self = this
+    $.ajax
+      url: @deleteUrl
+      type: 'DELETE'
+      success: (result) ->
+        alert "Your #{self.model} was deleted."
+        return
+    return
+
+
+CakeCouponBook.validations.incomplete_template = (options)->
+  new IncompleteTemplate(options)
+  return
+
 CakeCouponBook.validations.init = ->
   customMethods()
   CakeCouponBook.coupons.validation()

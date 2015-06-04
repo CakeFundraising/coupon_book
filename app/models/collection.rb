@@ -4,6 +4,6 @@ class Collection < ActiveRecord::Base
   belongs_to :owner, polymorphic: true
 
   def owner
-    self.owner_type.constantize[self.owner_id]
+    self.owner_type.constantize.fetch(self.owner_id)
   end
 end

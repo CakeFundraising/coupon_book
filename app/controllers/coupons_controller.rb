@@ -70,8 +70,12 @@ class CouponsController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
-        redirect_to path, notice: 'Coupon was successfully destroyed.'
+        if request.xhr?
+          render nothing: true
+        else
+          path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+          redirect_to path, notice: 'Coupon was successfully destroyed.'
+        end
       end
     end
   end
@@ -88,20 +92,12 @@ class CouponsController < InheritedResources::Base
       coupon: [
         :position, :title, :description, :promo_code, :terms, :url, :sponsor_url, 
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
-        :price, :custom_terms, :sponsor_name, :collection_id, merchandise_categories: [],
+        :price, :custom_terms, :sponsor_name, :collection_id, :order_up, :pr_box_flag,
+        merchandise_categories: [],
         location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
         avatar_picture_attributes: [
           :id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, 
           :avatar_crop_w, :avatar_crop_h, :bypass_cloudinary_validation
-        ],
-        pr_box_attributes: [
-          :id, :headline, :story, :url,
-          picture_attributes: [
-            :id, :banner, :avatar, :qrcode, :avatar_caption,
-            :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
-            :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h,
-            :qrcode_crop_x, :qrcode_crop_y, :qrcode_crop_w, :qrcode_crop_h
-          ]
         ],
         picture_attributes: [
           :id, :banner, :avatar, :qrcode, :avatar_caption,
