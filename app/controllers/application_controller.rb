@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
   end
 
   def current_fundraiser
-    current_user.fundraiser if current_user.fundraiser?
+    current_user.fundraiser if current_user.present? and current_user.fundraiser?
   end
 
   def current_sponsor
-    current_user.sponsor if current_user.sponsor?
+    current_user.sponsor if current_user.present? and current_user.sponsor?
   end
 end

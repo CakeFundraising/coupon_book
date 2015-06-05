@@ -34,6 +34,7 @@ gem 'bootstrap-kaminari-views'
 #Storage
 gem 'pg'
 gem 'ohm'
+gem 'redis-rails'
 
 #Solr
 gem 'sunspot_rails'

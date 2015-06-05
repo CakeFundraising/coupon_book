@@ -16,7 +16,7 @@ class Ability
     end
 
     if user.sponsor?
-      can :create, Coupon, owner: user.sponsor
+      can :create, Coupon
       can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user.sponsor
     end
 
