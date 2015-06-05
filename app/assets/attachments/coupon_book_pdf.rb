@@ -4,7 +4,7 @@ class CouponBookPdf < Pdf
   def initialize(book)
     @document = Prawn::Document.new(page_layout: :landscape, page_size: "A4")
     @book = book
-    @coupons = @book.coupons.decorate
+    @coupons = @book.coupons.launched.decorate
     header
     body
   end

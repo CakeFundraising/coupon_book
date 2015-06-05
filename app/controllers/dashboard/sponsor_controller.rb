@@ -6,6 +6,6 @@ class Dashboard::SponsorController < ApplicationController
   end
 
   def coupons
-    @coupons = current_sponsor.coupons.decorate
+    @coupons = current_sponsor.coupons.launched.decorate
   end
 end
