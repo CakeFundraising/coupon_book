@@ -70,12 +70,8 @@ class CouponsController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        if request.xhr?
-          render nothing: true
-        else
-          path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
-          redirect_to path, notice: 'Coupon was successfully destroyed.'
-        end
+        path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+        redirect_to path, notice: 'Coupon was successfully destroyed.'
       end
     end
   end
