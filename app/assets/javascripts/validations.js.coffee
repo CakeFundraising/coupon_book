@@ -90,7 +90,7 @@ class IncompleteTemplate
       url: @deleteUrl
       type: 'DELETE'
       success: (result) ->
-        alert "Your #{self.model} was deleted."
+        window.location = result
         return
     return
 

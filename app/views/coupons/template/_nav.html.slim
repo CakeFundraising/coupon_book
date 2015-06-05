@@ -6,7 +6,6 @@
       ul.nav.nav-pills
         = wizard_menu_item(edit_coupon_path(@coupon), t('links.wizards.coupon.sponsor'))
         = wizard_menu_item(discount_coupon_path(@coupon), t('links.wizards.coupon.discount'))
-        = wizard_menu_item(news_coupon_path(@coupon), t('links.wizards.coupon.news')) if current_sponsor.present?
         = wizard_menu_item(launching_coupon_path(@coupon), t('links.wizards.coupon.launch'))
     - else
       ul.nav.nav-pills
@@ -14,8 +13,5 @@
           a data-toggle="tab" href="#main" = t('links.wizards.coupon.sponsor')
         li 
           a href="" = t('links.wizards.coupon.discount')
-        - if current_sponsor.present?
-          li 
-            a href="" = t('links.wizards.coupon.news')
         li 
           a href="" = t('links.wizards.coupon.launch')

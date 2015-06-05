@@ -4,7 +4,6 @@ class CouponsController < InheritedResources::Base
   TEMPLATE_STEPS = [
     :sponsor,
     :discount,
-    :news,
     :launching
   ]
 
@@ -16,12 +15,6 @@ class CouponsController < InheritedResources::Base
   def discount
     @coupon = resource
     render 'coupons/template/discount'
-  end
-
-  def news
-    @coupon = resource.decorate
-    @pr_box = @coupon.pr_box || @coupon.build_pr_box
-    render 'coupons/template/news'
   end
 
   def launching
@@ -71,7 +64,11 @@ class CouponsController < InheritedResources::Base
     destroy! do |success, failure|
       success.html do
         path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
-        redirect_to path, notice: 'Coupon was successfully destroyed.'
+        if request.xhr?
+          render text: path
+        else
+          redirect_to path, notice: 'Coupon was successfully destroyed.'
+        end
       end
     end
   end

@@ -73,10 +73,7 @@
                 = f.input :pr_box_flag
             .col-md-1
             
-      - if current_sponsor.present?
-        = f.input :step, as: :hidden, input_html:{value: :news}
-      - else
-        = f.input :step, as: :hidden, input_html:{value: :launching}
+      = f.input :step, as: :hidden, input_html:{value: :launching}
 
       .text-center
         = f.actions do
@@ -89,5 +86,7 @@ javascript:
     status: "#{@coupon.status.capitalize}",
     deleteUrl: "#{coupon_path(@coupon)}"
   };
-  CakeCouponBook.validations.incomplete_template(options);
+  $(document).ready(function(){
+    CakeCouponBook.validations.incomplete_template(options);
+  });
 
