@@ -13,8 +13,12 @@ module CakeHelper
     "#{CAKE_ROOT_URL}/users/sign_in"
   end
 
-  def cake_new_user_registration_path
-    "#{CAKE_ROOT_URL}/users/sign_up"
+  def cake_new_user_registration_path(params=nil)
+    if params.present?
+      "#{CAKE_ROOT_URL}/users/sign_up?#{params.to_query}"
+    else
+      "#{CAKE_ROOT_URL}/users/sign_up"
+    end
   end
 
   def cake_fundraiser_path(page)

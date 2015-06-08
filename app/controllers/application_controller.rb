@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :set_cake_access_token
   helper_method :current_user, :current_fundraiser, :current_sponsor
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -11,10 +12,16 @@ class ApplicationController < ActionController::Base
   end
 
   def current_fundraiser
-    current_user.fundraiser if current_user.fundraiser?
+    current_user.fundraiser if current_user.present? and current_user.fundraiser?
   end
 
   def current_sponsor
-    current_user.sponsor if current_user.sponsor?
+    current_user.sponsor if current_user.present? and current_user.sponsor?
+  end
+
+  private
+
+  def set_cake_access_token
+    session[:access_token] = params[:cat] if params[:cat].present?
   end
 end

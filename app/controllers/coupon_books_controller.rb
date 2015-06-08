@@ -2,6 +2,7 @@ class CouponBooksController < InheritedResources::Base
   load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
+  before_action :block_fr, only: [:start_discount, :start_pr_box]
   before_action :redirect_to_billing, only: :launch
 
   TEMPLATE_STEPS = [
@@ -38,7 +39,7 @@ class CouponBooksController < InheritedResources::Base
     @coupon_book = resource
 
     @collection = current_fundraiser.collection
-    @collections_coupons = @collection.coupons.latest.decorate
+    @collections_coupons = @collection.coupons.launched.latest.decorate
 
     @categories = resource.categories.with_coupons.decorate
 
@@ -153,6 +154,10 @@ class CouponBooksController < InheritedResources::Base
 
   def redirect_to_billing
     redirect_to cake_fundraiser_path(:billing) unless resource.fundraiser.stripe_publishable_key.present?
+  end
+
+  def block_fr
+    redirect_to coupon_books_path, alert: "You're not authorized to see this page." if current_fundraiser.present?
   end
 
   def permitted_params

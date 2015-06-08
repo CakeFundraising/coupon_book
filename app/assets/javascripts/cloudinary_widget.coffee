@@ -81,7 +81,6 @@ class Widget
     @preview.html(previewImgPath)
     return
 
-
 CakeCouponBook.widget.new = (options)->
   new Widget(options)
   return

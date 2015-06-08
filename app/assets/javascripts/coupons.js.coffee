@@ -39,6 +39,7 @@ CakeCouponBook.coupons.validation = ->
         url: true
       'coupon[price]': 
         required: true
+        minStrict: 1
       'coupon[avatar_picture_attributes][uri]':
         required: true
   )

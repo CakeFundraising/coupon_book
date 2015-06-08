@@ -24,7 +24,7 @@
             = f.input :step, as: :hidden, input_html:{value: :discount}
             = f.input :collection_id, as: :hidden
             = f.input :fr_collection_id, as: :hidden, input_html:{value: params[:fr_collection_id]} if current_sponsor.present?
-            = f.input :terms, as: :boolean, label:' I agree to Cake Terms of Use' if f.object.new_record?
+            = f.input :terms, as: :boolean, label:' I have authorization from the merchant named above to create this discount offer' if f.object.new_record?
         .row.text-center
           = f.actions do
             = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

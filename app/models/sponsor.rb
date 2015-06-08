@@ -70,6 +70,7 @@ class Sponsor < Ohm::Model
         banner_crop_h: data["picture"]["banner_crop_h"]
       )
       sponsor.create_collection if sponsor.collection.nil?
+      sponsor
     end
   end
 

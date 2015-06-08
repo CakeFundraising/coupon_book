@@ -9,7 +9,8 @@
           .stat
             span = coupon_book.goal
           .stat
-            span $2500
+            span = coupon_book.current_sales
+            
           = render partial:'coupon_books/show/actions', locals:{coupon_book: coupon_book}
             
   .panel-collapse.collapse id=(coupon_book.id)

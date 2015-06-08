@@ -14,9 +14,9 @@ class UploaderInput < Formtastic::Inputs::FileInput
   end
 
   def picture_html
+    upload_button +
     template.content_tag(:div, class: method.to_s) do
-      object.decorate.send(method) +
-      upload_button
+      object.decorate.send(method)
     end
   end
 

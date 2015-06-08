@@ -8,6 +8,6 @@ class Collection < ActiveRecord::Base
   has_many :pr_boxes, through: :collection_pr_boxes
 
   def owner
-    self.owner_type.constantize[self.owner_id]
+    self.owner_type.constantize.fetch(self.owner_id)
   end
 end

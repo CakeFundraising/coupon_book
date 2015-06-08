@@ -7,7 +7,7 @@ br
   .col-md-6.divider-vert
     .fundraisers-cir
       h2 I'm new to Cake
-      = link_to 'Start Here', cake_new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
+      = link_to 'Start Here', cake_new_user_registration_path(redirect_to: new_coupon_url(collection_id: @collection_id)), class:'btn btn-primary btn-lg start-now-btn'
   .col-md-6
     .sponsors-cir
       h2 I have a Cake account
