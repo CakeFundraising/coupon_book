@@ -30,5 +30,7 @@ module CakeCouponBook
       #{config.root}/app/assets/attachments
     )
 
+    config.exceptions_app = self.routes
+
   end
 end

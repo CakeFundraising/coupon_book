@@ -19,7 +19,7 @@ class CouponBooksController < InheritedResources::Base
 
   def show
     @coupon_book = resource.decorate
-    @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+    @header_banner = I18n.t('banners.coupon_book.header', fr: (@coupon_book.organization_name || @coupon_book.fundraiser), price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
     @categories = @coupon_book.categories.with_coupons.decorate
   end
 
@@ -161,7 +161,8 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
+    params.permit(coupon_book: [
+      :name, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [

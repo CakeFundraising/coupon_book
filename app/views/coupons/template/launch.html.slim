@@ -23,4 +23,12 @@
           a data-toggle="modal" data-target="#preview-coupon-#{@coupon.id}" Preview
       - else
         h1 Your coupon has been Launched!
+
+        - if current_fundraiser.present?
+          = link_to 'Return to Active Books', coupon_books_path, class:'btn btn-primary btn-lg'
+        - else
+          = link_to 'Return to My Coupons', dashboard_sponsor_coupons_path, class:'btn btn-primary btn-lg'
+          
+        = link_to 'Add Another Discount', new_coupon_path, class:'btn btn-success btn-lg'
+
         
