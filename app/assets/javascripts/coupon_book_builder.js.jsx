@@ -2,8 +2,8 @@
 
 $(document).ready(function () {
 
-var container = document.getElementById('my-collection');
-var collectionCoupons = "http://localhost:3001/fundraisers/collection_coupons";
+var container = document.getElementById('my-discounts');
+var collectionCoupons = "/fundraisers/collection_coupons";
 
 React.render(
     <div>
