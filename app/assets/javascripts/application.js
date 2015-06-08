@@ -17,6 +17,8 @@
 //= require jquery.Jcrop
 //= require ./jquery.countdown.min
 //= require ./jquery.expander.min
+//= require ./Sortable
+//= require ./react-sortable-mixin
 
 //= require turbolinks
 //= require react
