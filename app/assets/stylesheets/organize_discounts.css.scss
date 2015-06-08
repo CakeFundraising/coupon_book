@@ -1,0 +1,40 @@
+@import 'variables';
+
+.collection-coupons{
+  list-style: none;
+  clear: both;
+  margin: 0;
+  padding: 0;
+}
+
+.coupon-list {
+  border: 1px solid $gray-medium-light;
+  padding: 8px;
+  position: relative;
+
+  &--item,
+  &--title {
+    display: block;
+    font-size: 12px;
+  }
+
+  &:hover {
+    cursor: move;
+  }
+}
+
+.couponActions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  padding: 8px;
+  border-left: 1px solid $gray-medium-light;
+
+  &--item {
+    display: inline;
+  }
+
+  @extend .collection-coupons;
+}
