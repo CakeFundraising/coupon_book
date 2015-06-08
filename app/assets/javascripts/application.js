@@ -17,8 +17,13 @@
 //= require jquery.Jcrop
 //= require ./jquery.countdown.min
 //= require ./jquery.expander.min
+//= require ./Sortable
+//= require ./react-sortable-mixin
 
 //= require turbolinks
+//= require react
+//= require react_ujs
+//= require components
 //= require modernizr
 
 //= require cloudinary/jquery.ui.widget
