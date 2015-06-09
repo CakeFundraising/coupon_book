@@ -14,7 +14,7 @@ var CouponList = React.createClass({
 
     getInitialState: function() {
         return {
-            coupons: []
+            items: []
         };
     },
 
@@ -22,7 +22,7 @@ var CouponList = React.createClass({
         $.get(this.props.source, function(data) {
             if (this.isMounted()) {
                 this.setState({
-                    coupons: data
+                    items: data
                 });
             }
         }.bind(this));
@@ -38,12 +38,10 @@ var CouponList = React.createClass({
 
     renderCouponItem: function () {
         return (
-            this.state.coupons.map (function (item, index) {
-                var indexBase = index + 1;
-
+            this.state.items.map (function (item, index) {
                 return (
                     <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
-                        <span className="coupon-list--item">{'Coupon ' + indexBase}</span>
+                        <span className="coupon-list--item">{'Coupon ' + item.id}</span>
                         <span className="coupon-list--title">{item.title}</span>
                         <CouponActions className="couponActions" couponId={item.id} />
                     </li>
