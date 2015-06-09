@@ -23,9 +23,6 @@ gem 'react-rails'
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 
-#ReactJS
-gem 'react-rails'
-
 #Views
 gem 'slim'
 gem 'slim-rails'
