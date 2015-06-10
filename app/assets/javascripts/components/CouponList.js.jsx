@@ -9,6 +9,7 @@ var CouponList = React.createClass({
 
     sortableOptions: {
         group: "organize",
+        model: "items",
         animation: 200
     },
 

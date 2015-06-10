@@ -9,7 +9,7 @@ var BookCategoryDiscounts = React.createClass({
 
     getInitialState: function () {
         return {
-            items: ['items', 'another item']
+            items: ['']
         };
     },
 
@@ -25,8 +25,12 @@ var BookCategoryDiscounts = React.createClass({
         return (
             this.state.items.map (function (item, index) {
                 return (
-                    <li className="coupon-list" key={index}>
-                        {item}
+                    <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
+                        <span className="coupon-list--container">
+                            <span className="coupon-list--item">{'Coupon ' + item.id}</span>
+                            <span className="coupon-list--title">{item.title}</span>
+                        </span>
+                        <CouponActions className="couponActions" couponId={item.id} />
                     </li>
                 );
             })
