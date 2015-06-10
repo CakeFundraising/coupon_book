@@ -6,9 +6,10 @@
   margin: 0;
   padding: 0;
 
-  &.empty {
-    min-height: 120px;
+  .empty-list {
+    min-height: 70px;
   }
+
 }
 
 .coupon-list,

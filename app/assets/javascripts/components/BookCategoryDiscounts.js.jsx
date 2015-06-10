@@ -9,8 +9,12 @@ var BookCategoryDiscounts = React.createClass({
 
     getInitialState: function () {
         return {
-            items: ['']
+            items: []
         };
+    },
+
+    handleAdd: function () {
+        console.log(this.state.items);
     },
 
     render: function() {
@@ -22,18 +26,22 @@ var BookCategoryDiscounts = React.createClass({
     },
 
     renderCategoryList: function () {
-        return (
-            this.state.items.map (function (item, index) {
-                return (
-                    <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
+        if (this.state.items.length !== 0) {
+            return (
+                this.state.items.map (function (item, index) {
+                    return (
+                        <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
                         <span className="coupon-list--container">
                             <span className="coupon-list--item">{'Coupon ' + item.id}</span>
                             <span className="coupon-list--title">{item.title}</span>
                         </span>
-                        <CouponActions className="couponActions" couponId={item.id} />
-                    </li>
-                );
-            })
-        );
+                            <CouponActions className="couponActions" couponId={item.id} />
+                        </li>
+                    );
+                })
+            );
+        } else {
+            return <li className="empty-list"></li>
+        }
     }
 });
