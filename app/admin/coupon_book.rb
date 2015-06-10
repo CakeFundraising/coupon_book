@@ -84,7 +84,6 @@ ActiveAdmin.register CouponBook do
       f.input :fundraiser_id, as: :select, collection: Fundraiser.all.to_a
     end
 
-
     f.actions
   end
 

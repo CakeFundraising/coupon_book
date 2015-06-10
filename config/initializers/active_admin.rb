@@ -251,6 +251,10 @@ module ActiveAdmin
       def bool_column(attribute)
         column(attribute){ |model| model[attribute] ? '&#x2714;'.html_safe : '&#x2717;'.html_safe }
       end
+
+      def url_column(attribute)
+        column(attribute){ |model| link_to model[attribute], model[attribute] }
+      end
     end
     class AttributesTable
       def bool_row(attribute)
