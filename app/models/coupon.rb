@@ -33,6 +33,9 @@ class Coupon < ActiveRecord::Base
 
   scope :latest, ->{ order('coupons.created_at DESC') }
 
+  scope :to_end, ->{ not_past.where("expires_at <= ?", Time.zone.now) }
+  scope :active, ->{ not_past.where("expires_at > ?", Time.zone.now) }
+
   alias_method :sp_picture, :avatar_picture
 
   delegate :owner, to: :origin_collection

@@ -49,6 +49,14 @@ class CouponBookDecorator < ApplicationDecorator
     object.status.titleize
   end
 
+  def causes
+    object.causes.join(", ")
+  end
+
+  def scopes
+    object.scopes.join(", ")
+  end
+
   def visitor_action
     return "Join, Sign Up or Volunteer!" if object.visitor_action.blank?
     object.visitor_action
@@ -58,6 +66,10 @@ class CouponBookDecorator < ApplicationDecorator
     unless object.visitor_url.blank?
       (object.visitor_url=~/^https?:\/\//).nil? ? "http://#{object.visitor_url}" : object.visitor_url
     end
+  end
+
+  def visitor_url_link
+    h.auto_attr_link visitor_url, target: :_blank
   end
 
   def url

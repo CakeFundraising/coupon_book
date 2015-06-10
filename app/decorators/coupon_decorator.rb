@@ -25,10 +25,18 @@ class CouponDecorator < ApplicationDecorator
     object.title
   end
 
+  def price
+    h.humanized_money_with_symbol object.price
+  end
+
   def url
     unless object.url.blank?
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
     end
+  end
+
+  def url_link
+    h.auto_attr_link url, target: :_blank
   end
 
   def sponsor_url
@@ -55,5 +63,9 @@ class CouponDecorator < ApplicationDecorator
 
   def location
     object.multiple_locations.blank? ? main_location : object.multiple_locations
+  end
+
+  def status
+    object.status.titleize
   end
 end
