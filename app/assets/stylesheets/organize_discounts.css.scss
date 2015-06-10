@@ -1,12 +1,18 @@
 @import 'variables';
 
-.collection-coupons{
+.collection-coupons,
+.collection-category {
   list-style: none;
   margin: 0;
   padding: 0;
+
+  &.empty {
+    min-height: 120px;
+  }
 }
 
-.coupon-list {
+.coupon-list,
+.category-list {
   border: 1px solid $gray-medium-light;
   padding: 8px;
   overflow: hidden;
@@ -23,6 +29,20 @@
   }
 }
 
+.category-list {
+  padding: 0;
+  border: 0;
+  position: relative;
+
+  &--title {
+    background: $brand-primary;
+    color: white;
+    font-size: $font-size-h3;
+    display: block;
+    padding: 8px;
+  }
+}
+
 .coupon-list--container {
   float: left;
   max-width: 70%;
@@ -36,6 +56,18 @@
 
   &--item {
     display: inline;
+  }
+
+  &.couponActions-category {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 8px 0 0;
+    border: 0;
+
+    &--item {
+      border: 0;
+    }
   }
 
   @extend .collection-coupons;
