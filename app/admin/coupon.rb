@@ -36,6 +36,18 @@ ActiveAdmin.register Coupon do
     end
   end
 
+  filter :title
+  filter :description
+  filter :promo_code
+  filter :price_cents
+  filter :multiple_locations
+  filter :sponsor_name
+  filter :phone
+  filter :universal
+  filter :location
+  filter :categories
+  filter :status, as: :select, collection: Coupon.statuses[:status].map{|s| s.to_s.titleize }.zip(Coupon.statuses[:status])
+
   form do |f|
     f.semantic_errors *f.object.errors.keys
     f.inputs do
