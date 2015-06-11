@@ -5,10 +5,10 @@ var CouponActions = React.createClass({
     render: function() {
         return (
             <ul className={this.props.className}>
-                <li className={this.props.className + '--item'}>
+                <li className={this.props.className + '--item ' + (this.props.noPreview ? 'hide' : '')}>
                     <Button
                         iconType="eye-open"
-                        className={'btn btn-sm btn-success' + (this.props.noPreview ? 'hide' : '')}
+                        className={'btn btn-sm btn-success'}
                         data-target={'#preview-coupon-' + this.props.couponId}
                         data-toggle="modal">Preview
                     </Button>
