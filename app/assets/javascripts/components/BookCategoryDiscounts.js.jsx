@@ -32,7 +32,7 @@ var BookCategoryDiscounts = React.createClass({
                                 <span className="coupon-list--item">{'Coupon ' + item.id}</span>
                                 <span className="coupon-list--title">{item.title}</span>
                             </span>
-                            <CouponActions className="couponActions" couponId={item.id} />
+                            <CouponActions closeIcon className="couponActions" couponId={item.id} />
                         </li>
                     );
                 })

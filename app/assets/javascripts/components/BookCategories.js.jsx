@@ -33,7 +33,8 @@ var BookCategories = React.createClass({
                         <span className="category-list--title">{item}</span>
                         <CouponActions
                             className="couponActions couponActions-category"
-                            couponId={item.id} />
+                            couponId={item.id}
+                            noPreview />
                         <BookCategoryDiscounts
                             className="collection-coupons"
                             id="collection-coupons-category"

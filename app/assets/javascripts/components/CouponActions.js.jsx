@@ -8,7 +8,7 @@ var CouponActions = React.createClass({
                 <li className={this.props.className + '--item'}>
                     <Button
                         iconType="eye-open"
-                        className="btn btn-sm btn-success"
+                        className={'btn btn-sm btn-success' + (this.props.noPreview ? 'hide' : '')}
                         data-target={'#preview-coupon-' + this.props.couponId}
                         data-toggle="modal">Preview
                     </Button>
@@ -22,8 +22,8 @@ var CouponActions = React.createClass({
                 </li>
                 <li className={this.props.className + '--item'}>
                     <Button
-                        iconType="trash"
-                        className="btn btn-sm btn-danger">Edit
+                        iconType= {this.props.closeIcon ? 'remove' : 'trash'}
+                        className="btn btn-sm btn-danger">Delete
                     </Button>
                 </li>
             </ul>
