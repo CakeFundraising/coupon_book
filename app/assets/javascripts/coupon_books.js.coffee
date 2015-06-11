@@ -53,7 +53,7 @@ launch = ->
     current.closest('td').html(launched_button)
     return
   ).on "ajax:error", (e, xhr, status, error) ->
-    alert "There was an error when updating coupon_book, please reload this page and try again."
+    alert "There was an error on launch, please reload this page and try again."
     return
   return
 
@@ -78,6 +78,7 @@ launch_template = ->
     return
   return
 
+
 CakeCouponBook.coupon_books.init = ->
   visibility()
   launch()
@@ -89,8 +90,26 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   toggleNav()
   mini_pledges()
   countdown(end_date)
+  showBuyButton()
+  afterPurchaseModal()
   #CakeCouponBook.impressions.rendered(impression_id)
   #Cake.pusher.coupon_books.updateRaised(campaignId) if campaignId
+  return
+
+afterPurchaseModal = ->
+  $('#after_purchase_modal').modal('show') if window.location.search.includes('purchased=1')
+  return
+
+showBuyButton = ->
+  button = $('.floating-right a.buy_button')
+
+  $(document).scroll ->
+    y = $(this).scrollTop()
+    if y > 400
+      button.fadeIn()
+    else
+      button.fadeOut()
+    return
   return
 
 #Campaign Show Functions

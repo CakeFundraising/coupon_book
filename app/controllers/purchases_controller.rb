@@ -4,7 +4,7 @@ class PurchasesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        redirect_to polymorphic_path(@purchase.purchasable), notice: "Thanks for helping! We sent a book with all vouchers to your email address: #{@purchase.email}"
+        redirect_to polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
       end
       failure.html do
         redirect_to @purchase.purchasable, alert: "There was an error with your payment, please try again."

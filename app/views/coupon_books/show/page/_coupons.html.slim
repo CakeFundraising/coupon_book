@@ -8,6 +8,11 @@
           = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-primary btn-xl buy_button', data: {price: @coupon_book.flat_price})
           /= coupon_book_buy_button(@coupon_book)
 
+.floating-right
+  = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-success btn-xl buy_button', data: {price: @coupon_book.flat_price})
+
+= render partial:'coupon_books/show/page/after_purchase'
+
 .row
   .col-md-12
     = render partial:'categories/show/coupon_book', collection: @categories, as: :category

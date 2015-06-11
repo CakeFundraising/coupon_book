@@ -1392,6 +1392,9 @@ table.performance-summary {
       margin-left: -76px;
     }
   }
+  a{
+    color: white;
+  }
 }
 
 .expand-nav{
@@ -4341,4 +4344,16 @@ span.banner-heading{
 
 .pr_box_pic_col{
   padding-left: 0;
+}
+
+.floating-right{
+  position: fixed;
+  z-index: 999;
+  right: 20px;
+  bottom: 40px;
+  a.buy_button{
+    display: none;
+    padding: 5px 15px !important;
+    box-shadow: 0px 0px 15px #aaa;
+  }
 }
