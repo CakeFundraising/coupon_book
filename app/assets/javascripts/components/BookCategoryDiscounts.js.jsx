@@ -5,8 +5,7 @@ var BookCategoryDiscounts = React.createClass({
     sortableOptions: {
         group: "organize",
         animation: 200,
-        ghostClass: 'sortable-ghost',
-        sort: false
+        ghostClass: 'sortable-ghost'
     },
 
     getInitialState: function () {
