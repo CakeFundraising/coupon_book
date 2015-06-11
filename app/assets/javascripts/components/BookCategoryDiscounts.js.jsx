@@ -4,17 +4,15 @@ var BookCategoryDiscounts = React.createClass({
 
     sortableOptions: {
         group: "organize",
-        animation: 200
+        animation: 200,
+        ghostClass: 'sortable-ghost',
+        sort: false
     },
 
     getInitialState: function () {
         return {
             items: []
         };
-    },
-
-    handleAdd: function () {
-        console.log(this.state.items);
     },
 
     render: function() {
@@ -31,10 +29,10 @@ var BookCategoryDiscounts = React.createClass({
                 this.state.items.map (function (item, index) {
                     return (
                         <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
-                        <span className="coupon-list--container">
-                            <span className="coupon-list--item">{'Coupon ' + item.id}</span>
-                            <span className="coupon-list--title">{item.title}</span>
-                        </span>
+                            <span className="coupon-list--container">
+                                <span className="coupon-list--item">{'Coupon ' + item.id}</span>
+                                <span className="coupon-list--title">{item.title}</span>
+                            </span>
                             <CouponActions className="couponActions" couponId={item.id} />
                         </li>
                     );
