@@ -7,7 +7,7 @@ class Purchase < ActiveRecord::Base
   validates :purchasable, :card_token, :amount, :email, presence: true
 
   before_create :stripe_charge_card
-  after_create :send_vouchers
+  after_create :create_and_send_vouchers
 
   private
 
@@ -55,8 +55,9 @@ class Purchase < ActiveRecord::Base
     ).save
   end
 
-  def send_vouchers
-    VoucherMailer.coupon_book(self.purchasable.id, self.email).deliver_now
+  def create_and_send_vouchers
+    vouchers_ids = self.purchasable.create_vouchers(self.id)
+    VoucherMailer.coupon_book(self.purchasable.id, self.email, vouchers_ids).deliver_now
   end
 
 end

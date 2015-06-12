@@ -1,10 +1,10 @@
 include CouponPdf
 
 class CouponBookPdf < Pdf
-  def initialize(book)
+  def initialize(book, vouchers_ids)
     @document = Prawn::Document.new(page_layout: :landscape, page_size: "A4")
     @book = book
-    @coupons = @book.coupons.launched.decorate
+    @vouchers = Voucher.find(vouchers_ids)
     header
     body
   end
@@ -13,9 +13,9 @@ class CouponBookPdf < Pdf
 
   def body
     font "#{Rails.root}/app/assets/fonts/museosans-300-webfont.ttf"
-    @coupons.each_with_index do |coupon, index|
+    @vouchers.each_with_index do |voucher, index|
       start_new_page unless index.zero?
-      CouponPdf.coupon_box(self, coupon)
+      CouponPdf.coupon_box(self, voucher)
     end
   end
 

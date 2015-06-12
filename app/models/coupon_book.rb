@@ -13,7 +13,8 @@ class CouponBook < ActiveRecord::Base
 
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
-  has_many :coupons, through: :categories, dependent: :destroy
+  has_many :categories_coupons, through: :categories
+  has_many :coupons, through: :categories
 
   has_many :purchases, as: :purchasable
 
@@ -60,5 +61,14 @@ class CouponBook < ActiveRecord::Base
 
   def thermometer
     (current_sales_cents.to_f/goal_cents)*100 unless goal_cents.zero?
+  end
+
+  #Vouchers
+  def create_vouchers(purchase_id)
+    vouchers_ids = []
+    self.categories_coupons.each do |cc|
+      vouchers_ids << cc.create_vouchers(purchase_id)
+    end
+    vouchers_ids
   end
 end

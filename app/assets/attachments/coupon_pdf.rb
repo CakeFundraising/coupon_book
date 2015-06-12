@@ -1,10 +1,15 @@
 require "open-uri"
 
 module CouponPdf
-  def self.coupon_box(pdf, coupon)
+  def self.coupon_box(pdf, voucher)
+    coupon = voucher.coupon.decorate
+
+    pdf.text "Voucher #{voucher.number}", size: 22, align: :right
+
     pdf.bounding_box([15, 450], width: 700, height: 220) do
       pdf.stroke_color 'CCCCCC'
       pdf.stroke_bounds
+
 
       pdf.define_grid(columns: 3, rows: 1, gutter: 0)
 
