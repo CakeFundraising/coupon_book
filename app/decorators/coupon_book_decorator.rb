@@ -29,10 +29,6 @@ class CouponBookDecorator < ApplicationDecorator
     h.humanized_money_with_symbol (object.current_sales_cents/100)
   end
 
-  def flat_price
-    object.price.to_i
-  end
-
   def price
     h.humanized_money_with_symbol object.price
   end

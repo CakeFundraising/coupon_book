@@ -30,7 +30,7 @@ class Purchase
     @stripeHandler.open
       name: "Buy Now!"
       description: "#{@name}"
-      amount: amount * 100
+      amount: amount
     return
 
   buttonClick: ->
