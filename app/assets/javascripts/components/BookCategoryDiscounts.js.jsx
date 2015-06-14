@@ -5,13 +5,24 @@ var BookCategoryDiscounts = React.createClass({
     sortableOptions: {
         group: "organize",
         animation: 200,
-        ghostClass: 'sortable-ghost'
+        ghostClass: 'sortable-ghost',
+        filter: '.btn-danger'
     },
 
     getInitialState: function () {
         return {
-            items: []
+            items: [],
+            reLoad: false
         };
+    },
+
+    handleFilter: function (event) {
+        var item = event.item,
+            ctrl = event.target;
+
+        if (Sortable.utils.is(ctrl, '.btn-danger')) {
+            item.parentNode.removeChild(item);
+        }
     },
 
     render: function() {
@@ -32,7 +43,15 @@ var BookCategoryDiscounts = React.createClass({
                                 <span className="coupon-list--item">{'Coupon ' + item.id}</span>
                                 <span className="coupon-list--title">{item.title}</span>
                             </span>
-                            <CouponActions closeIcon className="couponActions" couponId={item.id} />
+                            <Button iconType='remove'
+                                    className="btn btn-sm pull-right btn-danger">Delete</Button>
+                            <Button href={'/coupons/' + item.id + '/edit'}
+                                    iconType="pencil"
+                                    className="btn btn-sm pull-right btn-primary">Edit</Button>
+                            <Button iconType="eye-open"
+                                    className="btn btn-sm pull-right btn-success"
+                                    data-target={'#preview-coupon-' + item.id}
+                                    data-toggle="modal">Preview </Button>
                         </li>
                     );
                 })
