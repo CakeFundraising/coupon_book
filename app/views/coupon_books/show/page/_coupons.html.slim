@@ -9,7 +9,7 @@
           /= coupon_book_buy_button(@coupon_book)
 
 .floating-right
-  = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-success btn-xl buy_button', data: {price: @coupon_book.price_cents})
+  = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-success-transparent btn-xl buy_button', data: {price: @coupon_book.price_cents})
 
 = render partial:'coupon_books/show/page/after_purchase'
 

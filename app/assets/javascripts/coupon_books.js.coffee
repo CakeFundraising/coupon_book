@@ -105,7 +105,7 @@ showBuyButton = ->
 
   $(document).scroll ->
     y = $(this).scrollTop()
-    if y > 400
+    if y > 800
       button.fadeIn()
     else
       button.fadeOut()
