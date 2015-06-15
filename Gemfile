@@ -60,6 +60,8 @@ gem 'pry-rails'
 gem 'prawn'
 gem 'money-rails'
 gem 'carmen-rails'
+gem 'rqrcode'
+gem 'prawn-qrcode'
 
 #Authentication
 gem 'oauth2'

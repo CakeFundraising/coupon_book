@@ -1,10 +1,11 @@
-require "open-uri"
+require 'open-uri'
+require 'prawn/qrcode'
 
 module CouponPdf
   def self.coupon_box(pdf, voucher)
     coupon = voucher.coupon.decorate
 
-    pdf.text "Voucher #{voucher.number}", size: 22, align: :right
+    pdf.print_qr_code(voucher.number, extent: 72)
 
     pdf.bounding_box([15, 450], width: 700, height: 220) do
       pdf.stroke_color 'CCCCCC'
@@ -22,10 +23,6 @@ module CouponPdf
 
         pdf.text coupon.trunc_title, size: 30
         
-        pdf.move_down 10
-        
-        pdf.text "Expires: #{coupon.expires_at}"
-
         pdf.move_down 10
 
         pdf.text coupon.trunc_description
@@ -45,7 +42,21 @@ module CouponPdf
     
     pdf.move_down 30
 
-    pdf.text 'Terms & Conditions', size: 14
+    pdf.text "Expires: #{coupon.expires_at}", size: 20, align: :left
+
+    unless coupon.multiple_locations.blank?
+      pdf.text "Limitations", size: 20, align: :right
+      pdf.text coupon.multiple_locations, size: 12, align: :right
+    end
+
+    pdf.move_down 30
+
+    pdf.text 'The Fine Print', size: 20
+    
+    pdf.text 'Merchant Terms & Conditions', size: 14
+    pdf.text coupon.custom_terms, size: 9
+    
+    pdf.text 'Universal Terms & Conditions', size: 14
     pdf.text I18n.t('application.terms_and_conditions.coupons'), size: 9
   end
 
