@@ -7,7 +7,10 @@ class Purchase < ActiveRecord::Base
   validates :purchasable, :card_token, :amount, :email, presence: true
 
   before_create :stripe_charge_card
-  after_create :create_and_send_vouchers
+  
+  after_create do
+    Resque.enqueue(ResqueSchedule::AfterPurchase, self.id)
+  end
 
   private
 
@@ -53,11 +56,6 @@ class Purchase < ActiveRecord::Base
       captured: stripe_transaction.captured,
       fee_details: balance_transaction.fee_details.map(&:to_hash)
     ).save
-  end
-
-  def create_and_send_vouchers
-    vouchers_ids = self.purchasable.create_vouchers(self.id)
-    VoucherMailer.coupon_book(self.purchasable.id, self.email, vouchers_ids).deliver_now
   end
 
 end
