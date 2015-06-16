@@ -1,7 +1,7 @@
 class Voucher < ActiveRecord::Base
   include Statusable
 
-  has_statuses :pending, :redeemed, :expired
+  has_statuses :pending, :redeemed
 
   belongs_to :categories_coupon
   belongs_to :purchase
@@ -12,6 +12,9 @@ class Voucher < ActiveRecord::Base
   validates :number, uniqueness: true
 
   after_initialize :set_number
+
+  scope :expired, ->{ where("expires_at <= ?", Time.zone.now) }
+  scope :not_expired, ->{ where("expires_at > ?", Time.zone.now) }
 
   def validate_status(sp_id)
     if self.coupon.owner_type != 'Sponsor' or self.coupon.owner_id != sp_id.to_i
@@ -32,6 +35,10 @@ class Voucher < ActiveRecord::Base
       allowed: allowed,
       message: message
     }
+  end
+
+  def expired?
+    self.expires_at <= Time.zone.now
   end
 
   private
