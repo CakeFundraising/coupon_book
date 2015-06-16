@@ -6,13 +6,20 @@ module API
 
         desc "Return voucher's status given a Voucher Number and SP id"
         params do
-          requires :number, type: Integer, desc: "Voucher Number"
-          requires :sp, type: Integer, desc: "SP's ID"
+          requires :number, type: Integer, desc: "Voucher Number", allow_blank: false
+          requires :sp, type: Integer, desc: "SP's ID", allow_blank: false
         end
         route_param :number do
-          get jbuilder: 'vouchers/status' do
-            @voucher = Voucher.find_by_number(params[:number])
-            @sp = Sponsor.fetch(params[:sp])
+          get :status do
+            voucher = Voucher.find_by_number(params[:number])
+            if voucher.nil?
+              present :allowed, false
+              present :message, 'Voucher number is not recognized.'              
+            else
+              status = voucher.validate_status(params[:sp])
+              present :allowed, status[:allowed]
+              present :message, status[:message]
+            end
           end
         end
 

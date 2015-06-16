@@ -17,6 +17,8 @@ class Coupon < ActiveRecord::Base
   has_many :categories, through: :categories_coupons
   has_many :coupon_books, through: :categories
 
+  has_many :vouchers, through: :categories_coupons
+
   delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location
 
   validates :phone, :sponsor_name, :sponsor_url, :collection_id, presence: true
@@ -38,7 +40,7 @@ class Coupon < ActiveRecord::Base
 
   alias_method :sp_picture, :avatar_picture
 
-  delegate :owner, to: :origin_collection
+  delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   searchable do
     text :title, boost: 2
