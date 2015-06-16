@@ -81,4 +81,6 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  mount API::Base => '/api'
+
 end

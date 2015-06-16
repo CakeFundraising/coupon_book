@@ -93,6 +93,15 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'database_cleaner'
 gem 'faker'
 
+#API
+gem 'grape'
+gem 'wine_bouncer'
+gem 'grape-swagger'
+gem 'swagger-ui_rails'
+gem 'api-pagination'
+gem 'grape-jbuilder'
+gem 'kramdown'
+
 group :doc do
   gem 'sdoc', require: false
 end
