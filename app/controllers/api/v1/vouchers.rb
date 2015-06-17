@@ -9,6 +9,7 @@ module API
           requires :number, type: Integer, desc: "Voucher Number", allow_blank: false
           requires :sp, type: Integer, desc: "SP's ID", allow_blank: false
         end
+        
         route_param :number do
           get :status do
             voucher = Voucher.find_by_number(params[:number])

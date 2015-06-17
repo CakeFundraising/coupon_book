@@ -48,6 +48,7 @@ module API
       end
 
       mount API::V1::Vouchers
+      mount API::V1::Sponsors
 
       route :any, '*path' do
         raise StandardError, "Unable to find endpoint"
