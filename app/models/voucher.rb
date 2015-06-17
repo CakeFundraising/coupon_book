@@ -39,9 +39,9 @@ class Voucher < ActiveRecord::Base
   end
 
   def redeem!(sp_id)
-    allowed = validate_status(sp_id)[:allowed]
-    self.redeemed! if allowed
-    allowed
+    status = validate_status(sp_id)
+    self.redeemed! if status[:allowed]
+    status
   end
 
   def expired?

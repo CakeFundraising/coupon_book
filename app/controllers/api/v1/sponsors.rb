@@ -10,6 +10,10 @@ module API
         end
 
         route_param :id do
+
+          get :exists do
+            Sponsor.fetch(params[:id]).present?
+          end
           
           get :redeemed_vouchers do
             sponsor = Sponsor.fetch(params[:id])

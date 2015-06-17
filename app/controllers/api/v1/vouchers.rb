@@ -30,7 +30,8 @@ module API
               present :message, 'Voucher number is not recognized.'              
             else
               redeemed = voucher.redeem!(params[:sp])
-              present :redeemed, redeemed
+              present :redeemed, redeemed[:allowed]
+              present :message, redeemed[:message]
             end
           end
         end
