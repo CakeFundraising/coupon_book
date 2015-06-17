@@ -21,6 +21,17 @@ module API
               present :message, status[:message]
             end
           end
+
+          patch :redeem do
+            voucher = Voucher.find_by_number(params[:number])
+            if voucher.nil?
+              present :allowed, false
+              present :message, 'Voucher number is not recognized.'              
+            else
+              redeemed = voucher.redeem!(params[:sp])
+              present :redeemed, redeemed
+            end
+          end
         end
 
       end
