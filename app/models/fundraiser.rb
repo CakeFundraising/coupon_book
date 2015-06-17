@@ -107,4 +107,9 @@ class Fundraiser < Ohm::Model
   def create_coupon_collection
     Collection.create(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
+
+  #Vouchers
+  def vouchers
+    Voucher.where(owner_type: 'Fundraiser', owner_id: self.id.to_i)
+  end
 end

@@ -54,7 +54,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def multiple_locations
-    "* Valid at the following locations: #{object.multiple_locations}"
+    "* Valid at the following locations: #{object.multiple_locations}" unless object.multiple_locations.blank?
   end
 
   def retail_value

@@ -60,6 +60,8 @@ gem 'pry-rails'
 gem 'prawn'
 gem 'money-rails'
 gem 'carmen-rails'
+gem 'rqrcode'
+gem 'prawn-qrcode'
 
 #Authentication
 gem 'oauth2'
@@ -90,6 +92,15 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 #Test related
 gem 'database_cleaner'
 gem 'faker'
+
+#API
+gem 'grape'
+gem 'wine_bouncer'
+gem 'grape-swagger'
+gem 'swagger-ui_rails'
+gem 'api-pagination'
+gem 'grape-jbuilder'
+gem 'kramdown'
 
 group :doc do
   gem 'sdoc', require: false

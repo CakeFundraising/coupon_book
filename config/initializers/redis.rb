@@ -26,5 +26,5 @@ unless Rails.env.test?
   CakeCouponBook::Application.config.session_store :redis_store, redis_server: redis_url
 
   # Resque Schedule
-  Resque.schedule = YAML.load_file(Rails.root.join('config/schedule.yml'))
+  #Resque.schedule = YAML.load_file(Rails.root.join('config/schedule.yml'))
 end

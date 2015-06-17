@@ -16,6 +16,6 @@ class PurchasesController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount, :email])
+    params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
   end
 end
