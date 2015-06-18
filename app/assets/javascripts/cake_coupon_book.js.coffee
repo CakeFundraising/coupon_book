@@ -4,6 +4,7 @@ CakeCouponBook.init = ->
   CakeCouponBook.datepicker()
   CakeCouponBook.clipboard()
   CakeCouponBook.expander()
+  CakeCouponBook.browsers.fingerprint()
   CakeCouponBook.addThis.init()
   CakeCouponBook.validations.init()
   CakeCouponBook.utils.init()
