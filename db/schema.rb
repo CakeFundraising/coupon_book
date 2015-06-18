@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618181003) do
+ActiveRecord::Schema.define(version: 20150618202439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -180,6 +180,17 @@ ActiveRecord::Schema.define(version: 20150618181003) do
     t.boolean  "order_up",                    default: false
     t.boolean  "pr_box_flag",                 default: false
   end
+
+  create_table "extra_clicks", force: :cascade do |t|
+    t.boolean  "bonus",          default: false
+    t.integer  "browser_id"
+    t.integer  "clickable_id"
+    t.string   "clickable_type"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "extra_clicks", ["clickable_type", "clickable_id"], name: "index_extra_clicks_on_clickable_type_and_clickable_id", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "address"
