@@ -2,6 +2,7 @@ class Coupon < ActiveRecord::Base
   include Picturable
   include Statusable
   include MerchandiseCategories
+  include ExtraClickable
 
   attr_accessor :fr_collection_id, :terms
 
@@ -39,6 +40,7 @@ class Coupon < ActiveRecord::Base
   scope :active, ->{ not_past.where("expires_at > ?", Time.zone.now) }
 
   alias_method :sp_picture, :avatar_picture
+  alias_method :active?, :launched?
 
   delegate :owner, :owner_type, :owner_id, to: :origin_collection
 

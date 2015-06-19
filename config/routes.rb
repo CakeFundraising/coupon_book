@@ -44,6 +44,7 @@ CakeCouponBook::Application.routes.draw do
   resources :coupons do
     member do
       get :download
+      get :click
 
       scope :pictures, controller: :cropping do
         post :crop
