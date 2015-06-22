@@ -102,4 +102,16 @@ class Sponsor < Ohm::Model
     Voucher.where(owner_type: 'Sponsor', owner_id: self.id.to_i)
   end
 
+  #Analytics
+  def total_unique_clicks
+    self.coupon_collection.extra_clicks.count
+  end
+
+  def total_clicks
+    self.coupons.sum(:extra_clicks_count)
+  end
+
+  def total_vouchers_sold
+    self.vouchers.count
+  end
 end

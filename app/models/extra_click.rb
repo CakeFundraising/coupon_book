@@ -8,4 +8,7 @@ class ExtraClick < ActiveRecord::Base
 
   scope :token, ->(token){ where('browsers.token = ?', token) }
   scope :fingerprint, ->(fingerprint){ where('browsers.fingerprint = ?', fingerprint) }
+
+  scope :bonus, -> { where(bonus: true) }
+  scope :unique, -> { where(bonus: false) }
 end
