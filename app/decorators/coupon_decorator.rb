@@ -68,4 +68,8 @@ class CouponDecorator < ApplicationDecorator
   def status
     object.status.titleize
   end
+
+  def universal
+    h.b object.universal
+  end
 end

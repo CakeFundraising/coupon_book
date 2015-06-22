@@ -123,6 +123,9 @@ en:
       coupons: "Enjoy savings below valued at <span class='boldest'>%{no_discount}</span> for just <span class='boldest'>%{price}!</span>"
   activerecord: 
     models:
+      coupon:
+        one: Discount
+        other: Discounts
     attributes:
       category:
         name: Category Name

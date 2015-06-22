@@ -19,6 +19,7 @@ class Coupon < ActiveRecord::Base
   has_many :coupon_books, through: :categories
 
   has_many :vouchers, through: :categories_coupons
+  has_many :collections, through: :collections_coupons
 
   delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location
 
@@ -89,6 +90,10 @@ class Coupon < ActiveRecord::Base
   def self.build_fr_coupon(fundraiser)
     collection_id = fundraiser.coupon_collection.id
     Coupon.new(collection_id: collection_id)
+  end
+
+  def fundraisers_count
+    self.collections.count - 1
   end
 
   private

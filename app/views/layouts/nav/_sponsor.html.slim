@@ -1,7 +1,7 @@
 #bs-example-navbar-collapse-1.collapse.navbar-collapse
   ul.nav.navbar-nav
     = menu_item "My Dashboard", dashboard_sponsor_home_path
-    = menu_item "My Coupons", dashboard_sponsor_coupons_path
+    = menu_item "My Discounts", dashboard_sponsor_coupons_path
     /= menu_item "Pledge Requests", root_path
   ul.nav.navbar-nav.navbar-right
     li.dropdown
@@ -11,7 +11,7 @@
         span.caret
       ul.dropdown-menu
         = menu_item "My Dashboard", dashboard_sponsor_home_path
-        = menu_item "My Coupons", dashboard_sponsor_coupons_path
+        = menu_item "My Discounts", dashboard_sponsor_coupons_path
         = menu_item "Billing", cake_sponsor_path('billing')
         = menu_item "History", cake_sponsor_path('history')
         li.divider
