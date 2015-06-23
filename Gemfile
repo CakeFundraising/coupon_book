@@ -78,6 +78,9 @@ gem 'devise'
 #User permissions
 gem 'cancancan'
 
+#Browser Fingerprinting
+gem 'fingerprintjs-rails'
+
 group :development do
   gem 'quiet_assets'
   gem 'thin'

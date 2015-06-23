@@ -92,12 +92,40 @@ en:
     empty_results:
       coupon_books: Coupon Books
       coupons: Coupons
+  semantic:
+    buy:               Buy
+    add_resource:      "Add %{resource}"
+    add_to_resource:   "Add to %{resource}"
+    new_resource:      "New %{resource}"
+    merge_resources:   "Merge %{resources}"
+    listing_resources: "Listing %{resources}"
+    editing_resource:  "Editing %{resource}"
+    search_resources:  "Search %{resources}"
+    select_obj:        "Select %{obj}"
+    n_items:           "%{n} items"
+    finish:            Finish
+    cancel:            Cancel
+    yes:               Yes
+    no:                No
+    here:              Here
+    next:              Next
+    my_thing:          "My %{thing}"
+    pending:           pending
+    accepted:          accepted
+    rejected:          rejected
+    number_of:         "No. of %{model}"
+    average:           "Avg. %{model}"
+    starts:            Starts
+    Ends:              Ends
   banners:
     coupon_book:
       header: "<div class='first'>Enjoy deals worth <span class='boldest'>%{no_discount}</span> for <span class='boldest'>%{price}</span> below!</div><div class='last'>Sales benefit <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
       coupons: "Enjoy savings below valued at <span class='boldest'>%{no_discount}</span> for just <span class='boldest'>%{price}!</span>"
   activerecord: 
     models:
+      coupon:
+        one: Discount
+        other: Discounts
     attributes:
       category:
         name: Category Name

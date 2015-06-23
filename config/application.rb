@@ -28,6 +28,7 @@ module CakeCouponBook
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
       #{config.root}/app/assets/attachments
+      #{config.root}/lib/evercookie
     )
 
     config.exceptions_app = self.routes

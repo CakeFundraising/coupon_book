@@ -1,5 +1,6 @@
 class Dashboard::SponsorController < ApplicationController
   def home
+    @sponsor = current_sponsor
   end
 
   def history

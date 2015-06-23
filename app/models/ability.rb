@@ -21,6 +21,8 @@ class Ability
     end
 
     can :read, :all
+
     can [:start_discount, :start_pr_box], CouponBook
+    can :click, Coupon
   end
 end
