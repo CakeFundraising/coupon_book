@@ -22,5 +22,6 @@ class Ability
 
     can :read, :all
     can :sponsor_landing, CouponBook
+    can :click, Coupon
   end
 end

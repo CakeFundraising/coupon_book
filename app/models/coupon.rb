@@ -2,6 +2,7 @@ class Coupon < ActiveRecord::Base
   include Picturable
   include Statusable
   include MerchandiseCategories
+  include ExtraClickable
 
   attr_accessor :fr_collection_id, :terms
 
@@ -18,6 +19,7 @@ class Coupon < ActiveRecord::Base
   has_many :coupon_books, through: :categories
 
   has_many :vouchers, through: :categories_coupons
+  has_many :collections, through: :collections_coupons
 
   delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location
 
@@ -39,6 +41,7 @@ class Coupon < ActiveRecord::Base
   scope :active, ->{ not_past.where("expires_at > ?", Time.zone.now) }
 
   alias_method :sp_picture, :avatar_picture
+  alias_method :active?, :launched?
 
   delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
@@ -87,6 +90,10 @@ class Coupon < ActiveRecord::Base
   def self.build_fr_coupon(fundraiser)
     collection_id = fundraiser.coupon_collection.id
     Coupon.new(collection_id: collection_id)
+  end
+
+  def fundraisers_count
+    self.collections.count - 1
   end
 
   private

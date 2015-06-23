@@ -1,4 +1,6 @@
 class CouponsController < InheritedResources::Base
+  include ExtraClickController
+
   load_and_authorize_resource
   
   TEMPLATE_STEPS = [
@@ -71,6 +73,10 @@ class CouponsController < InheritedResources::Base
         end
       end
     end
+  end
+
+  def click
+    extra_click(params[:url], params[:url])
   end
 
   private

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617152502) do
+ActiveRecord::Schema.define(version: 20150619184235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,17 @@ ActiveRecord::Schema.define(version: 20150617152502) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
+
+  create_table "browsers", force: :cascade do |t|
+    t.string   "token"
+    t.string   "fingerprint"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "browsers", ["fingerprint"], name: "index_browsers_on_fingerprint", using: :btree
+  add_index "browsers", ["token"], name: "index_browsers_on_token", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -168,7 +179,21 @@ ActiveRecord::Schema.define(version: 20150617152502) do
     t.integer  "collection_id"
     t.boolean  "order_up",                    default: false
     t.boolean  "pr_box_flag",                 default: false
+    t.integer  "extra_clicks_count"
   end
+
+  create_table "extra_clicks", force: :cascade do |t|
+    t.string   "url"
+    t.boolean  "bonus",          default: false
+    t.integer  "browser_id"
+    t.integer  "clickable_id"
+    t.string   "clickable_type"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "extra_clicks", ["clickable_type", "clickable_id"], name: "index_extra_clicks_on_clickable_type_and_clickable_id", using: :btree
+  add_index "extra_clicks", ["url"], name: "index_extra_clicks_on_url", using: :btree
 
   create_table "locations", force: :cascade do |t|
     t.string   "address"
@@ -210,10 +235,11 @@ ActiveRecord::Schema.define(version: 20150617152502) do
     t.string   "headline"
     t.text     "story"
     t.string   "url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "flag"
     t.integer  "collection_id"
+    t.integer  "extra_clicks_count"
   end
 
   create_table "purchases", force: :cascade do |t|

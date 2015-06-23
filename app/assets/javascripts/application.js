@@ -32,9 +32,14 @@
 //= require zeroclipboard
 //= require bootstrap-datepicker/core
 
+//= require ./evercookie/evercookie
+//= require ./evercookie/swfobject-2.2.min
+
 //= require cake_coupon_book
 
-// require ./cloudinary_crop
+//= require ./uuid
+//= require fingerprint
+//= require ./browsers
 //= require ./cloudinary_widget
 //= require ./coupons
 //= require ./collections
