@@ -108,7 +108,7 @@ class Sponsor < Ohm::Model
 
   #Analytics
   def total_unique_clicks
-    self.coupon_collection.extra_clicks.count
+    self.collection.extra_clicks.count
   end
 
   def total_clicks

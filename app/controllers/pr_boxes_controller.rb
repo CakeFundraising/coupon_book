@@ -13,6 +13,14 @@ class PrBoxesController < InheritedResources::Base
     end
   end
 
+  def update
+    update! do |success, failure|
+      success.html do
+        redirect_to after_create_path, notice: 'Pr Box updated successfully.'
+      end
+    end
+  end
+
   private
 
   def set_collection

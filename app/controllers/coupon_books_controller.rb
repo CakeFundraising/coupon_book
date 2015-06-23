@@ -78,7 +78,6 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def update
-    # puts permitted_params.to_yaml
     update! do |success, failure|
       success.html do
         update_screenshot(@coupon_book)
