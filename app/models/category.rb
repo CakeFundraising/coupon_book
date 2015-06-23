@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
   belongs_to :coupon_book
 
-  has_many :categories_coupons, -> { order("categories_coupons.position ASC") }
+  has_many :categories_coupons, -> { order("categories_coupons.position ASC") }, dependent: :destroy
   has_many :coupons, through: :categories_coupons
 
   accepts_nested_attributes_for :categories_coupons, allow_destroy: true, update_only: true, reject_if: :all_blank

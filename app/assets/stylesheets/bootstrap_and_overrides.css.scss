@@ -526,6 +526,13 @@ p.signup-social span:before, p.signup-social span:after {
   }
 }
 
+.btn-success-transparent{
+  background: rgba(182,203,64,0.85);
+  &:hover{
+    background: $brand-success;
+  }
+}
+
 .pagination{
   float: right;
   padding-right: 20px;
@@ -1393,6 +1400,9 @@ table.performance-summary {
     @media (min-width: $screen-md-min) {
       margin-left: -76px;
     }
+  }
+  a{
+    color: white;
   }
 }
 
@@ -4343,4 +4353,17 @@ span.banner-heading{
 
 .pr_box_pic_col{
   padding-left: 0;
+}
+
+.floating-right{
+  position: fixed;
+  z-index: 999;
+  right: 20px;
+  top: 40px;
+  a.buy_button{
+    color: white;
+    display: none;
+    padding: 5px 15px !important;
+    box-shadow: 0px 0px 15px #555;
+  }
 }

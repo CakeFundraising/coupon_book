@@ -1,4 +1,22 @@
 GIT
+  remote: git://github.com/activeadmin/activeadmin.git
+  revision: dce083189c46ad64c8c9a2d34805a080af685bbe
+  specs:
+    activeadmin (1.0.0.pre1)
+      arbre (~> 1.0, >= 1.0.2)
+      bourbon
+      coffee-rails
+      formtastic (~> 3.1)
+      formtastic_i18n
+      inherited_resources (~> 1.6)
+      jquery-rails
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.15)
+      rails (>= 3.2, < 5.0)
+      ransack (~> 1.3)
+      sass-rails
+
+GIT
   remote: git://github.com/josevalim/inherited_resources.git
   revision: d43bd6d1adfd90e0d73ec9e6191a3c9eb612c375
   specs:
@@ -57,11 +75,19 @@ GEM
       activerecord (>= 3.0)
     addressable (2.3.8)
     american_date (1.1.0)
+    api-pagination (4.1.1)
+    arbre (1.0.3)
+      activesupport (>= 3.0.0)
     arel (6.0.0)
     autoprefixer-rails (5.1.8)
       execjs
       json
     aws_cf_signer (0.1.3)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
+    bcrypt (3.1.10)
     bootstrap-datepicker-rails (1.3.0.2)
       railties (>= 3.0)
     bootstrap-kaminari-views (0.0.5)
@@ -70,6 +96,9 @@ GEM
     bootstrap-sass (3.3.4.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    bourbon (4.2.3)
+      sass (~> 3.4)
+      thor
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
@@ -89,10 +118,13 @@ GEM
       rails
     childprocess (0.5.6)
       ffi (~> 1.0, >= 1.0.11)
+    chunky_png (1.3.4)
     cloudinary (1.0.80)
       aws_cf_signer
       rest-client
     coderay (1.1.0)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -118,15 +150,27 @@ GEM
       rails (>= 3, < 5)
     daemons (1.2.2)
     database_cleaner (1.4.1)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
+    devise (3.5.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.23)
       unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (2.1.4)
+      railties (>= 3.2)
     draper (2.1.0)
       actionpack (>= 3.0)
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    equalizer (0.0.11)
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.5.0)
@@ -146,18 +190,43 @@ GEM
       rack
     formtastic (3.1.3)
       actionpack (>= 3.2.13)
+    formtastic_i18n (0.4.1)
     get_process_mem (0.2.0)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    grape (0.11.0)
+      activesupport
+      builder
+      hashie (>= 2.1.0)
+      multi_json (>= 1.3.2)
+      multi_xml (>= 0.5.2)
+      rack (>= 1.3.0)
+      rack-accept
+      rack-mount
+      virtus (>= 1.0.0)
+    grape-entity (0.4.5)
+      activesupport
+      multi_json (>= 1.3.2)
+    grape-jbuilder (0.2.0)
+      grape (>= 0.3)
+      i18n
+      jbuilder
+      tilt
+      tilt-jbuilder (>= 0.4.0)
+    grape-swagger (0.10.1)
+      grape (>= 0.8.0)
+      grape-entity
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
+    hashie (3.4.2)
     hiredis (0.6.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    ice_nine (0.11.1)
     jbuilder (2.2.13)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
@@ -177,6 +246,7 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.9.3)
+    kramdown (1.7.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     libv8 (3.16.14.7)
@@ -219,15 +289,21 @@ GEM
       nido
       redic
       stal
+    orm_adapter (0.5.0)
     pdf-core (0.5.1)
     pg (0.18.1)
     pickle (0.5.1)
       cucumber (>= 0.8)
       rake
+    polyamorous (1.2.0)
+      activerecord (>= 3.0)
     pr_geohash (1.0.0)
     prawn (2.0.1)
       pdf-core (~> 0.5.1)
       ttfunk (~> 1.4.0)
+    prawn-qrcode (0.2.2.1)
+      prawn (>= 0.11.1)
+      rqrcode (>= 0.4.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -237,6 +313,10 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.0)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
+    rack-mount (0.8.3)
+      rack (>= 1.0.0)
     rack-protection (1.5.3)
       rack
     rack-test (0.6.3)
@@ -272,6 +352,12 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.13.0)
     rake (10.4.2)
+    ransack (1.6.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
     rdoc (4.2.0)
     react-rails (1.0.0)
       coffee-script-source (~> 1.8)
@@ -324,6 +410,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rqrcode (0.6.0)
+      chunky_png
     rsolr (1.0.12)
       builder (>= 2.1.2)
     rspec-core (3.2.3)
@@ -407,6 +495,7 @@ GEM
     sunspot_solr (2.2.0)
     sunspot_test (0.4.0)
       sunspot_rails (>= 1.2.1)
+    swagger-ui_rails (0.1.7)
     temple (0.7.5)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -418,6 +507,9 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    tilt-jbuilder (0.6.1)
+      jbuilder
+      tilt (<= 1.5.0)
     ttfunk (1.4.0)
     turbolinks (2.5.3)
       coffee-rails
@@ -438,10 +530,20 @@ GEM
       unicorn (~> 4)
     vegas (0.1.11)
       rack (>= 1.0.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
+    warden (1.2.3)
+      rack (>= 1.0)
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
     websocket (1.2.2)
+    wine_bouncer (0.3.1)
+      doorkeeper (>= 1.4, < 2.2)
+      grape (~> 0.8, < 0.12)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zeroclipboard-rails (0.1.0)
@@ -451,8 +553,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activeadmin!
   acts_as_list
   american_date
+  api-pagination
   bootstrap-datepicker-rails (~> 1.3.0.2)
   bootstrap-kaminari-views
   bootstrap-sass (~> 3.3.4.1)
@@ -465,6 +569,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner
+  devise
   draper
   factory_girl_rails
   faker
@@ -472,6 +577,9 @@ DEPENDENCIES
   font_assets
   formtastic
   formtastic-bootstrap!
+  grape
+  grape-jbuilder
+  grape-swagger
   inherited_resources!
   jbuilder
   jcrop-rails-v2
@@ -479,6 +587,7 @@ DEPENDENCIES
   jquery-ui-rails
   jquery-validation-rails
   kaminari
+  kramdown
   launchy
   modernizr-rails (~> 2.7.1)
   money-rails
@@ -487,6 +596,7 @@ DEPENDENCIES
   pg
   pickle
   prawn
+  prawn-qrcode
   pry-rails
   quiet_assets
   rails (= 4.2.1)
@@ -498,6 +608,7 @@ DEPENDENCIES
   resque-scheduler
   resque_mailer
   rest-client
+  rqrcode
   rspec-rails
   sass-rails (~> 5.0.1)
   sdoc
@@ -510,6 +621,7 @@ DEPENDENCIES
   sunspot_rails
   sunspot_solr
   sunspot_test
+  swagger-ui_rails
   therubyracer
   thin
   turbolinks (~> 2.5.3)
@@ -517,4 +629,5 @@ DEPENDENCIES
   unicorn
   unicorn-worker-killer
   webmock
+  wine_bouncer
   zeroclipboard-rails (~> 0.1.0)

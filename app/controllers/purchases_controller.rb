@@ -4,7 +4,7 @@ class PurchasesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        redirect_to polymorphic_path(@purchase.purchasable), notice: "Thanks for helping! We sent a book with all vouchers to your email address: #{@purchase.email}"
+        redirect_to polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
       end
       failure.html do
         redirect_to @purchase.purchasable, alert: "There was an error with your payment, please try again."
@@ -16,6 +16,6 @@ class PurchasesController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount, :email])
+    params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
   end
 end

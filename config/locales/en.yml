@@ -94,7 +94,7 @@ en:
       coupons: Coupons
   banners:
     coupon_book:
-      header: "<div class='first'>Enjoy deals worth <span class='boldest'>%{no_discount}</span> for <span class='boldest'>%{price}</span> below!</div><div class='last'>Sales benefit <span class='boldest'>%{fr}!</span></div>"
+      header: "<div class='first'>Enjoy deals worth <span class='boldest'>%{no_discount}</span> for <span class='boldest'>%{price}</span> below!</div><div class='last'>Sales benefit <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
       coupons: "Enjoy savings below valued at <span class='boldest'>%{no_discount}</span> for just <span class='boldest'>%{price}!</span>"
   activerecord: 
     models:

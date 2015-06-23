@@ -63,12 +63,17 @@ gem 'pry-rails'
 gem 'prawn'
 gem 'money-rails'
 gem 'carmen-rails'
+gem 'rqrcode'
+gem 'prawn-qrcode'
 
 #Authentication
 gem 'oauth2'
 
 #API
 gem 'rest-client'
+
+#User registration
+gem 'devise'
 
 #User permissions
 gem 'cancancan'
@@ -84,11 +89,21 @@ gem 'jquery-validation-rails'
 gem 'acts_as_list'
 
 #Admin panel
+gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 
 #Test related
 gem 'database_cleaner'
 gem 'faker'
+
+#API
+gem 'grape'
+gem 'wine_bouncer'
+gem 'grape-swagger'
+gem 'swagger-ui_rails'
+gem 'api-pagination'
+gem 'grape-jbuilder'
+gem 'kramdown'
 
 group :doc do
   gem 'sdoc', require: false

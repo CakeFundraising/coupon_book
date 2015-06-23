@@ -101,4 +101,9 @@ class Sponsor < Ohm::Model
     collection.pr_boxes
   end
 
+  #Vouchers
+  def vouchers
+    Voucher.where(owner_type: 'Sponsor', owner_id: self.id.to_i)
+  end
+
 end

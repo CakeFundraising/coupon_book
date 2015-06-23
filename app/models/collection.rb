@@ -7,6 +7,9 @@ class Collection < ActiveRecord::Base
   has_many :collection_pr_boxes, -> { order("collection_pr_boxes.position ASC") }
   has_many :pr_boxes, through: :collection_pr_boxes
 
+  scope :has_coupons, -> {Collection.where("coupons_count > 0") }
+  scope :empty, -> {Collection.where("coupons_count = 0") }
+  
   def owner
     self.owner_type.constantize.fetch(self.owner_id)
   end

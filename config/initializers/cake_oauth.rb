@@ -98,13 +98,21 @@ else
 
       class Fundraiser < RestClient
         def find(id)
-          JSON.parse @client["api/v1/fundraisers/#{id}"].get
+          begin
+            JSON.parse @client["api/v1/fundraisers/#{id}"].get
+          rescue Exception => e
+            nil
+          end
         end
       end
 
       class Sponsor < RestClient
         def find(id)
-          JSON.parse @client["api/v1/sponsors/#{id}"].get
+          begin
+            JSON.parse @client["api/v1/sponsors/#{id}"].get
+          rescue Exception => e
+            nil            
+          end
         end
       end
 
