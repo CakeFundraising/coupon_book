@@ -1,4 +1,4 @@
-var CouponList = React.createClass({
+var PrBoxList = React.createClass({
   propTypes: {
     id: React.PropTypes.string.isRequired,
     source: React.PropTypes.string.isRequired
@@ -37,23 +37,23 @@ var CouponList = React.createClass({
   render: function() {
     return (
       <ul className={this.props.className} id={this.props.id}>
-        {this.renderCouponItem()}
+        {this.renderItem()}
       </ul>
     );
   },
 
-  renderCouponItem: function () {
+  renderItem: function () {
     if (this.state.items.length !== 0) {
       var constructor = this;
       return (
         this.state.items.map (function (item, index) {
           return (
-            <li className={constructor.couponClasses(item)} id={'coupons_' + item.id}  key={index}>
-              <span className="coupon-list--container">
-                <span className="coupon-list--item">{'Coupon ' + item.id}</span>
-                <span className="coupon-list--title">{item.title}</span>
+            <li className={constructor.itemClasses(item)} id={'prboxes_' + item.id}  key={index}>
+              <span className="prbox-list--container">
+                <span className="prbox-list--item">{'PRBox ' + item.id}</span>
+                <span className="prbox-list--title">{item.title}</span>
               </span>
-              <CouponActions className="couponActions" couponId={item.id} />
+              <CouponActions className="prboxActions" prboxId={item.id} />
             </li>
           );
         })
@@ -63,11 +63,11 @@ var CouponList = React.createClass({
     }
   },
 
-  couponClasses: function(coupon){
+  itemClasses: function(prbox){
     var cx = React.addons.classSet;
     var classes = cx({
-      'coupon-list': true,
-      'disabled': coupon.disabled,
+      'prbox-list': true,
+      'disabled': prbox.disabled,
     });
     return classes;
   }

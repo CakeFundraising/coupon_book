@@ -11,8 +11,18 @@ var BookCategories = React.createClass({
 
   getInitialState: function() {
     return {
-      items: ['Foods', 'Drinks']
+      items: []
     };
+  },
+
+  componentDidMount: function() {
+    $.get(this.props.source, function(data) {
+      if (this.isMounted()) {
+        this.setState({
+          items: data
+        });
+      }
+    }.bind(this));
   },
 
   render: function() {
@@ -24,14 +34,13 @@ var BookCategories = React.createClass({
   },
 
   renderCategoryList: function () {
-    var couponList = [];
     return (
       this.state.items.map (function (item, index) {
         return (
           <li className="category-list" key={index}>
-            <span className="category-list--title">{item}</span>
+            <span className="category-list--title">{item.name}</span>
             <CouponActions className="couponActions couponActions-category" couponId={item.id} noPreview />
-            <BookCategoryDiscounts className="collection-coupons" id="collection-coupons-category" source={couponList} />
+            <BookCategoryDiscounts className="collection-coupons" id="collection-coupons-category" source={item.coupons} />
           </li>
         );
       })

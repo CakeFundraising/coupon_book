@@ -4,7 +4,7 @@ class Coupon < ActiveRecord::Base
   include MerchandiseCategories
   include ExtraClickable
 
-  attr_accessor :fr_collection_id, :terms
+  attr_accessor :fr_collection_id, :terms, :disabled
 
   has_statuses :incomplete, :launched, :past
   

@@ -8,8 +8,8 @@
 
 br
 br
-.container.coupon_book_coupons_step
-  .row#drag-canvas
+#organize-react.container.coupon_book_coupons_step
+  .row
     .col-md-6 role="tabpanel" 
       /! Nav tabs
       ul.nav.nav-tabs role="tablist" 
@@ -20,31 +20,15 @@ br
       /! Tab panes
       .tab-content
         #my-discounts.tab-pane.active role="tabpanel"
-          h2 
-            span All Discounts
-            = link_to 'Add Discount', new_coupon_path, class: 'btn btn-success btn-sm pull-right'
-          ul#collection-coupons.no-list
-            = render partial: 'collections_coupons/coupon_row', collection: @collections_coupons, as: :coupon
-        #pr-boxes.tab-pane role="tabpanel"
-          h2 
-            span PR Boxes
-            = link_to 'Add PR Box', new_pr_box_path(coupon_book_id: @coupon_book.id), class: 'btn btn-success btn-sm pull-right'
-          ul.no-list
-            /= render partial: 'pr_boxes/show/row', collection: @collections_coupons, as: :coupon
 
-    .col-md-6
+        #pr-boxes.tab-pane role="tabpanel"
+
+    .col-md-6#categories-col
       h2 
         span Discount Book Categories
         a.btn.btn-success.btn-sm.pull-right data-toggle='modal' data-target='#category-' Add Category
 
       ul#categories.no-list
-        = semantic_form_for @coupon_book do |f|
-          = f.inputs do
-            = f.semantic_fields_for :categories, @categories do |c|
-              = render partial:'categories/tables/row', locals:{f: c}
-            = f.input :step, as: :hidden, input_html:{value: :request_coupons}
-          = f.actions do
-            .text-center
-              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
 
-
+javascript:
+  CakeCouponBook.coupon_books.organize("#{@coupon_book.id}");

@@ -2,7 +2,7 @@ var BookCategoryDiscounts = React.createClass({
   mixins: [SortableMixin],
 
   sortableOptions: {
-    group: "organize",
+    group: 'organize',
     animation: 200,
     ghostClass: 'sortable-ghost',
     filter: '.btn-danger'
@@ -11,8 +11,16 @@ var BookCategoryDiscounts = React.createClass({
   getInitialState: function () {
     return {
       items: [],
-      reLoad: false
+      reload: false
     };
+  },
+
+  componentDidMount: function() {
+    if (this.isMounted()) {
+      this.setState({
+        items: this.props.source
+      });
+    }
   },
 
   handleFilter: function (event) {
