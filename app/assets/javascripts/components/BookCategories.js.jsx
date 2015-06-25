@@ -40,7 +40,7 @@ var BookCategories = React.createClass({
           <li className="category-list" key={index}>
             <span className="category-list--title">{item.name}</span>
             <CouponActions className="couponActions couponActions-category" couponId={item.id} noPreview />
-            <BookCategoryDiscounts className="collection-coupons" id="collection-coupons-category" source={item.coupons} />
+            <BookCategoryItems className="collection-coupons" id="collection-coupons-category" source={item.coupons} />
           </li>
         );
       })

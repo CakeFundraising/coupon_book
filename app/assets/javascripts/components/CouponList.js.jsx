@@ -32,43 +32,19 @@ var CouponList = React.createClass({
   },
 
   render: function() {
+    var coupons = this.state.items.map(function(item, index) {
+      if(!item.disabled){
+        return (
+          <Coupon coupon={item} key={index}></Coupon>
+        );
+      };
+    });
+
     return (
       <ul className={this.props.className} id={this.props.id}>
-        {this.renderCouponItem()}
+        {coupons}
       </ul>
     );
   },
 
-  renderCouponItem: function () {
-    if (this.state.items.length !== 0) {
-      //var constructor = this;
-      return (
-        this.state.items.map (function (item, index) {
-          if(!item.disabled){
-            return (
-              //<li className={constructor.couponClasses(item)} id={'coupons_' + item.id}  key={index}>
-              <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
-                <span className="coupon-list--container">
-                  <span className="coupon-list--title">{item.title}</span>
-                </span>
-                <CouponActions className="couponActions" couponId={item.id} />
-              </li>
-            );
-          };
-        })
-      );
-    } else {
-      return <li className="empty-list"></li>
-    }
-  },
-
-  // couponClasses: function(coupon){
-  //   var cx = React.addons.classSet;
-  //   var classes = cx({
-  //     'coupon-list': true,
-  //     'hidden': coupon.disabled,
-  //   });
-  //   return classes;
-  // }
-  
 });

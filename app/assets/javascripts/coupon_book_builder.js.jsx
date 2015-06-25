@@ -1,12 +1,13 @@
 CakeCouponBook.coupon_books.organize = function(couponBookId){
-  var discountsContainer = $('#organize-react #my-discounts')[0],
-  prBoxesContainer = $('#organize-react #pr-boxes')[0],
-  categoryContainer = $('#organize-react #categories-col')[0],
+  // React Mount nodes
+  var discountsContainer = $('#organize-react #my-discounts')[0];
+  var prBoxesContainer = $('#organize-react #pr-boxes')[0];
+  var categoryContainer = $('#organize-react #categories-col')[0];
   
   // Sources
-  collectionCouponsSource = '/fundraisers/collection_coupons?cb_id=' + couponBookId,
-  categoriesSource = '/coupon_books/'+ couponBookId + '/categories',
-  prBoxesSource = '/fundraisers/collection_pr_boxes?cb_id=' + couponBookId
+  var collectionCouponsSource = '/fundraisers/collection_coupons?cb_id=' + couponBookId;
+  var categoriesSource = '/coupon_books/'+ couponBookId + '/categories';
+  var prBoxesSource = '/fundraisers/collection_pr_boxes?cb_id=' + couponBookId;
 
   // Coupons
   if(discountsContainer){
