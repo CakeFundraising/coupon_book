@@ -6,13 +6,13 @@ CakeCouponBook.coupon_books.organize = function(couponBookId){
   // Sources
   collectionCouponsSource = '/fundraisers/collection_coupons?cb_id=' + couponBookId,
   categoriesSource = '/coupon_books/'+ couponBookId + '/categories',
-  prBoxesSource = '/fundraisers/collection_pr_boxes'
+  prBoxesSource = '/fundraisers/collection_pr_boxes?cb_id=' + couponBookId
 
   // Coupons
   if(discountsContainer){
     React.render(
       <div>
-        <h2>All Discounts
+        <h2>Available Discounts
           <Button
             href="/coupons/new"
             type="link"
@@ -29,7 +29,7 @@ CakeCouponBook.coupon_books.organize = function(couponBookId){
   if(prBoxesContainer){
     React.render(
       <div>
-        <h2>PR Boxes
+        <h2>Available PR Boxes
           <Button
             href={'/pr_boxes/new?coupon_book_id=' + couponBookId}
             type="link"

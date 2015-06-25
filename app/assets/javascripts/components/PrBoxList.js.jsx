@@ -44,18 +44,20 @@ var PrBoxList = React.createClass({
 
   renderItem: function () {
     if (this.state.items.length !== 0) {
-      var constructor = this;
+      //var constructor = this;
       return (
         this.state.items.map (function (item, index) {
-          return (
-            <li className={constructor.itemClasses(item)} id={'prboxes_' + item.id}  key={index}>
-              <span className="prbox-list--container">
-                <span className="prbox-list--item">{'PRBox ' + item.id}</span>
-                <span className="prbox-list--title">{item.title}</span>
-              </span>
-              <CouponActions className="prboxActions" prboxId={item.id} />
-            </li>
-          );
+          if(!item.disabled){
+            return (
+              //<li className={constructor.itemClasses(item)} id={'prboxes_' + item.id}  key={index}>
+              <li className="prbox-list" id={'prboxes_' + item.id}  key={index}>
+                <span className="prbox-list--container">
+                  <span className="prbox-list--title">{item.headline}</span>
+                </span>
+                <CouponActions className="prboxActions" prboxId={item.id} />
+              </li>
+            );
+          };
         })
       );
     } else {
@@ -63,13 +65,13 @@ var PrBoxList = React.createClass({
     }
   },
 
-  itemClasses: function(prbox){
-    var cx = React.addons.classSet;
-    var classes = cx({
-      'prbox-list': true,
-      'disabled': prbox.disabled,
-    });
-    return classes;
-  }
+  // itemClasses: function(prbox){
+  //   var cx = React.addons.classSet;
+  //   var classes = cx({
+  //     'prbox-list': true,
+  //     'hidden': prbox.disabled,
+  //   });
+  //   return classes;
+  // }
   
 });

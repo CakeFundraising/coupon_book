@@ -1,7 +1,7 @@
 class PrBox < ActiveRecord::Base
   include Picturable
 
-  attr_accessor :fr_collection_id, :coupon_book_id
+  attr_accessor :fr_collection_id, :coupon_book_id, :disabled
 
   FLAG_OPTIONS = [
     "Thank You!",

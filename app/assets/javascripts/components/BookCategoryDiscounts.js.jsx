@@ -47,7 +47,6 @@ var BookCategoryDiscounts = React.createClass({
           return (
             <li className="coupon-list" id={'coupons_' + item.id}  key={index}>
               <span className="coupon-list--container">
-                <span className="coupon-list--item">{'Coupon ' + item.id}</span>
                 <span className="coupon-list--title">{item.title}</span>
               </span>
               <Button iconType='remove' className="btn btn-sm pull-right btn-danger">Delete</Button>
