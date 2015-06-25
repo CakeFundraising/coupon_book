@@ -8,10 +8,7 @@ var CouponList = React.createClass({
 
   sortableOptions: {
     sort: false,
-    group: {
-      name: 'organize'
-      //pull: 'clone'
-    },
+    group: 'coupons',
     filter: '.disabled',
     model: 'items',
     animation: 200,

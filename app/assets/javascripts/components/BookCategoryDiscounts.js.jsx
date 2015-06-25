@@ -2,7 +2,10 @@ var BookCategoryDiscounts = React.createClass({
   mixins: [SortableMixin],
 
   sortableOptions: {
-    group: 'organize',
+    group: {
+      name: 'category',
+      put: ['coupons', 'prboxes']
+    },
     animation: 200,
     ghostClass: 'sortable-ghost',
     filter: '.btn-danger'
