@@ -1,12 +1,10 @@
+var React = require('react');
+var CouponActions = require('./CouponActions.js.jsx');
+var BookCategoryItems = require('./BookCategoryItems.js.jsx');
+
 var BookCategories = React.createClass({
   propTypes: {
     id: React.PropTypes.string.isRequired
-  },
-
-  mixins: [SortableMixin],
-
-  sortableOptions: {
-    animation: 200
   },
 
   getInitialState: function() {
@@ -47,3 +45,5 @@ var BookCategories = React.createClass({
     );
   }
 });
+
+module.exports = BookCategories;

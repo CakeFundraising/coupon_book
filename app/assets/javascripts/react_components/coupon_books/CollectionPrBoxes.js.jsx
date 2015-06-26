@@ -1,18 +1,10 @@
-var PrBoxList = React.createClass({
+var React = require('react');
+var CouponActions = require('./CouponActions.js.jsx');
+
+var CollectionPrBoxes = React.createClass({
   propTypes: {
     id: React.PropTypes.string.isRequired,
     source: React.PropTypes.string.isRequired
-  },
-
-  mixins: [SortableMixin],
-
-  sortableOptions: {
-    sort: false,
-    group: 'prboxes',
-    filter: '.disabled',
-    model: 'items',
-    animation: 200,
-    ghostClass: 'sortable-ghost'
   },
 
   getInitialState: function() {
@@ -72,3 +64,5 @@ var PrBoxList = React.createClass({
   // }
   
 });
+
+module.exports = CollectionPrBoxes;

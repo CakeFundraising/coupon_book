@@ -1,18 +1,10 @@
-var CouponList = React.createClass({
+var React = require('react');
+var Coupon = require('./Coupon.js.jsx');
+
+var CollectionCoupons = React.createClass({
   propTypes: {
     id: React.PropTypes.string.isRequired,
     source: React.PropTypes.string.isRequired
-  },
-
-  mixins: [SortableMixin],
-
-  sortableOptions: {
-    sort: false,
-    group: 'coupons',
-    filter: '.disabled',
-    model: 'items',
-    animation: 200,
-    ghostClass: 'sortable-ghost'
   },
 
   getInitialState: function() {
@@ -48,3 +40,5 @@ var CouponList = React.createClass({
   },
 
 });
+
+module.exports = CollectionCoupons;

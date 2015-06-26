@@ -37,6 +37,6 @@ module CakeCouponBook
       env['api.tilt.root'] = Rails.root.join 'app', 'controllers', 'api', 'v1', 'views'
     end
 
-    config.react.addons = true
+    #config.react.addons = true
   end
 end

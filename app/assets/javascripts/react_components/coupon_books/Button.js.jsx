@@ -1,4 +1,4 @@
-/** @jsx React.DOM */
+var React = require('react');
 
 var Button = React.createClass({
   getDefaultProps: function () {
@@ -34,3 +34,5 @@ var Button = React.createClass({
     }
   }
 });
+
+module.exports = Button;

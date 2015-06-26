@@ -1,5 +1,7 @@
-var Coupon = React.createClass({
+var React = require('react');
+var CouponActions = require('./CouponActions.js.jsx');
 
+var Coupon = React.createClass({
   render: function(){
     return (
       //<li className={constructor.couponClasses(coupon)} id={'coupons_' + this.props.coupon.id}  key={index}>
@@ -12,13 +14,6 @@ var Coupon = React.createClass({
     );
   }
 
-  // couponClasses: function(coupon){
-  //   var cx = React.addons.classSet;
-  //   var classes = cx({
-  //     'coupon-list': true,
-  //     'hidden': coupon.disabled,
-  //   });
-  //   return classes;
-  // }
-
 });
+
+module.exports = Coupon;

@@ -1,0 +1,19 @@
+{
+  "name": "cake_coupon_book",
+  "dependencies": {
+    "browserify": "^10.2.4",
+    "browserify-incremental": "^3.0.1",
+    "react": "^0.13.3",
+    "react-dnd": "^1.1.3",
+    "reactify": "^1.1.1"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 0.10"
+  },
+  "browserify": {
+    "transform": [
+      ["reactify", {"es6": true}]
+    ]
+  }
+}

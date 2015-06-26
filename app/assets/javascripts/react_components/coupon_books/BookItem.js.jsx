@@ -1,7 +1,9 @@
+var React = require('react');
+var Button = require('./Button.js.jsx');
+
 var BookItem = React.createClass({
 
   render: function(){
-    console.log(this.props.item);
     return (
       <li className="coupon-list" id={'coupons_' + this.props.item.id}  key={this.props.index}>
         <span className="coupon-list--container">
@@ -15,3 +17,5 @@ var BookItem = React.createClass({
   }
 
 });
+
+module.exports = BookItem;

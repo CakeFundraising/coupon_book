@@ -18,7 +18,8 @@ gem 'modernizr-rails', '~> 2.7.1'
 gem 'font_assets'
 
 #ReactJS
-gem 'react-rails'
+#gem 'react-rails'
+gem 'browserify-rails'
 
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'

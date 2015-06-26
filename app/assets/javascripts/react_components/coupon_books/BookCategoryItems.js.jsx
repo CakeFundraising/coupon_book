@@ -1,16 +1,7 @@
+var React = require('react');
+var BookItem = require('./BookItem.js.jsx');
+
 var BookCategoryItems = React.createClass({
-  mixins: [SortableMixin],
-
-  sortableOptions: {
-    group: {
-      name: 'category',
-      put: ['coupons', 'prboxes']
-    },
-    animation: 200,
-    ghostClass: 'sortable-ghost',
-    filter: '.btn-danger'
-  },
-
   getInitialState: function () {
     return {
       items: [],
@@ -50,3 +41,5 @@ var BookCategoryItems = React.createClass({
   }
 
 });
+
+module.exports = BookCategoryItems;

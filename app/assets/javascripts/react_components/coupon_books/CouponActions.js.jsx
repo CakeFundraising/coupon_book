@@ -1,4 +1,5 @@
-/** @jsx React.DOM */
+var React = require('react');
+var Button = require('./Button.js.jsx');
 
 var CouponActions = React.createClass({
 
@@ -30,3 +31,5 @@ var CouponActions = React.createClass({
     );
   }
 });
+
+module.exports = CouponActions;
