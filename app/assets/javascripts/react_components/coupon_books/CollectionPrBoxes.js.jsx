@@ -1,5 +1,5 @@
 var React = require('react');
-var CouponActions = require('./CouponActions.js.jsx');
+var PrBox = require('./PrBox.js.jsx');
 
 var CollectionPrBoxes = React.createClass({
   propTypes: {
@@ -24,45 +24,21 @@ var CollectionPrBoxes = React.createClass({
   },
 
   render: function() {
+    var prBoxes = this.state.items.map(function(item, index) {
+      if(!item.disabled){
+        return (
+          <PrBox prBox={item} key={index}></PrBox>
+        );
+      };
+    });
+
     return (
       <ul className={this.props.className} id={this.props.id}>
-        {this.renderItem()}
+        {prBoxes}
       </ul>
     );
-  },
+  }
 
-  renderItem: function () {
-    if (this.state.items.length !== 0) {
-      //var constructor = this;
-      return (
-        this.state.items.map (function (item, index) {
-          if(!item.disabled){
-            return (
-              //<li className={constructor.itemClasses(item)} id={'prboxes_' + item.id}  key={index}>
-              <li className="prbox-list" id={'prboxes_' + item.id}  key={index}>
-                <span className="prbox-list--container">
-                  <span className="prbox-list--title">{item.headline}</span>
-                </span>
-                <CouponActions className="prboxActions" prboxId={item.id} />
-              </li>
-            );
-          };
-        })
-      );
-    } else {
-      return <li className="empty-list"></li>
-    }
-  },
-
-  // itemClasses: function(prbox){
-  //   var cx = React.addons.classSet;
-  //   var classes = cx({
-  //     'prbox-list': true,
-  //     'hidden': prbox.disabled,
-  //   });
-  //   return classes;
-  // }
-  
 });
 
 module.exports = CollectionPrBoxes;
