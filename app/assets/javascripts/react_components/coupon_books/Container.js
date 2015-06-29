@@ -1,14 +1,17 @@
-var React = require('react');
-var CouponColumn = require('./CouponColumn.js.jsx');
-var PrBoxColumn = require('./PrBoxColumn.js.jsx');
-var CategoriesColumn = require('./CategoriesColumn.js.jsx');
+import React, { Component, PropTypes } from 'react';
 
-var HTML5Backend = require('react-dnd/modules/backends/HTML5');
-var DragDropContext = require('react-dnd').DragDropContext;
+import CollectionCoupons from './CollectionCoupons';
+import CollectionPrBoxes from './CollectionPrBoxes';
+import Categories from './Categories';
 
-var Canvas = React.createClass({
-  render: function() {
-    var sources = this.props.sources;
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd/modules/backends/HTML5';
+
+@DragDropContext(HTML5Backend)
+export default class Container extends Component {
+
+  render() {
+    const { sources } = this.props;
 
     return(
       <div className="row">
@@ -23,21 +26,19 @@ var Canvas = React.createClass({
           </ul>
           <div className="tab-content">
             <div className="tab-pane active" id="my-discounts" role="tabpanel">
-              <CouponColumn source={sources.collectionCouponsSource} />
+              <CollectionCoupons cssId="collection-coupons" className="collection-coupons" source={sources.collectionCouponsSource} />
             </div>
             <div className="tab-pane" id="pr-boxes" role="tabpanel">
-              <PrBoxColumn source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} />
+              <CollectionPrBoxes className="collection-pr-boxes" id="collection-pr-boxes" source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} />
             </div>
           </div>
         </div>
         <div className="col-md-6" id="categories-col">
           <ul className="no-list" id="categories">
-            <CategoriesColumn source={sources.categoriesSource} />
+            <Categories className="collection-category" id="collection-categories" source={sources.categoriesSource} />
           </ul>
         </div>
       </div>
     );
   }
-});
-
-module.exports = DragDropContext(HTML5Backend)(Canvas);
+}

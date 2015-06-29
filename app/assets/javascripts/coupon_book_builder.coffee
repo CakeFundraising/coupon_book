@@ -1,6 +1,7 @@
 # React
 React = require('react');
-Canvas = require('./react_components/coupon_books/Canvas.js.jsx');
+Container = require('./react_components/coupon_books/Container');
+#NestingDragSources = require('./react_components/examples/Nesting/DragSources/index');
 
 class Organize
   constructor: (couponBookId) ->
@@ -14,7 +15,8 @@ class Organize
     return
 
   init: ->
-    React.render(React.createElement(Canvas, sources: @sources), @rootNode)
+    React.render(React.createElement(Container, sources: @sources), @rootNode)
+    #React.render(React.createElement(NestingDragSources), @rootNode)
     return
 
 CakeCouponBook.coupon_books.organize = (couponBookId)->

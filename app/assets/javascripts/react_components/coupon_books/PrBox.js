@@ -1,8 +1,12 @@
-var React = require('react');
-var CouponActions = require('./CouponActions.js.jsx');
+import React, { Component, PropTypes } from 'react';
+import CouponActions from './CouponActions';
 
-var PrBox = React.createClass({
-  render: function(){
+export default class PrBox extends Component {
+  static propTypes = {
+    prBox: PropTypes.object.isRequired,
+  };
+
+  render(){
     var id = this.props.prBox.id;
     var headline = this.props.prBox.headline;
 
@@ -15,7 +19,4 @@ var PrBox = React.createClass({
       </li>
     );
   }
-
-});
-
-module.exports = PrBox;
+}

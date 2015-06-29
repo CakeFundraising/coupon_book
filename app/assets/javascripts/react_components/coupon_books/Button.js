@@ -1,19 +1,13 @@
-var React = require('react');
+import React, { Component } from 'react';
 
-var Button = React.createClass({
-  getDefaultProps: function () {
-    return {
-      href: '#',
-      iconType: null
-    };
-  },
+export default class Button extends Component {
+  static defaultProps = {
+    href: '#',
+    iconType: null
+  };
 
-  render: function () {
-    return this.renderHtmlTag();
-  },
-
-  renderHtmlTag: function () {
-    return (
+  render(){
+    return(
       <a
         href={this.props.href}
         data-target={this.props['data-target']}
@@ -22,9 +16,9 @@ var Button = React.createClass({
         {this.renderContent()}
       </a>
     );
-  },
+  }
 
-  renderContent: function () {
+  renderContent() {
     if (this.props.iconType !== null) {
       return (
         <span className={'glyphicon glyphicon-' + this.props.iconType}></span>
@@ -33,6 +27,4 @@ var Button = React.createClass({
       return this.props.children;
     }
   }
-});
-
-module.exports = Button;
+}
