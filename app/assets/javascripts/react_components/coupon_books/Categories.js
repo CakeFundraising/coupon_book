@@ -26,7 +26,7 @@ export default class Categories extends Component {
         <li className="category-list" key={index}>
           <span className="category-list--title">{item.name}</span>
           <CouponActions className="couponActions couponActions-category" couponId={item.id} noPreview />
-          <CategoryItems className="collection-coupons" id="collection-coupons-category" source={item.coupons} />
+          <CategoryItems className="collection-coupons" id="collection-coupons-category" source={item.items} />
         </li>
       );
     })
