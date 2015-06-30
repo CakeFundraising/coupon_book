@@ -34,10 +34,10 @@ const itemTarget = {
   }
 };
 
-@DropTarget(ItemTypes.CATEGORY_ITEM, itemTarget, connect => ({
+@DropTarget(ItemTypes.CATEGORYITEM, itemTarget, connect => ({
   connectDropTarget: connect.dropTarget()
 }))
-@DragSource(ItemTypes.CATEGORY_ITEM, itemSource, (connect, monitor) => ({
+@DragSource(ItemTypes.CATEGORYITEM, itemSource, (connect, monitor) => ({
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))
@@ -52,15 +52,13 @@ export default class BookItem extends Component {
     moveItem: PropTypes.func.isRequired,
     findItem: PropTypes.func.isRequired
   };
-  
-  render(){
-    const { id, title } =  this.props;
 
-    const { isDragging, connectDragSource, connectDropTarget } = this.props;
+  render(){
+    const { id, title, key, isDragging, connectDragSource, connectDropTarget } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
-      <li style={{ opacity: opacity }} className="coupon-list" id={'coupons_' + id}  key={this.props.index}>
+      <li style={{ opacity: opacity }} className="coupon-list" id={'coupons_' + id}  key={key}>
         <span className="coupon-list--container">
           <span className="coupon-list--title">{title}</span>
         </span>
