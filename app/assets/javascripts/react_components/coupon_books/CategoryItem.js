@@ -8,28 +8,32 @@ const itemSource = {
   beginDrag(props) {
     return {
       id: props.id,
-      originalIndex: props.findItem(props.id).index
+      originalIndex: props.findItem(props.id).index,
+      categoryId: props.categoryId
     };
   },
 
   endDrag(props, monitor) {
-    const { id: droppedId, originalIndex } = monitor.getItem();
+    const { id: droppedId, originalIndex, categoryId } = monitor.getItem();
     const didDrop = monitor.didDrop();
 
     if (!didDrop) {
-      props.moveItem(droppedId, originalIndex);
+      props.moveItem(droppedId, originalIndex, categoryId);
     }
   }
 };
 
 const itemTarget = {
   hover(props, monitor) {
-    const { id: draggedId } = monitor.getItem();
+    const { id: draggedId, draggedIndex, categoryId } = monitor.getItem();
     const { id: overId } = props;
 
     if (draggedId !== overId) {
       const { index: overIndex } = props.findItem(overId);
-      props.moveItem(draggedId, overIndex);
+
+      if (overIndex !== null){
+        props.moveItem(draggedId, overIndex, categoryId);
+      };
     }
   }
 };

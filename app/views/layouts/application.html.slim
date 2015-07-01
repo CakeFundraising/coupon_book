@@ -8,7 +8,7 @@ html lang="en"
     = csrf_meta_tags
     = stylesheet_link_tag "application"
     /= javascript_include_tag "//checkout.stripe.com/checkout.js", "//widget.cloudinary.com/global/all.js", "application"
-    = javascript_include_tag "application"
+    = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.4/immutable.min.js", "application"
     = cloudinary_js_config
 
   body.fixed

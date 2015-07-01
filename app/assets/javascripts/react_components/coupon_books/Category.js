@@ -55,7 +55,9 @@ export default class Category extends Component {
     connectDropTarget: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
     moveCategory: PropTypes.func.isRequired,
-    findCategory: PropTypes.func.isRequired
+    findCategory: PropTypes.func.isRequired,
+    addItemToCategory: PropTypes.func.isRequired,
+    removeItemFromCategory: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -70,27 +72,40 @@ export default class Category extends Component {
   }
 
   // Sortable Functions
-  moveItem(id, atIndex) {
-    const { item, index } = this.findItem(id);
-    
-    this.setState(update(this.state, {
-      items: {
-        $splice: [
-          [index, 1],
-          [atIndex, 0, item]
-        ]
-      }
-    }));
-  }
-
   findItem(id) {
     const { items } = this.state;
-    const item = items.filter(i => i.id === id)[0];
+    const item = items.find(i => i.get('id') === id);
+    var response = {};
 
-    return {
-      item,
-      index: items.indexOf(item)
+    if(item !== undefined){
+      response = {
+        item,
+        index: items.indexOf(item)
+      };
+    }else{
+      response = {
+        null, 
+        index: null
+      }
     };
+
+    return response;
+  }
+
+  moveItem(id, atIndex, categoryId) {
+    const { item, index } = this.findItem(id);
+
+    if(index !== null){
+      // If item is in current category update array
+      this.setState(({items}) => ({
+        items: items.update(items => items.splice(index, 1).splice(atIndex, 0, item))
+      }));
+    }else{
+      // Add item to current category and remove from original
+      this.props.addItemToCategory(id, this.props.id);
+      this.props.removeItemFromCategory(id, categoryId);
+    };
+    
   }
 
   render(){
@@ -105,7 +120,7 @@ export default class Category extends Component {
         <ul className="collection-coupons" id="collection-coupons-category">
           {categoryItems.map((item, index) => {
             return (
-              <CategoryItem id={item.id} title={item.title} key={index} moveItem={this.moveItem} findItem={this.findItem} />
+              <CategoryItem id={item.get('id')} title={item.get('title')} categoryId={id} key={index} moveItem={this.moveItem} findItem={this.findItem} />
             );
           })}
         </ul>
