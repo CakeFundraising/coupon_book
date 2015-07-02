@@ -8,7 +8,8 @@ const couponSource = {
   beginDrag(props) {
     return {
       id: props.coupon.id,
-      title: props.coupon.title
+      title: props.coupon.title,
+      itemType: 'COUPON'
     };
   }
 }

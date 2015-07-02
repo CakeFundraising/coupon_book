@@ -18,6 +18,8 @@ export default class Categories extends Component {
     this.findCategory = this.findCategory.bind(this);
     this.addItemToCategory = this.addItemToCategory.bind(this);
     this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
+    this.addCouponToCategory = this.addCouponToCategory.bind(this);
+
     this.state = {categories: [], categoryItems: []};
   }
 
@@ -69,6 +71,18 @@ export default class Categories extends Component {
     }));
   }
 
+  addCouponToCategory(coupon, categoryId){
+    let { category, index: categoryIndex } = this.findCategory(categoryId);
+    let item = Immutable.fromJS(coupon);
+    let existing = category.get('items').find(i => i.get('id') === coupon.id && i.get('itemType') === coupon.itemType);
+
+    if(existing === undefined){
+      this.setState(({categories}) => ({
+        categories: categories.updateIn([categoryIndex, 'items'], items => items.push(item))
+      }));
+    };
+  }
+
   render() {
     const { className, id } = this.props;
     const { categories } =  this.state;
@@ -89,7 +103,8 @@ export default class Categories extends Component {
           {categories.map((category, index) => {
             return (
               <Category id={category.get('id')} name={category.get('name')} categoryItems={category.get('items')} key={index} 
-                moveCategory={this.moveCategory} findCategory={this.findCategory} addItemToCategory={this.addItemToCategory} removeItemFromCategory={this.removeItemFromCategory} />
+                moveCategory={this.moveCategory} findCategory={this.findCategory} addItemToCategory={this.addItemToCategory} 
+                removeItemFromCategory={this.removeItemFromCategory} addCouponToCategory={this.addCouponToCategory}/>
             );
           })}
         </ul>

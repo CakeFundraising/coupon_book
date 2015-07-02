@@ -9,17 +9,26 @@ import { DropTarget } from 'react-dnd'
 const itemsTarget = {
   hover(props, monitor, component) {
     // Add item when category is empty
-    const emptyItems = component.state.items.size === 0;
+    const noItems = component.state.items.size === 0;
 
-    if (emptyItems) {
+    if (noItems) {
       const { id: draggedId, draggedIndex, categoryId } = monitor.getItem();
       component.moveItem(draggedId, draggedIndex, categoryId)
     };
   }
 };
 
+const couponTarget = {
+  hover(props, monitor){
+    props.addCouponToCategory(monitor.getItem(), props.categoryId);
+  }
+};
+
+@DropTarget(ItemTypes.COUPON, couponTarget, connect => ({
+  couponDropTarget: connect.dropTarget()
+}))
 @DropTarget(ItemTypes.CATEGORYITEM, itemsTarget, connect => ({
-  connectDropTarget: connect.dropTarget()
+  itemDropTarget: connect.dropTarget()
 }))
 export default class CategoryItemsList extends Component {
   static propTypes = {
@@ -27,8 +36,10 @@ export default class CategoryItemsList extends Component {
     categoryId: PropTypes.number.isRequired,
     addItemToCategory: PropTypes.func.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired,
+    addCouponToCategory: PropTypes.func.isRequired,
 
-    connectDropTarget: PropTypes.func.isRequired
+    itemDropTarget: PropTypes.func.isRequired,
+    couponDropTarget: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -82,17 +93,17 @@ export default class CategoryItemsList extends Component {
   }
 
   render(){
-    const { connectDropTarget, categoryId } = this.props;
+    const { itemDropTarget, couponDropTarget, categoryId } = this.props;
     const { items: categoryItems } = this.state;
 
-    return connectDropTarget(
+    return couponDropTarget(itemDropTarget(
       <ul className="category-items">
         {categoryItems.map((item, index) => {
           return (
-            <CategoryItem id={item.get('id')} title={item.get('title')} categoryId={categoryId} key={index} moveItem={this.moveItem} findItem={this.findItem} />
+            <CategoryItem id={item.get('id')} title={item.get('title')} itemType={item.get('itemType')} categoryId={categoryId} key={index} moveItem={this.moveItem} findItem={this.findItem} />
           );
         })}
       </ul>
-    );
+    ));
   }
 }

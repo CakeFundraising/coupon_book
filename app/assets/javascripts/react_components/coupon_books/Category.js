@@ -55,21 +55,24 @@ export default class Category extends Component {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
+
     moveCategory: PropTypes.func.isRequired,
     findCategory: PropTypes.func.isRequired,
     addItemToCategory: PropTypes.func.isRequired,
-    removeItemFromCategory: PropTypes.func.isRequired
+    removeItemFromCategory: PropTypes.func.isRequired,
+    addCouponToCategory: PropTypes.func.isRequired
   };
 
   render(){
-    const { id, name, key, isDragging, connectDragSource, connectDropTarget, categoryItems, addItemToCategory, removeItemFromCategory } = this.props;
+    const { id, name, key, isDragging, connectDragSource, connectDropTarget, categoryItems, addItemToCategory, removeItemFromCategory, addCouponToCategory } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
       <li className="category" key={key}>
         <span className="category--title">{name}</span>
         <CouponActions className="couponActions couponActions-category" couponId={id} noPreview />
-        <CategoryItemsList categoryItems={categoryItems} categoryId={id} addItemToCategory={addItemToCategory} removeItemFromCategory={removeItemFromCategory} />
+        <CategoryItemsList categoryItems={categoryItems} categoryId={id} addItemToCategory={addItemToCategory} 
+          removeItemFromCategory={removeItemFromCategory} addCouponToCategory={addCouponToCategory} />
       </li>
     ));
   }

@@ -4,6 +4,6 @@ json.array! @categories do |category|
     json.id item.id
     json.title item.title
     json.position item.position
-    json.item_type item.class.name
+    json.itemType item.class.name.upcase
   end
 end
