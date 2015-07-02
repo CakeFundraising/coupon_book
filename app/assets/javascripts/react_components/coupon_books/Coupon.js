@@ -32,9 +32,9 @@ export default class Coupon extends Component {
     const opacity = isDragging ? 0.4 : 1;
 
     return connectDragSource(
-      <li style={{ opacity: opacity }} className="coupon-list" id={'coupons_' + id}  key={key}>
-        <span className="coupon-list--container">
-          <span className="coupon-list--title">{title}</span>
+      <li style={{ opacity: opacity }} className="coupon-item" id={'coupons_' + id}  key={key}>
+        <span className="coupon-item--container">
+          <span className="coupon-item--title">{title}</span>
         </span>
         <CouponActions className="couponActions" couponId={id} />
       </li>

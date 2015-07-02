@@ -7,13 +7,12 @@ export default class PrBox extends Component {
   };
 
   render(){
-    var id = this.props.prBox.id;
-    var headline = this.props.prBox.headline;
-
+    const { id, headline } = this.props.prBox;
+ 
     return (
-      <li className="prbox-list" id={'prboxes_' + id}  key={this.props.key}>
-        <span className="prbox-list--container">
-          <span className="prbox-list--title">{headline}</span>
+      <li className="prbox-item" id={'prboxes_' + id}  key={this.props.key}>
+        <span className="prbox-item--container">
+          <span className="prbox-item--title">{headline}</span>
         </span>
         <CouponActions className="prboxActions" prboxId={id} />
       </li>

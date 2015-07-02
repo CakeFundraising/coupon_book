@@ -2,7 +2,8 @@
 
 .collection-coupons,
 .collection-pr-boxes,
-.collection-category {
+.categories,
+.category-items {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -13,20 +14,44 @@
 
 }
 
-.coupon-list,
-.prbox-list,
-.category-list {
+.category {
+  padding: 0;
+  border: 0;
+  position: relative;
+
+  &--title {
+    background: $brand-primary;
+    color: white;
+    font-size: $font-size-h3;
+    display: block;
+    padding: 8px;
+  }
+
+  .category-items{
+    min-height: 70px;
+    padding-top: 10px;
+  }
+}
+
+.coupon-item,
+.prbox-item,
+.category-item{
   border: 1px solid $gray-medium-light;
   padding: 8px;
   overflow: hidden;
   margin-bottom: 10px;
   background: white;
-
+  
   &--item,
   &--title {
     display: block;
     font-size: 12px;
     margin-bottom: 10px;
+  }
+
+  &--container {
+    float: left;
+    max-width: 70%;
   }
 
   &:hover {
@@ -42,26 +67,6 @@
     background: $gray-lighter;
     opacity: 0.7;
   }
-}
-
-.category-list {
-  padding: 0;
-  border: 0;
-  position: relative;
-
-  &--title {
-    background: $brand-primary;
-    color: white;
-    font-size: $font-size-h3;
-    display: block;
-    padding: 8px;
-  }
-}
-
-.prbox-list--container,
-.coupon-list--container {
-  float: left;
-  max-width: 70%;
 }
 
 .prboxActions,

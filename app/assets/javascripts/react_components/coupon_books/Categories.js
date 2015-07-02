@@ -49,6 +49,7 @@ export default class Categories extends Component {
     }));
   }
 
+  //Item actions
   addItemToCategory(itemId, categoryId){
     let { categoryItems } = this.state;
     let item = categoryItems.find(i => i.get('id') === itemId);

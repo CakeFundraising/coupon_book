@@ -35,7 +35,7 @@ export default class Container extends Component {
         </div>
         <div className="col-md-6" id="categories-col">
           <ul className="no-list" id="categories">
-            <Categories className="collection-category" id="collection-categories" source={sources.categoriesSource} />
+            <Categories className="categories" id="categories" source={sources.categoriesSource} />
           </ul>
         </div>
       </div>
