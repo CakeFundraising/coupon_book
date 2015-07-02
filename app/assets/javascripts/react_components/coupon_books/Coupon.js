@@ -7,9 +7,19 @@ import ItemTypes from './ItemTypes'
 const couponSource = {
   beginDrag(props) {
     return {
-      id: props.coupon.id,
-      title: props.coupon.title,
-      itemType: 'COUPON'
+      id: props.id,
+      title: props.title,
+      itemType: props.itemType
+    };
+  },
+
+  canDrag(props){
+    return !props.disabled;
+  },
+
+  endDrag(props, monitor){
+    if(monitor.didDrop()){
+      props.disabled = true;
     };
   }
 }
@@ -21,16 +31,18 @@ const couponSource = {
 }))
 export default class Coupon extends Component {
   static propTypes = {
-    coupon: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    itemType: PropTypes.string.isRequired,
+    disabled: PropTypes.bool.isRequired,
     // Injected by React DnD:
     isDragging: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired
   };
 
   render(){
-    const { id, title } = this.props.coupon;
-    const { isDragging, connectDragSource, key } = this.props;
-    const opacity = isDragging ? 0.4 : 1;
+    const { id, title, disabled, itemType, isDragging, connectDragSource, key } = this.props;
+    const opacity = (isDragging || disabled) ? 0.4 : 1;
 
     return connectDragSource(
       <li style={{ opacity: opacity }} className="coupon-item" id={'coupons_' + id}  key={key}>

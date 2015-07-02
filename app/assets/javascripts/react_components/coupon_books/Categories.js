@@ -20,14 +20,13 @@ export default class Categories extends Component {
     this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
     this.addCouponToCategory = this.addCouponToCategory.bind(this);
 
-    this.state = {categories: [], categoryItems: []};
+    this.state = {categories: []};
   }
 
   componentDidMount() {
     $.get(this.props.source, function(data) {
       this.setState({
-        categories: Immutable.fromJS(data),
-        categoryItems: Immutable.fromJS(_.flatten(_.map(data, (category, index) => { return category.items })))
+        categories: Immutable.fromJS(data)
       });
     }.bind(this));
   }
@@ -53,7 +52,7 @@ export default class Categories extends Component {
 
   //Item actions
   addItemToCategory(itemId, categoryId){
-    let { categoryItems } = this.state;
+    let categoryItems = this.state.categories.flatMap(c => c.get('items'));
     let item = categoryItems.find(i => i.get('id') === itemId);
     let categoryIndex = this.findCategory(categoryId).index;
 

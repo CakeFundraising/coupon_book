@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+//import Immutable from 'immutable'
+
 import Button from './Button';
 import Coupon from './Coupon';
 
 export default class CollectionCoupons extends Component {
-  state = {items: []};
+  state = {coupons: []};
 
   static propTypes = {
     cssId: PropTypes.string.isRequired,
@@ -13,19 +15,13 @@ export default class CollectionCoupons extends Component {
   componentDidMount() {
     $.get(this.props.source, function(data) {
       this.setState({
-        items: data
+        coupons: data
       });
     }.bind(this));
   }
 
   render() {
-    var coupons = this.state.items.map(function(item, index) {
-      if(!item.disabled){
-        return (
-          <Coupon coupon={item} key={index}></Coupon>
-        );
-      };
-    });
+    const { coupons } =  this.state;
 
     return (
       <div className="coupons-column">
@@ -38,7 +34,9 @@ export default class CollectionCoupons extends Component {
           </Button>
         </h2>
         <ul className={this.props.className} id={this.props.cssId}>
-          {coupons}
+          {coupons.map((coupon, index) => {
+            return <Coupon id={coupon.id} title={coupon.title} itemType={coupon.itemType} disabled={coupon.disabled} key={index}></Coupon>
+          })}
         </ul>
       </div>
     );
