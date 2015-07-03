@@ -9,6 +9,14 @@ import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 
 @DragDropContext(HTML5Backend)
 export default class Container extends Component {
+  constructor(props) {
+    super(props);
+    this.enableCoupon = this.enableCoupon.bind(this);
+  }
+
+  enableCoupon(couponId){
+    this.refs.collectionCoupons.enableCoupon(couponId);
+  }
 
   render() {
     const { sources } = this.props;
@@ -26,7 +34,7 @@ export default class Container extends Component {
           </ul>
           <div className="tab-content">
             <div className="tab-pane active" id="my-discounts" role="tabpanel">
-              <CollectionCoupons cssId="collection-coupons" className="collection-coupons" source={sources.collectionCouponsSource} />
+              <CollectionCoupons cssId="collection-coupons" className="collection-coupons" source={sources.collectionCouponsSource} ref="collectionCoupons" />
             </div>
             <div className="tab-pane" id="pr-boxes" role="tabpanel">
               <CollectionPrBoxes className="collection-pr-boxes" id="collection-pr-boxes" source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} />
@@ -35,7 +43,7 @@ export default class Container extends Component {
         </div>
         <div className="col-md-6" id="categories-col">
           <ul className="no-list" id="categories">
-            <Categories className="categories" id="categories" source={sources.categoriesSource} />
+            <Categories className="categories" id="categories" source={sources.categoriesSource} enableCoupon={this.enableCoupon} />
           </ul>
         </div>
       </div>

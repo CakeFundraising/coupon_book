@@ -19,7 +19,7 @@ const couponSource = {
 
   endDrag(props, monitor){
     if(monitor.didDrop()){
-      props.disabled = true;
+      props.disableCoupon(props.id);
     };
   }
 }
@@ -35,6 +35,7 @@ export default class Coupon extends Component {
     title: PropTypes.string.isRequired,
     itemType: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
+    disableCoupon: PropTypes.func.isRequired,
     // Injected by React DnD:
     isDragging: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired

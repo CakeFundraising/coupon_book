@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
+import CollectionCoupons from './CollectionCoupons';
 import CategoryItem from './CategoryItem';
 import ItemTypes from './ItemTypes'
 
@@ -34,9 +35,11 @@ export default class CategoryItemsList extends Component {
   static propTypes = {
     categoryItems: PropTypes.any.isRequired,
     categoryId: PropTypes.number.isRequired,
+
     addItemToCategory: PropTypes.func.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired,
     addCouponToCategory: PropTypes.func.isRequired,
+    enableCoupon: PropTypes.func.isRequired,
 
     itemDropTarget: PropTypes.func.isRequired,
     couponDropTarget: PropTypes.func.isRequired
@@ -46,6 +49,7 @@ export default class CategoryItemsList extends Component {
     super(props);
     this.moveItem = this.moveItem.bind(this);
     this.findItem = this.findItem.bind(this);
+    this.removeItem = this.removeItem.bind(this);
     this.state = {items: this.props.categoryItems};
   }
 
@@ -92,6 +96,11 @@ export default class CategoryItemsList extends Component {
     
   }
 
+  removeItem(id){
+    this.props.removeItemFromCategory(id, this.props.categoryId);
+    this.props.enableCoupon(id);
+  }
+
   render(){
     const { itemDropTarget, couponDropTarget, categoryId } = this.props;
     const { items: categoryItems } = this.state;
@@ -100,7 +109,8 @@ export default class CategoryItemsList extends Component {
       <ul className="category-items">
         {categoryItems.map((item, index) => {
           return (
-            <CategoryItem id={item.get('id')} title={item.get('title')} itemType={item.get('itemType')} categoryId={categoryId} key={index} moveItem={this.moveItem} findItem={this.findItem} />
+            <CategoryItem id={item.get('id')} title={item.get('title')} itemType={item.get('itemType')} 
+              categoryId={categoryId} key={index} moveItem={this.moveItem} findItem={this.findItem} removeItem={this.removeItem} />
           );
         })}
       </ul>

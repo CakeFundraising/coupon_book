@@ -9,11 +9,13 @@ import Category from './Category';
 export default class Categories extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired
+    className: PropTypes.string.isRequired,
+    enableCoupon: PropTypes.func.isRequired
   };
 
   constructor(props) {
     super(props);
+
     this.moveCategory = this.moveCategory.bind(this);
     this.findCategory = this.findCategory.bind(this);
     this.addItemToCategory = this.addItemToCategory.bind(this);
@@ -83,7 +85,7 @@ export default class Categories extends Component {
   }
 
   render() {
-    const { className, id } = this.props;
+    const { className, id, enableCoupon } = this.props;
     const { categories } =  this.state;
 
     return (
@@ -101,9 +103,17 @@ export default class Categories extends Component {
         <ul className={className} id={id}>
           {categories.map((category, index) => {
             return (
-              <Category id={category.get('id')} name={category.get('name')} categoryItems={category.get('items')} key={index} 
-                moveCategory={this.moveCategory} findCategory={this.findCategory} addItemToCategory={this.addItemToCategory} 
-                removeItemFromCategory={this.removeItemFromCategory} addCouponToCategory={this.addCouponToCategory}/>
+              <Category 
+                id={category.get('id')} 
+                name={category.get('name')} 
+                categoryItems={category.get('items')} 
+                key={index} 
+                moveCategory={this.moveCategory} 
+                findCategory={this.findCategory} 
+                addItemToCategory={this.addItemToCategory} 
+                removeItemFromCategory={this.removeItemFromCategory} 
+                addCouponToCategory={this.addCouponToCategory} 
+                enableCoupon={enableCoupon} />
             );
           })}
         </ul>

@@ -45,7 +45,7 @@ const itemTarget = {
   connectDragSource: connect.dragSource(),
   isDragging: monitor.isDragging()
 }))
-export default class BookItem extends Component {
+export default class CategoryItem extends Component {
   static propTypes = {
     id: PropTypes.any.isRequired,
     title: PropTypes.string.isRequired,
@@ -54,12 +54,14 @@ export default class BookItem extends Component {
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired,
+
     moveItem: PropTypes.func.isRequired,
-    findItem: PropTypes.func.isRequired
+    findItem: PropTypes.func.isRequired,
+    removeItem: PropTypes.func.isRequired
   };
 
   render(){
-    const { id, title, itemType, key, isDragging, connectDragSource, connectDropTarget } = this.props;
+    const { id, title, itemType, key, isDragging, connectDragSource, connectDropTarget, removeItem } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -68,7 +70,7 @@ export default class BookItem extends Component {
           <span className="category-item--title">{title}</span>
           <span className="category-item--type">{itemType}</span>
         </span>
-        <Button iconType='remove' className="btn btn-sm pull-right btn-danger">Delete</Button>
+        <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id)}>Delete</Button>
         <Button href={'/coupons/' + id + '/edit'} iconType="pencil" className="btn btn-sm pull-right btn-primary">Edit</Button>
         <Button iconType="eye-open" className="btn btn-sm pull-right btn-success" data-target={'#preview-coupon-' + id} data-toggle="modal">Preview </Button>
       </li>

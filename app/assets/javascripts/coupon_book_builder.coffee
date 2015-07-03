@@ -1,7 +1,6 @@
 # React
 React = require('react');
 Container = require('./react_components/coupon_books/Container');
-#NestingDragSources = require('./react_components/examples/Nesting/DragSources/index');
 
 class Organize
   constructor: (couponBookId) ->
@@ -16,9 +15,14 @@ class Organize
 
   init: ->
     React.render(React.createElement(Container, sources: @sources), @rootNode)
-    #React.render(React.createElement(NestingDragSources), @rootNode)
     return
 
 CakeCouponBook.coupon_books.organize = (couponBookId)->
+  # reactLinks = $('a[data-type="react-button"]')
+  # reactLinks.click (e)->
+  #   console.log 'preventDefault'
+  #   e.preventDefault()
+  #   return
+
   new Organize(couponBookId).init()
   return

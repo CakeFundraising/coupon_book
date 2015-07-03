@@ -2,29 +2,27 @@ import React, { Component } from 'react';
 
 export default class Button extends Component {
   static defaultProps = {
-    href: '#',
+    href: '#!',
     iconType: null
   };
 
-  render(){
-    return(
-      <a
-        href={this.props.href}
-        data-target={this.props['data-target']}
-        data-toggle={this.props['data-toggle']}
-        className={this.props.className}>
-        {this.renderContent()}
-      </a>
-    );
+  content(){
+    const {iconType, children} = this.props;
+
+    if (iconType !== null) {
+      return <span className={'glyphicon glyphicon-' + iconType}></span>;
+    }else{
+      return children;
+    }
   }
 
-  renderContent() {
-    if (this.props.iconType !== null) {
-      return (
-        <span className={'glyphicon glyphicon-' + this.props.iconType}></span>
-      );
-    } else {
-      return this.props.children;
-    }
+  render(){
+    const { href, className, onClickEvent, ['data-target']: target, ['data-toggle']: toggle } = this.props;
+
+    return(
+      <a href={href} data-target={target} data-toggle={toggle} className={className} onClick={onClickEvent} data-type="react-button">
+        {this.content()}
+      </a>
+    );
   }
 }
