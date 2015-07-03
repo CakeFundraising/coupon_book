@@ -13,6 +13,7 @@ export default class CollectionCoupons extends Component {
   constructor(props) {
     super(props);
     this.disableCoupon = this.disableCoupon.bind(this);
+    this.enableCoupon = this.enableCoupon.bind(this);
     this.state = {coupons: []};
   }
 

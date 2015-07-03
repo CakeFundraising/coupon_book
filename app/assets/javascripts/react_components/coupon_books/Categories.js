@@ -10,7 +10,8 @@ export default class Categories extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
-    enableCoupon: PropTypes.func.isRequired
+    enableCoupon: PropTypes.func.isRequired,
+    enablePrBox: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -73,9 +74,11 @@ export default class Categories extends Component {
   }
 
   addCouponToCategory(coupon, categoryId){
-    let { category, index: categoryIndex } = this.findCategory(categoryId);
+    let { index: categoryIndex } = this.findCategory(categoryId);
     let item = Immutable.fromJS(coupon);
-    let existing = category.get('items').find(i => i.get('id') === coupon.id && i.get('itemType') === coupon.itemType);
+    
+    let categoryItems = this.state.categories.flatMap(c => c.get('items'));
+    let existing = categoryItems.find(i => i.get('id') === coupon.id && i.get('itemType') === coupon.itemType);
 
     if(existing === undefined){
       this.setState(({categories}) => ({
@@ -85,7 +88,7 @@ export default class Categories extends Component {
   }
 
   render() {
-    const { className, id, enableCoupon } = this.props;
+    const { className, id, enableCoupon, enablePrBox } = this.props;
     const { categories } =  this.state;
 
     return (
@@ -113,7 +116,8 @@ export default class Categories extends Component {
                 addItemToCategory={this.addItemToCategory} 
                 removeItemFromCategory={this.removeItemFromCategory} 
                 addCouponToCategory={this.addCouponToCategory} 
-                enableCoupon={enableCoupon} />
+                enableCoupon={enableCoupon}
+                enablePrBox={enablePrBox} />
             );
           })}
         </ul>

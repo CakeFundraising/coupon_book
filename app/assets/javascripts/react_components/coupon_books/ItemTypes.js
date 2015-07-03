@@ -1,6 +1,6 @@
 export default {
   COUPON: 'coupon',
-  PRBOXES: 'prBoxes',
+  PRBOX: 'prBox',
   CATEGORY: 'category',
   CATEGORYITEM: 'categoryItem'
 };

@@ -70,7 +70,7 @@ export default class CategoryItem extends Component {
           <span className="category-item--title">{title}</span>
           <span className="category-item--type">{itemType}</span>
         </span>
-        <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id)}>Delete</Button>
+        <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id, itemType)}>Delete</Button>
         <Button href={'/coupons/' + id + '/edit'} iconType="pencil" className="btn btn-sm pull-right btn-primary">Edit</Button>
         <Button iconType="eye-open" className="btn btn-sm pull-right btn-success" data-target={'#preview-coupon-' + id} data-toggle="modal">Preview </Button>
       </li>

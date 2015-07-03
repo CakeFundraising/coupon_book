@@ -63,12 +63,13 @@ export default class Category extends Component {
     removeItemFromCategory: PropTypes.func.isRequired,
 
     addCouponToCategory: PropTypes.func.isRequired,
-    enableCoupon: PropTypes.func.isRequired
+    enableCoupon: PropTypes.func.isRequired,
+    enablePrBox: PropTypes.func.isRequired
   };
 
   render(){
     const { id, name, key, isDragging, connectDragSource, connectDropTarget, 
-      categoryItems, addItemToCategory, removeItemFromCategory, addCouponToCategory, enableCoupon } = this.props;
+      categoryItems, addItemToCategory, removeItemFromCategory, addCouponToCategory, enableCoupon, enablePrBox } = this.props;
     const opacity = isDragging ? 0 : 1;
 
     return connectDragSource(connectDropTarget(
@@ -81,7 +82,8 @@ export default class Category extends Component {
           addItemToCategory={addItemToCategory} 
           removeItemFromCategory={removeItemFromCategory} 
           addCouponToCategory={addCouponToCategory} 
-          enableCoupon={enableCoupon} />
+          enableCoupon={enableCoupon}
+          enablePrBox={enablePrBox} />
       </li>
     ));
   }

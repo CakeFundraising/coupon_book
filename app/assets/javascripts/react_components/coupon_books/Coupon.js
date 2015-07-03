@@ -26,7 +26,6 @@ const couponSource = {
 
 @DragSource(ItemTypes.COUPON, couponSource, (connect, monitor) =>({
   connectDragSource: connect.dragSource(),
-  //connectDragPreview: connect.dragPreview(),
   isDragging: monitor.isDragging()
 }))
 export default class Coupon extends Component {

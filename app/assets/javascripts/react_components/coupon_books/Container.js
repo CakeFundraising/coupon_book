@@ -12,10 +12,15 @@ export default class Container extends Component {
   constructor(props) {
     super(props);
     this.enableCoupon = this.enableCoupon.bind(this);
+    this.enablePrBox = this.enablePrBox.bind(this);
   }
 
   enableCoupon(couponId){
     this.refs.collectionCoupons.enableCoupon(couponId);
+  }
+
+  enablePrBox(prBoxId){
+    this.refs.collectionPrBoxes.enablePrBox(prBoxId);
   }
 
   render() {
@@ -37,13 +42,13 @@ export default class Container extends Component {
               <CollectionCoupons cssId="collection-coupons" className="collection-coupons" source={sources.collectionCouponsSource} ref="collectionCoupons" />
             </div>
             <div className="tab-pane" id="pr-boxes" role="tabpanel">
-              <CollectionPrBoxes className="collection-pr-boxes" id="collection-pr-boxes" source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} />
+              <CollectionPrBoxes className="collection-pr-boxes" id="collection-pr-boxes" source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} ref="collectionPrBoxes" />
             </div>
           </div>
         </div>
         <div className="col-md-6" id="categories-col">
           <ul className="no-list" id="categories">
-            <Categories className="categories" id="categories" source={sources.categoriesSource} enableCoupon={this.enableCoupon} />
+            <Categories className="categories" id="categories" source={sources.categoriesSource} enableCoupon={this.enableCoupon} enablePrBox={this.enablePrBox} />
           </ul>
         </div>
       </div>

@@ -25,6 +25,15 @@ const couponTarget = {
   }
 };
 
+const prBoxTarget = {
+  hover(props, monitor){
+    props.addCouponToCategory(monitor.getItem(), props.categoryId);
+  }
+};
+
+@DropTarget(ItemTypes.PRBOX, prBoxTarget, connect => ({
+  prBoxDropTarget: connect.dropTarget()
+}))
 @DropTarget(ItemTypes.COUPON, couponTarget, connect => ({
   couponDropTarget: connect.dropTarget()
 }))
@@ -40,9 +49,11 @@ export default class CategoryItemsList extends Component {
     removeItemFromCategory: PropTypes.func.isRequired,
     addCouponToCategory: PropTypes.func.isRequired,
     enableCoupon: PropTypes.func.isRequired,
+    enablePrBox: PropTypes.func.isRequired,
 
     itemDropTarget: PropTypes.func.isRequired,
-    couponDropTarget: PropTypes.func.isRequired
+    couponDropTarget: PropTypes.func.isRequired,
+    prBoxDropTarget: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -96,16 +107,16 @@ export default class CategoryItemsList extends Component {
     
   }
 
-  removeItem(id){
+  removeItem(id, itemType){
     this.props.removeItemFromCategory(id, this.props.categoryId);
-    this.props.enableCoupon(id);
+    (itemType === 'COUPON') ? this.props.enableCoupon(id) : this.props.enablePrBox(id)
   }
 
   render(){
-    const { itemDropTarget, couponDropTarget, categoryId } = this.props;
+    const { itemDropTarget, couponDropTarget, prBoxDropTarget, categoryId } = this.props;
     const { items: categoryItems } = this.state;
 
-    return couponDropTarget(itemDropTarget(
+    return prBoxDropTarget(couponDropTarget(itemDropTarget(
       <ul className="category-items">
         {categoryItems.map((item, index) => {
           return (
@@ -114,6 +125,6 @@ export default class CategoryItemsList extends Component {
           );
         })}
       </ul>
-    ));
+    )));
   }
 }
