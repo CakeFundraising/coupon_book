@@ -72,7 +72,7 @@ export default class Category extends Component {
       categoryItems, addItemToCategory, removeItemFromCategory, addCouponToCategory, enableCoupon, enablePrBox } = this.props;
     const opacity = isDragging ? 0 : 1;
 
-    return connectDragSource(connectDropTarget(
+    return connectDropTarget(connectDragSource(
       <li className="category" key={key}>
         <span className="category--title">{name}</span>
         <CouponActions className="couponActions couponActions-category" couponId={id} noPreview />

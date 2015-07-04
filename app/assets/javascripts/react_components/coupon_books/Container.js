@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import CollectionCoupons from './CollectionCoupons';
 import CollectionPrBoxes from './CollectionPrBoxes';
 import Categories from './Categories';
+import Button from './Button';
 
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd/modules/backends/HTML5';
@@ -11,11 +12,16 @@ import HTML5Backend from 'react-dnd/modules/backends/HTML5';
 export default class Container extends Component {
   constructor(props) {
     super(props);
+
     this.enableCoupon = this.enableCoupon.bind(this);
     this.enablePrBox = this.enablePrBox.bind(this);
     this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
+    this.save = this.save.bind(this);
+
+    this.state = {saving: false};
   }
 
+  // Integration Functions
   enableCoupon(couponId){
     this.refs.collectionCoupons.enableCoupon(couponId);
   }
@@ -28,11 +34,28 @@ export default class Container extends Component {
     this.refs.categories.removeItemFromCategory(itemId);
   }
 
+  // SAVE
+  save(){
+    const self = this;
+    const couponBookId = this.props.sources.couponBookId;
+    const categoriesTree = {
+      categories: this.refs.categories.state.categories.toJS()
+    };
+    
+    this.setState({saving: true});
+
+    $.post('/coupon_books/' + couponBookId + '/edit/save_organize', categoriesTree).done(function (data){
+      self.setState({saving: false});
+    });
+  }
+
   render() {
     const { sources } = this.props;
+    const { saving } = this.state;
+    const opacity = saving ? 0.4 : 1
 
     return(
-      <div className="row">
+      <div style={{ opacity: opacity }} className="row">
         <div className="col-md-6" role="tabpanel">
           <ul className="nav nav-tabs" role="tablist">
             <li className="active" role="presentation">
@@ -72,6 +95,14 @@ export default class Container extends Component {
               enablePrBox={this.enablePrBox} 
               ref="categories" />
           </ul>
+        </div>
+        <div className="col-md-12 text-center">
+          <Button className="btn btn-lg btn-success" onClickEvent={this.save} disabled={saving}>
+            Save
+          </Button>
+          <Button href={'/coupon_books/' + sources.couponBookId + '/edit/request_coupons'} className="btn btn-lg btn-primary">
+            Continue
+          </Button>
         </div>
       </div>
     );

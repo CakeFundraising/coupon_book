@@ -17,6 +17,7 @@ CakeCouponBook::Application.routes.draw do
         get :coupons
         get :request_coupons
         get :launch_and_share
+        post :save_organize
       end
       patch :launch
       patch :save_for_launch

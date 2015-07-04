@@ -46,6 +46,11 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/template/coupons'
   end
 
+  def save_organize
+    saved = resource.save_categories!(params[:categories])
+    render text: saved
+  end
+
   def categories
     @categories = resource.categories
     render 'coupon_books/show/categories'
