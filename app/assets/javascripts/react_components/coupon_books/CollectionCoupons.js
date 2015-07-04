@@ -7,7 +7,8 @@ import Coupon from './Coupon';
 export default class CollectionCoupons extends Component {
   static propTypes = {
     cssId: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired
+    source: PropTypes.string.isRequired,
+    removeItemFromCategory: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -43,6 +44,7 @@ export default class CollectionCoupons extends Component {
   }
 
   render() {
+    const { className, cssId, removeItemFromCategory } = this.props;
     const { coupons } =  this.state;
 
     return (
@@ -55,11 +57,17 @@ export default class CollectionCoupons extends Component {
             Add Discount
           </Button>
         </h2>
-        <ul className={this.props.className} id={this.props.cssId}>
+        <ul className={className} id={cssId}>
           {coupons.map((coupon, index) => {
             return(
-              <Coupon id={coupon.get('id')} title={coupon.get('title')} itemType={coupon.get('itemType')} 
-                disabled={coupon.get('disabled')} disableCoupon={this.disableCoupon} key={index}></Coupon>
+              <Coupon
+                id={coupon.get('id')} 
+                title={coupon.get('title')} 
+                itemType={coupon.get('itemType')} 
+                disabled={coupon.get('disabled')} 
+                disableCoupon={this.disableCoupon}
+                removeItemFromCategory={removeItemFromCategory}
+                key={index} />
             );
           })}
         </ul>

@@ -20,6 +20,8 @@ const prBoxSource = {
   endDrag(props, monitor){
     if(monitor.didDrop()){
       props.disablePrBox(props.id);
+    }else{
+      props.removeItemFromCategory(props.id);
     };
   }
 }
@@ -35,6 +37,7 @@ export default class PrBox extends Component {
     itemType: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     disablePrBox: PropTypes.func.isRequired,
+    removeItemFromCategory: PropTypes.func.isRequired,
     // Injected by React DnD:
     isDragging: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired

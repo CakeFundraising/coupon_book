@@ -7,7 +7,8 @@ import PrBox from './PrBox';
 export default class CollectionPrBoxes extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
-    source: PropTypes.string.isRequired
+    source: PropTypes.string.isRequired,
+    removeItemFromCategory: PropTypes.func.isRequired
   };
 
   constructor(props) {
@@ -43,6 +44,7 @@ export default class CollectionPrBoxes extends Component {
   }
 
   render() {
+    const { className, id, removeItemFromCategory } = this.props;
     const { prBoxes } =  this.state;
 
     return (
@@ -55,11 +57,17 @@ export default class CollectionPrBoxes extends Component {
             Add PR Box
           </Button>
         </h2>
-        <ul className={this.props.className} id={this.props.id}>
+        <ul className={className} id={id}>
           {prBoxes.map((prBox, index) => {
             return(
-              <PrBox id={prBox.get('id')} title={prBox.get('headline')} itemType={prBox.get('itemType')} 
-                disabled={prBox.get('disabled')} disablePrBox={this.disablePrBox} key={index}></PrBox>
+              <PrBox 
+                id={prBox.get('id')} 
+                title={prBox.get('headline')} 
+                itemType={prBox.get('itemType')} 
+                disabled={prBox.get('disabled')} 
+                disablePrBox={this.disablePrBox} 
+                key={index} 
+                removeItemFromCategory={removeItemFromCategory} />
             );
           })}
         </ul>

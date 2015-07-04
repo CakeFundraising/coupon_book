@@ -13,6 +13,7 @@ export default class Container extends Component {
     super(props);
     this.enableCoupon = this.enableCoupon.bind(this);
     this.enablePrBox = this.enablePrBox.bind(this);
+    this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
   }
 
   enableCoupon(couponId){
@@ -21,6 +22,10 @@ export default class Container extends Component {
 
   enablePrBox(prBoxId){
     this.refs.collectionPrBoxes.enablePrBox(prBoxId);
+  }
+
+  removeItemFromCategory(itemId){
+    this.refs.categories.removeItemFromCategory(itemId);
   }
 
   render() {
@@ -39,16 +44,33 @@ export default class Container extends Component {
           </ul>
           <div className="tab-content">
             <div className="tab-pane active" id="my-discounts" role="tabpanel">
-              <CollectionCoupons cssId="collection-coupons" className="collection-coupons" source={sources.collectionCouponsSource} ref="collectionCoupons" />
+              <CollectionCoupons 
+                cssId="collection-coupons" 
+                className="collection-coupons" 
+                source={sources.collectionCouponsSource} 
+                removeItemFromCategory={this.removeItemFromCategory} 
+                ref="collectionCoupons" />
             </div>
             <div className="tab-pane" id="pr-boxes" role="tabpanel">
-              <CollectionPrBoxes className="collection-pr-boxes" id="collection-pr-boxes" source={sources.collectionPrBoxesSource} bookId={sources.couponBookId} ref="collectionPrBoxes" />
+              <CollectionPrBoxes 
+                className="collection-pr-boxes" 
+                id="collection-pr-boxes" 
+                source={sources.collectionPrBoxesSource} 
+                bookId={sources.couponBookId} 
+                removeItemFromCategory={this.removeItemFromCategory} 
+                ref="collectionPrBoxes" />
             </div>
           </div>
         </div>
         <div className="col-md-6" id="categories-col">
           <ul className="no-list" id="categories">
-            <Categories className="categories" id="categories" source={sources.categoriesSource} enableCoupon={this.enableCoupon} enablePrBox={this.enablePrBox} />
+            <Categories 
+              className="categories" 
+              id="categories" 
+              source={sources.categoriesSource} 
+              enableCoupon={this.enableCoupon} 
+              enablePrBox={this.enablePrBox} 
+              ref="categories" />
           </ul>
         </div>
       </div>

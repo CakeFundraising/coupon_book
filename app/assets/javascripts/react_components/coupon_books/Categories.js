@@ -19,6 +19,11 @@ export default class Categories extends Component {
 
     this.moveCategory = this.moveCategory.bind(this);
     this.findCategory = this.findCategory.bind(this);
+
+    this.getCategoriesItems = this.getCategoriesItems.bind(this);
+    this.findCategoryByItem = this.findCategoryByItem.bind(this);
+    this.findItem = this.findItem.bind(this);
+
     this.addItemToCategory = this.addItemToCategory.bind(this);
     this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
     this.addCouponToCategory = this.addCouponToCategory.bind(this);
@@ -53,36 +58,67 @@ export default class Categories extends Component {
     }));
   }
 
+  getCategoriesItems(){
+    return this.state.categories.flatMap(c => c.get('items'));
+  }
+
+  findItem(itemId){
+    const categoryItems = this.getCategoriesItems();
+    const item = categoryItems.find(i => i.get('id') === itemId);
+    return item;
+  }
+
+  findCategoryByItem(itemId){
+    const { categories } = this.state;
+    const item = this.findItem(itemId);
+    const category = categories.find(c => c.get('items').includes(item));
+
+    return {
+      category,
+      index: categories.indexOf(category)
+    }
+  }
+
   //Item actions
   addItemToCategory(itemId, categoryId){
-    let categoryItems = this.state.categories.flatMap(c => c.get('items'));
-    let item = categoryItems.find(i => i.get('id') === itemId);
-    let categoryIndex = this.findCategory(categoryId).index;
+    const categoryItems = this.getCategoriesItems();
+    const item = categoryItems.find(i => i.get('id') === itemId);
+    const categoryIndex = this.findCategory(categoryId).index;
 
     this.setState(({categories}) => ({
-      categories: categories.updateIn([categoryIndex, 'items'], items => items.push(item))
+      categories: categories.updateIn([categoryIndex, 'items'], items => items.unshift(item))
     }));
   }
 
-  removeItemFromCategory(itemId, categoryId){
-    let { category, index: categoryIndex } = this.findCategory(categoryId);
-    let index = category.get('items').findIndex(i => i.get('id') === itemId);
+  removeItemFromCategory(itemId, categoryId=null){
+    if(categoryId === null){
+      const { category, index: categoryIndex } = this.findCategoryByItem(itemId);
+      const index = category.get('items').findIndex(i => i.get('id') === itemId);
 
-    this.setState(({categories}) => ({
-      categories: categories.updateIn([categoryIndex, 'items'], items => items.size === 1 ? items.splice(-1, 1) : items.splice(index, 1))
-    }));
+      this.setState(({categories}) => ({
+        categories: categories.deleteIn([categoryIndex, 'items', index])
+      }));
+    }else{
+      const { category, index: categoryIndex } = this.findCategory(categoryId);
+      const index = category.get('items').findIndex(i => i.get('id') === itemId);
+      
+      this.setState(({categories}) => ({
+        categories: categories.deleteIn([categoryIndex, 'items', index])
+      }));
+    };
+
   }
 
   addCouponToCategory(coupon, categoryId){
-    let { index: categoryIndex } = this.findCategory(categoryId);
-    let item = Immutable.fromJS(coupon);
+    const { index: categoryIndex } = this.findCategory(categoryId);
+    const item = Immutable.fromJS(coupon);
     
-    let categoryItems = this.state.categories.flatMap(c => c.get('items'));
-    let existing = categoryItems.find(i => i.get('id') === coupon.id && i.get('itemType') === coupon.itemType);
+    const categoryItems = this.getCategoriesItems();
+    const existing = categoryItems.find(i => i.get('id') === coupon.id && i.get('itemType') === coupon.itemType);
 
     if(existing === undefined){
       this.setState(({categories}) => ({
-        categories: categories.updateIn([categoryIndex, 'items'], items => items.push(item))
+        categories: categories.updateIn([categoryIndex, 'items'], items => items.unshift(item))
       }));
     };
   }
