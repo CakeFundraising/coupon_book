@@ -9,26 +9,6 @@
 br
 br
 #organize-react.container.coupon_book_coupons_step
-  .row
-    .col-md-6 role="tabpanel" 
-      /! Nav tabs
-      ul.nav.nav-tabs role="tablist" 
-        li.active role="presentation" 
-          a aria-controls="discounts" data-toggle="tab" href="#my-discounts" role="tab" Discounts
-        li role="presentation" 
-          a aria-controls="pr-boxes" data-toggle="tab" href="#pr-boxes" role="tab" PR Boxes
-      /! Tab panes
-      .tab-content
-        #my-discounts.tab-pane.active role="tabpanel"
-
-        #pr-boxes.tab-pane role="tabpanel"
-
-    .col-md-6#categories-col
-      h2 
-        span Discount Book Categories
-        a.btn.btn-success.btn-sm.pull-right data-toggle='modal' data-target='#category-' Add Category
-
-      ul#categories.no-list
 
 javascript:
   CakeCouponBook.coupon_books.organize("#{@coupon_book.id}");

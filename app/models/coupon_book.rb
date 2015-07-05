@@ -71,4 +71,46 @@ class CouponBook < ActiveRecord::Base
     end
     vouchers_ids
   end
+
+  def save_categories!(categories)
+    self.process_categories_params(categories)
+    return true
+  end
+
+  def process_categories_params(params)
+    hash = {category_attributes: {}}
+
+    params.each do |category|
+      category_position = category.first().to_i
+      category_params = category.last()
+
+      coupons = self.process_items(category_params["items"], 'COUPON')
+      pr_boxes = self.process_items(category_params["items"], 'PRBOX')
+
+      hash[:category_attributes].merge!({
+        "#{category_position}" => {
+          id: category_params['id'], 
+          position: category_position + 1, 
+          categories_coupons_attributes: coupons, 
+          category_pr_boxes_attributes: pr_boxes
+        }
+      })
+    end
+    p hash[:category_attributes]
+
+    hash
+  end
+
+  def process_items(items, type)
+    unless items.nil?
+      items = items.select{|pos, item| item["itemType"] == type }
+      items.each do |pos, item|
+        item.delete_if{|k, v| k == 'itemType'}
+        item.store(:position, pos.to_i + 1)
+      end
+      items
+    end
+  end
+
 end
+

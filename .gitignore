@@ -41,3 +41,5 @@ staging.dump
 *.psd
 
 env_vars.sh
+
+node_modules
