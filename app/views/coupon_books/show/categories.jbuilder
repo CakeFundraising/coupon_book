@@ -5,5 +5,7 @@ json.array! @categories do |category|
     json.title item.title
     json.position item.position
     json.itemType item.class.name.upcase
+    json._destroy false
+    json.saved true
   end
 end

@@ -50,6 +50,8 @@ export default class CategoryItem extends Component {
     id: PropTypes.any.isRequired,
     title: PropTypes.string.isRequired,
     itemType: PropTypes.string.isRequired,
+    saved: PropTypes.bool.isRequired,
+    _destroy: PropTypes.bool.isRequired,
 
     connectDragSource: PropTypes.func.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
@@ -61,14 +63,16 @@ export default class CategoryItem extends Component {
   };
 
   render(){
-    const { id, title, itemType, key, isDragging, connectDragSource, connectDropTarget, removeItem } = this.props;
+    const { id, title, itemType, key, isDragging, connectDragSource, connectDropTarget, removeItem, _destroy } = this.props;
     const opacity = isDragging ? 0 : 1;
+    const display = _destroy ? 'none' : 'block';
 
     return connectDragSource(connectDropTarget(
-      <li style={{ opacity: opacity }} className="category-item" id={'coupons_' + id}  key={key}>
+      <li style={{ opacity: opacity, display: display }} className="category-item" id={'coupons_' + id}  key={key}>
         <span className="category-item--container">
           <span className="category-item--title">{title}</span>
           <span className="category-item--type">{itemType}</span>
+          <span className="category-item--destroy">{_destroy}</span>
         </span>
         <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id, itemType)}>Delete</Button>
         <Button href={'/coupons/' + id + '/edit'} iconType="pencil" className="btn btn-sm pull-right btn-primary">Edit</Button>

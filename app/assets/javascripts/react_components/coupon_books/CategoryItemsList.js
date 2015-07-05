@@ -120,8 +120,18 @@ export default class CategoryItemsList extends Component {
       <ul className="category-items">
         {categoryItems.map((item, index) => {
           return (
-            <CategoryItem id={item.get('id')} title={item.get('title')} itemType={item.get('itemType')} 
-              categoryId={categoryId} key={index} moveItem={this.moveItem} findItem={this.findItem} removeItem={this.removeItem} />
+            <CategoryItem 
+              id={item.get('id')} 
+              title={item.get('title')}
+              position={item.get('position')}
+              itemType={item.get('itemType')} 
+              categoryId={categoryId} 
+              saved={item.get('saved')} 
+              _destroy={item.get('_destroy')} 
+              key={index} 
+              moveItem={this.moveItem} 
+              findItem={this.findItem} 
+              removeItem={this.removeItem} />
           );
         })}
       </ul>
