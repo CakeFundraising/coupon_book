@@ -20,6 +20,9 @@ class PrBox < ActiveRecord::Base
   has_many :collection_pr_boxes, dependent: :destroy
   has_many :collections, through: :collection_pr_boxes
 
+  has_many :categories_pr_boxes, dependent: :destroy
+  has_many :categories, through: :categories_pr_boxes
+
   scope :latest, ->{ order(created_at: :desc) }
 
   validates :headline, :story, :url, :flag, :origin_collection, presence: true
