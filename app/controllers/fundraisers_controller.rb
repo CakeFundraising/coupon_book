@@ -9,11 +9,11 @@ class FundraisersController < ApplicationController
   end
 
   def collection_pr_boxes
-    book_coupons = CouponBook.find(params[:cb_id]).coupons
+    book_pr_boxes = CouponBook.find(params[:cb_id]).pr_boxes
     @collection_pr_boxes = current_fundraiser.collection.pr_boxes.latest
 
-    @collection_pr_boxes.each do |coupon|
-      coupon.disabled = book_coupons.include? coupon
+    @collection_pr_boxes.each do |pr_box|
+      pr_box.disabled = book_pr_boxes.include? pr_box
     end
   end
 end

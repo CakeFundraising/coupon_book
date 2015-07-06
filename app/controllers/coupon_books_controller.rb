@@ -37,12 +37,6 @@ class CouponBooksController < InheritedResources::Base
   #Build coupon book
   def coupons
     @coupon_book = resource
-
-    @collection = current_fundraiser.collection
-    @collections_coupons = @collection.coupons.launched.latest.decorate
-
-    @categories = resource.categories.with_coupons.decorate
-
     render 'coupon_books/template/coupons'
   end
 

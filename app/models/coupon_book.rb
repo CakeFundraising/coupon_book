@@ -15,6 +15,7 @@ class CouponBook < ActiveRecord::Base
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
   has_many :categories_coupons, through: :categories
   has_many :coupons, through: :categories
+  has_many :pr_boxes, through: :categories
 
   has_many :purchases, as: :purchasable
 
