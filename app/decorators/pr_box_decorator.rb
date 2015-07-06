@@ -2,16 +2,16 @@ class PrBoxDecorator < ApplicationDecorator
   delegate_all
   decorates_association :picture
 
-  def trunc_headline
-    h.truncate(object.headline, length: 37).html_safe
+  def trunc_title
+    h.truncate(object.title, length: 37).html_safe
   end
 
-  def trunc_story
-    h.truncate(object.story, length: 100).html_safe
+  def trunc_description
+    h.truncate(object.description, length: 100).html_safe
   end
 
   def to_s
-    object.headline
+    object.title
   end
 
   def url

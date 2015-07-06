@@ -70,7 +70,6 @@
               .coupon-images
                 h4 Upload a QR Code or a second image (Optional)
                 = render partial:'pictures/qrcode_form', locals:{f: f}
-                = f.input :pr_box_flag
             .col-md-1
             
       = f.input :step, as: :hidden, input_html:{value: :launching}
