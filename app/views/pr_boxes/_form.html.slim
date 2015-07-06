@@ -6,13 +6,13 @@
         .col-md-2
         .col-md-8.text-left
           .col-md-12
-            = f.input :headline, input_html:{size: 80, maxlength: 80, placeholder: '80 characters or less'}
+            = f.input :title, input_html:{size: 80, maxlength: 80, placeholder: '80 characters or less'}
         .col-md-2
       .row
         .col-md-2
         .col-md-8
           .col-md-12
-            = f.input :story, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
+            = f.input :description, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
             hr
             h4 Make this box interactive
             = f.input :url, input_html:{placeholder:'Enter a URL'}

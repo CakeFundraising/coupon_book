@@ -21,17 +21,16 @@ class Coupon < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
   has_many :collections, through: :collections_coupons
 
-  delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location
-
-  validates :phone, :sponsor_name, :sponsor_url, :collection_id, presence: true
-  validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: :persisted?
-  validates :terms, acceptance: true, if: :new_record?
+  validates :collection_id, presence: true
+  validates :phone, :sponsor_name, :sponsor_url, presence: true, if: :coupon?
+  validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: -> (coupon){ coupon.coupon? and coupon.persisted? }
+  validates :terms, acceptance: true, if: -> (coupon){ coupon.coupon? and coupon.new_record? }
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
   
-  validates_associated :location
-  validates_associated :avatar_picture
+  validates_associated :location, if: :coupon?
+  validates_associated :avatar_picture, if: :coupon?
 
   monetize :price_cents
 
@@ -43,6 +42,7 @@ class Coupon < ActiveRecord::Base
   alias_method :sp_picture, :avatar_picture
   alias_method :active?, :launched?
 
+  delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location, allow_nil: true
   delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   searchable do
@@ -55,7 +55,7 @@ class Coupon < ActiveRecord::Base
   end
 
   after_initialize do
-    self.build_location if self.location.nil?
+    self.build_location if self.location.nil? and self.coupon?
   end
 
   after_create :add_to_collection
@@ -94,6 +94,15 @@ class Coupon < ActiveRecord::Base
 
   def fundraisers_count
     self.collections.count - 1
+  end
+
+  # STI
+  def coupon?
+    self.type == 'Coupon'
+  end
+
+  def pr_box?
+    self.type == 'PrBox'
   end
 
   private

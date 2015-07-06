@@ -5,9 +5,9 @@ CakeCouponBook.pr_boxes.validation = ->
     $(this).validate(
       errorElement: "span"
       rules:
-        'pr_box[headline]':
+        'pr_box[title]':
           required: true
-        'pr_box[story]':
+        'pr_box[description]':
           required: true
         'pr_box[url]':
           required: true
