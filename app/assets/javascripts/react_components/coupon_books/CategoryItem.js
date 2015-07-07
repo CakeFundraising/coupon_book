@@ -24,7 +24,7 @@ const itemSource = {
 };
 
 const itemTarget = {
-  hover(props, monitor) {
+  hover(props, monitor, component) {
     const { id: draggedId, draggedIndex, categoryId } = monitor.getItem();
     const { id: overId } = props;
 
@@ -32,7 +32,7 @@ const itemTarget = {
       const { index: overIndex } = props.findItem(overId);
 
       if (overIndex !== null){
-        props.moveItem(draggedId, overIndex, categoryId);
+        props.moveItem(draggedId, overIndex, categoryId, overId);
       };
     }
   }
@@ -67,7 +67,7 @@ export default class CategoryItem extends Component {
     const opacity = isDragging ? 0 : 1;
     const display = _destroy ? 'none' : 'block';
 
-    return connectDragSource(connectDropTarget(
+    return connectDropTarget(connectDragSource(
       <li style={{ opacity: opacity, display: display }} className="category-item" id={'coupons_' + id}  key={key}>
         <span className="category-item--container">
           <span className="category-item--title">{title}</span>

@@ -73,41 +73,31 @@ class CouponBook < ActiveRecord::Base
     vouchers_ids
   end
 
-  def save_categories!(categories)
-    self.process_categories_params(categories)
-    return true
-  end
-
   def process_categories_params(params)
-    hash = {category_attributes: {}}
-
-    params.each do |category|
-      category_position = category.first().to_i
+    hash = {categories_attributes: {}}
+    params.each_with_index do |category, index|
       category_params = category.last()
 
-      coupons = self.process_items(category_params["items"], 'COUPON')
-      pr_boxes = self.process_items(category_params["items"], 'PRBOX')
-
-      hash[:category_attributes].merge!({
-        "#{category_position}" => {
+      hash[:categories_attributes].merge!({
+        "#{index}" => {
           id: category_params['id'], 
-          position: category_position + 1, 
-          categories_coupons_attributes: coupons, 
-          category_pr_boxes_attributes: pr_boxes
+          position: index + 1, 
+          categories_coupons_attributes: self.process_items(category_params["items"])
         }
       })
     end
-    p hash[:category_attributes]
-
     hash
   end
 
-  def process_items(items, type)
+  def process_items(items)
     unless items.nil?
-      items = items.select{|pos, item| item["itemType"] == type }
-      items.each do |pos, item|
-        item.delete_if{|k, v| k == 'itemType'}
-        item.store(:position, pos.to_i + 1)
+      items.each_with_index do |(pos, item), index|
+        item.delete(:title)
+        item.delete(:itemType)
+        item.delete(:saved)
+        item.store(:coupon_id, item.delete(:id))
+        item.store(:id, item.delete(:collection_id)) if item.key?(:collection_id)
+        item.store(:position, index + 1)
       end
       items
     end

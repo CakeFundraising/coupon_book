@@ -26,8 +26,12 @@ export default class Categories extends Component {
 
     this.addItemToCategory = this.addItemToCategory.bind(this);
     this.addCouponToCategory = this.addCouponToCategory.bind(this);
+    this.toggleItem = this.toggleItem.bind(this);
+    this.itemInCategory = this.itemInCategory.bind(this);
 
+    this.removeItem = this.removeItem.bind(this);
     this.removeItemFromCategory = this.removeItemFromCategory.bind(this);
+    this.flagItemAsDeleted = this.flagItemAsDeleted.bind(this);
     this.deleteFromCategory = this.deleteFromCategory.bind(this);
 
     this.state = {categories: []};
@@ -81,11 +85,27 @@ export default class Categories extends Component {
     return this.state.categories.flatMap(c => c.get('items'));
   }
 
+  toggleItem(id, atIndex, categoryId){
+    const item = this.findItem(id);
+    const { category, index: categoryIndex } = this.findCategory(categoryId);
+    const itemIndex = category.get('items').findIndex(i => i.get('id') === id)
+
+    this.setState(({categories}) => ({
+      categories: categories.updateIn([categoryIndex, 'items'], items => items.splice(itemIndex, 1).splice(atIndex, 0, item))
+    }));
+  }
+
+  itemInCategory(itemId, categoryId){
+    const { category, index: categoryIndex } = this.findCategory(categoryId);
+    const itemIndex = category.get('items').findIndex(i => i.get('id') === itemId)
+    return itemIndex !== -1;
+  }
+
   // Additive functions
   addItemToCategory(itemId, categoryId){
     const categoryItems = this.getCategoriesItems();
-    const item = categoryItems.find(i => i.get('id') === itemId);
-    const categoryIndex = this.findCategory(categoryId).index;
+    const item = categoryItems.find(i => i.get('id') === itemId).delete('collection_id');
+    const {index: categoryIndex} = this.findCategory(categoryId);
 
     this.setState(({categories}) => ({
       categories: categories.updateIn([categoryIndex, 'items'], items => items.unshift(item))
@@ -109,27 +129,43 @@ export default class Categories extends Component {
   }
 
   // Subtractive Functions
-  removeItemFromCategory(itemId, categoryId=null){
+  removeItem(itemId, categoryId=null){
     if(categoryId === null){
       const { category, index: categoryIndex } = this.findCategoryByItem(itemId);
-      this.deleteFromCategory(category, categoryIndex, itemId);
+      this.removeItemFromCategory(category, categoryIndex, itemId);
     }else{
       const { category, index: categoryIndex } = this.findCategory(categoryId);
-      this.deleteFromCategory(category, categoryIndex, itemId);
+      this.removeItemFromCategory(category, categoryIndex, itemId);
     };
+    
   }
 
-  deleteFromCategory(category, categoryIndex, itemId){
+  removeItemFromCategory(category, categoryIndex, itemId){
     const index = category.get('items').findIndex(i => i.get('id') === itemId);
     const item = category.get('items').toJS()[index]
-
+    
     if(item.saved){ // Set _destroy to true
-      this.setState(({categories}) => ({
-        categories: categories.setIn([categoryIndex, 'items', index, '_destroy'], true)
-      }));
+      this.flagItemAsDeleted(categoryIndex, index)
     }else{ // Just remove it from Category
       this.setState(({categories}) => ({
         categories: categories.deleteIn([categoryIndex, 'items', index])
+      }));
+    };
+  }
+
+  flagItemAsDeleted(categoryIndex, itemIndex){
+    this.setState(({categories}) => ({
+      categories: categories.setIn([categoryIndex, 'items', itemIndex, '_destroy'], true)
+    }));
+  }
+
+  deleteFromCategory(itemId, categoryId){
+    const { category, index: categoryIndex } = this.findCategory(categoryId);
+    const itemIndex = category.get('items').findIndex(i => i.get('id') === itemId);
+
+    if (itemIndex !== -1) {
+      this.setState(({categories}) => ({
+        categories: categories.deleteIn([categoryIndex, 'items', itemIndex])
       }));
     };
   }
@@ -162,8 +198,11 @@ export default class Categories extends Component {
                 moveCategory={this.moveCategory} 
                 findCategory={this.findCategory} 
                 addItemToCategory={this.addItemToCategory} 
-                removeItemFromCategory={this.removeItemFromCategory} 
                 addCouponToCategory={this.addCouponToCategory} 
+                removeItem={this.removeItem}
+                deleteFromCategory={this.deleteFromCategory} 
+                toggleItem={this.toggleItem} 
+                itemInCategory={this.itemInCategory} 
                 enableCoupon={enableCoupon}
                 enablePrBox={enablePrBox} />
             );

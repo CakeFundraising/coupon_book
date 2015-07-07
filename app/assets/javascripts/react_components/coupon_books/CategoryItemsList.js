@@ -46,8 +46,12 @@ export default class CategoryItemsList extends Component {
     categoryId: PropTypes.number.isRequired,
 
     addItemToCategory: PropTypes.func.isRequired,
-    removeItemFromCategory: PropTypes.func.isRequired,
     addCouponToCategory: PropTypes.func.isRequired,
+    removeItem: PropTypes.func.isRequired,
+    deleteFromCategory: PropTypes.func.isRequired,
+    toggleItem: PropTypes.func.isRequired,
+    itemInCategory: PropTypes.func.isRequired,
+
     enableCoupon: PropTypes.func.isRequired,
     enablePrBox: PropTypes.func.isRequired,
 
@@ -91,24 +95,24 @@ export default class CategoryItemsList extends Component {
     return response;
   }
 
-  moveItem(id, atIndex, categoryId) {
+  moveItem(id, atIndex, categoryId, overId=null) {
     const { item, index } = this.findItem(id); 
 
     if(index !== null){
       // If item is in current category update array
-      this.setState(({items}) => ({
-        items: items.update(items => items.splice(index, 1).splice(atIndex, 0, item))
-      }));
+      const sameCategory = this.props.itemInCategory(overId, categoryId);
+
+      if (sameCategory) this.props.toggleItem(id, atIndex, categoryId);
     }else{
-      // Add item to current category and remove from original
+      // Move item from one category to another: Add item to current category and remove from original
       this.props.addItemToCategory(id, this.props.categoryId);
-      this.props.removeItemFromCategory(id, categoryId);
+      this.props.removeItem(id, categoryId);
     };
     
   }
 
   removeItem(id, itemType){
-    this.props.removeItemFromCategory(id, this.props.categoryId);
+    this.props.removeItem(id, this.props.categoryId);
     (itemType === 'COUPON') ? this.props.enableCoupon(id) : this.props.enablePrBox(id)
   }
 

@@ -41,7 +41,11 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def save_organize
-    saved = resource.save_categories!(params[:categories])
+    processed_params = resource.process_categories_params(params[:categories])
+    puts 
+    p processed_params
+    puts 
+    saved = resource.update(categories_permitted_params(processed_params))
     render text: saved
   end
 
@@ -169,6 +173,13 @@ class CouponBooksController < InheritedResources::Base
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
       categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ]
+    ])
+  end
+
+  def categories_permitted_params(cat_params)
+    cat_params = ActionController::Parameters.new(cat_params)
+    cat_params.permit(categories_attributes: [
+      :id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy]
     ])
   end
 
