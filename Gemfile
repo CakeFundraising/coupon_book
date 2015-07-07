@@ -18,7 +18,6 @@ gem 'modernizr-rails', '~> 2.7.1'
 gem 'font_assets'
 
 #ReactJS
-#gem 'react-rails'
 gem 'browserify-rails'
 
 #JS

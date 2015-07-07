@@ -71,8 +71,6 @@ export default class CategoryItem extends Component {
       <li style={{ opacity: opacity, display: display }} className="category-item" id={'coupons_' + id}  key={key}>
         <span className="category-item--container">
           <span className="category-item--title">{title}</span>
-          <span className="category-item--type">{itemType}</span>
-          <span className="category-item--destroy">{_destroy}</span>
         </span>
         <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id, itemType)}>Delete</Button>
         <Button href={'/coupons/' + id + '/edit'} iconType="pencil" className="btn btn-sm pull-right btn-primary">Edit</Button>
