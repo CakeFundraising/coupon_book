@@ -1,7 +1,7 @@
-- cache [:box, :fundraiser, coupon] do
-  .add-coupons-container
-    .coupon_grid.col-md-4
-      - if @collections_coupons.include?(coupon)
+- if @collections_coupons.include?(coupon)
+  - cache [:box, :fundraiser, :included, coupon] do
+    .add-coupons-container
+      .coupon_grid.col-md-4
         .overlay-effects.thumbnail.coupon-box-inner.in-collection id="effect-6"
           .label.label-purple
             span.glyphicon.glyphicon-menu-hamburger
@@ -12,7 +12,10 @@
               a.expand.remove_from_collection_btn id="#{coupon.id}"
                 .click_to_help Remove from collection
           = render partial: 'coupons/show/avatar_caption', locals: {coupon: coupon}
-      - else
+- else
+  - cache [:box, :fundraiser, :not_included, coupon] do
+    .add-coupons-container
+      .coupon_grid.col-md-4
         .overlay-effects.thumbnail.coupon-box-inner.not-in-collection id="effect-6"
           .label.label-purple.hidden
             span.glyphicon.glyphicon-menu-hamburger

@@ -1,22 +1,7 @@
-- cache [:coupon_box, coupon] do
-  - if coupon.pr_box?
-    div class="coupon-wrapper"
-      .coupon-label.label.label-success Important News!
-      .coupon-box.clearfix
-        .col-md-12.col-xs-12
-          .row
-            .col-md-3.col-xs-12.pr_box_pic_col
-              = coupon_pic(coupon)
-              .coupon-edge.hidden-xs.hidden-sm
-            .col-md-7.col-xs-12
-              div.coupon-content
-                h2 = coupon
-                hr
-                p.expander = coupon.description
-            .col-md-2.col-xs-12.text-center
-              .hidden-xs.hidden-sm = coupon.picture.qrcode
-
-  - else 
+- if coupon.pr_box?
+  = render partial:'pr_boxes/show/box', locals:{pr_box: coupon}
+- else 
+  - cache [:coupon_box, coupon] do
     div class="coupon-wrapper #{'orderup-coupon' if coupon.order_up}"
       .coupon-label.label.label-warning #{coupon.retail_value} value!
       - if coupon.order_up
