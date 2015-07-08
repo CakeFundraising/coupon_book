@@ -1,0 +1,8 @@
+= link_to 'Download as PDF', nil, class:'btn btn-success pull-right'
+
+h1 Vouchers
+
+.row.vouchers-container
+  .col-md-12
+    = render partial:'purchases/voucher', collection: @coupons, as: :voucher
+  

@@ -1,4 +1,6 @@
 class PurchasesController < InheritedResources::Base
+  before_action :validate_token, only: :vouchers
+
   def create
     @purchase = Purchase.new(permitted_params[:purchase])
 
@@ -13,9 +15,18 @@ class PurchasesController < InheritedResources::Base
 
   end
 
+  def vouchers
+    @book = resource.purchasable.decorate
+    @coupons = @book.coupons.decorate
+  end
+
   protected
 
   def permitted_params
     params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
+  end
+
+  def validate_token
+    redirect_to root_path, alert:"You're not authorized to see this page." if params[:token].blank? or params[:token] != resource.token
   end
 end

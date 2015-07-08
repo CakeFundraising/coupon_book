@@ -4,10 +4,14 @@ class Purchase < ActiveRecord::Base
 
   monetize :amount_cents
 
-  validates :purchasable, :card_token, :amount, :email, presence: true
+  validates :purchasable, :card_token, :amount, :email, :token, presence: true
 
   before_create :stripe_charge_card
-  
+
+  before_create do
+    self.token = SecureRandom.uuid
+  end
+
   after_create do
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id)
   end
