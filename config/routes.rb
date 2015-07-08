@@ -6,6 +6,7 @@ CakeCouponBook::Application.routes.draw do
 
   scope :search, controller: :searches do
     get :search_coupons, path:'coupons'
+    get :search_pr_boxes, path:'pr_boxes'
   end
 
   mount Resque::Server, at: "/resque"
@@ -41,8 +42,8 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  delete 'collections_coupons' => 'collections_coupons#destroy'
-  resources :collections_coupons
+  #delete 'collections_coupons' => 'collections_coupons#destroy'
+  resources :collections_coupons, only: [:create, :destroy]
 
   resources :coupons do
     member do

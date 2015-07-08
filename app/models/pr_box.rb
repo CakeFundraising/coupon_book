@@ -13,4 +13,8 @@ class PrBox < Coupon
 
   validates :title, :description, :url, :flag, presence: true
   validates :flag, inclusion: {in: FLAG_OPTIONS}
+
+  before_save do
+    self.status = :launched
+  end
 end

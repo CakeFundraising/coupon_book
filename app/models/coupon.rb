@@ -39,6 +39,8 @@ class Coupon < ActiveRecord::Base
   scope :to_end, ->{ not_past.where("expires_at <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("expires_at > ?", Time.zone.now) }
 
+  scope :universal, ->{ where(universal: true) }
+
   alias_method :sp_picture, :avatar_picture
   alias_method :active?, :launched?
 
@@ -49,6 +51,7 @@ class Coupon < ActiveRecord::Base
     text :title, boost: 2
     text :promo_code, :description, :sponsor_url, :multiple_locations, :sponsor_name, :city, :state_code, :state, :zip_code
     string :status
+    string :type
     string :merchandise_categories, multiple: true
     boolean :universal
     time :created_at
