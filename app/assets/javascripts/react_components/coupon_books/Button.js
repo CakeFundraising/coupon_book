@@ -18,13 +18,15 @@ export default class Button extends Component {
   }
 
   render(){
-    const { href, className, onClickEvent, disabled, ['data-target']: target, ['data-toggle']: toggle } = this.props;
+    const { href, className, onClickEvent, disabled, dMethod, dConfirm, dTarget, dToggle } = this.props;
 
     return(
       <a 
         href={href} 
-        data-target={target} 
-        data-toggle={toggle} 
+        data-target={dTarget} 
+        data-toggle={dToggle} 
+        data-method={dMethod} 
+        data-confirm={dConfirm} 
         className={className} 
         onClick={onClickEvent} 
         data-type="react-button" 

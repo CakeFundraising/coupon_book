@@ -79,7 +79,7 @@ export default class Container extends Component {
                 className="collection-pr-boxes" 
                 id="collection-pr-boxes" 
                 source={sources.collectionPrBoxesSource} 
-                bookId={sources.couponBookId} 
+                bookId={sources.couponBookId}
                 removeItemFromCategory={this.removeItemFromCategory} 
                 ref="collectionPrBoxes" />
             </div>
@@ -90,6 +90,7 @@ export default class Container extends Component {
             <Categories 
               className="categories" 
               id="categories" 
+              bookId={sources.couponBookId}
               source={sources.categoriesSource} 
               enableCoupon={this.enableCoupon} 
               enablePrBox={this.enablePrBox} 

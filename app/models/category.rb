@@ -15,6 +15,6 @@ class Category < ActiveRecord::Base
   scope :persisted, ->{ where.not(id: nil) }
   scope :latest, ->{ order('categories.created_at DESC') }
 
-  scope :with_items, ->{ eager_load(:items) }
+  scope :with_items, ->{ eager_load(:items).order("categories_coupons.position ASC") }
 
 end

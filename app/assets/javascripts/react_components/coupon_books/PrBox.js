@@ -52,7 +52,7 @@ export default class PrBox extends Component {
         <span className="prbox-item--container">
           <span className="prbox-item--title">{title}</span>
         </span>
-        <CouponActions className="prboxActions" couponId={id} />
+        <CouponActions className="prboxActions" itemId={id} itemType="pr_boxes" />
       </li>
     );
   }

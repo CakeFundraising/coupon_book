@@ -9,6 +9,7 @@ import Category from './Category';
 export default class Categories extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    bookId: PropTypes.string.isRequired,
     className: PropTypes.string.isRequired,
     enableCoupon: PropTypes.func.isRequired,
     enablePrBox: PropTypes.func.isRequired
@@ -172,16 +173,16 @@ export default class Categories extends Component {
 
   // Render
   render() {
-    const { className, id, enableCoupon, enablePrBox } = this.props;
+    const { className, id, enableCoupon, enablePrBox, bookId } = this.props;
     const { categories } =  this.state;
 
     return (
       <div className="categories-column">
         <h2>Discount Book Categories
           <Button
-            data-target="#category"
-            data-toggle="modal"
-            href="/coupons/new"
+            //data-target="#category"
+            //data-toggle="modal"
+            href={"/categories/new?coupon_book_id=" + bookId}
             type="link"
             className="btn btn-success btn-sm pull-right">
             Add Category

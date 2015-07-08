@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import update from 'react/lib/update';
 
 import CategoryItemsList from './CategoryItemsList';
-import CouponActions from './CouponActions';
+import Button from './Button';
 import ItemTypes from './ItemTypes'
 
 import { DragSource, DropTarget } from 'react-dnd'
@@ -79,7 +79,24 @@ export default class Category extends Component {
     return connectDropTarget(connectDragSource(
       <li className="category" key={key}>
         <span className="category--title">{name}</span>
-        <CouponActions className="couponActions couponActions-category" couponId={id} noPreview />
+        <ul className="couponActions couponActions-category">
+          <li className='couponActions couponActions-category--item'>
+            <Button
+              href={'/categories/' + id + '/edit'}
+              iconType="pencil"
+              className="btn btn-sm btn-primary">Edit
+            </Button>
+          </li>
+          <li className='couponActions couponActions-category--item'>
+            <Button
+              iconType='trash'
+              href={"/categories/" + id}
+              dMethod="delete"
+              dConfirm="Are you sure? This action will remove any item inside this Category."
+              className="btn btn-sm btn-danger">Delete
+            </Button>
+          </li>
+        </ul>
         <CategoryItemsList 
           categoryItems={categoryItems} 
           categoryId={id} 

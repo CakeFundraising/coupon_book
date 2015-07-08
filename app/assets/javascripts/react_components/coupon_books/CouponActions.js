@@ -3,7 +3,8 @@ import Button from './Button';
 
 export default class CouponActions extends Component {
   render() {
-    const { className, noPreview, couponId, closeIcon } = this.props;
+    const { className, noPreview, itemId, itemType, closeIcon } = this.props;
+    const editPath = '/' + itemType + '/';
 
     return (
       <ul className={className}>
@@ -11,13 +12,13 @@ export default class CouponActions extends Component {
           <Button
             iconType="eye-open"
             className={'btn btn-sm btn-success'}
-            data-target={'#preview-coupon-' + couponId}
-            data-toggle="modal">Preview
+            dTarget={'#preview-coupon-' + itemId}
+            dToggle="modal">Preview
           </Button>
         </li>
         <li className={className + '--item'}>
           <Button
-            href={'/coupons/' + couponId + '/edit'}
+            href={editPath + itemId + '/edit'}
             iconType="pencil"
             className="btn btn-sm btn-primary">Edit
           </Button>

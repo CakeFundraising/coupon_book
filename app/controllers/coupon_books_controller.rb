@@ -71,7 +71,7 @@ class CouponBooksController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        update_screenshot(@coupon_book)
+        #update_screenshot(@coupon_book)
         redirect_to tell_your_story_coupon_book_path(@coupon_book)
       end
       failure.html do
@@ -83,7 +83,7 @@ class CouponBooksController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        update_screenshot(@coupon_book)
+        #update_screenshot(@coupon_book)
         redirect_to controller: :coupon_books, action: params[:coupon_book][:step], id: resource
       end
       failure.html do
