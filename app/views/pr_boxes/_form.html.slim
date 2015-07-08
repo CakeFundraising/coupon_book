@@ -1,20 +1,24 @@
 .nested-fields.coupon-outer-wrap
-  = f.semantic_fields_for :pr_box do |pr|
-    = pr.inputs do
+  = semantic_form_for @pr_box do |f|
+    = f.inputs do
+      = f.semantic_errors *f.object.errors.keys
       .row.section-wrapper.text-center
         .col-md-2
         .col-md-8.text-left
           .col-md-12
-            = pr.input :headline, input_html:{size: 80, maxlength: 80, placeholder: '80 characters or less'}
+            = f.input :title, input_html:{size: 80, maxlength: 80, placeholder: '80 characters or less'}
         .col-md-2
       .row
         .col-md-2
         .col-md-8
           .col-md-12
-            = pr.input :story, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
+            = f.input :description, input_html: {class: 'autogrow', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
             hr
             h4 Make this box interactive
-            = pr.input :url, input_html:{placeholder:'Enter a URL'}
+            = f.input :url, input_html:{placeholder:'Enter a URL'}
+            hr
+            h4 Flag your box
+            = f.input :flag, as: :select, collection: PrBox::FLAG_OPTIONS
         .col-md-2
       .row.section-wrapper.coupon-uploads.text-center
         h2 Images
@@ -23,9 +27,22 @@
         .col-sm-4
           .coupon-images
             h5 Primary Image
-            = render partial:'pictures/avatar_form', locals:{f: pr}
+            = render partial:'pictures/avatar_form', locals:{f: f}
         .col-sm-4
           .coupon-images
             h5 Upload a second image (Optional)
-            = render partial:'pictures/qrcode_form', locals:{f: pr}
+            = render partial:'pictures/qrcode_form', locals:{f: f}
         .col-md-2
+
+      - if current_sponsor.present?
+        .row.section-wrapper.text-center
+          h1 Make this a Universal PR Box!
+          p.text-muted Any other good cause may show this PR Box.
+          br
+          = f.input :universal, as: :boolean_button, label: false, input_html: {on_text: 'Yes!', off_text: 'No', on_classes: 'btn-primary btn-lg', off_classes: 'btn-default btn-lg'}
+        
+      = f.input :fr_collection_id, as: :hidden, input_html:{value: params[:fr_collection_id]} if current_sponsor.present?
+      = f.input :coupon_book_id, as: :hidden, input_html:{value: params[:coupon_book_id]} if current_fundraiser.present?
+    .text-center
+      = f.actions do
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

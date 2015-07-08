@@ -18,7 +18,6 @@ booleanButtonInput = ->
     offClasses = $(this).data('off-classes')
 
     jsFunction = $(this).data('toggle-js')
-    console.log jsFunction      
     eval(jsFunction)
 
     currentClasses = $.trim $(this).attr('class').replace('boolean-button-input', '').replace('btn', '')

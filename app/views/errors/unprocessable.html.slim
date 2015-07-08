@@ -1,0 +1,13 @@
+.row
+  .col-md-4
+    = image_tag('confused-meme.png', class:'img-responsive')
+  .col-md-6
+    br
+    br
+    br
+    h1 Ooops! Something went wrong...
+    h3.black 422 Unprocessable Entity!
+    h3.black 
+      span Please reload this page, if that doesn't work please 
+      span = link_to 'contact us!', cake_about_page_path('contact')
+    h3.black We will fix it as soon as posible.

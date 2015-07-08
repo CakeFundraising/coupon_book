@@ -14,7 +14,9 @@ class CouponBook < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
   has_many :categories_coupons, through: :categories
+  has_many :items, through: :categories
   has_many :coupons, through: :categories
+  has_many :pr_boxes, through: :categories
 
   has_many :purchases, as: :purchasable
 
@@ -71,4 +73,36 @@ class CouponBook < ActiveRecord::Base
     end
     vouchers_ids
   end
+
+  def process_categories_params(params)
+    hash = {categories_attributes: {}}
+    params.each_with_index do |category, index|
+      category_params = category.last()
+
+      hash[:categories_attributes].merge!({
+        "#{index}" => {
+          id: category_params['id'], 
+          position: index + 1, 
+          categories_coupons_attributes: self.process_items(category_params["items"])
+        }
+      })
+    end
+    hash
+  end
+
+  def process_items(items)
+    unless items.nil?
+      items.each_with_index do |(pos, item), index|
+        item.delete(:title)
+        item.delete(:itemType)
+        item.delete(:saved)
+        item.store(:coupon_id, item.delete(:id))
+        item.store(:id, item.delete(:collection_id)) if item.key?(:collection_id)
+        item.store(:position, index + 1)
+      end
+      items
+    end
+  end
+
 end
+

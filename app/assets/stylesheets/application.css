@@ -15,4 +15,5 @@
  *= require_self
  *= require jquery.Jcrop
  *= require bootstrap_and_overrides
+ *= require organize_discounts
  */

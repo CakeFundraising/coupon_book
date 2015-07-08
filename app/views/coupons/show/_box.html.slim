@@ -1,6 +1,5 @@
-
 - cache [:coupon_box, coupon] do
-  - if coupon.pr_box_flag
+  - if coupon.pr_box?
     div class="coupon-wrapper"
       .coupon-label.label.label-success Important News!
       .coupon-box.clearfix

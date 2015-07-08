@@ -3,23 +3,23 @@
     .coupon_grid.col-md-4
       - if @collections_coupons.include?(coupon)
         .overlay-effects.thumbnail.coupon-box-inner.in-collection id="effect-6"
-          div.label.label-purple
+          .label.label-purple
             span.glyphicon.glyphicon-menu-hamburger
             span  IN COLLECTION
           .avatar-container.overlay-img
             = coupon.picture.avatar
             .effect-overlay
-              a.expand.remove_coupon_btn id="#{coupon.id}"
-                div.click_to_help Remove from collection
+              a.expand.remove_from_collection_btn id="#{coupon.id}"
+                .click_to_help Remove from collection
           = render partial: 'coupons/show/avatar_caption', locals: {coupon: coupon}
       - else
         .overlay-effects.thumbnail.coupon-box-inner.not-in-collection id="effect-6"
-          div.label.label-purple.hidden
+          .label.label-purple.hidden
             span.glyphicon.glyphicon-menu-hamburger
             span  IN COLLECTION
           .avatar-container.overlay-img
             = coupon.picture.avatar
             .effect-overlay
-              a.expand.add_coupon_btn id="#{coupon.id}"
-                div.click_to_help Add to collection
+              a.expand.add_to_collection_btn id="#{coupon.id}"
+                .click_to_help Add to collection
           = render partial: 'coupons/show/avatar_caption', locals: {coupon: coupon}

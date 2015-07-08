@@ -24,6 +24,7 @@
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
 //= require cloudinary/jquery.fileupload
+//= require ./jquery.cloudinary
 
 //= require bootstrap
 
@@ -51,12 +52,12 @@
 
 //= require ./addthis
 //= require ./pictures
-//= require ./jquery.cloudinary
 //= require ./datepicker
 //= require ./search
 //= require ./clipboard
 //= require ./expander
 //= require ./overrides
+//= require ./pr_boxes
 //= require ./subscriptors
 //= require ./utils
 //= require ./validations

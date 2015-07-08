@@ -1,6 +1,6 @@
-- coupons = category.coupons
+- items = category.items
 
-- if coupons.any?
+- if items.any?
   .row.category-show
     .col-md-10.col-xs-10.col-xs-push-1
       .row
@@ -8,5 +8,5 @@
           h1.category-title = category
           h2.category-subtitle = category.subtitle
 
-      .coupons
-        = render partial:'coupons/show/box', collection: coupons, as: :coupon
+      .items
+        = render partial:'coupons/show/box', collection: items, as: :coupon

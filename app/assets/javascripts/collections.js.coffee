@@ -1,6 +1,6 @@
 CakeCouponBook.collections ?= {}
 
-CakeCouponBook.collections.switcher = ->
+switcher = ->
   existing_coupon_button = $('.buttons #add_universal_coupon')
   new_coupon_button = $('.buttons #create_new_coupon')
 
@@ -21,57 +21,54 @@ CakeCouponBook.collections.switcher = ->
 
   return
 
-CakeCouponBook.collections.initAddRemove = ->
-  $('.coupons-container').find('.add_coupon_btn').each ->
-    CakeCouponBook.collections.initAdd($(this))
+initAddRemove = ->
+  containers = '.coupons-container, .pr-boxes-container'
+
+  $(containers).find('.add_to_collection_btn').each ->
+    initAdd($(this))
     return
-  $('.coupons-container').find('.remove_coupon_btn').each ->
-    CakeCouponBook.collections.initRemove($(this))
+  $(containers).find('.remove_from_collection_btn').each ->
+    initRemove($(this))
     return
   return
 
-CakeCouponBook.collections.initAdd = (coupon) ->
+initAdd = (coupon) ->
   coupon.one 'click', (e) ->
-    $(this).removeClass('add_coupon_btn')
-    $(this).addClass('remove_coupon_btn')
+    coupon_id = $(this).attr('id')
+    thumbnail = $(this).closest('.thumbnail')
+    
+    $(this).removeClass('add_to_collection_btn')
+    $(this).addClass('remove_from_collection_btn')
     $(this).find('.click_to_help').text('Remove from collection')
 
-    thumbnail = $(this).closest('.thumbnail')
-
-    thumbnail.removeClass('not-in-collection', 500, "easeInBack")
-    thumbnail.addClass('in-collection')
-
+    thumbnail.removeClass('not-in-collection', 500, "easeInBack").addClass('in-collection')
     thumbnail.find('.label').removeClass('hidden', 500, 'linear')
     
-    coupon_id = $(this).attr('id')
-    
-    CakeCouponBook.collections.createCollectionsCoupon(coupon_id)
+    createCollectionsCoupon(coupon_id)
 
-    CakeCouponBook.collections.initRemove($(this))
+    initRemove($(this))
     return
   return
 
-CakeCouponBook.collections.initRemove = (coupon) ->
+initRemove = (coupon) ->
   coupon.one 'click', (e) ->
-    $(this).removeClass('remove_coupon_btn')
-    $(this).addClass('add_coupon_btn')
+    coupon_id = $(this).attr('id')
+    thumbnail = $(this).closest('.thumbnail')
+    
+    $(this).removeClass('remove_from_collection_btn')
+    $(this).addClass('add_to_collection_btn')
     $(this).find('.click_to_help').text('Add to collection')
 
-    thumbnail = $(this).closest('.thumbnail')
+    thumbnail.removeClass('in-collection').addClass('not-in-collection', 500, "easeInBack")
     thumbnail.find('.label').addClass('hidden')
-
-    thumbnail.removeClass('in-collection')
-    thumbnail.addClass('not-in-collection', 500, "easeInBack")
-
-    coupon_id = $(this).attr('id')
     
-    CakeCouponBook.collections.deleteCollectionsCoupon(coupon_id)
+    deleteCollectionsCoupon(coupon_id)
 
-    CakeCouponBook.collections.initAdd($(this))
+    initAdd($(this))
     return
   return
 
-CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
+createCollectionsCoupon = (coupon_id) ->
   $.ajax
     url: '/collections_coupons'
     type: 'POST'
@@ -85,9 +82,9 @@ CakeCouponBook.collections.createCollectionsCoupon = (coupon_id) ->
 
   return
 
-CakeCouponBook.collections.deleteCollectionsCoupon = (coupon_id) ->
+deleteCollectionsCoupon = (coupon_id) ->
   $.ajax
-    url: '/collections_coupons'
+    url: "/collections_coupons/#{coupon_id}"
     type: 'DELETE'
     dataType: 'json'
     data:
@@ -101,6 +98,6 @@ CakeCouponBook.collections.deleteCollectionsCoupon = (coupon_id) ->
 
 # Init function
 CakeCouponBook.collections.init = ->
-  CakeCouponBook.collections.switcher()
-  CakeCouponBook.collections.initAddRemove()
+  switcher()
+  initAddRemove()
   return

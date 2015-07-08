@@ -15,6 +15,10 @@
             label.control-label Campaign Name
             = f.input :name, label: false, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
             span.help-block.italic Keep it simple.
+
+            label.control-label Organization Name
+            = f.input :organization_name, label: false, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
+            span.help-block.italic This name will be used as the Organization Name on your Campaign's top banner. Optional.
           .col-md-6
             label.control-label Target Launch & End Dates
             .input-daterange

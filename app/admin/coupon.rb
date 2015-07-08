@@ -32,7 +32,6 @@ ActiveAdmin.register Coupon do
       row :expires_at
       bool_row :universal
       bool_row :order_up
-      bool_row :pr_box_flag
     end
   end
 
@@ -65,12 +64,11 @@ ActiveAdmin.register Coupon do
       f.input :status, as: :select, collection: Coupon.statuses
       f.input :universal
       f.input :order_up
-      f.input :pr_box_flag
     end
 
     f.actions
   end
 
   permit_params :title, :description, :price, :url, :expires_at, :multiple_locations, :sponsor_url, 
-  :sponsor_name, :phone, :custom_terms, :collection_id, :status, :universal, :order_up, :pr_box_flag
+  :sponsor_name, :phone, :custom_terms, :collection_id, :status, :universal, :order_up
 end

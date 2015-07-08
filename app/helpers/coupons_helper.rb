@@ -29,4 +29,8 @@ module CouponsHelper
       content_tag(:span, ' Print Coupon')
     end
   end
+
+  def edit_item_path(item)
+    item.coupon? ? edit_coupon_path(item) : edit_pr_box_path(item)
+  end
 end

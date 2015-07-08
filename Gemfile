@@ -17,6 +17,9 @@ gem 'zeroclipboard-rails', '~> 0.1.0'
 gem 'modernizr-rails', '~> 2.7.1'
 gem 'font_assets'
 
+#ReactJS
+gem 'browserify-rails'
+
 #JS
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 

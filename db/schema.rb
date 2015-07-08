@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150619184235) do
+ActiveRecord::Schema.define(version: 20150706161151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -111,12 +111,6 @@ ActiveRecord::Schema.define(version: 20150619184235) do
   add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
   add_index "charges", ["stripe_id"], name: "index_charges_on_stripe_id", unique: true, using: :btree
 
-  create_table "collection_pr_boxes", force: :cascade do |t|
-    t.integer "collection_id"
-    t.integer "pr_box_id"
-    t.integer "position"
-  end
-
   create_table "collections", force: :cascade do |t|
     t.integer "owner_id"
     t.string  "owner_type"
@@ -178,8 +172,9 @@ ActiveRecord::Schema.define(version: 20150619184235) do
     t.string   "sponsor_name"
     t.integer  "collection_id"
     t.boolean  "order_up",                    default: false
-    t.boolean  "pr_box_flag",                 default: false
     t.integer  "extra_clicks_count"
+    t.string   "type",                        default: "Coupon"
+    t.string   "flag"
   end
 
   create_table "extra_clicks", force: :cascade do |t|
@@ -229,17 +224,6 @@ ActiveRecord::Schema.define(version: 20150619184235) do
     t.integer  "qrcode_crop_h"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "pr_boxes", force: :cascade do |t|
-    t.string   "headline"
-    t.text     "story"
-    t.string   "url"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "flag"
-    t.integer  "collection_id"
-    t.integer  "extra_clicks_count"
   end
 
   create_table "purchases", force: :cascade do |t|

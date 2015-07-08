@@ -31,9 +31,12 @@ module CakeCouponBook
       #{config.root}/lib/evercookie
     )
 
+    config.exceptions_app = self.routes
+
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join 'app', 'controllers', 'api', 'v1', 'views'
     end
 
+    #config.react.addons = true
   end
 end

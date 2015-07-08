@@ -1,7 +1,8 @@
 class CouponBooksController < InheritedResources::Base
   load_and_authorize_resource
-  before_action :redirect_to_coupon_template, only: :sponsor_landing
-  before_action :block_fr, only: :sponsor_landing
+  before_action :redirect_to_coupon_template, only: :start_discount
+  before_action :redirect_to_pr_box_template, only: :start_pr_box
+  before_action :block_fr, only: [:start_discount, :start_pr_box]
   before_action :redirect_to_billing, only: :launch
 
   TEMPLATE_STEPS = [
@@ -18,8 +19,8 @@ class CouponBooksController < InheritedResources::Base
 
   def show
     @coupon_book = resource.decorate
-    @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
-    @categories = @coupon_book.categories.with_coupons.decorate
+    @header_banner = I18n.t('banners.coupon_book.header', fr: (@coupon_book.organization_name || @coupon_book.fundraiser), price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+    @categories = @coupon_book.categories.with_items.decorate
   end
 
   #Template steps
@@ -36,12 +37,21 @@ class CouponBooksController < InheritedResources::Base
   #Build coupon book
   def coupons
     @coupon_book = resource
-
-    @collection = current_fundraiser.coupon_collection
-    @collections_coupons = @collection.coupons.launched.latest.decorate
-    @categories = resource.categories.with_coupons.decorate
-
     render 'coupon_books/template/coupons'
+  end
+
+  def save_organize
+    processed_params = resource.process_categories_params(params[:categories])
+    puts 
+    p processed_params
+    puts 
+    saved = resource.update(categories_permitted_params(processed_params))
+    render text: saved
+  end
+
+  def categories
+    @categories = resource.categories
+    render 'coupon_books/show/categories'
   end
 
   def request_coupons
@@ -61,7 +71,7 @@ class CouponBooksController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        update_screenshot(@coupon_book)
+        #update_screenshot(@coupon_book)
         redirect_to tell_your_story_coupon_book_path(@coupon_book)
       end
       failure.html do
@@ -71,10 +81,9 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def update
-    # puts permitted_params.to_yaml
     update! do |success, failure|
       success.html do
-        update_screenshot(@coupon_book)
+        #update_screenshot(@coupon_book)
         redirect_to controller: :coupon_books, action: params[:coupon_book][:step], id: resource
       end
       failure.html do
@@ -115,9 +124,14 @@ class CouponBooksController < InheritedResources::Base
   end
 
   #Sponsor landing
-  def sponsor_landing
+  def start_discount
     @coupon_book = resource.decorate
-    @collection_id = @coupon_book.fundraiser.coupon_collection.id
+    @collection_id = @coupon_book.fundraiser.collection.id
+  end
+
+  def start_pr_box
+    @coupon_book = resource.decorate
+    @collection_id = @coupon_book.fundraiser.collection.id
   end
 
   def download
@@ -133,7 +147,11 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.coupon_collection.id) if current_user.present? and current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
+  end
+
+  def redirect_to_pr_box_template
+    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
   end
 
   def redirect_to_billing
@@ -145,7 +163,8 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(coupon_book: [:name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
+    params.permit(coupon_book: [
+      :name, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [
@@ -154,6 +173,13 @@ class CouponBooksController < InheritedResources::Base
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
       categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ]
+    ])
+  end
+
+  def categories_permitted_params(cat_params)
+    cat_params = ActionController::Parameters.new(cat_params)
+    cat_params.permit(categories_attributes: [
+      :id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy]
     ])
   end
 

@@ -1,10 +1,12 @@
 CakeCouponBook::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   root to:'home#index'
 
   scope :search, controller: :searches do
     get :search_coupons, path:'coupons'
+    get :search_pr_boxes, path:'pr_boxes'
   end
 
   mount Resque::Server, at: "/resque"
@@ -16,14 +18,16 @@ CakeCouponBook::Application.routes.draw do
         get :coupons
         get :request_coupons
         get :launch_and_share
+        post :save_organize
       end
       patch :launch
       patch :save_for_launch
       patch :toggle_visibility
       patch :update_order
 
-      post :tree
-      get :sponsor_landing, path: :start_discount
+      get :start_discount
+      get :start_pr_box
+      get :categories, format: :json
       get :download
     end
   end
@@ -38,8 +42,8 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  delete 'collections_coupons' => 'collections_coupons#destroy'
-  resources :collections_coupons
+  #delete 'collections_coupons' => 'collections_coupons#destroy'
+  resources :collections_coupons, only: [:create, :destroy]
 
   resources :coupons do
     member do
@@ -60,6 +64,8 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :pr_boxes, except: [:index, :show]
+
   scope :users, controller: :users do
     get :sign_in
     post :new_session
@@ -70,6 +76,11 @@ CakeCouponBook::Application.routes.draw do
   resources :subscriptors, only: :create
   resources :purchases, only: :create
 
+  scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
+    get :collection_coupons
+    get :collection_pr_boxes
+  end
+
   namespace :dashboard do
     scope :fundraiser, controller: :fundraiser do
       get :home, as: :fundraiser_home
@@ -79,8 +90,13 @@ CakeCouponBook::Application.routes.draw do
       get :home, as: :sponsor_home
       get :history, as: :sponsor_history
       get :coupons, as: :sponsor_coupons
+      get :pr_boxes, as: :sponsor_pr_boxes
     end
   end
+
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 
   mount API::Base => '/api'
 

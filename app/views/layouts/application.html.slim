@@ -8,6 +8,7 @@ html lang="en"
     = csrf_meta_tags
     = stylesheet_link_tag "application"
     = javascript_include_tag "//checkout.stripe.com/checkout.js", "//widget.cloudinary.com/global/all.js", "application"
+    /= javascript_include_tag "application"
     = cloudinary_js_config
 
   body.fixed

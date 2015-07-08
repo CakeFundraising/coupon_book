@@ -2,6 +2,7 @@
   ul.nav.navbar-nav
     = menu_item "Active Books", coupon_books_path
     = menu_item "Universal Discounts", search_coupons_path
+    = menu_item "Universal PR Boxes", search_pr_boxes_path
   ul.nav.navbar-nav.navbar-right
     = menu_item 'New Coupon Book', new_coupon_book_path
     li.dropdown
@@ -13,6 +14,7 @@
         = menu_item "My Dashboard", cake_fundraiser_path('home')
         = menu_item "Active Books", coupon_books_path
         = menu_item "Universal Discounts", search_coupons_path
+        = menu_item "Universal PR Boxes", search_pr_boxes_path
         = menu_item "Billing", cake_fundraiser_path('billing')
         = menu_item "History", cake_fundraiser_path('history')
         li.divider

@@ -1,0 +1,31 @@
+/= display_meta("Search Coupons")
+
+#search_pr_boxes
+  h1.dash-head Universal PR Boxes
+
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :pr_boxes
+
+      .controls
+        .counter
+          span.boldest #{@pr_boxes.total_count} PR Boxes 
+          span match the criteria
+
+      #filters.panel-group
+       = render partial:'layouts/search/filter', collection: @facets, as: :facet
+       hr
+       = link_to t('helpers.filters.clear'), search_pr_boxes_path, class:'btn btn-primary'
+    .col-md-9
+      .pr-boxes-container.row.transitions-enabled
+        .pr_boxes
+          - if @pr_boxes.any?
+            = render partial: "pr_boxes/show/fundraiser/grid", collection: @pr_boxes, as: :pr_box
+          - else
+            .alert.alert-info No results found.
+
+    = pagination(@pr_boxes)
+
+javascript:
+  CakeCouponBook.collections.init();
+  CakeCouponBook.search.page("#pr-boxes-search", "#search_pr_boxes");
