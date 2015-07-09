@@ -14,6 +14,7 @@ h1.dash-head
         th = t('semantic.number_of', model: 'Discounts Sold')
         th = Coupon.human_attribute_name :unique_clicks
         th = Coupon.human_attribute_name :total_clicks
+        th = Coupon.human_attribute_name :status
         th
     tbody
       - if @coupons.any?

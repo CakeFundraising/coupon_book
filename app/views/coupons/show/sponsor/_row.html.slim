@@ -14,6 +14,8 @@
       = coupon.extra_clicks.count
     td data-title=(Coupon.human_attribute_name :total_clicks)
       = coupon.extra_clicks_count
+    td data-title=(Coupon.human_attribute_name :status)
+      = coupon.status
     td.truncate
       /= render partial:'coupons/show/actions', locals:{coupon: coupon}
 
