@@ -22,7 +22,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def to_s
-    object.try(:title)
+    object.try(:title) || 'No title'
   end
 
   def price
