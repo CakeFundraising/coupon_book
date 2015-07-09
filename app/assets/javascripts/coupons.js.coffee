@@ -30,8 +30,6 @@ CakeCouponBook.coupons.validation = ->
         required: true
       'coupon[expires_at]': 
         required: true
-      'coupon[promo_code]': 
-        required: true
       'coupon[description]': 
         required: true
       'coupon[url]': 

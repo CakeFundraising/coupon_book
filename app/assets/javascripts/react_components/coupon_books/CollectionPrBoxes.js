@@ -8,6 +8,7 @@ export default class CollectionPrBoxes extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     source: PropTypes.string.isRequired,
+    bookId: PropTypes.string.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired
   };
 
@@ -44,14 +45,14 @@ export default class CollectionPrBoxes extends Component {
   }
 
   render() {
-    const { className, id, removeItemFromCategory } = this.props;
+    const { className, id, removeItemFromCategory, bookId } = this.props;
     const { prBoxes } =  this.state;
 
     return (
       <div className="pr-boxes-column">
         <h2>Available PR Boxes
           <Button
-            href={'/pr_boxes/new?coupon_book_id=' + this.props.bookId}
+            href={'/pr_boxes/new?coupon_book_id=' + bookId}
             type="link"
             className="btn btn-success btn-sm pull-right">
             Add PR Box
@@ -65,7 +66,8 @@ export default class CollectionPrBoxes extends Component {
                 title={prBox.get('title')} 
                 itemType={prBox.get('itemType')} 
                 disabled={prBox.get('disabled')} 
-                disablePrBox={this.disablePrBox} 
+                disablePrBox={this.disablePrBox}
+                bookId={bookId}
                 key={index} 
                 removeItemFromCategory={removeItemFromCategory} />
             );

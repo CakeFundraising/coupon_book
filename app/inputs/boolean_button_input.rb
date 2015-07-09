@@ -27,7 +27,8 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
   end
 
   def hidden_field_value
-    BOOLEAN_MAPPER[BOOLEAN_MAPPER[object.send(method).to_s.to_sym]]
+    resource = object.respond_to?(:object) ? object.object : object
+    BOOLEAN_MAPPER[BOOLEAN_MAPPER[resource.try(method).to_s.to_sym]]
   end
 
   #Buttons
@@ -58,7 +59,8 @@ class BooleanButtonInput < Formtastic::Inputs::BooleanInput
   end
 
   def button_classes(status)
-    field_value = object.send(method)
+    resource = object.respond_to?(:object) ? object.object : object
+    field_value = resource.try(method)
 
     # If and only if statements
     if (field_value and status == :on) or (not field_value and status == :off)

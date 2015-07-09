@@ -7,8 +7,9 @@
       .col-md-12.text-center
         .main-cta
           = coupon_book_buy_button(resource)
-      .col-md-12.text-center
-        span = "(Keep receipt for tax purposes)"
+      - if resource.launched?
+        .col-md-12.text-center
+          span = "(Keep receipt for tax purposes)"
   
   .row
     .col-md-12

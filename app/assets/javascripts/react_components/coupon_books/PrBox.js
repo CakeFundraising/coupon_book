@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import CouponActions from './CouponActions';
+import PrBoxesActions from './PrBoxesActions';
 
 import { DragSource } from 'react-dnd'
 import ItemTypes from './ItemTypes'
@@ -38,13 +38,14 @@ export default class PrBox extends Component {
     disabled: PropTypes.bool.isRequired,
     disablePrBox: PropTypes.func.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired,
+    bookId: PropTypes.string.isRequired,
     // Injected by React DnD:
     isDragging: PropTypes.bool.isRequired,
     connectDragSource: PropTypes.func.isRequired
   };
 
   render(){
-    const { id, title, disabled, itemType, isDragging, connectDragSource, key } = this.props;
+    const { id, title, disabled, itemType, isDragging, connectDragSource, key, bookId } = this.props;
     const opacity = (isDragging || disabled) ? 0.4 : 1;
  
     return connectDragSource(
@@ -52,7 +53,7 @@ export default class PrBox extends Component {
         <span className="prbox-item--container">
           <span className="prbox-item--title">{title}</span>
         </span>
-        <CouponActions className="prboxActions" itemId={id} itemType="pr_boxes" />
+        <PrBoxesActions className="prboxActions" itemId={id} bookId={bookId} />
       </li>
     );
   }

@@ -1,17 +1,16 @@
-- cache [:pr_box, pr_box] do 
+- cache [:pr_box, :box, pr_box] do 
   .coupon-wrapper
-    .coupon_box.clearfix
-      .col-md-10.col-xs-10.col-xs-push-1.coupon
+    .coupon-label.label.label-success = pr_box.flag
+    .coupon-box.clearfix
+      .col-md-12.col-xs-12
         .row
-          .col-md-3.col-xs-12
-            = pr_box_pic(pr_box)
-            .pr_box-edge
+          .col-md-3.col-xs-12.pr_box_pic_col
+            = coupon_pic(pr_box)
+            .coupon-edge.hidden-xs.hidden-sm
           .col-md-7.col-xs-12
-            .pledge-news-content
+            div.coupon-content
               h2 = pr_box
               hr
-              p 
-                span = pr_box.description
-                span = link_to 'Read more', click_pr_box_path(pr_box), target: :_blank
-          .col-md-2.hidden-xs.hidden-sm.text-right
-            = pr_box.picture.qrcode
+              p.expander = pr_box.description
+          .col-md-2.col-xs-12.text-center
+            .hidden-xs.hidden-sm = pr_box.picture.qrcode

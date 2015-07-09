@@ -5,11 +5,10 @@
         span.banner-heading = I18n.t('banners.coupon_book.coupons', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
       .col-md-4.col-md-push-4
         .buy-book 
-          = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-primary btn-xl buy_button', data: {price: @coupon_book.price_cents})
-          /= coupon_book_buy_button(@coupon_book)
+          = coupon_book_buy_button(@coupon_book, :primary)
 
 .floating-right
-  = content_tag(:a, "#{@coupon_book.price} Buy Now!", class: 'btn btn-success-transparent btn-xl buy_button', data: {price: @coupon_book.price_cents})
+  = coupon_book_buy_button(@coupon_book, 'success-transparent')
 
 = render partial:'coupon_books/show/page/after_purchase'
 

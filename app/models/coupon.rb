@@ -23,7 +23,7 @@ class Coupon < ActiveRecord::Base
 
   validates :collection_id, presence: true
   validates :phone, :sponsor_name, :sponsor_url, presence: true, if: :coupon?
-  validates :title, :description, :expires_at, :promo_code, :url, presence: true, if: -> (coupon){ coupon.coupon? and coupon.persisted? }
+  validates :title, :description, :expires_at, :url, presence: true, if: -> (coupon){ coupon.coupon? and coupon.persisted? }
   validates :terms, acceptance: true, if: -> (coupon){ coupon.coupon? and coupon.new_record? }
 
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank

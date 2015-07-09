@@ -6,11 +6,11 @@ class CouponDecorator < ApplicationDecorator
   decorates_association :owner, with: FundraiserDecorator
 
   def trunc_title
-    h.truncate(object.title, length: 37).html_safe
+    h.truncate(object.title, length: 37).html_safe unless object.title.nil?
   end
 
   def trunc_description
-    h.truncate(object.description, length: 75).html_safe
+    h.truncate(object.description, length: 75).html_safe unless object.description.nil?
   end
 
   def expires_at
@@ -22,7 +22,7 @@ class CouponDecorator < ApplicationDecorator
   end
 
   def to_s
-    object.title
+    object.try(:title) || 'No title'
   end
 
   def price
