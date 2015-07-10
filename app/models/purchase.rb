@@ -8,8 +8,8 @@ class Purchase < ActiveRecord::Base
 
   before_create :stripe_charge_card
 
-  before_create do
-    self.token = SecureRandom.uuid
+  after_initialize do
+    self.token = SecureRandom.uuid if self.token.blank?
   end
 
   after_create do

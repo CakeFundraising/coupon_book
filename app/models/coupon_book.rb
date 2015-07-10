@@ -13,10 +13,13 @@ class CouponBook < ActiveRecord::Base
 
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
+  
   has_many :categories_coupons, through: :categories
   has_many :items, through: :categories
   has_many :coupons, through: :categories
   has_many :pr_boxes, through: :categories
+
+  has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
 
@@ -71,7 +74,7 @@ class CouponBook < ActiveRecord::Base
     self.categories_coupons.each do |cc|
       vouchers_ids << cc.create_vouchers(purchase_id)
     end
-    vouchers_ids
+    vouchers_ids.reject(&:blank?)
   end
 
   def process_categories_params(params)

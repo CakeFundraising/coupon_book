@@ -8,6 +8,7 @@ class Voucher < ActiveRecord::Base
   belongs_to :owner, polymorphic: true
 
   delegate :coupon, :coupon_book, to: :categories_coupon
+  delegate :multiple_locations, :custom_terms, to: :coupon
 
   validates :number, :expires_at, :categories_coupon_id, :purchase_id, presence: true
   validates :number, uniqueness: true
@@ -55,6 +56,6 @@ class Voucher < ActiveRecord::Base
   private
 
   def set_number
-    self.number = "#{self.coupon_book.id}#{self.purchase_id}#{self.coupon.id}"
+    self.number = "#{self.coupon_book.id}#{self.purchase_id}#{self.coupon.id}" if self.number.blank?
   end
 end

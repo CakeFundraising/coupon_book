@@ -1,12 +1,13 @@
 class VoucherMailer < ApplicationMailer
-  def coupon_book(coupon_book_id, email, vouchers_ids)
-    @coupon_book = find_coupon_book(coupon_book_id)
+  def coupon_book(purchase)
+    @purchase = purchase.decorate
+    @coupon_book = @purchase.purchasable
 
-    pdf = CouponBookPdf.new(@coupon_book, vouchers_ids)
-    attachments["#{@coupon_book}_book.pdf"] = {
-      content: pdf.render,
-      mime_type: 'application/pdf'
-    }
-    mail(to: email, subject: "Cake Coupon Book #{@coupon_book} Vouchers")
+    # pdf = CouponBookPdf.new(@coupon_book, vouchers_ids)
+    # attachments["#{@coupon_book}_book.pdf"] = {
+    #   content: pdf.render,
+    #   mime_type: 'application/pdf'
+    # }
+    mail(to: @purchase.email, subject: "Enjoy rewards from #{@coupon_book}")
   end
 end
