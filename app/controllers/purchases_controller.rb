@@ -15,10 +15,27 @@ class PurchasesController < InheritedResources::Base
 
   end
 
+  #Vouchers
   def vouchers
     @book = resource.purchasable.decorate
     @fundraiser = @book.fundraiser
     @vouchers = resource.vouchers.decorate
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "vouchers",   # Excluding ".pdf" extension.
+               disposition: "inline",
+               template: "purchases/pdf/main.pdf.slim",
+               layout: "pdf.html.slim",
+               orientation: 'Landscape',                  # default Portrait
+               show_as_html: params[:debug].present?      # allow debugging based on url param
+               # page_size:  'A4, Letter, ...',            # default A4
+               # page_height:    960px,
+               # page_width:     720px
+ 
+      end
+    end
   end
 
   protected

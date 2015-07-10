@@ -1,9 +1,9 @@
 .voucher
   .row.voucher-headline
-    .col-md-3
+    .col-md-3.col-xs-5
       = link_to CakeHelper::EFG_ROOT_URL, target: :_blank do
         = image_tag 'befg.png', class:'img-responsive'
-    .col-md-9
+    .col-md-9.col-xs-7
       .voucher-number
         span.red Voucher: 
         span = voucher.number
@@ -13,9 +13,9 @@
     span.blue-text = voucher.coupon_book.fundraiser.name
 
   .row
-    = render partial:'coupons/show/voucher_box', locals:{coupon: voucher.coupon}
+    = render partial:'coupons/show/voucher/box', locals:{coupon: voucher.coupon}
   .row
-    .col-md-8
+    .col-md-8.col-xs-8
       h2
         span.blue-text Expires: 
         span = voucher.expires_at_american
@@ -26,7 +26,7 @@
       - if voucher.custom_terms.present?
         h3.blue-text Merchant Limitations
         div = voucher.custom_terms
-    .col-md-4
+    .col-md-4.col-xs-4
       .qrcode-table.pull-right
         = raw RQRCode::QRCode.new(voucher.number, size: 3).as_html
   .row

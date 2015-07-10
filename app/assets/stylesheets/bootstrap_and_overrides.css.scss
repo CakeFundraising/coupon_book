@@ -32,6 +32,9 @@ body {
   margin:0;
   padding:0;
   min-width: 100%;
+  .body-pdf{
+    background: white;
+  }
 }
 
 body.iframe-body{
@@ -2254,7 +2257,6 @@ a {
   }
   .pledge-news-content,
   .coupon-content{
-    margin:10px 0px;
     p{
       font-size: 16px;
     }
@@ -2286,7 +2288,6 @@ a {
   .promo-code{
     font-size: 18px;
     margin: 0px 0px 10px;
-    display: inline-block;
     padding: 5px 0px;
   }
 }
@@ -4392,11 +4393,58 @@ span.banner-heading{
 .voucher{
   margin-top: 30px;
   margin-bottom: 40px;
-  //padding-top: 40px;
-  //border-top: 5px dashed $gray;
   border: 5px dashed $gray;
   padding: 40px;
   background: white;
+  &.voucher-pdf{
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0px;
+    border: none;
+    .voucher-number{
+      font-size: 38px;
+    }
+    .fundraiser{
+      font-size: 34px;
+      margin-top: 0;
+    }
+    .expires{
+      margin-top: 0;
+      font-size: 28px;
+    }
+    .coupon-box{
+      border: 1px solid #999;
+      box-shadow: none;
+      margin-bottom: 20px;
+      .sp-box{
+        //border-right: none;
+      }
+      .promo-code{
+        .text{
+          font-size: 25px;
+          color: $brand-primary;
+        }
+        .value{
+          font-size: 32px;
+        }
+      }
+    }
+    .fine-print{
+      font-size: 9px;
+      h3{
+        margin-top: 10px;
+      }
+    }
+    .powered_by{
+      margin-top: 30px;
+      text-align: right;
+      font-size: 20px;
+      .cake_logo{
+        width: 80px;
+        margin-left: 5px;
+      }
+    }
+  }
 
   .red{
     color: red;
@@ -4440,4 +4488,10 @@ span.banner-heading{
       width: 100px;
     }
   }
+}
+
+.page-break{ 
+  display:block; 
+  clear:both; 
+  page-break-after:always; 
 }
