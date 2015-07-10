@@ -69,14 +69,6 @@ class CouponBook < ActiveRecord::Base
   end
 
   #Vouchers
-  def create_vouchers(purchase_id)
-    vouchers_ids = []
-    self.categories_coupons.each do |cc|
-      vouchers_ids << cc.create_vouchers(purchase_id)
-    end
-    vouchers_ids.reject(&:blank?)
-  end
-
   def process_categories_params(params)
     hash = {categories_attributes: {}}
     params.each_with_index do |category, index|

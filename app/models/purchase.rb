@@ -2,6 +2,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true
   has_one :charge, as: :chargeable
 
+  has_many :vouchers, dependent: :destroy
+
   monetize :amount_cents
 
   validates :purchasable, :card_token, :amount, :email, :token, presence: true
@@ -14,6 +16,12 @@ class Purchase < ActiveRecord::Base
 
   after_create do
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id)
+  end
+
+  def create_vouchers!
+    purchasable.categories_coupons.each do |cc|
+      cc.create_voucher(self.id)
+    end
   end
 
   private
