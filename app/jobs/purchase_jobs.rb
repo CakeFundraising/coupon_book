@@ -10,7 +10,8 @@ module ResqueSchedule
     def self.perform(purchase_id)
       purchase = Purchase.find purchase_id
       purchase.create_vouchers!
-      VoucherMailer.coupon_book(purchase).deliver_now
+      VoucherMailer.send_vouchers(purchase).deliver_now
+      VoucherMailer.download_page(purchase).deliver_now
     end
   end
   

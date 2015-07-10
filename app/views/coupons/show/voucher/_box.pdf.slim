@@ -1,9 +1,11 @@
 .coupon-wrapper
   .coupon-box.clearfix
     .col-md-2.col-sm-2.col-xs-2.sp-box
-      = coupon_sp_pic(coupon)
+      = coupon.avatar_picture.uri
       h4.sp_name = coupon.sponsor_name
-      = coupon_main_location(coupon)          
+      .coupon_location
+        div = coupon.address
+        div = coupon.main_location
     .col-md-10.col-xs-10
       .row
         .col-md-9.col-xs-9
