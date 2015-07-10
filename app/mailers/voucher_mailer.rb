@@ -8,6 +8,6 @@ class VoucherMailer < ApplicationMailer
     #   content: pdf.render,
     #   mime_type: 'application/pdf'
     # }
-    mail(to: @purchase.email, subject: "Enjoy rewards from #{@coupon_book}")
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@coupon_book}")
   end
 end
