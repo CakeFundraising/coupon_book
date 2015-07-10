@@ -1,28 +1,20 @@
 - cache [:coupon, :voucher_box, coupon] do
   .coupon-wrapper
     .coupon-box.clearfix
-      .col-md-2.col-sm-2.hidden-xs.sp-box
+      .col-md-2.col-sm-2.col-xs-2.sp-box
         = coupon_sp_pic(coupon)
         h4.sp_name = coupon.sponsor_name
         = coupon_main_location(coupon)          
       .col-md-10.col-xs-10
         .row
-          .col-md-4.col-xs-12.coupon_pic_col
-            = coupon_pic(coupon)
-            .coupon-edge.hidden-xs.hidden-sm
-          .col-md-6.col-xs-12
+          .col-md-9.col-xs-12
             .coupon-content
-              h2 = coupon
-              h3
-                |Expires: 
-                span = coupon.expires_at_american                  
-              hr
+              h1 = coupon
               p.expander-250 = coupon.description
-          .col-md-2.col-xs-12.text-center
-            .hidden-xs.hidden-sm = coupon.picture.qrcode
+          .col-md-3.col-xs-12.text-center
             .promo-code
-              .boldest Promo Code:
-              span = coupon.promo_code
+              span.text Promo Code:
+              .value = coupon.promo_code
             .row.terms
               .col-xs-12
                 = render partial:'coupons/show/terms', locals:{coupon: coupon}

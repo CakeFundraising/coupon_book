@@ -12,33 +12,29 @@
     span Fundraiser: 
     span.blue-text = voucher.coupon_book.fundraiser.name
 
-  .row
+  .row-fluid
     = render partial:'coupons/show/voucher/box', locals:{coupon: voucher.coupon}
   .row
     .col-md-8.col-xs-8
-      h2
+      h2.expires
         span.blue-text Expires: 
         span = voucher.expires_at_american
 
-      - if voucher.multiple_locations.present?
-        h3.blue-text Use at the following locations:
-        div = voucher.multiple_locations
-      - if voucher.custom_terms.present?
-        h3.blue-text Merchant Limitations
-        div = voucher.custom_terms
+      .fine-print
+        - if voucher.multiple_locations.present?
+          h3.blue-text Use at the following locations:
+          div = voucher.multiple_locations
+        - if voucher.custom_terms.present?
+          h3.blue-text Merchant Limitations
+          div = voucher.custom_terms
+        h4 The Fine Print
+        div = t('application.terms_and_conditions.coupons').html_safe
     .col-md-4.col-xs-4
-      .qrcode-table.pull-right
-        = raw RQRCode::QRCode.new(voucher.number, size: 3).as_html
-  .row
-    .col-md-12
-      h4 The Fine Print
-      div = t('application.terms_and_conditions.coupons').html_safe
-  .row
-    .visit-cake.col-md-12.text-center
-      h2 
-        = link_to CakeHelper::CAKE_ROOT_URL, target: :_blank do
-          = image_tag 'cake_logotype.jpg', class:'cake_logo'
-        span Visit 
-        span = link_to 'CakeCauseMarketing.com', CakeHelper::CAKE_ROOT_URL, target: :_blank
-        span  to fundraise for your group!
+      .row
+        .qrcode-table.pull-right
+          = raw RQRCode::QRCode.new(voucher.number).as_html
+      .row
+        .powered_by.col-md-12
+          span Powered by 
+          = image_tag 'cake_logo.png', class:'cake_logo pull-right'      
 
