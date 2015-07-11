@@ -19,6 +19,8 @@ else
 
         def message
           if @klass == 'OAuth2::Error' and @error.code.present?
+            Rails.logger.info @error.inspect
+            
             case @error.code
             when 'invalid_grant'
               I18n.t('flash.auth.failed.invalid_grant')
