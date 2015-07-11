@@ -27,7 +27,6 @@ module CakeCouponBook
 
     config.autoload_paths += %W(
       #{config.root}/app/decorators/concerns
-      #{config.root}/app/assets/attachments
       #{config.root}/lib/evercookie
     )
 
@@ -36,7 +35,5 @@ module CakeCouponBook
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join 'app', 'controllers', 'api', 'v1', 'views'
     end
-
-    #config.react.addons = true
   end
 end
