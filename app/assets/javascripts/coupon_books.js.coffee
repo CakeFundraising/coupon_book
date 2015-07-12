@@ -49,8 +49,8 @@ launch = ->
   launched_button = '<div class="btn btn-sm btn-success disabled">Launched</div>'
 
   buttons.on("ajax:success", (e, data, status, xhr) ->
-    current = $(this)
-    current.closest('td').html(launched_button)
+    $(this).closest('.stat').prepend(launched_button)
+    $(this).remove()
     return
   ).on "ajax:error", (e, xhr, status, error) ->
     alert "There was an error on launch, please reload this page and try again."
