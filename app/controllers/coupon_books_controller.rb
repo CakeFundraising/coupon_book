@@ -1,4 +1,5 @@
 class CouponBooksController < InheritedResources::Base
+  include CakeHelper
   load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
@@ -109,7 +110,7 @@ class CouponBooksController < InheritedResources::Base
 
   def launch
     resource.launch!
-    update_screenshot(resource)
+    #update_screenshot(resource)
 
     if request.xhr?
       render nothing: true
@@ -155,7 +156,13 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def redirect_to_billing
-    redirect_to cake_fundraiser_path(:billing) unless resource.fundraiser.stripe_publishable_key.present?
+    unless resource.fundraiser.stripe_publishable_key.present?
+      if request.xhr?
+        render js: "window.location = #{cake_fundraiser_path(:billing).to_json}"
+      else
+        redirect_to cake_fundraiser_path(:billing)
+      end
+    end
   end
 
   def block_fr
