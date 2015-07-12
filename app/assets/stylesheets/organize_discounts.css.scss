@@ -14,6 +14,13 @@
 
 }
 
+ul#collection-coupons,
+ul#collection-pr-boxes,
+ul#categories{
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
 .category {
   padding: 0;
   border: 0;
