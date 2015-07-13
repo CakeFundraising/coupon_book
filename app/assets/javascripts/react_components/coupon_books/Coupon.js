@@ -9,6 +9,7 @@ const couponSource = {
     return {
       id: props.id,
       title: props.title,
+      sponsorName: props.sponsorName,
       itemType: props.itemType
     };
   },
@@ -35,6 +36,7 @@ export default class Coupon extends Component {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     itemType: PropTypes.string.isRequired,
+    sponsorName: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     disableCoupon: PropTypes.func.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired,

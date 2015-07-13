@@ -64,7 +64,7 @@ export default class CollectionCoupons extends Component {
                 id={coupon.get('id')} 
                 title={coupon.get('title')} 
                 itemType={coupon.get('itemType')}
-                sponsorName={coupon.get('sponsor_name')}
+                sponsorName={coupon.get('sponsorName')}
                 disabled={coupon.get('disabled')} 
                 disableCoupon={this.disableCoupon}
                 removeItemFromCategory={removeItemFromCategory}
