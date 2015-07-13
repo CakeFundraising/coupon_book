@@ -32,7 +32,7 @@ class CouponBook < ActiveRecord::Base
   validates :name, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
   validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
   validates :mission, :headline, :story, presence: true, if: :persisted?
-  validates :categories, length: {maximum: 5}
+  validates :categories, length: {maximum: 15}
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
