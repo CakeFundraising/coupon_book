@@ -39,7 +39,7 @@ class PrBoxesController < InheritedResources::Base
 
   def permitted_params
     params.permit(pr_box:[
-      :id, :title, :description, :url, :flag, :universal,
+      :id, :title, :description, :url, :flag, :universal, :sponsor_name,
       picture_attributes: [
         :id, :banner, :avatar, :qrcode, :avatar_caption,
         :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,

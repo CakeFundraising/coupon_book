@@ -44,13 +44,14 @@ export default class Coupon extends Component {
   };
 
   render(){
-    const { id, title, disabled, itemType, isDragging, connectDragSource, key } = this.props;
+    const { id, title, disabled, itemType, sponsorName, isDragging, connectDragSource, key } = this.props;
     const opacity = (isDragging || disabled) ? 0.4 : 1;
 
     return connectDragSource(
       <li style={{ opacity: opacity }} className="coupon-item" id={'coupons_' + id}  key={key}>
         <span className="coupon-item--container">
           <span className="coupon-item--title">{title}</span>
+          <span className="coupon-item--owner">{sponsorName}</span>
         </span>
         <CouponActions className="couponActions" itemId={id} itemType="coupons" />
       </li>

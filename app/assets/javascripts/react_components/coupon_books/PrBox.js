@@ -45,13 +45,14 @@ export default class PrBox extends Component {
   };
 
   render(){
-    const { id, title, disabled, itemType, isDragging, connectDragSource, key, bookId } = this.props;
+    const { id, title, disabled, itemType, sponsorName, isDragging, connectDragSource, key, bookId } = this.props;
     const opacity = (isDragging || disabled) ? 0.4 : 1;
  
     return connectDragSource(
       <li style={{ opacity: opacity }} className="prbox-item" id={'prboxes_' + id}  key={key}>
         <span className="prbox-item--container">
           <span className="prbox-item--title">{title}</span>
+          <span className="prbox-item--owner">{sponsorName}</span>
         </span>
         <PrBoxesActions className="prboxActions" itemId={id} bookId={bookId} />
       </li>
