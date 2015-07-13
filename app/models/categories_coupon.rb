@@ -1,7 +1,7 @@
 class CategoriesCoupon < ActiveRecord::Base
   belongs_to :coupon
   belongs_to :category
-  has_many :vouchers
+  has_many :vouchers, dependent: :destroy
 
   delegate :coupon_book, to: :category
 
