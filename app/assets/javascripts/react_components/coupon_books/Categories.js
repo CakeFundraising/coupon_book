@@ -114,8 +114,6 @@ export default class Categories extends Component {
   }
 
   addCouponToCategory(coupon, categoryId){
-    console.log(_.extend(coupon, {_destroy: false, saved: false}));
-
     const { index: categoryIndex } = this.findCategory(categoryId);
     const item = Immutable.fromJS(_.extend(coupon, {_destroy: false, saved: false}));
     
