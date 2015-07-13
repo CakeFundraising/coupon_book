@@ -47,6 +47,7 @@ class CouponBooksController < InheritedResources::Base
     p processed_params
     puts 
     saved = resource.update(categories_permitted_params(processed_params))
+    p resource.errors.messages
     render text: saved
   end
 
