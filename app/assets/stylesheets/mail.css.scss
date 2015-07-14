@@ -83,27 +83,20 @@ table.body-wrap {
     border: 1px solid #f0f0f0;
     background: #FFFFFF;
     .befg-logo-td{
-      width: 50%;
-      @media (max-width: 768px) {
-        width: 100%;
-        text-align: center;
-      }
+      width: 100%;
+      text-align: center;
     }
     .cake-logo-td{
-      @media (max-width: 768px) {
-        display: none;
-      }
-
-      vertical-align: top;
       width: 50%;
       .powered_by{
         span{
           vertical-align: top;
         }
         float: right;
+        text-align: right;
       }
       img{
-        max-width: 100px;
+        max-width: 65px;
       }
     }
     .slides{

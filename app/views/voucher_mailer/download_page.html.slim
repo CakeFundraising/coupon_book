@@ -11,19 +11,14 @@ table.body-wrap
                 tr
                   td.befg-logo-td
                     = cl_image_tag("Baltimore_ornhzo.jpg", width: 177, crop: :scale)
-                  td.cake-logo-td
-                    .powered_by
-                      span Powered by 
-                      = link_to CakeHelper::CAKE_ROOT_URL, target: :_blank do
-                        = cl_image_tag('cake_logo_cdxjol.jpg', width: 100, crop: :scale, class:'cake_logo')
               table.slides
                 tr
                   td
                     = cl_image_tag("Untitled_design_jivslf.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
                   td                   
-                    = cl_image_tag("youth-volunteer-art-16359c1ae290ccad_cwllck.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                    = cl_image_tag("27148094_xl_i0stxg.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
                   td                   
-                    = cl_image_tag("slider-1_g3tc3g.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                    = cl_image_tag("meal_twfy32.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
 
               h2 Thank you for supporting #{@book.fundraiser}!
 
@@ -37,7 +32,16 @@ table.body-wrap
 
               h5 Enjoy!
 
-              h3.signature-title Baltimore Eats for Good
+              table
+                tr
+                  td
+                    h3.signature-title Baltimore Eats for Good
+                  td.cake-logo-td
+                    .powered_by
+                      span Powered by 
+                      = link_to CakeHelper::CAKE_ROOT_URL, target: :_blank do
+                        = cl_image_tag('cake_logo_cdxjol.jpg', width: 100, crop: :scale, class:'cake_logo')
+              
       /! /content
     td
 /! /body
