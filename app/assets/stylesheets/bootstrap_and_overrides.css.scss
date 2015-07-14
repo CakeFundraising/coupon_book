@@ -4463,7 +4463,8 @@ span.banner-heading{
       color: $brand-primary;
     }
     .value{
-      font-size: 28px;
+      font-size: 24px;
+      word-wrap: break-word;
     }
   }
   .powered_by{
