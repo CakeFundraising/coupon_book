@@ -5,6 +5,6 @@ html.html-pdf lang="en"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
     meta name="apple-mobile-web-app-title" content="CakeCoupons"
-    = stylesheet_link_tag ENV['PDF_CSS_URL']
+    = stylesheet_link_tag "http://#{ENV['CLOUDFRONT_ENDPOINT']}#{ENV['PDF_CSS_PATH']}"
   body.fixed
     = yield
