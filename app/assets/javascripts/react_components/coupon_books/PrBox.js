@@ -9,6 +9,7 @@ const prBoxSource = {
     return {
       id: props.id,
       title: props.title,
+      sponsorName: props.sponsorName,
       itemType: props.itemType
     };
   },
@@ -35,6 +36,7 @@ export default class PrBox extends Component {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     itemType: PropTypes.string.isRequired,
+    sponsorName: PropTypes.string.isRequired,
     disabled: PropTypes.bool.isRequired,
     disablePrBox: PropTypes.func.isRequired,
     removeItemFromCategory: PropTypes.func.isRequired,
@@ -45,13 +47,14 @@ export default class PrBox extends Component {
   };
 
   render(){
-    const { id, title, disabled, itemType, isDragging, connectDragSource, key, bookId } = this.props;
+    const { id, title, disabled, itemType, sponsorName, isDragging, connectDragSource, key, bookId } = this.props;
     const opacity = (isDragging || disabled) ? 0.4 : 1;
  
     return connectDragSource(
       <li style={{ opacity: opacity }} className="prbox-item" id={'prboxes_' + id}  key={key}>
         <span className="prbox-item--container">
           <span className="prbox-item--title">{title}</span>
+          <span className="prbox-item--owner">{sponsorName}</span>
         </span>
         <PrBoxesActions className="prboxActions" itemId={id} bookId={bookId} />
       </li>

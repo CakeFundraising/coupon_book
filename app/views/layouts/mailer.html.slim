@@ -5,5 +5,21 @@ html lang="en"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
     meta name="apple-mobile-web-app-title" content="CakeCoupons"
-  body.fixed
+    = stylesheet_link_tag "mail"
+  body.email-body.fixed
     = yield
+  /! footer
+  / table.footer-wrap
+  /   tr
+  /     td
+  /     td.container
+  /       /! content
+  /       .content
+  /         table
+  /           tr
+  /             td align="center" 
+  /               p
+  /                 | Don't like these annoying emails?
+  /                 a href="#" Unsubscribe
+  /       /! /content
+  /     td

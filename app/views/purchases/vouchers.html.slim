@@ -1,0 +1,16 @@
+.download-vouchers-page
+  .row
+    .col-md-4.col-md-push-8
+      = link_to 'Download your Vouchers', vouchers_purchase_path(@purchase, token: @purchase.token, format: :pdf), class:'btn btn-success btn-xl download-vouchers'
+
+    .col-md-12.text-center
+      .main-title Thank You for Supporting: 
+      .title-fr #{@fundraiser}!
+      
+      h2 Enjoy your rewards!
+
+  br
+  .row
+    .col-md-12
+      = render partial:'purchases/voucher', collection: @vouchers, as: :voucher
+  

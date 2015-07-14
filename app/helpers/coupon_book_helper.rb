@@ -6,9 +6,7 @@ module CouponBookHelper
   def status_buttons(coupon_book)
     unless coupon_book.past?
       if coupon_book.pending?
-        content_tag(:span, class:'launch-span') do
-          link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
-        end
+        link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
       elsif coupon_book.incomplete?
         content_tag(:div, coupon_book.status, class:'btn btn-sm btn-danger disabled')
       else

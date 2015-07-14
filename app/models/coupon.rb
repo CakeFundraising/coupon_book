@@ -21,8 +21,8 @@ class Coupon < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
   has_many :collections, through: :collections_coupons
 
-  validates :collection_id, presence: true
-  validates :phone, :sponsor_name, :sponsor_url, presence: true, if: :coupon?
+  validates :collection_id, :sponsor_name, presence: true
+  validates :phone, :sponsor_url, presence: true, if: :coupon?
   validates :title, :description, :expires_at, :url, presence: true, if: -> (coupon){ coupon.coupon? and coupon.persisted? }
   validates :terms, acceptance: true, if: -> (coupon){ coupon.coupon? and coupon.new_record? }
 

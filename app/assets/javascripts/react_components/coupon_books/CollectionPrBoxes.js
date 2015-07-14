@@ -65,6 +65,7 @@ export default class CollectionPrBoxes extends Component {
                 id={prBox.get('id')} 
                 title={prBox.get('title')} 
                 itemType={prBox.get('itemType')} 
+                sponsorName={prBox.get('sponsorName')} 
                 disabled={prBox.get('disabled')} 
                 disablePrBox={this.disablePrBox}
                 bookId={bookId}

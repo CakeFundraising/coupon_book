@@ -74,7 +74,11 @@ CakeCouponBook::Application.routes.draw do
 
   resources :coupon_sponsors
   resources :subscriptors, only: :create
-  resources :purchases, only: :create
+  resources :purchases, only: :create do
+    member do
+      get :vouchers
+    end
+  end
 
   scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
     get :collection_coupons

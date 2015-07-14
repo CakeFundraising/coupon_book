@@ -1,5 +1,6 @@
 class PurchaseDecorator < ApplicationDecorator
   delegate_all
+  decorates_association :purchasable
 
   def amount
     h.humanized_money_with_symbol object.amount

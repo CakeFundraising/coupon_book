@@ -86,7 +86,7 @@ export default class Container extends Component {
           </div>
         </div>
         <div className="col-md-6" id="categories-col">
-          <ul className="no-list" id="categories">
+          <ul className="no-list">
             <Categories 
               className="categories" 
               id="categories" 

@@ -1,0 +1,40 @@
+.voucher.voucher-pdf
+  .row.voucher-headline
+    .col-md-3.col-xs-2
+      = cl_image_tag("Baltimore_ornhzo.jpg", secure: false, class:'img-responsive')
+    .col-md-9.col-xs-10
+      .voucher-number
+        span.red Voucher: 
+        span = voucher.number
+  
+  .fundraiser
+    span Fundraiser: 
+    span.blue-text = voucher.coupon_book.fundraiser.name
+
+  .row-fluid
+    = render partial:'coupons/show/voucher/box', locals:{coupon: voucher.coupon}
+  .row
+    .col-md-8.col-xs-9
+      h2.expires
+        span.blue-text Expires: 
+        span = voucher.expires_at_american
+
+      .fine-print
+        - if voucher.multiple_locations.present?
+          h3 Use at the following locations:
+          div = voucher.multiple_locations
+        - if voucher.custom_terms.present?
+          h3 Merchant Limitations
+          div = voucher.custom_terms
+        h4 The Fine Print
+        div = t('application.terms_and_conditions.coupons').html_safe
+    .col-md-4.col-xs-3
+      .row
+        .qrcode-table.pull-right
+          = raw RQRCode::QRCode.new(voucher.number).as_html
+      .row
+        .powered_by.col-md-12
+          span Powered by 
+          = cl_image_tag('cake_logo_cdxjol.jpg', secure: false, class:'cake_logo pull-right')
+      
+.page-break

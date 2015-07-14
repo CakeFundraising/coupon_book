@@ -1,12 +1,29 @@
 class VoucherMailer < ApplicationMailer
-  def coupon_book(coupon_book_id, email, vouchers_ids)
-    @coupon_book = find_coupon_book(coupon_book_id)
+  include ::Roadie::Rails::Automatic
 
-    pdf = CouponBookPdf.new(@coupon_book, vouchers_ids)
-    attachments["#{@coupon_book}_book.pdf"] = {
-      content: pdf.render,
-      mime_type: 'application/pdf'
-    }
-    mail(to: email, subject: "Cake Coupon Book #{@coupon_book} Vouchers")
+  def download_page(purchase)
+    @purchase = purchase.decorate
+    @book = @purchase.purchasable
+
+    mail(to: purchase.email, subject: "Download your deal vouchers from #{@book}")
+  end
+
+  def send_vouchers(purchase)
+    @purchase = purchase.decorate
+    @book = @purchase.purchasable.decorate
+    @fundraiser = @book.fundraiser
+    @vouchers = purchase.vouchers.decorate
+
+    attachments["Vouchers.pdf"] = WickedPdf.new.pdf_from_string(
+      render_to_string(
+        pdf: "vouchers",
+        template: 'purchases/pdf/main.pdf.slim',
+        layout: "pdf.html.slim",
+      ),{
+        orientation: 'Landscape'
+      }
+    )
+      
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@book}")
   end
 end

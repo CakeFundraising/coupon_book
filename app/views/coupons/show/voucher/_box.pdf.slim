@@ -1,0 +1,18 @@
+.coupon-wrapper
+  .coupon-box.clearfix
+    .col-md-2.col-sm-2.col-xs-2.sp-box
+      = coupon.avatar_picture.uri(secure: false)
+      h4.sp_name = coupon.sponsor_name
+      .coupon_location
+        div = coupon.address
+        div = coupon.main_location
+    .col-md-10.col-xs-10
+      .row
+        .col-md-9.col-xs-9
+          .coupon-content
+            h1 = coupon
+            p = truncate(coupon.description, length: 300).html_safe
+        .col-md-3.col-xs-3.text-center
+          .promo-code
+            span.text Promo Code:
+            .value = coupon.promo_code

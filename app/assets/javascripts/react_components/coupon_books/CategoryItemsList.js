@@ -128,7 +128,8 @@ export default class CategoryItemsList extends Component {
               id={item.get('id')} 
               title={item.get('title')}
               position={item.get('position')}
-              itemType={item.get('itemType')} 
+              itemType={item.get('itemType')}
+              sponsorName={item.get('sponsorName')}
               categoryId={categoryId} 
               saved={item.get('saved')} 
               _destroy={item.get('_destroy')} 

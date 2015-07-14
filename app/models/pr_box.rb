@@ -8,10 +8,11 @@ class PrBox < Coupon
     "Volunteer!",
     "Special Event!",
     "Join Us!",
-    "You're Invited!"
+    "You're Invited!",
+    "Sign Up Now!"
   ]
 
-  validates :title, :description, :url, :flag, presence: true
+  validates :title, :description, :url, :flag, :sponsor_name, presence: true
   validates :flag, inclusion: {in: FLAG_OPTIONS}
 
   before_save do

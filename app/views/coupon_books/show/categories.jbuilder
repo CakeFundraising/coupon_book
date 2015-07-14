@@ -6,6 +6,7 @@ json.array! @categories do |category|
     json.id categories_coupon.coupon.id
     json.title categories_coupon.coupon.title
     json.position categories_coupon.position
+    json.sponsorName categories_coupon.coupon.sponsor_name
     json._destroy false
     json.saved true
   end

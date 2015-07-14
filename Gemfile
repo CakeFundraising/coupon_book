@@ -64,7 +64,9 @@ gem 'prawn'
 gem 'money-rails'
 gem 'carmen-rails'
 gem 'rqrcode'
-gem 'prawn-qrcode'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+gem 'roadie-rails'
 
 #Authentication
 gem 'oauth2'

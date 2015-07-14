@@ -1,0 +1,48 @@
+table.body-wrap 
+  tr
+    td
+    td.container 
+      /! content
+      .content
+        table
+          tr
+            td
+              table
+                tr
+                  td.befg-logo-td
+                    = cl_image_tag("Baltimore_ornhzo.jpg", width: 177, crop: :scale)
+              table.slides
+                tr
+                  td
+                    = cl_image_tag("Untitled_design_jivslf.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                  td                   
+                    = cl_image_tag("27148094_xl_i0stxg.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                  td                   
+                    = cl_image_tag("meal_twfy32.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+
+              h2 Thank you for supporting #{@book.fundraiser}!
+
+              p
+                | Your Baltimore Eats for Good Vouchers are attached as a PDF file. 
+                | Simply download and print vouchers to redeem. 
+                | Each voucher is individually numbered and coded and may be used only once. 
+                | Please see each voucher for additional terms and conditions.
+
+              p Again, thank you for your generous support!
+
+              h5 Enjoy!
+
+              table
+                tr
+                  td
+                    h3.signature-title Baltimore Eats for Good
+                  td.cake-logo-td
+                    .powered_by
+                      span Powered by 
+                      = link_to CakeHelper::CAKE_ROOT_URL, target: :_blank do
+                        = cl_image_tag('cake_logo_cdxjol.jpg', width: 100, crop: :scale, class:'cake_logo')
+              
+      /! /content
+    td
+/! /body
+
