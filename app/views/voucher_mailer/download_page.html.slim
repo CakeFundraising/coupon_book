@@ -1,20 +1,43 @@
-section.email-body
-  .image-contain
-    .img.lunch
-    .img.volunteer
-    .img.children
-  .block
-    span Powered by
-    span.logo
-  .email-content
-    h2 Thank you for supporting #{@book.fundraiser}!
-    h4.text-light
-      | Your Baltimore Eats for Good Vouchers are permanently stored #{link_to 'here', vouchers_purchase_url(@purchase, token: @purchase.token)}. 
-      | Each voucher is individually numbered and coded and may be used only once. 
-      | Please see each voucher for additional terms and conditions.
-    h4.text-light
-      | Again, thank you for your generous support!
-    h4.note.text-light
-      | Enjoy
-    h4.name.text-light
-      b Baltimore Eats for Good
+table.body-wrap 
+  tr
+    td
+    td.container 
+      /! content
+      .content
+        table
+          tr
+            td
+              table
+                tr
+                  td.befg-logo-td
+                    = cl_image_tag("Baltimore_ornhzo.jpg", width: 177, crop: :scale)
+                  td.cake-logo-td
+                    .powered_by
+                      span Powered by 
+                      = link_to CakeHelper::CAKE_ROOT_URL, target: :_blank do
+                        = cl_image_tag('cake_logo_cdxjol.jpg', width: 100, crop: :scale, class:'cake_logo')
+              table.slides
+                tr
+                  td
+                    = cl_image_tag("Untitled_design_jivslf.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                  td                   
+                    = cl_image_tag("youth-volunteer-art-16359c1ae290ccad_cwllck.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+                  td                   
+                    = cl_image_tag("slider-1_g3tc3g.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
+
+              h2 Thank you for supporting #{@book.fundraiser}!
+
+              p
+                | Your Baltimore Eats for Good Vouchers are permanently stored #{link_to 'here', vouchers_purchase_url(@purchase, token: @purchase.token)}. 
+                | Simply download and print vouchers to redeem. 
+                | Each voucher is individually numbered and coded and may be used only once. 
+                | Please see each voucher for additional terms and conditions.
+
+              p Again, thank you for your generous support!
+
+              h5 Enjoy!
+
+              h3.signature-title Baltimore Eats for Good
+      /! /content
+    td
+/! /body

@@ -7,31 +7,19 @@ html lang="en"
     meta name="apple-mobile-web-app-title" content="CakeCoupons"
     = stylesheet_link_tag "mail"
   body.email-body.fixed
-    section.email-heading = image_tag "http://res.cloudinary.com/djsham4ot/image/upload/v1435326208/eatforgood/baltimore.png"
     = yield
-  section.email-footer
-    .navigation-contain
-      .col
-        ul.unstyled
-          li.title Company
-          li = link_to "About Cake", "#"
-          li = link_to "Blog", "#"
-          li = link_to "Press", "#"
-          li = link_to "Contact", "#"
-          li = link_to "Privacy", "#"
-          li = link_to "Terms od Use", "#"
-      .col
-        ul.unstyled
-          li.title Learn
-          li = link_to "FAQs", "#"
-      .col
-        ul.unstyled
-          li.title Follow Us
-          li = link_to "FAQs", "#"
-    .email-copyright
-      | \&copy;2015 CakeCauseMarketing. Inc.
-    .email-note
-      p
-        | make it easy to launch and manage exciting 'pay-per-click' cause marketing campaigns that produce great results for your
-      p
-        | organizations and your corporate sponsors.
+  /! footer
+  / table.footer-wrap
+  /   tr
+  /     td
+  /     td.container
+  /       /! content
+  /       .content
+  /         table
+  /           tr
+  /             td align="center" 
+  /               p
+  /                 | Don't like these annoying emails?
+  /                 a href="#" Unsubscribe
+  /       /! /content
+  /     td
