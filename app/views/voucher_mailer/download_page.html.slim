@@ -1,5 +1,20 @@
-h1 Thank You for Supporting: #{@coupon_book.fundraiser}!
-
-p Enjoy your vouchers clicking in the link below:
-
-p = link_to 'My Vouchers', vouchers_purchase_url(@purchase, token: @purchase.token)
+section.email-body
+  .image-contain
+    .img.lunch
+    .img.volunteer
+    .img.children
+  .block
+    span Powered by
+    span.logo
+  .email-content
+    h2 Thank you for supporting #{@book.fundraiser}!
+    h4.text-light
+      | Your Baltimore Eats for Good Vouchers are permanently stored #{link_to 'here', vouchers_purchase_url(@purchase, token: @purchase.token)}. 
+      | Each voucher is individually numbered and coded and may be used only once. 
+      | Please see each voucher for additional terms and conditions.
+    h4.text-light
+      | Again, thank you for your generous support!
+    h4.note.text-light
+      | Enjoy
+    h4.name.text-light
+      b Baltimore Eats for Good

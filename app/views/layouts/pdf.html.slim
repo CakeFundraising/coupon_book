@@ -5,6 +5,7 @@ html.html-pdf lang="en"
     meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
     meta name="apple-mobile-web-app-title" content="CakeCoupons"
-    = stylesheet_link_tag 'https://eatsforgood.cakecausemarketing.com/assets/pdf-97d7b8e7f4e7d89093ad542f0fdb21824edc7bd042e86a5a0c864b5f5f4f0712.css'
+    /= stylesheet_link_tag 'https://eatsforgood.cakecausemarketing.com/assets/pdf-97d7b8e7f4e7d89093ad542f0fdb21824edc7bd042e86a5a0c864b5f5f4f0712.css'
+    = wicked_pdf_stylesheet_link_tag 'pdf'
   body.fixed
     = yield

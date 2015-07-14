@@ -66,6 +66,7 @@ gem 'carmen-rails'
 gem 'rqrcode'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+gem 'roadie-rails'
 
 #Authentication
 gem 'oauth2'

@@ -1,9 +1,11 @@
 class VoucherMailer < ApplicationMailer
+  include ::Roadie::Rails::Automatic
+
   def download_page(purchase)
     @purchase = purchase.decorate
-    @coupon_book = @purchase.purchasable
+    @book = @purchase.purchasable
 
-    mail(to: purchase.email, subject: "Download your deal vouchers from #{@coupon_book}")
+    mail(to: purchase.email, subject: "Download your deal vouchers from #{@book}")
   end
 
   def send_vouchers(purchase)
