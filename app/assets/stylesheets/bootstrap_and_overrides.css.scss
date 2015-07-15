@@ -573,7 +573,7 @@ p.signup-social span:before, p.signup-social span:after {
 
   &.buy_button{
     font-size: 38px !important;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     padding: 5px 0px !important;
     font-weight: bold;
 
@@ -2290,6 +2290,14 @@ a {
     margin: 0px 0px 10px;
     padding: 5px 0px;
   }
+  .terms {
+    font-size: 20px;
+    margin-top: 15px;
+    em {
+      font-style: italic;
+      color: $gray-light;
+    }
+  }
 }
 .terms {
   font-size: $font-size-small;
@@ -2387,31 +2395,66 @@ header {
   }
 }
 
+.book-nav{
+  margin-top: -10px;
+  margin-bottom: 30px;
+  box-shadow: 0px 3px 5px #ddd;
+  .popular{
+    & > li{
+      & > a{
+        background: #bbb;
+        border-top-color: #bbb;
+        //background: $brand-purple;
+        //border-top-color: $brand-purple;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+    }
+    li > a:hover {
+      background: $brand-purple;
+    }
+  }
+}
+
 .popular {
   list-style: none;
   text-align: center;
-  margin: 5px auto;
+  margin-top: 0px;
+  & > li{
+    display: inline-block;
+    float: none;
+    margin: 10px 5px;
+    & > a{
+      border-radius: 25px;
+      background: $gray-light;
+      border-top-color: $gray-light;
+      color: #fff;
+      padding: 10px 20px;
+      min-width: 140px;
+    }
+  }
   li > a:hover {
-    background: $brand-primary;
+    background: $brand-success;
   }
 }
-.popular > li {
-  display: inline-block;
-  float: none;
-  margin: 0 10px;
-  font-size:1em;
+.popular > li.active:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-success;
+  border-width: 6px;
+  margin-left: -6px;
 }
 
-.popular > li > a {
-  border-radius: 15px;
-  background: $gray-lighter;
-  color: #fff;
-  padding: 10px 20px;
-  /*width: 30%;*/
-  min-width: 140px;
-}
-.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: $brand-primary;
+.popular > li.active > a, 
+.popular > li.active > a:hover, 
+.popular > li.active > a:focus {
+  background-color: $brand-success;
 }
 
 .main-home {
@@ -2806,56 +2849,6 @@ header {
   @include box-shadow(0, 0, 3px, $gray-light);
 }
 
-/*.popular > li:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $gray-light;
-  border-width: 6px;
-  margin-left: -6px;
-}*/
-
-.popular {
-  list-style: none;
-  text-align: center;
-  margin-top: 0px;
-  li > a:hover {
-    background: $brand-success;
-  }
-}
-.popular > li {
-  display: inline-block;
-  float: none;
-  margin: 10px 5px;
-}
-.popular > li > a {
-  border-radius: 25px;
-  background: $gray-light;
-  border-top-color: $gray-light;
-  color: #fff;
-}
-.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: $brand-success;
-}
-
-.popular > li.active:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $brand-success;
-  border-width: 6px;
-  margin-left: -6px;
-}
 
 .main-home {
   margin-top: 30px;
@@ -4331,7 +4324,7 @@ h2.category-subtitle{
 }
 
 span.banner-heading{
-  font-size: 45px;
+  font-size: 41px;
 }
 
 .top_banner{
@@ -4339,7 +4332,7 @@ span.banner-heading{
   font-size: 32px;
   .first{
     margin: 0;
-    font-size: 50px;
+    font-size: 44px;
   }
   .last{
     margin-top: -10px;
@@ -4482,4 +4475,24 @@ span.banner-heading{
   display:block; 
   clear:both; 
   page-break-after:always; 
+}
+
+#top-link-block.affix-top {
+  position: absolute; /* allows it to "slide" up into view */
+  bottom: -82px; /* negative of the offset - height of link element */
+  right: 10px; /* padding from the right side of the window */
+}
+#top-link-block.affix {
+  position: fixed; /* keeps it on the bottom once in view */
+  bottom: 80px; /* height of link element */
+  right: 30px; /* padding from the right side of the window */
+}
+
+#top-link-block{
+  a{
+    font-size: 42px;
+    background: rgba(0,0,0,0.1);
+    padding: 7px 7px 5px 10px;
+    border-radius: 100px;
+  }
 }

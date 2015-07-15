@@ -25,6 +25,10 @@ class CouponBookDecorator < ApplicationDecorator
     object.name
   end
 
+  def fr_name
+    (object.organization_name || object.fundraiser)
+  end
+
   def current_sales
     h.humanized_money_with_symbol (object.current_sales_cents/100.0)
   end

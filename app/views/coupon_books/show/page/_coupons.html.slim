@@ -2,10 +2,13 @@
   .container
     .row.pledgebluestripe.coupon_book
       .col-md-12.text-center
-        span.banner-heading = I18n.t('banners.coupon_book.coupons', fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
-      .col-md-4.col-md-push-4
-        .buy-book 
-          = coupon_book_buy_button(@coupon_book, :primary)
+        span.banner-heading = I18n.t('banners.coupon_book.coupons', count: @coupon_book.coupons.count, fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+
+.row.book-nav
+  .col-md-12.text-center
+    .nav.nav-pills.popular
+      = render partial:'categories/show/book_nav', collection: @categories, as: :category
+      li = link_to 'About Us', anchor:'learn-more-banner'
 
 .floating-right
   = coupon_book_buy_button(@coupon_book, 'success-transparent')

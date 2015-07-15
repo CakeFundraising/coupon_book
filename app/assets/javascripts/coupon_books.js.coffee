@@ -92,6 +92,7 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   countdown(end_date)
   showBuyButton()
   afterPurchaseModal()
+  backToTop()
   #CakeCouponBook.impressions.rendered(impression_id)
   #Cake.pusher.coupon_books.updateRaised(campaignId) if campaignId
   return
@@ -110,6 +111,13 @@ showBuyButton = ->
     else
       button.fadeOut()
     return
+  return
+
+backToTop = ->
+  if ( ($(window).height() + 1200) < $(document).height() )
+    $('#top-link-block').removeClass('hidden').affix({
+      offset: {top:1200}
+    });
   return
 
 #Campaign Show Functions

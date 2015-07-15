@@ -1,7 +1,7 @@
 - items = category.items
 
 - if items.any?
-  .row.category-show
+  .row.category-show id=(category.name.parameterize.underscore)
     .col-md-10.col-xs-10.col-xs-push-1
       .row
         .col-md-12
