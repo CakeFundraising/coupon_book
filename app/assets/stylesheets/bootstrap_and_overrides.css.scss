@@ -310,10 +310,6 @@ hr{
     margin-top:10px;
   }
 
-  .popular > li > a{
-    min-width:90px !important;
-  }
-  
   .navbar{
     z-index: 1000;
     width: 100%;
@@ -327,17 +323,6 @@ hr{
       padding: 9px 7px !important;
     }
   }
-
-  .popular > li{
-      margin:10px 2px !important;
-      font-size: .8em !important;
-      a {
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        padding: 10px 0px !important;
-        min-width:90px !important;
-      }
-    }
 }
 
 
@@ -2397,21 +2382,25 @@ header {
 
 .book-nav{
   margin-top: -10px;
-  margin-bottom: 30px;
+  margin-bottom: 70px;
   box-shadow: 0px 3px 5px #ddd;
   .popular{
     & > li{
       & > a{
-        background: #bbb;
-        border-top-color: #bbb;
-        //background: $brand-purple;
-        //border-top-color: $brand-purple;
-        font-size: 20px;
+        color: white;
+        background: $brand-warning;
+        font-size: 23px;
         text-transform: uppercase;
+        @media (max-width: $screen-sm-max) {
+          font-size: 18px;
+        }
+        @media (max-width: $screen-xs-max) {
+          font-size: 16px;
+        }
       }
     }
     li > a:hover {
-      background: $brand-purple;
+      background: darken($brand-warning, 15%);
     }
   }
 }
@@ -2429,7 +2418,7 @@ header {
       background: $gray-light;
       border-top-color: $gray-light;
       color: #fff;
-      padding: 10px 20px;
+      padding: 6px 18px;
       min-width: 140px;
     }
   }
@@ -4315,29 +4304,60 @@ h1.category-title{
   text-transform: uppercase;
   margin-top: 20px;
   margin-bottom: 10px;
+  @media (max-width: $screen-sm-max) {
+    font-size: 45px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 36px;
+  }
 }
 
 h2.category-subtitle{
   margin-bottom: 40px;
   margin-top: -10px;
   text-align: center;
+  @media (max-width: $screen-sm-max) {
+    font-size: 28px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 22px;
+  }
 }
 
 span.banner-heading{
-  font-size: 41px;
+  font-size: 38px;
+  @media (max-width: $screen-xs-max) {
+    font-size: 28px;
+  }
 }
 
 .top_banner{
   margin: 0;
-  font-size: 32px;
   .first{
     margin: 0;
     font-size: 44px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 28px;
+    }
   }
   .last{
     margin-top: -10px;
+    font-size: 32px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 28px;
+      margin-top: -4px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 26px;
+    }
     span.boldest{
       font-size: 38px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 30px;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 27px;
+      }
     }
   }
 }
@@ -4490,9 +4510,10 @@ span.banner-heading{
 
 #top-link-block{
   a{
-    font-size: 42px;
-    background: rgba(0,0,0,0.1);
+    font-size: 50px;
+    background: rgba(0,0,0,0.05);
     padding: 7px 7px 5px 10px;
     border-radius: 100px;
+    color: $brand-purple;
   }
 }
