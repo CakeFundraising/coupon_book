@@ -9,7 +9,9 @@
   .row.sponsor-profile
     .col-md-8.col-sm-6.campaign-story
       /h3 = coupon_book_fr_website_link(@coupon_book.headline)
-      h3 = @coupon_book.headline
+      h3
+        = link_to @coupon_book.url, target: :_blank do 
+          = @coupon_book.headline
       p.story.expander = @coupon_book.story
     .col-md-4.col-sm-6.col-xs-10.col-xs-push-1.col-sm-push-0
       .sidebar-bkg-2
@@ -22,7 +24,9 @@
           .caption = @coupon_book.avatar_caption
           .fundraiser-name
             /h4 = coupon_book_fr_website_link(@coupon_book.fundraiser)
-            h4 = @coupon_book.fundraiser
+            h4
+              = link_to @coupon_book.url, target: :_blank do 
+                = @coupon_book.fundraiser
 
           .volunteer-with-us
             a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 

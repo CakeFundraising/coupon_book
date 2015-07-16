@@ -4543,6 +4543,7 @@ span.banner-heading{
   position: fixed; /* keeps it on the bottom once in view */
   bottom: 80px; /* height of link element */
   right: 30px; /* padding from the right side of the window */
+  z-index: 9;
 }
 
 #top-link-block{
