@@ -5,7 +5,6 @@ class UserNotificationMailer < ApplicationMailer
     @role = @sub.object
     @origin = @sub.origin.decorate
 
-    #mail(to: @role.manager.email, cc: @sub.email, subject: 'New Contact from Cake!')
-    mail(to: 'bismark64@gmail.com', subject: 'New Contact from Eats for Good!')
+    mail(to: @role.email, cc: @sub.email, subject: 'New Contact from Cake!')
   end 
 end

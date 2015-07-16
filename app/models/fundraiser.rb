@@ -50,6 +50,7 @@ class Fundraiser < Ohm::Model
       fundraiser = self.create(
         id:   data["id"],
         name: data["name"],
+        email: data["email"],
         mission: data["mission"],
         website: data["website"],
         phone: data["phone"],

@@ -46,6 +46,7 @@ class Sponsor < Ohm::Model
       sponsor = self.create(
         id:   data["id"],
         name: data["name"],
+        email: data["email"],
         mission: data["mission"],
         website: data["website"],
         phone: data["phone"],
