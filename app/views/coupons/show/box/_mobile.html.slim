@@ -1,0 +1,26 @@
+- cache [:coupon_box, :mobile, coupon] do
+  .coupon-wrapper
+    .coupon-label.label.label-warning #{coupon.retail_value} value!
+    .coupon-box.clearfix
+      .col-md-2.col-sm-2.sp-box.no-padding
+        h4.sp_name_mobile
+          = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
+            = coupon.sponsor_name
+        = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
+          = coupon.avatar_picture.uri
+      .col-md-10.col-xs-12.no-padding
+        .row
+          .col-md-6.col-xs-12
+            div.coupon-content-mobile
+              h2 = coupon
+              h3
+                |Expires: 
+                span = coupon.expires_at_american                  
+              hr
+              p.expander-150 = coupon.description
+      
+      - unless coupon.object.multiple_locations.blank?
+        .row.clear
+          .col-md-12
+            .multiple_locations.mobile
+              = coupon.multiple_locations

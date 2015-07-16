@@ -289,7 +289,6 @@ hr{
 
 @media (max-width: 420px){
   #main-container {
-    margin-bottom: 35px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -1024,6 +1023,9 @@ $lines-to-show: 2;
     &.pull-up-hero{
      margin-top: -375px; 
     }
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-top: -470px;
   }
 }
 
@@ -2133,6 +2135,12 @@ a {
   letter-spacing: 0.5px;
   margin-top: 20px;
 
+  .story{
+    @media (max-width: $screen-xs-max) {
+      font-size: 16px;
+    }
+  }
+
   h3{
     margin-top: 0;
     font-size: 32px;
@@ -2210,11 +2218,28 @@ a {
       padding-top: 10px;
       margin-bottom: 3px;
     }
+    .sp_name_mobile{
+      -webkit-border-radius: 5px 5px 0 0;
+      border-radius: 5px 5px 0 0;
+      background: rgba(0,0,0,0.2);
+      position: absolute;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      z-index: 9;
+      margin: 0;
+      a{
+        color: white;
+      }
+    }
   }
   .multiple_locations{
     border-top: 1px dotted #ccc;
     margin-top: 12px;
     padding-top: 10px;
+    &.mobile{
+      font-size: 10px;
+    }
   }
   .coupon_location{
     font-size: 16px;
@@ -2243,6 +2268,15 @@ a {
   .pledge-news-content,
   .coupon-content{
     p{
+      font-size: 16px;
+    }
+  }
+  .coupon-content-mobile{
+    margin-top: 10px;
+    h2{
+      font-size: 24px;
+    }
+    h3{
       font-size: 16px;
     }
   }
@@ -2373,19 +2407,22 @@ ul.share-coupon {
   }
 }
 
-header {
-  .row{
-    /*margin-left:0px !important;
-    margin-right:0px !important;*/
-  }
-}
-
 .book-nav{
   margin-top: -10px;
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   box-shadow: 0px 3px 5px #ddd;
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 20px;
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 0px;
+  }
   .popular{
+    padding-bottom: 10px;
     & > li{
+      @media (max-width: $screen-sm-max) {
+        margin: 5px;
+      }
       & > a{
         color: white;
         background: $brand-warning;

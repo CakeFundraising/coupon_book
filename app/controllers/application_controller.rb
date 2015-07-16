@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :set_cake_access_token
-  helper_method :current_user, :current_fundraiser, :current_sponsor, :current_browser
+  helper_method :current_user, :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
