@@ -7,9 +7,9 @@
       .col-md-12.text-center
         .main-cta
           = coupon_book_buy_button(resource)
-      - if resource.launched?
-        .col-md-12.text-center
-          span = "(Keep receipt for tax purposes)"
+      .col-md-12.text-center
+        = render partial:'layouts/modals/terms_of_purchase'
+        a data-toggle='modal' data-target='#terms_of_purchase_modal' Terms Of Purchase        
   
   .row
     .col-md-12
@@ -41,9 +41,4 @@
     .col-xs-4
       span.campaign-timer.mins
       span m.
-  hr
-  .row
-    .col-xs-12
-      = render partial:'layouts/modals/terms_of_purchase'
-      a data-toggle='modal' data-target='#terms_of_purchase_modal' Terms Of Purchase
       

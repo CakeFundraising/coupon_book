@@ -1025,7 +1025,7 @@ $lines-to-show: 2;
     }
   }
   @media (max-width: $screen-xs-max) {
-    margin-top: -470px;
+    margin-top: -450px;
   }
 }
 
@@ -4552,5 +4552,14 @@ span.banner-heading{
     padding: 7px 7px 5px 10px;
     border-radius: 100px;
     color: $brand-purple;
+  }
+}
+
+#terms_of_purchase_modal{
+  .modal-body{
+    text-align: left;
+    p{
+      text-transform: none;
+    }
   }
 }
