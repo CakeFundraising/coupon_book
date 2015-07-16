@@ -1,6 +1,4 @@
 class VoucherMailer < ApplicationMailer
-  include ::Roadie::Rails::Automatic
-
   def download_page(purchase)
     @purchase = purchase.decorate
     @book = @purchase.purchasable

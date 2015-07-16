@@ -93,6 +93,7 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   showBuyButton()
   afterPurchaseModal()
   backToTop()
+  CakeCouponBook.subscriptors.validation()
   #CakeCouponBook.impressions.rendered(impression_id)
   #Cake.pusher.coupon_books.updateRaised(campaignId) if campaignId
   return

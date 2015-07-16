@@ -118,4 +118,8 @@ class Sponsor < Ohm::Model
   def total_vouchers_sold
     self.vouchers.count
   end
+
+  def persisted?
+    !Sponsor[self.id].nil?
+  end
 end

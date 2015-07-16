@@ -4,7 +4,7 @@ class SubscriptorsController < InheritedResources::Base
   def create
     create! do |success, failure|
       success.html do
-        redirect_to object, notice: "Thank you for contacting #{object}. Sign up for a free Cake account today, and you'd be one step closer to partnering with #{object}."
+        redirect_to resource.origin, notice: "Thank you for contacting #{object}. Sign up for a free Cake account today, and you'd be one step closer to partnering with #{object}."
       end
     end
   end
@@ -12,7 +12,7 @@ class SubscriptorsController < InheritedResources::Base
   private
 
   def object
-    params[:subscriptor][:object_type].constantize.find(params[:subscriptor][:object_id]).decorate
+    params[:subscriptor][:object_type].constantize.fetch(params[:subscriptor][:object_id]).decorate
   end
 
   def permitted_params

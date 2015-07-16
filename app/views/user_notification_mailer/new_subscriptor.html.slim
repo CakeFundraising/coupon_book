@@ -1,0 +1,31 @@
+h2 Hello #{@role.name}, 
+
+p You have a new message from #{(@sub.name || @sub.email)}:
+
+p.italic "#{@sub.message}"
+
+- if @sub.name.present? or @sub.organization.present? or @sub.phone.present?
+  h3 Here is more information about this contact:
+
+  - if @sub.name.present?
+    p 
+      strong Name: 
+      span = @sub.name
+
+  - if @sub.email.present?
+    p 
+      strong Email Address: 
+      span = @sub.email
+
+  - if @sub.organization.present?
+    p 
+      strong Organization: 
+      span = @sub.organization
+
+  - if @sub.phone.present?
+    p
+      strong Phone: 
+      span = @sub.phone
+
+br
+p This person visited your #{@sub.origin_type.camelize} page: #{link_to @origin, polymorphic_url(@origin)}

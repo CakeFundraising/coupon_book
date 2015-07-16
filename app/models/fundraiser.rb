@@ -112,4 +112,12 @@ class Fundraiser < Ohm::Model
   def vouchers
     Voucher.where(owner_type: 'Fundraiser', owner_id: self.id.to_i)
   end
+
+  def decorate
+    FundraiserDecorator.decorate(self)
+  end
+
+  def persisted?
+    !Fundraiser[self.id].nil?
+  end
 end

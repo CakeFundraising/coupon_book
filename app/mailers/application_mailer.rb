@@ -1,5 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@cakecausemarketing.com'
+  include ::Roadie::Rails::Automatic
+  default from: 'EatsForGood.org <no-reply@cakecausemarketing.com>'
   layout 'mailer'
 
   def find_coupon_book(id)
