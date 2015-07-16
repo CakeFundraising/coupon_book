@@ -4555,6 +4555,20 @@ span.banner-heading{
   }
 }
 
+.coupon_terms_modal{
+  h1{
+    font-size: 28px;
+  }
+  h3{
+    font-size: 20px;
+    color: $brand-primary;
+  }
+  p{
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
 #terms_of_purchase_modal{
   h1{
     font-size: 28px;

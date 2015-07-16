@@ -1,4 +1,4 @@
-.modal.fade id="coupon_terms_#{coupon.id}"
+.modal.fade.coupon_terms_modal id="coupon_terms_#{coupon.id}"
   .modal-dialog.modal-lg
     .modal-content
       .modal-header
@@ -7,13 +7,12 @@
       .modal-body
         - if coupon.custom_terms.present?
           .vendor_terms
-            h2 Vendor Terms & Conditions
-            div = coupon.custom_terms
-          br
+            h3 Vendor Terms & Conditions
+            p = coupon.custom_terms
           br
         .universal_terms
-          h2 Universal Terms & Conditions
-          div = t('application.terms_and_conditions.coupons').html_safe
+          h3 Universal Terms & Conditions
+          p = t('application.terms_and_conditions.coupons').html_safe
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close
     /! /.modal-content
