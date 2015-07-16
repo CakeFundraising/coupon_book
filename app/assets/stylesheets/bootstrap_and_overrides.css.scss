@@ -4556,10 +4556,26 @@ span.banner-heading{
 }
 
 #terms_of_purchase_modal{
+  h1{
+    font-size: 28px;
+  }
   .modal-body{
     text-align: left;
     p{
       text-transform: none;
+    }
+    h3{
+      margin-top: 0;
+    }
+    h4{
+      font-size: 22px;
+    }
+    h5{
+      font-size: 18px;
+      margin-top: 18px;
+    }
+    h6{
+      font-size: 16px;
     }
   }
 }
