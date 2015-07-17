@@ -28,7 +28,7 @@ CakeCouponBook.addThis.share.coupon_book = (fr, url)->
   window.addthis_share =
     url_transforms: shorten: twitter: 'bitly'
     shorteners: bitly: {}
-    templates: twitter: "Support #{fr}! Your click can make a difference! #{url} via @CakeCouponBookCauses"
+    templates: twitter: "Support #{fr}! Your click can make a difference! #{url} via @EatsForGood"
   return
 
 CakeCouponBook.addThis.init = ->
