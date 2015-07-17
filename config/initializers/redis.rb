@@ -1,4 +1,8 @@
 require "ohm"
+require 'resque-retry'
+require 'resque/failure/redis'
+
+# require your jobs & application code.
 
 unless Rails.env.test?
   Dir[Rails.root.join('app/jobs/*.rb')].each { |file| require file }
@@ -27,4 +31,8 @@ unless Rails.env.test?
 
   # Resque Schedule
   #Resque.schedule = YAML.load_file(Rails.root.join('config/schedule.yml'))
+  
+  #Hide duplicated failed jobs
+  Resque::Failure::MultipleWithRetrySuppression.classes = [Resque::Failure::Redis]
+  Resque::Failure.backend = Resque::Failure::MultipleWithRetrySuppression
 end

@@ -8,7 +8,7 @@ class Subscriptor < ActiveRecord::Base
   belongs_to :origin, polymorphic: true
 
   after_create do
-    UserNotificationMailer.new_subscriptor(self.id).deliver_now
+    UserNotificationMailer.new_subscriptor(self.id).deliver
   end
 
   def object

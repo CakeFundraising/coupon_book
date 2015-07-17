@@ -1,5 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
   include ::Roadie::Rails::Automatic
+  
   default from: 'EatsForGood.org <no-reply@cakecausemarketing.com>'
   layout 'mailer'
 

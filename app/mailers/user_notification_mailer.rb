@@ -1,4 +1,4 @@
-class UserNotificationMailer < ApplicationMailer
+class UserNotificationMailer < AsyncMailer
   #New Subscriptor
   def new_subscriptor(sub_id)
     @sub = Subscriptor.find(sub_id)
