@@ -67,6 +67,7 @@ gem 'rqrcode'
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'roadie-rails'
+gem 'metamagic'
 
 #Authentication
 gem 'oauth2'

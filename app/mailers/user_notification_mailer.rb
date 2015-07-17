@@ -5,6 +5,6 @@ class UserNotificationMailer < AsyncMailer
     @role = @sub.object
     @origin = @sub.origin.decorate
 
-    mail(to: @role.email, cc: @sub.email, subject: 'New Contact from Cake!')
+    mail(to: @role.email, cc: @sub.email, subject: 'New Contact from Eats for Good!')
   end 
 end

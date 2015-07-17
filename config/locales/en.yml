@@ -1,6 +1,18 @@
 en:
   application:
     name: CakeCauseMarketing
+    twitter_account: "@EatsForGood"
+    meta:
+      description: "Create Win/Win Social Media Partnerships in Minutes! The World's #1 Digital Sponsorship & Partnership Platform"
+      keywords: "Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship"
+      og: 
+        title: "CakeCauseMarketing - The World's #1 Digital Sponsorship & Partnership Platform."
+        coupon_books:
+          title: "Support %{fr}!"
+        fundraisers:
+          title: "%{fr} on CakeCauseMarketing"
+        sponsors:
+          title: "%{sp} on CakeCauseMarketing"
     terms_and_conditions:
       standard: >
         <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
@@ -531,6 +543,27 @@ en:
             The parties hereto confirm their express wish that this Agreement and all documents and agreements directly or indirectly relating thereto be drawn up in
             the English language.
         </p>
+  numbers:
+    unit: ""
+    thousand:
+      one: K
+      other: K
+    million:
+      one: M 
+      other: M
+    billion:
+      one: B
+      other: B
+    trillion:
+      one: T
+      other: T
+    quadrillion:
+      one: Q
+      other: Q
+  errors:
+    url: should be a valid URL.
+    stripe_account:
+      account_taken: Stripe Account has already been used. Please use another Stripe Account.
   links:
     user:
       sign_in: Sign In
