@@ -4104,6 +4104,9 @@ ul#share-block {
 .padding-left-out{
   padding-left: 0;
 }
+.padding-right-out{
+  padding-right: 0;
+}
 
 // Success Stories -------------------------------------------------------
 
@@ -4592,5 +4595,11 @@ span.banner-heading{
     h6{
       font-size: 16px;
     }
+  }
+}
+
+#buy_book_modal{
+  .modal-body{
+    padding: 15px;
   }
 }

@@ -1,11 +1,61 @@
-#purchase-widget
-  = semantic_form_for purchasable.purchases.build(amount_cents: purchasable.price_cents) do |f|
-    = f.inputs do
-      = f.input :email, as: :hidden, input_html:{id: 'purchase_email_input'}
-      = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
-      = f.input :amount_cents, as: :hidden
-      = f.input :purchasable_id, as: :hidden
-      = f.input :purchasable_type, as: :hidden
+#buy_book_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h2.modal-title Thank You for supporting #{purchasable.fr_name}!
+      .modal-body
+        h3.text-center Pay with credit or debit card
+
+        #payment-errors.alert.alert-danger.hidden
+
+        = semantic_form_for purchasable.purchases.build(amount_cents: purchasable.price_cents) do |f|
+          = f.inputs do
+            .cc_inputs 
+              = f.input :cc_number, label: false, input_html:{placeholder: 'Card Number', data:{stripe: 'number'}}
+              .row
+                .col-md-6
+                  .row
+                    .col-md-4.padding-right-out
+                      = f.input :exp_month, label: false, input_html:{placeholder: 'MM', maxlength: 2, data:{stripe: 'exp-month'}}
+                    .col-md-4.padding-left-out
+                      = f.input :exp_year, label: false, input_html:{placeholder: 'YY', maxlength: 2, data:{stripe: 'exp-year'}}
+                .col-md-6
+                  = f.input :cvc, label: false, input_html:{placeholder: 'CVC', maxlength: 4, data:{stripe: 'cvc'}}
+            hr
+            .row
+              .col-md-6.padding-right-out
+                = f.input :first_name, label: false, input_html:{placeholder: 'First Name'}
+              .col-md-6.padding-left-out
+                = f.input :last_name, label: false, input_html:{placeholder: 'Last Name'}
+            = f.input :zip_code, label: false, input_html:{placeholder: 'Zip Code'}
+            .row
+              .col-md-6.padding-right-out
+                = f.input :email, label: false, input_html:{placeholder: 'Email'}
+              .col-md-6.padding-left-out
+                = f.input :email_confirmation, label: false, input_html:{placeholder: 'Confirm your email'}
+            = f.input :amount_cents, as: :hidden
+            = f.input :purchasable_id, as: :hidden
+            = f.input :purchasable_type, as: :hidden
+            = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
+            hr
+          .text-center
+            = f.actions do
+              = f.action :submit, label: "Pay #{purchasable.price}", button_html: {class: 'btn btn-success btn-lg'}
+        br
+        br
+        .row
+          .col-md-12
+            p 
+              | Your vouchers will be emailed from EatsforGood.org 
+              strong to the email address you provided above. 
+              | If you do not receive your vouchers within a couple of minutes, please check your spam and any other folders in your email service. 
+              | For further assistance or missing email, contact 
+              span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
 
 javascript:
-  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');
+  CakeCouponBook.purchases.coupon_book(".formtastic.purchase");
