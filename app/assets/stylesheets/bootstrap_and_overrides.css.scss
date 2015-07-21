@@ -746,6 +746,9 @@ form{
     border: none;
     margin: 0 auto 50px;
   }
+  @media (max-width: $screen-xs-min) {
+    margin-bottom: 10px;
+  }
 }
 .explore {
   margin: 25px auto;
