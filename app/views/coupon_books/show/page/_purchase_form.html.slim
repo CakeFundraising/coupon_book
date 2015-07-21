@@ -1,5 +1,5 @@
 #buy_book_modal.modal.fade
-  .modal-dialog
+  .modal-dialog.modal-lg
     .overlay
       = image_tag 'loading.gif'
     .modal-content
@@ -13,40 +13,45 @@
             p 
               | Your vouchers will be emailed from EatsforGood.org 
               strong to the email address you provide below. 
-              | If you do not receive your vouchers within minutes, please check your spam filter or other folders in your email service. 
+              | If you do not receive your vouchers within minutes, please check your spam filter.
 
         h3.text-center Pay with credit or debit card
 
         = semantic_form_for purchasable.purchases.build(amount_cents: purchasable.price_cents) do |f|
-          #payment-errors.alert.alert-danger.hidden
+          .row
+            .col-md-8.col-md-push-2
+              #payment-errors.alert.alert-danger.hidden
           = f.inputs do
-            .cc_inputs
-              .row
-                .col-md-6.col-md-push-3
-                  = f.input :cc_number, label: false, input_html:{placeholder: 'Card Number', maxlength: 19, data:{stripe: 'number'}}
-                  = image_tag 'card-logos.png', class:'card-logos'
-              .row
-                .col-md-3.col-md-push-3.padding-right-out
-                  = f.input :exp_month, label: false, input_html:{placeholder: 'MM', maxlength: 2, data:{stripe: 'exp-month'}}
-                .col-md-3.col-md-push-3.padding-left-out
-                  = f.input :exp_year, label: false, input_html:{placeholder: 'YY', maxlength: 2, data:{stripe: 'exp-year'}}
-              .row
-                .col-md-3.col-md-push-3
-                  = f.input :cvc, label: false, input_html:{placeholder: 'CVC', maxlength: 4, data:{stripe: 'cvc'}}
-                .col-md-3.col-md-push-3.padding-left-out
-                  a href="#" data-toggle="tooltip" title=(t('tooltips.purchases.cvc')) data-placement="right"
-                    span What's this?
             .row
-              .col-md-6.col-md-push-3
-                = f.input :first_name, label: false, input_html:{placeholder: 'First Name'}
-                = f.input :last_name, label: false, input_html:{placeholder: 'Last Name'}
-            .row
-              .col-md-3.col-md-push-3
-                = f.input :zip_code, label: false, input_html:{placeholder: 'Zip Code'}
-            .row
-              .col-md-6.col-md-push-3
-                = f.input :email, label: false, input_html:{placeholder: 'Email'}
-                = f.input :email_confirmation, label: false, input_html:{placeholder: 'Confirm your email'}
+              .col-md-4.col-md-push-2.divider-vert
+                .cc_inputs
+                  .row
+                    .col-md-12
+                      = f.input :cc_number, label: false, input_html:{placeholder: 'Card Number', maxlength: 19, data:{stripe: 'number'}, class: 'input-sm'}
+                      = image_tag 'card-logos.png', class:'card-logos'
+                  .row
+                    .col-md-6.padding-right-out
+                      = f.input :exp_month, label: false, input_html:{placeholder: 'MM', maxlength: 2, data:{stripe: 'exp-month'}, class: 'input-sm'}
+                    .col-md-6.padding-left-out
+                      = f.input :exp_year, label: false, input_html:{placeholder: 'YY', maxlength: 2, data:{stripe: 'exp-year'}, class: 'input-sm'}
+                  .row
+                    .col-md-6
+                      = f.input :cvc, label: false, input_html:{placeholder: 'CVC', maxlength: 4, data:{stripe: 'cvc'}, class: 'input-sm'}
+                    .col-md-6.padding-left-out
+                      a href="#" data-toggle="tooltip" title=(t('tooltips.purchases.cvc')) data-placement="right"
+                        span What's this?
+              .col-md-4.col-md-push-2
+                .row
+                  .col-md-12
+                    = f.input :first_name, label: false, input_html:{placeholder: 'First Name', class: 'input-sm'}
+                    = f.input :last_name, label: false, input_html:{placeholder: 'Last Name', class: 'input-sm'}
+                .row
+                  .col-md-6
+                    = f.input :zip_code, label: false, input_html:{placeholder: 'Zip Code', class: 'input-sm'}
+                .row
+                  .col-md-12
+                    = f.input :email, label: false, input_html:{placeholder: 'Email', class: 'input-sm'}
+                    = f.input :email_confirmation, label: false, input_html:{placeholder: 'Confirm your email', class: 'input-sm'}
             = f.input :amount_cents, as: :hidden
             = f.input :purchasable_id, as: :hidden
             = f.input :purchasable_type, as: :hidden
