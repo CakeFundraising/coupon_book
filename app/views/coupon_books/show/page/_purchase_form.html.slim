@@ -28,7 +28,7 @@
                   .row
                     .col-md-12
                       = f.input :cc_number, label: false, input_html:{placeholder: 'Card Number', maxlength: 19, data:{stripe: 'number'}, class: 'input-sm'}
-                      = image_tag 'card-logos.png', class:'card-logos'
+                      = image_tag 'card-logos.png', class:'card-logos img-responsive'
                   .row
                     .col-md-6.padding-right-out
                       = f.input :exp_month, label: false, input_html:{placeholder: 'MM', maxlength: 2, data:{stripe: 'exp-month'}, class: 'input-sm'}

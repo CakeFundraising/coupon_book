@@ -744,10 +744,7 @@ form{
   border-right: 1px dotted $gray-light;
   @media (max-width: $screen-md-min) {
     border: none;
-    margin: 0 auto 50px;
-  }
-  @media (max-width: $screen-xs-min) {
-    margin-bottom: 10px;
+    margin: 0 auto 10px;
   }
 }
 .explore {
@@ -4609,8 +4606,16 @@ span.banner-heading{
     border-radius: 8px;
     img{
       position: absolute;
-      top: 45%;
+      top: 37%;
       left: 41%;
+      @media (max-width: $screen-sm-max) {
+        top: 40%;
+        left: 40%;
+      }
+      @media (max-width: $screen-xs-max) {
+        top: 44%;
+        left: 28%;
+      }
     }
   }
   .modal-title{
