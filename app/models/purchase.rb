@@ -38,7 +38,7 @@ class Purchase < ActiveRecord::Base
           email: self.email
         },
         receipt_email: self.email,
-        statement_descriptor: "Cake #{self.purchasable.class} ##{self.purchasable.id}",
+        statement_descriptor: "EFG.org #{self.purchasable.class} ##{self.purchasable.id}",
         application_fee: application_fee
       },
         stripe_account: self.purchasable.fundraiser.stripe_account_id

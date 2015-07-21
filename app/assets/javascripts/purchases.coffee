@@ -5,6 +5,7 @@ class Purchase
     @form = $(form)
     @submitButton = @form.find('input[type="submit"]')
     @cardTokenInput = @form.find('input#purchase_card_token_input')
+    @overlay = $('#buy_book_modal .overlay')
 
     @validation()
     @onSubmit()
@@ -19,6 +20,8 @@ class Purchase
         # Disable the submit button to prevent repeated clicks
         self.submitButton.prop 'disabled', true
 
+        self.overlay.css('z-index', 1)
+
         self.createToken()
       # Prevent the form from submitting with the default action
       return false
@@ -31,6 +34,7 @@ class Purchase
         # Show the errors on the form
         self.form.find('#payment-errors').text(response.error.message).removeClass('hidden')
         self.submitButton.prop 'disabled', false
+        self.overlay.css('z-index', 0)
       else
         # response contains id and card, which contains additional card details
         token = response.id
@@ -63,7 +67,7 @@ class Purchase
         'purchase[zip_code]':
           required: true
           digits: true
-          #zipcodeUS: true
+          zipcodeUS: true
         'purchase[email]':
           required: true
         'purchase[email_confirmation]':
