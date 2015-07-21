@@ -9,13 +9,13 @@
         .row
           - if params[:email].present?
             .col-md-12.text-center
-              h3 We sent your vouchers to your email address: #{params[:email]}
-          .col-md-6.text-center
+              h3 We sent your vouchers to: #{params[:email]}
+          .col-md-5.text-center.divider-vert
             h2 Please Share!
             = render partial: 'layouts/share_buttons'
-          .col-md-6
-            h2 Get Involved
-            = link_to 'Learn More', @coupon_book.visitor_url, target: :_blank, class:'btn btn-success btn-lg'
+          .col-md-7.text-center
+            h2 Deal Books make great gifts too!
+            = content_tag(:a, 'Buy One for a Friend!', class: "btn btn-success btn-lg", data: {toggle: 'modal', target: '#buy_book_modal'})
 
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button"  Close

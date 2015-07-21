@@ -564,6 +564,9 @@ en:
     url: should be a valid URL.
     stripe_account:
       account_taken: Stripe Account has already been used. Please use another Stripe Account.
+  tooltips:
+    purchases:
+      cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
   links:
     user:
       sign_in: Sign In

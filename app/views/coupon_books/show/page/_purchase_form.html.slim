@@ -6,7 +6,7 @@
       .modal-header
         button.close aria-label="Close" data-dismiss="modal" type="button" 
           span aria-hidden="true"  &times;
-        h2.modal-title Thank You for supporting #{purchasable.fr_name}!
+        h2.modal-title.text-center Thank You for supporting #{purchasable.fr_name}!
       .modal-body
         .row
           .col-md-12
@@ -31,9 +31,11 @@
                 .col-md-3.col-md-push-3.padding-left-out
                   = f.input :exp_year, label: false, input_html:{placeholder: 'YY', maxlength: 2, data:{stripe: 'exp-year'}}
               .row
-                .col-md-6.col-md-push-3
+                .col-md-3.col-md-push-3
                   = f.input :cvc, label: false, input_html:{placeholder: 'CVC', maxlength: 4, data:{stripe: 'cvc'}}
-            hr
+                .col-md-3.col-md-push-3.padding-left-out
+                  a href="#" data-toggle="tooltip" title=(t('tooltips.purchases.cvc')) data-placement="right"
+                    span What's this?
             .row
               .col-md-6.col-md-push-3
                 = f.input :first_name, label: false, input_html:{placeholder: 'First Name'}
@@ -49,7 +51,6 @@
             = f.input :purchasable_id, as: :hidden
             = f.input :purchasable_type, as: :hidden
             = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
-            hr
           .text-center
             = f.actions do
               = f.action :submit, label: "Pay #{purchasable.price}", button_html: {class: 'btn btn-success btn-lg'}
@@ -62,7 +63,7 @@
         .row
           .col-md-12
             p.text-center
-              | For further assistance or missing email, contact 
+              | For further assistance, contact 
               span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
         
     /! /.modal-content

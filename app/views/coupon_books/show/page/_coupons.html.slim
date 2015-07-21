@@ -8,7 +8,7 @@
   .col-md-12.text-center
     .nav.nav-pills.popular
       = render partial:'categories/show/book_nav', collection: @categories, as: :category
-      li = link_to 'About Us', anchor:'learn-more-banner'
+      li = link_to "About #{@coupon_book.fr_name}!", anchor:'learn-more-banner'
 
 .floating-right
   = coupon_book_buy_button(@coupon_book, 'success-transparent')

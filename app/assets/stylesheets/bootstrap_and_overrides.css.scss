@@ -4141,19 +4141,6 @@ ul#share-block {
 
 // Tooltip -------------------------------------------------------
 
-.tooltip-title {
-  display: inline-block;
-}
-
-.tooltip-icon {
-  width: 20px;
-}
-
-.tooltip-inner {
-  font-size: 1.4em;
-  max-width: 500px;
-}
-
 .page-spinner{
   margin: 70px 0;
 }
@@ -4602,12 +4589,21 @@ span.banner-heading{
   }
 }
 
+#after_purchase_modal{
+  h3{
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 28px;
+  }
+}
+
 #buy_book_modal{
   .overlay{
     position: absolute;
     width: 100%;
     height: 100%;
     background: rgba(255,255,255,0.7);
+    border-radius: 8px;
     img{
       position: absolute;
       top: 45%;
@@ -4624,8 +4620,15 @@ span.banner-heading{
   }
   .modal-body{
     padding: 15px;
+    h3{
+      margin-bottom: 22px;
+    }
   }
   img.card-logos{
     padding: 2px 0px 10px;
   }
+}
+
+.tooltip{
+  width: 100%;
 }

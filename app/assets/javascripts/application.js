@@ -26,9 +26,8 @@
 //= require cloudinary/jquery.fileupload
 //= require ./jquery.cloudinary
 
-//= require bootstrap
-
 //= require jquery-ui
+//= require bootstrap
 
 //= require zeroclipboard
 //= require bootstrap-datepicker/core
