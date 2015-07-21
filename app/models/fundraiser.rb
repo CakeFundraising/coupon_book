@@ -121,4 +121,8 @@ class Fundraiser < Ohm::Model
   def persisted?
     !Fundraiser[self.id].nil?
   end
+
+  def stripe_account?
+    self.stripe_publishable_key.present?
+  end
 end

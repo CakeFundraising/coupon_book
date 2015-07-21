@@ -85,4 +85,12 @@ class CouponBookDecorator < ApplicationDecorator
   def shareable_screenshot_url
     object.screenshot_url.split('url2png').join('url2png/w_1200,h_600,c_fill,g_north,r_10') unless object.screenshot_url.blank?
   end
+
+  def donations_raised
+    h.humanized_money_with_symbol object.donations_raised
+  end
+  
+  def total_donations_and_sales
+    h.humanized_money_with_symbol object.total_donations_and_sales
+  end
 end

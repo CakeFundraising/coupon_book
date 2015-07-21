@@ -12,6 +12,7 @@ CakeCouponBook.init = ->
   CakeCouponBook.categories.init()
   CakeCouponBook.search.init()
   CakeCouponBook.overrides.init()
+  CakeCouponBook.direct_donation.init()
   return
 
 $(document).ready(CakeCouponBook.init)

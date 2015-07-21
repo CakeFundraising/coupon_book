@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150720190003) do
+ActiveRecord::Schema.define(version: 20150721222551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -176,6 +176,17 @@ ActiveRecord::Schema.define(version: 20150720190003) do
     t.integer  "extra_clicks_count"
     t.string   "type",                        default: "Coupon"
     t.string   "flag"
+  end
+
+  create_table "direct_donations", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_token"
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "USD", null: false
+    t.string   "donable_type"
+    t.integer  "donable_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "extra_clicks", force: :cascade do |t|

@@ -47,6 +47,7 @@
 
 //= require ./coupon_books
 //= require ./coupon_book_builder
+//= require ./direct_donations
 //= require ./purchases
 
 //= require ./addthis
