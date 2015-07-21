@@ -23,6 +23,6 @@ javascript:
       "#{@impression.id if @impression.present? }",
       "#{@coupon_book.id}"
     );
-    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fundraiser}", "#{coupon_book_url(@coupon_book)}");
+    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
   $(document).ready(current_init);
