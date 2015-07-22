@@ -37,4 +37,8 @@ module CakeHelper
   def cake_profile_path(role)
     "#{CAKE_ROOT_URL}/#{role.class.name.downcase.pluralize}/#{role.id}"
   end
+
+  def efg_contact_path
+    "#{EFG_ROOT_URL}/#!contact/cbys"
+  end
 end

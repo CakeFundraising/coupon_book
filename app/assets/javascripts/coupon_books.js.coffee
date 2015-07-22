@@ -170,9 +170,9 @@ toggleNav = ->
     expandLogo = $('.expand-nav')
 
     nav.hide()
-    expandLogo.click ->
-      nav.fadeIn 500
-      $(this).hide()
-      return
+    # expandLogo.click ->
+    #   nav.fadeIn 500
+    #   $(this).hide()
+    #   return
   return
   

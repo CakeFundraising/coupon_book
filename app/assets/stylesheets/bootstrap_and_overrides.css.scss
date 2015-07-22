@@ -55,7 +55,7 @@ iframe{
 // Footer Styles ---------------------------------------------------------------
 
 .bottom_section {
-  margin-bottom: -100px;
+  //margin-bottom: -100px;
 }
 
 footer {
@@ -199,7 +199,8 @@ hr{
 .navbar-brand {
   padding-top: 13px;
   img{
-    width:120px;
+    //width:120px;
+    width: 100px;
   }
 }
 .user-logged-in {
@@ -1537,9 +1538,10 @@ table.performance-summary {
 }
 
 .make-pledge {
-  margin-top: 20px;
+  margin-top: 40px;
   padding-left: 40px;
   padding-right: 40px;
+  margin-bottom: 40px;
   h4 {
     color: $gray-light;
     font-size: 20px;
@@ -1748,6 +1750,12 @@ table.performance-summary {
   margin-top: 13px;
 }
 
+h1.donation-title{
+  @media (max-width: $screen-xs-max) {
+    font-size: 30px;
+  }
+}
+
 #donation-widget{
   &.donation-box{
     border: 1px solid #ccc;
@@ -1756,6 +1764,9 @@ table.performance-summary {
     border-radius: 5px;
     box-shadow: 0px 2px 3px #ccc;
     margin: 30px 0px;
+    @media (max-width: $screen-xs-max) {
+      margin: 10px 0px 30px;
+    }
   }
   
   h1{
@@ -1765,6 +1776,10 @@ table.performance-summary {
   h2{
     margin-top: 0;
     color: $gray-light;
+    font-size: 36px;
+    @media (max-width: $screen-xs-max) {
+      font-size: 26px;
+    }
   }
   .direct-donation-thermometer{
     margin-bottom: 50px;
@@ -1777,6 +1792,9 @@ table.performance-summary {
       margin-right: 10px;
       margin-bottom: 10px;
       font-size: 24px;
+      @media (max-width: $screen-xs-max) {
+        font-size: 17px;
+      }
     }
   }
   #direct_donation_amount_input{

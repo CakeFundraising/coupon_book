@@ -2,7 +2,10 @@
   .container
     / TOP BANNER
     - if current_user.nil?
-      .expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      /.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
+      .expand-nav.hidden-xs 
+        = link_to efg_contact_path, target: :_blank do
+          = image_tag 'befg_logo.png'
     span.top_banner = banner_message
 
 .banner.hero
