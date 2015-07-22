@@ -3,11 +3,11 @@
     .coupon-label.label.label-warning #{coupon.retail_value} value!
     .coupon-box.clearfix
       .col-md-2.col-sm-2.sp-box.no-padding
+        = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
+          = coupon.avatar_picture.uri
         h4.sp_name_mobile
           = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
             = coupon.sponsor_name
-        = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
-          = coupon.avatar_picture.uri
       .col-md-10.col-xs-12.no-padding
         .row
           .col-md-6.col-xs-12

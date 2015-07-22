@@ -68,6 +68,11 @@
         .row
           .col-md-12
             p.text-center
+              | Payments are processed by 
+              span 
+                = link_to "Stripe.com", 'https://stripe.com', target: :_blank
+              strong  We do not store your financial information.
+            .text-center 
               | For further assistance, contact 
               span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
         
