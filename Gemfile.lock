@@ -153,6 +153,8 @@ GEM
       rails (>= 3, < 5)
     daemons (1.2.2)
     database_cleaner (1.4.1)
+    deep_cloneable (2.1.1)
+      activerecord (>= 3.1.0, < 5.0.0)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.1)
@@ -575,6 +577,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner
+  deep_cloneable
   devise
   draper
   factory_girl_rails

@@ -68,6 +68,7 @@ gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
 gem 'roadie-rails'
 gem 'metamagic'
+gem 'deep_cloneable', require: false
 
 #Authentication
 gem 'oauth2'

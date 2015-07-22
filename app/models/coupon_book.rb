@@ -12,7 +12,7 @@ class CouponBook < ActiveRecord::Base
   has_statuses :incomplete, :pending, :launched, :past
 
   has_one :video, as: :recordable, dependent: :destroy
-  has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
+  has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
   has_many :categories_coupons, through: :categories
   has_many :items, through: :categories
