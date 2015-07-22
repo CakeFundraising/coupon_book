@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150721222551) do
+ActiveRecord::Schema.define(version: 20150722185740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,7 +145,7 @@ ActiveRecord::Schema.define(version: 20150721222551) do
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
-    t.integer  "fee_percentage",     default: 17
+    t.float    "fee_percentage",     default: 16.25
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"

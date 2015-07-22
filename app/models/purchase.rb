@@ -51,7 +51,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def application_fee
-    percentage = (self.purchasable.fee_percentage/100.0)
+    percentage = (self.purchasable.fee_percentage/100)
     (self.amount_cents*percentage).round
   end
 

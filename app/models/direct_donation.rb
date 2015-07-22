@@ -34,7 +34,7 @@ class DirectDonation < ActiveRecord::Base
   end
 
   def application_fee
-    percentage = (self.donable.fee_percentage/100.0)
+    percentage = (self.donable.fee_percentage/100)
     (self.amount_cents*percentage).round
   end
 
