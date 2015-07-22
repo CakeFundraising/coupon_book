@@ -42,7 +42,7 @@ class PurchasesController < InheritedResources::Base
   protected
 
   def permitted_params
-    params.permit(purchase: [:purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
+    params.permit(purchase: [:first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
   end
 
   def validate_token

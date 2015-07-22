@@ -1,0 +1,12 @@
+- if coupon_book.launched?
+  - if coupon_book.fundraiser.stripe_account?
+    #donate-now.row
+      .col-md-12
+        = render partial:'direct_donations/form', locals:{donable: coupon_book}
+        = render partial:'direct_donations/thank_you_modal', locals: {object: coupon_book} if params[:donated].present?
+  - elsif current_fundraiser.present? and current_fundraiser == coupon_book.fundraiser
+    #donate-now.row
+      .col-md-12
+        .alert.alert-warning 
+          span Your Campaign can't receive Direct Donations yet.
+          div Please connect your Stripe Account. It just takes 5 minutes.

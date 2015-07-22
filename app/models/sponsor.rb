@@ -46,6 +46,7 @@ class Sponsor < Ohm::Model
       sponsor = self.create(
         id:   data["id"],
         name: data["name"],
+        email: data["email"],
         mission: data["mission"],
         website: data["website"],
         phone: data["phone"],
@@ -117,5 +118,9 @@ class Sponsor < Ohm::Model
 
   def total_vouchers_sold
     self.vouchers.count
+  end
+
+  def persisted?
+    !Sponsor[self.id].nil?
   end
 end

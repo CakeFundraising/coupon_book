@@ -1,8 +1,13 @@
+span#top-link-block.hidden
+  a href="#top" onclick="$('html,body').animate({scrollTop:0},'slow');return false;" 
+    i.glyphicon.glyphicon-chevron-up
+/! /top-link-block
+
 .container
   .row.text-center
     - if defined? direct_donations
       .col-md-6.col-md-push-3
-        = render partial:'coupon_books/show_page/direct_donation', locals:{coupon_book: @coupon_book}
+        = render partial:'coupon_books/show/page/direct_donation', locals:{coupon_book: @coupon_book}
       
     .col-md-12
       .make-pledge.well

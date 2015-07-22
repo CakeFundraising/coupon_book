@@ -1,6 +1,5 @@
 class FundraiserDecorator < ApplicationDecorator
   delegate_all
-
   decorates_association :picture
 
   def to_s
@@ -53,4 +52,5 @@ class FundraiserDecorator < ApplicationDecorator
   def subscriptors_count
     object.subscriptors.count
   end
+
 end

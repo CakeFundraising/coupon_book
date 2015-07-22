@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708193828) do
+ActiveRecord::Schema.define(version: 20150721222551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,7 +124,6 @@ ActiveRecord::Schema.define(version: 20150708193828) do
   end
 
   create_table "coupon_books", force: :cascade do |t|
-    t.integer  "coupon_book_campaign_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fundraiser_id"
@@ -134,20 +133,22 @@ ActiveRecord::Schema.define(version: 20150708193828) do
     t.string   "url"
     t.string   "headline"
     t.text     "story"
-    t.string   "status",                  default: "incomplete"
+    t.string   "status",             default: "incomplete"
     t.text     "mission"
-    t.boolean  "visible",                 default: false
-    t.integer  "goal_cents",              default: 0,            null: false
-    t.string   "goal_currency",           default: "USD",        null: false
-    t.integer  "price_cents",             default: 0,            null: false
-    t.string   "price_currency",          default: "USD",        null: false
+    t.boolean  "visible",            default: false
+    t.integer  "goal_cents",         default: 0,            null: false
+    t.string   "goal_currency",      default: "USD",        null: false
+    t.integer  "price_cents",        default: 0,            null: false
+    t.string   "price_currency",     default: "USD",        null: false
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
-    t.integer  "fee_percentage",          default: 17
+    t.integer  "fee_percentage",     default: 17
     t.string   "organization_name"
+    t.string   "screenshot_url"
+    t.string   "screenshot_version"
   end
 
   create_table "coupons", force: :cascade do |t|
@@ -175,6 +176,17 @@ ActiveRecord::Schema.define(version: 20150708193828) do
     t.integer  "extra_clicks_count"
     t.string   "type",                        default: "Coupon"
     t.string   "flag"
+  end
+
+  create_table "direct_donations", force: :cascade do |t|
+    t.string   "email"
+    t.string   "card_token"
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "USD", null: false
+    t.string   "donable_type"
+    t.integer  "donable_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "extra_clicks", force: :cascade do |t|
@@ -236,6 +248,9 @@ ActiveRecord::Schema.define(version: 20150708193828) do
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
     t.string   "token"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "zip_code"
   end
 
   create_table "subscriptors", force: :cascade do |t|

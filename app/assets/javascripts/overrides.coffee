@@ -5,6 +5,11 @@ CakeCouponBook.overrides.init = ->
   hide_alert()
   booleanButtonInput()
   booleanCollapse()
+  tooltips()
+  return
+
+tooltips = ->
+  $('[data-toggle="tooltip"]').tooltip()
   return
 
 booleanButtonInput = ->

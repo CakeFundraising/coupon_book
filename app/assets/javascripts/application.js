@@ -26,9 +26,8 @@
 //= require cloudinary/jquery.fileupload
 //= require ./jquery.cloudinary
 
-//= require bootstrap
-
 //= require jquery-ui
+//= require bootstrap
 
 //= require zeroclipboard
 //= require bootstrap-datepicker/core
@@ -48,6 +47,7 @@
 
 //= require ./coupon_books
 //= require ./coupon_book_builder
+//= require ./direct_donations
 //= require ./purchases
 
 //= require ./addthis

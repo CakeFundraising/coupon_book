@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  belongs_to :coupon_book
+  belongs_to :coupon_book, inverse_of: :categories
 
   has_many :categories_coupons, -> { order("categories_coupons.position ASC") }, dependent: :destroy
   has_many :items, through: :categories_coupons, source: :coupon

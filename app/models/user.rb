@@ -24,9 +24,9 @@ class User < Ohm::Model
       if self[data["id"]].present?
         user = self[data["id"]]
         user.update(cake_access_token: access_token)
+        self.create_roles(data) if (user.fundraiser? and Fundraiser[user.fundraiser_id].blank?) or (user.sponsor? and Sponsor[user.sponsor_id].blank?)
       else
-        Fundraiser.create_from_data(data["extra"].try(:[], "fundraiser"))
-        Sponsor.create_from_data(data["extra"].try(:[], "sponsor"))
+        self.create_roles(data)
         user = self.create(
           id:                data["id"],
           full_name:         data["info"]["full_name"],
@@ -70,6 +70,11 @@ class User < Ohm::Model
     rescue OAuth2::Error => e
       nil
     end
+  end
+
+  def self.create_roles(data)
+    Fundraiser.create_from_data(data["extra"].try(:[], "fundraiser"))
+    Sponsor.create_from_data(data["extra"].try(:[], "sponsor"))
   end
 
 end

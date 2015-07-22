@@ -1,4 +1,4 @@
-/= coupon_book_page_meta(@coupon_book)
+= book_page_meta(@coupon_book)
 
 = content_for :header do
   = render partial:'coupon_books/show/page/header', locals:{resource: @coupon_book, banner_message: @header_banner, sidebar_path: 'coupon_books/show/page/sidebar'}
@@ -9,7 +9,7 @@
 
     = render partial:'coupon_books/show/page/fr_section'
 
-    = render partial:'coupon_books/show/page/bottom'
+    = render partial:'coupon_books/show/page/bottom', locals:{direct_donations: true}
 
     = render partial:'coupon_books/show/page/purchase_form', locals: {purchasable: @coupon_book}
 
@@ -23,6 +23,6 @@ javascript:
       "#{@impression.id if @impression.present? }",
       "#{@coupon_book.id}"
     );
-    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fundraiser}", "#{coupon_book_url(@coupon_book)}");
+    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
   $(document).ready(current_init);

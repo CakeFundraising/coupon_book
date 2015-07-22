@@ -12,7 +12,7 @@ class CouponBook < ActiveRecord::Base
   has_statuses :incomplete, :pending, :launched, :past
 
   has_one :video, as: :recordable, dependent: :destroy
-  has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy
+  has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
   has_many :categories_coupons, through: :categories
   has_many :items, through: :categories
@@ -22,6 +22,7 @@ class CouponBook < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
+  has_many :direct_donations, as: :donable
 
   monetize :goal_cents, numericality: {greater_than: 0}
   monetize :price_cents, numericality: {greater_than: 0}
@@ -61,11 +62,29 @@ class CouponBook < ActiveRecord::Base
   end
 
   def current_sales_cents
-    purchases.count*self.price_cents
+    #purchases.count*self.price_cents
+    purchases.sum(:amount_cents)
   end
 
   def thermometer
     (current_sales_cents.to_f/goal_cents)*100 unless goal_cents.zero?
+  end
+
+  #Direct Donations
+  def donations_thermometer
+    (donations_raised/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  def donations_raised
+    direct_donations.map(&:amount).sum.to_f
+  end
+
+  def total_donations_and_sales
+    donations_raised + current_sales_cents/100.0
+  end
+
+  def donation_sales_thermometer
+    (total_donations_and_sales/goal.amount)*100 unless goal.amount == 0.0
   end
 
   #Vouchers

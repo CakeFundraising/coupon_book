@@ -289,7 +289,6 @@ hr{
 
 @media (max-width: 420px){
   #main-container {
-    margin-bottom: 35px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -310,10 +309,6 @@ hr{
     margin-top:10px;
   }
 
-  .popular > li > a{
-    min-width:90px !important;
-  }
-  
   .navbar{
     z-index: 1000;
     width: 100%;
@@ -327,17 +322,6 @@ hr{
       padding: 9px 7px !important;
     }
   }
-
-  .popular > li{
-      margin:10px 2px !important;
-      font-size: .8em !important;
-      a {
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        padding: 10px 0px !important;
-        min-width:90px !important;
-      }
-    }
 }
 
 
@@ -573,7 +557,7 @@ p.signup-social span:before, p.signup-social span:after {
 
   &.buy_button{
     font-size: 38px !important;
-    text-transform: uppercase;
+    //text-transform: uppercase;
     padding: 5px 0px !important;
     font-weight: bold;
 
@@ -695,9 +679,9 @@ form{
   }
 }
 
-.form-control{
-  height: 40px;
-}
+// .form-control{
+//   height: 40px;
+// }
 
 .input-group{
   .col-xs-3{
@@ -760,7 +744,7 @@ form{
   border-right: 1px dotted $gray-light;
   @media (max-width: $screen-md-min) {
     border: none;
-    margin: 0 auto 50px;
+    margin: 0 auto 10px;
   }
 }
 .explore {
@@ -1040,6 +1024,9 @@ $lines-to-show: 2;
      margin-top: -375px; 
     }
   }
+  @media (max-width: $screen-xs-max) {
+    margin-top: -450px;
+  }
 }
 
 .pull-left {
@@ -1122,9 +1109,17 @@ h1.name {
     margin-bottom:10px;  
   }
   &.campaign-sidebar{
-    margin-top: -85px;
+    margin-top: -50px;
     margin-bottom: 0;
     box-shadow: 0px 0px 15px $gray-dark;
+    .tos{
+      @media (max-width: $screen-sm-max) {
+        margin-top: 15px;
+      }
+      a{
+        cursor: pointer;
+      }
+    }
     &.regular-campaign-sidebar{
       margin-top: -120px;
       @media (max-width: $screen-xs-max) {
@@ -2148,6 +2143,12 @@ a {
   letter-spacing: 0.5px;
   margin-top: 20px;
 
+  .story{
+    @media (max-width: $screen-xs-max) {
+      font-size: 16px;
+    }
+  }
+
   h3{
     margin-top: 0;
     font-size: 32px;
@@ -2220,16 +2221,39 @@ a {
   .sp-box{
     padding-left: 0;
     border-right: 1px dotted #ddd;
+    @media (max-width: $screen-sm-max) {
+      border-right: none;
+    }
     .sp_name{
       clear: both;
       padding-top: 10px;
       margin-bottom: 3px;
+    }
+    .sp_name_mobile{
+      clear: both;
+      padding-top: 0px;
+      margin-bottom: 0px;
+      // -webkit-border-radius: 5px 5px 0 0;
+      // border-radius: 5px 5px 0 0;
+      // background: rgba(0,0,0,0.2);
+      // position: absolute;
+      // text-align: center;
+      // padding: 10px;
+      // width: 100%;
+      // z-index: 9;
+      // margin: 0;
+      // a{
+      //   color: white;
+      // }
     }
   }
   .multiple_locations{
     border-top: 1px dotted #ccc;
     margin-top: 12px;
     padding-top: 10px;
+    &.mobile{
+      font-size: 10px;
+    }
   }
   .coupon_location{
     font-size: 16px;
@@ -2261,6 +2285,15 @@ a {
       font-size: 16px;
     }
   }
+  .coupon-content-mobile{
+    margin-top: 10px;
+    h2{
+      font-size: 24px;
+    }
+    h3{
+      font-size: 16px;
+    }
+  }
   hr{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -2289,6 +2322,14 @@ a {
     font-size: 18px;
     margin: 0px 0px 10px;
     padding: 5px 0px;
+  }
+  .terms {
+    font-size: 20px;
+    margin-top: 15px;
+    em {
+      font-style: italic;
+      color: $gray-light;
+    }
   }
 }
 .terms {
@@ -2380,38 +2421,80 @@ ul.share-coupon {
   }
 }
 
-header {
-  .row{
-    /*margin-left:0px !important;
-    margin-right:0px !important;*/
+.book-nav{
+  margin-top: -10px;
+  margin-bottom: 50px;
+  box-shadow: 0px 3px 5px #ddd;
+  @media (max-width: $screen-sm-max) {
+    margin-bottom: 20px;
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-bottom: 0px;
+  }
+  .popular{
+    padding-bottom: 10px;
+    & > li{
+      @media (max-width: $screen-sm-max) {
+        margin: 5px;
+      }
+      & > a{
+        color: white;
+        background: $brand-warning;
+        font-size: 23px;
+        text-transform: uppercase;
+        @media (max-width: $screen-sm-max) {
+          font-size: 18px;
+        }
+        @media (max-width: $screen-xs-max) {
+          font-size: 16px;
+        }
+      }
+    }
+    li > a:hover {
+      background: darken($brand-warning, 15%);
+    }
   }
 }
 
 .popular {
   list-style: none;
   text-align: center;
-  margin: 5px auto;
+  margin-top: 0px;
+  & > li{
+    display: inline-block;
+    float: none;
+    margin: 10px 5px;
+    & > a{
+      border-radius: 25px;
+      background: $gray-light;
+      border-top-color: $gray-light;
+      color: #fff;
+      padding: 6px 18px;
+      min-width: 140px;
+    }
+  }
   li > a:hover {
-    background: $brand-primary;
+    background: $brand-success;
   }
 }
-.popular > li {
-  display: inline-block;
-  float: none;
-  margin: 0 10px;
-  font-size:1em;
+.popular > li.active:after {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-color: rgba(136, 183, 213, 0);
+  border-top-color: $brand-success;
+  border-width: 6px;
+  margin-left: -6px;
 }
 
-.popular > li > a {
-  border-radius: 15px;
-  background: $gray-lighter;
-  color: #fff;
-  padding: 10px 20px;
-  /*width: 30%;*/
-  min-width: 140px;
-}
-.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: $brand-primary;
+.popular > li.active > a, 
+.popular > li.active > a:hover, 
+.popular > li.active > a:focus {
+  background-color: $brand-success;
 }
 
 .main-home {
@@ -2806,56 +2889,6 @@ header {
   @include box-shadow(0, 0, 3px, $gray-light);
 }
 
-/*.popular > li:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $gray-light;
-  border-width: 6px;
-  margin-left: -6px;
-}*/
-
-.popular {
-  list-style: none;
-  text-align: center;
-  margin-top: 0px;
-  li > a:hover {
-    background: $brand-success;
-  }
-}
-.popular > li {
-  display: inline-block;
-  float: none;
-  margin: 10px 5px;
-}
-.popular > li > a {
-  border-radius: 25px;
-  background: $gray-light;
-  border-top-color: $gray-light;
-  color: #fff;
-}
-.popular > li.active > a, .popular > li.active > a:hover, .popular > li.active > a:focus {
-  background-color: $brand-success;
-}
-
-.popular > li.active:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $brand-success;
-  border-width: 6px;
-  margin-left: -6px;
-}
 
 .main-home {
   margin-top: 30px;
@@ -4083,7 +4116,14 @@ ul#share-block {
 }
 
 .padding-left-out{
-  padding-left: 0;
+  @media (min-width: $screen-md-min) {
+    padding-left: 0;
+  }
+}
+.padding-right-out{
+  @media (min-width: $screen-md-min) {
+    padding-right: 0;
+  }
 }
 
 // Success Stories -------------------------------------------------------
@@ -4114,19 +4154,6 @@ ul#share-block {
 }
 
 // Tooltip -------------------------------------------------------
-
-.tooltip-title {
-  display: inline-block;
-}
-
-.tooltip-icon {
-  width: 20px;
-}
-
-.tooltip-inner {
-  font-size: 1.4em;
-  max-width: 500px;
-}
 
 .page-spinner{
   margin: 70px 0;
@@ -4322,29 +4349,60 @@ h1.category-title{
   text-transform: uppercase;
   margin-top: 20px;
   margin-bottom: 10px;
+  @media (max-width: $screen-sm-max) {
+    font-size: 45px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 36px;
+  }
 }
 
 h2.category-subtitle{
   margin-bottom: 40px;
   margin-top: -10px;
   text-align: center;
+  @media (max-width: $screen-sm-max) {
+    font-size: 28px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 22px;
+  }
 }
 
 span.banner-heading{
-  font-size: 45px;
+  font-size: 38px;
+  @media (max-width: $screen-xs-max) {
+    font-size: 28px;
+  }
 }
 
 .top_banner{
   margin: 0;
-  font-size: 32px;
   .first{
     margin: 0;
-    font-size: 50px;
+    font-size: 44px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 28px;
+    }
   }
   .last{
     margin-top: -10px;
+    font-size: 32px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 28px;
+      margin-top: -4px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 26px;
+    }
     span.boldest{
       font-size: 38px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 30px;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 27px;
+      }
     }
   }
 }
@@ -4482,4 +4540,134 @@ span.banner-heading{
   display:block; 
   clear:both; 
   page-break-after:always; 
+}
+
+#top-link-block.affix-top {
+  position: absolute; /* allows it to "slide" up into view */
+  bottom: -82px; /* negative of the offset - height of link element */
+  right: 10px; /* padding from the right side of the window */
+}
+#top-link-block.affix {
+  position: fixed; /* keeps it on the bottom once in view */
+  bottom: 80px; /* height of link element */
+  right: 30px; /* padding from the right side of the window */
+  z-index: 9;
+}
+
+#top-link-block{
+  a{
+    font-size: 50px;
+    background: rgba(0,0,0,0.05);
+    padding: 7px 7px 5px 10px;
+    border-radius: 100px;
+    color: $brand-purple;
+    @media (max-width: $screen-xs-max) {
+      font-size: 30px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+    }
+  }
+}
+
+.coupon_terms_modal{
+  h1{
+    font-size: 28px;
+  }
+  h3{
+    font-size: 20px;
+    color: $brand-primary;
+  }
+  p{
+    font-size: 14px;
+    text-align: left;
+  }
+}
+
+#terms_of_purchase_modal{
+  h1{
+    font-size: 28px;
+    @media (max-width: $screen-xs-max) {
+      font-size: 24px;
+    }
+  }
+  .modal-body{
+    text-align: left;
+    p{
+      text-transform: none;
+    }
+    h3{
+      margin-top: 0;
+      @media (max-width: $screen-xs-max) {
+        font-size: 20px;
+      }
+    }
+    h4{
+      font-size: 22px;
+    }
+    h5{
+      font-size: 18px;
+      margin-top: 18px;
+    }
+    h6{
+      font-size: 16px;
+    }
+  }
+}
+
+#after_purchase_modal{
+  h3{
+    margin-top: 0;
+    margin-bottom: 40px;
+    font-size: 28px;
+  }
+}
+
+#buy_book_modal{
+  .overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.7);
+    border-radius: 8px;
+    img{
+      position: absolute;
+      top: 37%;
+      left: 41%;
+      @media (max-width: $screen-sm-max) {
+        top: 40%;
+        left: 40%;
+      }
+      @media (max-width: $screen-xs-max) {
+        top: 44%;
+        left: 28%;
+      }
+    }
+  }
+  .modal-title{
+    font-size: 25px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 24px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 22px;
+    }
+  }
+  .modal-body{
+    padding: 15px;
+    h3{
+      margin-top: 10px;
+      margin-bottom: 22px;
+    }
+    .error{
+      font-size: 12px;
+    }
+  }
+  img.card-logos{
+    padding: 10px 0px 16px;
+    width: 260px;
+  }
+}
+
+.tooltip{
+  width: 100%;
 }

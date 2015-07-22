@@ -18,11 +18,5 @@ class Organize
     return
 
 CakeCouponBook.coupon_books.organize = (couponBookId)->
-  # reactLinks = $('a[data-type="react-button"]')
-  # reactLinks.click (e)->
-  #   console.log 'preventDefault'
-  #   e.preventDefault()
-  #   return
-
   new Organize(couponBookId).init()
   return

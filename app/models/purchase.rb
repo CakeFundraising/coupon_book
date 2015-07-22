@@ -1,12 +1,13 @@
 class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true
   has_one :charge, as: :chargeable
-
   has_many :vouchers, dependent: :destroy
+
+  attr_accessor :cc_number, :exp_month, :exp_year, :cvc, :email_confirmation
 
   monetize :amount_cents
 
-  validates :purchasable, :card_token, :amount, :email, :token, presence: true
+  validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
 
   before_create :stripe_charge_card
 
@@ -37,7 +38,7 @@ class Purchase < ActiveRecord::Base
           email: self.email
         },
         receipt_email: self.email,
-        statement_descriptor: "Cake #{self.purchasable.class} ##{self.purchasable.id}",
+        statement_descriptor: "EFG.org #{self.purchasable.class} ##{self.purchasable.id}",
         application_fee: application_fee
       },
         stripe_account: self.purchasable.fundraiser.stripe_account_id

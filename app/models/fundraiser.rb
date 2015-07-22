@@ -50,6 +50,7 @@ class Fundraiser < Ohm::Model
       fundraiser = self.create(
         id:   data["id"],
         name: data["name"],
+        email: data["email"],
         mission: data["mission"],
         website: data["website"],
         phone: data["phone"],
@@ -111,5 +112,17 @@ class Fundraiser < Ohm::Model
   #Vouchers
   def vouchers
     Voucher.where(owner_type: 'Fundraiser', owner_id: self.id.to_i)
+  end
+
+  def decorate
+    FundraiserDecorator.decorate(self)
+  end
+
+  def persisted?
+    !Fundraiser[self.id].nil?
+  end
+
+  def stripe_account?
+    self.stripe_publishable_key.present?
   end
 end

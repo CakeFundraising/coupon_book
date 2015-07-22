@@ -11,6 +11,8 @@ CakeCouponBook::Application.routes.draw do
 
   mount Resque::Server, at: "/resque"
 
+  resources :direct_donations, only: :create
+
   resources :coupon_books do
     member do
       scope :edit do
