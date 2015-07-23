@@ -42,27 +42,29 @@ html lang="en"
   footer
     .container
       .row
-        .col-md-4.col-sm-4.col-xs-4
+        .col-md-6.col-sm-6.col-xs-6
           h4 Company
           ul
             li
-              = link_to "About Cake", cake_about_page_path('cake')
+              = link_to "About Eats For Good", efg_about_path, target: :_blank
             li
-              = link_to "Blog", "http://blog.cakecausemarketing.com"
+              = link_to "Blog", efg_blog_path, target: :_blank
             li
-              = link_to "Press", cake_about_page_path('press')
+              = link_to "Press", cake_about_page_path('press'), target: :_blank
             li
-              = link_to "Contact", cake_about_page_path('contact')
+              = link_to "Contact", efg_contact_path, target: :_blank
+            / li
+            /   = link_to "Privacy", cake_about_page_path('privacy'), target: :_blank
             li
-              = link_to "Privacy", cake_about_page_path('privacy')
-            li
-              = link_to "Terms of Use", cake_about_page_path('terms_of_use')
-        .col-md-4.col-sm-4.col-xs-4
-          h4 Learn
-          ul
-            li
-              = link_to "FAQs", cake_help_page_path('faq')
-        .col-md-4.col-sm-4.col-xs-4
+              = render partial:'layouts/modals/terms_of_purchase'
+              a data-toggle='modal' data-target='#terms_of_purchase_modal' Terms of Use
+
+        / .col-md-4.col-sm-4.col-xs-4
+        /   h4 Learn
+        /   ul
+        /     li
+        /       = link_to "FAQs", cake_help_page_path('faq')
+        .col-md-6.col-sm-6.col-xs-6
           h4 Follow Us
           div.addthis_custom_follow
           br
@@ -70,7 +72,7 @@ html lang="en"
       .row.Colophon
         .col-md-9
           h4.boldest CakeCauseMarketing.com
-          p makes it easy to launch and manage exciting "pay-per-click" cause marketing campaigns that produce great results for your organizations and your corporate sponsors.
+          p Makes it easy to create and manage exciting digital deal book fundraising campaigns that produce great results for your organization and its business partners!
         .col-md-3
           .hidden#today = Date.today
-          p.pull-right &copy;#{Time.now.year} #{t('application.name')}, Inc.
+          p.pull-right &copy;#{Time.now.year} #{t('application.company')}, Inc.

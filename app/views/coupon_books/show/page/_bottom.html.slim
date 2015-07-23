@@ -16,7 +16,7 @@ span#top-link-block.hidden
           .col-md-12s
             h4.attention-owners
               b> Business Owners:
-              | You can Partner with #{@coupon_book.fundraiser} too!
+              | You can Partner with #{@coupon_book.fr_name} too!
             a.btn.btn-primary data-toggle='modal' data-target='#coupon_book_partner_subs_modal' Learn How
             = render partial:'subscriptions/modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.partner'}
   .row

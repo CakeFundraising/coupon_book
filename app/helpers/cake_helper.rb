@@ -38,7 +38,16 @@ module CakeHelper
     "#{CAKE_ROOT_URL}/#{role.class.name.downcase.pluralize}/#{role.id}"
   end
 
+  #EFG pages
   def efg_contact_path
     "#{EFG_ROOT_URL}/#!contact/cbys"
+  end
+
+  def efg_about_path
+    "#{EFG_ROOT_URL}/#!about1/csyv"
+  end
+
+  def efg_blog_path
+    "#{EFG_ROOT_URL}/#!blog/cz4z"
   end
 end
