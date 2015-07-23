@@ -3,6 +3,12 @@ en:
     name: CakeCauseMarketing
     company: CakeFundraising
     twitter_account: "@EatsForGood"
+    social:
+      accounts:
+        facebook: https://www.facebook.com/eatsforgood
+        twitter: https://twitter.com/EatsForGood
+        linkedin: https://www.linkedin.com/company/baltimore-eats-for-good
+        instagram: https://instagram.com/eatsforgood/
     meta:
       description: "Create Win/Win Social Media Partnerships in Minutes! The World's #1 Digital Sponsorship & Partnership Platform"
       keywords: "Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship"

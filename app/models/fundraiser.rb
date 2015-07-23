@@ -32,7 +32,9 @@ class Fundraiser < Ohm::Model
 
   collection :users, :User
 
-  index :name, :stripe_account_id, :stripe_publishable_key
+  index :name
+  index :stripe_account_id
+  index :stripe_publishable_key
 
   alias_method :destroy, :delete
 

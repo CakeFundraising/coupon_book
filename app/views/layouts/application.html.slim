@@ -64,9 +64,22 @@ html lang="en"
         /   ul
         /     li
         /       = link_to "FAQs", cake_help_page_path('faq')
-        .col-md-6.col-sm-6.col-xs-6
+        .follow-us.col-md-6.col-sm-6.col-xs-6
           h4 Follow Us
-          div.addthis_custom_follow
+          //div.addthis_custom_follow
+          ul
+            li
+              = link_to t('application.social.accounts.facebook'), target: :_blank, title: 'Follow on Facebook', class:'social-buttons'
+                span.facebook
+            li
+              = link_to t('application.social.accounts.twitter'), target: :_blank, title: 'Follow on Twitter', class:'social-buttons'
+                span.twitter
+            li
+              = link_to t('application.social.accounts.linkedin'), target: :_blank, title: 'Follow on LinkedIn', class:'social-buttons'
+                span.linkedin
+            li
+              = link_to t('application.social.accounts.instagram'), target: :_blank, title: 'Follow on Instagram', class:'social-buttons'
+                span.instagram
           br
 
       .row.Colophon
