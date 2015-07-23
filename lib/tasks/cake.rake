@@ -12,5 +12,4 @@ namespace :cake do
       target.categories << clone.categories unless target.categories.any?
     end
   end
-
 end
