@@ -85,6 +85,9 @@ gem 'cancancan'
 #Browser Fingerprinting
 gem 'fingerprintjs-rails'
 
+#App performance
+gem 'newrelic_rpm'
+
 group :development do
   gem 'quiet_assets'
   gem 'thin'
