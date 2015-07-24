@@ -6,7 +6,8 @@ span#top-link-block.hidden
 .container
   .row.text-center
     - if defined? direct_donations
-      h1.donation-title Please consider making an extra donation to #{@coupon_book.fr_name}
+      - if @coupon_book.launched? and @coupon_book.fundraiser.stripe_account?
+        h1.donation-title Please consider making an extra donation to #{@coupon_book.fr_name}
       .col-md-6.col-md-push-3
         = render partial:'coupon_books/show/page/direct_donation', locals:{coupon_book: @coupon_book}
       
