@@ -4,7 +4,7 @@
     - if current_user.nil?
       /.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
       .expand-nav.hidden-xs 
-        = link_to efg_contact_path, target: :_blank do
+        = link_to efg_home_path, target: :_blank do
           = image_tag 'befg_logo.png'
     span.top_banner = banner_message
 
@@ -39,4 +39,7 @@
       
       .row
         .col-md-12
-          = render partial:'coupon_books/show/page/how_it_works_modal'
+          #how-it-works-link
+            a data-toggle='modal' data-target='#how_it_works_modal'
+              span.glyphicon.glyphicon-expand
+              span See how Eats for Good works!

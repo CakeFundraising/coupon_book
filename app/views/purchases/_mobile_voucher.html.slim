@@ -1,0 +1,29 @@
+.voucher
+  .row.voucher-headline
+    .col-md-3.col-xs-12
+      = link_to CakeHelper::EFG_ROOT_URL, target: :_blank do
+        = image_tag 'befg.png', class:'img-responsive'
+    .col-md-9.col-xs-12
+      .voucher-number
+        span.red Voucher: 
+        span = voucher.number
+
+  .row.coupon-content
+    .col-xs-12
+      h2 = voucher.coupon
+      h4.sp_name = voucher.coupon.sponsor_name
+  
+  / .fundraiser
+  /   span Fundraiser: 
+  /   span.blue-text = voucher.coupon_book.fundraiser.name
+
+  .row
+    .col-md-8.col-xs-12
+      h2.expires
+        span.blue-text Expires: 
+        span = voucher.expires_at_american
+
+    .col-md-4.col-xs-12
+      .row
+        .qrcode-table
+          = raw RQRCode::QRCode.new(voucher.number).as_html

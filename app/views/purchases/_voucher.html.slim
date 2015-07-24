@@ -31,7 +31,7 @@
         div = t('application.terms_and_conditions.coupons').html_safe
     .col-md-4.col-xs-4
       .row
-        .qrcode-table.pull-right
+        .qrcode-table
           = raw RQRCode::QRCode.new(voucher.number).as_html
       .row
         .powered_by.col-md-12

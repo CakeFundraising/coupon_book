@@ -39,6 +39,10 @@ module CakeHelper
   end
 
   #EFG pages
+  def efg_home_path
+    EFG_ROOT_URL
+  end
+
   def efg_contact_path
     "#{EFG_ROOT_URL}/#!contact/cbys"
   end
@@ -49,5 +53,13 @@ module CakeHelper
 
   def efg_blog_path
     "#{EFG_ROOT_URL}/#!blog/cz4z"
+  end
+
+  def efg_how_works_path
+    "#{EFG_ROOT_URL}/#!works/c1sxh"
+  end
+
+  def efg_faq_path
+    "#{EFG_ROOT_URL}/#!faq/c1el"
   end
 end

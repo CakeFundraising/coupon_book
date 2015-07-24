@@ -1,0 +1,32 @@
+#how_it_works_modal.modal.fade.video_modal
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header 
+        button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
+        h2.modal-title How Eats for Good works
+      .modal-body
+        iframe id="coupon_book_video_iframe" class="youtube_video" title="YouTube video player" width="100%" height="400px" src="//www.youtube.com/embed/kG6PUkyTgJE?enablejsapi=1&theme=light" frameborder="0" allowfullscreen
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal
+
+javascript:
+  var yt_init = function(){
+    CakeCouponBook.videos.youtube({
+      modal: '#how_it_works_modal',
+      provider: 'youtube',
+      iframeId: "coupon_book_video_iframe",
+      autoshow: true
+    });
+  };
+
+  if(window.YT){
+    yt_init();
+  }else{
+    CakeCouponBook.videos.youtubeApi();
+    CakeCouponBook.videos.queueFunctions(yt_init);
+
+    function onYouTubeIframeAPIReady(){
+      CakeCouponBook.videos.ytApiReady();
+    }
+  }

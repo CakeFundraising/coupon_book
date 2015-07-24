@@ -4503,14 +4503,28 @@ span.banner-heading{
     margin-bottom: 20px;
     text-transform: uppercase;
     font-size: 24px !important;
+    @media (max-width: $screen-xs-max) {
+      font-size: 18px !important;
+    }
   }
   .main-title{
     font-size: 36px;
     margin-top: 25px;
+    @media (max-width: $screen-xs-max) {
+      font-size: 28px;
+    }
   }
   .title-fr{
     font-size: 42px;
     color: $brand-primary;
+    @media (max-width: $screen-xs-max) {
+      font-size: 30px;
+    }
+  }
+  .enjoy-headline{
+    @media (max-width: $screen-xs-max) {
+      font-size: 26px;
+    } 
   }
 }
 
@@ -4520,6 +4534,10 @@ span.banner-heading{
   border: 5px dashed $gray;
   padding: 40px;
   background: white;
+  @media (max-width: $screen-xs-max) {
+    border: 2px dashed $gray;
+    padding: 15px;
+  }
   &.voucher-pdf{
     margin-top: 0;
     margin-bottom: 0;
@@ -4544,6 +4562,10 @@ span.banner-heading{
   .voucher-number{
     font-size: 38px;
     text-align: right;
+    @media (max-width: $screen-xs-max) {
+      font-size: 26px;
+      text-align: left;
+    }
   }
   h1{
     margin-top: 0;
@@ -4551,8 +4573,16 @@ span.banner-heading{
   .fundraiser{
     font-size: 34px;
     margin-bottom: 15px;
+    @media (max-width: $screen-xs-max) {
+      font-size: 20px;
+    }
   }
   .qrcode-table{
+    float: right;
+    @media (max-width: $screen-xs-max) {
+      float: none;
+      margin-left: 15px;
+    }
     table {
       border-width: 0;
       border-style: none;
@@ -4574,6 +4604,9 @@ span.banner-heading{
   .expires{
     margin-top: 0;
     font-size: 28px;
+    @media (max-width: $screen-xs-max) {
+      font-size: 20px;
+    }
   }
   .fine-print{
     font-size: 9px;

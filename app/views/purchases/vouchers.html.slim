@@ -7,10 +7,13 @@
       .main-title Thank You for Supporting: 
       .title-fr #{@fundraiser}!
       
-      h2 Enjoy your rewards!
+      h2.enjoy-headline Enjoy your rewards!
 
   br
   .row
     .col-md-12
-      = render partial:'purchases/voucher', collection: @vouchers, as: :voucher
+      - if mobile_device?
+        = render partial:'purchases/mobile_voucher', collection: @vouchers, as: :voucher
+      - else
+        = render partial:'purchases/voucher', collection: @vouchers, as: :voucher
   
