@@ -21,7 +21,7 @@ class DirectDonation < ActiveRecord::Base
           email: self.email
         },
         receipt_email: self.email,
-        statement_descriptor: "Deal Book ##{self.donable.id} Donation",
+        statement_descriptor: "Book ##{self.donable.id} Donation",
         application_fee: application_fee
       },
         stripe_account: self.donable.fundraiser.stripe_account_id
