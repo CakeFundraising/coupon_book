@@ -9,7 +9,8 @@
         .row
           - if params[:email].present?
             .col-md-12.text-center
-              h3 We sent your vouchers to: #{params[:email]}
+              h3.black Your vouchers were sent to the email address you provided: 
+              h1.blue-color = params[:email]
           .col-md-5.text-center.divider-vert
             h2 Please Share!
             = render partial: 'layouts/share_buttons'
@@ -19,7 +20,10 @@
             = content_tag(:a, 'Buy One for a Friend!', class: "btn btn-success btn-lg buy_button", data: {price: @coupon_book.price_cents})
 
       .modal-footer
-        button.btn.btn-default data-dismiss="modal" type="button"  Close
+        h5.text-center 
+          | If you do not receive your vouchers, please check your spam filter or contact us at 
+          span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+        /button.btn.btn-default data-dismiss="modal" type="button"  Close
     /! /.modal-content
   /! /.modal-dialog
 /! /.modal

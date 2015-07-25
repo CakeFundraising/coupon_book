@@ -28,8 +28,8 @@ class Purchase
 
   openStripe: (amount)->
     @stripeHandler.open
-      name: "Buy Now!"
-      description: "#{@name}"
+      name: @name
+      description: "Thank You!"
       amount: amount
     return
 

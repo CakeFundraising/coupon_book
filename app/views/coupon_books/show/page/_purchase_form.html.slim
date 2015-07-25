@@ -8,4 +8,4 @@
       = f.input :purchasable_type, as: :hidden
 
 javascript:
-  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');
+  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable.fr_name}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');
