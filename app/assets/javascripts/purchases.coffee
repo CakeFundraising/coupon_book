@@ -30,23 +30,20 @@ class Purchase
   createToken: ->
     self = this
     Stripe.card.createToken @form, (status, response) ->
-      console.log status
-      console.log response
-
-      # if response.error
-      #   # Show the errors on the form
-      #   self.form.find('#payment-errors').text(response.error.message).removeClass('hidden')
-      #   self.submitButton.prop 'disabled', false
-      #   self.overlay.css('z-index', 0)
-      # else
-      #   # response contains id and card, which contains additional card details
-      #   token = response.id
-      #   # Insert the token into the form so it gets submitted to the server
-      #   self.cardTokenInput.val(token)
-      #   #Remove credit card related data
-      #   self.removeInputNames()
-      #   # and submit
-      #   self.form.get(0).submit()
+      if response.error
+        # Show the errors on the form
+        self.form.find('#payment-errors').text(response.error.message).removeClass('hidden')
+        self.submitButton.prop 'disabled', false
+        self.overlay.css('z-index', 0)
+      else
+        # response contains id and card, which contains additional card details
+        token = response.id
+        # Insert the token into the form so it gets submitted to the server
+        self.cardTokenInput.val(token)
+        #Remove credit card related data
+        self.removeInputNames()
+        # and submit
+        self.form.get(0).submit()
       return
     return
 
