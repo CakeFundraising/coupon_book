@@ -26,7 +26,8 @@ module CouponBookHelper
 
   def coupon_book_buy_button(coupon_book, button_color=:success)
     if coupon_book.launched?
-      content_tag(:a, "#{coupon_book.price} Buy Now!", class: "btn btn-#{button_color} btn-xl buy_button", data: {toggle: 'modal', target: '#buy_book_modal'})
+      #content_tag(:a, "#{coupon_book.price} Buy Now!", class: "btn btn-#{button_color} btn-xl buy_button", data: {toggle: 'modal', target: '#buy_book_modal'})
+      content_tag(:a, "#{coupon_book.price} Buy Now!", class: "btn btn-#{button_color} btn-xl buy_button", data: {price: coupon_book.price_cents})
     end
   end
 

@@ -8,11 +8,9 @@ html lang="en"
     = cake_meta_tags
     = csrf_meta_tags
     = stylesheet_link_tag "application"
-    = javascript_include_tag "//checkout.stripe.com/checkout.js", "https://js.stripe.com/v2/", "//widget.cloudinary.com/global/all.js", "application"
+    = javascript_include_tag "//checkout.stripe.com/checkout.js", "//widget.cloudinary.com/global/all.js", "application"
     /= javascript_include_tag "application"
     = cloudinary_js_config
-    javascript:
-      Stripe.setPublishableKey("#{Rails.application.config.stripe.publishable_key}")
 
   body.fixed
     = render partial: 'layouts/main_nav'
