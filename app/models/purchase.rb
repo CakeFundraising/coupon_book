@@ -45,7 +45,7 @@ class Purchase < ActiveRecord::Base
         stripe_account: self.purchasable.fundraiser.stripe_account_id
       )
       store_transaction(charge)
-    rescue Stripe::CardError => e
+    rescue => e
       # The card has been declined
       self.card_token = nil # Force validation to fail
     end
