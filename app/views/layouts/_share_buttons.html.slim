@@ -1,3 +1,6 @@
 .share-buttons
-  .addthis_sharing_toolbox#social
+  - if defined? url and defined? title
+    .addthis_sharing_toolbox#social data-url=(url) data-title=(title)
+  - else
+    .addthis_sharing_toolbox#social
   

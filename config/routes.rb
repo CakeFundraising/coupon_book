@@ -44,7 +44,6 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  #delete 'collections_coupons' => 'collections_coupons#destroy'
   resources :collections_coupons, only: [:create, :destroy]
 
   resources :coupons do
@@ -75,10 +74,13 @@ CakeCouponBook::Application.routes.draw do
   end
 
   resources :coupon_sponsors
+
   resources :subscriptors, only: :create
+
   resources :purchases, only: :create do
     member do
       get :vouchers
+      get :succeeded
     end
   end
 

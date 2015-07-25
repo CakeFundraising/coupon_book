@@ -6,13 +6,19 @@ class PurchasesController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        redirect_to polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
+        flash[:notice] = nil
+        redirect_to after_purchase_path
       end
       failure.html do
         redirect_to @purchase.purchasable, alert: "There was an error with your payment, please try again."
       end
     end
 
+  end
+
+  def succeeded
+    @purchase = resource.decorate
+    @purchasable = @purchase.purchasable
   end
 
   #Vouchers
@@ -40,6 +46,10 @@ class PurchasesController < InheritedResources::Base
   end
 
   protected
+
+  def after_purchase_path
+    mobile_device? ? succeeded_purchase_path(@purchase) : polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
+  end
 
   def permitted_params
     params.permit(purchase: [:first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
