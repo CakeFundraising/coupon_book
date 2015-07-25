@@ -30,6 +30,8 @@ class DirectDonation < ActiveRecord::Base
     rescue Stripe::CardError => e
       # The card has been declined
       self.card_token = nil # Force validation to fail
+    rescue Stripe::InvalidRequestError => e
+      self.card_token = nil # Force validation to fail
     end
   end
 

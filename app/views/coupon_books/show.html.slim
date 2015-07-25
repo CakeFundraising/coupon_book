@@ -11,7 +11,7 @@
 
     = render partial:'coupon_books/show/page/purchase_form', locals: {purchasable: @coupon_book}
 
-    = render partial:'coupon_books/show/page/bottom', locals:{direct_donations: true}
+    = render partial:'coupon_books/show/page/bottom'
 
 css:
   .hero{ background-image: url("#{@coupon_book.picture.banner_path}"); }
