@@ -48,7 +48,7 @@ class PurchasesController < InheritedResources::Base
   protected
 
   def after_purchase_path
-    mobile_device? ? succeeded_purchase_path(@purchase) : polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
+    (mobile_device? || ipad?) ? succeeded_purchase_path(@purchase) : polymorphic_path(@purchase.purchasable, purchased: 1, email: @purchase.email)
   end
 
   def permitted_params

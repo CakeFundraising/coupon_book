@@ -40,7 +40,7 @@ module CakeHelper
 
   #EFG pages
   def efg_home_path
-    EFG_ROOT_URL
+    "#{EFG_ROOT_URL}/#!home/c1642"
   end
 
   def efg_contact_path
