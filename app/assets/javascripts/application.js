@@ -37,6 +37,7 @@
 
 //= require cake_coupon_book
 
+//= require ./ga
 //= require ./uuid
 //= require fingerprint
 //= require ./browsers

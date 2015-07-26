@@ -11,6 +11,8 @@ html lang="en"
     = javascript_include_tag "//checkout.stripe.com/checkout.js", "//widget.cloudinary.com/global/all.js", "application"
     /= javascript_include_tag "application"
     = cloudinary_js_config
+    javascript:
+      CakeCouponBook.analytics.set("#{ENV['GA_ID']}");
 
   body.fixed
     = render partial: 'layouts/main_nav'
