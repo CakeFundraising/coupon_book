@@ -230,6 +230,8 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hashie (3.4.2)
+    heroku-deflater (0.5.3)
+      rack (>= 1.4.5)
     hiredis (0.6.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -600,6 +602,7 @@ DEPENDENCIES
   grape
   grape-jbuilder
   grape-swagger
+  heroku-deflater
   inherited_resources!
   jbuilder
   jcrop-rails-v2

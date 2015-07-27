@@ -143,5 +143,6 @@ group :production do
   gem 'unicorn'
   gem 'unicorn-worker-killer'
   gem 'rails_12factor'
+  gem 'heroku-deflater'
 end
 
