@@ -14,6 +14,11 @@ class CouponsController < InheritedResources::Base
   end
 
   # Template Actions
+  def edit
+    @coupon = resource
+    @coupon.build_location if @coupon.location.nil?
+  end
+
   def discount
     @coupon = resource
     render 'coupons/template/discount'

@@ -57,10 +57,6 @@ class Coupon < ActiveRecord::Base
     time :created_at
   end
 
-  after_initialize do
-    self.build_location if self.location.nil? and self.coupon?
-  end
-
   after_create :add_to_collection
 
   def self.build_sp_coupon(sponsor)
@@ -92,7 +88,9 @@ class Coupon < ActiveRecord::Base
 
   def self.build_fr_coupon(fundraiser)
     collection_id = fundraiser.collection.id
-    Coupon.new(collection_id: collection_id)
+    coupon = Coupon.new(collection_id: collection_id)
+    coupon.build_location
+    coupon
   end
 
   def fundraisers_count

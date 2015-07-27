@@ -1,41 +1,22 @@
-span#top-link-block.hidden
-  a href="#top" onclick="$('html,body').animate({scrollTop:0},'slow');return false;" 
-    i.glyphicon.glyphicon-chevron-up
-/! /top-link-block
+- cache [:bottom, @coupon_book]
+  span#top-link-block.hidden
+    a href="#top" onclick="$('html,body').animate({scrollTop:0},'slow');return false;" 
+      i.glyphicon.glyphicon-chevron-up
+  /! /top-link-block
 
-.container
-  .row.text-center
-    - if defined? direct_donations
-      - if @coupon_book.launched? and @coupon_book.fundraiser.stripe_account?
-        h1.donation-title Please consider making an extra donation to #{@coupon_book.fr_name}
-      .col-md-6.col-md-push-3
-        = render partial:'coupon_books/show/page/direct_donation', locals:{coupon_book: @coupon_book}
-      
-    / .col-md-12
-    /   .make-pledge.well
-    /     .row
-    /       .col-md-12s
-    /         h4.attention-owners
-    /           b> Business Owners:
-    /           | You can Partner with #{@coupon_book.fr_name} too!
-    /         a.btn.btn-primary data-toggle='modal' data-target='#coupon_book_partner_subs_modal' Learn How
-    /         = render partial:'subscriptions/modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.partner'}
-  .row
-    .col-md-12
-      / SHARE BUTTONS 
-      .share_campaign.text-center.med-hide 
-        h2 Please share our digital Deal Book with your family and friends!
-        h3.text-muted Working together, we can make a difference.
-        = render partial:'layouts/share_buttons'
-
-.quotes
   .container
     .row
-      .col-md-9
-        h1.boldest Attention Nonprofits - It's not too late to join Baltimore Eats for Good!
-      .col-md-3
-        = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
-        h4.boldest Fundraising has never been easier!
+      .col-md-12
+        .share_campaign.text-center.med-hide 
+          h2 Please share our digital Deal Book with your family and friends!
+          h3.text-muted Working together, we can make a difference.
+          = render partial:'layouts/share_buttons'
 
-/ CAUSES/SPONSORS CIRCLES
-/= render partial: 'layouts/choose_role'
+  .quotes
+    .container
+      .row
+        .col-md-9
+          h1.boldest Attention Nonprofits - It's not too late to join Baltimore Eats for Good!
+        .col-md-3
+          = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
+          h4.boldest Fundraising has never been easier!

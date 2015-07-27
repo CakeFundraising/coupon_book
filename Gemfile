@@ -91,6 +91,7 @@ gem 'newrelic_rpm'
 group :development do
   gem 'quiet_assets'
   gem 'thin'
+  gem 'meta_request'
 end
 
 #Utils

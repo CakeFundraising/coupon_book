@@ -38,6 +38,8 @@ class CouponBook < ActiveRecord::Base
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
 
+  scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }
+
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
 
