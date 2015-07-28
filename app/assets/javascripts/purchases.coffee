@@ -4,7 +4,8 @@ class Purchase
   constructor: (form, resourceName, stripeKey, imagePath) ->
     @form = $(form)
     @name = resourceName
-    @stripeHandler = @stripeCheckout(stripeKey, imagePath)
+    @stripeKey = stripeKey
+    @imagePath = imagePath
 
     @emailInput = @form.find('input#purchase_email_input')
     @cardTokenInput = @form.find('input#purchase_card_token_input')
@@ -27,6 +28,9 @@ class Purchase
     )
 
   openStripe: (amount)->
+    if @stripeHandler is undefined
+      @stripeHandler = @stripeCheckout(@stripeKey, @imagePath)
+      
     @stripeHandler.open
       name: @name
       description: "Thank You!"

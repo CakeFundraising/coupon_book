@@ -1,11 +1,10 @@
 window.CakeCouponBook ?= {}
 
-CakeCouponBook.init = ->
+init = ->
   CakeCouponBook.datepicker()
   CakeCouponBook.clipboard()
   CakeCouponBook.expander()
   CakeCouponBook.browsers.fingerprint()
-  CakeCouponBook.addThis.init()
   CakeCouponBook.validations.init()
   CakeCouponBook.utils.init()
   CakeCouponBook.coupon_books.init()
@@ -15,8 +14,15 @@ CakeCouponBook.init = ->
   CakeCouponBook.direct_donation.init()
   return
 
-$(document).ready(CakeCouponBook.init)
-$(document).on('page:load', CakeCouponBook.init)
+turboInit = ->
+  CakeCouponBook.addThis.init()
+  return
+
+$(document).ready(init)
+$(document).on 'page:load', ->
+  init()
+  turboInit()
+  return
 
 $(document).on 'page:before-change', ->
   ZeroClipboard.destroy()

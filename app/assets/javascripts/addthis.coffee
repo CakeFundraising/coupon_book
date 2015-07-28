@@ -17,10 +17,9 @@ initialize = ->
   $.getScript "//s7.addthis.com/js/300/addthis_widget.js#async=1", ->
     window.addthis_config ?= {}
     window.addthis_config.pubid = 'ra-542a2ea07b4b6c5d'
-    window.addthis.toolbox ".addthis_custom_follow, .addthis_sharing_toolbox, .addthis_jumbo_share"
+    window.addthis.toolbox ".addthis_sharing_toolbox, .addthis_jumbo_share"
     window.addthis.init()
     return
-    
   return
 
 CakeCouponBook.addThis.share.coupon_book = (fr, url)->
