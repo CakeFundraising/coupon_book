@@ -3,12 +3,12 @@
     / TOP BANNER
     - if current_user.nil? and not mobile_device?
       .expand-nav-logo.hidden-xs
-        = link_to resource.url, target: :_blank do
+        = link_to anchor: 'learn-more-banner' do
           = image_tag resource.picture.avatar_path, class:'img-responsive'
     span.top_banner = banner_message
 .see-deals.text-center
   .container
-    = link_to 'Check Out Deals!', anchor: :coupons
+    = link_to 'Check Out The Deals!', anchor: :coupons
 
 
 .banner.hero
