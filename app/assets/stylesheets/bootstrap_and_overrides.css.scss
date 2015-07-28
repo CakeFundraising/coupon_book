@@ -4812,3 +4812,20 @@ span.banner-heading{
     margin-bottom: 25px;
   }
 }
+
+.see-deals{
+  height: 0;
+  margin-top: 8px;
+  margin-bottom: -8px;
+  a{
+    -webkit-border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0px 3px 8px $gray;
+    background-color: white;
+    padding: 10px;
+    font-size: 16px;
+    color: $gray;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
