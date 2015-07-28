@@ -167,7 +167,7 @@ toggleNav = ->
   nav = $('nav.navbar.navbar-default')
 
   if nav.find('.logged-out').length isnt 0
-    expandLogo = $('.expand-nav')
+    expandLogo = $('.expand-nav-logo')
 
     nav.hide()
     # expandLogo.click ->

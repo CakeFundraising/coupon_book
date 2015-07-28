@@ -11,8 +11,6 @@ html lang="en"
     = stylesheet_link_tag "application"
     = javascript_include_tag "application", 'data-turbolinks-track' => true
     = cloudinary_js_config
-    javascript:
-      CakeCouponBook.analytics.set("#{ENV['GA_ID']}");
 
   body.fixed
     = render partial: 'layouts/main_nav'
@@ -42,6 +40,8 @@ html lang="en"
 
     = render partial:'layouts/modals/how_it_works'
     = render partial:'layouts/modals/terms_of_purchase'
+    javascript:
+      CakeCouponBook.analytics.set("#{ENV['GA_ID']}");
   footer
     .container
       .row

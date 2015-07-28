@@ -2,10 +2,9 @@
   .container
     / TOP BANNER
     - if current_user.nil?
-      /.expand-nav.hidden-xs = image_tag 'cake_logo_white.png'
-      .expand-nav.hidden-xs 
-        = link_to efg_home_path, target: :_blank do
-          = image_tag 'befg_logo.png'
+      .expand-nav-logo.hidden-xs
+        = link_to resource.url, target: :_blank do
+          = image_tag resource.picture.avatar_path, class:'img-responsive'
     span.top_banner = banner_message
 
 .banner.hero
@@ -26,7 +25,7 @@
         / MISSION
         h1.name 
           span.mission 
-            | #{ @coupon_book.mission }
+            | #{ resource.mission }
             span.learn-more
               a href="#learn-more-banner" Learn More 
         / SHARE BUTTONS
