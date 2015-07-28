@@ -26,3 +26,10 @@ javascript:
     CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
   $(document).ready(current_init);
+
+- if Rails.env.production? and params[:purchased].blank?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.audience);
+- if Rails.env.production? and params[:purchased].present?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.conversion("#{@coupon_book.estimated_fee}"));

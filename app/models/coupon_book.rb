@@ -89,6 +89,12 @@ class CouponBook < ActiveRecord::Base
     (total_donations_and_sales/goal.amount)*100 unless goal.amount == 0.0
   end
 
+  #Fee
+  def estimated_fee
+    percentage = (self.fee_percentage/100)
+    (self.price*percentage)
+  end
+
   #Vouchers
   def process_categories_params(params)
     hash = {categories_attributes: {}}

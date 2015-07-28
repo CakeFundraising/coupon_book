@@ -52,6 +52,7 @@
 //= require ./purchases
 
 //= require ./addthis
+//= require ./facebook
 //= require ./pictures
 //= require ./datepicker
 //= require ./search
