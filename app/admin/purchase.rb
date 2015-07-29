@@ -21,4 +21,6 @@ ActiveAdmin.register Purchase do
       row :created_at
     end
   end
+
+  permit_params :first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email
 end
