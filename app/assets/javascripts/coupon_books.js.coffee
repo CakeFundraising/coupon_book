@@ -102,6 +102,7 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
 categoriesNavAffix = ->
   nav = $('.book-nav')
   aboutBanner = $('#learn-more-banner')
+  documentWidth = $(document).width()
   
   $(window).scroll ->
     navOffset = nav.offset().top
@@ -115,6 +116,10 @@ categoriesNavAffix = ->
 
   nav.affix offset:
     top: nav.offset().top
+
+  nav.on 'affixed.bs.affix', ->
+    nav.css('width', documentWidth)
+    return
 
   nav.find('a.book-nav-link').each ->
     $(this).click ->
