@@ -55,20 +55,16 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       
-        panel 'Collections' do
+        panel 'Sales' do
           table do
             tr do
               td do
-                strong Collection.count
-                span 'Total Collections'
+                strong Purchase.count
+                span 'Total Sales'
               end
               td do
-                strong Collection.has_coupons.count
-                span 'Collections with coupons'
-              end
-              td do
-                strong Collection.empty.count
-                span 'Empty Collections'
+                strong link_to Purchase.last.email, admin_purchase_path(Purchase.last)
+                span 'Last Sale'
               end
             end
           end
