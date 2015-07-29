@@ -996,7 +996,7 @@ en:
     Ends:              Ends
   banners:
     coupon_book:
-      header: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'>Friends, donate <span class='boldest'>%{price}</span> and get vouchers for these <span class='boldest'>%{count}</span> popular restaurants in Baltimore as our thanks to you. Do good and treat yourself too!</div>"
+      header: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'>Friends, donate <span class='boldest'>%{price}</span> and receive exclusive deals for these <span class='boldest'>%{count}</span> popular restaurants in Baltimore as our thanks. Do good and treat yourself too!</div>"
       coupons: "Our Deal Book includes <span class='boldest'>%{count}</span> deals valued at <span class='boldest'>%{no_discount}</span> for just <span class='boldest'>%{price}</span>!"
   activerecord: 
     models:
