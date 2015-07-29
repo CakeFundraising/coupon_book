@@ -21,9 +21,19 @@ class Purchase < ActiveRecord::Base
   end
 
   def create_vouchers!
-    purchasable.categories_coupons.each do |cc|
-      cc.create_voucher(self.id)
+    unless self.vouchers.any?
+      purchasable.categories_coupons.each do |cc|
+        cc.create_voucher(self.id)
+      end
     end
+  end
+
+  def vouchers_count
+    vouchers.count
+  end
+
+  def resend_emails
+    Resque.enqueue(ResqueSchedule::ResendEmails, self.id)
   end
 
   private

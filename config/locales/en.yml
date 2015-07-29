@@ -996,8 +996,8 @@ en:
     Ends:              Ends
   banners:
     coupon_book:
-      header: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'>And enjoy deals at <span class='boldest'>%{count}</span> great restaurants worth <span class='boldest'>%{no_discount}</span> for <span class='boldest'>%{price}</span> below!</div>"
-      coupons: "Our Deal Book includes <span class='boldest'>%{count}</span> deals valued at <span class='boldest'>%{no_discount}</span> for just <span class='boldest'>%{price}</span>!"
+      header: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'>Friends, please donate <span class='boldest'>%{price}</span> and receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore as our thanks. Do good and treat yourself too!</div>"
+      coupons: "Enjoy all <span class='boldest'>%{count}</span> deals and save <span class='boldest'>%{no_discount}!</span> Bon Appétit!"
   activerecord: 
     models:
       coupon:
