@@ -2495,7 +2495,7 @@ ul.share-coupon {
   .popular > li {
     margin: 5px;
     & > a{
-      font-size: 20px;
+      font-size: 14px;
     }
   }
 }
@@ -2509,6 +2509,11 @@ ul.share-coupon {
   }
   @media (max-width: $screen-xs-max) {
     margin-bottom: 0px;
+  }
+  .buy_button{
+    color: white;
+    box-shadow: 0px 1px 3px #555;
+    font-size: 34px !important;
   }
   .popular > li.active > a, 
   .popular > li.active > a:hover, 

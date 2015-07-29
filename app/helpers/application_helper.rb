@@ -28,8 +28,8 @@ module ApplicationHelper
     mail_to object.email, object.email
   end
 
-  def anchor_link(text, anchor, classes=nil)
-    content_tag(:a, text, href: "##{anchor}", class: "#{classes unless classes.nil?}")
+  def anchor_link(text, anchor, options={})
+    content_tag(:a, text, {href: "##{anchor}"}.merge(options))
   end
 
   # Set class in page

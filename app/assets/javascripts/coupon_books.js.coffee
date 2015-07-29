@@ -103,7 +103,12 @@ categoriesNavAffix = ->
   nav = $('.book-nav')
   aboutBanner = $('#learn-more-banner')
   documentWidth = $(document).width()
-  
+
+  navSection = nav.find('.nav-section')
+  buttonSection = nav.find('.buy_button_section')
+
+  buttonSection.hide()
+
   $(window).scroll ->
     navOffset = nav.offset().top
     bannerPosition = aboutBanner.position().top
@@ -119,6 +124,13 @@ categoriesNavAffix = ->
 
   nav.on 'affixed.bs.affix', ->
     nav.css('width', documentWidth)
+    navSection.removeClass('col-md-12').addClass('col-md-10')
+    buttonSection.show()
+    return
+
+  nav.on 'affix-top.bs.affix', ->
+    buttonSection.hide()
+    navSection.removeClass('col-md-10').addClass('col-md-12')
     return
 
   nav.find('a.book-nav-link').each ->
