@@ -28,6 +28,12 @@ class CategoriesController < InheritedResources::Base
     end
   end
 
+  #Discounts
+  def discounts
+    @category = resource.decorate
+    @discounts = @category.items.preloaded
+  end
+
   private
   
   def category_params

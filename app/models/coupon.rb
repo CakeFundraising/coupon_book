@@ -41,6 +41,8 @@ class Coupon < ActiveRecord::Base
 
   scope :universal, ->{ where(universal: true) }
 
+  scope :preloaded, ->{ eager_load([:location, :picture, :avatar_picture]) }
+
   alias_method :sp_picture, :avatar_picture
   alias_method :active?, :launched?
 
