@@ -18,7 +18,7 @@ namespace :cake do
     include Rails.application.routes.url_helpers
 
     CouponBook.all.each do |cb|
-      Resque.enqueue(ResqueSchedule::BookScreenshot, cb.id, coupon_book_url(cb, host: ENV['HOST_WITH_PROTOCOL']))
+      Resque.enqueue(ResqueSchedule::BookScreenshot, cb.id, coupon_book_url(cb, host: ENV['HOST']))
     end
   end
 end
