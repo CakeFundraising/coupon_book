@@ -50,13 +50,15 @@ remoteTabs = ->
     e.preventDefault()
 
     $this = $(this)
-    loadurl = $this.attr('href')
+    loadUrl = $this.attr('href')
     $targ = $($this.attr('data-target'))
 
     if $targ.is(':empty')
-      $.get loadurl, (data) ->
+      $.get loadUrl, (data) ->
         $targ.html data
         $targ.css('background', 'none')
+        $this.attr('href', $this.attr('data-target'))
+        $this.attr('data-toggle', 'tab')
         return
 
     $this.tab 'show'

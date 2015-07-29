@@ -30,8 +30,10 @@ class CategoriesController < InheritedResources::Base
 
   #Discounts
   def discounts
-    @category = resource.decorate
-    @discounts = @category.items.preloaded
+    @category = resource
+    @discounts = @category.items.preloaded.decorate
+
+    render layout: false
   end
 
   private

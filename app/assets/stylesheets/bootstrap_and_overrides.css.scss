@@ -2484,6 +2484,22 @@ ul.share-coupon {
   }
 }
 
+.book-nav.affix {
+  background: rgba(255,255,255,0.93);
+  -webkit-transition: all .6s ease-in-out;
+  box-shadow: 0px 3px 5px #ccc;
+  padding-top: 20px;
+  position: fixed;
+  z-index:100;
+  top: 0;
+  .popular > li {
+    margin: 5px;
+    & > a{
+      font-size: 20px;
+    }
+  }
+}
+
 .book-nav{
   margin-top: -10px;
   margin-bottom: 50px;
@@ -2493,6 +2509,24 @@ ul.share-coupon {
   }
   @media (max-width: $screen-xs-max) {
     margin-bottom: 0px;
+  }
+  .popular > li.active > a, 
+  .popular > li.active > a:hover, 
+  .popular > li.active > a:focus {
+    background: darken($brand-warning, 15%);
+  }
+  .popular > li.active:after {
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: darken($brand-warning, 15%);
+    border-width: 6px;
+    margin-left: -6px;
   }
   .popular{
     padding-bottom: 10px;
@@ -2540,25 +2574,7 @@ ul.share-coupon {
     background: $brand-success;
   }
 }
-.popular > li.active:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $brand-success;
-  border-width: 6px;
-  margin-left: -6px;
-}
 
-.popular > li.active > a, 
-.popular > li.active > a:hover, 
-.popular > li.active > a:focus {
-  background-color: $brand-success;
-}
 
 .main-home {
   margin-top: 30px;

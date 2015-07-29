@@ -6,15 +6,14 @@
 
 .row.book-nav
   .col-md-12.text-center
-    .nav.nav-pills.popular
+    ul.nav.nav-pills.popular
       = render partial:'categories/show/book_nav', collection: @categories, as: :category
-      li = link_to "About #{@coupon_book.fr_name}!", anchor:'learn-more-banner'
+      li = anchor_link "About #{@coupon_book.fr_name}!", 'learn-more-banner'
 
-.floating-right
-  = coupon_book_buy_button(@coupon_book, 'success-transparent')
+/ .floating-right
+/   = coupon_book_buy_button(@coupon_book, 'success-transparent')
 
 = render partial:'coupon_books/show/page/after_purchase'
 
-.row
-  .col-md-12
-    = render partial:'categories/show/coupon_book', collection: @categories, as: :category
+.row.tab-content
+  = render partial:'categories/show/book_tab', collection: @categories, as: :category

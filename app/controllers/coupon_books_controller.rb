@@ -21,9 +21,10 @@ class CouponBooksController < InheritedResources::Base
   def show
     @coupon_book = CouponBook.preloaded.find(params[:id]).decorate
     @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fr_name, price: @coupon_book.price, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
-
-    @category = @coupon_book.categories.first.decorate
-    @discounts = @category.items.preloaded.decorate
+    
+    @categories = @coupon_book.categories.decorate
+    @first_category = @categories.first
+    @discounts = @first_category.items.object.preloaded.decorate
   end
 
   #Template steps

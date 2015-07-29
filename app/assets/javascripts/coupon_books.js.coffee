@@ -94,8 +94,33 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   afterPurchaseModal()
   backToTop()
   CakeCouponBook.subscriptors.validation()
+  categoriesNavAffix()
   #CakeCouponBook.impressions.rendered(impression_id)
   #Cake.pusher.coupon_books.updateRaised(campaignId) if campaignId
+  return
+
+categoriesNavAffix = ->
+  nav = $('.book-nav')
+  aboutBanner = $('#learn-more-banner')
+  
+  $(window).scroll ->
+    navOffset = nav.offset().top
+    bannerPosition = aboutBanner.position().top
+    navHeight = nav.height()
+
+    if (navOffset + navHeight) > bannerPosition
+      nav.removeClass('affix').addClass('affix-top') 
+      $('html, body').scrollTop(bannerPosition + 60)
+    return
+
+  nav.affix offset:
+    top: nav.offset().top
+
+  nav.find('a.book-nav-link').each ->
+    $(this).click ->
+      $('html, body').animate { scrollTop: $('#coupons.green').offset().top }, 500
+      return
+    return
   return
 
 afterPurchaseModal = ->
