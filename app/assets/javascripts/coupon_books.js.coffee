@@ -135,7 +135,7 @@ categoriesNav = ->
   return
 
 afterPurchaseModal = ->
-  $('#after_purchase_modal').modal('show') if window.location.search.includes('purchased=1')
+  $('#after_purchase_modal').modal('show') if window.location.search.indexOf("purchased=1") > -1
   return
 
 showBuyButton = ->
