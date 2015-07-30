@@ -35,6 +35,9 @@ CakeCouponBook::Application.routes.draw do
   end
 
   resources :categories do
+    collection do
+      get :load_all_discounts
+    end
     member do
       get :discounts
     end

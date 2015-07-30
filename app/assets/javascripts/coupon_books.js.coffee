@@ -90,12 +90,38 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   toggleNav()
   mini_pledges()
   countdown(end_date)
-  showBuyButton()
   afterPurchaseModal()
   backToTop()
   CakeCouponBook.subscriptors.validation()
   categoriesNav()
   #CakeCouponBook.impressions.rendered(impression_id)
+  return
+
+CakeCouponBook.coupon_books.mobileShow = ->
+  toggleNav()
+  CakeCouponBook.subscriptors.validation()
+  showBuyButton()
+  seeMore()
+  return
+
+seeMore = ->
+  loadTarget = $('#remote-items')
+  button = loadTarget.find('#see-more-link')
+  spinner = loadTarget.find('#spinner')
+
+  button.click ->
+    spinner.removeClass('hidden')
+    $(this).hide()
+    return
+
+  button.on("ajax:success", (e, data, status, xhr) ->
+    loadTarget.html(data)
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    spinner.hide()
+    button.show()
+    alert "There was an error, please reload this page and try again."
+    return
   return
 
 categoriesNav = ->
@@ -143,7 +169,7 @@ showBuyButton = ->
 
   $(document).scroll ->
     y = $(this).scrollTop()
-    if y > 800
+    if y > 400
       button.fadeIn()
     else
       button.fadeOut()

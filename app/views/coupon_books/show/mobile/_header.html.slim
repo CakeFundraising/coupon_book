@@ -1,0 +1,9 @@
+.row
+  .container
+    .campaign-banner.top_banner_mobile
+      = t('banners.coupon_book.header.mobile.first', fr: @coupon_book.fr_name).html_safe
+    .top_banner_logo
+      = content_tag :a, href:'#learn-more-banner' do
+        = image_tag resource.picture.avatar_path, class:'img-responsive'
+    .campaign-banner.top_banner_mobile
+      = t('banners.coupon_book.header.mobile.last', price: @coupon_book.price, count: @coupon_book.coupons.count).html_safe

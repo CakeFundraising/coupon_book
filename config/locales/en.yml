@@ -996,7 +996,11 @@ en:
     Ends:              Ends
   banners:
     coupon_book:
-      header: "<div class='first'>Help Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'><span class='boldest'>Donate %{price} today</span> and receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore as our gift to you! Do good and treat yourself too!</div>"
+      header: 
+        desktop: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'><span class='boldest'>Donate %{price} today</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore! Do good and treat yourself too!</div>"
+        mobile:
+          first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
+          last: "<div class='last'><span class='boldest'>Donate %{price} today</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore! Do good and treat yourself too!</div>"
       coupons: "Enjoy all <span class='boldest'>%{count}</span> deals and save <span class='boldest'>%{no_discount}!</span>"
   activerecord: 
     models:

@@ -587,9 +587,9 @@ p.signup-social span:before, p.signup-social span:after {
 
   &.buy_button{
     font-size: 38px !important;
-    //text-transform: uppercase;
     padding: 5px 0px !important;
     font-weight: bold;
+    color: white;
 
     @media (max-width: $screen-sm-max) {
       font-size: 26px !important;;
@@ -1580,6 +1580,7 @@ table.performance-summary {
 #learn-more-banner{
   margin-top: -1px;
   padding-top: 18px;
+  clear: both;
 }
 
 .make-pledge {
@@ -4466,7 +4467,7 @@ h1.category-title{
     font-size: 45px;
   }
   @media (max-width: $screen-xs-max) {
-    font-size: 36px;
+    font-size: 32px;
   }
 }
 
@@ -4478,7 +4479,7 @@ h2.category-subtitle{
     font-size: 28px;
   }
   @media (max-width: $screen-xs-max) {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -4489,6 +4490,7 @@ span.banner-heading{
   }
 }
 
+.top_banner_mobile,
 .top_banner{
   margin: 0;
   .first{
@@ -4498,6 +4500,9 @@ span.banner-heading{
     margin-bottom: -5px;
     @media (max-width: $screen-sm-max) {
       font-size: 28px;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 25px;
     }
     .boldest{
       font-size: 42px;
@@ -4510,7 +4515,7 @@ span.banner-heading{
     }
   }
   .last{
-    font-size: 25px;
+    font-size: 27px;
     margin-bottom: 5px;
     @media (max-width: $screen-sm-max) {
       font-size: 20px;
@@ -4528,6 +4533,20 @@ span.banner-heading{
         font-size: 20px;
       }
     }
+  }
+}
+
+.top_banner_mobile{
+  .first, .last{
+    padding: 10px;
+    text-align: center;
+    margin: 0;
+  }
+}
+.top_banner_logo{
+  img{
+    width: 100%;
+    box-shadow: 0px 0px 5px darken($brand-primary, 30%);
   }
 }
 
