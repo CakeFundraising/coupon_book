@@ -1001,7 +1001,7 @@ en:
         mobile:
           first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
           last: "<div class='last'><span class='boldest'>Donate %{price} today</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore! Do good and treat yourself too!</div>"
-      coupons: "<span class='boldest'>Donate %{price}</span> and receive <span class='boldest'>%{count} awesome deal vouchers</span> worth <span class='boldest'>%{no_discount}!</span>"
+      coupons: "<span class='boldest'>Donate %{price}</span> and get <span class='boldest'>%{count} awesome deal vouchers</span> worth <span class='boldest'>%{no_discount}</span> straight into your inbox!"
   activerecord: 
     models:
       coupon:

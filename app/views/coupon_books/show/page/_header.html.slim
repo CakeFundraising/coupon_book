@@ -14,27 +14,28 @@
       .col-md-10.col-md-push-2.text-center
         = anchor_link 'See Restaurants!', :coupons
 
-.banner.hero
-  - if can? :edit, resource and not resource.past?
-    br
-    .container
-      span = link_to "Edit Campaign", edit_polymorphic_path(resource), class:'btn btn-transparent-dark'
+- if can? :edit, resource and not resource.past?
+  br
+  .container
+    span = link_to "Edit Campaign", edit_polymorphic_path(resource), class:'btn btn-transparent-dark'
 
-  / VIDEOS
-  = render partial:'videos/button', locals:{object: resource}
-  = render partial:'videos/modal', locals:{object: resource} if resource.video.present?
-  .hero-screen
+/ VIDEOS
+= render partial:'videos/button', locals:{object: resource}
+= render partial:'videos/modal', locals:{object: resource} if resource.video.present?
 
 .container
-  div class="content row pull-up pull-up"
+  .content.row
     .col-md-8.col-sm-6
       .campaign-intro
-        / MISSION
-        h1.name 
-          span.mission 
-            | #{ resource.mission }
-            span.learn-more
-              a href="#learn-more-banner" Learn More 
+        / / MISSION
+        / h1.name 
+        /   span.mission 
+        /     | #{ resource.mission }
+        /     span.learn-more
+        /       a href="#learn-more-banner" Learn More 
+        .row
+          .col-md-12
+            = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
         / SHARE BUTTONS
         .social.pull-left.hidden-xs
           = render partial:'layouts/share_buttons'
