@@ -1,5 +1,13 @@
-.floating-right 
-  = coupon_book_buy_button(@coupon_book, 'success-transparent')
+.row
+  .col-xs-10.col-xs-push-1
+    br
+    br
+    = coupon_book_buy_button(@coupon_book, 'success')
+    br
+    br
+
+.floating-right
+  = content_tag(:a, @coupon_book.price, class: "btn btn-success-transparent btn-xl buy_button", data: {price: @coupon_book.price_cents})
 
 #coupons.col-xs-12
   .row
