@@ -1,14 +1,18 @@
-.campaign-banner.text-center
+.campaign-banner
   .container
     / TOP BANNER
-    - if current_user.nil? and not mobile_device?
-      .expand-nav-logo.hidden-xs
-        = content_tag :a, href:'#learn-more-banner' do
-          = image_tag resource.picture.avatar_path, class:'img-responsive'
-    span.top_banner = banner_message
-.see-deals.text-center
+    .row
+      .col-md-2
+        .expand-nav-logo.hidden-xs
+          = content_tag :a, href:'#learn-more-banner' do
+            = image_tag resource.picture.avatar_path, class:'img-responsive'
+      .col-md-10.text-center
+        span.top_banner = banner_message
+.see-deals
   .container
-    = anchor_link 'See Restaurants!', :coupons
+    .row
+      .col-md-10.col-md-push-2.text-center
+        = anchor_link 'See Restaurants!', :coupons
 
 .banner.hero
   - if can? :edit, resource and not resource.past?

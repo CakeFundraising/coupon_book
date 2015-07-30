@@ -1456,7 +1456,7 @@ table.performance-summary {
   border-radius: 10px;
   box-shadow: 0px 0px 15px darken($brand-primary, 30%);
   margin-bottom: 10px;
-  margin-top: 10px;
+  margin-top: 13px;
   img{
     width: 195px;
     border-radius: 10px;
@@ -2485,7 +2485,7 @@ ul.share-coupon {
 }
 
 .book-nav.affix {
-  background: rgba(255,255,255,0.93);
+  background: rgba(255,255,255,0.9);
   -webkit-transition: all .6s ease-in-out;
   box-shadow: 0px 3px 5px #ccc;
   padding-top: 20px;
@@ -2513,7 +2513,7 @@ ul.share-coupon {
   .buy_button{
     color: white;
     box-shadow: 0px 1px 3px #555;
-    font-size: 34px !important;
+    font-size: 32px !important;
     margin-bottom: 12px;
   }
   .popular > li.active > a, 
@@ -4493,14 +4493,25 @@ span.banner-heading{
   margin: 0;
   .first{
     margin: 0;
-    font-size: 44px;
+    font-size: 40px;
     margin-top: 3px;
+    margin-bottom: -5px;
     @media (max-width: $screen-sm-max) {
       font-size: 28px;
     }
+    .boldest{
+      font-size: 42px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 28px;
+      }
+      @media (max-width: $screen-xs-max) {
+        font-size: 26px;
+      }
+    }
   }
   .last{
-    font-size: 27px;
+    font-size: 25px;
+    margin-bottom: 5px;
     @media (max-width: $screen-sm-max) {
       font-size: 20px;
       margin-top: -4px;
@@ -4509,7 +4520,7 @@ span.banner-heading{
       font-size: 18px;
     }
     span.boldest{
-      font-size: 30px;
+      font-size: 28px;
       @media (max-width: $screen-sm-max) {
         font-size: 22px;
       }

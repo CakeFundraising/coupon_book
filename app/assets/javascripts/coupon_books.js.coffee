@@ -94,49 +94,43 @@ CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
   afterPurchaseModal()
   backToTop()
   CakeCouponBook.subscriptors.validation()
-  categoriesNavAffix()
+  categoriesNav()
   #CakeCouponBook.impressions.rendered(impression_id)
-  #Cake.pusher.coupon_books.updateRaised(campaignId) if campaignId
   return
 
-categoriesNavAffix = ->
+categoriesNav = ->
   nav = $('.book-nav')
   aboutBanner = $('#learn-more-banner')
   documentWidth = $(document).width()
 
   navSection = nav.find('.nav-section')
   buttonSection = nav.find('.buy_button_section')
+  navAboutLink = nav.find('.nav-about-link')
 
   buttonSection.hide()
-
-  $(window).scroll ->
-    navOffset = nav.offset().top
-    bannerPosition = aboutBanner.position().top
-    navHeight = nav.height()
-
-    if (navOffset + navHeight) > bannerPosition
-      nav.removeClass('affix').addClass('affix-top') 
-      $('html, body').scrollTop(bannerPosition + 60)
-    return
 
   nav.affix offset:
     top: nav.offset().top
 
   nav.on 'affixed.bs.affix', ->
     nav.css('width', documentWidth)
-    navSection.removeClass('col-md-12').addClass('col-md-10')
+    navSection.removeClass('col-md-12').addClass('col-md-11')
     buttonSection.show()
     return
 
   nav.on 'affix-top.bs.affix', ->
     buttonSection.hide()
-    navSection.removeClass('col-md-10').addClass('col-md-12')
+    navSection.removeClass('col-md-11').addClass('col-md-12')
     return
 
   nav.find('a.book-nav-link').each ->
     $(this).click ->
       $('html, body').animate { scrollTop: $('#coupons.green').offset().top }, 500
       return
+    return
+
+  navAboutLink.click ->
+    $('html, body').animate { scrollTop: aboutBanner.offset().top - $('.book-nav').height() }, 500
     return
   return
 
