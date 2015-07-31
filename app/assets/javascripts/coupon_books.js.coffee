@@ -87,7 +87,7 @@ CakeCouponBook.coupon_books.init = ->
 
 ##### Coupon Book Show ########
 CakeCouponBook.coupon_books.show = (end_date, impression_id, campaignId)->
-  toggleNav()
+  #toggleNav()
   mini_pledges()
   countdown(end_date)
   afterPurchaseModal()

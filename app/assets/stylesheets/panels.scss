@@ -1,0 +1,74 @@
+.panel-default {
+  background-color:#fff !important;
+  margin-top: 20px;
+  margin-bottom: 5px;
+
+  .container-fluid{
+    margin-left:0px;
+    margin-right:0px;
+    padding-left:0px;
+    padding-right:0px;
+  }
+
+  .data-table{
+    margin:0px !important;
+  }
+
+  .panel-title-right{
+    float:right;
+    margin:0px;
+    margin-right: 0px;
+    .stat {
+      display: inline-block;
+      margin: 10px 10px 5px 10px;
+      text-align: center;
+      border-left: 1px solid #cccccc;
+      padding-left: 10px;
+      &:first-child{
+        border-left: none;
+      }
+      a{
+        margin: 2px;
+      }
+      p{
+        margin:0px;
+        color:#555555;
+      }
+    }
+  }
+
+  .panel-heading{
+    padding: 0px 5px;
+    background-color:#fff !important;
+    color:#555555 !important;
+    display:inline-block;
+    width: 100%;
+  }
+
+  h4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  .search-panel{
+    ul{
+      li{
+        padding: 0px !important;
+      }
+    }
+  }
+
+  .search-panel-title{
+    margin: 10px 0px 5px 5px;
+    float: left;
+    color: #555555;
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+  }
+  .panel-title{
+    margin: 17px 0px 0px 15px;
+    float: left;
+    color: #555555;
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
+}

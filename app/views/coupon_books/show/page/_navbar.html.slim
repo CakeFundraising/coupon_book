@@ -1,0 +1,20 @@
+/- cache :default_navbar do
+nav.navbar.navbar-default#book_page_navbar role="navigation" 
+  div.default class=(('logged-out' if current_user.nil?))
+    .container
+      .navbar-header
+        .logo
+          = link_to efg_home_path, target: :_blank, class: 'navbar-brand' do
+            = image_tag "befg_logo.png"
+          button.navbar-toggle data-target="#navbar-collapse" data-toggle="collapse" type="button" 
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+      .collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-left
+          li = how_efg_works_link
+        ul.nav.navbar-nav
+          li = join_mail_list
+          li = book_page_top_share
+          /li = donate_top_link(@coupon_book)

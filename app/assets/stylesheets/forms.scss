@@ -1,0 +1,190 @@
+form{
+  .banner{
+    overflow: hidden;
+    width: 342px;
+    height: 150px;
+  }
+}
+input[type="checkbox"]{
+  float:none !important;
+}
+.input-group{
+  .col-xs-3{
+    padding-left: 0;
+  }
+}
+.inputs {
+  text-align: left;
+  margin-bottom: 15px;
+  & > legend{
+    color: $text-color-light;
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    border: none;
+    margin-bottom: 20px;
+    width:100%;
+    &:before {
+      border-top: 1px solid #dfdfdf;
+      content:"";
+      position: absolute;
+      top: 9px;
+      right: 15%;
+      bottom: 0;
+      width: 70%;
+      height: 10px;
+    }
+    span {
+      position: relative;
+      background-color: $main-background;
+      padding: 15px;
+    } 
+  }
+}
+// Edit Profile, Email Settings Dividers ---------------------------------------------------------------
+.section-wrapper {
+  border-top: 1px dotted $gray-light;
+  padding-top: 25px;
+  margin: 35px 0;
+  @media (max-width: $screen-md-min) {
+    padding: 25px 50px 20px;
+  }
+}
+
+.help-block {
+  font-size: 12px;
+}
+.search-form {
+  input{
+    height:auto;
+  }
+}
+address {
+  color: #fff;
+}
+.pagination{
+  float: right;
+  padding-right: 20px;
+}
+
+.search-sidebar{
+  background: white;
+  padding-top: 15px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.campaign-wizard-wrap, .wizard-wrap {
+  margin-bottom: 50px;
+  margin:auto;
+  h3, h4{
+    color: black;
+  }
+}
+.campaign-steps {
+  padding: 20px 50px;
+  @media (min-width: $screen-lg-min) {
+    padding: 20px 100px;
+  }
+  .nav > li > a {
+    padding: 15px 20px;
+  }
+}
+#coupon_book_launch_date,
+#campaign_launch_date {
+  width: 49%;
+  float: left;
+  margin-right: 5px;
+}
+#coupon_book_end_date,
+#campaign_end_date {
+  width: 49%;
+  margin-right: 5px;
+}
+#coupon_book_picture_attributes_banner_input, 
+#campaign_picture_attributes_banner_input, 
+#pledge_picture_attributes_banner_input {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5px;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+.toggle-container {
+  margin: 5px;
+  padding: 15px;
+}
+.solicit-choose {
+  margin: 40px 0;
+  span {
+    margin: 0 10px;
+  }
+}
+#coupon_picture_attributes_qrcode_input{
+  width: 244px;
+  margin: 0 auto;
+  height: 250px;
+}
+
+.form-group{
+  margin-bottom: 5px;
+  label, .control-label{
+    margin-bottom: 5px;
+    text-transform: capitalize;
+    display: inherit;
+    margin-top: 15px;
+  }
+}
+.coupon-uploads {
+  margin-top: 20px;
+}
+.coupon-images {
+  margin: 5px auto;
+  .avatar, .qrcode {
+    margin-bottom: 5px;
+  }
+}
+.share-embed {
+  h3 {
+    color: black;
+  }
+  h4 {
+    margin-top: 25px;
+    color: black;
+  }
+}
+
+#filters{
+  ul{
+    font-size: 13px;
+    
+    padding-left: 0;
+    padding: 0px;
+    margin-bottom: 0px;
+    li{
+      list-style: none;
+      padding: 4px;
+     
+    .link{
+      width: 75%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    }
+    }
+  }
+}
+.controls {
+  padding-bottom: 5px;
+  margin-bottom: 0px; /*20px*/
+  border-bottom: 1px solid $gray-lighter;
+}
+.coupon-input {
+  display: none;
+}

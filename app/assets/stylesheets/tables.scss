@@ -1,0 +1,98 @@
+// Tables -----------------------------------------------------------------------------
+.data-table {
+  /*margin: 15px 0;*/
+  font-size:12px;
+  thead {
+    background-color: $brand-primary;
+    tr {
+      border-bottom-width: 0px !important;
+    }
+  }
+  .empty-tr{
+    border: 6px solid #f5f4ec !important;
+  }
+}
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td{
+  border-bottom-width: 0px !important;
+  font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+  font-size: 9px;
+}
+
+#no-more-tables{
+  td{
+    vertical-align: middle;
+    @media (max-width: 800px) {
+      padding-left: 40% !important;
+      background: #e7e7e7; /* Old browsers */
+      background: -moz-linear-gradient(left, #e7e7e7 38%, #ffffff 38%, #ffffff 38%); /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, right top, color-stop(38%,#e7e7e7), color-stop(38%,#ffffff), color-stop(38%,#ffffff)); /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* Opera 11.10+ */
+      background: -ms-linear-gradient(left, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* IE10+ */
+      background: linear-gradient(to right, #e7e7e7 38%,#ffffff 38%,#ffffff 38%); /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e7e7e7', endColorstr='#ffffff',GradientType=1 ); /* IE6-9 */
+    }
+    &:before{
+      font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+      top: 8px !important;
+    }
+  }
+  th{
+    text-transform: capitalize;
+    color:white;
+  }
+}
+.table-bordered > thead > tr > th{
+  border: 0px;
+}
+
+@media only screen and (max-width: 800px) {
+    /* Force table to not be like tables anymore */
+  #no-more-tables table, 
+  #no-more-tables thead, 
+  #no-more-tables tbody, 
+  #no-more-tables th, 
+  #no-more-tables td, 
+  #no-more-tables tr { 
+    display: block; 
+    border:0px;
+  }
+ 
+  /* Hide table headers (but not display: none;, for accessibility) */
+  #no-more-tables thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+ 
+  #no-more-tables tr { border: 1px solid #ccc; }
+ 
+  #no-more-tables td { 
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee; 
+    position: relative;
+    padding-left: 50%; 
+    white-space: normal;
+    text-align:left;
+  }
+ 
+  #no-more-tables td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align:left;
+    font-weight: bold;
+  }
+
+  .min-width {
+    width: 100%;
+  }
+ 
+  #no-more-tables td:before { content: attr(data-title); }
+}

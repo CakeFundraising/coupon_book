@@ -110,3 +110,38 @@ ul#categories{
 
   @extend .collection-coupons;
 }
+
+// Organize Coupon Book
+li.category{
+  list-style: none;
+  ul.sortableCoupons {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: initial;
+    min-height: 75px;
+  }
+  ul.sortableCategories {
+    list-style-type: none;
+  }
+  .coupon-title, .coupon-sp {
+    font-size: 1em;
+    font-family: "museo_sans700"
+  }
+}
+.category-actions {
+  width: 189px;
+  text-align: right;
+}
+
+.table-category-title {
+  color: #fff;
+  font-size: 2.5em;
+}
+.in-book {
+  opacity: 0.2;
+  transition: opacity 0.500s linear;
+}
+
+li.ui-state-default {
+  cursor: move;
+}

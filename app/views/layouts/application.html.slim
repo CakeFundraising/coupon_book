@@ -13,7 +13,10 @@ html lang="en"
     = cloudinary_js_config
 
   body.fixed
-    = render partial: 'layouts/main_nav'
+    - if content_for? :navbar
+      = yield :navbar
+    - else
+      = render partial: 'layouts/main_nav'
     .container = bootstrap_flash
     - if content_for? :header
       header

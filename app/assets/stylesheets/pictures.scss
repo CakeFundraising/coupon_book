@@ -1,0 +1,196 @@
+// Pictures ------------------------------------------------------------------
+#fundraiser_picture_attributes_banner_input, 
+#sponsor_picture_attributes_banner_input {
+  .banner {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    .img-thumbnail {
+      width: 100%;
+    }
+  }
+}
+#fundraiser_picture_attributes_avatar_input, 
+#sponsor_picture_attributes_avatar_input {
+  .avatar {
+    width: 100%;
+    height: auto;
+  }
+}
+#coupon_avatar_picture_attributes_uri_input{
+  .uri img{
+    width: 100%;
+  }
+}
+.avatar {
+  img {
+    display: block;
+    width: 100%;
+    height:auto;
+    margin-right: 0;
+    margin: auto;
+  }
+}
+.avatar-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 70%;
+  overflow-y: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+  }
+}
+.avatar-content{
+  margin-top:10px;
+  .caption{
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 10px;
+    clear: both;
+  }
+}
+
+.banner {
+  img {
+    display: block;
+    margin-right: 0;
+    margin: auto;
+  }
+}
+.caption{
+  h4{
+    margin:0px;
+    padding-right: 20px;
+    a{
+      text-decoration: none;
+    }
+  }
+  hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .cause{
+    color: $gray-medium-light;
+  }
+}
+
+.fundraiser_grid{
+  .caption h4 a{
+    color: $link-color;
+  }
+  .buttons{
+    padding: 10px;
+  }
+}
+.default-img{
+  display:block !important;
+  width:100px !important;
+  height:100px !important;
+}
+// Images Cropping -------------------------------------------------------
+#crop_modal{
+  .modal-body{
+    padding: 0;
+    margin: 0;
+    #no_upload{
+      padding: 60px 0px;
+    }
+    .crop-success{
+      padding: 20px;
+    }
+  }
+  .modal-footer{
+    margin-top: 0;
+  }
+  input[type="radio"]{
+    display: none;
+    visibility: hidden;
+  }
+}
+
+#overlay_loading{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url('loading.gif') no-repeat center, rgba(255,255,255,0.8);
+  top: 0;
+  .upload-progress{
+    position: relative;
+    top: 43%;
+    font-size: 1.4em;
+    font-weight: bolder;
+  }
+}
+
+.uploader {
+  cursor: pointer;
+  display: block;
+  overflow: hidden;
+  position: relative;
+
+  .img-thumbnail{
+    padding: 12px;
+    background-color: #ffffff;
+  }
+
+  .img-loaded {
+    z-index: 2;
+    position: relative;
+  }
+
+  div.camera {
+    content: url("camera-icon.png");
+    position: absolute;
+    top: calc(50% - 80px);
+    left: calc(50% - 65px);
+  }​
+
+  .upload-button {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 120px);
+    z-index: 999;
+    background: rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 15px #ccc;
+    border: 1px solid;
+    color: white;
+  }
+
+  input.cloudinary-fileupload {
+    cursor: pointer;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+
+  input {
+    filter: alpha(opacity=1);
+    -moz-opacity: 0.01;
+    opacity: 0.01;
+  }
+}
+
+// Videos ------------------------------------------------------------------
+#home_video_fr,
+#home_video_sp,
+.video_modal{
+  .modal-body{
+    padding: 0;
+    margin: 0;
+    margin-bottom: -6px;
+  }
+}
+.video_button{
+  position: relative;
+  top: 20%;
+  img{
+    cursor: pointer;
+  }
+}
+

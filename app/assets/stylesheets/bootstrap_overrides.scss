@@ -1,0 +1,232 @@
+.media{
+  margin-bottom: 15px;
+}
+.media-body {
+  position: relative;
+  padding-left: 15px;
+  .dates {
+    bottom: 0;
+    left: 0;
+  }
+}
+.media-object {
+  width: 400px;
+}
+.media-data{
+  margin-top: 20px;
+}
+
+.alert, .alert-transparent{
+  margin:20px;
+}
+.banner .alert, .alert-transparent{
+  margin:0px;
+  span{
+    max-width: 1100px;
+    text-align: center;
+    margin: auto;
+  }
+
+  @media (min-width: 1200px){
+    .rwd-break { display: none; }
+  }
+}
+
+.alert-transparent{
+  color: white;
+  background: rgba(0,0,0,0.6);
+  font-size: 1.5em;
+  border-radius: 0;
+}
+
+.progress {
+  height: 12px;
+  margin: 10px 5px 5px 5px;
+  border-radius: 10px;
+}
+
+.modal {
+  white-space: normal;
+  .section-wrapper {
+    border-top: 1px dotted #999999;
+    padding: 0px;
+    margin: 15px 0;
+  }
+}
+.modal-body{
+  padding: 35px;
+  margin: 0px 15px;
+  @media (max-width: $screen-md-min) {
+    margin: 15px;
+    padding: 0px;
+  }
+  @media (max-width: $screen-xs-max) {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+.modal-title{
+  color: black;
+  h3{
+    color: black;
+  }
+}
+.modal-footer{
+  margin-top: 0px;
+}
+
+.img-thumbnail{
+  padding: 10px;
+  background-color: #ffffff;
+}
+
+
+/*  Custom Pill Checkboxes */
+.checkbox{
+  display:inline;
+  line-height: 40px;
+  padding-left: 0px;
+}
+.checkbox input[type="checkbox"]{
+  margin-left: 0px;
+} 
+
+.checkbox .checkbox-pill {
+  position: absolute;
+  left: -9999px;
+  z-index:100;
+}
+
+.checkbox new-label {
+  position: relative;
+  padding-left: 10px;
+  cursor: pointer; 
+}
+
+.checkbox .new-label {
+  position: relative;
+  white-space: nowrap;
+  left:0; top: 0px;
+  width: auto; height: auto;
+  background: #d8d8d6;
+  border-radius: 25px;
+  padding:10px 20px 10px 30px;
+  color:#fff;
+  font-size: 14px;
+  transition: all .2s;
+}
+
+.checkbox .new-label:after {
+  content: '✓';
+  position: absolute;
+  top: 0px; left: 10px;
+  font-size: 14px;
+  color: #fff;
+  transition: all .2s;
+}
+
+.checkbox .checked{
+  background:#b5ca41  !important;
+}
+
+.onoffswitch {
+    position: relative; 
+    display: -webkit-inline-box;
+    -webkit-user-select:none; 
+    -moz-user-select:none; 
+    -ms-user-select: none;
+    margin-top: 0px;
+    label {
+      position: relative;
+    }
+    #switch-text{
+      padding: 7px;
+      position: relative;
+      width: 200px;
+      top: -5px;
+    }
+}
+
+.onoffswitch-checkbox {
+    display: none;
+}
+
+.onoffswitch-label {
+    display: block !important; 
+    overflow: hidden; 
+    cursor: pointer;
+    border-radius: 20px;
+    width: 60px;
+    
+}
+
+.onoffswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    -moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+    -o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
+    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
+    -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
+.onoffswitch-inner:before {
+    content: "✓";
+    padding-left: 10px;
+    background-color: #B5CA41; color: #FFFFFF;
+}
+
+.onoffswitch-inner:after {
+    content: "X";
+    padding-right: 10px;
+    background-color: #D8D8D6; color: #FFFFFF;
+    text-align: right;
+}
+
+.onoffswitch-switch {
+    display: block; width: 15px; height: 15px; margin: 7.5px;
+    background: #FFFFFF;
+    border: 2px solid #FFFFFF; border-radius: 20px;
+    position: absolute; top: 0; bottom: 0; right: 30px;
+    -moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+    -o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+    right: 0px; 
+}
+
+
+.label.overlapped{
+  position: absolute;
+  z-index: 9;
+  top: 0;
+}
+
+.label-purple{
+  background-color: $brand-purple;
+  &.overlapped{
+    position: absolute;
+    left: 5px;
+    &.big{
+      top: -20%;
+    }
+    &.md{
+      top: -25%;
+    }
+    &.sm{
+      top: -16px;
+      left: -6px;
+    }
+  }
+}
+
+.tooltip{
+  width: 100%;
+}

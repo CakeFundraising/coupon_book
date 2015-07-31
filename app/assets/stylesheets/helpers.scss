@@ -1,0 +1,104 @@
+//Helpers ----------------------------------------------------------------------------
+.ten-b {
+  margin-bottom: 10px;
+}
+.ten-t {
+  margin-top: 10px;
+}
+.twenty-t {
+  margin-top: 20px;
+}
+.error{
+  color: #a94442;
+  display: block;
+}
+.clear{
+  clear: both;
+}
+
+.page-cta {
+  margin: 20px;
+}
+
+.text-left{
+  text-align: left;
+}
+
+// .float-left {
+//   float: left;
+// }
+
+// .float-right {
+//   float: right;
+// }
+
+.clickable {
+  cursor: pointer;
+}
+.bolder{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+}
+.boldest{
+  font-family: "museo_sans700", Helvetica, Arial, sans-serif;
+}
+.init-caps{
+  text-transform: capitalize;
+}
+.border-right {
+  border-right: 1px solid #e7e7e7;
+}
+.no-border{
+  border:0px !important;
+}
+.no-padding{
+  padding: 0;
+}
+.pull-left {
+  margin-right:0px !important;
+}
+.center {
+  text-align: center;
+}
+.pad-top {
+  margin-top: 40px;
+}
+.pad-right {
+  margin-right: 5px;
+}
+.simple-margin {
+  margin: 2px;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.min-width{
+  width:1%;
+}
+.text-muted{
+  margin-bottom: 5px;
+}
+.inline {
+  display:inline-block !important;
+}
+.icon-arrow-right {
+  float: right;
+  margin-top: 2px;
+  margin-right: -6px;
+}
+
+.padding-left-out{
+  @media (min-width: $screen-md-min) {
+    padding-left: 0;
+  }
+}
+.padding-right-out{
+  @media (min-width: $screen-md-min) {
+    padding-right: 0;
+  }
+}
+
+.no-height{
+  height: 0;
+}

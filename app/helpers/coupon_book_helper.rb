@@ -37,4 +37,25 @@ module CouponBookHelper
     end
   end
 
+  def how_efg_works_link(text="How Eats for Good works!")
+    content_tag(:a, data:{toggle: 'modal', target: '#how_it_works_modal'}) do
+      content_tag(:span, nil, class:'glyphicon glyphicon-play-circle')+
+      content_tag(:span, text)
+    end
+  end
+
+  def join_mail_list
+    content_tag(:a, 'Join our email list!', data:{toggle: 'modal', target: '#how_it_works_modal'})
+  end
+
+  def book_page_top_share
+    content_tag(:div, nil, class:'addthis_native_toolbox')
+  end
+
+  def donate_top_link(coupon_book)
+    if coupon_book.launched?
+      content_tag(:a, "Donate", class: "btn-signup buy_button btn btn-success", data: {price: coupon_book.price_cents})
+    end
+  end
+
 end
