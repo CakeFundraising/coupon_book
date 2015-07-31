@@ -1,35 +1,7 @@
-@import 'fonts';
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import 'variables';
-@import "bootstrap-sprockets";
-@import 'bootstrap';
-@import 'mixins';
-@import 'mixins-buttons';
-
-@import 'layout';
-@import 'typography';
-@import 'bootstrap_overrides';
-@import 'footer';
-@import 'helpers';
-@import 'navbar';
-@import 'responsive';
-@import 'buttons';
-@import 'panels';
-@import 'tables';
-@import 'tabs';
-@import 'forms';
-@import 'pictures';
-@import 'modals';
-
-@import 'shared';
+@import 'shared/shared';
+@import 'dashboards/dashboards';
+@import 'models/all';
 //@import 'home';
-@import 'coupon_books';
-@import 'coupons';
-@import 'registration';
-@import 'profiles';
-@import 'vouchers';
-@import 'organize_discounts';
 
 //Grid Layout ----------------------------------------------------------------------------
 html {
@@ -38,9 +10,6 @@ html {
   padding:0;
   min-height: 100%;
   min-width: 100%;
-  &.html-pdf{
-    background: white;
-  }
 }
 body {
   margin:0;
@@ -54,11 +23,3 @@ body {
 iframe{
   border: none;
 }
-
-// Fundraiser & Sponsor Dashboard Styles --------------------------------------------------------
-// (note: all fr-xxx classes are also used for sponsor dash styles, 
-//  fr was just completed first,)
-
-$font-size: 16px;
-$line-height: 1.4;
-$lines-to-show: 2;

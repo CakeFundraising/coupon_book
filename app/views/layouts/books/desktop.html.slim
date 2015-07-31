@@ -8,16 +8,17 @@ html lang="en"
     = cake_meta_tags
     = csrf_meta_tags
     = javascript_include_tag *CakeCouponBook::ASYNC_VENDOR_JS, async: true
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application", 'data-turbolinks-track' => true
+    /= javascript_include_tag "application", 'data-turbolinks-track' => true
     = cloudinary_js_config
 
   body.fixed
+    = stylesheet_link_tag "book_desktop"
+
     - if content_for? :navbar
       = yield :navbar
     - else
       = render partial: 'layouts/main_nav'
-    .container = bootstrap_flash
+
     - if content_for? :header
       header
         = yield :header
