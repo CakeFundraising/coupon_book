@@ -27,7 +27,6 @@ class CouponBooksController < InheritedResources::Base
       
       render(:mobile_show, layout: 'layouts/books/mobile')
     else
-      #@header_banner = I18n.t('banners.coupon_book.header.desktop', fr: @coupon_book.fr_name, price: @coupon_book.price, count: @coupon_book.coupons.count).html_safe
       @categories = @coupon_book.categories.decorate
       @first_category = @categories.first
       @discounts = @first_category.items.object.preloaded.decorate

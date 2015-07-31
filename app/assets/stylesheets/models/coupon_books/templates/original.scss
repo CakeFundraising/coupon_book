@@ -1,0 +1,81 @@
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+$screen-sm-max: 768px;
+$screen-xs-max: 480px;
+$gray: lighten(#000, 33.5%) !default;
+
+// Start --------------------------
+.hero {
+  height:614px;
+  margin-bottom: 0;
+  border:0px;
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+  .alert-dismissable {
+    font-size: 2.2em;
+    background: rgba(8, 193, 220, 0.75);
+  }
+  .green-bkg{
+    background: rgba(182, 203, 64, 0.75);
+  }
+  .close{
+    opacity: 0.7;
+  }
+}
+
+.hero-screen {
+  background-image:image-url('hero-screen.png');
+  background-repeat: repeat-x;
+  height:625px;
+}
+
+#home_video_fr,
+#home_video_sp,
+.video_modal{
+  .modal-body{
+    padding: 0;
+    margin: 0;
+    margin-bottom: -6px;
+  }
+}
+
+.video_button{
+  position: relative;
+  top: 20%;
+  img{
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+.pull-up {
+  margin-top: -319px;
+  @media (max-width: $screen-sm-max) {
+    margin-top: -380px;
+    &.pull-up-hero{
+     margin-top: -375px; 
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-top: -450px;
+  }
+}
+
+#how-it-works-link{
+  margin: 12px 0;
+  a{
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    @media (max-width: $screen-xs-max) {
+      color: $gray;
+    }
+  }
+}

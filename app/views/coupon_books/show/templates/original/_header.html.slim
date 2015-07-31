@@ -1,0 +1,53 @@
+.campaign-banner
+  .container
+    / TOP BANNER
+    .row
+      .col-md-2
+        .expand-nav-logo.hidden-xs
+          = content_tag :a, href:'#learn-more-banner' do
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+      .col-md-10.text-center
+        span.top_banner 
+          span = t('banners.coupon_book.header.first', fr: @coupon_book.fr_name).html_safe
+          span = t('banners.coupon_book.header.last', price: @coupon_book.price, count: @coupon_book.coupons.count).html_safe
+.see-deals
+  .container
+    .row
+      .col-md-10.col-md-push-2.text-center
+        = anchor_link 'See Restaurants!', :coupons
+
+.banner.hero
+  - if can? :edit, @coupon_book and not @coupon_book.past?
+    br
+    .container
+      span = link_to "Edit Campaign", edit_polymorphic_path(@coupon_book), class:'btn btn-transparent-dark'
+
+  / VIDEOS
+  = render partial:'videos/button', locals:{object: @coupon_book}
+  = render partial:'videos/modal', locals:{object: @coupon_book} if @coupon_book.video.present?
+  .hero-screen
+
+.container
+  div class="content row pull-up pull-up"
+    .col-md-8.col-sm-6
+      .campaign-intro
+        / MISSION
+        h1.name 
+          span.mission 
+            | #{ @coupon_book.mission }
+            span.learn-more
+              a href="#learn-more-banner" Learn More 
+        / SHARE BUTTONS
+        .social.pull-left.hidden-xs
+          = render partial:'layouts/share_buttons'
+
+    / SIDEBAR
+    .col-md-4.col-sm-6.sidebar
+      = render partial:'coupon_books/show/templates/original/sidebar', locals: {resource: @coupon_book}
+      
+      .row
+        .col-md-12
+          #how-it-works-link
+            a data-toggle='modal' data-target='#how_it_works_modal'
+              span.glyphicon.glyphicon-expand
+              span See how Eats for Good works!
