@@ -1,0 +1,40 @@
+= book_page_meta(@coupon_book)
+
+/ = content_for :navbar do
+/   = render partial:'coupon_books/show/templates/original/navbar'
+
+= content_for :header do
+  = stylesheet_link_tag 'templates/original'
+
+  = render partial:'coupon_books/show/templates/original/header'
+
+= content_for :bottom_section do
+  .main-background
+    = render partial:'coupon_books/show/templates/original/coupons'
+
+    = render partial:'coupon_books/show/templates/shared/fr_section'
+
+    = render partial:'coupon_books/show/templates/shared/purchase_form', locals: {purchasable: @coupon_book}
+
+    = render partial:'coupon_books/show/templates/shared/bottom'
+
+css:
+  .hero{ background-image: url("#{@coupon_book.picture.banner_path}"); }
+
+javascript:
+  var current_init = function(){
+    CakeCouponBook.coupon_books.show(
+      "#{@coupon_book.object.end_date}", 
+      "#{@impression.id if @impression.present? }",
+      "#{@coupon_book.id}"
+    );
+    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
+  };
+  $(document).ready(current_init);
+
+- if Rails.env.production? and params[:purchased].blank?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.audience);
+- if Rails.env.production? and params[:purchased].present?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.conversion("#{@coupon_book.estimated_fee}"));

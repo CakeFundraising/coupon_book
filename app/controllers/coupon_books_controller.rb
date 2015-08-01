@@ -1,5 +1,6 @@
 class CouponBooksController < InheritedResources::Base
   include CakeHelper
+
   load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
@@ -17,23 +18,8 @@ class CouponBooksController < InheritedResources::Base
   def index
     @coupon_books = current_fundraiser.coupon_books.latest.decorate
   end
-
-  def show
-    @coupon_book = CouponBook.preloaded.find(params[:id]).decorate
-
-    if mobile_device?
-      @first_category = @coupon_book.categories.first
-      @discounts = @first_category.items.preloaded.decorate
-      
-      render(:mobile_show, layout: 'layouts/books/mobile')
-    else
-      @categories = @coupon_book.categories.decorate
-      @first_category = @categories.first
-      @discounts = @first_category.items.object.preloaded.decorate
-
-      render(:show, layout: 'layouts/books/desktop')
-    end
-  end
+  
+  include BookPageControllerAction
 
   #Template steps
   def basic_info

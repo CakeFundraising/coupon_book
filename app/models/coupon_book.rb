@@ -9,6 +9,8 @@ class CouponBook < ActiveRecord::Base
 
   attr_accessor :step
 
+  TEMPLATES = %w{ compact original }
+
   has_statuses :incomplete, :pending, :launched, :past
 
   has_one :video, as: :recordable, dependent: :destroy
