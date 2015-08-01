@@ -1,6 +1,6 @@
 # React
 React = require('react');
-Container = require('./react_components/coupon_books/Container');
+Container = require('./../react_components/coupon_books/Container');
 
 class Organize
   constructor: (couponBookId) ->
