@@ -1,12 +1,13 @@
 = book_page_meta(@coupon_book)
 
-/ = content_for :navbar do
-/   = render partial:'coupon_books/show/templates/original/navbar'
+= content_for :navbar do
+  = render partial:'coupon_books/show/templates/compact/navbar'
 
 = content_for :header do
-  = stylesheet_link_tag 'templates/original'
+  = stylesheet_link_tag 'models/coupon_books/templates/compact'
+  = javascript_include_tag 'coupon_books/templates/compact'
 
-  = render partial:'coupon_books/show/templates/original/header'
+  = render partial:'coupon_books/show/templates/compact/header'
 
 = content_for :bottom_section do
   .main-background
@@ -18,16 +19,9 @@
 
     = render partial:'coupon_books/show/templates/shared/bottom'
 
-css:
-  .hero{ background-image: url("#{@coupon_book.picture.banner_path}"); }
-
 javascript:
   var current_init = function(){
-    CakeCouponBook.coupon_books.show(
-      "#{@coupon_book.object.end_date}", 
-      "#{@impression.id if @impression.present? }",
-      "#{@coupon_book.id}"
-    );
+    CakeCouponBook.coupon_books.templates.compact();
     CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
   $(document).ready(current_init);

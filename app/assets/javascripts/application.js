@@ -15,8 +15,8 @@
 //= require jquery.validate
 //= require jquery.validate.additional-methods
 //= require jquery.Jcrop
-//= require ./jquery.countdown.min
-//= require ./jquery.expander.min
+//= require ./vendor/jquery.countdown.min
+//= require ./vendor/jquery.expander.min
 
 //= require turbolinks
 //= require modernizr
@@ -24,7 +24,7 @@
 //= require cloudinary/jquery.ui.widget
 //= require cloudinary/jquery.iframe-transport
 //= require cloudinary/jquery.fileupload
-//= require ./jquery.cloudinary
+//= require ./vendor/jquery.cloudinary
 
 //= require jquery-ui
 //= require bootstrap
@@ -34,33 +34,34 @@
 
 //= require ./evercookie/evercookie
 //= require ./evercookie/swfobject-2.2.min
+//= require ./vendor/uuid
+//= require fingerprint
 
 //= require cake_coupon_book
 
 //= require ./ga
-//= require ./uuid
-//= require fingerprint
-//= require ./browsers
 //= require ./cloudinary_widget
-//= require ./coupons
-//= require ./collections
-//= require ./categories
-
-//= require ./coupon_books
-//= require ./coupon_book_builder
-//= require ./direct_donations
-//= require ./purchases
 
 //= require ./addthis
 //= require ./facebook
-//= require ./pictures
 //= require ./datepicker
 //= require ./search
 //= require ./clipboard
 //= require ./expander
 //= require ./overrides
-//= require ./pr_boxes
-//= require ./subscriptors
 //= require ./utils
 //= require ./validations
-//= require ./videos
+
+//= require ./coupon_books/coupon_books
+//= require ./coupon_books/coupon_book_builder
+
+//= require ./models/browsers
+//= require ./models/categories
+//= require ./models/collections
+//= require ./models/coupons
+//= require ./models/direct_donations
+//= require ./models/pictures
+//= require ./models/pr_boxes
+//= require ./models/purchases
+//= require ./models/subscriptors
+//= require ./models/videos

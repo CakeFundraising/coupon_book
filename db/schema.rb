@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150722185740) do
+ActiveRecord::Schema.define(version: 20150801155101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20150722185740) do
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
+    t.string   "template",           default: "compact"
   end
 
   create_table "coupons", force: :cascade do |t|

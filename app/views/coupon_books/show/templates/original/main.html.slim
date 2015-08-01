@@ -1,7 +1,8 @@
 = book_page_meta(@coupon_book)
 
 = content_for :header do
-  = stylesheet_link_tag 'templates/original'
+  = stylesheet_link_tag 'models/coupon_books/templates/original'
+  = javascript_include_tag 'coupon_books/templates/original'
 
   = render partial:'coupon_books/show/templates/original/header'
 
@@ -20,10 +21,9 @@ css:
 
 javascript:
   var current_init = function(){
-    CakeCouponBook.coupon_books.show(
+    CakeCouponBook.coupon_books.templates.original(
       "#{@coupon_book.object.end_date}", 
-      "#{@impression.id if @impression.present? }",
-      "#{@coupon_book.id}"
+      "#{@impression.id if @impression.present? }"
     );
     CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
