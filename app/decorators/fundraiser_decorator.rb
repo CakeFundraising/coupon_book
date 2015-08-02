@@ -41,6 +41,14 @@ class FundraiserDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.active_campaigns_donation
   end
 
+  def address_1
+    object.location_address
+  end
+
+  def address_2
+    "#{object.location_city}, #{object.location_state_code} #{object.location_zip_code}"
+  end
+
   def phone
     h.number_to_phone(object.phone, area_code: true)
   end

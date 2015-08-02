@@ -998,8 +998,8 @@ en:
     coupon_book:
       header: 
         first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
-        last: "<div class='last'><span class='boldest'>Donate %{price} today</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore! Do good and treat yourself too!</div>"
-      coupons: "<span class='boldest'>Donate %{price}</span> and get <span class='boldest'>%{count} awesome deal vouchers</span> worth <span class='boldest'>%{no_discount}</span> straight into your inbox!"
+        last: "<div class='last'><span class='boldest'>Donate today</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore!</div>"
+      coupons: "<span class='boldest'>Donate today</span> and get <span class='boldest'>%{count} awesome deal vouchers</span> worth <span class='boldest'>%{no_discount}!</span>"
   activerecord: 
     models:
       coupon:

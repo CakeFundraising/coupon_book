@@ -11,9 +11,7 @@
 
 = content_for :bottom_section do
   .main-background
-    = render partial:'coupon_books/show/templates/original/coupons'
-
-    = render partial:'coupon_books/show/templates/shared/fr_section'
+    = render partial:'coupon_books/show/templates/compact/coupons'
 
     = render partial:'coupon_books/show/templates/shared/purchase_form', locals: {purchasable: @coupon_book}
 

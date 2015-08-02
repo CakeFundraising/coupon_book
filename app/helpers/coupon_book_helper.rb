@@ -26,8 +26,7 @@ module CouponBookHelper
 
   def coupon_book_buy_button(coupon_book, button_color=:success)
     if coupon_book.launched?
-      #content_tag(:a, "#{coupon_book.price} Buy Now!", class: "btn btn-#{button_color} btn-xl buy_button", data: {toggle: 'modal', target: '#buy_book_modal'})
-      content_tag(:a, "Donate #{coupon_book.price} Now", class: "btn btn-#{button_color} btn-xl buy_button", data: {price: coupon_book.price_cents})
+      content_tag(:a, "Donate Now", class: "btn btn-#{button_color} btn-xl buy_button", data: {price: coupon_book.price_cents})
     end
   end
 
@@ -44,12 +43,16 @@ module CouponBookHelper
     end
   end
 
+  def share_on_fb_button(url, classes='')
+    content_tag(:a, 'Share on Facebook', data:{url: url}, class: classes)
+  end
+
   def join_mail_list
     content_tag(:a, 'Join our email list!', data:{toggle: 'modal', target: '#how_it_works_modal'})
   end
 
   def book_page_top_share
-    content_tag(:div, nil, class:'addthis_native_toolbox')
+    content_tag(:div, nil, class:'addthis_custom_sharing')
   end
 
   def donate_top_link(coupon_book)

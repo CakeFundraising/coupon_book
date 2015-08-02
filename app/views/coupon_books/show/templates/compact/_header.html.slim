@@ -1,1 +1,58 @@
-h1 Compact Header
+.campaign-banner
+  .container
+    / TOP BANNER
+    .row
+      .col-md-12.col-sm-12
+        span.top_banner.text-center
+          span = t('banners.coupon_book.header.first', fr: @coupon_book.fr_name).html_safe
+
+
+.container.compact-container
+  .row
+    .col-md-12
+      h2.top-title = t('banners.coupon_book.header.last', price: @coupon_book.price, count: @coupon_book.coupons.count).html_safe
+  .row
+    .col-md-7.col-sm-7
+      .banner 
+        = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
+        .sharer
+          .addthis_sharing_toolbox
+      .headline
+        h3.blue-color = @coupon_book.headline
+        p.story.expander = @coupon_book.story
+    .col-md-5.col-sm-5
+      .sidebar.white
+        .row
+          .col-md-12
+            .buttons
+              div = coupon_book_buy_button(@coupon_book)
+              .do-good.text-center.help-block Do good and treat yourself too!
+              br
+              .share-fb
+                = share_on_fb_button(coupon_book_url(@coupon_book), 'btn btn-success btn-xl')
+              br
+              div
+                = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+                  span See All 
+                  strong = @coupon_book.coupons.count
+                  span  Restaurant Deals!
+        .row.fr-section
+          .col-md-6.pic
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+            .caption = @coupon_book.picture.avatar_caption
+          .col-md-6.no-padding.fr-info
+            address
+              h4.title
+                = link_to @coupon_book.url, target: :_blank do
+                  = @coupon_book.fr_name
+              .address_1 = @coupon_book.fundraiser.address_1
+              .address_2 = @coupon_book.fundraiser.address_2
+              abbr.phone title="Phone" Phone: #{@coupon_book.fundraiser.phone}
+          .col-md-12
+            .volunteer-with-us
+              a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
+                span.glyphicon.glyphicon-envelope 
+                span.clickable  #{@coupon_book.visitor_action}
+              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+            
+

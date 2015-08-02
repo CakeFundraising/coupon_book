@@ -44,7 +44,7 @@
 
 .green {
   background-color: $brand-success;
-  margin-bottom: 30px;
+  //margin-bottom: 30px;
   padding: 8px 5px 18px;
   h3{
     color: white;
@@ -55,19 +55,19 @@
   }
 }
 
-.green:after {
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: $brand-success;
-  border-width: 30px;
-  margin-left: -30px;
-}
+// .green:after {
+//   left: 50%;
+//   border: solid transparent;
+//   content: " ";
+//   height: 0;
+//   width: 0;
+//   position: absolute;
+//   pointer-events: none;
+//   border-color: rgba(136, 183, 213, 0);
+//   border-top-color: $brand-success;
+//   border-width: 30px;
+//   margin-left: -30px;
+// }
 
 .pledgebluestripe {
   &.campaign{
