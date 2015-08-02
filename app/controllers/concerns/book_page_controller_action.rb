@@ -10,7 +10,7 @@ module BookPageControllerAction
     else
       @categories = @coupon_book.categories.decorate
       @first_category = @categories.first
-      @discounts = @first_category.items.object.preloaded.decorate
+      @discounts = @first_category.items.object.preloaded.decorate if @first_category.present?
 
       render("coupon_books/show/templates/#{@coupon_book.template}/main", layout: 'layouts/books/desktop')
     end
