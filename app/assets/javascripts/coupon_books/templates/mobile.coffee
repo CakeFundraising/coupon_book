@@ -1,3 +1,5 @@
+CakeCouponBook.coupon_books ?= {}
+
 toggleNav = ->
   nav = $('nav.navbar.navbar-default')
 
