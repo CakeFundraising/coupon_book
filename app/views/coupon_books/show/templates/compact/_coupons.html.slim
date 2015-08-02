@@ -3,7 +3,8 @@
     .container
       .row.pledgebluestripe.coupon_book
         .col-md-12.text-center
-          span.banner-heading = I18n.t('banners.coupon_book.coupons', count: @coupon_book.coupons.count, fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+          /span.banner-heading = I18n.t('banners.coupon_book.coupons', count: @coupon_book.coupons.count, fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+          span.banner-heading Help others and get #{@coupon_book.coupons.count} awesome deal vouchers worth #{@coupon_book.no_discount_price} too!
 
 .row.book-nav
   .nav-section.col-md-12.text-center
@@ -16,3 +17,7 @@
 
 .row.tab-content
   = render partial:'categories/show/book_tab', collection: @categories, as: :category
+  .row
+    .col-md-12.text-center
+      .book-nav-help * Click navigation buttons above to see more deals.
+      br

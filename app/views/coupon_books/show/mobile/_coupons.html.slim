@@ -7,7 +7,7 @@
     br
 
 .floating-right
-  = content_tag(:a, 'Donate Now', class: "btn btn-success-transparent btn-xl buy_button", data: {price: @coupon_book.price_cents})
+  = coupon_book_buy_button(@coupon_book, 'success-transparent')
 
 #coupons.col-xs-12
   .row

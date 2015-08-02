@@ -29,7 +29,7 @@ $screen-xs-max: 768px;
 }
 
 .campaign-banner{
-  height: 80px;
+  height: 70px;
   .fr-logo{
     img{
       width: 100%;
@@ -40,12 +40,9 @@ $screen-xs-max: 768px;
     }
   }
   .top_banner{
-    .first{
-      font-size: 48px;
-      .boldest{
-        font-size: 48px;
-      }
-    } 
+    font-size: 40px;
+    display: block;
+    margin-top: 5px;
   }
 }
 
@@ -64,8 +61,11 @@ $screen-xs-max: 768px;
   }
   .top-title{
     text-align: center;
-    margin: 28px 0px;
-    font-size: 31px;
+    margin: 25px 0px;
+    font-size: 26px;
+    .red{
+      color: #FF1705;
+    }
   }
   .banner{
     position: relative;
@@ -93,21 +93,16 @@ $screen-xs-max: 768px;
   .sidebar{
     padding: 28px;
     border: 1px solid #ddd;
-    box-shadow: 0px 1px 2px #ccc;
+    box-shadow: 0px 0px 2px #ddd;
     -webkit-border-radius: 5px;
     border-radius: 5px;
     .buttons{
-      margin-bottom: 30px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 30px;
       .buy_button{
         padding: 15px 0px !important;
         font-size: 42px !important;
       }
-      .share-fb{
-        a{
-          text-transform: uppercase;
-        }
+      .see-restaurants{
+        margin-top: 20px;
       }
     }
     .fr-section{
@@ -138,8 +133,43 @@ $screen-xs-max: 768px;
         text-align: center;
       }
       .volunteer-with-us{
-        margin-top: 15px;
+      }
+      .quote{
+        margin-top: 20px;
+        padding-top: 20px;
+        color: #777;
+        font-style: italic;
+        border-top: 1px solid #ddd;
+        font-size: 14px;
+
+        &:before {
+          color: #777;
+          content: open-quote;
+          font-family: "minion-pro", Georgia, serif;
+          font-size: 1em;
+        }
+
+        &:after {
+          color: #777;
+          content: close-quote;
+          font-family: "minion-pro", Georgia, serif;
+          font-size: 1em;
+        }
       }
     }
   }
+  .promo-logo{
+    margin-top: 15px;
+    img{
+      width: 100px;
+    }
+    a{
+      color: black;
+      margin-left: 10px;
+      font-size: 18px;
+    }
+  }
+}
+.book-nav-help{
+  font-size: 20px;
 }

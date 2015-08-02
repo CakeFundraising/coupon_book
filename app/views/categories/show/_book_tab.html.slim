@@ -8,9 +8,5 @@
 
           .items
             = render partial:'coupons/show/box', collection: @discounts, as: :coupon
-      .row
-        .col-md-12.text-center
-          div * Click navigation buttons above to see more deals.
-          br
 - else
   .tab-pane.tab-pane-remote id="pop-#{category.name.parameterize.underscore}"
