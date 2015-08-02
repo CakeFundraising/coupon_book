@@ -1,35 +1,6 @@
-@import 'fonts';
-@import "font-awesome-sprockets";
-@import "font-awesome";
-@import 'variables';
-@import "bootstrap-sprockets";
-@import 'bootstrap';
-@import 'mixins';
-@import 'mixins-buttons';
-
-@import 'layout';
-@import 'typography';
-@import 'bootstrap_overrides';
-@import 'footer';
-@import 'helpers';
-@import 'navbar';
-@import 'responsive';
-@import 'buttons';
-@import 'panels';
-@import 'tables';
-@import 'tabs';
-@import 'forms';
-@import 'pictures';
-@import 'modals';
-
-@import 'shared';
-//@import 'home';
-@import 'coupon_books';
-@import 'coupons';
-@import 'registration';
-@import 'profiles';
-@import 'vouchers';
-@import 'organize_discounts';
+@import 'shared/shared';
+@import 'dashboards/dashboards';
+@import 'models/all';
 
 //Grid Layout ----------------------------------------------------------------------------
 html {
