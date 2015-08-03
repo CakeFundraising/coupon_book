@@ -102,7 +102,6 @@ gem 'acts_as_list'
 #Admin panel
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
-gem 'redis-browser'
 
 #Test related
 gem 'database_cleaner'

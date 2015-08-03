@@ -10,7 +10,6 @@ CakeCouponBook::Application.routes.draw do
   end
 
   mount Resque::Server, at: "/resque"
-  mount RedisBrowser::Web => '/redis-browser'
 
   resources :direct_donations, only: :create
 
