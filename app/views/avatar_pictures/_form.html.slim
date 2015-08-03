@@ -16,6 +16,8 @@
       var options = {
         wrapper: '#avatar_picture_form_wrapper',
         preview: '.uploader.input .uri',
+        max_width: "#{AvatarPicture::URI_SIZES[:medium].first}",
+        max_height: "#{AvatarPicture::URI_SIZES[:medium].last}",
         ratio: 1.5
       };
       CakeCouponBook.widget.new(options);

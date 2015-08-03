@@ -7,7 +7,7 @@ class AvatarPicture < ActiveRecord::Base
     ico: [25, 19],
     thumb: [50, 38],
     square: [120, 120],
-    medium: [300, 200]
+    medium: [1500, 1000]
   }
 
   validates :uri, presence: true, if: :persisted?

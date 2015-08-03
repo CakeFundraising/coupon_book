@@ -21,8 +21,8 @@ class Widget
       cropping_aspect_ratio: options.ratio
       resource_type: 'image'
       client_allowed_formats: ["png", "jpg", "jpeg"]
-      max_image_width: 5000
-      max_image_height: 5000
+      max_image_width: options.max_width
+      max_image_height: options.max_height
       theme: 'minimal'
       show_powered_by: false
 
