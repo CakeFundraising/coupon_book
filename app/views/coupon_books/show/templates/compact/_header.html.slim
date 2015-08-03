@@ -53,8 +53,10 @@
               = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
           .col-md-12
             .quote = @coupon_book.mission
-      .row
-        .col-md-12
-          .promo-logo 
-            = image_tag "befg_logo.png"
-            = link_to 'Start your Fundraiser today!', efg_contact_path, target: :_blank
+      br
+      .sidebar.white
+        .row
+          .col-md-12
+            .promo-logo 
+              = image_tag "befg_logo.png"
+              = link_to 'Start your Fundraiser today!', efg_contact_path, target: :_blank

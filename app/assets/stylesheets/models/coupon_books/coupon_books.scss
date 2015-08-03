@@ -390,15 +390,17 @@ span.banner-heading{
 }
 
 #top-link-block.affix-top {
-  position: absolute; /* allows it to "slide" up into view */
-  bottom: -82px; /* negative of the offset - height of link element */
-  right: 10px; /* padding from the right side of the window */
+  position: absolute; 
+  bottom: -82px; 
+  right: 10px;
+  visibility: hidden;
 }
 #top-link-block.affix {
-  position: fixed; /* keeps it on the bottom once in view */
-  bottom: 80px; /* height of link element */
-  right: 30px; /* padding from the right side of the window */
+  position: fixed;
+  bottom: 80px;
+  right: 30px;
   z-index: 9;
+  visibility: visible;
 }
 
 #top-link-block{
@@ -445,5 +447,15 @@ span.banner-heading{
   margin-bottom: 20px;
   a{
     cursor: pointer;
+  }
+}
+
+.book-nav-help{
+  font-size: 20px;
+  color: $brand-primary;
+  a{
+    font-size: 20px;
+    border-radius: 25px;
+    text-transform: capitalize;
   }
 }

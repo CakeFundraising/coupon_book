@@ -18,5 +18,7 @@
   = render partial:'categories/show/book_tab', collection: @categories, as: :category
   .row-fluid
     .col-md-12.text-center
-      .book-nav-help * Click navigation buttons above to see more deals.
+      .book-nav-help
+        = anchor_link 'To see more deals click orange nav buttons above', :coupons, class:'btn btn-warning'
+        /| * To see more deals click orange nav buttons above
       br

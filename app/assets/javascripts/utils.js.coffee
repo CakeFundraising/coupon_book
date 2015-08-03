@@ -59,6 +59,8 @@ remoteTabs = ->
         $targ.css('background', 'none')
         $this.attr('href', $this.attr('data-target'))
         $this.attr('data-toggle', 'tab')
+        
+        CakeCouponBook.expander()
         return
 
     $this.tab 'show'

@@ -91,7 +91,7 @@ $screen-xs-max: 768px;
     font-size: 18px;
   }
   .sidebar{
-    padding: 28px;
+    padding: 20px;
     border: 1px solid #ddd;
     box-shadow: 0px 0px 2px #ddd;
     -webkit-border-radius: 5px;
@@ -141,35 +141,18 @@ $screen-xs-max: 768px;
         font-style: italic;
         border-top: 1px solid #ddd;
         font-size: 14px;
-
-        &:before {
-          color: #777;
-          content: open-quote;
-          font-family: "minion-pro", Georgia, serif;
-          font-size: 1em;
-        }
-
-        &:after {
-          color: #777;
-          content: close-quote;
-          font-family: "minion-pro", Georgia, serif;
-          font-size: 1em;
-        }
       }
     }
   }
   .promo-logo{
-    margin-top: 15px;
     img{
-      width: 100px;
+      width: 85px;
     }
     a{
       color: black;
       margin-left: 10px;
-      font-size: 18px;
+      font-size: 17px;
     }
   }
 }
-.book-nav-help{
-  font-size: 20px;
-}
+

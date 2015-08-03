@@ -31,6 +31,7 @@ seeMore = ->
 
   button.on("ajax:success", (e, data, status, xhr) ->
     loadTarget.html(data)
+    CakeCouponBook.expander()
     return
   ).on "ajax:error", (e, xhr, status, error) ->
     spinner.hide()
