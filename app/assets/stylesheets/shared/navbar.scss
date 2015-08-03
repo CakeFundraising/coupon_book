@@ -94,6 +94,7 @@
   position: fixed;
   z-index:100;
   top: 0;
+  width: 100%;
   .popular{
     padding-top: 0px;
     & > li {
@@ -108,6 +109,8 @@
 .book-nav{
   margin-top: -10px;
   margin-bottom: 50px;
+  margin-left: 0; 
+  margin-right: 0; 
   box-shadow: 0px 3px 5px #ddd;
   @media (max-width: $screen-sm-max) {
     margin-bottom: 20px;

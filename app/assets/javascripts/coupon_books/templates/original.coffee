@@ -49,7 +49,6 @@ categoriesNav = ->
   navAboutLink = nav.find('.nav-about-link')
 
   aboutBanner = $('#learn-more-banner')
-  documentWidth = $(document).width()
 
   buttonSection.hide()
 
@@ -57,7 +56,6 @@ categoriesNav = ->
     top: nav.offset().top
 
   nav.on 'affixed.bs.affix', ->
-    nav.css('width', documentWidth)
     navSection.removeClass('col-md-12').addClass('col-md-10')
     buttonSection.show()
     return

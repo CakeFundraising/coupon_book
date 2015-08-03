@@ -1,4 +1,4 @@
-.row
+.row-fluid
   .col-xs-10.col-xs-push-1
     br
     br
@@ -10,14 +10,14 @@
   = coupon_book_buy_button(@coupon_book, 'success-transparent')
 
 #coupons.col-xs-12
-  .row
+  .row-fluid
     .col-md-12
       h1.category-title = @first_category.name
       h2.category-subtitle = @first_category.subtitle
 
       .items
         = render partial:'coupons/show/box', collection: @discounts, as: :coupon
-  #remote-items.row
+  #remote-items.row-fluid
     .col-md-12.text-center
       span#spinner.hidden = image_tag 'loading.gif'
       = link_to 'See More', load_all_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class: 'btn btn-primary btn-lg', id:'see-more-link'
