@@ -8,13 +8,13 @@
 #headline
   .container
     .row-fluid.text-center
-      .col-md-4.col-sm-4.give.head-col
+      .col-md-3.col-sm-4.give.head-col
         .link
           = link_to donate_coupon_book_path(@coupon_book) do
             span.glyphicon.glyphicon-heart
             span.text Give
         .text #{@coupon_book.price} or more today!
-      .col-md-4.col-sm-4.get.head-col
+      .col-md-5.col-sm-4.get.head-col
         .link
           = content_tag(:a, href:"#coupons") do
             span.glyphicon.glyphicon-gift
