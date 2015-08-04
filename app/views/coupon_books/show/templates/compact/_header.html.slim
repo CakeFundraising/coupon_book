@@ -7,42 +7,30 @@
 
 #headline
   .container
-    .row-fluid
-      .col-md-8
-        .row.table-container
-          table.table#message
-            tbody
-              tr.give
-                th
-                  = link_to donate_coupon_book_path(@coupon_book) do
-                    span.glyphicon.glyphicon-heart
-                    span.text Give
-                th #{@coupon_book.price} or more today!
-              tr.get
-                th
-                  = content_tag(:a) do
-                    span.glyphicon.glyphicon-gift
-                    span.text Get
-                th
-                  span.boldest #{@coupon_book.coupons.count} 
-                  span Exclusive deals
-                  span  worth 
-                  span.boldest #{@coupon_book.no_discount_price}!
-              tr.help
-                th
-                  = link_to donate_coupon_book_path(@coupon_book) do
-                    span.glyphicon.glyphicon-globe
-                    span.text Help
-                th
-                  span #{@coupon_book.fr_name}
-      #buttons.col-md-4
-        div = coupon_book_buy_button(@coupon_book)
-        .see-restaurants
-          = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-            span See All 
-            strong = @coupon_book.coupons.count
-            span  Deals!
-        .help-fr.text-center = link_to "Help #{@coupon_book.fr_name}", donate_coupon_book_path(@coupon_book)
+    .row-fluid.text-center
+      .col-md-4.col-sm-4.give.head-col
+        .link
+          = link_to donate_coupon_book_path(@coupon_book) do
+            span.glyphicon.glyphicon-heart
+            span.text Give
+        .text #{@coupon_book.price} or more today!
+      .col-md-4.col-sm-4.get.head-col
+        .link
+          = content_tag(:a, href:"#coupons") do
+            span.glyphicon.glyphicon-gift
+            span.text Get
+        .text
+          span.boldest #{@coupon_book.coupons.count} 
+          span Exclusive deals
+          span  worth 
+          span.boldest #{@coupon_book.no_discount_price}!
+      .col-md-4.col-sm-4.help.head-col
+        .link
+          = link_to donate_coupon_book_path(@coupon_book) do
+            span.glyphicon.glyphicon-globe
+            span.text Help
+        .text
+          span #{@coupon_book.fr_name}
 
 .container.compact-container
   .row
@@ -57,27 +45,18 @@
           p.story.expander = @coupon_book.story
     .col-md-4.col-sm-4
       .sidebar
-        .row.fr-section
-          .col-md-6.pic
-            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
-          .col-md-6.no-padding.fr-info
-            address
-              h4.title
-                = link_to @coupon_book.url, target: :_blank do
-                  = @coupon_book.fr_name
-              .address_1 = @coupon_book.fundraiser.address_1
-              .address_2 = @coupon_book.fundraiser.address_2
-              abbr.phone title="Phone" = @coupon_book.fundraiser.phone
+        .row
           .col-md-12
-            .volunteer-with-us
-              a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
-                span.glyphicon.glyphicon-envelope 
-                span.clickable  #{@coupon_book.visitor_action}
-              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
-          .col-md-12
-            .quote = @coupon_book.mission
+            #buttons
+              div = coupon_book_buy_button(@coupon_book)
+              .do-good.text-center.help-block Do good and treat yourself too!
+              .see-restaurants
+                = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+                  span See All 
+                  strong = @coupon_book.coupons.count
+                  span  Deals!
       br
       #purchases.sidebar
-        .headbar Recent Donations
+        .headbar.text-center Recent Donations
         ul.no-list
           = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

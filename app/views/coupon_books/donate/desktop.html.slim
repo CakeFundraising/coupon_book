@@ -26,15 +26,21 @@
         .col-md-12
           .headbar = @coupon_book.name
           .fr-banner 
-            = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
-          h3.fr-name 
-            = link_to @coupon_book.url, target: :_blank do
-              = @coupon_book.fr_name
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+          .fr-info
+            address
+              h4.title
+                = link_to @coupon_book.url, target: :_blank do
+                  = @coupon_book.fr_name
+              .address_1 = @coupon_book.fundraiser.address_1
+              .address_2 = @coupon_book.fundraiser.address_2
+              abbr.phone title="Phone" = @coupon_book.fundraiser.phone
           .volunteer-with-us
             a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
               span.glyphicon.glyphicon-envelope 
               span.clickable  #{@coupon_book.visitor_action}
             = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+          .quote = @coupon_book.mission
     br
     #purchases.sidebar
       .headbar #{@coupon_book.purchases_count} Donations

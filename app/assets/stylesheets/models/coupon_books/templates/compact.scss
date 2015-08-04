@@ -58,68 +58,28 @@ $screen-xs-max: 768px;
   margin-bottom: 20px;
   font-size: 26px;
   background-color: white;
-  //padding: 15px;
-  .table-container{
-    margin-right: 0;
-  }
-  table#message{
-    margin-bottom: 0;
-    margin-top: 15px;
-    border-bottom: 1px solid $brand-primary;
-    th{
-      border-top: none;
-      vertical-align: middle;
-      a{
-        text-transform: uppercase;
-        font-weight: bold;
-        font-size: 35px;
-        text-decoration: none;
-        span.text{
-          color: #777;
-        }
-      }
+  padding: 20px 0px;
+  box-shadow: 0px 3px 5px #ddd;
+  .head-col{
+    a{
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 35px;
+      text-decoration: none;
       .glyphicon{
         margin-right: 8px;
         top: 3px;
       }
     }
-    .give{
-      th{
-        border-bottom: 1px solid $brand-success;
-        a{color: $brand-success;}
-      }
-    }
-    .get{
-      th{
-        border-bottom: 1px solid $brand-warning;
-        a{color: $brand-warning;}
-      }
-    }
-    .help{
-      th{
-        a{color: $brand-primary;}
-      }
-    }
   }
-  #buttons{
-    padding: 12px 0px 0px 20px;
-    .buy_button{
-      padding: 10px 0px !important;
-      font-size: 35px !important;
-    }
-    .see-restaurants{
-      margin-top: 20px;
-      a{
-        font-size: 25px !important;
-        padding: 9px 0px !important;
-      }
-    }
-    .help-fr{
-      margin-top: 20px;
-      a{
-        font-size: 24px;
-      }
-    }
+  .give{
+    a{color: $brand-success;}
+  }
+  .get{
+    a{color: $brand-warning;}
+  }
+  .help{
+    a{color: $brand-primary;}
   }
 }
 
@@ -150,50 +110,26 @@ $screen-xs-max: 768px;
       font-size: 20px;
       color: white;
       background-color: $brand-primary;
+      text-transform: uppercase;
     }
-    .fr-section{
-      a{
-        text-decoration: none;
+    #buttons{
+      .buy_button{
+        padding: 15px 0px !important;
+        font-size: 42px !important;
       }
-      .pic{
-        img{
-          border-radius: 5px;
-        }
-      }
-      .fr-info{
-        address{
-          .address_1, .address_2, .phone{
-            font-size: 16px;
-          }
-        }
-        .title{
-          margin-top: 0;
-          font-size: 20px;
-          margin-bottom: 4px;
-        }
-      }
-      .caption{
-        font-size: 13px;
-        margin-top: 7px;
-        color: #555;
-        text-align: center;
-      }
-      .volunteer-with-us{
-      }
-      .quote{
+      .see-restaurants{
         margin-top: 20px;
-        padding-top: 20px;
-        color: #777;
-        font-style: italic;
-        border-top: 1px solid #ddd;
-        font-size: 14px;
+        a{
+          padding: 12px 0px !important;
+          font-size: 28px !important;
+        }
       }
     }
     &#purchases{
       ul{
         margin: -15px -20px -20px;
         li{
-          padding: 8px 20px;
+          padding: 13px 20px;
           border-bottom: 1px solid #ddd;
           .amount{
             font-size: 26px;
