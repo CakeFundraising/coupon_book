@@ -26,7 +26,7 @@
         .col-md-12
           .headbar = @coupon_book.name
           .fr-banner 
-            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+            = image_tag @coupon_book.picture.avatars_path, class:'img-responsive'
           .fr-info
             address
               h4.title
@@ -42,7 +42,8 @@
             = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
           .quote = @coupon_book.mission
     br
-    #purchases.sidebar
-      .headbar #{@coupon_book.purchases_count} Donations
-      ul.no-list
-        = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+    - if @purchases.any?
+      #purchases.sidebar
+        .headbar Recent Donations
+        ul.no-list
+          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

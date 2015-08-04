@@ -56,7 +56,8 @@
                   strong = @coupon_book.coupons.count
                   span  Deals!
       br
-      #purchases.sidebar
-        .headbar.text-center Recent Donations
-        ul.no-list
-          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+      - if @purchases.any?
+        #purchases.sidebar
+          .headbar.text-center Recent Donations
+          ul.no-list
+            = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
