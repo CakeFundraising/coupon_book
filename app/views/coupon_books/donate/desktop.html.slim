@@ -26,8 +26,8 @@
         .col-md-12
           .headbar = @coupon_book.name
           .fr-banner 
-            = image_tag @coupon_book.picture.avatars_path, class:'img-responsive'
-          .fr-info
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+          .fr-inf
             address
               h4.title
                 = link_to @coupon_book.url, target: :_blank do

@@ -1,4 +1,10 @@
 module BookPageActions
+  extend ActiveSupport::Concern
+  
+  included do
+    before_action :allow_launched_book, only: :donate  
+  end
+
   def show
     @coupon_book = CouponBook.preloaded.find(params[:id]).decorate
 
@@ -18,7 +24,7 @@ module BookPageActions
   end
 
   def donate
-    @coupon_book = CouponBook.find(params[:id]).decorate
+    @coupon_book = resource.decorate
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
 
     if mobile_device?
@@ -26,5 +32,11 @@ module BookPageActions
     else
       render('coupon_books/donate/desktop', layout: 'layouts/books/desktop')
     end
+  end
+
+  protected
+
+  def allow_launched_book
+    redirect_to coupon_book_path(resource) unless resource.launched?
   end
 end
