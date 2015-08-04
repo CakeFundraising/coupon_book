@@ -1,18 +1,53 @@
+/- cache [:templates, :compact, :header, @coupon_book] do
 .campaign-banner
   .container
-    / TOP BANNER
     .row
       .col-md-12.col-sm-12
         span.top_banner.text-center = @coupon_book.name
 
+#headline
+  .container
+    .row-fluid
+      .col-md-8
+        .row.table-container
+          table.table#message
+            tbody
+              tr.give
+                th
+                  = link_to donate_coupon_book_path(@coupon_book) do
+                    span.glyphicon.glyphicon-heart
+                    span.text Give
+                th #{@coupon_book.price} or more today!
+              tr.get
+                th
+                  = content_tag(:a) do
+                    span.glyphicon.glyphicon-gift
+                    span.text Get
+                th
+                  span.boldest #{@coupon_book.coupons.count} 
+                  span Exclusive deals
+                  span  worth 
+                  span.boldest #{@coupon_book.no_discount_price}!
+              tr.help
+                th
+                  = link_to donate_coupon_book_path(@coupon_book) do
+                    span.glyphicon.glyphicon-globe
+                    span.text Help
+                th
+                  span #{@coupon_book.fr_name}
+      #buttons.col-md-4
+        div = coupon_book_buy_button(@coupon_book)
+        .see-restaurants
+          = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+            span See All 
+            strong = @coupon_book.coupons.count
+            span  Deals!
+        .help-fr.text-center = link_to "Help #{@coupon_book.fr_name}", donate_coupon_book_path(@coupon_book)
 
 .container.compact-container
   .row
-    .col-md-12
-      h2.top-title = t('banners.coupon_book.header.last', price: @coupon_book.price, no_discount: @coupon_book.no_discount_price, count: @coupon_book.coupons.count).html_safe
-  .row
     .col-md-8.col-sm-8
-      .sidebar.white
+      .sidebar
         .banner 
           = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
           .sharer
@@ -21,19 +56,7 @@
           h3.blue-color = @coupon_book.headline
           p.story.expander = @coupon_book.story
     .col-md-4.col-sm-4
-      .sidebar.white
-        .row
-          .col-md-12
-            .buttons
-              div = coupon_book_buy_button(@coupon_book)
-              .do-good.text-center.help-block Do good and treat yourself too!
-              .see-restaurants
-                = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-                  span See All 
-                  strong = @coupon_book.coupons.count
-                  span  Restaurant Deals!
-      br
-      .sidebar.white
+      .sidebar
         .row.fr-section
           .col-md-6.pic
             = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
@@ -54,9 +77,7 @@
           .col-md-12
             .quote = @coupon_book.mission
       br
-      .sidebar.white
-        .row
-          .col-md-12
-            .promo-logo 
-              = image_tag "befg_logo.png"
-              = link_to 'Start your Fundraiser today!', efg_contact_path, target: :_blank
+      #purchases.sidebar
+        .headbar Recent Donations
+        ul.no-list
+          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

@@ -1,0 +1,88 @@
+@import 'shared/variables';
+
+#home_video_fr,
+#home_video_sp,
+.video_modal{
+  .modal-body{
+    padding: 0;
+    margin: 0;
+    margin-bottom: -6px;
+  }
+}
+
+#book_page_navbar{
+  .navbar-nav > li > a{
+    padding: 5px;
+  }
+  .addthis_custom_sharing{
+    padding-top: 0;
+    height: 0;
+    margin-top: -2px;
+  }
+  .navbar-brand{
+    padding-top: 3px;
+  }
+}
+
+#donate{
+  margin-bottom: 20px;
+  #donation-sidebar{
+    .title{
+      font-size: 30px;
+    }
+    .formtastic.purchase{
+      #amount-input{
+        margin: 10px -20px 25px;
+        background: rgba(240, 173, 78, 0.3);
+        .currency, .zeros{
+          font-size: 100px;
+        }
+        #purchase_amount_input{
+          margin-bottom: 0;
+          input{
+            height: 150px;
+            font-size: 100px;
+            line-height: 100px;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+          }
+        }
+      }
+    }
+  }
+  .headbar{
+    font-size: 16px;
+    color: white;
+    background-color: $brand-warning;
+  }
+  #fr-info{
+    .fr-name{
+      margin-top: 10px;
+      a{
+        color: #555;
+      }
+    }
+  }
+  #purchases.sidebar{
+    ul{
+      margin: -15px -20px -20px;
+      li{
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+        .amount{
+          font-size: 22px;
+          margin-right: 10px;
+          color: $brand-primary;
+        }
+        .user{
+          font-size: 18px;
+        }
+        .date{
+          color: #999;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

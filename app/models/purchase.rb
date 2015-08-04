@@ -3,14 +3,16 @@ class Purchase < ActiveRecord::Base
   has_one :charge, as: :chargeable
   has_many :vouchers, dependent: :destroy
 
-  #attr_accessor :cc_number, :exp_month, :exp_year, :cvc, :email_confirmation
+  attr_accessor :email_confirmation
 
   monetize :amount_cents
 
-  #validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
+  validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
   validates :purchasable, :card_token, :amount, :email, :token, presence: true
 
   before_create :stripe_charge_card
+
+  scope :latest, ->{ order('purchases.created_at DESC') }
 
   after_initialize do
     self.token = SecureRandom.uuid if self.token.blank?

@@ -31,6 +31,8 @@ CakeCouponBook::Application.routes.draw do
       get :start_pr_box
       get :categories, format: :json
       get :download
+
+      get :donate
     end
   end
 

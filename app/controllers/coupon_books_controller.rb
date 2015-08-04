@@ -19,7 +19,7 @@ class CouponBooksController < InheritedResources::Base
     @coupon_books = current_fundraiser.coupon_books.latest.decorate
   end
   
-  include BookPageControllerAction
+  include BookPageActions
 
   #Template steps
   def basic_info

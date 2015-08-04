@@ -1,0 +1,42 @@
+= book_page_meta(@coupon_book)
+
+= content_for :navbar do
+  = render partial:'coupon_books/show/templates/compact/navbar'
+
+= content_for :header do
+  = stylesheet_link_tag 'models/coupon_books/donate'
+  = javascript_include_tag 'coupon_books/templates/compact'
+
+#donate.row
+  .col-md-8
+    #donation-sidebar.sidebar
+      .title Enter your donation
+      = render partial:'coupon_books/donate/form', locals: {purchasable: @coupon_book}
+      hr
+      .row
+        .col-md-12
+          .back.pull-right 
+            = link_to 'Back', @coupon_book
+          .terms 
+            span By continuing you are agreeing to Eats For Good's 
+            span = terms_modal_link
+  .col-md-4
+    #fr-info.sidebar
+      .row
+        .col-md-12
+          .headbar = @coupon_book.name
+          .fr-banner 
+            = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
+          h3.fr-name 
+            = link_to @coupon_book.url, target: :_blank do
+              = @coupon_book.fr_name
+          .volunteer-with-us
+            a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
+              span.glyphicon.glyphicon-envelope 
+              span.clickable  #{@coupon_book.visitor_action}
+            = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+    br
+    #purchases.sidebar
+      .headbar #{@coupon_book.purchases_count} Donations
+      ul.no-list
+        = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

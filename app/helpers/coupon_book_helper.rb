@@ -26,7 +26,7 @@ module CouponBookHelper
 
   def coupon_book_buy_button(coupon_book, button_color=:success)
     if coupon_book.launched?
-      content_tag(:a, "Donate Now", class: "btn btn-#{button_color} btn-xl buy_button", data: {price: coupon_book.price_cents})
+      link_to 'Donate Now', donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button"
     end
   end
 

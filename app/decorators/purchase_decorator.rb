@@ -9,4 +9,16 @@ class PurchaseDecorator < ApplicationDecorator
   def email
     h.auto_mail object
   end
+
+  def user
+    if object.first_name.present? and object.last_name.present?
+      "#{object.first_name} #{object.last_name}"
+    else
+      "Anonymous"      
+    end
+  end
+
+  def created_at
+    h.time_ago_in_words(object.created_at, include_seconds: true)
+  end
 end

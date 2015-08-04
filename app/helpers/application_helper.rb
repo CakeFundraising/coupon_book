@@ -59,4 +59,8 @@ module ApplicationHelper
   def is_boolean?(string)
     ['true', 'false'].include?(string)
   end
+
+  def terms_modal_link
+    content_tag(:a, 'Terms & Conditions', data:{toggle:'modal', target:'#terms_of_purchase_modal'})
+  end
 end
