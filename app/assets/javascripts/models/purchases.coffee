@@ -16,7 +16,7 @@ class Stripe
           window.Stripe.setPublishableKey(publishable_key)
         return
       stripeJS.onload = ->
-        console.log 'Stripe Loaded'
+        #console.log 'Stripe Loaded'
         window.Stripe.setPublishableKey(publishable_key)
         return
       s = document.getElementsByTagName('script')[0]
