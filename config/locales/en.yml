@@ -1015,3 +1015,5 @@ en:
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
       location:
         state_code: State
+      purchase:
+        email_confirmation: Confirm your email

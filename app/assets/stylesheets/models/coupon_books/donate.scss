@@ -26,13 +26,20 @@
 
 #donate{
   margin-bottom: 20px;
+  hr{
+    margin-top: 5px;
+    border-top: 1px solid #eee;
+  }
   #donation-sidebar{
     .title{
       font-size: 30px;
     }
     .formtastic.purchase{
+      .card-logos{
+        width: 200px;
+      }
       #amount-input{
-        margin: 10px -20px 25px;
+        margin: 10px -20px 30px;
         background: rgba(240, 173, 78, 0.3);
         .currency, .zeros{
           font-size: 100px;
@@ -55,6 +62,9 @@
             text-align: right;
             background: rgba(240, 173, 78, 0.005);
             padding-right: 0;
+          }
+          #purchase_amount-error{
+            text-align: center;
           }
         }
       }

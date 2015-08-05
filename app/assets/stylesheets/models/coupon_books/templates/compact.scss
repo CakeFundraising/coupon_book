@@ -108,8 +108,9 @@ $screen-xs-max: 768px;
   .sidebar{
     .headbar{
       font-size: 20px;
-      color: white;
-      background-color: $brand-primary;
+      //color: white;
+      //background-color: $brand-primary;
+      border-bottom: 1px solid #ddd;
       text-transform: uppercase;
     }
     #buttons{
@@ -135,6 +136,7 @@ $screen-xs-max: 768px;
             font-size: 26px;
             margin-right: 10px;
             color: $brand-primary;
+            opacity: 0.65;
           }
           .user{
             font-size: 18px;

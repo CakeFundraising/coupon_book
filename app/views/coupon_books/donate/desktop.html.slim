@@ -5,7 +5,7 @@
 
 = content_for :header do
   = stylesheet_link_tag 'models/coupon_books/donate'
-  = javascript_include_tag 'coupon_books/templates/compact'
+  = javascript_include_tag 'donate'
 
 #donate.row
   .col-md-8
@@ -20,6 +20,16 @@
           .terms 
             span By continuing you are agreeing to Eats For Good's 
             span = terms_modal_link
+      .row
+        .col-md-12
+          p.terms 
+            | Payments are processed by 
+            span 
+              = link_to "Stripe.com", 'https://stripe.com', target: :_blank
+            strong  We do not store your financial information.
+          .terms
+            | For further assistance, contact 
+            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
   .col-md-4
     #fr-info.sidebar
       .row
@@ -47,3 +57,10 @@
         .headbar Recent Donations
         ul.no-list
           = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+
+javascript:
+  var current_init = function(){
+    CakeCouponBook.purchases.coupon_book("#{@coupon_book.object.price.to_i}", "#{CakeCouponBook::Application.config.stripe.publishable_key}");
+  };
+  $(document).ready(current_init);
+  $(document).on('page:load', current_init);

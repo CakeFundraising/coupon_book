@@ -16,8 +16,7 @@
             = render partial: 'layouts/share_buttons', locals:{url: coupon_book_url(@coupon_book), title: nil}
           .col-md-7.text-center
             h2 Deal Books make great gifts too!
-            /= content_tag(:a, 'Buy One for a Friend!', class: "btn btn-success btn-lg", data: {toggle: 'modal', target: '#buy_book_modal'})
-            = content_tag(:a, 'Buy One for a Friend!', class: "btn btn-success btn-lg buy_button", data: {price: @coupon_book.price_cents})
+            = link_to 'Buy One for a Friend!', donate_coupon_book_path(@coupon_book), class: "btn btn-success btn-lg"
 
       .modal-footer
         h5.text-center 

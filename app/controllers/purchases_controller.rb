@@ -10,7 +10,8 @@ class PurchasesController < InheritedResources::Base
         redirect_to after_purchase_path
       end
       failure.html do
-        redirect_to @purchase.purchasable, alert: "There was an error with your payment, please try again."
+        error_message = (@purchase.errors.messages.try(:[], :stripe) || @purchase.errors.messages).first
+        redirect_to donate_coupon_book_path(@purchase.purchasable), alert: "There was an error with your payment: #{error_message}"
       end
     end
 
@@ -52,10 +53,10 @@ class PurchasesController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(purchase: [:first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email])
+    params.permit(purchase: [:first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount, :email])
   end
 
   def validate_token
-    redirect_to root_path, alert:"You're not authorized to see this page." if params[:token].blank? or params[:token] != resource.token
+    redirect_to root_path, alert: "You're not authorized to see this page." if params[:token].blank? or params[:token] != resource.token
   end
 end

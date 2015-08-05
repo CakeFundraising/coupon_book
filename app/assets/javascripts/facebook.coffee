@@ -2,14 +2,16 @@ CakeCouponBook.facebook ?= {}
 CakeCouponBook.facebook.pixel ?= {}
 
 CakeCouponBook.facebook.pixel.conversion = (value)->
-  _fbq = window._fbq || (window._fbq = []);
+  _fbq = window._fbq || (window._fbq = [])
+
   if(!_fbq.loaded)
-    fbds = document.createElement('script');
-    fbds.async = true;
-    fbds.src = '//connect.facebook.net/en_US/fbds.js';
-    s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(fbds, s);
-    _fbq.loaded = true;
+    fbds = document.createElement('script')
+    fbds.async = true
+    fbds.src = '//connect.facebook.net/en_US/fbds.js'
+    s = document.getElementsByTagName('script')[0]
+    s.parentNode.insertBefore(fbds, s)
+    _fbq.loaded = true
+    
   window._fbq = window._fbq || []
   window._fbq.push(['track', '6027184927100', {'value': value,'currency':'USD'}])
   return

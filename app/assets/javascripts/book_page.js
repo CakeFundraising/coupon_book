@@ -17,12 +17,9 @@
 //= require ./ga
 //= require ./addthis
 //= require ./facebook
-//= require ./expander
 //= require ./utils
 //= require ./expander
 
 //= require ./models/browsers
-// require ./models/direct_donations
-//= require ./models/purchases
 //= require ./models/subscriptors
 //= require ./models/videos
