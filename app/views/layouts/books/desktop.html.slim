@@ -9,6 +9,8 @@ html lang="en"
     = csrf_meta_tags
     = javascript_include_tag "//s7.addthis.com/js/300/addthis_widget.js#async=1&pubid=ra-542a2ea07b4b6c5d", async: true
     = javascript_include_tag "book_page", 'data-turbolinks-track' => true
+    - if content_for? :head
+      = yield :head
 
   body.fixed
     = stylesheet_link_tag "book_desktop"

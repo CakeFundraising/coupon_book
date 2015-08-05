@@ -56,7 +56,7 @@ class Purchase
   createToken: ->
     self = this
 
-    new Stripe(@stripeJS) if window.Stripe is undefined #Retry to load Stripe if missing
+    new Stripe(@stripeKey) if window.Stripe is undefined #Retry to load Stripe if missing
 
     window.Stripe.card.createToken @form, (status, response) ->
       if response.error

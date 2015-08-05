@@ -1,11 +1,11 @@
 = book_page_meta(@coupon_book)
 
-= content_for :navbar do
-  = render partial:'coupon_books/show/templates/compact/navbar'
-
-= content_for :header do
-  = stylesheet_link_tag 'models/coupon_books/donate'
+= content_for :head do
   = javascript_include_tag 'donate'
+
+= content_for :navbar do
+  = stylesheet_link_tag 'models/coupon_books/donate'
+  = render partial:'coupon_books/show/templates/compact/navbar'
 
 #donate.row
   .col-md-8

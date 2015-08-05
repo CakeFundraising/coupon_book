@@ -1,9 +1,10 @@
 = book_page_meta(@coupon_book)
 
-= content_for :header do
-  = stylesheet_link_tag 'models/coupon_books/templates/original'
+= content_for :head do
   = javascript_include_tag 'coupon_books/templates/original'
 
+= content_for :header do
+  = stylesheet_link_tag 'models/coupon_books/templates/original'
   = render partial:'coupon_books/show/templates/original/header'
 
 = content_for :bottom_section do

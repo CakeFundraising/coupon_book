@@ -1,12 +1,13 @@
 = book_page_meta(@coupon_book)
 
+= content_for :head do
+  = javascript_include_tag 'coupon_books/templates/compact'
+
 = content_for :navbar do
+  = stylesheet_link_tag 'models/coupon_books/templates/compact'
   = render partial:'coupon_books/show/templates/compact/navbar'
 
 = content_for :header do
-  = stylesheet_link_tag 'models/coupon_books/templates/compact'
-  = javascript_include_tag 'coupon_books/templates/compact'
-
   = render partial:'coupon_books/show/templates/compact/header'
 
 = content_for :bottom_section do

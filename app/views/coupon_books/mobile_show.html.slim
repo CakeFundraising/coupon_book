@@ -1,8 +1,9 @@
 = book_page_meta(@coupon_book)
 
-= content_for :header do
+= content_for :head do
   = javascript_include_tag 'coupon_books/templates/mobile'
   
+= content_for :header do
   = render partial:'coupon_books/show/mobile/header'
 
 = content_for :bottom_section do
