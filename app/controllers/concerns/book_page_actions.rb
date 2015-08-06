@@ -2,11 +2,12 @@ module BookPageActions
   extend ActiveSupport::Concern
   
   included do
-    before_action :allow_launched_book, only: :donate  
+    before_action :allow_launched_book, only: :donate 
+    before_action :redirect_old_slug, only: [:show, :donate]
   end
 
   def show
-    @coupon_book = CouponBook.preloaded.find(params[:id]).decorate
+    @coupon_book = CouponBook.preloaded.friendly.find(params[:id]).decorate
 
     if mobile_device?
       @first_category = @coupon_book.categories.first
@@ -39,4 +40,12 @@ module BookPageActions
   def allow_launched_book
     redirect_to coupon_book_path(resource) unless resource.launched?
   end
+
+  def redirect_old_slug
+    # If an old id or a numeric id was used to find the record, then
+    # the request path will not match the post_path, and we should do
+    # a 301 redirect that uses the current friendly id.
+    redirect_to resource, status: :moved_permanently if request.path != coupon_book_path(resource)
+  end
+
 end

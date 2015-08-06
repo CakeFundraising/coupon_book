@@ -13,7 +13,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :direct_donations, only: :create
 
-  resources :coupon_books do
+  resources :coupon_books, path: :campaigns do
     member do
       scope :edit do
         get :tell_your_story

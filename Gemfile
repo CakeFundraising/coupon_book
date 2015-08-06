@@ -70,6 +70,9 @@ gem 'roadie-rails'
 gem 'metamagic'
 gem 'deep_cloneable', require: false
 
+#Slugs
+gem 'friendly_id', '~> 5.1.0'
+
 #Authentication
 gem 'oauth2'
 

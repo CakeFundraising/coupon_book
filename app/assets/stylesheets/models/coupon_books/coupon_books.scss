@@ -282,22 +282,23 @@ h1.donation-title{
 h1.category-title{
   color: $brand-primary;
   text-align: center;
-  font-size: 60px;
+  font-size: 40px;
   text-transform: uppercase;
   margin-top: 20px;
   margin-bottom: 10px;
   @media (max-width: $screen-sm-max) {
-    font-size: 45px;
+    font-size: 34px;
   }
   @media (max-width: $screen-xs-max) {
-    font-size: 32px;
+    font-size: 30px;
   }
 }
 
 h2.category-subtitle{
   margin-bottom: 40px;
-  margin-top: -10px;
+  margin-top: 0px;
   text-align: center;
+  font-size: 22px;
   @media (max-width: $screen-sm-max) {
     font-size: 28px;
   }

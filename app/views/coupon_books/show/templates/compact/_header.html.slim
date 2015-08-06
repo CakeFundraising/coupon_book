@@ -11,7 +11,7 @@
         .col-md-12
           h3.title
             span.bolder Give today 
-            span & receive rewards donated by 
+            span & receive valuable discounts donated by 
             span.bolder = anchor_link "Baltimore's most generous restaurants!", :coupons
         .col-md-4.col-sm-4.give.head-col
           .link
@@ -34,7 +34,7 @@
               span.glyphicon.glyphicon-gift
               span.text Enjoy
           .text
-            span.bolder #{@coupon_book.coupons.count} Rewards
+            span.bolder #{@coupon_book.coupons.count} Discounts
             /span 
             span  worth 
             span.bolder #{@coupon_book.no_discount_price}!
@@ -61,7 +61,9 @@
                 .do-good.text-center.help-block Do good and treat yourself too!
                 .see-restaurants
                   = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-                    span See my Rewards!
+                    span See All 
+                    span.boldest = @coupon_book.coupons.count
+                    span  Discounts!
         br
       - if @purchases.any?
         #purchases.sidebar

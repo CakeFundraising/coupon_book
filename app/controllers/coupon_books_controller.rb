@@ -1,5 +1,6 @@
 class CouponBooksController < InheritedResources::Base
   include CakeHelper
+  defaults resource_class: CouponBook.friendly
 
   load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :start_discount

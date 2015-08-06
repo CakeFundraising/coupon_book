@@ -3,11 +3,7 @@
     .container
       .row.pledgebluestripe.coupon_book
         .col-md-12.text-center
-          span.banner-heading 
-            span.boldest Help others 
-            span & get rewards worth 
-            span.boldest = @coupon_book.no_discount_price
-            span  donated by the Businesses below!
+          span.banner-heading = I18n.t('banners.coupon_book.coupons').html_safe
 
 .row.book-nav
   .nav-section.col-md-12.text-center
@@ -23,5 +19,5 @@
   .row-fluid
     .col-md-12.text-center
       .book-nav-help
-        = anchor_link 'To see more deals - click the orange navigation buttons above', :coupons, class:'btn btn-warning'
+        = anchor_link 'See All Categories', :coupons, class:'btn btn-warning btn-lg'
       br

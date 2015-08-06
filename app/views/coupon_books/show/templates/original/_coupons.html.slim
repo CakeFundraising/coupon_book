@@ -2,7 +2,7 @@
   .container
     .row.pledgebluestripe.coupon_book
       .col-md-12.text-center
-        span.banner-heading = I18n.t('banners.coupon_book.coupons', count: @coupon_book.coupons.count, fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
+        span.banner-heading = I18n.t('banners.coupon_book.coupons').html_safe
 
 .row.book-nav
   .nav-section.col-md-12.text-center
@@ -19,5 +19,5 @@
   .row-fluid
     .col-md-12.text-center
       .book-nav-help
-        = anchor_link 'To see more deals - click the orange navigation buttons above', :coupons, class:'btn btn-warning'
+        = anchor_link 'See All Categories', :coupons, class:'btn btn-warning'
       br
