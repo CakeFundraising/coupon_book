@@ -3,7 +3,7 @@ module BookPageActions
   
   included do
     before_action :allow_launched_book, only: :donate 
-    before_action :redirect_old_slug, only: [:show, :donate]
+    before_action :redirect_old_slug, only: [:show]
   end
 
   def show
@@ -42,9 +42,6 @@ module BookPageActions
   end
 
   def redirect_old_slug
-    # If an old id or a numeric id was used to find the record, then
-    # the request path will not match the post_path, and we should do
-    # a 301 redirect that uses the current friendly id.
     redirect_to resource, status: :moved_permanently if request.path != coupon_book_path(resource)
   end
 
