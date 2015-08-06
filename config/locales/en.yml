@@ -1016,4 +1016,4 @@ en:
       location:
         state_code: State
       purchase:
-        email_confirmation: Confirm your email
+        hide_name: Hide your name from everyone but the organizer

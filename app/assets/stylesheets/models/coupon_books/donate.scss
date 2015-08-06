@@ -1,5 +1,8 @@
 @import 'shared/variables';
 
+$screen-sm-max: 992px;
+$screen-xs-max: 768px;
+
 #home_video_fr,
 #home_video_sp,
 .video_modal{
@@ -24,6 +27,12 @@
   }
 }
 
+.checkbox{
+  margin-top: -8px;
+  margin-bottom: 20px;
+  color: #737373;
+}
+
 #donate{
   margin-bottom: 20px;
   hr{
@@ -33,10 +42,14 @@
   #donation-sidebar{
     .title{
       font-size: 30px;
+      @media (max-width: $screen-xs-max) {
+        font-size: 26px;
+      }
     }
     .formtastic.purchase{
       .card-logos{
         width: 200px;
+        margin-bottom: 10px;
       }
       #amount-input{
         margin: 10px -20px 30px;
@@ -45,6 +58,13 @@
           font-size: 100px;
           color: darken($brand-warning, 10%);
           padding-top: 7px;
+          @media (max-width: $screen-sm-max) {
+            font-size: 80px;
+            padding-top:0;
+          }
+          @media (max-width: $screen-xs-max) {
+            font-size: 70px;
+          }
         }
         .zeros{
           padding-left: 0;
@@ -62,11 +82,38 @@
             text-align: right;
             background: rgba(240, 173, 78, 0.005);
             padding-right: 0;
+            @media (max-width: $screen-sm-max) {
+              height: 112px;
+              font-size: 80px;
+              line-height: 80px;
+            }
+            @media (max-width: $screen-xs-max) {
+              height: 100px;
+              font-size: 70px;
+              line-height: 70px;
+            }
           }
           #purchase_amount-error{
             text-align: center;
           }
         }
+      }
+      #purchase_submit_action{
+        @media (max-width: $screen-xs-max) {
+          font-size: 24px !important;
+        }
+      }
+    }
+    .terms{
+      margin-bottom: 5px;
+    }
+    .back{
+      text-align: right;
+      margin-bottom: 5px;
+    }
+    .ssl-secure{
+      img{
+        width: 90px;
       }
     }
   }

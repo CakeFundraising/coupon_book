@@ -8,22 +8,18 @@
   = render partial:'coupon_books/show/templates/compact/navbar'
 
 #donate.row
-  .col-md-8
+  .col-md-8.col-sm-6
     - cache [:donate, :desktop, :form, @coupon_book] do
       #donation-sidebar.sidebar
         .title Enter your donation
         = render partial:'coupon_books/donate/form', locals: {purchasable: @coupon_book}
         hr
         .row
-          .col-md-12
-            .back.pull-right 
-              = link_to 'Back', @coupon_book, data: {no_turbolink: true}
+          .col-md-8.col-sm-6
             .terms 
               span By continuing you are agreeing to Eats For Good's 
               span = terms_modal_link
-        .row
-          .col-md-12
-            p.terms 
+            .terms 
               | Payments are processed by 
               span 
                 = link_to "Stripe.com", 'https://stripe.com', target: :_blank
@@ -31,11 +27,17 @@
             .terms
               | For further assistance, contact 
               span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-  .col-md-4
+          .col-md-4.col-sm-6
+            .pull-right 
+              .back
+                = link_to 'Back', @coupon_book, data: {no_turbolink: true}
+              .ssl-secure
+                = image_tag 'ssl-secure.png'
+  .col-md-4.col-sm-6
     - cache [:donate, :desktop, :fr_info, @coupon_book] do
       #fr-info.sidebar
         .row
-          .col-md-12
+          .col-md-12.col-sm-12
             .headbar = @coupon_book.name
             .fr-banner 
               = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'

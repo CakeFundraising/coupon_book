@@ -30,6 +30,12 @@ module CouponBookHelper
     end
   end
 
+  def buy_book_widget_button(coupon_book, button_color=:success)
+    if coupon_book.launched?
+      content_tag(:a, 'Donate Now', class: "btn btn-#{button_color} btn-xl buy_button", data:{price: coupon_book.price_cents})
+    end
+  end
+
   def category_load_button(category)
     link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}"}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
       content_tag(:span, category.name)

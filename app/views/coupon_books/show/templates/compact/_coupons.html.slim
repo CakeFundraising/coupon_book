@@ -3,8 +3,11 @@
     .container
       .row.pledgebluestripe.coupon_book
         .col-md-12.text-center
-          /span.banner-heading = I18n.t('banners.coupon_book.coupons', count: @coupon_book.coupons.count, fr: @coupon_book.fundraiser, price: @coupon_book.price, no_discount: @coupon_book.no_discount_price).html_safe
-          span.banner-heading Help others and get #{@coupon_book.coupons.count} awesome deal vouchers worth #{@coupon_book.no_discount_price} too!
+          span.banner-heading 
+            span.boldest Help others 
+            span & get rewards worth 
+            span.boldest = @coupon_book.no_discount_price
+            span  donated by the Businesses below!
 
 .row.book-nav
   .nav-section.col-md-12.text-center

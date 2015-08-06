@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801155101) do
+ActiveRecord::Schema.define(version: 20150806154702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -252,6 +252,7 @@ ActiveRecord::Schema.define(version: 20150801155101) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "zip_code"
+    t.boolean  "hide_name",        default: false
   end
 
   create_table "subscriptors", force: :cascade do |t|
