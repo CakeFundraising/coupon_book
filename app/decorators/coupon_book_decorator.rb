@@ -93,4 +93,8 @@ class CouponBookDecorator < ApplicationDecorator
   def total_donations_and_sales
     h.humanized_money_with_symbol object.total_donations_and_sales
   end
+
+  def purchases_count
+    h.number_to_human(object.purchases.count, units: :numbers, format: '%n%u')
+  end
 end

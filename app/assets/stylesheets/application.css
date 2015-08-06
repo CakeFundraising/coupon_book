@@ -14,6 +14,5 @@
  *= require bootstrap-datepicker3
  *= require_self
  *= require jquery.Jcrop
- *= require bootstrap_and_overrides
- *= require organize_discounts
+ *= require main/dashboard
  */

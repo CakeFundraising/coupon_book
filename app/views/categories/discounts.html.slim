@@ -1,0 +1,8 @@
+.col-md-10.col-xs-10.col-xs-push-1
+  .row
+    .col-md-12
+      h1.category-title = @category.name
+      h2.category-subtitle = @category.subtitle
+
+  .items
+    = render partial:'coupons/show/box', collection: @discounts, as: :coupon

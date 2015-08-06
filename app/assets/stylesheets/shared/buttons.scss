@@ -1,0 +1,142 @@
+//Buttons -------------------------------------------------------------------------------
+.btn-block {
+  width: auto !important;
+}
+
+.btn-purple{
+  background-color: #59368e;
+  border: 1px solid #4B2E76;
+  color: white;
+  &:hover{
+    color: white;
+  }
+}
+
+.btn-transparent-light{
+  background: rgba(255,255,255,0.1);
+  border: 1px solid;
+  &:hover{
+    border: 1px solid $link-color;
+    color: $link-color;
+    background: none;
+  }
+}
+
+.btn-transparent-dark{
+  background: rgba(0,0,0,0.5);
+  border: 1px solid;
+  color: white;
+  &:hover{
+    background: rgba(0,0,0,0.2) !important;
+    color: white;
+    background: none;
+  }
+}
+
+.btn-success-transparent{
+  background: rgba(182,203,64,0.85);
+  &:hover{
+    background: $brand-success;
+  }
+}
+
+.btn-search{
+  padding:6px 15px !important;
+  margin-left:4px !important;
+  color: #333333;
+  background-color: whitesmoke;
+  border-color: #dddddd !important;
+  border-width:1px;
+}
+
+.btn-xl{
+  padding: 15px 0px !important;
+  width: 100% !important;
+  font-size: 22px !important;
+
+  @media (max-width: $screen-sm-max) {
+    font-size: 19px !important;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 16px !important;
+  }
+
+  &.buy_button{
+    font-size: 34px !important;
+    padding: 5px 0px !important;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0px 1px 2px darken($brand-success, 40%);
+
+    @media (max-width: $screen-sm-max) {
+      font-size: 26px !important;
+    }
+    @media (max-width: $screen-xs-max) {
+      font-size: 24px !important;
+    }
+  }
+}
+.btn-lg{
+  padding: 10px 50px !important;
+  font-size: 20px;
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  @media (max-width: 420px){
+    padding: 10px 40px !important;
+  }
+}
+
+.btn-md{
+  font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  padding: 10px 25px !important;
+  font-size: 15px;
+}
+.save-btn {
+  margin: 20px auto 40px;
+}
+.btn-sm{
+  margin:2px;
+}
+.btn-lg-choice{
+  padding: 15px;
+  max-width: 250px;
+  margin: 0px;
+  white-space: normal;
+  min-width: 225px;
+  color: #999999;
+  background-color: whitesmoke;
+  border-color: #dddddd;
+  border-radius: 10px;
+  &:focus{
+    outline:none;
+  }
+  &:hover{
+    color:#333333;
+  }
+}
+.btn-mega{
+  font-size: 36px;
+  padding: 10px 50px !important; 
+  position: relative;
+  border: 0 !important;
+  &:focus { outline: 0; }
+  &:hover { top: 2px; }
+  &:active { top: 6px; }
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold !important;
+  
+  @include border-radius(10px);
+  @include transition(all, 50ms, ease);
+  @include tridimensional-btn($brand-warning, 20%);
+}
+
+.btn-active {
+  color: #fff;
+  background-color: $brand-success;
+  border-color: #7e8e27;
+  &:hover{
+    color: #fff;
+    background-color: #97aa2e;
+    border-color: #7e8e27;
+  }
+}

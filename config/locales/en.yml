@@ -996,8 +996,10 @@ en:
     Ends:              Ends
   banners:
     coupon_book:
-      header: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div><div class='last'>Friends, please donate <span class='boldest'>%{price}</span> and receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants in Baltimore as our thanks. Do good and treat yourself too!</div>"
-      coupons: "Enjoy all <span class='boldest'>%{count}</span> deals and save <span class='boldest'>%{no_discount}!</span> Bon Appétit!"
+      header: 
+        first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
+        last: "<div class='last'><span class='boldest'>Donate %{price} or more</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants worth <span class='boldest'>%{no_discount}!</span></div>"
+      coupons: "Check Out each Discount Category! <span class='boldest'>Click on the orange buttons below.</span>"
   activerecord: 
     models:
       coupon:
@@ -1013,3 +1015,5 @@ en:
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
       location:
         state_code: State
+      purchase:
+        hide_name: Hide your name from everyone but the organizer

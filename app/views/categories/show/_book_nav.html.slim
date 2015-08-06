@@ -1,2 +1,6 @@
-li
-  = link_to category.name, anchor: category.name.parameterize.underscore
+- if category_counter.zero?
+  li.active
+    = content_tag(:a, id:"tab-#{category.name.parameterize.underscore}", href:"#pop-#{category.name.parameterize.underscore}", class:'book-nav-link', data:{toggle: 'tab'}) do
+      = content_tag(:span, category.name)
+- else
+  li = category_load_button(category)

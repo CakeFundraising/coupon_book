@@ -1,0 +1,187 @@
+// Coupon Styles ---------------------------------------
+.coupon-label{
+  font-size: 18px;
+}
+.coupon-wrapper{
+  &.orderup-coupon{
+    margin-top: 20px;
+  }
+  .coupon-actions{
+    position: absolute;
+    right: 120px;
+    z-index: 9999;
+  }
+  .news-actions{
+    position: absolute;
+    z-index: 9999;
+    padding-top: 5px;
+    left: 6.8%;
+    div{
+      margin-bottom: 7px;
+    }
+  }
+  .order-up-label{
+    position: absolute;
+    right: 8px;
+    width: 65px;
+    z-index: 9;
+    margin-top: -32px;
+    img, .orderup-logo{
+      width: 65px;
+    }
+  }
+}
+.coupons_section{
+  .news-actions{
+    left: 103px;
+  }
+}
+
+.coupon-box{
+  padding: 15px;
+  background-color: #fff;
+  border-radius: $border-radius-base;
+  box-shadow: 0px 0px 5px #ccc;
+  margin-bottom: 35px;
+  .sp-box{
+    padding-left: 0;
+    border-right: 1px dotted #ddd;
+    @media (max-width: $screen-sm-max) {
+      border-right: none;
+    }
+    .sp_name{
+      clear: both;
+      padding-top: 10px;
+      margin-bottom: 3px;
+    }
+    .sp_name_mobile{
+      clear: both;
+      padding-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+  .multiple_locations{
+    border-top: 1px dotted #ccc;
+    margin-top: 12px;
+    padding-top: 10px;
+    &.mobile{
+      font-size: 10px;
+    }
+  }
+  .coupon_location{
+    font-size: 16px;
+  }
+  .coupon_pic_col{
+    padding-right: 0;
+  }
+  &.coupon-modal{
+    .label-purple{
+      padding: 6px;
+    }
+    p{
+      font-size: 15px;
+    }
+  }
+  p, h2, h3{
+    margin:0px;
+    padding:0px;
+  }
+  h2, h3{
+    font-family: "museo_sans500", Helvetica, Arial, sans-serif;
+  }
+  h2{
+    margin-bottom: 5px;
+  }
+  .pledge-news-content,
+  .coupon-content{
+    p{
+      font-size: 16px;
+    }
+  }
+  .coupon-content-mobile{
+    margin-top: 10px;
+    h2{
+      font-size: 24px;
+    }
+    h3{
+      font-size: 16px;
+    }
+  }
+  hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  h3{
+    font-size: 17px;
+    color:#333;
+    span {
+      color: #08c1dc;
+    }
+  }
+  .label-purple{
+    position:absolute;
+    padding:10px;
+    margin: -7px;
+    z-index: 99;
+  }
+  img {
+    width: 100%;
+    padding:0px;
+    &.img-thumbnail{
+      border: none;
+    }
+  }
+  .promo-code{
+    font-size: 18px;
+    margin: 0px 0px 10px;
+    padding: 5px 0px;
+  }
+  .terms {
+    font-size: 20px;
+    margin-top: 15px;
+    em {
+      font-style: italic;
+      color: $gray-light;
+    }
+  }
+}
+.coupon-edge {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  background-image: image-url('coupon-edge.png');
+  height: 100%;
+  width: 7px;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-position: center;
+}
+.terms {
+  font-size: $font-size-small;
+  em {
+    font-style: italic;
+    color: $gray-light;
+  }
+}
+
+.coupon-modal {
+  .modal-content {
+    width: 180%;
+    left: -40%;
+  }
+  h3{
+    font-family: "museo_sans300", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+  }
+  .modal-body{
+    padding: 20px;
+  }
+  .lead{
+    font-size: 18px;
+  }
+}
+
+// PR Box
+.pr_box_pic_col{
+  padding-left: 0;
+}

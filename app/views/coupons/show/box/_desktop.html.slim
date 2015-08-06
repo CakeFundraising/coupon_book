@@ -16,11 +16,8 @@
           .col-md-6.col-xs-12
             div.coupon-content
               h2 = coupon
-              h3
-                |Expires: 
-                span = coupon.expires_at_american                  
               hr
-              p.expander-250 = coupon.description
+              p.expander = coupon.description
           .col-md-2.col-xs-12.text-center
             .hidden-xs.hidden-sm = coupon.picture.qrcode
             .row.terms

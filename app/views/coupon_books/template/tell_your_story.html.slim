@@ -21,7 +21,7 @@
           .row.text-left
             .col-md-3
             .col-md-6
-              = f.input :headline, {placeholder: '250 characters or less', maxlength: 250}
+              = f.input :headline, input_html: {placeholder: '110 characters or less', maxlength: 110}
               = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
               br
               = render partial:'videos/form', locals:{f: f}

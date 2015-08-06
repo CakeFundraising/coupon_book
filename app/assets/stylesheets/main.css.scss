@@ -1,0 +1,25 @@
+@import 'shared/shared';
+@import 'dashboards/dashboards';
+@import 'models/all';
+//@import 'home';
+
+//Grid Layout ----------------------------------------------------------------------------
+html {
+  position: relative;
+  margin:0;
+  padding:0;
+  min-height: 100%;
+  min-width: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  min-width: 100%;
+  &.iframe-body{
+    overflow: hidden;
+  }
+}
+
+iframe{
+  border: none;
+}

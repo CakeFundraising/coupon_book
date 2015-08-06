@@ -1,0 +1,85 @@
+.h1{
+  @media (max-width: $screen-sm-max) {
+    font-size: 30px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 26px;
+  }
+}
+// h1 span {
+//   float: left;
+//   margin-right: 20px;
+//   margin-bottom: 10px;
+// }
+.dash-head {
+  padding: 10px 0px 0px;
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+h1.name {
+  color: #fff;
+  display: inline-table;
+  .edit {
+    font-size: 16px;
+    margin-left: 5px;
+  }
+  @media (max-width: $screen-sm-max) {
+    margin-top: 0;
+  }
+}
+.campaign-intro {
+  margin-top: 65px;
+  .name {
+    color: #fff;
+    display: inline-table;
+    .edit {
+      font-size: 16px;
+      margin-left: 5px;
+      margin-top: 5px;
+    }
+  }
+  .addthis_sharing_toolbox {
+    display: table-cell;
+  }
+  .share-buttons {
+    float: left;
+  }
+  .share-info {
+    color: white;
+    padding-left: 5px;
+  }
+}
+
+h3{
+  @media (max-width: $screen-sm-max) {
+    font-size: 26px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 22px;
+  }
+}
+
+h3, h4 {
+  &.campaign-ends{
+    color: black;
+  }
+}
+
+hr{
+  border-top: 1px dotted #dddddd;
+}
+
+.nav-tabs {
+  text-transform: uppercase;
+}
+.italic {
+  font-style: italic;
+}
+.blue-color{
+  color: $brand-primary;
+}
+
+.black{
+  color: black;
+}

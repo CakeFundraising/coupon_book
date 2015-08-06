@@ -1,0 +1,145 @@
+.collection-coupons,
+.collection-pr-boxes,
+.categories,
+.category-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .empty-list {
+    min-height: 70px;
+  }
+
+}
+
+ul#collection-coupons,
+ul#collection-pr-boxes,
+ul#categories{
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.category {
+  padding: 0;
+  border: 0;
+  position: relative;
+
+  &--title {
+    background: $brand-primary;
+    color: white;
+    font-size: $font-size-h3;
+    display: block;
+    padding: 8px;
+  }
+
+  .category-items{
+    min-height: 70px;
+    padding-top: 10px;
+  }
+}
+
+.coupon-item,
+.prbox-item,
+.category-item{
+  border: 1px solid $gray-medium-light;
+  padding: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background: white;
+  
+  &--item,
+  &--title {
+    display: block;
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  &--owner{
+    color: #999;
+  }
+
+  &--container {
+    float: left;
+    max-width: 70%;
+  }
+
+  &:hover {
+    cursor: move;
+  }
+
+  &.disabled{
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  &.sortable-ghost {
+    background: $gray-lighter;
+    opacity: 0.7;
+  }
+}
+
+.prboxActions,
+.couponActions {
+  float: right;
+  padding: 8px;
+  border-left: 1px solid $gray-medium-light;
+
+  &--item {
+    display: inline;
+  }
+
+  &.couponActions-category {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 8px 0 0;
+    border: 0;
+
+    &--item {
+      border: 0;
+      float: left;
+      padding: 8px 6px 0 0;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  @extend .collection-coupons;
+}
+
+// Organize Coupon Book
+li.category{
+  list-style: none;
+  ul.sortableCoupons {
+    margin-top: 20px;
+    list-style-type: none;
+    padding-left: initial;
+    min-height: 75px;
+  }
+  ul.sortableCategories {
+    list-style-type: none;
+  }
+  .coupon-title, .coupon-sp {
+    font-size: 1em;
+    font-family: "museo_sans700"
+  }
+}
+.category-actions {
+  width: 189px;
+  text-align: right;
+}
+
+.table-category-title {
+  color: #fff;
+  font-size: 2.5em;
+}
+.in-book {
+  opacity: 0.2;
+  transition: opacity 0.500s linear;
+}
+
+li.ui-state-default {
+  cursor: move;
+}

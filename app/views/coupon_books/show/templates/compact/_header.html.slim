@@ -1,0 +1,72 @@
+- cache [:templates, :compact, :header, :headpage, @coupon_book] do
+  .campaign-banner
+    .container
+      .row
+        .col-md-12.col-sm-12
+          span.top_banner.text-center = @coupon_book.name
+
+  #headpage
+    .container
+      .row-fluid.text-center
+        .col-md-12
+          h3.title
+            span.bolder Give today 
+            span & receive valuable discounts donated by 
+            span.bolder = anchor_link "Baltimore's most generous restaurants!", :coupons
+        .col-md-4.col-sm-4.give.head-col
+          .link
+            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+              span.glyphicon.glyphicon-heart
+              span.text Give
+          .text
+            span.bolder = @coupon_book.price
+            span  or more today!
+        .col-md-4.col-sm-4.help.head-col
+          .link
+            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+              span.glyphicon.glyphicon-globe
+              span.text Help
+          .text
+            span #{@coupon_book.fr_name}
+        .col-md-4.col-sm-4.get.head-col
+          .link
+            = content_tag(:a, href:"#coupons") do
+              span.glyphicon.glyphicon-gift
+              span.text Enjoy
+          .text
+            span.bolder #{@coupon_book.coupons.count} Discounts
+            /span 
+            span  worth 
+            span.bolder #{@coupon_book.no_discount_price}!
+
+.container.compact-container
+  .row
+    .col-md-8.col-sm-8
+      - cache [:templates, :compact, :header, :container, :first_col, @coupon_book] do
+        .sidebar
+          .banner 
+            = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
+            .sharer
+              .addthis_sharing_toolbox
+          .headline
+            h3.blue-color = @coupon_book.headline
+            p.story.expander = @coupon_book.story
+    .col-md-4.col-sm-4
+      - cache [:templates, :compact, :header, :container, :second_col, @coupon_book] do
+        .sidebar
+          .row
+            .col-md-12
+              #buttons
+                div = coupon_book_buy_button(@coupon_book)
+                .do-good.text-center.help-block Do good and treat yourself too!
+                .see-restaurants
+                  = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+                    span See All 
+                    span.boldest = @coupon_book.coupons.count
+                    span  Discounts!
+        br
+      - if @purchases.any?
+        #purchases.sidebar
+          .headbar.text-center Recent Donations
+          ul.no-list
+            = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

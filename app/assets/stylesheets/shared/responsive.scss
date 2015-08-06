@@ -1,0 +1,170 @@
+//Media Responsive -------------------------------------------------------------------------------
+.container{
+  max-width: 1200px;
+  min-width: 260px;
+}
+
+@media (max-width: 420px){
+  #main-container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .main-home {
+    margin-top: 0px !important;
+    
+    .search-form {
+      margin-bottom: 15px !important;
+      margin: 5px;
+    }
+
+    #pop-campaigns .panel-group, #pop-sponsors .panel-group, #pop-coupons .panel-group{
+      display:none;
+    }
+  }
+
+  .campaigns-container {
+    margin-top:10px;
+  }
+
+  .navbar{
+    z-index: 1000;
+    width: 100%;
+  }
+}
+
+@media (max-width: 570px){
+  .nav-tabs{
+    font-size: 11px;
+    a{
+      padding: 9px 7px !important;
+    }
+  }
+}
+
+
+@media (max-width: 620px){
+    .navbar-text{
+      display:none;
+    }
+    .secondary-navbar{
+      margin:0px !important;
+      .col-md-12 {
+       padding:0px !important;
+      }
+    }
+    .main-home{
+      margin-top: 20px;
+    }
+    .hero-home{
+      .slide1, .slide2, .slide3{
+        height:260px !important;
+      }
+      .cta h1{
+        font-size: 38px;
+      }
+    }
+    .button-wrap{
+      display:none;
+    }
+
+    #tab-campaigns span, 
+    #tab-sponsors span,
+    #tab-fundraisers span,
+    #tab-coupons span{
+      display: none;
+    }
+    #tab-campaigns:after{
+      content: "Campaigns";
+    }
+    #tab-sponsors:after{
+      content: "Sponsors";
+    }
+    #tab-fundraisers:after{
+      content: "Causes";
+    }
+    #tab-coupons:after{
+      content: "Coupons";
+    }
+
+    #main-container{
+
+    }
+    .rank-rows{
+      .boldest{
+        display:block !important;
+      }
+      .pull-right{
+        float:none !important;
+      }
+    }
+    .media{
+      img{
+        /*max-width: 305px;*/
+      }
+      .btn{
+        padding: 10px 20px !important;
+      }
+      .pull-right{
+        float:none !important;
+        margin:auto 0 !important;
+      }
+      .media-body{
+        float: left !important;
+        margin-top: 20px;
+      }
+    }
+    .pad-top{
+      margin-top: 15px !important;
+    }
+}
+
+@media (max-width: 767px){
+  .navbar-brand {
+    padding-top: 8px;
+    img{
+      width: 90px;
+      padding-top: 0px;
+    }
+  }
+  .btn-signup.btn-success{
+    display:block;
+  }
+}
+@media (min-width: 768px){
+  .btn-signup.btn-success{
+    display:none;
+  }
+}
+
+@media (min-width: 935px){
+  .btn-signup.btn-success{
+    display:block;
+  }
+}
+
+
+@media (min-width: 768px){
+  .container{
+    width:auto !important;
+  }
+  .nav-cta{
+    float:left;
+    li {
+      float: left;
+      a{
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    }
+  }
+}
+
+p.signup-social span:before, p.signup-social span:after {
+  width: 70% !important;
+}
+
+.media{
+  .media-block{
+    margin-top:20px;
+  }
+}

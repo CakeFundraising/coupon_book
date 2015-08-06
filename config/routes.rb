@@ -13,7 +13,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :direct_donations, only: :create
 
-  resources :coupon_books do
+  resources :coupon_books, path: :campaigns do
     member do
       scope :edit do
         get :tell_your_story
@@ -31,10 +31,19 @@ CakeCouponBook::Application.routes.draw do
       get :start_pr_box
       get :categories, format: :json
       get :download
+
+      get :donate
     end
   end
 
-  resources :categories
+  resources :categories do
+    collection do
+      get :load_all_discounts
+    end
+    member do
+      get :discounts
+    end
+  end
 
   resources :collections do
     member do

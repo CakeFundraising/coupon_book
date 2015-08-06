@@ -8,4 +8,16 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( pdf.css mail.css )
+Rails.application.config.assets.precompile += [
+  'pdf.css',
+  'mail.css',
+  'book_desktop.css',
+  'models/coupon_books/templates/original.css',
+  'models/coupon_books/templates/compact.css',
+  'models/coupon_books/donate.css',
+  'book_page.js',
+  'donate.js',
+  'coupon_books/templates/original.js',
+  'coupon_books/templates/compact.js',
+  'coupon_books/templates/mobile.js'
+]

@@ -1,0 +1,26 @@
+#purchase-widget
+  = semantic_form_for purchasable.purchases.build do |f|
+    = f.inputs do
+      = f.input :amount, input_html:{class:'input-lg'}
+      .row
+        .col-md-6
+          = f.input :first_name
+        .col-md-6
+          = f.input :last_name
+      .row
+        .col-md-12
+          = f.input :email
+          = f.input :email_confirmation
+      .row
+        .col-md-6
+          = f.input :zip_code
+      = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
+      = f.input :purchasable_id, as: :hidden
+      = f.input :purchasable_type, as: :hidden
+    br
+    .row
+      .col-md-6.col-md-push-3.text-center
+        = link_to 'Continue', nil, class:'btn btn-success btn-xl'
+
+javascript:
+  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable.fr_name}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');

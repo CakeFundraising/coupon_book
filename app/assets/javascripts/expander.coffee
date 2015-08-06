@@ -1,6 +1,6 @@
 CakeCouponBook.expander = ->
   $('.expander').expander
-    slicePoint: 500
+    slicePoint: 475
     widow: 4
     expandEffect: "show"
     userCollapseText: "Close"

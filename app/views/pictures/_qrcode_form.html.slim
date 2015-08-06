@@ -11,6 +11,8 @@
       var options = {
         wrapper: '#qrcode_form_wrapper',
         preview: '.uploader.input .qrcode',
+        max_width: "#{Picture::QRCODE_SIZES[:large].first}",
+        max_height: "#{Picture::QRCODE_SIZES[:large].last}",
         ratio: 1
       };
       CakeCouponBook.widget.new(options);

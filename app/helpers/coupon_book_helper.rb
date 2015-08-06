@@ -26,8 +26,45 @@ module CouponBookHelper
 
   def coupon_book_buy_button(coupon_book, button_color=:success)
     if coupon_book.launched?
-      #content_tag(:a, "#{coupon_book.price} Buy Now!", class: "btn btn-#{button_color} btn-xl buy_button", data: {toggle: 'modal', target: '#buy_book_modal'})
-      content_tag(:a, "Give #{coupon_book.price}!", class: "btn btn-#{button_color} btn-xl buy_button", data: {price: coupon_book.price_cents})
+      link_to 'Donate Now', donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+    end
+  end
+
+  def buy_book_widget_button(coupon_book, button_color=:success)
+    if coupon_book.launched?
+      content_tag(:a, 'Donate Now', class: "btn btn-#{button_color} btn-xl buy_button", data:{price: coupon_book.price_cents})
+    end
+  end
+
+  def category_load_button(category)
+    link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}"}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
+      content_tag(:span, category.name)
+    end
+  end
+
+  def how_efg_works_link(text="How Eats for Good works!")
+    content_tag(:a, data:{toggle: 'modal', target: '#how_it_works_modal'}) do
+      content_tag(:span, nil, class:'glyphicon glyphicon-play-circle')+
+      content_tag(:span, text)
+    end
+  end
+
+  def share_on_fb_button(url, classes='')
+    content_tag(:a, 'Share on Facebook', data:{url: url}, class: classes)
+  end
+
+  def join_mail_list
+    #content_tag(:a, 'Join our email list!', data:{toggle: 'modal', target: '#how_it_works_modal'})
+    link_to 'Join our email list!', efg_contact_path, target: :_blank
+  end
+
+  def book_page_top_share
+    content_tag(:div, nil, class:'addthis_custom_sharing')
+  end
+
+  def donate_top_link(coupon_book)
+    if coupon_book.launched?
+      content_tag(:a, "Donate", class: "btn-signup buy_button btn btn-success", data: {price: coupon_book.price_cents})
     end
   end
 

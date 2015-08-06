@@ -1,0 +1,101 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"
+    meta name="apple-mobile-web-app-title" content="CakeCoupons"
+    = cake_meta_tags
+    = csrf_meta_tags
+    = javascript_include_tag "//s7.addthis.com/js/300/addthis_widget.js#async=1&pubid=ra-542a2ea07b4b6c5d", async: true
+    = javascript_include_tag "book_page", 'data-turbolinks-track' => true
+    - if content_for? :head
+      = yield :head
+
+  body.fixed
+    = stylesheet_link_tag "book_desktop"
+
+    .container = bootstrap_flash
+
+    - if content_for? :navbar
+      = yield :navbar
+    - else
+      = render partial: 'layouts/main_nav'
+
+    - if content_for? :header
+      header
+        = yield :header
+        
+    - if content_for? :sidebar
+      .container#main-container
+        .row
+          #sidebar.col-md-3
+            .sidebar-nav
+              = yield :sidebar
+          .col-md-9.with-sidebar
+            = yield
+    - else
+      .container#main-container
+        .row
+          .col-md-12
+            = yield
+      /! /row
+    /! /container
+    - if content_for? :bottom_section
+      .bottom_section
+        = yield :bottom_section
+
+    = render partial:'layouts/modals/how_it_works'
+    = render partial:'layouts/modals/terms_of_purchase'
+
+    javascript:
+      CakeCouponBook.analytics.set("#{ENV['GA_ID']}");
+
+  footer
+    .container
+      .row
+        .col-md-6.col-sm-6.col-xs-6
+          h4 Company
+          ul
+            li
+              = link_to "About Eats For Good", efg_about_path, target: :_blank
+            li
+              = link_to "Blog", efg_blog_path, target: :_blank
+            li
+              = link_to "Press", cake_about_page_path('press'), target: :_blank
+            li
+              = link_to "Contact", efg_contact_path, target: :_blank
+            / li
+            /   = link_to "Privacy", cake_about_page_path('privacy'), target: :_blank
+            li = terms_modal_link
+
+        / .col-md-4.col-sm-4.col-xs-4
+        /   h4 Learn
+        /   ul
+        /     li
+        /       = link_to "FAQs", cake_help_page_path('faq')
+        .follow-us.col-md-6.col-sm-6.col-xs-6
+          h4 Follow Us
+          //div.addthis_custom_follow
+          ul
+            li
+              = link_to t('application.social.accounts.facebook'), target: :_blank, title: 'Follow on Facebook', class:'social-buttons'
+                span.facebook
+            li
+              = link_to t('application.social.accounts.twitter'), target: :_blank, title: 'Follow on Twitter', class:'social-buttons'
+                span.twitter
+            li
+              = link_to t('application.social.accounts.linkedin'), target: :_blank, title: 'Follow on LinkedIn', class:'social-buttons'
+                span.linkedin
+            li
+              = link_to t('application.social.accounts.instagram'), target: :_blank, title: 'Follow on Instagram', class:'social-buttons'
+                span.instagram
+          br
+
+      .row.Colophon
+        .col-md-9
+          h4.boldest CakeCauseMarketing.com
+          p Makes it easy to create and manage exciting digital deal book fundraising campaigns that produce great results for your organization and its business partners!
+        .col-md-3
+          .hidden#today = Date.today
+          p.pull-right &copy;#{Time.now.year} #{t('application.company')}, Inc.

@@ -1,7 +1,7 @@
 #avatar_form_wrapper
   = f.semantic_fields_for :picture, f.object.picture || f.object.build_picture do |p|
     = p.input :avatar, as: :uploader
-    = p.input :avatar_caption, input_html: {size: 40, maxlength: 40, placeholder: '40 characters'} if defined? caption
+    = p.input :avatar_caption, input_html: {size: 30, maxlength: 30, placeholder: '30 characters'} if defined? caption
     .coords
       = p.input :avatar_crop_x, as: :hidden, input_html:{class: 'crop_x'}
       = p.input :avatar_crop_y, as: :hidden, input_html:{class: 'crop_y'}
@@ -15,6 +15,8 @@
       var options = {
         wrapper: '#avatar_form_wrapper',
         preview: '.uploader.input .avatar',
+        max_width: "#{Picture::AVATAR_SIZES[:medium].first}",
+        max_height: "#{Picture::AVATAR_SIZES[:medium].last}",
         ratio: 1.5
       };
       CakeCouponBook.widget.new(options);

@@ -7,17 +7,17 @@ class Picture < ActiveRecord::Base
     ico: [25, 19],
     thumb: [50, 38],
     square: [120, 120],
-    medium: [300, 200]
+    medium: [1500, 1000]
   }
 
   BANNER_SIZES = {
-    large: [1400, 700],
+    large: [2000, 1000],
     medium: [280, 140]
   }
 
   QRCODE_SIZES = {
     medium: [300, 300],
-    large: [600, 600]
+    large: [1000, 1000]
   }
 
   validates :avatar, presence: true, if: :persisted?

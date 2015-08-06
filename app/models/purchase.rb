@@ -3,14 +3,15 @@ class Purchase < ActiveRecord::Base
   has_one :charge, as: :chargeable
   has_many :vouchers, dependent: :destroy
 
-  #attr_accessor :cc_number, :exp_month, :exp_year, :cvc, :email_confirmation
+  attr_accessor :card_number, :exp_month, :exp_year, :cvc, :email_confirmation
 
   monetize :amount_cents
 
-  #validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
-  validates :purchasable, :card_token, :amount, :email, :token, presence: true
+  validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
 
-  before_create :stripe_charge_card
+  before_validation :stripe_charge_card
+
+  scope :latest, ->{ order('purchases.created_at DESC') }
 
   after_initialize do
     self.token = SecureRandom.uuid if self.token.blank?
@@ -39,27 +40,28 @@ class Purchase < ActiveRecord::Base
   private
 
   def stripe_charge_card
-    begin
-      charge = Stripe::Charge.create({
-        amount: self.amount_cents,
-        currency: self.amount_currency.downcase,
-        source: self.card_token,
-        description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
-        metadata:{
-          email: self.email
+    unless self.persisted?
+      begin
+        charge = Stripe::Charge.create({
+          amount: self.amount_cents,
+          currency: self.amount_currency.downcase,
+          source: self.card_token,
+          description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
+          metadata:{
+            email: self.email
+          },
+          receipt_email: self.email,
+          statement_descriptor: "EFG.org #{self.purchasable.class} ##{self.purchasable.id}",
+          application_fee: application_fee
         },
-        receipt_email: self.email,
-        statement_descriptor: "EFG.org #{self.purchasable.class} ##{self.purchasable.id}",
-        application_fee: application_fee
-      },
-        stripe_account: self.purchasable.fundraiser.stripe_account_id
-      )
-      store_transaction(charge)
-    rescue Stripe::CardError => e
-      # The card has been declined
-      self.card_token = nil # Force validation to fail
-    rescue Stripe::InvalidRequestError => e
-      self.card_token = nil
+          stripe_account: self.purchasable.fundraiser.stripe_account_id
+        )
+        store_transaction(charge)
+      rescue Stripe::CardError => e
+        self.errors.add(:stripe, e.message)
+      rescue Stripe::InvalidRequestError => e
+        self.errors.add(:stripe, e.message)
+      end
     end
   end
 

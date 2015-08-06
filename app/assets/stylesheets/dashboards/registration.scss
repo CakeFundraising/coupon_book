@@ -1,0 +1,114 @@
+.shared-links{
+  text-align:left;
+  margin-top:20px;
+}
+// Register - Choose Styles ------------------------------------------------------------------
+.choose-role {
+  padding: 20px 0;
+}
+.wood {
+  height:650px;
+  margin-bottom: 0;
+  border:0px;
+  background-image: image-url('purple_wood.jpg');
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+  @media (max-width: $screen-md-min) {
+    height: 1000px;
+  }
+}
+.never-easier {
+  margin-top: 135px;
+  color: #fff;
+}
+.bottom-arrow {
+  background: image-url("bottom-arrow.png") no-repeat;
+  height: 96px;
+  background-size: 100% auto;
+  @include background-size(cover);
+  background-position: 50% 0px;
+}
+.fundraisers-cir {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  color: #fff;
+  padding: 40px 15px;
+  margin: 0 auto;
+  background-color: $brand-success;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
+  margin-bottom: 25px;
+}
+.sponsors-cir {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  color: #fff;
+  padding: 40px 15px;
+  margin: 0 auto;
+  background-color: $brand-primary;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
+}
+.start-now-btn {
+  border: 1px solid white;
+  margin-top: 0px;
+  &.btn-lg{
+    padding: 10px 30px !important;
+  }
+}
+// Sign Up Styles ------------------------------------------------------------------
+.signup-wrap {
+  padding: 0 9%;
+  color: $text-color-light;
+  margin: auto;
+  text-align: center;
+  p {
+    font-size: 14px;
+    font-style: italic;
+    color: $text-color-light;
+    margin-top: -35px;
+    background-color: $body-bg;
+    padding: 0 15px;
+    display: inline-block;
+    position: relative;
+  }
+}
+.providers {
+  a {
+    display: block;
+    margin: 0 auto 10px;
+  }
+}
+
+p.signup-social {
+  color: $text-color-light;
+  font-size: 14px;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  width:100%;
+  @media (max-width: $screen-md-min) {
+    margin-top: 40px;
+  }
+  &:before {
+      border-top: 1px solid #dfdfdf;
+      content: "";
+      position: absolute;
+      top: 9px;
+      right: 0%;
+      bottom: 0;
+      width: 100%;
+    }
+  span {
+    position: relative;
+    background-color: $main-background;
+    padding: 15px;
+  } 
+}
+// Sign In Styles ------------------------------------------------------------------
+.sign-in-social {
+  margin-top: 25px;
+}

@@ -28,6 +28,23 @@ class CategoriesController < InheritedResources::Base
     end
   end
 
+  #Discounts
+  def discounts
+    @category = resource
+    @discounts = @category.items.preloaded.decorate
+    render layout: false
+  end
+
+  def load_all_discounts
+    @coupon_book = CouponBook.find(params[:coupon_book_id])
+
+    @categories = @coupon_book.categories.with_items.to_a
+    @categories.shift #remove first category
+    @categories = CategoryDecorator.decorate_collection @categories
+
+    render layout: false
+  end
+
   private
   
   def category_params

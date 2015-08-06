@@ -1,5 +1,7 @@
 class CouponBooksController < InheritedResources::Base
   include CakeHelper
+  defaults resource_class: CouponBook.friendly
+
   load_and_authorize_resource
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
@@ -17,12 +19,8 @@ class CouponBooksController < InheritedResources::Base
   def index
     @coupon_books = current_fundraiser.coupon_books.latest.decorate
   end
-
-  def show
-    @coupon_book = CouponBook.preloaded.find(params[:id]).decorate
-    @header_banner = I18n.t('banners.coupon_book.header', fr: @coupon_book.fr_name, price: @coupon_book.price, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
-    @categories = @coupon_book.categories.with_items.decorate
-  end
+  
+  include BookPageActions
 
   #Template steps
   def basic_info
@@ -174,7 +172,7 @@ class CouponBooksController < InheritedResources::Base
 
   def permitted_params
     params.permit(coupon_book: [
-      :name, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal,
+      :name, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, :template,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [

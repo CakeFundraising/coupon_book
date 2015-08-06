@@ -6,8 +6,13 @@ class CouponBook < ActiveRecord::Base
   include Picturable
   include Screenshotable
   include VisitorActions
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: [:slugged, :history]
 
   attr_accessor :step
+
+  TEMPLATES = %w{ compact original }
 
   has_statuses :incomplete, :pending, :launched, :past
 
@@ -87,6 +92,18 @@ class CouponBook < ActiveRecord::Base
 
   def donation_sales_thermometer
     (total_donations_and_sales/goal.amount)*100 unless goal.amount == 0.0
+  end
+
+  #Slugs
+  def slug_candidates
+    [
+      :name,
+      [:organization_name, :name]
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 
   #Fee

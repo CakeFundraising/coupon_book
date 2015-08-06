@@ -1,0 +1,75 @@
+// Account Page Styles ------------------------------------------------------------------
+.account-wrapper {
+  border-top: 1px dotted $gray-light;
+  padding: 35px 60% 30px 25px;
+  @media (max-width: $screen-md-min) {
+    padding: 25px 50px 20px;
+  }
+}
+.sponsor-profile {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  @media (max-width: $screen-md-min) {
+    td {
+      display:block;
+    }
+    .table-bordered {
+      border:0px;
+      border-bottom: 1px solid #dddddd;
+      tbody > tr > td{
+        border-bottom: 0px;
+      }
+    }
+  }
+}
+.fr-name {
+  color: $brand-primary;
+}
+.link-stripe-account {
+  font-style: italic;
+  font-size: 12px;
+  color: $gray-light;
+  padding-top: 5px;
+}
+.fr-manager-email {
+  margin-bottom: 8px;
+}
+.fr-manager-email-edit {
+  padding-left: 5px;
+}
+.summery-stats {
+  font-size: 2em;
+  color: $brand-primary;
+  margin-bottom: 0;
+}
+.top-causes {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.left-content{
+  h3{
+    margin-top: 10px;
+  }
+}
+.donation-stats {
+  font-size: 3em;
+  color: $brand-primary;
+  margin-bottom: 0;
+}
+.rank-rows {
+  margin: 15px 0;
+  border-top:  1px solid #e7e7e7;
+  text-transform: capitalize !important;
+}
+.rank-rows>div {
+  border-bottom: 1px solid #e7e7e7;
+  padding: 10px;
+}
+.causes {
+  border-top: 1px solid #e7e7e7;
+  padding: 10px 0;
+}
+.follow-button-wrapper{
+  margin-left: 120px;
+  margin-right: 30px;
+}
