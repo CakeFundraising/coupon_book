@@ -64,6 +64,7 @@ $screen-xs-max: 768px;
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 26px;
+    a{color: #333;}
   }
   .divider{
     display: block;
@@ -85,13 +86,28 @@ $screen-xs-max: 768px;
     }
   }
   .give{
-    a{color: $brand-success;}
+    a{
+      color: $brand-success;
+      &:hover{
+        color: darken($brand-success, 15%);
+      }
+    }
   }
   .get{
-    a{color: $brand-warning;}
+    a{
+      color: $brand-warning;
+      &:hover{
+        color: darken($brand-warning, 15%);
+      }
+    }
   }
   .help{
-    a{color: $brand-primary;}
+    a{
+      color: $brand-primary;
+      &:hover{
+        color: darken($brand-primary, 15%);
+      }
+    }
   }
 }
 
