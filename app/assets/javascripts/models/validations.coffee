@@ -27,8 +27,8 @@ CakeCouponBook.validations.customMethods = ->
     this.optional(element) || parseInt(value) > parseInt(params)
   ), jQuery.validator.format("Please enter a value greater than {0}")
 
-  $.validator.addMethod "minStrictCurrency", ((value, element, params) ->
-    this.optional(element) || parseInt(value) > parseInt(params)
+  $.validator.addMethod "minCurrency", ((value, element, params) ->
+    this.optional(element) || parseInt(value) >= parseInt(params)
   ), jQuery.validator.format("Please enter a value greater than ${0}")
 
   $.validator.addMethod "firstLastName", ((value, element, params) ->

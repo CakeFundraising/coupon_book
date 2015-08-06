@@ -56,15 +56,27 @@ $screen-xs-max: 768px;
 }
 #headpage{
   margin-bottom: 20px;
-  font-size: 26px;
+  font-size: 22px;
   background-color: white;
-  padding: 20px 0px;
+  padding: 15px 0px;
   box-shadow: 0px 3px 5px #ddd;
+  .title{
+    margin-top: 0;
+    margin-bottom: 0px;
+    font-size: 26px;
+  }
+  .divider{
+    display: block;
+    height: 2px;
+    border-bottom: 1px solid #eee;
+    border-radius: 50%;
+    margin: 15px 0px 12px;
+  }
   .head-col{
     a{
       text-transform: uppercase;
       font-weight: bold;
-      font-size: 35px;
+      font-size: 30px;
       text-decoration: none;
       .glyphicon{
         margin-right: 8px;

@@ -99,7 +99,7 @@ class Purchase
       rules:
         'purchase[amount]':
           required: true
-          minStrictCurrency: self.amount
+          minCurrency: self.amount
         'purchase[first_name]': 
           required: true
           onlyletters: true

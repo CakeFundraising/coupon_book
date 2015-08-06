@@ -8,22 +8,22 @@
   #headpage
     .container
       .row-fluid.text-center
-        .col-md-3.col-sm-4.give.head-col
+        .col-md-12
+          h3.title
+            span.boldest Donate today 
+            span & receive rewards generously donated by 
+            span.boldest = @coupon_book.coupons.count
+            span  popular restaurants!
+        .row
+          .col-md-6.col-md-push-3.divider
+        .col-md-4.col-sm-4.give.head-col
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
               span.glyphicon.glyphicon-heart
               span.text Give
-          .text #{@coupon_book.price} or more today!
-        .col-md-5.col-sm-4.get.head-col
-          .link
-            = content_tag(:a, href:"#coupons") do
-              span.glyphicon.glyphicon-gift
-              span.text Get
           .text
-            span.boldest #{@coupon_book.coupons.count} 
-            span Exclusive deals
-            span  worth 
-            span.boldest #{@coupon_book.no_discount_price}!
+            span.boldest = @coupon_book.price
+            span  or more today!
         .col-md-4.col-sm-4.help.head-col
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
@@ -31,6 +31,16 @@
               span.text Help
           .text
             span #{@coupon_book.fr_name}
+        .col-md-4.col-sm-4.get.head-col
+          .link
+            = content_tag(:a, href:"#coupons") do
+              span.glyphicon.glyphicon-gift
+              span.text Enjoy
+          .text
+            span.boldest #{@coupon_book.coupons.count} Rewards
+            /span 
+            span  worth 
+            span.boldest #{@coupon_book.no_discount_price}!
 
 .container.compact-container
   .row
@@ -54,9 +64,7 @@
                 .do-good.text-center.help-block Do good and treat yourself too!
                 .see-restaurants
                   = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-                    span See All 
-                    strong = @coupon_book.coupons.count
-                    span  Deals!
+                    span See my Rewards!
         br
       - if @purchases.any?
         #purchases.sidebar
