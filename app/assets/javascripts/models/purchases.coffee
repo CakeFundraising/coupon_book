@@ -26,6 +26,13 @@ class Stripe
 class Purchase
   constructor: (form, amount, publishable_key) ->
     @form = $(form)
+
+    @cardNumber = @form.find('input#purchase_card_number')
+    @expMonth = @form.find('input#purchase_exp_month')
+    @expYear = @form.find('input#purchase_exp_year')
+    @cvc = @form.find('input#purchase_cvc')
+    @cardLogos = @form.find('.cards')
+
     @submitButton = @form.find('input[type="submit"]')
     @cardTokenInput = @form.find('input#purchase_card_token_input')
 
@@ -41,6 +48,26 @@ class Purchase
     $('[data-toggle="tooltip"]').tooltip()
     CakeCouponBook.validations.customMethods()
     @validation()
+    @formSetup()
+    return
+
+  formSetup: ->
+    @cardNumber.payment('formatCardNumber')
+    @cvc.payment('formatCardCVC')
+    @form.find('.restrictToNumber').payment('restrictNumeric')
+    @showCardLogo()
+    return
+
+  showCardLogo: ->
+    self = this
+    @cardNumber.keyup ->
+      cardType = $.payment.cardType(this.value)
+
+      if cardType is null
+        self.cardLogos.removeClass().addClass('cards')
+      else
+        self.cardLogos.removeClass().addClass('cards').addClass(cardType)
+      return
     return
 
   onSubmit: ->
@@ -93,7 +120,8 @@ class Purchase
     return
 
   validation: ->
-    self = this 
+    self = this
+    
     @form.validate(
       errorElement: "span"
       rules:
@@ -108,8 +136,8 @@ class Purchase
           onlyletters: true
         'purchase[zip_code]':
           required: true
-          digits: true
-          zipcodeUS: true
+          minlength: 5
+          maxlength: 5
         'purchase[email]':
           required: true
         'purchase[email_confirmation]':
@@ -130,9 +158,7 @@ class Purchase
           range: [15, 99]
         'purchase[cvc]':
           required: true
-          digits: true
-          minlength: 3
-          maxlength: 4
+          cvc: "#purchase_card_number"
     )
     return
 
