@@ -60,6 +60,9 @@ $screen-xs-max: 768px;
   background-color: white;
   padding: 15px 0px;
   box-shadow: 0px 3px 5px #ddd;
+  @media (max-width: $screen-sm-max) {
+    font-size: 20px;
+  }
   .title{
     margin-top: 0;
     margin-bottom: 20px;
@@ -130,8 +133,18 @@ $screen-xs-max: 768px;
       bottom: 0;
     }
   }
+  .headline{
+    h3{
+      @media (max-width: $screen-sm-max) {
+        font-size: 22px;
+      }
+    }
+  }
   .story{
     font-size: 18px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 16px;
+    }
   }
   .sidebar{
     .headbar{
@@ -145,12 +158,18 @@ $screen-xs-max: 768px;
       .buy_button{
         padding: 15px 0px !important;
         font-size: 42px !important;
+        @media (max-width: $screen-sm-max) {
+          font-size: 32px !important;
+        }
       }
       .see-restaurants{
         margin-top: 20px;
         a{
           padding: 12px 0px !important;
           font-size: 28px !important;
+          @media (max-width: $screen-sm-max) {
+            font-size: 20px !important;
+          }
         }
       }
     }

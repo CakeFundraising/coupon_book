@@ -2,31 +2,31 @@
   .coupon-wrapper
     .coupon-label.label.label-warning #{coupon.retail_value} value!
     .coupon-box.clearfix
-      .col-md-2.col-sm-2.sp-box
+      .col-md-2.col-sm-6.sp-box
         = coupon_sp_pic(coupon)
         h4.sp_name 
           = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
             = coupon.sponsor_name
-        = coupon_main_location(coupon)          
-      .col-md-10.col-xs-10
+        .hidden-sm = coupon_main_location(coupon)          
+      .col-md-10.col-sm-6
         .row
-          .col-md-4.col-xs-12.coupon_pic_col
+          .col-md-4.coupon_pic_col.hidden-sm
             = coupon_pic(coupon)
             .coupon-edge.hidden-xs.hidden-sm
-          .col-md-6.col-xs-12
+          .col-md-6.col-sm-12
             div.coupon-content
               h2 = coupon
               hr
-              p.expander = coupon.description
-          .col-md-2.col-xs-12.text-center
-            .hidden-xs.hidden-sm = coupon.picture.qrcode
+              p.expander-350 = coupon.description
+          .col-md-2.text-center.hidden-sm
+            .hidden-xs = coupon.picture.qrcode
             .row.terms
-              .col-xs-12
+              .col-sm-12
                 = render partial:'coupons/show/terms', locals:{coupon: coupon}
                 a data-toggle="modal" data-target="#coupon_terms_#{coupon.id}" Terms of Use
       
       - unless coupon.object.multiple_locations.blank?
         .row
-          .col-md-12
+          .col-md-12.col-sm-12
             .multiple_locations
               = coupon.multiple_locations

@@ -96,6 +96,9 @@
   .coupon-content{
     p{
       font-size: 16px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 14px;
+      }
     }
   }
   .coupon-content-mobile{
