@@ -12,7 +12,7 @@ class CouponBook < ActiveRecord::Base
 
   attr_accessor :step
 
-  TEMPLATES = %w{ compact original }
+  TEMPLATES = %w{ compact sponsored original }
 
   has_statuses :incomplete, :pending, :launched, :past
 

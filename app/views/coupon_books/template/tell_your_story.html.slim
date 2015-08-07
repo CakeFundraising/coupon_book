@@ -7,15 +7,7 @@
     = semantic_form_for @coupon_book do |f|
       = f.semantic_errors *f.object.errors.keys
       = f.inputs do
-        .text-center
-          h1 Campaign Purpose
-          p.text-muted Here you can share a brief overview of the Campaign Mission
-        .row
-          .col-md-3
-          .col-md-6
-            = f.input :mission, as: :text, label: 'Campaign Purpose', input_html: {rows: 4, placeholder: '140 characters or less', maxlength: 140}
-          .col-md-3
-        .row.section-wrapper.text-center
+        .row.text-center
           h2 Tell your story in more detail
           p.text-muted Add a headline and a Campaign message
           .row.text-left
@@ -26,24 +18,31 @@
               br
               = render partial:'videos/form', locals:{f: f}
             .col-md-3
+        .row.section-wrapper.text-center
+          h1 Campaign Mission
+          p.text-muted Here you can share a brief overview of the Campaign Mission.
+          .row
+            .col-md-3
+            .col-md-6
+              = f.input :mission, as: :text, label: false, input_html: {rows: 4, placeholder: '140 characters or less', maxlength: 140}
+            .col-md-3
 
         .row.section-wrapper.text-center
-          h2 Campaign Image
-          p.text-muted Choose a logo or image that best represents your Cause or Organization
-          .col-md-3
-          .col-md-6
-            .help-block.italic Suggested size: 300x200 px
-            .avatar-center
-              = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
-            span.help-block.p25.text-left Include a caption to help others understand your image
-          .col-md-3
-
-        .row.section-wrapper.text-center
-          h2 Your Campaign Background Banner
-          p.text-muted Choose an background image that best represents your mission and coupon_book
-          .col-md-12.text-center
-            .help-block.italic Suggested size: 1400x700 px
-            = render partial:'pictures/banner_form', locals:{f: f}
+          h2 Campaign Images
+          .row
+            .col-md-6
+              h4 Your logo
+              p.text-muted Choose a logo or image that best represents your Cause or Organization
+              .help-block.italic Suggested size: 300x200 px
+              .avatar-center
+                = render partial:'pictures/avatar_form', locals:{f: f, caption: true}
+              span.help-block.p25.text-left Include a caption to help others understand your image
+            .col-md-6
+              h4 Campaign Banner
+              p.text-muted Choose an background image that best represents your mission and Deal Book
+              .col-md-12.text-center
+                .help-block.italic Suggested size: 1400x700 px
+                = render partial:'pictures/banner_form', locals:{f: f}
 
         .row.section-wrapper.text-center
           h2 Ask Visitors to Join, Sign Up or Volunteer With Your Organization

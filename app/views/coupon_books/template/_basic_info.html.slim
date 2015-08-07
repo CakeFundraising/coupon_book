@@ -14,23 +14,24 @@
           .col-md-6
             label.control-label Deal Book Headline
             = f.input :name, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
-            span.help-block.italic Keep it simple.
+            span.help-block.italic Keep it simple, and short.
 
-            label.control-label Organization Name
-            = f.input :organization_name, label: false, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
-            span.help-block.italic This name will be used as the Organization Name on your Deal Book's top banner. Optional.
-          .col-md-6
             label.control-label Target Launch & End Dates
             .input-daterange
               = f.input :launch_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.launch_date}
             .input-daterange
               = f.input :end_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.end_date}
             span.help-block.italic These dates are when your campaign starts and ends. You launch your Deal Book only when you decide, and you can extend the End Date after you have launched your Deal Book if you wish to do so.
+
+          .col-md-6
+            label.control-label Organization Name
+            = f.input :organization_name, label: false, input_html:{size: 40, maxlength: 40, placeholder: '40 characters'}
+            span.help-block.italic This name will be used as the Organization Name on your Deal Book. Optional.
         .row.section-wrapper.text-center
-          h2 Choose a Book template
+          h2 Choose a Book Template
           .col-md-3
           .col-md-6
-            = f.input :template, as: :select, collection: CouponBook::TEMPLATES, input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
+            = f.input :template, as: :select, collection: titleize_select_collection(CouponBook::TEMPLATES), input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
           .col-md-3
         .row.section-wrapper.text-center
           h2 Choose a retail sales price of your Digital Discount Book
@@ -46,7 +47,7 @@
             = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
           .col-md-3
         .row.section-wrapper.text-center
-          h2 Our Website
+          h2 Your Website
           .col-md-3
           .col-md-6
             = f.input :url, label: 'Please direct new visitors to: ', input_html:{placeholder: 'Enter your URL'}
