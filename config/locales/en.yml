@@ -999,7 +999,7 @@ en:
       header: 
         first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
         last: "<div class='last'><span class='boldest'>Donate %{price} or more</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants worth <span class='boldest'>%{no_discount}!</span></div>"
-      coupons: "Check Out each Discount Category! <span class='boldest'>Click on the orange buttons below.</span>"
+      coupons: "Check Out each Deal Category! <span class='boldest'>Click on the orange buttons below.</span>"
   activerecord: 
     models:
       coupon:
