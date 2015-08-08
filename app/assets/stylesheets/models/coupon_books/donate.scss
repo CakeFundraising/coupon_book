@@ -47,9 +47,22 @@ $screen-xs-max: 768px;
       }
     }
     .formtastic.purchase{
-      .card-logos{
-        width: 200px;
-        margin-bottom: 10px;
+      .cards{
+        display: block;
+        width: 58px;
+        height: 36px;
+        background-image: image-url('credit_cards/credit.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        &.visa{background-image: image-url('credit_cards/visa.png');}
+        &.amex{background-image: image-url('credit_cards/amex.png');}
+        &.mastercard{background-image: image-url('credit_cards/mastercard.png');}
+        &.discover{background-image: image-url('credit_cards/discover.png');}
+        &.diners{background-image: image-url('credit_cards/diners.png');}
+        &.dinersclub{background-image: image-url('credit_cards/diners.png');}
+        &.jcb{background-image: image-url('credit_cards/jcb.png');}
+        &.maestro{background-image: image-url('credit_cards/maestro.png');}
+        &.visaelectron{background-image: image-url('credit_cards/visa.png');}
       }
       #amount-input{
         margin: 10px -20px 30px;

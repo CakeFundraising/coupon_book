@@ -10,6 +10,7 @@
 #donate.row
   .col-md-8.col-sm-6
     - cache [:donate, :desktop, :form, @coupon_book] do
+      #overlay_loading.hidden
       #donation-sidebar.sidebar
         .title Enter your donation
         = render partial:'coupon_books/donate/form', locals: {purchasable: @coupon_book}

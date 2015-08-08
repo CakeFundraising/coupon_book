@@ -16,7 +16,6 @@ class Stripe
           window.Stripe.setPublishableKey(publishable_key)
         return
       stripeJS.onload = ->
-        #console.log 'Stripe Loaded'
         window.Stripe.setPublishableKey(publishable_key)
         return
       s = document.getElementsByTagName('script')[0]
@@ -26,12 +25,21 @@ class Stripe
 class Purchase
   constructor: (form, amount, publishable_key) ->
     @form = $(form)
+
+    @cardNumber = @form.find('input#purchase_card_number')
+    @expMonth = @form.find('input#purchase_exp_month')
+    @expYear = @form.find('input#purchase_exp_year')
+    @cvc = @form.find('input#purchase_cvc')
+    @cardLogos = @form.find('.cards')
+
     @submitButton = @form.find('input[type="submit"]')
     @cardTokenInput = @form.find('input#purchase_card_token_input')
 
     @amount = amount
     @stripeKey = publishable_key
     @stripe = new Stripe(publishable_key)
+
+    @spinner = $('#overlay_loading')
 
     @setUp()
     @onSubmit()
@@ -41,6 +49,26 @@ class Purchase
     $('[data-toggle="tooltip"]').tooltip()
     CakeCouponBook.validations.customMethods()
     @validation()
+    @formSetup()
+    return
+
+  formSetup: ->
+    @cardNumber.payment('formatCardNumber')
+    @cvc.payment('formatCardCVC')
+    @form.find('.restrictToNumber').payment('restrictNumeric')
+    @showCardLogo()
+    return
+
+  showCardLogo: ->
+    self = this
+    @cardNumber.keyup ->
+      cardType = $.payment.cardType(this.value)
+
+      if cardType is null
+        self.cardLogos.removeClass().addClass('cards')
+      else
+        self.cardLogos.removeClass().addClass('cards').addClass(cardType)
+      return
     return
 
   onSubmit: ->
@@ -55,10 +83,15 @@ class Purchase
 
   createToken: ->
     self = this
-
     new Stripe(@stripeKey) if window.Stripe is undefined #Retry to load Stripe if missing
 
-    window.Stripe.card.createToken @form, (status, response) ->
+    form =
+      number: @cardNumber.val().replace(/\s+/g, '')
+      exp_month: @expMonth.val()
+      exp_year: @expYear.val()
+      cvc: @cvc.val()
+
+    window.Stripe.card.createToken form, (status, response) ->
       if response.error
         # Show the errors on the form
         self.form.find('#payment-errors').text(response.error.message).removeClass('hidden')
@@ -78,11 +111,13 @@ class Purchase
   enableForm: ->
     @submitButton.prop 'disabled', false
     @form.find('fieldset').css('opacity', 1)
+    @spinner.addClass('hidden')
     return
 
   disableForm: ->
     @submitButton.prop 'disabled', true
     @form.find('fieldset').css('opacity', 0.5)
+    @spinner.removeClass('hidden')
     return
 
   removeInputNames: ->
@@ -93,7 +128,8 @@ class Purchase
     return
 
   validation: ->
-    self = this 
+    self = this
+    
     @form.validate(
       errorElement: "span"
       rules:
@@ -108,8 +144,8 @@ class Purchase
           onlyletters: true
         'purchase[zip_code]':
           required: true
-          digits: true
-          zipcodeUS: true
+          minlength: 5
+          maxlength: 5
         'purchase[email]':
           required: true
         'purchase[email_confirmation]':
@@ -130,9 +166,7 @@ class Purchase
           range: [15, 99]
         'purchase[cvc]':
           required: true
-          digits: true
-          minlength: 3
-          maxlength: 4
+          cvc: "#purchase_card_number"
     )
     return
 

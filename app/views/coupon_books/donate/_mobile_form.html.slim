@@ -1,5 +1,5 @@
 #purchase-widget
-  = semantic_form_for purchasable.purchases.build do |f|
+  = semantic_form_for purchasable.purchases.build, html:{autocomplete: :on} do |f|
     .row
       .col-md-12
         #payment-errors.alert.alert-danger.hidden
@@ -7,33 +7,33 @@
       #amount-input.row
         .currency.col-md-1.col-sm-2.col-xs-2 $
         .col-md-8.col-sm-6.col-xs-6.no-padding
-          = f.input :amount, as: :number, input_html:{pattern: '[0-9]*', value: '', autofocus: true}, label: false
+          = f.input :amount, as: :phone, input_html:{pattern: '[0-9]*', value: '', autofocus: true, class:'restrictToNumber'}, label: false
         .zeros.col-md-3.col-sm-4.col-xs-4 .00
       .cc_inputs
         .row
-          .col-md-6
-            = f.input :card_number, as: :number, label: false, input_html:{pattern: '[0-9]*', placeholder: 'Card Number', maxlength: 19, data:{stripe: 'number'}}
-          .col-md-6
-            = image_tag 'card-logos.png', class:'card-logos img-responsive'
+          .col-xs-9
+            = f.input :card_number, as: :phone, label: false, input_html:{pattern: '[0-9]*', placeholder: 'Card Number', maxlength: 19, autocomplete: 'card-number'}
+          .col-xs-3.padding-left-out
+            .cards
         .row
           .col-md-6
             .row
               .col-md-6.col-xs-6.padding-right-out
-                = f.input :exp_month, as: :number, label: false, input_html:{placeholder: 'MM', maxlength: 2, data:{stripe: 'exp-month'}, pattern: '[0-9]*'}
+                = f.input :exp_month, as: :phone, label: false, input_html:{placeholder: 'MM', maxlength: 2, pattern: '[0-9]*', class:'restrictToNumber', autocomplete: 'exp-month'}
               .col-md-6.col-xs-6.padding-left-out
-                = f.input :exp_year, as: :number, label: false, input_html:{placeholder: 'YY', maxlength: 2, data:{stripe: 'exp-year'}, pattern: '[0-9]*'}
+                = f.input :exp_year, as: :phone, label: false, input_html:{placeholder: 'YY', maxlength: 2, pattern: '[0-9]*', class:'restrictToNumber', autocomplete: 'exp-year'}
           .col-md-6
             .row
               .col-md-6.col-xs-6
-                = f.input :cvc, as: :number, label: false, input_html:{placeholder: 'CVC', maxlength: 4, data:{stripe: 'cvc'}, pattern: '[0-9]*'}
+                = f.input :cvc, as: :phone, label: false, input_html:{placeholder: 'CVC', maxlength: 4, pattern: '[0-9]*', class:'restrictToNumber', autocomplete: :off}
               .col-md-6.col-xs-6.padding-left-out
-                a href="#" data-toggle="tooltip" title=(t('tooltips.purchases.cvc')) data-placement="right"
+                a href="#" data-toggle="tooltip" title=(t('tooltips.purchases.cvc')) data-placement="left"
                   span What's this?
       hr
       .row
-        .col-md-6.col-xs-6
+        .col-md-6.col-xs-6.padding-right-out
           = f.input :first_name, label: false, input_html:{placeholder: 'First Name'}
-        .col-md-6.col-xs-6
+        .col-md-6.col-xs-6.padding-left-out
           = f.input :last_name, label: false, input_html:{placeholder: 'Last Name'}
         .col-md-12
           = f.input :hide_name, as: :boolean
@@ -45,7 +45,7 @@
       hr
       .row
         .col-md-6.col-xs-6
-          = f.input :zip_code, as: :number, label: false, input_html:{pattern: '[0-9]*', placeholder: 'Zip Code'}
+          = f.input :zip_code, as: :phone, label: false, input_html:{pattern: '[0-9]*', maxlength: 5, placeholder: 'Zip Code', class:'restrictToNumber'}
       = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
       = f.input :purchasable_id, as: :hidden
       = f.input :purchasable_type, as: :hidden
