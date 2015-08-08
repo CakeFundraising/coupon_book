@@ -230,3 +230,18 @@
 .tooltip{
   width: 100%;
 }
+
+#overlay_loading{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: image-url('loading.gif') no-repeat center, rgba(255,255,255,0.5);
+  top: 0;
+  z-index: 9;
+  .upload-progress{
+    position: relative;
+    top: 43%;
+    font-size: 1.4em;
+    font-weight: bolder;
+  }
+}

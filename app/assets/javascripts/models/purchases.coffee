@@ -16,7 +16,6 @@ class Stripe
           window.Stripe.setPublishableKey(publishable_key)
         return
       stripeJS.onload = ->
-        #console.log 'Stripe Loaded'
         window.Stripe.setPublishableKey(publishable_key)
         return
       s = document.getElementsByTagName('script')[0]
@@ -39,6 +38,8 @@ class Purchase
     @amount = amount
     @stripeKey = publishable_key
     @stripe = new Stripe(publishable_key)
+
+    @spinner = $('#overlay_loading')
 
     @setUp()
     @onSubmit()
@@ -82,10 +83,15 @@ class Purchase
 
   createToken: ->
     self = this
-
     new Stripe(@stripeKey) if window.Stripe is undefined #Retry to load Stripe if missing
 
-    window.Stripe.card.createToken @form, (status, response) ->
+    form =
+      number: @cardNumber.val().replace(/\s+/g, '')
+      exp_month: @expMonth.val()
+      exp_year: @expYear.val()
+      cvc: @cvc.val()
+
+    window.Stripe.card.createToken form, (status, response) ->
       if response.error
         # Show the errors on the form
         self.form.find('#payment-errors').text(response.error.message).removeClass('hidden')
@@ -105,11 +111,13 @@ class Purchase
   enableForm: ->
     @submitButton.prop 'disabled', false
     @form.find('fieldset').css('opacity', 1)
+    @spinner.addClass('hidden')
     return
 
   disableForm: ->
     @submitButton.prop 'disabled', true
     @form.find('fieldset').css('opacity', 0.5)
+    @spinner.removeClass('hidden')
     return
 
   removeInputNames: ->
