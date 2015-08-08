@@ -101,9 +101,6 @@ export default class Container extends Component {
           <Button className="btn btn-lg btn-success" onClickEvent={this.save} disabled={saving}>
             Save
           </Button>
-          <Button href={'/coupon_books/' + sources.couponBookId + '/edit/request_coupons'} className="btn btn-lg btn-primary">
-            Continue
-          </Button>
         </div>
       </div>
     );

@@ -1,13 +1,49 @@
-= display_meta("Deal Book Setup")
-
 = render partial:'coupon_books/template/nav'
-    
-.tab-content.coupon_book-wizard-wrap
-  #share.tab-pane.active
-    = render partial:"coupon_books/template/share/#{@coupon_book.object.status}"
 
-    - unless @coupon_book.incomplete?
-      .row.section-wrapper.text-center
-        .row.solicit-choose
+.tab-content.wizard-wrap
+  #share.tab-pane.active
+    .headline.text-center
+      h1 Share your Campaign
+      h4.text-muted Sharing your Campaign with your friends and supporters is the only path to success.
+      br
+    .inputs 
+      .row
+        .col-md-6
+          .row
+            .col-md-12
+              h3 Share Link
+              p.text-muted Share your Campaign link with your supporters. Let the word spread!
+              br
+            .col-md-9
+              input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
+            .col-md-3
+              button.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
+          .row.section-wrapper
+            .col-md-12
+              h3 Download Your Campaign Screenshot
+              p.text-muted You can use this image for emails and mailings
+              br
+            .col-md-12
+              .screenshot
+                = screenshot_tag_for @coupon_book
+              div = screenshot_dowload(@coupon_book)
+        .col-md-6
+          .row
+            .col-md-12
+              h3 Drive Traffic to your Campaign!
+              p.text-muted Embed this linked badge on your website and invite friends to embed in their websites too!
+              p.text-muted As your Business Partners create boxes, they will appear under “Organize” Tab
+              br
+            .col-md-12
+              textarea#embedded_link.form-control disabled='' rows="5" 
+                iframe width='800px' height='540px' src=badge_coupon_book_url(@coupon_book)
+                  p 
+                    | Please help: 
+                    = link_to @coupon_book.name, coupon_book_url(@coupon_book), target: :_blank
+              button.btn.btn-primary.clipboard data-clipboard-target="embedded_link" Copy
+      br
+      .row.text-center
+        .solicit-choose
           .col-md-12.text-center
-            = link_to "Go to My Account", home_path, class:'btn btn-success'
+            = link_to "Go to My Account", coupon_books_path, class:'btn btn-success btn-lg'
+

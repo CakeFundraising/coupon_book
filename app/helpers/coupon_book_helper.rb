@@ -15,6 +15,10 @@ module CouponBookHelper
     end
   end
 
+  def screenshot_dowload(coupon_book)
+    link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + coupon_book_url(coupon_book.id), class:'btn btn-primary', download: 'deal_book.jpg'
+  end
+
   def visibility_buttons(coupon_book)
     content_tag :div, class:'visibility_buttons' do
       content_tag :span do

@@ -1,3 +1,3 @@
 - if @coupon_book.persisted?
-  = link_to 'Delete', @coupon_book, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-danger pull-right simple-margin'
-  = link_to "Preview", @coupon_book, class:'btn btn-primary pull-right simple-margin'
+  li = link_to 'Preview', @coupon_book
+  li = link_to 'Delete', @coupon_book, data: {confirm: 'Are you sure?'}, method: :delete

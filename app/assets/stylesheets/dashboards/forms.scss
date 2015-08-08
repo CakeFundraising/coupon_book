@@ -87,6 +87,20 @@ address {
   margin:auto;
   h3, h4{
     color: black;
+    margin-top: 0;
+  }
+  .headline{
+    h4{
+      color: #999;
+    }
+  }
+  .inputs{
+    margin-bottom: 40px;
+    background-color: white;
+    border: 1px solid #f1f1f1;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 30px;
   }
 }
 .campaign-steps {

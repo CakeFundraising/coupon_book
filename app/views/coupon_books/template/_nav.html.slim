@@ -1,23 +1,26 @@
 .row
-  .col-xs-12.campaign-steps
-    = render partial:'coupon_books/template/actions' unless @coupon_book.incomplete?
-  .campaign-nav.text-center  
+  .col-md-3
+  .campaign-nav.col-md-6.text-center
     - if @coupon_book.persisted?
         ul.nav.nav-pills
-          = wizard_menu_item(edit_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.basic_info'))
-          = wizard_menu_item(tell_your_story_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.tell_your_story'))
-          = wizard_menu_item(coupons_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.coupons'))
-          = wizard_menu_item(request_coupons_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.request_coupons'))
-          = wizard_menu_item(launch_and_share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launch_and_share'))
+          = wizard_menu_item(edit_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.basics'))
+          = wizard_menu_item(story_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.story'))
+          = wizard_menu_item(organize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.organize'))
+          = wizard_menu_item(customize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.customize'))
+          = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share'))
     - else
         ul.nav.nav-pills
           li.active
-            a data-toggle="tab" href="#main" = t('links.wizards.coupon_book.basic_info')
+            a data-toggle="tab" href="#main" = t('links.wizards.coupon_book.basics')
           li 
-            a href="" = t('links.wizards.coupon_book.tell_your_story')
+            a href="" = t('links.wizards.coupon_book.story')
           li 
-            a href="" = t('links.wizards.coupon_book.coupons')
+            a href="" = t('links.wizards.coupon_book.organize')
           li 
-            a href="" = t('links.wizards.coupon_book.request_coupons')
+            a href="" = t('links.wizards.coupon_book.customize')
           li 
-            a href="" = t('links.wizards.coupon_book.launch_and_share')
+            a href="" = t('links.wizards.coupon_book.share')
+  .campaign-nav.col-md-3
+    - unless @coupon_book.incomplete?
+      ul.nav.nav-pills
+        = render partial:'coupon_books/template/actions'
