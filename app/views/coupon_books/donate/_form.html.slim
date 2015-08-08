@@ -15,7 +15,6 @@
             = f.input :card_number, label: false, input_html:{placeholder: 'Card Number', maxlength: 19, data:{stripe: 'number'}}
           .col-md-6
             .cards
-              /= image_tag 'card-logos.png', class:'img-responsive'
         .row
           .col-md-6
             .row
@@ -46,7 +45,7 @@
       hr
       .row
         .col-md-6.col-xs-6
-          = f.input :zip_code, label: false, input_html:{class:'restrictToNumber', placeholder: 'Zip Code'}
+          = f.input :zip_code, label: false, input_html:{class:'restrictToNumber', placeholder: 'Zip Code', maxlength: 5}
       = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
       = f.input :purchasable_id, as: :hidden
       = f.input :purchasable_type, as: :hidden

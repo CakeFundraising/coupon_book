@@ -81,14 +81,10 @@
 }
 
 .padding-left-out{
-  @media (min-width: $screen-md-min) {
-    padding-left: 0;
-  }
+  padding-left: 0;
 }
 .padding-right-out{
-  @media (min-width: $screen-md-min) {
-    padding-right: 0;
-  }
+  padding-right: 0;
 }
 
 .no-height{
