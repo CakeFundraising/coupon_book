@@ -36,7 +36,7 @@ class CategoriesController < InheritedResources::Base
   end
 
   def load_all_discounts
-    @coupon_book = CouponBook.find(params[:coupon_book_id])
+    @coupon_book = CouponBook.friendly.find(params[:coupon_book_id])
 
     @categories = @coupon_book.categories.with_items.to_a
     @categories.shift #remove first category
