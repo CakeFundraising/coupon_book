@@ -35,4 +35,16 @@ CakeCouponBook.validations.customMethods = ->
     this.optional(element) || /^\w+\s+\w+$/i.test(value)
   ), (params, element) ->
     "Please enter First and Last Name."
+
+  $.validator.addMethod "creditcard", ((value, element, params) ->
+    this.optional(element) || $.payment.validateCardNumber(value)
+  ), (params, element) ->
+    "Please enter a valid Card Number."
+
+  $.validator.addMethod "cvc", ((value, element, params) ->
+    cardType = $.payment.cardType($(params).val())
+    this.optional(element) || $.payment.validateCardCVC(value, cardType)
+  ), (params, element) ->
+    "The CVC number is incorrect."
+
   return
