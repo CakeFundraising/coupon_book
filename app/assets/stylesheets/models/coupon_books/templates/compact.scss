@@ -24,7 +24,10 @@ $screen-xs-max: 768px;
     margin-top: -2px;
   }
   .navbar-brand{
-    padding-top: 3px;
+    padding-top: 12px;
+    img{
+      width: 150px;
+    }
   }
 }
 
