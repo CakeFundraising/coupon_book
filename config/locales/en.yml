@@ -999,7 +999,7 @@ en:
       header: 
         first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
         last: "<div class='last'><span class='boldest'>Donate %{price} or more</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants worth <span class='boldest'>%{no_discount}!</span></div>"
-      coupons: "All Deals Donated by the Generous Merchants Below! <span class='boldest'>Click on each Category!</span>"
+      coupons: "Check out all the deals <span class='boldest'>donated</span> by the <span class='boldest'>generous Restaurants below!</span>"
   activerecord: 
     models:
       coupon:

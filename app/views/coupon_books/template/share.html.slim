@@ -2,48 +2,62 @@
 
 .tab-content.wizard-wrap
   #share.tab-pane.active
-    .headline.text-center
-      h1 Share your Campaign
-      h4.text-muted Sharing your Campaign with your friends and supporters is the only path to success.
-      br
-    .inputs 
-      .row
-        .col-md-6
-          .row
-            .col-md-12
-              h3 Share Link
-              p.text-muted Share your Campaign link with your supporters. Let the word spread!
-              br
-            .col-md-9
-              input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
-            .col-md-3
-              button.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
-          .row.section-wrapper
-            .col-md-12
-              h3 Download Your Campaign Screenshot
-              p.text-muted You can use this image for emails and mailings
-              br
-            .col-md-12
-              .screenshot
-                = screenshot_tag_for @coupon_book
-              div = screenshot_dowload(@coupon_book)
-        .col-md-6
-          .row
-            .col-md-12
-              h3 Drive Traffic to your Campaign!
-              p.text-muted Embed this linked badge on your website and invite friends to embed in their websites too!
-              p.text-muted As your Business Partners create boxes, they will appear under “Organize” Tab
-              br
-            .col-md-12
-              textarea#embedded_link.form-control disabled='' rows="5" 
-                iframe width='800px' height='540px' src=badge_coupon_book_url(@coupon_book)
-                  p 
-                    | Please help: 
-                    = link_to @coupon_book.name, coupon_book_url(@coupon_book), target: :_blank
-              button.btn.btn-primary.clipboard data-clipboard-target="embedded_link" Copy
-      br
-      .row.text-center
-        .solicit-choose
-          .col-md-12.text-center
-            = link_to "Go to My Account", coupon_books_path, class:'btn btn-success btn-lg'
+    - if @coupon_book.incomplete?
+      .headline.text-center
+        h1 One last thing...
+        h4.text-muted Before being able to share and receive donations from your supporters you must launch this Campaign.
+        br
+      .inputs 
+        .row
+          .col-md-12
+            h3 Launch Campaign
+            p.text-muted Launch when you are ready to go live and accept donations! When you launch all links go live. Make sure everything is the way you want it.
+            br
+          .col-md-12
+            = link_to 'Launch Now', launch_coupon_book_path(@coupon_book), method: :patch, class:'btn btn-success btn-lg'
+    - elsif @coupon_book.launched?
+      .headline.text-center
+        h1 Share your Campaign
+        h4.text-muted Sharing your Campaign with your friends and supporters is the only path to success.
+        br
+      .inputs 
+        .row
+          .col-md-6
+            .row
+              .col-md-12
+                h3 Share Link
+                p.text-muted Share your Campaign link with your supporters. Let the word spread!
+                br
+              .col-md-9
+                input#coupon_book_url.form-control disabled='' type="text" value=coupon_book_url(@coupon_book)
+              .col-md-3
+                button.btn.btn-primary.clipboard data-clipboard-target="coupon_book_url" Copy
+            .row.section-wrapper
+              .col-md-12
+                h3 Download Your Campaign Screenshot
+                p.text-muted You can use this image for emails and mailings
+                br
+              .col-md-12
+                .screenshot
+                  = screenshot_tag_for @coupon_book
+                div = screenshot_dowload(@coupon_book)
+          .col-md-6
+            .row
+              .col-md-12
+                h3 Drive Traffic to your Campaign!
+                p.text-muted Embed this linked badge on your website and invite friends to embed in their websites too!
+                p.text-muted As your Business Partners create boxes, they will appear under “Organize” Tab
+                br
+              .col-md-12
+                textarea#embedded_link.form-control disabled='' rows="5" 
+                  iframe width='800px' height='540px' src=badge_coupon_book_url(@coupon_book)
+                    p 
+                      | Please help: 
+                      = link_to @coupon_book.name, coupon_book_url(@coupon_book), target: :_blank
+                button.btn.btn-primary.clipboard data-clipboard-target="embedded_link" Copy
+        br
+        .row.text-center
+          .solicit-choose
+            .col-md-12.text-center
+              = link_to "Go to My Campaigns", coupon_books_path, class:'btn btn-success btn-lg'
 

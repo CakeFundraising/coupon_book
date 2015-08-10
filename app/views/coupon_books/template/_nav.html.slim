@@ -21,6 +21,7 @@
           li 
             a href="" = t('links.wizards.coupon_book.share')
   .campaign-nav.col-md-3
-    - unless @coupon_book.incomplete?
+    - if @coupon_book.persisted?
       ul.nav.nav-pills
-        = render partial:'coupon_books/template/actions'
+        li = link_to 'Preview', @coupon_book
+        li = link_to 'Delete', @coupon_book, data: {confirm: 'Are you sure?'}, method: :delete

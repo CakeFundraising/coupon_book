@@ -56,13 +56,13 @@ categoriesNav = ->
     top: nav.offset().top
 
   nav.on 'affixed.bs.affix', ->
-    navSection.removeClass('col-md-12').addClass('col-md-10')
+    navSection.removeClass('col-md-12').addClass('col-md-9')
     buttonSection.show()
     return
 
   nav.on 'affix-top.bs.affix', ->
     buttonSection.hide()
-    navSection.removeClass('col-md-10').addClass('col-md-12')
+    navSection.removeClass('col-md-9').addClass('col-md-12')
     return
 
   nav.find('a.book-nav-link').each ->

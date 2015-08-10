@@ -2,29 +2,53 @@ CakeCouponBook.coupon_books ?= {}
 
 CakeCouponBook.coupon_books.validation = ->
   $('.formtastic.coupon_book').validate(
+    ignore: ":hidden:not(.uri_input)"
     errorElement: "span"
+    errorPlacement: (error, element)->
+      error.appendTo(element.closest('.input'))
+      return
+    invalidHandler: (event, validator)->
+      picsContainer = $('.uri_input')
+      picsContainer.each ->
+        input = $(this).closest('.input')
+        input.removeClass('hidden')
+        input.find('.form-label').hide()
+        return
+      return
     rules:
       'coupon_book[name]': 
         required: true
+      'coupon_book[organization_name]': 
+        required: true
       'coupon_book[goal]':
         required: true
+        minStrict: 0
         currency: ["$", false]
-      'coupon_book[launch_date]':
+      'coupon_book[price]':
         required: true
-      'coupon_book[end_date]':
-        required: true
-      'coupon_book[mission]':
+        min: 10
+        currency: ["$", false]
+      'coupon_book[template]': 
         required: true
       'coupon_book[headline]':
         required: true
       'coupon_book[story]':
         required: true
-      'coupon_book[goal]':
-        required: true
-        minStrict: 0
       'coupon_book[url]':
         required: true
         url: true
+      'coupon_book[main_cause]':
+        required: true
+      'coupon_book[picture_attributes][avatar]':
+        required: true
+      'coupon_book[picture_attributes][banner]':
+        required: true
+      # 'coupon_book[mission]':
+      #   required: true
+      # 'coupon_book[launch_date]':
+      #   required: true
+      # 'coupon_book[end_date]':
+      #   required: true
   )
   return
 

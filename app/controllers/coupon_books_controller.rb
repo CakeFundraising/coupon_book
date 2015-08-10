@@ -98,25 +98,20 @@ class CouponBooksController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to coupon_books_path, notice: 'Coupon book was successfully destroyed.'
+        redirect_to coupon_books_path, notice: 'Campaign was successfully destroyed.'
       end
     end
   end
 
   #Special Actions
-  def save_for_launch
-    resource.pending!
-    redirect_to resource, notice: 'Coupon Book saved!'
-  end
-
   def launch
     resource.launch!
-    #update_screenshot(resource)
+    update_screenshot(resource)
 
     if request.xhr?
       render nothing: true
     else
-      redirect_to resource, notice: 'Coupon Book launched!'
+      redirect_to share_coupon_book_path(resource), notice: 'Campaign launched! Now is time to share this Campaign with your friends and supporters!'
     end
   end
 
