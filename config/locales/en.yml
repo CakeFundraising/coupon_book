@@ -998,8 +998,10 @@ en:
     coupon_book:
       header: 
         first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
-        last: "<div class='last'><span class='boldest'>Donate %{price} or more</span> & receive exclusive deals from <span class='boldest'>%{count}</span> popular restaurants worth <span class='boldest'>%{no_discount}!</span></div>"
-      coupons: "Check out all the deals <span class='boldest'>donated</span> by the <span class='boldest'>generous Restaurants below!</span>"
+        last: "<div class='last'><span class='boldest'>Donate %{price} or more</span> & get a <span class='boldest'>free Deal Book</span> with %{count} exclusive deals worth <span class='boldest'>%{no_discount}</span> donated by generous local Restaurants!</div>"
+      coupons: "You get all %{count} deals <span class='boldest'>donated</span> by the <span class='boldest'>Restaurants & Merchants below!</span>"
+      categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
+      we_will_email: "* Your digital <span class='bolder'>Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."
   activerecord: 
     models:
       coupon:

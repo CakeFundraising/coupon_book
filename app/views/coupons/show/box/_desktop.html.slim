@@ -10,17 +10,17 @@
         .hidden-sm = coupon_main_location(coupon)          
       .col-md-10.col-sm-6
         .row
-          .col-md-9.col-sm-12
+          .col-md-8.col-sm-12
             div.coupon-content
               h2 = coupon
               hr
-              p.expander = coupon.description
-          .col-md-3.text-center.hidden-sm
+              p.expander-350 = coupon.description
+              .row.terms.clear
+                .col-sm-12
+                  = render partial:'coupons/show/terms', locals:{coupon: coupon}
+                  a data-toggle="modal" data-target="#coupon_terms_#{coupon.id}" Terms of Use
+          .col-md-4.text-center.hidden-sm.padding-right-out
             div = coupon_pic(coupon)
-            .row.terms.clear
-              .col-sm-12
-                = render partial:'coupons/show/terms', locals:{coupon: coupon}
-                a data-toggle="modal" data-target="#coupon_terms_#{coupon.id}" Terms of Use
       
       - unless coupon.object.multiple_locations.blank?
         .row

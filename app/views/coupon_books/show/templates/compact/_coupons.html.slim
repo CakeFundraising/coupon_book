@@ -3,11 +3,11 @@
     .container
       .row.pledgebluestripe.coupon_book
         .col-md-12.text-center
-          span.banner-heading = I18n.t('banners.coupon_book.coupons').html_safe
+          span.banner-heading = t('banners.coupon_book.coupons', count: @coupon_book.coupons.count).html_safe
 
 .row.book-nav
   .nav-section.col-md-12.col-sm-9.text-center
-    h4.title Click on each Category to see all Deals.
+    h4.title = t('banners.coupon_book.categories_subtitle').html_safe
     ul.nav.nav-pills.popular
       = render partial:'categories/show/book_nav', collection: @categories, as: :category
   .buy_button_section.col-md-3.col-sm-3
@@ -15,8 +15,10 @@
 
 = render partial:'coupon_books/show/templates/shared/after_purchase'
 
-.row-fluid.tab-content
-  = render partial:'categories/show/book_tab', collection: @categories, as: :category
+.row-fluid
+  .container
+    .tab-content
+      = render partial:'categories/show/book_tab', collection: @categories, as: :category
   .row-fluid.clear
     .col-md-12.text-center
       .book-nav-help
