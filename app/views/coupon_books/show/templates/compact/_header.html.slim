@@ -43,7 +43,7 @@
   .row
     .col-md-8.col-sm-8
       - cache [:templates, :compact, :header, :container, :first_col, @coupon_book] do
-        .sidebar
+        .sidebar.first_col
           .banner 
             = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
             .sharer
@@ -64,9 +64,13 @@
                     span See All 
                     span.boldest = @coupon_book.coupons.count
                     span  Deals!
-        br
       - if @purchases.any?
+        br
         #purchases.sidebar
           .headbar.text-center Recent Donations
           ul.no-list
             = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+      .flag_book
+        = flag_book_link
+
+

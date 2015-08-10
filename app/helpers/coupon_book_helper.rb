@@ -64,9 +64,10 @@ module CouponBookHelper
     content_tag(:div, nil, class:'addthis_custom_sharing')
   end
 
-  def donate_top_link(coupon_book)
-    if coupon_book.launched?
-      content_tag(:a, "Donate", class: "btn-signup buy_button btn btn-success", data: {price: coupon_book.price_cents})
+  def flag_book_link
+    link_to efg_contact_path, target: :_blank, class:'btn btn-default btn-sm' do
+      content_tag(:span, nil, class:'glyphicon glyphicon-flag')+
+      content_tag(:span, ' Flag as Inappropiate')
     end
   end
 

@@ -2,7 +2,7 @@
   = status_buttons(coupon_book)
 
 .stat
-  /= link_to 'Organize', organize_coupon_book_path(coupon_book), class: 'btn btn-purple btn-sm'
+  = link_to 'Organize', organize_coupon_book_path(coupon_book), class: 'btn btn-purple btn-sm'
 
   = link_to coupon_book, class:'btn btn-sm btn-success' do
     span.glyphicon.glyphicon-eye-open

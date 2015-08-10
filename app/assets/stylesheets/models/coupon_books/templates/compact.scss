@@ -118,7 +118,6 @@ $screen-xs-max: 768px;
 }
 
 .compact-container{
-  padding-bottom: 30px;
   .banner{
     position: relative;
     img{
@@ -152,10 +151,11 @@ $screen-xs-max: 768px;
   .sidebar{
     .headbar{
       font-size: 20px;
-      //color: white;
-      //background-color: $brand-primary;
       border-bottom: 1px solid #ddd;
       text-transform: uppercase;
+    }
+    &.first_col{
+      margin-bottom: 30px;
     }
     #buttons{
       .buy_button{
@@ -199,6 +199,9 @@ $screen-xs-max: 768px;
         }
       }
     }
+  }
+  .flag_book{
+    margin: 10px 0px;
   }
   .promo-logo{
     img{
