@@ -948,8 +948,8 @@ en:
       sign_up:  Sign Up For Free
     wizards:
       coupon:
-        sponsor: Name/Location(s)
-        discount: Create a Discount
+        sponsor: Merchant
+        discount: Deal/Discount
         news: News
         launch: Launch
       coupon_book: 
@@ -1012,9 +1012,9 @@ en:
         headline: Campaign Headline
         story: Tell your story
       coupon:
-        sponsor_name: Business Name
+        sponsor_name: Merchant Name
         phone: Contact Phone
-        sponsor_url: "Please direct consumer traffic to my website: "
+        sponsor_url: "Merchant website url"
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
       location:
         state_code: State

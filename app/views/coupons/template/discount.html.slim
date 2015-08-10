@@ -1,83 +1,65 @@
+= display_meta("Add Deal Details")
+
 = render partial:'coupons/template/nav'
 
-.tab-content.campaign-wizard-wrap
-  #main.tab-pane.active
+.tab-content.wizard-wrap
+  #main.container
     = semantic_form_for @coupon do |f|
-      h1.text-center Discount Details & Terms of Use
-
-      .nested-fields.coupon-outer-wrap
-        = f.inputs do
-          .row.section-wrapper
-            .text-center
-              h2 Coupon Information
-              p.text-muted Please enter your coupon details
-            .row
-              .col-md-2
-              .col-md-8.text-left
+      h1.text-center 
+      .headline.text-center
+        h1 Deal Details & Terms of Use
+        h4.text-muted Set your deal title, image, terms of use, and other data.
+        br
+      = f.inputs do
+        .row
+          .col-md-12
+            h3 Deal Basic Information
+            p.text-muted Add a title, expiration, and other important details.
+            br
+          .row-fluid.clear
+            .col-md-6
+              h4 Deal Image
+              = render partial:'pictures/avatar_form', locals:{f: f}
+              p.text-muted Choose an image that best represents your Deal.
+            .col-md-6
+              .row
                 .col-md-12
                   = f.input :title, input_html:{class: 'coupon_title', size: 80, maxlength: 80, placeholder: '80 characters or less'}
-              .col-md-2
-            .row
-              .col-md-2
-              .col-md-8.text-left
+                  span.help-block.italic Keep it simple. Max 80 characters.
                 .col-md-6
                   = f.input :expires_at, as: :string, label: 'Expires On', input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
+                  = f.input :price, label: 'Estimated Retail Value of Discount', input_html:{class: 'coupon_unit_donation default-zero', placeholder: '20.00'}, :prepend => '$'
                 .col-md-6
                   = f.input :promo_code, input_html:{class: 'coupon_promo_code', size: 20, maxlength: 20, placeholder: '20 characters or less'}
-              .col-md-2
-            .row
-              .col-md-2
-              .col-md-8
+                  = f.input :url
                 .col-md-12
                   = f.input :description, input_html: {class: 'autogrow coupon_description', rows: 10, cols: 0, maxlength: 500, size: 500, placeholder: '500 words or less' }
-                  hr
-                  h4 Make this coupon interactive
-                  = f.input :url
-              .col-md-2
-          .row.section-wrapper.text-center
-            h2 Coupon Category
-            p.text-muted You can select more than one
+        .row.section-wrapper
+          .col-md-12
+            h3 Deal Category
+            p.text-muted Select the category that best fit with your deal. You can select more than one.
             br
-            .col-md-2
-            .col-md-8
-              = f.input :merchandise_categories, as: :check_boxes, collection: Coupon::CATEGORIES, label: false, input_html: {class: 'checkbox-pill'}
-            .col-md-2
-          .row.section-wrapper
-            .col-md-2
-            .col-md-8
-              h4 Cake's Terms & Conditions
-              p = t('application.terms_and_conditions.coupons')
-              hr
-              h4 Additional Limitations on Use - Terms & Conditions
-              = f.input :custom_terms, label: false, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000 }
-            .col-md-2
-          .row.section-wrapper
-            .col-md-2
-            .col-md-8
-              h4 Estimated Retail Value of Discount
-              = f.input :price, label: false, input_html:{class: 'coupon_unit_donation default-zero', placeholder: '20.00'}, :prepend => '$'
-            .col-md-2
-          .row.section-wrapper.coupon-uploads.text-center
-            h2 Coupon Images
+          .col-md-12
+            = f.input :merchandise_categories, as: :select, collection: Coupon::CATEGORIES, label: false, input_html: {size: 10}, multiple: true
+        .row.section-wrapper
+          .col-md-12
+            h3 Terms & Conditions
+            p.text-muted Add additional limitations or conditions to this particular deal. Both your and Eats For Good terms will be displayed in the vouchers.
             br
-            .col-md-1
-            .col-sm-5
-              .coupon-images
-                h4 Primary Image
-                = render partial:'pictures/avatar_form', locals:{f: f}
-                = f.input :order_up
-            .col-sm-5
-              .coupon-images
-                h4 Upload a QR Code or a second image (Optional)
-                = render partial:'pictures/qrcode_form', locals:{f: f}
-            .col-md-1
+          .col-md-12
+            h4 Your Terms & Conditions
+            = f.input :custom_terms, label: false, input_html: {class: 'autogrow coupon_terms_conditions', rows: 7, cols: 20, maxlength: 3000 }
+          .col-md-12
+            br
+            h4 Eats for Good's Terms & Conditions
+            p = t('application.terms_and_conditions.coupons').html_safe
             
-      = f.input :step, as: :hidden, input_html:{value: :launching}
-
-      .text-center
-        = f.actions do
-          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-          = link_to 'Delete this coupon', @coupon, method: :delete, data: {confirm: 'Are you sure you want to delete this Coupon?'}, class:'btn btn-link' if @coupon.persisted?
+        = f.input :step, as: :hidden, input_html:{value: :launching}
+        br
+        .text-center
+          = f.actions do
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+            = link_to 'Delete this Deal', @coupon, method: :delete, data: {confirm: 'Are you sure you want to delete this Coupon?'}, class:'btn btn-link' if @coupon.persisted?
 
 javascript:
   var options = {

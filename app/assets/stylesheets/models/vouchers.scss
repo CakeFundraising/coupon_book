@@ -2,7 +2,7 @@
   margin-top: 30px;
   margin-bottom: 40px;
   border: 5px dashed $gray;
-  padding: 40px;
+  padding: 30px;
   background: white;
   @media (max-width: $screen-xs-max) {
     border: 2px dashed $gray;
@@ -16,7 +16,6 @@
     .coupon-box{
       border: 1px solid #999;
       box-shadow: none;
-      margin-bottom: 20px;
       .sp_name{
         padding-top: 0;
       }
@@ -31,9 +30,10 @@
   }
   .blue-text{
     color: $brand-primary;
+    margin-top: 8px;
   }
   .voucher-number{
-    font-size: 38px;
+    font-size: 34px;
     text-align: right;
     @media (max-width: $screen-xs-max) {
       font-size: 26px;
@@ -44,11 +44,19 @@
     margin-top: 0;
   }
   .fundraiser{
-    font-size: 34px;
-    margin-bottom: 15px;
+    font-size: 32px;
+    margin-top: 15px;
     @media (max-width: $screen-xs-max) {
       font-size: 20px;
     }
+  }
+  .campaign{
+    font-size: 26px;
+    margin-bottom: 12px;
+    margin-top: 0;
+  }
+  .coupon-box{
+    margin-bottom: 20px;
   }
   .qrcode-table{
     float: right;
@@ -76,9 +84,15 @@
   }
   .expires{
     margin-top: 0;
-    font-size: 28px;
+    font-size: 26px;
     @media (max-width: $screen-xs-max) {
       font-size: 20px;
+    }
+  }
+  .locations_and_terms{
+    font-size: 13px;
+    h3{
+      font-size: 18px;
     }
   }
   .fine-print{
@@ -96,6 +110,9 @@
       font-size: 24px;
       word-wrap: break-word;
     }
+  }
+  .questions{
+    margin-top: 12px;
   }
   .powered_by{
     margin-top: 30px;
