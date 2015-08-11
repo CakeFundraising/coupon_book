@@ -3,7 +3,7 @@ class VoucherMailer < ApplicationMailer
     @purchase = purchase.decorate
     @book = @purchase.purchasable
 
-    mail(to: purchase.email, subject: "Download your deal vouchers from #{@book}")
+    mail(to: purchase.email, subject: "Download your deal vouchers from #{@book.fr_name}")
   end
 
   def send_vouchers(purchase)
@@ -22,6 +22,6 @@ class VoucherMailer < ApplicationMailer
       }
     )
       
-    mail(to: purchase.email, subject: "Enjoy rewards from #{@book}")
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@book.fr_name}")
   end
 end
