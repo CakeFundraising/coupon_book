@@ -29,14 +29,13 @@ html lang="en"
                       td                   
                         = cl_image_tag("meal_twfy32.jpg", width: 212, height: 142, crop: :fill, gravity: :faces)
                   
-                  = yield
+                  .main-content
+                    = yield
 
-                  br
-                  
-                  table
+                  table.footer
                     tr
                       td
-                        h3.signature-title Baltimore Eats for Good
+                        = cl_image_tag("eats_for_good/efg_logo_small.jpg", width: 177, crop: :scale)
               
           /! /content
         td

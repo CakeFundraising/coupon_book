@@ -1,11 +1,29 @@
-h2 Thank you for supporting #{@book.fr_name}!
+h2 Dear #{@purchase.first_name},
+
+h3 Thank you for supporting #{@book.fr_name}!
 
 p
-  | Your Baltimore Eats for Good Vouchers are attached as a PDF file. 
+  | Your Eats For Good Deal Vouchers are attached as a PDF file. 
   | Simply download and print vouchers to redeem. 
-  | Each voucher is individually numbered and coded and may be used only once. 
-  | Please see vouchers for additional terms and conditions of use.
+  | Each voucher is individually numbered and may be used only one time. 
+  | Please review each voucher for additional terms and conditions.
 
-p Thank you for your generous support.
+.share
+  .box
+    h3 Keep the positive energy going!
 
-h5 Bon Appétit!
+    p = link_to 'Please Share on Facebook!', coupon_book_url(@book, l_source: :email), class:'btn btn-primary share-link'
+
+    p 
+      span Sharing on Facebook is the  
+      strong single most important thing  
+      span you can do to help us!
+
+  .last
+    h3 And, share our link with your friends who like to eat too! 
+    
+    p Just copy and paste the link below: 
+
+    .url = coupon_book_url(@book)
+
+h3 Thank you again for your generous support!
