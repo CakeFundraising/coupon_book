@@ -1,14 +1,18 @@
 .row
   .col-md-12.text-center
-    h1 Thank You!
+    h1 Thank You #{@purchase.first_name}!
 
-    h3.black Your vouchers were sent to the email address you provided: 
+    h3.black Your Deal Vouchers were emailed to: 
     h2.blue-color = @purchase.email
 .row
   .col-md-5.text-center.divider-vert
-    h3.black Please Share!
+    hr
+    h3.black Keep the positive energy going!
     = render partial:'layouts/share_buttons', locals:{url: polymorphic_url(@purchasable), title: t('application.meta.og.coupon_books.title', fr: @purchasable.fr_name)}
-
+    .most-important
+      span Sharing on Facebook is the single
+      .bolder most important thing you can do!
+    hr
   .col-md-7.text-center
     h3.black Deal Books make great gifts too!
     = link_to 'Buy One for a Friend!', @purchasable, class: "btn btn-success btn-lg buy_button"
