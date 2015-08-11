@@ -127,7 +127,7 @@ $screen-xs-max: 768px;
       width: 100%;
     }
     .sharer{
-      background: rgba(255,255,255,0.5);
+      //background: rgba(255,255,255,0.5);
       padding: 10px 10px 3px;
       -webkit-border-radius: 0 5px 0 5px;
       border-radius: 0 5px 0 5px;
@@ -157,6 +157,14 @@ $screen-xs-max: 768px;
     &.first_col{
       margin-bottom: 30px;
     }
+    .book-label{
+      position: absolute;
+      z-index: 9;
+      background: rgba(0,0,0,0.5);
+      font-size: 19px;
+      -webkit-border-radius: 5px 0 5px 0;
+      border-radius: 5px 0 5px 0;
+    }
     #buttons{
       .buy_button{
         padding: 15px 0px !important;
@@ -169,7 +177,7 @@ $screen-xs-max: 768px;
         margin-top: 20px;
         a{
           padding: 12px 0px !important;
-          font-size: 28px !important;
+          font-size: 30px !important;
           @media (max-width: $screen-sm-max) {
             font-size: 20px !important;
           }

@@ -69,8 +69,18 @@ footer {
   padding-bottom: 40px;
   padding-top: 30px;
 
-  .row{
-    margin-top: 40px;
+  @media (min-width: $screen-md-min) {
+    .row{
+      margin-top: 40px;
+    }
+  }
+
+  @media (max-width: $screen-xs-max) {
+    .first_col{
+      border-bottom: 2px dashed white;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+    }
   }
 
   .quote:before {
@@ -114,7 +124,7 @@ footer {
   }
 
   .buy-button{
-    font-size: 28px !important;
+    font-size: 26px !important;
     padding: 5px 0px !important;
   }
 

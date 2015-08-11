@@ -65,9 +65,9 @@ module CouponBookHelper
   end
 
   def flag_book_link
-    link_to efg_contact_path, target: :_blank, class:'btn btn-default btn-sm' do
+    link_to efg_contact_path, target: :_blank do
       content_tag(:span, nil, class:'glyphicon glyphicon-flag')+
-      content_tag(:span, ' Flag as Inappropiate')
+      content_tag(:span, ' Flag')
     end
   end
 

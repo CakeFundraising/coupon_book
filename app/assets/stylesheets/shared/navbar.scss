@@ -123,7 +123,9 @@
     margin-bottom: 0px;
   }
   .title{
-    margin-bottom: -8px;
+    margin-bottom: -5px;
+    margin-top: 15px;
+    font-size: 19px;
     color: #999;
     display: block;
   }
@@ -163,6 +165,7 @@
         background: $brand-warning;
         font-size: 23px;
         text-transform: uppercase;
+        border-radius: 10px;
         @media (max-width: $screen-sm-max) {
           font-size: 18px;
         }
