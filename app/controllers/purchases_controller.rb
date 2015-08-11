@@ -1,5 +1,6 @@
 class PurchasesController < InheritedResources::Base
   before_action :validate_token, only: :vouchers
+  skip_before_action :verify_authenticity_token, only: :create
 
   def create
     @purchase = Purchase.new(permitted_params[:purchase])
