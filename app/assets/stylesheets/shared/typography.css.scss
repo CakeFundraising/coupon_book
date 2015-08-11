@@ -51,6 +51,15 @@ h1.name {
   }
 }
 
+h2{
+  @media (max-width: $screen-sm-max) {
+    font-size: 28px;
+  }
+  @media (max-width: $screen-xs-max) {
+    font-size: 26px;
+  }
+}
+
 h3{
   @media (max-width: $screen-sm-max) {
     font-size: 26px;

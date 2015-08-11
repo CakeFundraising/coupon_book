@@ -11,8 +11,9 @@
         .col-md-12
           h3.title
             span.bolder Give today 
-            span & receive valuable discounts donated by 
-            span.bolder = anchor_link "Baltimore's most generous restaurants!", :coupons
+            span & get a Deal Book 
+            span with exclusive deals donated by 
+            span.bolder = anchor_link "#{@coupon_book.coupons.count} popular Restaurants below!", :coupons
         .col-md-4.col-sm-4.give.head-col
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
@@ -25,25 +26,24 @@
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
               span.glyphicon.glyphicon-globe
-              span.text Help
-          .text
-            span #{@coupon_book.fr_name}
+              span.text Support
+          .text 
+            = @coupon_book.fr_name
         .col-md-4.col-sm-4.get.head-col
           .link
             = content_tag(:a, href:"#coupons") do
               span.glyphicon.glyphicon-gift
               span.text Enjoy
           .text
-            span.bolder #{@coupon_book.coupons.count} Discounts
-            /span 
-            span  worth 
-            span.bolder #{@coupon_book.no_discount_price}!
+            span Get All #{@coupon_book.coupons.count} Deals! 
+            span.bolder Save #{@coupon_book.no_discount_price}!
 
 .container.compact-container
   .row
     .col-md-8.col-sm-8
       - cache [:templates, :compact, :header, :container, :first_col, @coupon_book] do
-        .sidebar
+        .sidebar.first_col
+          .book-label.label Support #{@coupon_book.fr_name}!
           .banner 
             = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
             .sharer
@@ -61,12 +61,16 @@
                 .do-good.text-center.help-block Do good and treat yourself too!
                 .see-restaurants
                   = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-                    span See All 
-                    span.boldest = @coupon_book.coupons.count
-                    span  Discounts!
-        br
+                    span See  
+                    span.boldest All #{@coupon_book.coupons.count}
+                    span  Deals!
       - if @purchases.any?
+        br
         #purchases.sidebar
           .headbar.text-center Recent Donations
           ul.no-list
             = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+      .flag_book.text-right
+        = flag_book_link
+
+

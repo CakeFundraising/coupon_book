@@ -1,0 +1,40 @@
+/- cache [:templates, :sponsored, :header, :headpage, @coupon_book] do
+.campaign-banner
+  .container
+    .row
+      .col-md-12.col-sm-12
+        span.top_banner.text-center = @coupon_book.name
+
+#headpage
+  .container
+    .row-fluid.text-center
+      .col-md-12
+        h3.title
+          span.bolder Give today 
+          span & get valuable deals and discounts 
+          span.bolder = anchor_link "donated by generous local merchants!", :coupons
+      .col-md-4.col-sm-4.give.head-col
+        .link
+          = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+            span.glyphicon.glyphicon-heart
+            span.text Give
+        .text
+          span.bolder = @coupon_book.price
+          span  or more today!
+      .col-md-4.col-sm-4.help.head-col
+        .link
+          = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+            span.glyphicon.glyphicon-globe
+            span.text Help
+        .text
+          span #{@coupon_book.fr_name}
+      .col-md-4.col-sm-4.get.head-col
+        .link
+          = content_tag(:a, href:"#coupons") do
+            span.glyphicon.glyphicon-gift
+            span.text Enjoy
+        .text
+          span.bolder #{@coupon_book.coupons.count} Discounts
+          /span 
+          span  worth 
+          span.bolder #{@coupon_book.no_discount_price}!

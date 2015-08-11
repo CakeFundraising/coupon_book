@@ -16,10 +16,10 @@ CakeCouponBook::Application.routes.draw do
   resources :coupon_books, path: :campaigns do
     member do
       scope :edit do
-        get :tell_your_story
-        get :coupons
-        get :request_coupons
-        get :launch_and_share
+        get :story
+        get :organize
+        get :share
+        get :customize
         post :save_organize
       end
       patch :launch
@@ -30,7 +30,9 @@ CakeCouponBook::Application.routes.draw do
       get :start_discount
       get :start_pr_box
       get :categories, format: :json
+      
       get :download
+      get :badge
 
       get :donate
     end

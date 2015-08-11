@@ -10,7 +10,7 @@ class Organize
       couponBookId: couponBookId
       collectionCouponsSource: "/fundraisers/collection_coupons?cb_id=#{couponBookId}"
       collectionPrBoxesSource: "/fundraisers/collection_pr_boxes?cb_id=#{couponBookId}"
-      categoriesSource: "/coupon_books/#{couponBookId}/categories"
+      categoriesSource: "/campaigns/#{couponBookId}/categories"
     return
 
   init: ->

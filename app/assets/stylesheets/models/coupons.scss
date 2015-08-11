@@ -62,7 +62,7 @@
   }
   .multiple_locations{
     border-top: 1px dotted #ccc;
-    margin-top: 12px;
+    margin-top: 10px;
     padding-top: 10px;
     &.mobile{
       font-size: 10px;
@@ -96,6 +96,9 @@
   .coupon-content{
     p{
       font-size: 16px;
+      @media (max-width: $screen-sm-max) {
+        font-size: 14px;
+      }
     }
   }
   .coupon-content-mobile{
@@ -137,8 +140,8 @@
     padding: 5px 0px;
   }
   .terms {
-    font-size: 20px;
-    margin-top: 15px;
+    font-size: 16px;
+    margin-top: 5px;
     em {
       font-style: italic;
       color: $gray-light;

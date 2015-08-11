@@ -2,39 +2,39 @@
   .row.voucher-headline
     .col-md-3.col-xs-5
       = link_to efg_home_path, target: :_blank do
-        = image_tag 'befg.png', class:'img-responsive'
+        = image_tag 'efg_logo.png', class:'img-responsive'
     .col-md-9.col-xs-7
       .voucher-number
         span.red Voucher: 
         span = voucher.number
   
   .fundraiser
-    span Fundraiser: 
-    span.blue-text = voucher.coupon_book.fundraiser.name
+    = voucher.coupon_book.fundraiser.name
+  .campaign.blue-text
+    = voucher.coupon_book.name
 
   .row-fluid
     = render partial:'coupons/show/voucher/box', locals:{coupon: voucher.coupon}
   .row
-    .col-md-8.col-xs-8
+    .col-md-9.col-xs-9
       h2.expires
         span.blue-text Expires: 
         span = voucher.expires_at_american
 
-      .fine-print
+      .locations_and_terms
         - if voucher.multiple_locations.present?
           h3.blue-text Use at the following locations:
           div = voucher.multiple_locations
         - if voucher.custom_terms.present?
           h3.blue-text Merchant Limitations
           div = voucher.custom_terms
+      .fine-print
         h4 The Fine Print
         div = t('application.terms_and_conditions.coupons').html_safe
-    .col-md-4.col-xs-4
-      .row
+      .questions 
+        span Questions? 
+        span = mail_to 'help@eatsforgood.org', 'help@eatsforgood.org'
+    .col-md-3.col-xs-3
+      .row-fluid
         .qrcode-table
           = raw RQRCode::QRCode.new(voucher.number).as_html
-      .row
-        .powered_by.col-md-12
-          span Powered by 
-          = image_tag 'cake_logo.png', class:'cake_logo pull-right'      
-

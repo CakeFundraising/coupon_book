@@ -8,6 +8,13 @@ form{
 input[type="checkbox"]{
   float:none !important;
 }
+.checkbox{
+  display:inline;
+  line-height: 40px;
+}
+.checkbox input[type="checkbox"]{
+  margin-left: 0px;
+} 
 .input-group{
   .col-xs-3{
     padding-left: 0;
@@ -80,6 +87,20 @@ address {
   margin:auto;
   h3, h4{
     color: black;
+    margin-top: 0;
+  }
+  .headline{
+    h4{
+      color: #999;
+    }
+  }
+  .inputs{
+    margin-bottom: 40px;
+    background-color: white;
+    border: 1px solid #f1f1f1;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    padding: 30px;
   }
 }
 .campaign-steps {

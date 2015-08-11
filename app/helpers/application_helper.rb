@@ -60,6 +60,10 @@ module ApplicationHelper
     ['true', 'false'].include?(string)
   end
 
+  def titleize_select_collection(collection)
+    collection.map{|i| [i.titleize, i]}
+  end
+
   def terms_modal_link
     content_tag(:a, 'Terms & Conditions', data:{toggle:'modal', target:'#terms_of_purchase_modal'})
   end

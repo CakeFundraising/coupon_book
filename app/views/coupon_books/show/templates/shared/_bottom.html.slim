@@ -8,15 +8,31 @@
     .row
       .col-md-12
         .share_campaign.text-center
-          h2 Please share our digital Deal Book with your family and friends!
-          h3.text-muted Working together, we can make a difference.
+          h1 Please Share!
+          h3.text-muted It really makes a difference!
           = render partial:'layouts/share_buttons'
 
   .quotes
     .container
       .row
-        .col-md-9
-          h1.boldest Attention Nonprofits - It's not too late to join Baltimore Eats for Good!
-        .col-md-3
-          = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
-          h4.boldest Fundraising has never been easier!
+        .col-md-6.col-sm-6.first_col
+          .boldest.text-center 
+            h2 Need to raise money for a good cause?
+            h3 Join Baltimore Eats for Good today!
+          .row
+            .col-md-3
+            .col-md-6
+              = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
+              h4.boldest Fundraising has never been easier!
+            .col-md-3
+        .col-md-6.col-sm-6
+          .boldest.text-center 
+            h2 Restaurants & Merchants
+            h3 Give back and win new customers!
+          .row
+            .col-md-3
+            .col-md-6
+              = link_to 'Create a Deal Today!', efg_how_works_path, target: :_blank, class:'btn btn-warning btn-xl buy-button'
+              h4.boldest Take 5 minutes to help!
+            .col-md-3
+

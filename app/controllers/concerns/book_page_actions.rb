@@ -11,7 +11,7 @@ module BookPageActions
 
     if mobile_device?
       @first_category = @coupon_book.categories.first
-      @discounts = @first_category.items.preloaded.decorate
+      @discounts = @first_category.items.preloaded.decorate if @first_category.present?
       
       render(:mobile_show, layout: 'layouts/books/mobile')
     else

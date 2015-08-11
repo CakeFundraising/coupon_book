@@ -1,0 +1,80 @@
+= display_meta("Deal Book Setup")
+
+= render partial:'coupon_books/template/nav'
+
+.tab-content.wizard-wrap
+  #story.tab-pane.active
+    = semantic_form_for @coupon_book do |f|
+      .headline.text-center
+        h1 Tell us about yourself
+        h4.text-muted Share with others why you're raising money!
+        br
+      = f.semantic_errors *f.object.errors.keys
+      = f.inputs do
+        .row
+          .col-md-12
+            h3 Campaign Headline & Story
+            p.text-muted Tell your story in more detail
+            br
+          .col-md-12
+            = f.input :headline, input_html: {placeholder: '110 characters or less', maxlength: 110}
+            span.help-block.italic Max 110 characters.
+            = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
+            span.help-block.italic Tell people why you are raising money and what you plan to do with it, or anything else you like.
+        .row.section-wrapper
+          .col-md-12
+            h3 Inspirational Thought or Quote
+            p.text-muted Have fun! Add your favorite words of wisdom.
+            br
+          .col-md-12
+            = f.input :mission, as: :text, label: false, input_html: {rows: 2, placeholder: '140 characters or less', maxlength: 140}
+            span.help-block.italic Max 140 characters.
+        .row.section-wrapper
+          .col-md-12
+            h3 Your Website or Facebook Page
+            p.text-muted Where would you like to direct visitors to your Campaign?
+            br
+          .col-md-12
+            = f.input :url, label: false, input_html:{placeholder: 'Enter your URL'}
+        .row.section-wrapper
+          .col-md-12
+            h3 Recruit New Supporters
+            p.text-muted Ask Visitors to Join, Sign Up or Volunteer With Your Organization
+            br
+          .col-md-12
+            = f.input :visitor_action, label: 'I want my visitors to', as: :select, collection: CouponBook::VISITOR_ACTIONS, input_html: {size: 1, class: 'dropdown'}, include_blank: true
+            /= f.input :visitor_url, label: 'By going to this web page:', placeholder: 'Enter your URL here...', input_html: { :size => "60" }
+        .row.section-wrapper
+          .col-md-12
+            h3 Campaign Cause Category
+            p.text-muted What is your cause?
+            br
+          .col-md-12
+            = f.input :main_cause, as: :select, collection: CouponBook::CAUSES, input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
+            span.help-block.italic Choose the Cause Category that best represent you or your Organization.
+        /   .col-md-12
+        /     label.control-label Secondary Causes
+        /     span.help-block.italic You can select more than one
+        /     = f.input :causes, as: :select, collection: CouponBook::CAUSES, label: false, multiple: true, input_html: {size: 15}
+        / .row.section-wrapper
+        /   .col-md-12
+        /     h3 Book Scope
+        /     p.text-muted Choose the geographic designations that best describes your organization's influence with supporters and consumers.
+        /     br
+        /   .col-md-12
+        /     = f.input :scopes, as: :select, collection: CouponBook::SCOPES, label: false, multiple: true
+            
+        = f.input :step, as: :hidden, input_html:{value: :organize}
+        br
+        .text-center
+          = f.actions do
+            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+            = hidden_coupon_book_cancel_link  
+
+- pictures_status = raw({avatar: @coupon_book.avatar.present?, banner: @coupon_book.banner.present?}.to_json)
+
+javascript:
+  CakeCouponBook.coupon_books.status = "#{@coupon_book.status}";
+  CakeCouponBook.pictures.added_images(#{pictures_status});
+
+            

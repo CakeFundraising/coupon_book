@@ -5,14 +5,16 @@ module CouponBookHelper
 
   def status_buttons(coupon_book)
     unless coupon_book.past?
-      if coupon_book.pending?
+      if coupon_book.incomplete?
         link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
-      elsif coupon_book.incomplete?
-        content_tag(:div, coupon_book.status, class:'btn btn-sm btn-danger disabled')
       else
         content_tag(:div, coupon_book.status, class:'btn btn-sm btn-success disabled')
       end
     end
+  end
+
+  def screenshot_dowload(coupon_book)
+    link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + coupon_book_url(coupon_book.id), class:'btn btn-primary', download: 'deal_book.jpg'
   end
 
   def visibility_buttons(coupon_book)
@@ -62,9 +64,10 @@ module CouponBookHelper
     content_tag(:div, nil, class:'addthis_custom_sharing')
   end
 
-  def donate_top_link(coupon_book)
-    if coupon_book.launched?
-      content_tag(:a, "Donate", class: "btn-signup buy_button btn btn-success", data: {price: coupon_book.price_cents})
+  def flag_book_link
+    link_to efg_contact_path, target: :_blank do
+      content_tag(:span, nil, class:'glyphicon glyphicon-flag')+
+      content_tag(:span, ' Flag')
     end
   end
 

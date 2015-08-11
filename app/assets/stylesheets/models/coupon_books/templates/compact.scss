@@ -24,7 +24,10 @@ $screen-xs-max: 768px;
     margin-top: -2px;
   }
   .navbar-brand{
-    padding-top: 3px;
+    padding-top: 12px;
+    img{
+      width: 150px;
+    }
   }
 }
 
@@ -60,6 +63,9 @@ $screen-xs-max: 768px;
   background-color: white;
   padding: 15px 0px;
   box-shadow: 0px 3px 5px #ddd;
+  @media (max-width: $screen-sm-max) {
+    font-size: 20px;
+  }
   .title{
     margin-top: 0;
     margin-bottom: 20px;
@@ -112,7 +118,6 @@ $screen-xs-max: 768px;
 }
 
 .compact-container{
-  padding-bottom: 30px;
   .banner{
     position: relative;
     img{
@@ -122,7 +127,7 @@ $screen-xs-max: 768px;
       width: 100%;
     }
     .sharer{
-      background: rgba(255,255,255,0.5);
+      //background: rgba(255,255,255,0.5);
       padding: 10px 10px 3px;
       -webkit-border-radius: 0 5px 0 5px;
       border-radius: 0 5px 0 5px;
@@ -130,27 +135,52 @@ $screen-xs-max: 768px;
       bottom: 0;
     }
   }
+  .headline{
+    h3{
+      @media (max-width: $screen-sm-max) {
+        font-size: 22px;
+      }
+    }
+  }
   .story{
     font-size: 18px;
+    @media (max-width: $screen-sm-max) {
+      font-size: 16px;
+    }
   }
   .sidebar{
     .headbar{
       font-size: 20px;
-      //color: white;
-      //background-color: $brand-primary;
       border-bottom: 1px solid #ddd;
       text-transform: uppercase;
+    }
+    &.first_col{
+      margin-bottom: 30px;
+    }
+    .book-label{
+      position: absolute;
+      z-index: 9;
+      background: rgba(0,0,0,0.5);
+      font-size: 19px;
+      -webkit-border-radius: 5px 0 5px 0;
+      border-radius: 5px 0 5px 0;
     }
     #buttons{
       .buy_button{
         padding: 15px 0px !important;
         font-size: 42px !important;
+        @media (max-width: $screen-sm-max) {
+          font-size: 32px !important;
+        }
       }
       .see-restaurants{
         margin-top: 20px;
         a{
           padding: 12px 0px !important;
-          font-size: 28px !important;
+          font-size: 30px !important;
+          @media (max-width: $screen-sm-max) {
+            font-size: 20px !important;
+          }
         }
       }
     }
@@ -177,6 +207,9 @@ $screen-xs-max: 768px;
         }
       }
     }
+  }
+  .flag_book{
+    margin: 10px 0px;
   }
   .promo-logo{
     img{

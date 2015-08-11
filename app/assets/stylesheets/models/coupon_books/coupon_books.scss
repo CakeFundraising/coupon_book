@@ -198,9 +198,7 @@ h1.donation-title{
   padding-bottom: 4px;
 }
 .campaign-story {
-  letter-spacing: 0.5px;
   margin-top: 20px;
-
   .story{
     @media (max-width: $screen-xs-max) {
       font-size: 16px;
@@ -308,9 +306,9 @@ h2.category-subtitle{
 }
 
 span.banner-heading{
-  font-size: 34px;
+  font-size: 36px;
   @media (max-width: $screen-xs-max) {
-    font-size: 28px;
+    font-size: 26px;
   }
 }
 
@@ -349,7 +347,7 @@ span.banner-heading{
       margin-top: -4px;
     }
     @media (max-width: $screen-xs-max) {
-      font-size: 18px;
+      font-size: 20px;
     }
     span.boldest{
       font-size: 28px;

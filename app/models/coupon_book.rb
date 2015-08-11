@@ -12,9 +12,10 @@ class CouponBook < ActiveRecord::Base
 
   attr_accessor :step
 
-  TEMPLATES = %w{ compact original }
+  TEMPLATES = %w{ compact sponsored original }
+  MIN_PRICE = 10
 
-  has_statuses :incomplete, :pending, :launched, :past
+  has_statuses :incomplete, :launched, :past
 
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
@@ -29,16 +30,17 @@ class CouponBook < ActiveRecord::Base
   has_many :purchases, as: :purchasable
   has_many :direct_donations, as: :donable
 
-  monetize :goal_cents, numericality: {greater_than: 0}
-  monetize :price_cents, numericality: {greater_than: 0}
+  monetize :goal_cents, numericality: {greater_than: MIN_PRICE}
+  monetize :price_cents, numericality: {greater_than_or_equal_to: MIN_PRICE}
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
 
-  validates :name, :launch_date, :end_date, :main_cause, :scopes, :fundraiser, :goal, presence: true
-  validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
-  validates :mission, :headline, :story, presence: true, if: :persisted?
+  validates :name, :organization_name, :goal, :template, :fundraiser, :avatar, :banner, presence: true
+  validates :headline, :story, :url, :main_cause, presence: true, if: :persisted?
   validates :categories, length: {maximum: 15}
+
+  #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
@@ -97,13 +99,13 @@ class CouponBook < ActiveRecord::Base
   #Slugs
   def slug_candidates
     [
-      :name,
+      :organization_name,
       [:organization_name, :name]
     ]
   end
 
   def should_generate_new_friendly_id?
-    name_changed?
+    organization_name_changed?
   end
 
   #Fee

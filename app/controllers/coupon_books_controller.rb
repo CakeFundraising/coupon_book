@@ -9,11 +9,11 @@ class CouponBooksController < InheritedResources::Base
   before_action :redirect_to_billing, only: :launch
 
   TEMPLATE_STEPS = [
-    :basic_info,
-    :tell_your_story,
-    :coupons,
-    :request_coupons,
-    :launch_and_share
+    :basics,
+    :story,
+    :organize,
+    :customize,
+    :share
   ]
 
   def index
@@ -23,20 +23,20 @@ class CouponBooksController < InheritedResources::Base
   include BookPageActions
 
   #Template steps
-  def basic_info
+  def basics
     @coupon_book = resource.decorate
-    render 'coupon_books/template/basic_info'
+    render 'coupon_books/template/basics'
   end
 
-  def tell_your_story
+  def story
     @coupon_book = resource
-    render 'coupon_books/template/tell_your_story'
+    render 'coupon_books/template/story'
   end
 
   #Build coupon book
-  def coupons
+  def organize
     @coupon_book = resource
-    render 'coupon_books/template/coupons'
+    render 'coupon_books/template/organize'
   end
 
   def save_organize
@@ -56,15 +56,15 @@ class CouponBooksController < InheritedResources::Base
     render 'coupon_books/show/categories'
   end
 
-  def request_coupons
+  def share
     @coupon_book = resource.decorate
-    render 'coupon_books/template/request_coupons'
+    render 'coupon_books/template/share'
   end
 
   #Launch 
-  def launch_and_share
+  def customize
     @coupon_book = resource.decorate
-    render 'coupon_books/template/launch_and_share'
+    render 'coupon_books/template/customize'
   end
 
   #Default actions
@@ -74,7 +74,7 @@ class CouponBooksController < InheritedResources::Base
     create! do |success, failure|
       success.html do
         update_screenshot(@coupon_book)
-        redirect_to tell_your_story_coupon_book_path(@coupon_book)
+        redirect_to story_coupon_book_path(@coupon_book)
       end
       failure.html do
         render action: :new
@@ -98,25 +98,20 @@ class CouponBooksController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to coupon_books_path, notice: 'Coupon book was successfully destroyed.'
+        redirect_to coupon_books_path, notice: 'Campaign was successfully destroyed.'
       end
     end
   end
 
   #Special Actions
-  def save_for_launch
-    resource.pending!
-    redirect_to resource, notice: 'Coupon Book saved!'
-  end
-
   def launch
     resource.launch!
-    #update_screenshot(resource)
+    update_screenshot(resource)
 
     if request.xhr?
       render nothing: true
     else
-      redirect_to resource, notice: 'Coupon Book launched!'
+      redirect_to share_coupon_book_path(resource), notice: 'Campaign launched! Now is time to share this Campaign with your friends and supporters!'
     end
   end
 

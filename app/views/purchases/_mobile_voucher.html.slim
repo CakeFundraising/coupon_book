@@ -2,7 +2,7 @@
   .row.voucher-headline
     .col-md-3.col-xs-12
       = link_to efg_home_path, target: :_blank do
-        = image_tag 'befg.png', class:'img-responsive'
+        = image_tag 'efg_logo.png', class:'img-responsive'
     .col-md-9.col-xs-12
       .voucher-number
         span.red Voucher: 
@@ -13,10 +13,6 @@
       h2 = voucher.coupon
       h4.sp_name = voucher.coupon.sponsor_name
   
-  / .fundraiser
-  /   span Fundraiser: 
-  /   span.blue-text = voucher.coupon_book.fundraiser.name
-
   .row
     .col-md-8.col-xs-12
       h2.expires
