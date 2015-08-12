@@ -26,7 +26,7 @@ CakeCouponBook.coupon_books.validation = ->
         currency: ["$", false]
       'coupon_book[price]':
         required: true
-        min: 10
+        min: 1
         currency: ["$", false]
       'coupon_book[template]': 
         required: true

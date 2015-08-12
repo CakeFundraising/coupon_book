@@ -11,8 +11,7 @@
         .col-md-12
           h3.title
             span.bolder Give today 
-            span & get a Deal Book 
-            span with exclusive deals donated by 
+            span & receive exclusive deals donated by 
             span.bolder = anchor_link "#{@coupon_book.coupons.count} popular Restaurants below!", :coupons
         .col-md-4.col-sm-4.give.head-col
           .link
@@ -33,9 +32,9 @@
           .link
             = content_tag(:a, href:"#coupons") do
               span.glyphicon.glyphicon-gift
-              span.text Enjoy
+              span.text Receive
           .text
-            span Get All #{@coupon_book.coupons.count} Deals! 
+            span All #{@coupon_book.coupons.count} Deals! 
             span.bolder Save #{@coupon_book.no_discount_price}!
 
 .container.compact-container
