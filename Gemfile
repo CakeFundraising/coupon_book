@@ -82,6 +82,13 @@ gem 'rest-client'
 #User registration
 gem 'devise'
 
+# Omniauth gems
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+# gem 'omniauth-linkedin-oauth2'
+# gem 'omniauth-stripe-connect'
+
 #User permissions
 gem 'cancancan'
 

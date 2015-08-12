@@ -1,7 +1,10 @@
 CakeCouponBook::Application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, confirmations: :confirmations}
+  
   root to:'home#index'
 
   scope :search, controller: :searches do
@@ -77,12 +80,6 @@ CakeCouponBook::Application.routes.draw do
   end
 
   resources :pr_boxes, except: [:index, :show]
-
-  scope :users, controller: :users do
-    get :sign_in
-    post :new_session
-    delete :sign_out
-  end
 
   resources :coupon_sponsors
 

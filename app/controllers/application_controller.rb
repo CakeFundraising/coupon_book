@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
+
   helper_method :current_user, :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
@@ -34,6 +37,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation)}
+    devise_parameter_sanitizer.for(:account_update){|u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)}
+  end
 
   def set_evercookie(key, value)
     session[:evercookie] = {} unless session[:evercookie].present?
