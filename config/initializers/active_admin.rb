@@ -245,6 +245,24 @@ ActiveAdmin.setup do |config|
   # config.filters = true
 end
 
+ActiveAdmin::ResourceController.class_eval do
+  protected
+
+  def revert_friendly_id
+    model_name = self.class.name.match(/::(.*)Controller$/)[1].singularize
+
+    # Will throw a NameError if the class does not exist
+    Module.const_get model_name
+
+    eval(model_name).class_eval do
+      def to_param
+        id.to_s
+      end
+    end
+  rescue NameError
+  end
+end
+
 module ActiveAdmin
   module Views
     class TableFor

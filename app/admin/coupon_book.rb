@@ -88,9 +88,7 @@ ActiveAdmin.register CouponBook do
   end
 
   controller do
-    def find_resource
-      resource_class.is_a?(FriendlyId) ? scoped_collection.where(slug: params[:id]).first! : scoped_collection.where(id: params[:id]).first!
-    end
+    before_action :revert_friendly_id
   end
 
   permit_params :name, :organization_name, :mission, :launch_date, :end_date, :story, :goal, :headline, :step, :url, 
