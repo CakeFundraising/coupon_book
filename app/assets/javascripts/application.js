@@ -63,5 +63,6 @@
 //= require ./models/pictures
 //= require ./models/pr_boxes
 //= require ./models/purchases
+//= require ./models/users
 //= require ./models/subscriptors
 //= require ./models/videos

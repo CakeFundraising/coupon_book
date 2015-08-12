@@ -4,14 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
 
-  helper_method :current_user, :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
+  helper_method :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
-  end
-
-  def current_user
-    @current_user ||= User.find_by_access_token(session[:access_token])
   end
 
   def current_fundraiser
