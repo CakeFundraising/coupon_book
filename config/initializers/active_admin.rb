@@ -246,20 +246,12 @@ ActiveAdmin.setup do |config|
 end
 
 ActiveAdmin::ResourceController.class_eval do
-  protected
-
-  def revert_friendly_id
-    model_name = self.class.name.match(/::(.*)Controller$/)[1].singularize
-
-    # Will throw a NameError if the class does not exist
-    Module.const_get model_name
-
-    eval(model_name).class_eval do
-      def to_param
-        id.to_s
-      end
+  def find_resource
+    if scoped_collection.is_a? FriendlyId
+      scoped_collection.where(slug: params[:id]).first! 
+    else
+      scoped_collection.where(id: params[:id]).first!
     end
-  rescue NameError
   end
 end
 

@@ -36,6 +36,7 @@ ActiveAdmin.register CouponBook do
       row :fee_percentage
       bool_row :visible
       row :fundraiser
+      row :slug
     end
 
     panel 'Categories' do
@@ -87,8 +88,8 @@ ActiveAdmin.register CouponBook do
     f.actions
   end
 
-  controller do
-    before_action :revert_friendly_id
+  action_item only:[:show] do
+    link_to "See Page", coupon_book_path(id: resource)
   end
 
   permit_params :name, :organization_name, :mission, :launch_date, :end_date, :story, :goal, :headline, :step, :url, 

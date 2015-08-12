@@ -105,8 +105,7 @@ class CouponBook < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    true
-    #organization_name_changed?
+    organization_name_changed?
   end
 
   #Fee
