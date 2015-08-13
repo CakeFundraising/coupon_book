@@ -35,6 +35,7 @@ CakeCouponBook::Application.routes.draw do
       get :badge
 
       get :donate
+      get :checkout
     end
   end
 

@@ -35,7 +35,7 @@ module CouponBookHelper
   def buy_book_widget_button(coupon_book, button_color=:success)
     if coupon_book.launched?
       #content_tag(:a, "Buy #{coupon_book.price}", class: "btn btn-#{button_color} btn-xl buy_button", data:{price: coupon_book.price_cents})
-      link_to "Only #{coupon_book.price}", donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+      link_to "Only #{coupon_book.price}", checkout_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
     end
   end
 

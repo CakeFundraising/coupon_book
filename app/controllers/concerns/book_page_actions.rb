@@ -27,11 +27,24 @@ module BookPageActions
   def donate
     @coupon_book = resource.decorate
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+    @purchase = @coupon_book.purchases.build
 
     if mobile_device?
       render('coupon_books/donate/mobile', layout: 'layouts/books/mobile')
     else
       render('coupon_books/donate/desktop', layout: 'layouts/books/desktop')
+    end
+  end
+
+  def checkout
+    @coupon_book = resource.decorate
+    @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+    @purchase = @coupon_book.purchases.build(amount: @coupon_book.object.price.to_i)
+
+    if mobile_device?
+      render('coupon_books/checkout/mobile', layout: 'layouts/books/mobile')
+    else
+      render('coupon_books/checkout/desktop', layout: 'layouts/books/desktop')
     end
   end
 

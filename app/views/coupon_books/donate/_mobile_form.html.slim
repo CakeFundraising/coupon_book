@@ -1,5 +1,5 @@
 #purchase-widget
-  = semantic_form_for purchasable.purchases.build, html:{autocomplete: :on} do |f|
+  = semantic_form_for @purchase, html:{autocomplete: :on} do |f|
     .row
       .col-md-12
         #payment-errors.alert.alert-danger.hidden
@@ -7,7 +7,7 @@
       #amount-input.row
         .currency.col-md-1.col-sm-2.col-xs-2 $
         .col-md-8.col-sm-6.col-xs-6.no-padding
-          = f.input :amount, as: :phone, input_html:{pattern: '[0-9]*', value: '', autofocus: true, class:'restrictToNumber'}, label: false
+          = f.input :amount, as: :phone, input_html:{pattern: '[0-9]*', value: @purchase.decorate.form_amount, autofocus: true, class:'restrictToNumber'}, label: false
         .zeros.col-md-3.col-sm-4.col-xs-4 .00
       .cc_inputs
         .row

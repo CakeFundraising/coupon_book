@@ -66,7 +66,7 @@
       - if @purchases.any?
         br
         #purchases.sidebar
-          .headbar.text-center Recent Donations
+          .headbar.text-center = t('titles.coupon_book.purchase_list')
           ul.no-list
             = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
       .flag_book.text-right
