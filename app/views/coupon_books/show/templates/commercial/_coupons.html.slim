@@ -6,7 +6,7 @@
       #benefit 
         span Proceeds benefit 
         span.boldest = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
-        span  & save 
+        span  & you save 
         span.bolder #{@coupon_book.no_discount_price} 
         span too!
 
@@ -20,7 +20,8 @@
         = content_tag(:a, 'See All Deal Categories', class:'btn btn-default btn-lg', onclick: "$('html,body').animate({scrollTop:0},'slow');return false;")
       br
 
-.container
-  .row
-    .col-md-12.text-center
-      .bottom-tagline eat/drink/play + give back!
+- if @coupon_book.bottom_tagline.present?
+  .container
+    .row
+      .col-md-12.text-center
+        .bottom-tagline = @coupon_book.bottom_tagline

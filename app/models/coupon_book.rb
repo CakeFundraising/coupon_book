@@ -6,16 +6,17 @@ class CouponBook < ActiveRecord::Base
   include Picturable
   include Screenshotable
   include VisitorActions
+  include Templatable
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
 
   attr_accessor :step
 
-  TEMPLATES = %w{ compact commercial original }
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
   has_statuses :incomplete, :launched, :past
+  has_templates :compact, :commercial, :original
 
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
