@@ -12,6 +12,16 @@ CakeCouponBook::Application.routes.draw do
     get :search_pr_boxes, path:'pr_boxes'
   end
 
+  namespace :home, path:'/' do
+    get :get_started
+  end
+
+  resources :users, only: :index do
+    collection do
+      patch :roles
+    end
+  end
+
   mount Resque::Server, at: "/resque"
 
   resources :direct_donations, only: :create

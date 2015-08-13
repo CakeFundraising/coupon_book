@@ -4,19 +4,20 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
 
-  helper_method :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
+  #helper_method :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
+  helper_method :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
 
-  def current_fundraiser
-    @current_fundraiser ||= current_user.fundraiser if current_user.present? and current_user.fundraiser?
-  end
+  # def current_fundraiser
+  #   @current_fundraiser ||= current_user.fundraiser if current_user.present? and current_user.fundraiser?
+  # end
 
-  def current_sponsor
-    @current_sponsor ||= current_user.sponsor if current_user.present? and current_user.sponsor?
-  end
+  # def current_sponsor
+  #   @current_sponsor ||= current_user.sponsor if current_user.present? and current_user.sponsor?
+  # end
 
   def current_browser
     token = evercookie_get_value(:cfbid)
