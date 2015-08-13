@@ -1001,9 +1001,13 @@ en:
     Ends:              Ends
   banners:
     coupon_book:
-      header: 
-        first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
-        last: "<div class='last'><span class='boldest'>Donate %{price}</span> or more & get a Deal Book with exclusive deals worth %{no_discount} donated by <span class='boldest'>%{count} popular Restaurants below!</span></div>"
+      header:
+        mobile:
+          shared:
+            first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
+            last: "<div class='last'><span class='boldest'>Donate %{price}</span> or more & get a Deal Book with exclusive deals worth %{no_discount} donated by <span class='boldest'>%{count} popular Restaurants below!</span></div>"
+          commercial:
+            last: "<div class='last'>Proceeds benefit <span class='boldest'>%{fr}</span> & save <span class='boldest'>%{no_discount}</span> too!</div>"
       coupons: "You get <span class='boldest'>all %{count}</span> deals donated by the <span class='boldest'>Restaurants & Merchants below!</span>"
       categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
       we_will_email: "* Your digital <span class='bolder'>Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."

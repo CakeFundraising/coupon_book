@@ -13,7 +13,7 @@ module BookPageActions
       @first_category = @coupon_book.categories.first
       @discounts = @first_category.items.preloaded.decorate if @first_category.present?
       
-      render(:mobile_show, layout: 'layouts/books/mobile')
+      render("coupon_books/show/mobile/#{@coupon_book.template}/main", layout: 'layouts/books/mobile')
     else
       @categories = @coupon_book.categories.decorate
       @first_category = @categories.first
