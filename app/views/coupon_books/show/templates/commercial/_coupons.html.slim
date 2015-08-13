@@ -1,0 +1,26 @@
+= render partial:'coupon_books/show/templates/shared/after_purchase'
+
+.container
+  .row
+    .col-md-12.text-center
+      #benefit 
+        span Proceeds benefit 
+        span.boldest = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
+        span  & save 
+        span.bolder #{@coupon_book.no_discount_price} 
+        span too!
+
+.row-fluid
+  .container
+    .tab-content
+      = render partial:'categories/show/book_tab', collection: @categories, as: :category
+  .row-fluid.clear
+    .col-md-12.text-center
+      .book-nav-help
+        = content_tag(:a, 'See All Deal Categories', class:'btn btn-default btn-lg', onclick: "$('html,body').animate({scrollTop:0},'slow');return false;")
+      br
+
+.container
+  .row
+    .col-md-12.text-center
+      .bottom-tagline eat/drink/play + give back!

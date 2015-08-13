@@ -12,7 +12,7 @@ class CouponBook < ActiveRecord::Base
 
   attr_accessor :step
 
-  TEMPLATES = %w{ compact sponsored original }
+  TEMPLATES = %w{ compact commercial original }
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
   has_statuses :incomplete, :launched, :past
