@@ -2,13 +2,12 @@
 
 .container
   .row
-    .col-md-12.text-center
-      #benefit 
-        span Proceeds benefit 
+    .col-md-12
+      .benefit.pull-left
+        span Proceeds from sales benefit 
         span.boldest = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
-        span  & you save 
-        span.bolder #{@coupon_book.no_discount_price} 
-        span too!
+      .get-deals.bolder.pull-right
+        span You get All #{@coupon_book.coupons.count} Deals
 
 .row-fluid
   .container

@@ -1,0 +1,32 @@
+- if coupon.pr_box?
+  = render partial:'pr_boxes/show/templates/rectangle', locals:{pr_box: coupon}
+- else
+  - cache [:coupon_box, :rectangle, coupon] do
+    .coupon-wrapper.coupon-rectangle
+      .coupon-label.label.label-warning #{coupon.retail_value} value!
+      .row.coupon-box.clearfix
+        .col-md-2.col-sm-6.sp-box
+          = coupon_sp_pic(coupon)
+          h4.sp_name 
+            = link_to click_coupon_path(coupon, url: coupon.sponsor_url) do
+              = coupon.sponsor_name
+          .hidden-sm = coupon_main_location(coupon)          
+        .col-md-10.col-sm-6
+          .row
+            .col-md-8.col-sm-12
+              div.coupon-content
+                h2 = coupon
+                hr
+                p.expander-350 = coupon.description
+                .row.terms.clear
+                  .col-sm-12
+                    = render partial:'coupons/show/terms', locals:{coupon: coupon}
+                    a data-toggle="modal" data-target="#coupon_terms_#{coupon.id}" Terms of Use
+            .col-md-4.text-center.hidden-sm.padding-right-out
+              div = coupon_pic(coupon)
+        
+        - unless coupon.object.multiple_locations.blank?
+          .row
+            .col-md-12.col-sm-12
+              .multiple_locations
+                = coupon.multiple_locations

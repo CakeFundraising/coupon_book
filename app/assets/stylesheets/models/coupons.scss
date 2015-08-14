@@ -3,6 +3,23 @@
   font-size: 18px;
 }
 .coupon-wrapper{
+  margin-bottom: 35px;
+  &.coupon-grid{
+    .coupon-box{
+      padding: 12px;
+      min-height: 141px;
+      .sp_name{
+        color: $brand-primary;
+        font-size: 16px;
+        margin: 0px 0px 5px;
+      }
+      .coupon_title{
+        font-size: 18px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
   &.orderup-coupon{
     margin-top: 20px;
   }
@@ -42,7 +59,6 @@
   background-color: #fff;
   border-radius: $border-radius-base;
   box-shadow: 0px 0px 5px #ccc;
-  margin-bottom: 35px;
   .sp-box{
     padding-left: 0;
     border-right: 1px dotted #ddd;

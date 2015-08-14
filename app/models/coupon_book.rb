@@ -15,6 +15,13 @@ class CouponBook < ActiveRecord::Base
 
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
+  COUPON_TEMPLATES = {
+    compact: :rectangle,
+    commercial: :grid,
+    original: :rectangle,
+    mobile: :square
+  }
+
   has_statuses :incomplete, :launched, :past
   has_templates :compact, :commercial, :original
 
@@ -107,6 +114,11 @@ class CouponBook < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     organization_name_changed?
+  end
+
+  #Templates
+  def coupon_template
+    COUPON_TEMPLATES[self.template.to_sym]
   end
 
   #Fee

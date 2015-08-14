@@ -32,6 +32,8 @@ class CategoriesController < InheritedResources::Base
   def discounts
     @category = resource
     @discounts = @category.items.preloaded.decorate
+    @coupon_template = get_coupon_template(@category.coupon_book)
+
     render layout: false
   end
 
@@ -41,6 +43,8 @@ class CategoriesController < InheritedResources::Base
     @categories = @coupon_book.categories.with_items.to_a
     @categories.shift #remove first category
     @categories = CategoryDecorator.decorate_collection @categories
+
+    @coupon_template = get_coupon_template(@coupon_book)
 
     render layout: false
   end

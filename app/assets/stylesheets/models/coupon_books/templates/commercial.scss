@@ -6,6 +6,8 @@
 }
 
 $brand-warning: #f0ad4e !default;
+$screen-sm-max: 992px;
+$screen-xs-max: 768px;
 
 @font-face{
   font-family:'establo';
@@ -34,7 +36,7 @@ $brand-warning: #f0ad4e !default;
 }
 
 .hero {
-  height:350px;
+  height:350px !important;
   margin-bottom: 0;
   border:0px;
   background-size: 100% auto;
@@ -69,12 +71,16 @@ $brand-warning: #f0ad4e !default;
   }
 }
 
-#benefit{
+.get-deals,
+.benefit{
   font-size: 24px;
-  margin: 20px 0px;
+  margin: 10px 0px 5px;
   color: #555;
   a{
     color: #555;
+  }
+  @media (max-width: $screen-sm-max) {
+    font-size: 21px;
   }
 }
 

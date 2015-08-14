@@ -33,6 +33,10 @@ class ApplicationController < ActionController::Base
     /iPad/i.match(request.user_agent).present?
   end
 
+  def get_coupon_template(book)
+    mobile_device? ? :square : book.coupon_template
+  end
+
   private
 
   def set_evercookie(key, value)

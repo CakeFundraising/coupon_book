@@ -1,8 +1,6 @@
 module Templatable
   extend ActiveSupport::Concern
 
-  TEMPLATES = %w{ compact commercial original }
-
   module ClassMethods
     def has_templates(*templates)
       opts = { column_name: :template }.merge templates.extract_options!

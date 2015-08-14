@@ -16,7 +16,7 @@
         h1.category-title = @first_category.name
 
         .items
-          = render partial:'coupons/show/box', collection: @discounts, as: :coupon
+          = render partial:"coupons/show/templates/#{CouponBook::COUPON_TEMPLATES[:mobile]}", collection: @discounts, as: :coupon
     #remote-items.row-fluid
       .col-md-12.text-center
         span#spinner.hidden = image_tag 'loading.gif'
