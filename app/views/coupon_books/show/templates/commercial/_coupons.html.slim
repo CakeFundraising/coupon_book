@@ -11,13 +11,15 @@
 
 .row-fluid
   .container
-    .tab-content
+    #remote-items.tab-content
       = render partial:'categories/show/book_tab', collection: @categories, as: :category
-  .row-fluid.clear
-    .col-md-12.text-center
-      .book-nav-help
-        = content_tag(:a, 'See All Deal Categories', class:'btn btn-default btn-lg', onclick: "$('html,body').animate({scrollTop:0},'slow');return false;")
       br
+      .row-fluid.clear
+        .col-md-12.text-center
+          .book-nav-help
+            span#spinner.hidden = image_tag 'loading.gif'
+            = link_to 'See All Deal Categories', load_all_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link'
+          br
 
 - if @coupon_book.bottom_tagline.present?
   .container

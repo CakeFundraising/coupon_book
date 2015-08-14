@@ -37,13 +37,21 @@ class CategoriesController < InheritedResources::Base
     render layout: false
   end
 
-  def load_all_discounts
+  def load_remaining_discounts
     @coupon_book = CouponBook.friendly.find(params[:coupon_book_id])
 
     @categories = @coupon_book.categories.with_items.to_a
     @categories.shift #remove first category
     @categories = CategoryDecorator.decorate_collection @categories
 
+    @coupon_template = get_coupon_template(@coupon_book)
+
+    render layout: false
+  end
+
+  def load_all_discounts
+    @coupon_book = CouponBook.friendly.find(params[:coupon_book_id])
+    @categories = @coupon_book.categories.with_items.decorate
     @coupon_template = get_coupon_template(@coupon_book)
 
     render layout: false

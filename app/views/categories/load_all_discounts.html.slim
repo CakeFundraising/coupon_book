@@ -1,1 +1,3 @@
-= render partial:'categories/show/mobile', collection: @categories, as: :category, locals:{template: @coupon_template}
+.row
+  .col-md-12
+    = render partial:'categories/show/desktop', collection: @categories, as: :category, locals:{template: @coupon_template}

@@ -42,6 +42,7 @@ CakeCouponBook::Application.routes.draw do
   resources :categories do
     collection do
       get :load_all_discounts
+      get :load_remaining_discounts
     end
     member do
       get :discounts

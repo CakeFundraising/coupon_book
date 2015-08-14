@@ -40,7 +40,7 @@ module CouponBookHelper
   end
 
   def category_load_button(category)
-    link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}"}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
+    link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}", cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
       content_tag(:span, category.name)
     end
   end
