@@ -52,7 +52,7 @@ class CategoriesController < InheritedResources::Base
   def load_all_discounts
     @coupon_book = CouponBook.friendly.find(params[:coupon_book_id])
     @categories = @coupon_book.categories.with_items.decorate
-    @coupon_template = get_coupon_template(@coupon_book)
+    @coupon_template = :rectangle
 
     render layout: false
   end

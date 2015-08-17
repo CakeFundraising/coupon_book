@@ -65,6 +65,17 @@ $screen-xs-max: 768px;
   box-shadow: none;
   &.affix{
     margin-top: -10px;
+    .buy_button_section{
+      .save{
+        margin-top: 7px;
+        color: #555;
+        text-shadow: none;
+      }
+      .btn-xl.buy_button{
+        font-size: 30px !important;
+        padding: 2px 0px !important;
+      }
+    }
   }
   .popular{
     text-align: left;
@@ -107,5 +118,11 @@ $screen-xs-max: 768px;
   letter-spacing: 2px;
   text-shadow: 0px 0px 1px #999;
   margin-top: 50px;
+}
+
+#remote-items{
+  .category-title{
+    margin-bottom: 20px;
+  }
 }
 
