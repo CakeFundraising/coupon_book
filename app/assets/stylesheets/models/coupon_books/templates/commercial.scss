@@ -71,10 +71,20 @@ $screen-xs-max: 768px;
   }
 }
 
+.buy_button_section{
+  text-align: right;
+  margin-top: -16px;
+  .save{
+    color: white;
+    text-shadow: 0px 0px 5px black;
+    font-size: 16px;
+  }
+}
+
 .get-deals,
 .benefit{
   font-size: 24px;
-  margin: 10px 0px 5px;
+  margin: 10px 0px 15px;
   color: #555;
   a{
     color: #555;
@@ -84,12 +94,18 @@ $screen-xs-max: 768px;
   }
 }
 
+.merchant-donated{
+  color: #555;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
 .bottom-tagline{
   font-size: 100px;
   font-family: 'establo';
   color: darken($brand-warning,10%);
   letter-spacing: 2px;
   text-shadow: 0px 0px 1px #999;
-  margin-top: 70px;
+  margin-top: 50px;
 }
 

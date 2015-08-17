@@ -2,12 +2,14 @@
 
 .container
   .row
-    .col-md-12
-      .benefit.pull-left
-        span Proceeds from sales benefit 
+    .col-md-9.padding-right-out
+      .benefit
+        span.bolder Every dollar helps! 
+        span Proceeds benefit 
         span.boldest = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
-      .get-deals.bolder.pull-right
-        span You get All #{@coupon_book.coupons.count} Deals
+    .col-md-3.padding-left-out
+      .get-deals.bolder.text-right
+        span Get All #{@coupon_book.coupons.count} Deals instantly!
 
 .row-fluid
   .container
@@ -18,8 +20,11 @@
         .col-md-12.text-center
           .book-nav-help
             span#spinner.hidden = image_tag 'loading.gif'
-            = link_to 'See All Deal Categories', load_all_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link'
+            = link_to 'See All Deals', load_all_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link'
           br
+    .row-fluid
+      .col-md-12.text-center
+        .merchant-donated All Deals, valued at #{@coupon_book.no_discount_price}, were generously donated by the Restaurants & Merchants above
 
 - if @coupon_book.bottom_tagline.present?
   .container

@@ -32,7 +32,7 @@ categoriesNav = ->
 
   nav.find('a.book-nav-link').each ->
     $(this).click ->
-      $('html, body').animate { scrollTop: 0 }, 500
+      $('html, body').animate { scrollTop: 300 }, 500
       return
     return
 

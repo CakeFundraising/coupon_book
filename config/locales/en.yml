@@ -971,8 +971,8 @@ en:
       coupons: Coupons
     coupon_book:
       purchase_form:
-        donate: Enter your donation
-        checkout: Contribute any amount you choose! Enter amount below.
+        donate: Every dollar helps! Enter your donation.
+        checkout: Every dollar helps! Enter amount below.
       purchase_list: "Our Friends & Supporters!"
   semantic:
     buy:               Buy
