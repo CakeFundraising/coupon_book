@@ -26,6 +26,7 @@ class VoucherMailer < ApplicationMailer
   end
 
   def send_free_voucher(purchase)
+    @purchase = purchase
     @vouchers = purchase.vouchers.decorate
 
     attachments["Vouchers.pdf"] = WickedPdf.new.pdf_from_string(
@@ -38,6 +39,6 @@ class VoucherMailer < ApplicationMailer
       }
     )
       
-    mail(to: purchase.email, subject: "Enjoy rewards from #{@book.fr_name}")
+    mail(to: purchase.email, subject: "Thank you from Baltimore Eats for Good!")
   end
 end

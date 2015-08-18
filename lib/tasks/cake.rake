@@ -34,7 +34,7 @@ namespace :cake do
     file.each(first_name: 'First Name', email: 'Email') do |row|
       unless EMAIL_REGEX.match(row[:email]).nil?
         purchase = Purchase.create(
-          first_name: row[:first_name] || 'First Name', 
+          first_name: row[:first_name] || 'there', 
           last_name: row[:last_name] || 'Last Name', 
           email: row[:email], 
           purchasable: cb,
