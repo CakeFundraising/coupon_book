@@ -4,8 +4,7 @@
       .col-md-12
         .row
           .col-md-6.col-sm-6.no-padding
-            = link_to click_coupon_path(pr_box, url: pr_box.url) do
-              = pr_box.picture.avatar
+            = pr_box_pic(pr_box)
           .col-md-6.col-sm-6.padding-right-out
             h4.sp_name = pr_box.sponsor_name
             h2.coupon_title = pr_box
