@@ -428,6 +428,9 @@ GEM
     roadie-rails (1.0.6)
       railties (>= 3.0, < 4.3)
       roadie (~> 3.0)
+    roo (2.1.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     rqrcode (0.6.0)
       chunky_png
     rsolr (1.0.12)
@@ -636,6 +639,7 @@ DEPENDENCIES
   resque_mailer
   rest-client
   roadie-rails
+  roo (~> 2.1.0)
   rqrcode
   rspec-rails
   sass-rails (~> 5.0.1)

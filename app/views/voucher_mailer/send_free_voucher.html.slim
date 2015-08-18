@@ -1,0 +1,20 @@
+h2 Hi #{@purchase.first_name || 'there'}!
+
+p 
+  | Phase 1 of Baltimore Eats for Good is underway with 55 nonprofits and 50 restaurants. Phase 2 will begin in early October. 
+  | At that time, Baltimore Eats for Good will promote a city page where consumers will select their favorite cause to support from a list of 100 or more Baltimore nonprofits, 
+  | including local colleges, schools and parent-teacher associations. Each restaurant partner will be prominently featured too! 
+
+p 
+  | To thank you for your interest, assistance and support, we've attached 50 complimentary vouchers as a PDF file. 
+  | And here's a link where you can access your vouchers #{link_to 'online at any time', vouchers_purchase_url(@purchase, token: @purchase.token)}. Please enjoy a night out on us!
+
+p Cheers
+
+p 
+  div Justin Kersey
+  div Chief Eats Organizer 
+
+p
+  | PS - #{link_to "It's not too late", 'http://www.eatsforgood.org/#!create-your-discount/c1p9h' } for your restaurant to give back to Baltimore by offering a good deal or discount. 
+  | As always, there's no costs or fees to participate. 

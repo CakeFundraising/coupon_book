@@ -24,4 +24,20 @@ class VoucherMailer < ApplicationMailer
       
     mail(to: purchase.email, subject: "Enjoy rewards from #{@book.fr_name}")
   end
+
+  def send_free_voucher(purchase)
+    @vouchers = purchase.vouchers.decorate
+
+    attachments["Vouchers.pdf"] = WickedPdf.new.pdf_from_string(
+      render_to_string(
+        pdf: "vouchers",
+        template: 'purchases/pdf/main.pdf.slim',
+        layout: "pdf.html.slim",
+      ),{
+        orientation: 'Landscape'
+      }
+    )
+      
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@book.fr_name}")
+  end
 end
