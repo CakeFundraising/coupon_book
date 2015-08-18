@@ -25,8 +25,6 @@ categoriesNav = ->
   buttonSection = nav.find('.buy_button_section')
   navAboutLink = nav.find('.nav-about-link')
 
-  aboutBanner = $('#learn-more-banner')
-
   buttonSection.hide()
 
   nav.affix offset:
@@ -47,9 +45,48 @@ categoriesNav = ->
       $('html, body').animate { scrollTop: $('#coupons.green').offset().top }, 500
       return
     return
+  return
 
-  navAboutLink.click ->
-    $('html, body').animate { scrollTop: aboutBanner.offset().top - $('.book-nav').height() }, 500
+scrollNav = ->
+  nav = $('.book-nav ul.nav')
+  buttons = nav.find('li a.book-nav-link')
+
+  buttons.each ->
+    current = $(this)
+    current.removeAttr('href').removeAttr('data-toggle')
+    catId = current.data('cid')
+    cat = $("##{catId}")
+
+    current.off('click').click ->
+      #Active
+      nav.find('li').each ->
+        $(this).removeClass('active')
+        return
+      current.closest('li').addClass('active')
+      #Scroll
+      $('html, body').animate { scrollTop: cat.offset().top - $('.book-nav').height() }, 500
+      return
+    return
+  return
+
+seeAll = ->
+  loadTarget = $('#remote-items')
+  button = loadTarget.find('#see-more-link')
+  spinner = loadTarget.find('#spinner')
+
+  button.click ->
+    spinner.removeClass('hidden')
+    $(this).hide()
+    return
+
+  button.on("ajax:success", (e, data, status, xhr) ->
+    loadTarget.html(data)
+    scrollNav()
+    return
+  ).on "ajax:error", (e, xhr, status, error) ->
+    spinner.hide()
+    button.show()
+    alert "There was an error, please reload this page and try again."
     return
   return
 
@@ -58,6 +95,7 @@ CakeCouponBook.coupon_books.templates.compact = ->
   afterPurchaseModal()
   backToTop()
   categoriesNav()
+  seeAll()
   CakeCouponBook.subscriptors.validation()
   #CakeCouponBook.impressions.rendered(impression_id)
   return
