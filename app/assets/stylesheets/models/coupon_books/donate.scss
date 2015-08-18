@@ -40,6 +40,7 @@ $screen-xs-max: 768px;
     margin-top: 5px;
     border-top: 1px solid #eee;
   }
+  #checkout-sidebar,
   #donation-sidebar{
     .title{
       font-size: 30px;
@@ -128,6 +129,14 @@ $screen-xs-max: 768px;
     .ssl-secure{
       img{
         width: 90px;
+      }
+    }
+  }
+  #checkout-sidebar{
+    .title{
+      font-size: 25px;
+      @media (max-width: $screen-xs-max) {
+        font-size: 20px;
       }
     }
   }

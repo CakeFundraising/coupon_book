@@ -1,7 +1,7 @@
 .col-md-12
   .row
     .col-md-12
-      h1.category-title = category.name
+      h1.category-title.text-center = category.name
 
-  .items
-    = render partial:'coupons/show/box', collection: category.items, as: :coupon
+  .row.items
+    = render partial:"coupons/show/templates/#{template}", collection: category.items, as: :coupon

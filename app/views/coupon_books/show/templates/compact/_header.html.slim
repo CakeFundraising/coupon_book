@@ -10,17 +10,19 @@
       .row-fluid.text-center
         .col-md-12
           h3.title
-            span.bolder Give today 
-            span & receive exclusive deals donated by 
-            span.bolder = anchor_link "#{@coupon_book.coupons.count} popular Restaurants below!", :coupons
+            span Give today & get deals worth 
+            span.bolder = @coupon_book.no_discount_price
+            span  donated by 
+            span = anchor_link "#{@coupon_book.coupons.count} popular Restaurants below!", :coupons
+            span.bolder  Every penny helps!
         .col-md-4.col-sm-4.give.head-col
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
               span.glyphicon.glyphicon-heart
               span.text Give
           .text
+            span As little as 
             span.bolder = @coupon_book.price
-            span  or more today!
         .col-md-4.col-sm-4.help.head-col
           .link
             = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
@@ -34,8 +36,7 @@
               span.glyphicon.glyphicon-gift
               span.text Receive
           .text
-            span All #{@coupon_book.coupons.count} Deals! 
-            span.bolder Save #{@coupon_book.no_discount_price}!
+            span All #{@coupon_book.coupons.count} Deals instantly! 
 
 .container.compact-container
   .row
@@ -66,7 +67,7 @@
       - if @purchases.any?
         br
         #purchases.sidebar
-          .headbar.text-center Recent Donations
+          .headbar.text-center = t('titles.coupon_book.purchase_list')
           ul.no-list
             = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
       .flag_book.text-right

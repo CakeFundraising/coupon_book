@@ -35,12 +35,14 @@ CakeCouponBook::Application.routes.draw do
       get :badge
 
       get :donate
+      get :checkout
     end
   end
 
   resources :categories do
     collection do
       get :load_all_discounts
+      get :load_remaining_discounts
     end
     member do
       get :discounts

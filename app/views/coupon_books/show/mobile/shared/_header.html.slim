@@ -2,9 +2,9 @@
   .row-fluid
     .container.no-padding
       .campaign-banner.top_banner_mobile
-        = t('banners.coupon_book.header.first', fr: @coupon_book.fr_name).html_safe
+        = t('banners.coupon_book.header.mobile.shared.first', fr: @coupon_book.fr_name).html_safe
       .top_banner_logo
         = content_tag :a, href:'#learn-more-banner' do
           = image_tag resource.picture.avatar_path, class:'img-responsive'
       .campaign-banner.top_banner_mobile
-        = t('banners.coupon_book.header.last', price: @coupon_book.price, no_discount: @coupon_book.no_discount_price, count: @coupon_book.coupons.count).html_safe
+        = t('banners.coupon_book.header.mobile.shared.last', price: @coupon_book.price, no_discount: @coupon_book.no_discount_price, count: @coupon_book.coupons.count).html_safe

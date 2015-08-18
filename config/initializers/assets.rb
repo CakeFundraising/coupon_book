@@ -14,10 +14,12 @@ Rails.application.config.assets.precompile += [
   'book_desktop.css',
   'models/coupon_books/templates/original.css',
   'models/coupon_books/templates/compact.css',
+  'models/coupon_books/templates/commercial.css',
   'models/coupon_books/donate.css',
   'book_page.js',
   'donate.js',
   'coupon_books/templates/original.js',
   'coupon_books/templates/compact.js',
+  'coupon_books/templates/commercial.js',
   'coupon_books/templates/mobile.js'
 ]

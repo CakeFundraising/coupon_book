@@ -1,0 +1,7 @@
+- if coupon.pr_box?
+  = render partial:'pr_boxes/show/box', locals:{pr_box: coupon}
+- else 
+  - if mobile_device?
+    = render partial:'coupons/show/templates/square', locals:{coupon: coupon}
+  - else
+    = render partial:'coupons/show/templates/rectangle', locals:{coupon: coupon}
