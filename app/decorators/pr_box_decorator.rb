@@ -3,8 +3,8 @@ class PrBoxDecorator < ApplicationDecorator
   decorates_association :picture
   decorates_association :owner, with: FundraiserDecorator
 
-  def trunc_title
-    h.truncate(object.title, length: 37).html_safe
+  def trunc_title(length=37)
+    h.truncate(object.title, length: length).html_safe unless object.title.nil?
   end
 
   def trunc_description

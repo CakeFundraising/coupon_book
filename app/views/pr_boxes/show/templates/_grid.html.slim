@@ -7,4 +7,4 @@
             = pr_box_see_all_pic(pr_box)
           .col-md-6.col-sm-6.padding-right-out
             h4.sp_name = pr_box.sponsor_name
-            h2.coupon_title = pr_box
+            h2.coupon_title = pr_box.trunc_title(65)

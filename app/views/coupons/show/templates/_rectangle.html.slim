@@ -15,7 +15,7 @@
           .row
             .col-md-8.col-sm-12
               div.coupon-content
-                h2 = coupon
+                h2 = coupon.trunc_title(65)
                 hr
                 p.expander-350 = coupon.description
                 .row.terms.clear

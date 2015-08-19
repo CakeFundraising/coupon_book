@@ -10,7 +10,7 @@
             .coupon-edge.hidden-xs.hidden-sm
           .col-md-7.col-xs-12.no-padding
             div.coupon-content-mobile
-              h2 = pr_box
+              h2 = pr_box.trunc_title(65)
               hr
               p.expander-150 = pr_box.description
           .col-md-2.col-xs-12.text-center
