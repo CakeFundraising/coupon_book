@@ -19,8 +19,7 @@
       .row-fluid.clear
         .col-md-12.text-center
           .book-nav-help
-            span#spinner.hidden = image_tag 'loading.gif'
-            = link_to 'See All Deals', load_all_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link'
+            = book_load_all_deals(@coupon_book)
           br
     .row-fluid
       .col-md-12.text-center

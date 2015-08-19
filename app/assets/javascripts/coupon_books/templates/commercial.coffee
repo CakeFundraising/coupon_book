@@ -23,7 +23,6 @@ categoriesNav = ->
   nav = $('.book-nav')
   navSection = nav.find('.nav-section')
   buttonSection = nav.find('.buy_button_section')
-  navAboutLink = nav.find('.nav-about-link')
 
   aboutBanner = $('#learn-more-banner')
 
@@ -36,9 +35,6 @@ categoriesNav = ->
       return
     return
 
-  navAboutLink.click ->
-    $('html, body').animate { scrollTop: aboutBanner.offset().top - $('.book-nav').height() }, 500
-    return
   return
 
 scrollNav = ->
@@ -65,8 +61,11 @@ scrollNav = ->
 
 seeAll = ->
   loadTarget = $('#remote-items')
+  dealLinks = loadTarget.find('.see-more-box')
   button = loadTarget.find('#see-more-link')
   spinner = loadTarget.find('#spinner')
+
+  CakeCouponBook.coupon_books.templates.dealSeeAllLink()
 
   button.click ->
     spinner.removeClass('hidden')
@@ -84,7 +83,17 @@ seeAll = ->
     return
   return
 
-CakeCouponBook.coupon_books.templates.compact = ->
+CakeCouponBook.coupon_books.templates.dealSeeAllLink = ->
+  loadTarget = $('#remote-items')
+  dealLinks = loadTarget.find('.see-more-box')
+  button = loadTarget.find('#see-more-link')
+
+  dealLinks.click ->
+    button.click()
+    return
+  return
+
+CakeCouponBook.coupon_books.templates.commercial = ->
   boxOverlay()
   afterPurchaseModal()
   backToTop()
