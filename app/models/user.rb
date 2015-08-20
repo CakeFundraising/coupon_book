@@ -8,24 +8,32 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :roles, presence: true, if: :persisted?
 
-  has_roles [:fundraiser, :merchant, :cakester]
+  has_roles [:cakester, :merchant, :affiliate]
 
   def full_name
     "#{first_name} #{last_name}"
   end
 
   #User roles methods
-  def set_fundraiser!
-    unless merchant?
-      self.roles = [:fundraiser]
+  def set_cakester!
+    unless merchant? or affiliate?
+      self.roles = [:cakester]
       self.registered = true
       self.save
     end
   end
 
   def set_merchant!
-    unless fundraiser?
+    unless cakester? or affiliate?
       self.roles = [:merchant]
+      self.registered = true
+      self.save
+    end
+  end
+
+  def set_affiliate!
+    unless cakester? or merchant?
+      self.roles = [:affiliate]
       self.registered = true
       self.save
     end
