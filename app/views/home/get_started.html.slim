@@ -6,7 +6,7 @@
 
 .header.text-center
   h1 Let's Get Started!
-  p.text-muted Thanks for signing up. Now, let start your first steps on #{t('application.name')}.
+  p.text-muted Thanks for signing up. Now, choose your role on #{t('application.name')}.
 
 .row.choose-role
   .col-md-4.divider-vert
@@ -27,5 +27,5 @@
 .row
   .col-md-12.text-center
     p.text-muted.explore
-      span I am not a Fundraiser or a Sponsor. I want to 
+      span I want to 
       = link_to 'cancel my account.', registration_path(current_user), method: :delete, data: {confirm: 'Are you sure?'}

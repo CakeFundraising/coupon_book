@@ -16,12 +16,6 @@ CakeCouponBook::Application.routes.draw do
     get :get_started
   end
 
-  resources :users, only: :index do
-    collection do
-      patch :roles
-    end
-  end
-
   mount Resque::Server, at: "/resque"
 
   resources :direct_donations, only: :create
@@ -101,6 +95,10 @@ CakeCouponBook::Application.routes.draw do
       get :succeeded
     end
   end
+
+  resources :cakesters
+  resources :merchants
+  resources :affiliates
 
   scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
     get :collection_coupons

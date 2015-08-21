@@ -13,8 +13,8 @@ nav.navbar.navbar-default role="navigation"
             span.icon-bar
             span.icon-bar
             span.icon-bar
-        = render partial:'layouts/nav/fundraiser' if current_user.fundraiser?
-        = render partial:'layouts/nav/sponsor' if current_user.merchant?
+        = render partial:'layouts/nav/cakester' if current_user.cakester?
+        = render partial:'layouts/nav/merchant' if current_user.merchant?
       - else
         .navbar-header
           .logo
