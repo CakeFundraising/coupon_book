@@ -106,4 +106,5 @@ CakeCouponBook.validations.init = ->
   CakeCouponBook.pictures.validation.init()
   CakeCouponBook.pr_boxes.validation()
   CakeCouponBook.users.validation()
+  CakeCouponBook.cakesters.validation()
   return

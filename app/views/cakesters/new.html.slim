@@ -1,78 +1,31 @@
 = display_meta("Account Setup")
 
-.container
-  .row.text-center
-    .col-md-12
-      h1.tooltip-title Tell us about yourself
-      a.btn data-toggle="tooltip" data-placement="right" data-original-title="An organization, an individual or any good cause can raise money on Cake. Keep your organization's name as short as possible."
-        img.tooltip-icon src='/assets/tooltip-icon.png'
+.wizard-wrap
+  .headline.text-center
+    h1 Tell us about yourself
+    h4.text-muted An organization, an individual or any good cause can raise money on Cake.
+    br
 
-
-= semantic_form_for @user do |f|
-    = f.inputs nil do
-      .container.first-of-all.wizard-wrap
-        .row.text-center
-          h2 Contact Information
-        .row
-          .col-md-2
-          .col-md-4
-            = render partial:'pictures/avatar_form', locals:{f: f}
-          .col-md-4
-            = f.input :name, input_html:{maxlength: 20 }
-            = f.input :email
-            = f.input :phone
-          .col-md-2
-        .row.section-wrapper.text-center
-          h2 Organization Address
-        .row
-          .col-md-2
-          .col-md-8
-            /= render partial:'locations/form', locals:{f: f}
-            = f.semantic_fields_for :location do |l|
-              = l.input :address
-              = l.input :city
-              = l.input :zip_code
-              .input.select.required.form-group
-                = l.label :country, class:' control-label'
-                span.form-wrapper
-                  = l.country_select :country_code, {object: l.object, priority: %w(US CA), prompt: 'Please select a country'}, class:'chosen-select form-control country_select'
-                #states_wrapper
-                  - if l.object.country.present?
-                    - if l.object.country.subregions?
-                      = l.input :state_code, as: :select, collection: l.object.country.subregions, member_label: :name, member_value: :code
-                    - else
-                      = l.input :state_code
-                  - else
-                    em.help-block Please select a country above
-          .col-md-2
-        .row.section-wrapper.text-center
-          h2 Organizational Causes
-        .row.text-center
-          .col-md-12
-            = f.label Sponsor::CAUSES_HIERARCHY.keys.last, class:'control-label'
-            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.last, label: false, input_html: {class: 'checkbox-pill'}
-          .col-md-12
-            = f.label Sponsor::CAUSES_HIERARCHY.keys.first, class:'control-label'
-            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values.first, label: false, input_html: {class: 'checkbox-pill'}
-          .col-md-12
-            = f.label Sponsor::CAUSES_HIERARCHY.keys[1], class:'control-label'
-            = f.input :causes, as: :check_boxes, collection: Sponsor::CAUSES_HIERARCHY.values[1], label: false, input_html: {class: 'checkbox-pill'}
-        .row.section-wrapper.text-center
-          h2 Tax Status
-        .row.text-center
-          .col-md-2
-          .col-md-8
-            /= f.input :causes, as: :select, collection: Fundraiser::CAUSES, input_html:{multiple: true, size: 10}
-            = f.input :tax_exempt, input_html: {class: 'checkbox-pill'}
-          .col-md-2
-
-        .row.section-wrapper
-          .col-md-2
-          .col-md-8.text-center
-            = f.actions do
-              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
-          .col-md-2
-
-
-javascript:
-  $('[data-toggle="tooltip"]').tooltip();
+  = semantic_form_for @user do |f|
+    = f.inputs do
+      .row
+        .col-md-12
+          h3 Basic Information
+          p.text-muted Add a picture, a contact phone, and your address.
+          br
+        .col-md-6
+          = render partial:'avatar_pictures/form', locals:{f: f}
+        .col-md-6
+          = f.input :phone
+          = render partial:'locations/form', locals:{f: f}
+      .row.section-wrapper
+        .col-md-12
+          h3 Tax Status
+          p.text-muted Specify if you or your Organization is a tax exempt.
+          br
+        .col-md-12
+          = f.input :tax_exempt
+      br
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

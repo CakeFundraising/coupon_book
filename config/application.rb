@@ -35,5 +35,9 @@ module CakeCouponBook
     config.middleware.use(Rack::Config) do |env|
       env['api.tilt.root'] = Rails.root.join 'app', 'controllers', 'api', 'v1', 'views'
     end
+
+    config.to_prepare do
+      Devise::Mailer.layout "mailer"
+    end
   end
 end

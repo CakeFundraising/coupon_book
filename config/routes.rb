@@ -113,17 +113,21 @@ CakeCouponBook::Application.routes.draw do
     get :collection_pr_boxes
   end
 
-  namespace :dashboard do
-    scope :fundraiser, controller: :fundraiser do
-      get :home, as: :fundraiser_home
-      get :history, as: :fundraiser_history
-    end
-    scope :sponsor, controller: :sponsor do
-      get :home, as: :sponsor_home
-      get :history, as: :sponsor_history
-      get :coupons, as: :sponsor_coupons
-      get :pr_boxes, as: :sponsor_pr_boxes
-    end
+  namespace :dashboard, path:'' do
+    get :dashboard
+    get :account
+    get :history
+    get :withdraw
+    # scope :fundraiser, controller: :fundraiser do
+    #   get :home, as: :fundraiser_home
+    #   get :history, as: :fundraiser_history
+    # end
+    # scope :sponsor, controller: :sponsor do
+    #   get :home, as: :sponsor_home
+    #   get :history, as: :sponsor_history
+    #   get :coupons, as: :sponsor_coupons
+    #   get :pr_boxes, as: :sponsor_pr_boxes
+    # end
   end
 
   match '/404', to: 'errors#file_not_found', via: :all

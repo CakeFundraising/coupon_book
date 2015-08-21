@@ -15,6 +15,7 @@ nav.navbar.navbar-default role="navigation"
             span.icon-bar
         = render partial:'layouts/nav/cakester' if current_user.cakester?
         = render partial:'layouts/nav/merchant' if current_user.merchant?
+        = render partial:'layouts/nav/affiliate' if current_user.affiliate?
       - else
         .navbar-header
           .logo

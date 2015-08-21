@@ -1,0 +1,2 @@
+class Cakester < User
+end

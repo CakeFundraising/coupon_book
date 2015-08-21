@@ -56,6 +56,7 @@
 //= require ./coupon_books/coupon_book_builder
 
 //= require ./models/browsers
+//= require ./models/cakesters
 //= require ./models/categories
 //= require ./models/collections
 //= require ./models/coupons
