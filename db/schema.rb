@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812205456) do
+ActiveRecord::Schema.define(version: 20150818162721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20150812205456) do
     t.string   "screenshot_version"
     t.string   "template",           default: "compact"
     t.string   "slug"
+    t.string   "bottom_tagline"
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree
@@ -269,6 +270,8 @@ ActiveRecord::Schema.define(version: 20150812205456) do
     t.string   "last_name"
     t.string   "zip_code"
     t.boolean  "hide_name",        default: false
+    t.boolean  "should_charge",    default: true
+    t.boolean  "should_notify",    default: true
   end
 
   create_table "subscriptors", force: :cascade do |t|

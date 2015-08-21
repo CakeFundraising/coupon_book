@@ -10,6 +10,12 @@ class User < ActiveRecord::Base
 
   has_roles [:cakester, :merchant, :affiliate]
 
+  has_one :location, as: :locatable, dependent: :destroy
+
+  accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+
+  #validates_associated :location, if: :persisted?
+
   def full_name
     "#{first_name} #{last_name}"
   end

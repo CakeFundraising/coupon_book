@@ -5,6 +5,10 @@ module AccountController
     before_action :check_if_account_created, only: [:new, :create]
   end
 
+  def new
+    @user = current_user
+  end
+
   protected
 
   def check_if_account_created

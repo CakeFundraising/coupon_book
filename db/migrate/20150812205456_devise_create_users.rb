@@ -43,6 +43,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :auth_token
       t.string :auth_secret
 
+      t.string :type, null: false, default: 'User'
 
       t.timestamps null: false
     end
