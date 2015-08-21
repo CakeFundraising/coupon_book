@@ -6,6 +6,12 @@ class PurchaseDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.amount
   end
 
+  def form_amount
+    amount = object.amount.to_i
+    amount = amount.zero? ? '' : amount
+    amount
+  end
+
   def email
     h.auto_mail object
   end

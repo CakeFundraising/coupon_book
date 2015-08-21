@@ -1,0 +1,13 @@
+- if coupon.pr_box?
+  = render partial:'pr_boxes/show/templates/grid', locals:{pr_box: coupon}
+- else
+  - cache [:coupon_box, :grid, coupon] do
+    .coupon-wrapper.coupon-grid.col-md-4.col-sm-6.padding-left-out
+      .coupon-box.clearfix
+        .col-md-6.col-sm-6.no-padding
+          = coupon_see_all_pic(coupon)
+        .col-md-6.col-sm-6.padding-right-out
+          .row
+            .col-md-12
+              h4.sp_name = coupon.sponsor_name
+              h2.coupon_title = coupon.trunc_title(60)

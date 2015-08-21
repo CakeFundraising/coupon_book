@@ -69,6 +69,7 @@ gem 'wkhtmltopdf-binary'
 gem 'roadie-rails'
 gem 'metamagic'
 gem 'deep_cloneable', require: false
+gem 'roo', '~> 2.1.0', require: false
 
 #Slugs
 gem 'friendly_id', '~> 5.1.0'

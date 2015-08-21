@@ -12,8 +12,8 @@
     - cache [:donate, :desktop, :form, @coupon_book] do
       #overlay_loading.hidden
       #donation-sidebar.sidebar
-        .title Enter your donation
-        = render partial:'coupon_books/donate/form', locals: {purchasable: @coupon_book}
+        .title = t('titles.coupon_book.purchase_form.donate')
+        = render partial:'coupon_books/donate/form'
         hr
         .row
           .col-md-8.col-sm-6
@@ -59,7 +59,7 @@
       br
     - if @purchases.any?
       #purchases.sidebar
-        .headbar Recent Donations
+        .headbar = t('titles.coupon_book.purchase_list')
         ul.no-list
           = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
 

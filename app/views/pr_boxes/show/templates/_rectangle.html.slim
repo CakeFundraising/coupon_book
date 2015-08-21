@@ -1,0 +1,16 @@
+- cache [:pr_box, :box, :rectangle, pr_box] do 
+  .row.coupon-wrapper.coupon-rectangle
+    .coupon-label.label.label-success = pr_box.flag
+    .coupon-box.clearfix
+      .col-md-12.col-xs-12
+        .row
+          .col-md-3.col-xs-12.pr_box_pic_col
+            = coupon_pic(pr_box)
+            .coupon-edge.hidden-xs.hidden-sm
+          .col-md-7.col-xs-12
+            div.coupon-content
+              h2 = pr_box.trunc_title(80)
+              hr
+              p.expander = pr_box.description
+          .col-md-2.col-xs-12.text-center
+            .hidden-xs.hidden-sm = pr_box.picture.qrcode

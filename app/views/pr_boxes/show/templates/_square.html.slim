@@ -1,0 +1,17 @@
+- cache [:pr_box, :box, :square, pr_box] do 
+  .coupon-wrapper.coupon-square
+    .coupon-label.label.label-success = pr_box.flag
+    .coupon-box.clearfix
+      .col-md-12.col-xs-12
+        .row
+          .col-md-3.col-xs-12.pr_box_pic_col.no-padding
+            = link_to click_coupon_path(pr_box, url: pr_box.url) do
+              = pr_box.picture.avatar
+            .coupon-edge.hidden-xs.hidden-sm
+          .col-md-7.col-xs-12.no-padding
+            div.coupon-content-mobile
+              h2 = pr_box.trunc_title(70)
+              hr
+              p.expander-150 = pr_box.description
+          .col-md-2.col-xs-12.text-center
+            .hidden-xs.hidden-sm = pr_box.picture.qrcode

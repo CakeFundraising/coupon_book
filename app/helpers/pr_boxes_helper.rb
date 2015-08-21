@@ -8,4 +8,12 @@ module PrBoxesHelper
       end
     end
   end
+
+  def pr_box_see_all_pic(pr_box)
+    picture_ajax_rollover(pr_box.picture.avatar) do
+      link_to('#!', class:'expand see-more-box') do
+        content_tag(:div, 'See all') + content_tag(:div, 'Deals')
+      end
+    end
+  end
 end

@@ -7,6 +7,7 @@ remoteTabs = ->
     $this = $(this)
     loadUrl = $this.attr('href')
     $targ = $($this.attr('data-target'))
+    callback = $this.attr('data-callback')
 
     if $targ.is(':empty')
       $.get loadUrl, (data) ->
@@ -16,6 +17,7 @@ remoteTabs = ->
         $this.attr('data-toggle', 'tab')
         
         CakeCouponBook.expander()
+        eval(callback) if callback
         return
 
     $this.tab 'show'

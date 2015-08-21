@@ -28,5 +28,19 @@ module ResqueSchedule
       VoucherMailer.download_page(purchase).deliver_now
     end
   end
+
+  class SendFreeVoucher
+    extend Resque::Plugins::Retry
+    @queue = :high
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform(purchase_id)
+      purchase = Purchase.find purchase_id
+      purchase.create_vouchers!
+      VoucherMailer.send_free_voucher(purchase).deliver_now
+    end
+  end
   
 end

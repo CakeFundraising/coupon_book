@@ -61,7 +61,7 @@ module ApplicationHelper
   end
 
   def titleize_select_collection(collection)
-    collection.map{|i| [i.titleize, i]}
+    collection.map{|i| [i.to_s.titleize, i]}
   end
 
   def terms_modal_link

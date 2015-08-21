@@ -23,6 +23,14 @@ module CouponsHelper
     end
   end
 
+  def coupon_see_all_pic(coupon)
+    picture_ajax_rollover(coupon.avatar_picture.uri) do
+      link_to('#!', class:'expand see-more-box') do
+        content_tag(:div, 'See all') + content_tag(:div, 'Deals')
+      end
+    end
+  end
+
   def coupon_print_button(coupon)
     link_to download_coupon_path(coupon), class:'btn btn-primary coupon_print_button extra_click_link' do
       content_tag(:span, nil, class: 'glyphicon glyphicon-print') +

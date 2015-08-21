@@ -22,7 +22,7 @@ class Ability
 
     can :read, :all
 
-    can [:start_discount, :start_pr_box, :donate], CouponBook
+    can [:start_discount, :start_pr_box, :donate, :checkout], CouponBook
     can :click, Coupon
   end
 end

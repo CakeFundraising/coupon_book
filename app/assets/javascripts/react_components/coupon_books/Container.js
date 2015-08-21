@@ -44,7 +44,7 @@ export default class Container extends Component {
     
     this.setState({saving: true});
 
-    $.post('/coupon_books/' + couponBookId + '/edit/save_organize', categoriesTree).done(function (data){
+    $.post('/campaigns/' + couponBookId + '/edit/save_organize', categoriesTree).done(function (data){
       self.setState({saving: false});
     });
   }

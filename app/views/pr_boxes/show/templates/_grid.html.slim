@@ -1,0 +1,10 @@
+- cache [:pr_box, :box, :grid, pr_box] do 
+  .coupon-wrapper.coupon-grid.col-md-4.col-sm-6.padding-left-out
+    .coupon-box.clearfix
+      .col-md-12
+        .row
+          .col-md-6.col-sm-6.no-padding
+            = pr_box_see_all_pic(pr_box)
+          .col-md-6.col-sm-6.padding-right-out
+            h4.sp_name = pr_box.sponsor_name
+            h2.coupon_title = pr_box.trunc_title(65)

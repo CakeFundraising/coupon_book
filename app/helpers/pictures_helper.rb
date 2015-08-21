@@ -36,4 +36,15 @@ module PicturesHelper
       end
     end
   end
+
+  def picture_ajax_rollover(picture, &content)
+    content_tag(:div, class:'overlay-effects', id:'effect-6') do
+      content_tag(:div, class:'overlay-img') do
+        picture +
+        content_tag(:div, class:'effect-overlay') do
+          content.call
+        end
+      end
+    end
+  end
 end

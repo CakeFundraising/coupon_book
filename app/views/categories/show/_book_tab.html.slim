@@ -1,7 +1,7 @@
 - if category_counter.zero?
   .tab-pane.active id="pop-#{category.name.parameterize.underscore}"
     .col-md-12.col-sm-12
-      .items
-        = render partial:'coupons/show/box', collection: @discounts, as: :coupon
+      .row.items
+        = render partial:"coupons/show/templates/#{@coupon_book.coupon_template}", collection: @discounts, as: :coupon
 - else
   .tab-pane.tab-pane-remote id="pop-#{category.name.parameterize.underscore}"

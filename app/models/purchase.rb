@@ -18,7 +18,7 @@ class Purchase < ActiveRecord::Base
   end
 
   after_create do
-    Resque.enqueue(ResqueSchedule::AfterPurchase, self.id)
+    Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
   end
 
   def create_vouchers!
@@ -40,7 +40,7 @@ class Purchase < ActiveRecord::Base
   private
 
   def stripe_charge_card
-    unless self.persisted?
+    unless self.persisted? or !self.should_charge
       begin
         charge = Stripe::Charge.create({
           amount: self.amount_cents,

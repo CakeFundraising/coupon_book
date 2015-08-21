@@ -3,10 +3,10 @@ class HomeController < ApplicationController
   before_action :block_registered_user, only: :get_started
 
   def index
-    # @purchase = Purchase.first.decorate
+    #@purchase = Purchase.first.decorate
     # @book = @purchase.purchasable
 
-    # render layout:'mailer'
+    #render layout:'mailer'
   end
 
   def get_started

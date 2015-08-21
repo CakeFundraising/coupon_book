@@ -6,16 +6,24 @@ class CouponBook < ActiveRecord::Base
   include Picturable
   include Screenshotable
   include VisitorActions
+  include Templatable
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
 
   attr_accessor :step
 
-  TEMPLATES = %w{ compact sponsored original }
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
+  COUPON_TEMPLATES = {
+    compact: :rectangle,
+    commercial: :grid,
+    original: :rectangle,
+    mobile: :square
+  }
+
   has_statuses :incomplete, :launched, :past
+  has_templates :compact, :commercial, :original
 
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
@@ -106,6 +114,11 @@ class CouponBook < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     organization_name_changed?
+  end
+
+  #Templates
+  def coupon_template
+    COUPON_TEMPLATES[self.template.to_sym]
   end
 
   #Fee
