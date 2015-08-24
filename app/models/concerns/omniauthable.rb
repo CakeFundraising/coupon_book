@@ -9,7 +9,8 @@ module Omniauthable
 
     def new_with(auth, params)
       u = if params.blank? and auth.present?#only auth present
-        new(full_name: auth.info.nickname, 
+        new(first_name: auth.info.first_name || first_name(auth.info.name), 
+            last_name: auth.info.last_name || last_name(auth.info.name), 
             email: auth.info.email,
             auth_token: auth.credentials.token,
             auth_secret: auth.credentials.secret,
@@ -26,6 +27,14 @@ module Omniauthable
         new(params)
       end
       u
+    end
+
+    def first_name(full_name)
+      full_name.split(' ')[0...-1].join(' ')
+    end
+
+    def last_name(full_name)
+      full_name.split(' ').last
     end
   end
 end

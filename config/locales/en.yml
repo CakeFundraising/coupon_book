@@ -1,4 +1,119 @@
 en:
+  numbers:
+    unit: ""
+    thousand:
+      one: K
+      other: K
+    million:
+      one: M 
+      other: M
+    billion:
+      one: B
+      other: B
+    trillion:
+      one: T
+      other: T
+    quadrillion:
+      one: Q
+      other: Q
+  errors:
+    url: should be a valid URL.
+    stripe_account:
+      account_taken: Stripe Account has already been used. Please use another Stripe Account.
+  tooltips:
+    purchases:
+      cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
+  links:
+    user:
+      sign_in: Sign In
+      sign_out: Sign Out
+      sign_up:  Sign Up For Free
+    wizards:
+      coupon:
+        sponsor: Merchant
+        discount: Deal/Discount
+        news: News
+        launch: Launch
+      coupon_book: 
+        basics: Basics
+        story: Story
+        organize: Organize
+        share: Share
+        settings: Settings
+  flash:
+    omniauth: Please check if your data is correct and press "Sign Up" to continue
+    error:
+      default: We're sorry but there was an error. Please try again.
+    auth:
+      successful: Signed in successfully.
+      failed:
+        invalid_grant: Invalid email or password.
+  titles:
+    empty_results:
+      coupon_books: Coupon Books
+      coupons: Coupons
+    coupon_book:
+      purchase_form:
+        donate: Every dollar helps! Enter your donation.
+        checkout: Every dollar helps! Enter amount below.
+      purchase_list: "Our Friends & Supporters!"
+  semantic:
+    buy:               Buy
+    add_resource:      "Add %{resource}"
+    add_to_resource:   "Add to %{resource}"
+    new_resource:      "New %{resource}"
+    merge_resources:   "Merge %{resources}"
+    listing_resources: "Listing %{resources}"
+    editing_resource:  "Editing %{resource}"
+    search_resources:  "Search %{resources}"
+    select_obj:        "Select %{obj}"
+    n_items:           "%{n} items"
+    finish:            Finish
+    cancel:            Cancel
+    yes:               Yes
+    no:                No
+    here:              Here
+    next:              Next
+    my_thing:          "My %{thing}"
+    pending:           pending
+    accepted:          accepted
+    rejected:          rejected
+    number_of:         "No. of %{model}"
+    average:           "Avg. %{model}"
+    starts:            Starts
+    Ends:              Ends
+  banners:
+    coupon_book:
+      header:
+        mobile:
+          shared:
+            first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
+            last: "<div class='last'><span class='boldest'>Donate %{price}</span> or more & get a Deal Book with exclusive deals worth %{no_discount} donated by <span class='boldest'>%{count} popular Restaurants below!</span></div>"
+          commercial:
+            last: "<div class='last'>Proceeds from sales benefit <span class='boldest'>%{fr}</span> & you save <span class='boldest'>%{no_discount}</span> too!</div>"
+      coupons: "You get <span class='boldest'>all %{count}</span> deals donated by the <span class='boldest'>Restaurants & Merchants below!</span>"
+      categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
+      we_will_email: "* Your digital <span class='bolder'>Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."
+  activerecord: 
+    models:
+      coupon:
+        one: Discount
+        other: Discounts
+    attributes:
+      category:
+        name: Category Name
+      coupon_book:
+        headline: Campaign Headline
+        story: Tell your story
+      coupon:
+        sponsor_name: Merchant Name
+        phone: Contact Phone
+        sponsor_url: "Merchant website url"
+        multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
+      location:
+        state_code: State
+      purchase:
+        hide_name: Hide your name from everyone but the organizer
   application:
     name: EatsForGood
     company: "Eats For Good, LLC"
@@ -917,117 +1032,4 @@ en:
             the United States. The laws in the United States may not be as protective of your privacy as those in your location. By using the Sites, you agree that the
             collection, use, transfer, and disclosure of your Personal Information and communications will be governed by the applicable laws in the United States.
         </p>
-  numbers:
-    unit: ""
-    thousand:
-      one: K
-      other: K
-    million:
-      one: M 
-      other: M
-    billion:
-      one: B
-      other: B
-    trillion:
-      one: T
-      other: T
-    quadrillion:
-      one: Q
-      other: Q
-  errors:
-    url: should be a valid URL.
-    stripe_account:
-      account_taken: Stripe Account has already been used. Please use another Stripe Account.
-  tooltips:
-    purchases:
-      cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
-  links:
-    user:
-      sign_in: Sign In
-      sign_out: Sign Out
-      sign_up:  Sign Up For Free
-    wizards:
-      coupon:
-        sponsor: Merchant
-        discount: Deal/Discount
-        news: News
-        launch: Launch
-      coupon_book: 
-        basics: Basics
-        story: Story
-        organize: Organize
-        share: Share
-        settings: Settings
-  flash:
-    error:
-      default: We're sorry but there was an error. Please try again.
-    auth:
-      successful: Signed in successfully.
-      failed:
-        invalid_grant: Invalid email or password.
-  titles:
-    empty_results:
-      coupon_books: Coupon Books
-      coupons: Coupons
-    coupon_book:
-      purchase_form:
-        donate: Every dollar helps! Enter your donation.
-        checkout: Every dollar helps! Enter amount below.
-      purchase_list: "Our Friends & Supporters!"
-  semantic:
-    buy:               Buy
-    add_resource:      "Add %{resource}"
-    add_to_resource:   "Add to %{resource}"
-    new_resource:      "New %{resource}"
-    merge_resources:   "Merge %{resources}"
-    listing_resources: "Listing %{resources}"
-    editing_resource:  "Editing %{resource}"
-    search_resources:  "Search %{resources}"
-    select_obj:        "Select %{obj}"
-    n_items:           "%{n} items"
-    finish:            Finish
-    cancel:            Cancel
-    yes:               Yes
-    no:                No
-    here:              Here
-    next:              Next
-    my_thing:          "My %{thing}"
-    pending:           pending
-    accepted:          accepted
-    rejected:          rejected
-    number_of:         "No. of %{model}"
-    average:           "Avg. %{model}"
-    starts:            Starts
-    Ends:              Ends
-  banners:
-    coupon_book:
-      header:
-        mobile:
-          shared:
-            first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"
-            last: "<div class='last'><span class='boldest'>Donate %{price}</span> or more & get a Deal Book with exclusive deals worth %{no_discount} donated by <span class='boldest'>%{count} popular Restaurants below!</span></div>"
-          commercial:
-            last: "<div class='last'>Proceeds from sales benefit <span class='boldest'>%{fr}</span> & you save <span class='boldest'>%{no_discount}</span> too!</div>"
-      coupons: "You get <span class='boldest'>all %{count}</span> deals donated by the <span class='boldest'>Restaurants & Merchants below!</span>"
-      categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
-      we_will_email: "* Your digital <span class='bolder'>Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."
-  activerecord: 
-    models:
-      coupon:
-        one: Discount
-        other: Discounts
-    attributes:
-      category:
-        name: Category Name
-      coupon_book:
-        headline: Campaign Headline
-        story: Tell your story
-      coupon:
-        sponsor_name: Merchant Name
-        phone: Contact Phone
-        sponsor_url: "Merchant website url"
-        multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
-      location:
-        state_code: State
-      purchase:
-        hide_name: Hide your name from everyone but the organizer
+  
