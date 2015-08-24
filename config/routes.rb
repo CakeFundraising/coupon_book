@@ -104,9 +104,21 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :cakesters
-  resources :merchants
-  resources :affiliates
+  resources :cakesters do
+    member do
+      patch :registration_update
+    end
+  end
+  resources :merchants do
+    member do
+      patch :registration_update
+    end
+  end
+  resources :affiliates do
+    member do
+      patch :registration_update
+    end
+  end
 
   scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
     get :collection_coupons

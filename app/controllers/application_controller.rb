@@ -4,20 +4,11 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
 
-  #helper_method :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
   helper_method :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
-
-  # def current_fundraiser
-  #   @current_fundraiser ||= current_user.fundraiser if current_user.present? and current_user.fundraiser?
-  # end
-
-  # def current_sponsor
-  #   @current_sponsor ||= current_user.sponsor if current_user.present? and current_user.sponsor?
-  # end
 
   def current_browser
     token = evercookie_get_value(:cfbid)
@@ -65,5 +56,19 @@ class ApplicationController < ActionController::Base
 
   def set_cake_access_token
     session[:access_token] = params[:cat] if params[:cat].present?
+  end
+
+  def after_sign_in_path_for(resource)
+    return admin_root_path if resource.is_a? AdminUser
+
+    if resource.registered
+      dashboard_dashboard_path
+    else
+      if resource.roles.any?
+        send("new_#{resource.roles.first.to_s.downcase}_path")
+      else
+        home_get_started_path
+      end
+    end
   end
 end

@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
     unless merchant? or affiliate?
       self.roles = [:cakester]
       self.type = 'Cakester'
-      self.registered = true
       self.save
     end
   end
@@ -37,7 +36,6 @@ class User < ActiveRecord::Base
     unless cakester? or affiliate?
       self.roles = [:merchant]
       self.type = 'Merchant'
-      self.registered = true
       self.save
     end
   end
@@ -46,8 +44,11 @@ class User < ActiveRecord::Base
     unless cakester? or merchant?
       self.roles = [:affiliate]
       self.type = 'Affiliate'
-      self.registered = true
       self.save
     end
+  end
+
+  def registered!
+    update_attribute(:registered, true)
   end
 end

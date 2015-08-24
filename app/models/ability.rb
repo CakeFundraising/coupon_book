@@ -5,19 +5,19 @@ class Ability
     alias_action :create, :update, :destroy, to: :crud
     user ||= User.new
 
-    if user.fundraiser?
+    if user.cakester?
       #CouponBook
       can :create, CouponBook
-      can [:update, :destroy, :launch, :save_for_launch, :toggle_visibility, :categories, :save_organize] + CouponBooksController::TEMPLATE_STEPS, CouponBook, fundraiser_id: user.fundraiser.id
+      can [:update, :destroy, :launch, :save_for_launch, :toggle_visibility, :categories, :save_organize] + CouponBooksController::TEMPLATE_STEPS, CouponBook, fundraiser_id: user.id
 
       #Coupon
       can :create, Coupon
-      can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user.fundraiser
+      can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user
     end
 
-    if user.sponsor?
+    if user.merchant?
       can :create, Coupon
-      can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user.sponsor
+      can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user
     end
 
     can :read, :all
