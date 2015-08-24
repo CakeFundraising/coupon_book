@@ -25,6 +25,8 @@ class CouponBook < ActiveRecord::Base
   has_statuses :incomplete, :launched, :past
   has_templates :compact, :commercial, :original
 
+  belongs_to :fundraiser
+
   has_one :video, as: :recordable, dependent: :destroy
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   

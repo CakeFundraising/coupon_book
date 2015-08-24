@@ -10,7 +10,7 @@ class CouponsController < InheritedResources::Base
   ]
 
   def new
-    @coupon = current_sponsor.present? ? Coupon.build_sp_coupon(current_sponsor) : Coupon.build_fr_coupon(current_fundraiser)
+    @coupon = current_merchant.present? ? Coupon.build_sp_coupon(current_merchant) : Coupon.build_fr_coupon(current_fundraiser)
   end
 
   # Template Actions
@@ -30,7 +30,7 @@ class CouponsController < InheritedResources::Base
   end
 
   def launch
-    path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+    path = current_merchant.present? ? dashboard_sponsor_coupons_path : coupon_books_path
     redirect_to path, notice: 'Coupon was launched successfully!' if resource.launched!
   end
 
@@ -70,7 +70,7 @@ class CouponsController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        path = current_sponsor.present? ? dashboard_sponsor_coupons_path : coupon_books_path
+        path = current_merchant.present? ? dashboard_sponsor_coupons_path : coupon_books_path
         if request.xhr?
           render text: path
         else

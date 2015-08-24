@@ -24,7 +24,7 @@ class PrBoxesController < InheritedResources::Base
   private
 
   def set_collection
-    owner = current_fundraiser || current_sponsor
+    owner = current_fundraiser || current_merchant
     @collection = owner.collection
   end
 

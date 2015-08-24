@@ -35,14 +35,14 @@
             = render partial:'pictures/qrcode_form', locals:{f: f}
         .col-md-2
 
-      - if current_sponsor.present?
+      - if current_merchant.present?
         .row.section-wrapper.text-center
           h1 Make this a Universal PR Box!
           p.text-muted Any other good cause may show this PR Box.
           br
           = f.input :universal, as: :boolean_button, label: false, input_html: {on_text: 'Yes!', off_text: 'No', on_classes: 'btn-primary btn-lg', off_classes: 'btn-default btn-lg'}
         
-      = f.input :fr_collection_id, as: :hidden, input_html:{value: params[:fr_collection_id]} if current_sponsor.present?
+      = f.input :fr_collection_id, as: :hidden, input_html:{value: params[:fr_collection_id]} if current_merchant.present?
       = f.input :coupon_book_id, as: :hidden, input_html:{value: params[:coupon_book_id]} if current_fundraiser.present?
     .text-center
       = f.actions do

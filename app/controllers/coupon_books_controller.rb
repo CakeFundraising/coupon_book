@@ -144,11 +144,11 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_merchant.present?
   end
 
   def redirect_to_pr_box_template
-    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
+    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_merchant.present?
   end
 
   def redirect_to_billing

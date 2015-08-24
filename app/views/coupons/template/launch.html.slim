@@ -3,7 +3,7 @@
 .tab-content.wizard-wrap
   #main.container
     .inputs
-      - if current_sponsor.present?
+      - if current_merchant.present?
         h1 Make this a Universal Discount!
         p.text-muted Any other good cause may sell this discount while it remains valid
         = semantic_form_for @coupon do |f|

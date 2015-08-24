@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
 
-  helper_method :current_browser, :mobile_device?, :ipad?
+  helper_method :current_fundraiser, :current_merchant, :current_affiliate, :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -13,6 +13,18 @@ class ApplicationController < ActionController::Base
   def current_browser
     token = evercookie_get_value(:cfbid)
     @current_browser ||= Browser.find_by_token(token) if token.present?
+  end
+
+  def current_fundraiser
+    @current_fundraiser ||= current_user if current_user.fundraiser?
+  end
+
+  def current_merchant
+    @current_merchant ||= current_user if current_user.merchant?
+  end
+
+  def current_affiliate
+    @current_affiliate ||= current_user if current_user.affiliate?
   end
 
   #Detect Mobile
