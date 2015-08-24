@@ -108,4 +108,5 @@ CakeCouponBook.validations.init = ->
   CakeCouponBook.users.validation()
   CakeCouponBook.affiliates.validation()
   CakeCouponBook.cakesters.validation()
+  CakeCouponBook.merchants.validation()
   return
