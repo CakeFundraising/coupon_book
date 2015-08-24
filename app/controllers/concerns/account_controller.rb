@@ -10,6 +10,16 @@ module AccountController
     @user.build_location(country_code: 'US')
   end
 
+  def registration_update
+    update! do |success, failure|
+      success.html do
+        #send_notification
+        resource.registered!
+        redirect_to dashboard_dashboard_path, notice: 'Now start your first Eats for Good Campaign!'
+      end
+    end
+  end
+
   protected
 
   def check_if_account_created
