@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :roles, presence: true, if: :persisted?
 
-  has_roles [:cakester, :merchant, :affiliate]
+  has_roles [:fundraiser, :merchant, :affiliate]
 
   has_one :location, as: :locatable, dependent: :destroy
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
@@ -24,16 +24,16 @@ class User < ActiveRecord::Base
   end
 
   #User roles methods
-  def set_cakester!
+  def set_fundraiser!
     unless merchant? or affiliate?
-      self.roles = [:cakester]
-      self.type = 'Cakester'
+      self.roles = [:fundraiser]
+      self.type = 'Fundraiser'
       self.save
     end
   end
 
   def set_merchant!
-    unless cakester? or affiliate?
+    unless fundraiser? or affiliate?
       self.roles = [:merchant]
       self.type = 'Merchant'
       self.save
@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
   def set_affiliate!
-    unless cakester? or merchant?
+    unless fundraiser? or merchant?
       self.roles = [:affiliate]
       self.type = 'Affiliate'
       self.save

@@ -57,7 +57,7 @@
 
 //= require ./models/affiliates
 //= require ./models/browsers
-//= require ./models/cakesters
+//= require ./models/fundraisers
 //= require ./models/categories
 //= require ./models/collections
 //= require ./models/coupons

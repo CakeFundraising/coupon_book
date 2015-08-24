@@ -10,18 +10,18 @@
 
 .row.choose-role
   .col-md-4.divider-vert
-    .cakesters-cir
-      h2 Cakester
+    .fundraisers-cir
+      h2 Fundraiser
       p create your free "pay-per-click" campaign today!
-      = link_to "Start Now!", roles_users_path(role: :cakester), method: :patch, class:'btn btn-success btn-lg start-now-btn'
+      = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
   .col-md-4.divider-vert
     .affiliates-cir
-      h2 Affiliates
+      h2 Affiliate
       p create your free "pay-per-click" campaign today!
       = link_to "Start Now!", roles_users_path(role: :affiliate), method: :patch, class:'btn btn-purple btn-lg start-now-btn'
   .col-md-4
     .merchants-cir
-      h2 Merchants
+      h2 Merchant
       p support great causes on a risk free "pay-per-click" basis
       = link_to "Start Now!", roles_users_path(role: :merchant), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
 .row

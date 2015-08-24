@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def roles
     role = params[:role]
 
-    if role == 'cakester'
-      current_user.set_cakester!
-      redirect_to new_cakester_path
+    if role == 'fundraiser'
+      current_user.set_fundraiser!
+      redirect_to new_fundraiser_path
     elsif role == 'merchant'
       current_user.set_merchant!
       redirect_to new_merchant_path

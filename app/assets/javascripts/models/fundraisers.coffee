@@ -1,7 +1,7 @@
-CakeCouponBook.cakesters ?= {}
+CakeCouponBook.fundraisers ?= {}
 
-CakeCouponBook.cakesters.validation = ->
-  $('.formtastic.cakester').validate(
+CakeCouponBook.fundraisers.validation = ->
+  $('.formtastic.fundraiser').validate(
     ignore: ":hidden:not(.uri_input)"
     errorElement: "span"
     errorPlacement: (error, element)->
@@ -16,18 +16,18 @@ CakeCouponBook.cakesters.validation = ->
         return
       return
     rules:
-      'cakester[avatar_picture_attributes][uri]':
+      'fundraiser[avatar_picture_attributes][uri]':
         required: true
-      'cakester[phone]':
+      'fundraiser[phone]':
         required: true
         phoneUS: true
-      'cakester[location_attributes][address]': 
+      'fundraiser[location_attributes][address]': 
         required: true
-      'cakester[location_attributes][city]': 
+      'fundraiser[location_attributes][city]': 
         required: true
-      'cakester[location_attributes][zip_code]': 
+      'fundraiser[location_attributes][zip_code]': 
         required: true
-      'cakester[location_attributes][state_code]': 
+      'fundraiser[location_attributes][state_code]': 
         required: true
   )
   return
