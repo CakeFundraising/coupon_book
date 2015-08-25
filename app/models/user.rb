@@ -49,6 +49,7 @@ class User < ActiveRecord::Base
   end
 
   def registered!
+    create_collection if self.fundraiser? or self.merchant?
     update_attribute(:registered, true)
   end
 end

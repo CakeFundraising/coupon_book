@@ -45,8 +45,8 @@ CakeCouponBook.coupon_books.validation = ->
         required: true
       'coupon_book[picture_attributes][banner]':
         required: true
-      # 'coupon_book[mission]':
-      #   required: true
+      'coupon_book[bottom_tagline]':
+        required: true
       # 'coupon_book[launch_date]':
       #   required: true
       # 'coupon_book[end_date]':

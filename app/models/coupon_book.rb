@@ -23,7 +23,7 @@ class CouponBook < ActiveRecord::Base
   }
 
   has_statuses :incomplete, :launched, :past
-  has_templates :compact, :commercial, :original
+  has_templates :commercial, :community, :compact, :original
 
   belongs_to :fundraiser
 
@@ -47,7 +47,10 @@ class CouponBook < ActiveRecord::Base
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
 
   validates :name, :organization_name, :goal, :template, :fundraiser, :avatar, :banner, presence: true
-  validates :headline, :story, :url, :main_cause, presence: true, if: :persisted?
+  validates :url, :main_cause, presence: true, if: :persisted?
+  validates :headline, :story, presence: true, if: ->(book){ book.persisted? and not book.commercial_template? }
+  validates :bottom_tagline, presence: true, if: ->(book){ book.persisted? and book.commercial_template? }
+
   validates :categories, length: {maximum: 15}
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
