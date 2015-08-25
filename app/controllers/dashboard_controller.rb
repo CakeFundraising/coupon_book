@@ -6,7 +6,7 @@ class DashboardController < ApplicationController
   end
 
   def account
-    
+    @user = current_user
   end
 
   def history

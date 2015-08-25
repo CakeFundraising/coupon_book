@@ -10,6 +10,15 @@ module AccountController
     @user.build_location(country_code: 'US')
   end
 
+  def update
+    update! do |success, failure|
+      success.html do
+        #send_notification
+        redirect_to dashboard_account_path, notice: 'Profile updated.'
+      end
+    end
+  end
+
   def registration_update
     update! do |success, failure|
       success.html do

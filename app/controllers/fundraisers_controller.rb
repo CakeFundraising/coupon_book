@@ -1,15 +1,6 @@
 class FundraisersController < InheritedResources::Base
   include AccountController
 
-  def update
-    update! do |success, failure|
-      success.html do
-        #send_notification
-        redirect_to dashboard_dashboard_path, notice: 'Profile updated.'
-      end
-    end
-  end
-
   def collection_coupons
     book_coupons = CouponBook.find(params[:cb_id]).coupons
     @collection_coupons = current_fundraiser.collection.coupons.latest

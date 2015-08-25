@@ -18,6 +18,12 @@ CakeCouponBook.merchants.validation = ->
     rules:
       'merchant[avatar_picture_attributes][uri]':
         required: true
+      'merchant[first_name]': 
+        required: true
+      'merchant[last_name]': 
+        required: true
+      'merchant[email]': 
+        required: true
       'merchant[phone]':
         required: true
         phoneUS: true

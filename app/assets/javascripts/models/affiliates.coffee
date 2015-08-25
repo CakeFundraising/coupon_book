@@ -18,6 +18,12 @@ CakeCouponBook.affiliates.validation = ->
     rules:
       'affiliate[avatar_picture_attributes][uri]':
         required: true
+      'affiliate[first_name]': 
+        required: true
+      'affiliate[last_name]': 
+        required: true
+      'affiliate[email]': 
+        required: true
       'affiliate[phone]':
         required: true
         phoneUS: true
