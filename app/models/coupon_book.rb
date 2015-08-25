@@ -60,10 +60,6 @@ class CouponBook < ActiveRecord::Base
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
 
-  def fundraiser
-    Fundraiser.fetch(self.fundraiser_id)
-  end
-
   def launch!
     #notify_launch if self.launched! and self.update_attribute(:visible, true)
     self.launched!
@@ -115,7 +111,7 @@ class CouponBook < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    organization_name_changed?
+    slug? ? false : slug_changed?
   end
 
   #Templates

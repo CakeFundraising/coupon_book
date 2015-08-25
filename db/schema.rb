@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150821190936) do
+ActiveRecord::Schema.define(version: 20150824201946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,25 +133,26 @@ ActiveRecord::Schema.define(version: 20150821190936) do
     t.string   "url"
     t.string   "headline"
     t.text     "story"
-    t.string   "status",             default: "incomplete"
+    t.string   "status",                       default: "incomplete"
     t.text     "mission"
-    t.boolean  "visible",            default: false
-    t.integer  "goal_cents",         default: 0,            null: false
-    t.string   "goal_currency",      default: "USD",        null: false
-    t.integer  "price_cents",        default: 0,            null: false
-    t.string   "price_currency",     default: "USD",        null: false
+    t.boolean  "visible",                      default: false
+    t.string   "goal_currency",                default: "USD",        null: false
+    t.integer  "price_cents",                  default: 0,            null: false
+    t.string   "price_currency",               default: "USD",        null: false
     t.integer  "causes_mask"
     t.integer  "scopes_mask"
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
-    t.float    "fee_percentage",     default: 16.25
+    t.float    "fee_percentage",               default: 16.25
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.string   "template",           default: "compact"
+    t.string   "template",                     default: "compact"
     t.string   "slug"
     t.string   "bottom_tagline"
+    t.string   "title"
+    t.integer  "goal_cents",         limit: 8, default: 0,            null: false
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree

@@ -18,6 +18,8 @@ CakeCouponBook.coupon_books.validation = ->
     rules:
       'coupon_book[name]': 
         required: true
+      'coupon_book[title]': 
+        required: true
       'coupon_book[organization_name]': 
         required: true
       'coupon_book[goal]':

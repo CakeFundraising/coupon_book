@@ -49,10 +49,6 @@ class Voucher < ActiveRecord::Base
     self.expires_at <= Time.zone.now
   end
 
-  def owner
-    self.owner_type.constantize.fetch(self.owner_id)
-  end
-
   private
 
   def set_number

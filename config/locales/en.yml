@@ -50,7 +50,7 @@ en:
         invalid_grant: Invalid email or password.
   titles:
     empty_results:
-      coupon_books: Coupon Books
+      coupon_books: Campaigns
       coupons: Coupons
     coupon_book:
       purchase_form:
