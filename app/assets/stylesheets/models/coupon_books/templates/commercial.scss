@@ -68,9 +68,15 @@ $screen-xs-max: 768px;
   margin: 0;
   &.affix-top{
     bottom: 0;
+    padding: 0;
   }
   &.affix{
     margin-top: -10px;
+    .top-message{
+      color: #555;
+      text-shadow: none;
+      font-size: 18px;
+    }
     .buy_button_section{
       margin-top: -16px;
       .save{
@@ -88,6 +94,9 @@ $screen-xs-max: 768px;
     text-align: left;
     & > li{
       margin: 0px 5px 10px 5px;
+      &:first-child{
+        margin-left: 0;
+      }
     }
   }
   .top-message{
