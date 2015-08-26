@@ -1,5 +1,5 @@
 class Merchant < User
-  has_one :collection, as: :owner
+  has_one :collection, as: :owner, dependent: :destroy
   has_many :coupons, through: :collection
   has_many :pr_boxes, through: :collection
   has_many :vouchers, as: :owner

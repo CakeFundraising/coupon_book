@@ -9,9 +9,10 @@ class Coupon < ActiveRecord::Base
   has_statuses :incomplete, :launched, :past
   
   has_one :location, as: :locatable, dependent: :destroy
-  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
+  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Merchant Picture
   
   belongs_to :origin_collection, class_name: 'Collection', foreign_key: :collection_id
+  delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy
@@ -47,7 +48,6 @@ class Coupon < ActiveRecord::Base
   alias_method :active?, :launched?
 
   delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location, allow_nil: true
-  delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   searchable do
     text :title, boost: 2

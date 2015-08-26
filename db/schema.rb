@@ -79,8 +79,8 @@ ActiveRecord::Schema.define(version: 20150824201946) do
     t.integer  "coupon_book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subtitle"
     t.integer  "coupons_count"
+    t.string   "subtitle"
   end
 
   create_table "categories_coupons", force: :cascade do |t|
@@ -148,7 +148,7 @@ ActiveRecord::Schema.define(version: 20150824201946) do
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.string   "template",                     default: "compact"
+    t.string   "template",                     default: "commercial"
     t.string   "slug"
     t.string   "bottom_tagline"
     t.string   "title"
