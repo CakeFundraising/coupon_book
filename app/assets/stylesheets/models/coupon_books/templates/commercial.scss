@@ -86,13 +86,22 @@ $screen-xs-max: 768px;
   }
   .popular{
     text-align: left;
+    & > li{
+      margin: 0px 5px 10px 5px;
+    }
+  }
+  .top-message{
+    color: white;
+    font-size: 22px;
+    text-shadow: 0px 0px 5px black;
   }
 }
 
 .buy_button_section{
   text-align: right;
   .btn-xl.buy_button{
-    margin-bottom: 0;
+    margin-bottom: 2px;
+    padding: 3px 0px !important;
   }
   .save{
     color: white;
@@ -101,9 +110,8 @@ $screen-xs-max: 768px;
   }
 }
 
-.get-deals,
+.donate-save,
 .benefit{
-  font-size: 24px;
   margin: 10px 0px 15px;
   color: #555;
   a{
@@ -112,6 +120,12 @@ $screen-xs-max: 768px;
   @media (max-width: $screen-sm-max) {
     font-size: 21px;
   }
+}
+.benefit{
+  font-size: 32px;
+}
+.donate-save{
+  font-size: 20px;
 }
 
 .merchant-donated{
