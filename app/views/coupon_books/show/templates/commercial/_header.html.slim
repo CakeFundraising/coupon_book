@@ -3,11 +3,11 @@
   .book-nav
     .container
       .row
-        .nav-section.col-md-10.col-sm-10
+        .nav-section.col-md-10.col-sm-9
           .top-message Get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Print at home or use on your phone.
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
-        .buy_button_section.col-md-2.col-sm-2
+        .buy_button_section.col-md-2.col-sm-3
           .save.text-center Every dollar helps!
           = buy_book_widget_button(@coupon_book, 'success-transparent')
   .hero-screen
