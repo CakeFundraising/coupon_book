@@ -8,7 +8,7 @@
           = wizard_menu_item(organize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.organize'))
           = wizard_menu_item(affiliates_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.affiliates'))
           = wizard_menu_item(launching_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launching'))
-          = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share'))
+          = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share')) if @coupon_book.launched?
     - else
         ul.nav.nav-pills
           li.active
@@ -23,8 +23,6 @@
             a href="" = t('links.wizards.coupon_book.affiliates')
           li 
             a href="" = t('links.wizards.coupon_book.launching')
-          li 
-            a href="" = t('links.wizards.coupon_book.share')
   .campaign-nav.col-md-4
     - if @coupon_book.persisted?
       ul.nav.nav-pills

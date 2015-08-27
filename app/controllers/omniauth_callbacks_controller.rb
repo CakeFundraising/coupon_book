@@ -7,6 +7,26 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_of("Twitter")
   end
 
+  def stripe_connect
+    if current_fundraiser.present?
+      @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
+
+      if @stripe_account
+        redirect_to dashboard_withdraw_path, notice: "Thanks for connecting your Stripe accout. Now you can receive payments from Sponsors." 
+      else
+        redirect_to dashboard_withdraw_path, alert: t('errors.stripe_account.account_taken')
+      end 
+    elsif current_affiliate.present?
+      @stripe_account = current_affiliate.create_stripe_account(request.env["omniauth.auth"])
+      
+      if @stripe_account
+        redirect_to dashboard_withdraw_path, notice: "Please add your credit card data to make automatic payments. This sensitive information is not being saved in our servers." 
+      else
+        redirect_to dashboard_withdraw_path, alert: t('errors.stripe_account.account_taken')
+      end
+    end
+  end
+
   private
 
   def callback_of(provider)

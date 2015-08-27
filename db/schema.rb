@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150824201946) do
+ActiveRecord::Schema.define(version: 20150827175703) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,14 @@ ActiveRecord::Schema.define(version: 20150824201946) do
     t.integer "collection_id"
     t.integer "coupon_id"
     t.integer "position"
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.string   "slug"
+    t.integer  "commission_percentage"
+    t.integer  "coupon_book_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "coupon_books", force: :cascade do |t|
@@ -274,6 +282,19 @@ ActiveRecord::Schema.define(version: 20150824201946) do
     t.boolean  "should_charge",    default: true
     t.boolean  "should_notify",    default: true
   end
+
+  create_table "stripe_accounts", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "publishable_key"
+    t.string   "token"
+    t.string   "customer_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "stripe_accounts", ["owner_type", "owner_id"], name: "index_stripe_accounts_on_owner_type_and_owner_id", using: :btree
 
   create_table "subscriptors", force: :cascade do |t|
     t.string   "email"

@@ -87,8 +87,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
+gem 'omniauth-stripe-connect'
 # gem 'omniauth-linkedin-oauth2'
-# gem 'omniauth-stripe-connect'
 
 #User permissions
 gem 'cancancan'

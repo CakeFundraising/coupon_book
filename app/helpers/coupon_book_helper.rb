@@ -63,7 +63,6 @@ module CouponBookHelper
   end
 
   def join_mail_list
-    #content_tag(:a, 'Join our email list!', data:{toggle: 'modal', target: '#how_it_works_modal'})
     link_to 'Join our email list!', efg_contact_path, target: :_blank
   end
 

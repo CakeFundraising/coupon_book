@@ -1,3 +1,22 @@
 = display_meta("Launch Campaign")
 
 = render partial:'coupon_books/template/nav'
+
+#customize.wizard-wrap
+  .headline.text-center
+    h1 Launch Campaign
+    h4.text-muted Launch when you are ready to go live and accept donations! When you launch all links go live. Make sure everything is the way you want it.
+    br
+  .inputs
+    .row
+      .col-md-6
+        - if current_fundraiser.stripe_account?
+          = link_to 'Launch Now', launch_coupon_book_path(@coupon_book), method: :patch, class:'btn btn-success btn-lg'
+        - else
+          .text-muted Before launching your campaign, you must connect an Stripe account where your funds will be deposited after each sale.
+          = stripe_connect_button
+      .col-md-2
+        h4 OR
+      .col-md-4
+        = link_to "Go to My Campaigns", coupon_books_path, class:'btn btn-primary btn-lg'
+

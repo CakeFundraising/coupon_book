@@ -19,7 +19,7 @@ en:
   errors:
     url: should be a valid URL.
     stripe_account:
-      account_taken: Stripe Account has already been used. Please use another Stripe Account.
+      account_taken: This Stripe account has already been used. Please use another Stripe account.
   tooltips:
     purchases:
       cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
@@ -116,6 +116,9 @@ en:
         state_code: State
       purchase:
         hide_name: Hide your name from everyone but the organizer
+      community:
+        slug: Promoter Leaderboard Url
+        commission_percentage: Affiliate Commission
   application:
     name: EatsForGood
     company: "Eats For Good, LLC"

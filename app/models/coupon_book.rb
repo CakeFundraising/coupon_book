@@ -28,6 +28,9 @@ class CouponBook < ActiveRecord::Base
   belongs_to :fundraiser
 
   has_one :video, as: :recordable, dependent: :destroy
+
+  has_one :community, dependent: :destroy
+  
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
   has_many :categories_coupons, through: :categories
@@ -45,6 +48,7 @@ class CouponBook < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
+  accepts_nested_attributes_for :community, update_only: true, reject_if: :all_blank
 
   validates :name, :organization_name, :goal, :template, :fundraiser, :avatar, :banner, presence: true
   validates :url, :main_cause, presence: true, if: :persisted?

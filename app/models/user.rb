@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include Rolable
 
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  devise :omniauthable, omniauth_providers: [:facebook, :twitter]
+  devise :omniauthable, omniauth_providers: [:facebook, :twitter, :stripe_connect]
 
   validates :first_name, :last_name, :email, presence: true
   validates :roles, presence: true, if: :persisted?
