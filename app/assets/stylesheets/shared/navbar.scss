@@ -10,6 +10,17 @@
     height: 34px;
     text-transform: capitalize;
   }
+  &.navbar-default{
+    min-height: 42px;
+    .navbar-nav{
+      margin: 0;
+      & > .active > a,
+      & > .active > a:hover,
+      & > .active > a:focus{
+        background-color: #eee;
+      }
+    }
+  }
 }
 
 .navbar-form{
@@ -19,10 +30,10 @@
 }
 
 .navbar-brand {
-  padding-top: 18px;
+  padding-top: 10px;
   padding-left: 0;
   img{
-    width: 170px;
+    width: 160px;
   }
 }
 .user-logged-in {
@@ -33,12 +44,7 @@
     top: 2px;
   }
 }
-.navbar-nav{
-  margin: 10px 0px 10px -1px !important;
-}
-.navbar-nav a{
-  border-radius: 5px;
-}
+
 .navbar-collapse{
   max-height: 1000px;
 }
@@ -69,10 +75,6 @@
 .navbar-text{
   padding: 0px 2px;
   margin-top: 15px;
-}
-
-.navbar-right .btn{
-  margin-top: 13px !important;
 }
 
 .btn-signup {

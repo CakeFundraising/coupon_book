@@ -15,6 +15,8 @@
     .panel-body
       .content.row
         .col-md-7
+          strong Status: 
+          span = coupon_book.status
         .col-md-5
           h4 More Actions
           = link_to 'Organize', organize_coupon_book_path(coupon_book), class:'btn btn-purple btn-sm'
