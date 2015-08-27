@@ -10,10 +10,10 @@ class DashboardController < ApplicationController
   end
 
   def history
-    
+    render "dashboard/history/#{current_user.roles.first}"
   end
 
   def withdraw
-    
+    render "dashboard/withdraw/#{current_user.roles.first}"
   end
 end

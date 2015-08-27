@@ -4,13 +4,15 @@ module CouponBookHelper
   end
 
   def status_buttons(coupon_book)
-    unless coupon_book.past?
-      if coupon_book.incomplete?
-        link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
-      else
-        content_tag(:div, coupon_book.status, class:'btn btn-sm btn-success disabled')
-      end
-    end
+    # unless coupon_book.past?
+    #   if coupon_book.incomplete?
+    #     link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
+    #   else
+    #     content_tag(:div, coupon_book.status, class:'btn btn-sm btn-success disabled')
+    #   end
+    # end
+    color = CouponBook::COLOR_STATUS[coupon_book.status.downcase]
+    content_tag(:div, coupon_book.status, class:"btn btn-sm btn-#{color} disabled")
   end
 
   def screenshot_dowload(coupon_book)

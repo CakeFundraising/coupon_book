@@ -1,30 +1,32 @@
-.row
-  .campaign-nav.col-md-8
-    - if @coupon_book.persisted?
-        ul.nav.nav-pills
-          = wizard_menu_item(edit_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.basics'))
-          = wizard_menu_item(story_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.story'))
-          = wizard_menu_item(merchants_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.merchants'))
-          = wizard_menu_item(organize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.organize'))
-          = wizard_menu_item(affiliates_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.affiliates'))
-          = wizard_menu_item(launching_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launching'))
-          = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share')) if @coupon_book.launched?
-    - else
-        ul.nav.nav-pills
-          li.active
-            a data-toggle="tab" href="#main" = t('links.wizards.coupon_book.basics')
-          li 
-            a href="" = t('links.wizards.coupon_book.story')
-          li 
-            a href="" = t('links.wizards.coupon_book.merchants')
-          li 
-            a href="" = t('links.wizards.coupon_book.organize')
-          li 
-            a href="" = t('links.wizards.coupon_book.affiliates')
-          li 
-            a href="" = t('links.wizards.coupon_book.launching')
-  .campaign-nav.col-md-4
-    - if @coupon_book.persisted?
+- if @coupon_book.persisted?
+  .row
+    .campaign-nav.col-md-8
       ul.nav.nav-pills
-        li = link_to 'Preview', @coupon_book
-        li = link_to 'Delete', @coupon_book, data: {confirm: 'Are you sure?'}, method: :delete
+        = wizard_menu_item(edit_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.basics'))
+        = wizard_menu_item(story_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.story'))
+        = wizard_menu_item(merchants_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.merchants'))
+        = wizard_menu_item(organize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.organize'))
+        = wizard_menu_item(affiliates_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.affiliates'))
+        = wizard_menu_item(launching_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launching'))
+        = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share')) if @coupon_book.launched?
+    .campaign-nav.col-md-4.text-right
+      - if @coupon_book.persisted?
+        ul.nav.nav-pills
+          li = link_to 'Preview', @coupon_book
+          li = link_to 'Delete', @coupon_book, data: {confirm: 'Are you sure?'}, method: :delete
+- else
+  .row
+    .campaign-nav.col-md-12.text-center
+      ul.nav.nav-pills
+        li.active
+          a data-toggle="tab" href="#main" = t('links.wizards.coupon_book.basics')
+        li 
+          a href="" = t('links.wizards.coupon_book.story')
+        li 
+          a href="" = t('links.wizards.coupon_book.merchants')
+        li 
+          a href="" = t('links.wizards.coupon_book.organize')
+        li 
+          a href="" = t('links.wizards.coupon_book.affiliates')
+        li 
+          a href="" = t('links.wizards.coupon_book.launching')
