@@ -1,3 +1,5 @@
+= display_meta("Organize Campaign")
+
 = render partial:'coupon_books/template/nav'
 
 .row
@@ -10,7 +12,7 @@
       #organize-react.container.coupon_book_coupons_step
       .row
         .col-md-2.col-md-push-10
-          = link_to 'Continue', customize_coupon_book_path(@coupon_book), class:'btn btn-primary btn-lg pull-right'
+          = link_to 'Continue', affiliates_coupon_book_path(@coupon_book), class:'btn btn-primary btn-lg pull-right'
 
 = render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
 

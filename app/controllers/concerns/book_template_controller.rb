@@ -8,7 +8,7 @@ module BookTemplateController
       :merchants,
       :organize,
       :affiliates,
-      :launch,
+      :launching,
       :share
     ]
   end
@@ -22,6 +22,10 @@ module BookTemplateController
   def story
     @coupon_book = resource
     render 'coupon_books/template/story'
+  end
+
+  def merchants
+    render 'coupon_books/template/merchants'
   end
 
   #Build coupon book
@@ -47,16 +51,21 @@ module BookTemplateController
     render 'coupon_books/show/categories'
   end
 
+  def affiliates
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/affiliates'
+  end
+
+  def launching
+    @coupon_book = resource.decorate
+    render 'coupon_books/template/launching'
+  end
+
   def share
     @coupon_book = resource.decorate
     render 'coupon_books/template/share'
   end
 
-  #Launch 
-  def customize
-    @coupon_book = resource.decorate
-    render 'coupon_books/template/customize'
-  end
 
   private
 

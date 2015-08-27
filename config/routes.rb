@@ -24,10 +24,12 @@ CakeCouponBook::Application.routes.draw do
     member do
       scope :edit do
         get :story
+        get :merchants
         get :organize
-        get :share
-        get :customize
         post :save_organize
+        get :affiliates
+        get :launching
+        get :share
       end
       patch :launch
       patch :save_for_launch

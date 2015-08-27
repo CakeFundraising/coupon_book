@@ -37,9 +37,11 @@ en:
       coupon_book: 
         basics: Basics
         story: Story
+        merchants: Merchants
         organize: Organize
+        affiliates: Affiliates
+        launching: Launch
         share: Share
-        settings: Settings
   flash:
     omniauth: Please check if your data is correct and press "Sign Up" to continue
     error:
