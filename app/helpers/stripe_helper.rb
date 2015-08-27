@@ -21,7 +21,7 @@ module StripeHelper
 
   def go_to_stripe
     link_to "https://manage.stripe.com/", target: :_blank, class: 'stripe-connect' do
-      content_tag(:span, "Go to Stripe")
+      content_tag(:span, "Go to Stripe Dashboard")
     end
   end
 end

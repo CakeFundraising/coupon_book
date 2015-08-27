@@ -7,7 +7,7 @@
         = wizard_menu_item(merchants_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.merchants'))
         = wizard_menu_item(organize_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.organize'))
         = wizard_menu_item(affiliates_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.affiliates'))
-        = wizard_menu_item(launching_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launching'))
+        = wizard_menu_item(launching_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.launching')) unless @coupon_book.launched?
         = wizard_menu_item(share_coupon_book_path(@coupon_book), t('links.wizards.coupon_book.share')) if @coupon_book.launched?
     .campaign-nav.col-md-4.text-right
       - if @coupon_book.persisted?

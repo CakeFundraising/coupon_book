@@ -14,6 +14,7 @@ class DashboardController < ApplicationController
   end
 
   def withdraw
+    @stripe_account = current_user.try(:stripe_account)
     render "dashboard/withdraw/#{current_user.roles.first}"
   end
 end

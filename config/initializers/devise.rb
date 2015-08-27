@@ -25,8 +25,8 @@ Devise.setup do |config|
 
   config.omniauth :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET']
   config.omniauth :twitter, ENV['TW_APP_ID'], ENV['TW_APP_SECRET']
+  config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['STRIPE_SECRET_KEY'], scope: 'read_write', stripe_landing: 'login'
   # config.omniauth :linkedin, ENV['LI_APP_ID'], ENV['LI_APP_SECRET']
-  # config.omniauth :stripe_connect, ENV['ST_APP_ID'], ENV['STRIPE_SECRET_KEY'], scope: 'read_write', stripe_landing: 'login'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
