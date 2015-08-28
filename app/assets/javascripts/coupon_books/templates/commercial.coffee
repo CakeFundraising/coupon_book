@@ -27,7 +27,7 @@ categoriesNav = ->
   aboutBanner = $('#learn-more-banner')
 
   nav.affix offset:
-    top: nav.offset().top
+    top: 400
 
   nav.find('a.book-nav-link').each ->
     $(this).click ->

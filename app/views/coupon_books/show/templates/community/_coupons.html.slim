@@ -4,12 +4,12 @@
   .row
     .col-md-9.padding-right-out
       .benefit
-        span.bolder Every dollar helps! 
         span Proceeds benefit 
-        span.boldest = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
-    .col-md-3.padding-left-out
-      .get-deals.bolder.text-right
-        span Get All #{@coupon_book.coupons.count} Deals instantly!
+        span.boldest = link_to "#{@coupon_book.fr_name}!", @coupon_book.url, target: :_blank
+    .col-md-3.col-sm-3.padding-left-out
+      .donate-save.bolder.text-right
+        div Donate #{@coupon_book.price} or more
+        div Save #{@coupon_book.no_discount_price} instantly!
 
 .row-fluid
   .container
