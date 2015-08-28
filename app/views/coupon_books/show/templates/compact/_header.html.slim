@@ -45,6 +45,8 @@
         .sidebar.first_col
           .book-label.label Support #{@coupon_book.fr_name}!
           .banner 
+            .edit-button 
+              = campaign_edit_button(@coupon_book)
             = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
             .sharer
               .addthis_sharing_toolbox
@@ -57,7 +59,7 @@
           .row
             .col-md-12
               #buttons
-                div = coupon_book_buy_button(@coupon_book)
+                div = campaign_buy_button(@coupon_book, "Donate Now", donate_coupon_book_path(@coupon_book))
                 .do-good.text-center.help-block Do good and treat yourself too!
                 .see-restaurants
                   = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do

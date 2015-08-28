@@ -24,9 +24,3 @@
     .row-fluid
       .col-md-12.text-center
         .merchant-donated All Deals, valued at #{@coupon_book.no_discount_price}, were generously donated by the Restaurants & Merchants above
-
-- if @coupon_book.bottom_tagline.present?
-  .container
-    .row
-      .col-md-12.text-center
-        .bottom-tagline = @coupon_book.bottom_tagline

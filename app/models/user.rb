@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
 
-  #validates_associated :location, if: :persisted?
-  #validates_associated :avatar_picture, if: :persisted?
+  validates_associated :location, if: :persisted?
+  validates_associated :avatar_picture, if: :persisted?
 
   def full_name
     "#{first_name} #{last_name}"

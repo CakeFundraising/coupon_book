@@ -5,8 +5,8 @@
         .main-cta.alert.alert-danger.ended_campaign This Campaign is Over
     - else 
       .col-md-12.text-center
-        .main-cta
-          = coupon_book_buy_button(resource)
+        .main-cta 
+          = campaign_buy_button(resource, "Donate Now", donate_coupon_book_path(@coupon_book))
       .tos.col-md-12.text-center
         = terms_modal_link
   

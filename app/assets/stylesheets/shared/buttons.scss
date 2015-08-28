@@ -15,6 +15,7 @@
 .btn-transparent-light{
   background: rgba(255,255,255,0.1);
   border: 1px solid;
+  &:active,
   &:hover{
     border: 1px solid $link-color;
     color: $link-color;
@@ -26,7 +27,8 @@
   background: rgba(0,0,0,0.5);
   border: 1px solid;
   color: white;
-  &:hover{
+  &:hover,
+  &:active{
     background: rgba(0,0,0,0.2) !important;
     color: white;
     background: none;

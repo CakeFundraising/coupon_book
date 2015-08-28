@@ -44,8 +44,8 @@
               p.text-muted Add a tagline at the bottom of the page.
               br
             .col-md-12
-              = f.input :bottom_tagline, label: false, input_html: {splaceholder: '30 characters or less', maxlength: 30}
-              span.help-block.italic Max 30 characters.
+              = f.input :bottom_tagline, label: false, input_html: {splaceholder: '140 characters or less', maxlength: 140}
+              span.help-block.italic Max 140 characters.
         - unless f.object.commercial_template?
           .row.section-wrapper
             .col-md-12
@@ -75,7 +75,7 @@
           /   .col-md-12
           /     = f.input :scopes, as: :select, collection: CouponBook::SCOPES, label: false, multiple: true
             
-        = f.input :step, as: :hidden, input_html:{value: :organize}
+        = f.input :step, as: :hidden, input_html:{value: :merchants}
         br
         .text-center
           = f.actions do

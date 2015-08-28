@@ -21,15 +21,15 @@ module CouponBookHelper
     end
   end
 
-  def coupon_book_buy_button(coupon_book, button_color=:success)
-    if coupon_book.launched?
-      link_to 'Donate Now', donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+  def campaign_edit_button(campaign)
+    if can? :edit, campaign and not campaign.past?
+      link_to "Edit Campaign", edit_coupon_book_path(campaign), class:'btn btn-transparent-dark'
     end
   end
 
-  def buy_book_widget_button(coupon_book, button_color=:success)
-    if coupon_book.launched?
-      link_to "Give Now", donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+  def campaign_buy_button(campaign, text, url, color=:success)
+    if campaign.launched?
+      link_to text, url, class: "btn btn-#{color} btn-xl buy_button", data: {no_turbolink: true}
     end
   end
 
