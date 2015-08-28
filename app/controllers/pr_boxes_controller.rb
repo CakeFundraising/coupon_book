@@ -29,7 +29,7 @@ class PrBoxesController < InheritedResources::Base
   end
 
   def after_create_path
-    current_fundraiser.present? ? coupons_coupon_book_path(params[:pr_box][:coupon_book_id]) : dashboard_sponsor_pr_boxes_path
+    current_fundraiser.present? ? organize_coupon_book_path(params[:pr_box][:coupon_book_id]) : dashboard_sponsor_pr_boxes_path
   end
 
   def add_pr_box_to_collection(pr_box)

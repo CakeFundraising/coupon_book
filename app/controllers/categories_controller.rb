@@ -7,7 +7,7 @@ class CategoriesController < InheritedResources::Base
   def create
     create! do |success, failure|
       success.html do
-        redirect_to coupons_coupon_book_path(@category.coupon_book), notice: 'Category was successfully created.'
+        redirect_to organize_coupon_book_path(@category.coupon_book), notice: 'Category was successfully created.'
       end
     end
   end
@@ -15,7 +15,7 @@ class CategoriesController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        redirect_to coupons_coupon_book_path(@category.coupon_book), notice: 'Category was successfully updated.'
+        redirect_to organize_coupon_book_path(@category.coupon_book), notice: 'Category was successfully updated.'
       end
     end
   end
@@ -23,7 +23,7 @@ class CategoriesController < InheritedResources::Base
   def destroy
     destroy! do |success, failure|
       success.html do
-        redirect_to coupons_coupon_book_path(@category.coupon_book), notice: 'Category was successfully destroyed.'
+        redirect_to organize_coupon_book_path(@category.coupon_book), notice: 'Category was successfully destroyed.'
       end
     end
   end

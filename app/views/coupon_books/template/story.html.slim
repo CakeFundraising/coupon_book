@@ -9,8 +9,8 @@
         h1 Tell us about yourself
         h4.text-muted Share with others why you're raising money!
         br
-      = f.semantic_errors *f.object.errors.keys
       = f.inputs do
+        = f.semantic_errors *f.object.errors.keys
         - unless f.object.commercial_template?
           .row
             .col-md-12

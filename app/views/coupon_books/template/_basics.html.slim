@@ -10,6 +10,7 @@
         h4.text-muted Don’t worry, you can change your selections whenever you like
         br
       = f.inputs do
+        = f.semantic_errors *f.object.errors.keys
         .row
           .col-md-12
             h3 Campaign Purpose

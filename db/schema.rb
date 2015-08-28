@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150827175703) do
+ActiveRecord::Schema.define(version: 20150828153154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,8 +147,6 @@ ActiveRecord::Schema.define(version: 20150827175703) do
     t.string   "goal_currency",                default: "USD",        null: false
     t.integer  "price_cents",                  default: 0,            null: false
     t.string   "price_currency",               default: "USD",        null: false
-    t.integer  "causes_mask"
-    t.integer  "scopes_mask"
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
@@ -161,6 +159,8 @@ ActiveRecord::Schema.define(version: 20150827175703) do
     t.string   "bottom_tagline"
     t.string   "title"
     t.integer  "goal_cents",         limit: 8, default: 0,            null: false
+    t.integer  "causes_mask",        limit: 8
+    t.integer  "scopes_mask",        limit: 8
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree
@@ -178,18 +178,18 @@ ActiveRecord::Schema.define(version: 20150827175703) do
     t.string   "phone"
     t.string   "sponsor_url"
     t.text     "multiple_locations"
-    t.boolean  "universal",                   default: false
-    t.string   "status",                      default: "incomplete"
+    t.boolean  "universal",                             default: false
+    t.string   "status",                                default: "incomplete"
     t.text     "custom_terms"
-    t.integer  "merchandise_categories_mask"
-    t.integer  "price_cents",                 default: 0,            null: false
-    t.string   "price_currency",              default: "USD",        null: false
+    t.integer  "price_cents",                           default: 0,            null: false
+    t.string   "price_currency",                        default: "USD",        null: false
     t.string   "sponsor_name"
     t.integer  "collection_id"
-    t.boolean  "order_up",                    default: false
+    t.boolean  "order_up",                              default: false
     t.integer  "extra_clicks_count"
-    t.string   "type",                        default: "Coupon"
+    t.string   "type",                                  default: "Coupon"
     t.string   "flag"
+    t.integer  "merchandise_categories_mask", limit: 8
   end
 
   create_table "direct_donations", force: :cascade do |t|

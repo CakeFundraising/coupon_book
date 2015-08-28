@@ -16,8 +16,9 @@ class CouponBook < ActiveRecord::Base
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
   COUPON_TEMPLATES = {
-    compact: :rectangle,
     commercial: :grid,
+    community: :grid,
+    compact: :rectangle,
     original: :rectangle,
     mobile: :square
   }
@@ -54,7 +55,6 @@ class CouponBook < ActiveRecord::Base
 
   validates :name, :organization_name, :goal, :template, :fundraiser, :avatar, :banner, presence: true
   validates :url, :main_cause, presence: true, if: :persisted?
-  validates :headline, :story, presence: true, if: ->(book){ book.persisted? and not book.commercial_template? }
   validates :bottom_tagline, presence: true, if: ->(book){ book.persisted? and book.commercial_template? }
 
   validates :categories, length: {maximum: 15}
