@@ -48,6 +48,16 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :affiliate_campaigns do
+    member do
+      scope :edit do
+        get :join
+        get :get_paid
+        get :share
+      end
+    end
+  end
+
   resources :categories do
     collection do
       get :load_all_discounts
@@ -131,16 +141,6 @@ CakeCouponBook::Application.routes.draw do
     get :account
     get :history
     get :withdraw
-    # scope :fundraiser, controller: :fundraiser do
-    #   get :home, as: :fundraiser_home
-    #   get :history, as: :fundraiser_history
-    # end
-    # scope :sponsor, controller: :sponsor do
-    #   get :home, as: :sponsor_home
-    #   get :history, as: :sponsor_history
-    #   get :coupons, as: :sponsor_coupons
-    #   get :pr_boxes, as: :sponsor_pr_boxes
-    # end
   end
 
   match '/404', to: 'errors#file_not_found', via: :all

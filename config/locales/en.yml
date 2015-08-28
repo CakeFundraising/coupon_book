@@ -42,6 +42,11 @@ en:
         affiliates: Affiliates
         launching: Launch
         share: Share
+      affiliate_campaign:
+        campaign: Choose Campaign
+        join: Join Campaign
+        get_paid: Get Paid
+        share: Share
   flash:
     omniauth: Please check if your data is correct and press "Sign Up" to continue
     error:

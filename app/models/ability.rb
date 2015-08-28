@@ -20,6 +20,11 @@ class Ability
       can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user
     end
 
+    if user.affiliate?
+      can :create, AffiliateCampaign
+      can [:update, :destroy] + AffiliateCampaignsController::TEMPLATE_STEPS, AffiliateCampaign, affiliate_id: user.id
+    end
+
     can :read, :all
 
     can [:start_discount, :start_pr_box, :donate, :checkout], CouponBook

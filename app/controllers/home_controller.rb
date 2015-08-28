@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
-  before_action :go_to_registration, only: :index
   before_action :block_registered_user, only: :get_started
+  before_action :go_to_registration, only: :index
 
   def index
     #@purchase = Purchase.first.decorate
