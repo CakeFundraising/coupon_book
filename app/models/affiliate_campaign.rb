@@ -16,4 +16,6 @@ class AffiliateCampaign < ActiveRecord::Base
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
+
+  delegate :name, :end_date, :current_sales_cents, :status, to: :coupon_book
 end
