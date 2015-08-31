@@ -22,7 +22,7 @@ class Ability
 
     if user.affiliate?
       can :create, AffiliateCampaign
-      can [:update, :destroy] + AffiliateCampaignsController::TEMPLATE_STEPS, AffiliateCampaign, affiliate_id: user.id
+      can [:update, :destroy, :book_preview] + AffiliateCampaignsController::TEMPLATE_STEPS, AffiliateCampaign, affiliate_id: user.id
     end
 
     can :read, :all

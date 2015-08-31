@@ -5,11 +5,15 @@ class AffiliateCampaign < ActiveRecord::Base
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
 
+  validates :coupon_book, presence: true
   validates :first_name, :last_name, :phone, :email, presence: true, if: ->(c){ c.persisted? and c.coupon_book.commercial_template? }
   validates :organization_name, :url, :story, presence: true, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
 
   validates_associated :avatar_picture, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
   #validates_associated :location, if: :coupon?
+
+  accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 end

@@ -55,6 +55,7 @@
 //= require ./coupon_books/coupon_books
 //= require ./coupon_books/coupon_book_builder
 
+//= require ./models/affiliate_campaigns
 //= require ./models/affiliates
 //= require ./models/browsers
 //= require ./models/fundraisers

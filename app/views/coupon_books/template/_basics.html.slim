@@ -2,95 +2,94 @@
 
 = render partial:'coupon_books/template/nav'
 
-.tab-content.wizard-wrap
-  #main.tab-pane.active
-    = semantic_form_for @coupon_book do |f|
-      .headline.text-center
-        h1 Start your Eats For Good Campaign!
-        h4.text-muted Don’t worry, you can change your selections whenever you like
-        br
-      = f.inputs do
-        = f.semantic_errors *f.object.errors.keys
-        .row
-          .col-md-12
-            h3 Campaign Purpose
-            p.text-muted What type of Campaign would you like to run?
-            br
-          .col-md-6
-            = f.input :template, as: :select, collection: titleize_select_collection(CouponBook.templates[:template]), input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
-          .col-md-6
-        .row.section-wrapper
-          .col-md-12
-            h3 Basic Information
-            p.text-muted Add a headline, a goal, and other important details.
-            br
-          .col-md-6
-            / Name
-            label.control-label Campaign Name
-            = f.input :name, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
-            span.help-block.italic For your records only. It won't be shown on your Campaign page. Max 50 characters.
-            br
-            / FR Name
-            label.control-label Fundraiser Name
-            = f.input :organization_name, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
-            span.help-block.italic Enter the name of the individual or organization raising money. This name will be displayed on your Campaign page. Max 50 characters.
+#main.wizard-wrap
+  = semantic_form_for @coupon_book do |f|
+    .headline.text-center
+      h1 Start your Eats For Good Campaign!
+      h4.text-muted Don’t worry, you can change your selections whenever you like
+      br
+    = f.inputs do
+      = f.semantic_errors *f.object.errors.keys
+      .row
+        .col-md-12
+          h3 Campaign Purpose
+          p.text-muted What type of Campaign would you like to run?
+          br
+        .col-md-6
+          = f.input :template, as: :select, collection: titleize_select_collection(CouponBook.templates[:template]), input_html:{size: 1, class: 'dropdown'}, include_blank: false, label: false
+        .col-md-6
+      .row.section-wrapper
+        .col-md-12
+          h3 Basic Information
+          p.text-muted Add a headline, a goal, and other important details.
+          br
+        .col-md-6
+          / Name
+          label.control-label Campaign Name
+          = f.input :name, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
+          span.help-block.italic For your records only. It won't be shown on your Campaign page. Max 50 characters.
+          br
+          / FR Name
+          label.control-label Fundraiser Name
+          = f.input :organization_name, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
+          span.help-block.italic Enter the name of the individual or organization raising money. This name will be displayed on your Campaign page. Max 50 characters.
 
-            / Price
-            label.control-label Minimum Donation
-            = f.input :price, label: false, input_html:{placeholder: '10', class:'default-zero'}, :prepend => '$'
-            span.help-block.italic Set the minimum amount a donor can contribute to acquire a deal book. Must be greater than U$S 5.
+          / Price
+          label.control-label Minimum Donation
+          = f.input :price, label: false, input_html:{placeholder: '10', class:'default-zero'}, :prepend => '$'
+          span.help-block.italic Set the minimum amount a donor can contribute to acquire a deal book. Must be greater than U$S 5.
 
-          .col-md-6
-            / Title
-            label.control-label Campaign Title
-            = f.input :title, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
-            span.help-block.italic Why are you raising money? This title will be shown on your Campaign page. Max 50 characters.
+        .col-md-6
+          / Title
+          label.control-label Campaign Title
+          = f.input :title, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}
+          span.help-block.italic Why are you raising money? This title will be shown on your Campaign page. Max 50 characters.
 
-            / Dates
-            label.control-label Target Start & End Dates
-            .input-daterange
-              = f.input :launch_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.launch_date}
-            .input-daterange
-              = f.input :end_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.end_date}
-            span.help-block.italic Set your Campaign's launch date and end date. You can extend the End Date after you have launched your Deal Book if you wish to do so.
+          / Dates
+          label.control-label Target Start & End Dates
+          .input-daterange
+            = f.input :launch_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.launch_date}
+          .input-daterange
+            = f.input :end_date, as: :string, label: false, input_html: {placeholder: Time.now.strftime("%m/%d/%Y"), value: f.object.decorate.end_date}
+          span.help-block.italic Set your Campaign's launch date and end date. You can extend the End Date after you have launched your Deal Book if you wish to do so.
 
-            / Goal
-            label.control-label Goal
-            = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
-            span.help-block.italic How much do you hope to raise in the next 60 days or less?
-        .row.section-wrapper
+          / Goal
+          label.control-label Goal
+          = f.input :goal, label: false, input_html:{placeholder: '1,000', class:'default-zero'}, :prepend => '$'
+          span.help-block.italic How much do you hope to raise in the next 60 days or less?
+      .row.section-wrapper
+        .col-md-12
+          h3 Campaign Custom Url
+          p.text-muted Set your Campaign custom url. Optional. Max 50 characters.
+          br
+        .col-md-6
+          = f.input :slug, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}, :prepend => campaign_root_url
+        .col-md-6
+      .row.section-wrapper
+        .col-md-12
+          h3 Campaign Images & Video
+          br
+        .col-md-6
+          h4 Your Logo
+          p.text-muted Choose a logo or image that best represents you or your organization.
+          .help-block.italic Suggested size: 350x233 px
+          .row
+            .col-md-8
+              = render partial:'pictures/avatar_form', locals:{f: f}
+        .col-md-6
+          h4 Primary Campaign Image
+          p.text-muted Choose an image that best represents your Campaign.
           .col-md-12
-            h3 Campaign Custom Url
-            p.text-muted Set your Campaign custom url. Optional. Max 50 characters.
-            br
-          .col-md-6
-            = f.input :slug, label: false, input_html:{size: 50, maxlength: 50, placeholder: '50 characters'}, :prepend => campaign_root_url
-          .col-md-6
-        .row.section-wrapper
-          .col-md-12
-            h3 Campaign Images & Video
-            br
-          .col-md-6
-            h4 Your Logo
-            p.text-muted Choose a logo or image that best represents you or your organization.
-            .help-block.italic Suggested size: 350x233 px
-            .row
-              .col-md-8
-                = render partial:'pictures/avatar_form', locals:{f: f}
-          .col-md-6
-            h4 Primary Campaign Image
-            p.text-muted Choose an image that best represents your Campaign.
-            .col-md-12
-              .help-block.italic Suggested size: 800x400 px
-              = render partial:'pictures/banner_form', locals:{f: f}
-          .col-md-12
-            br
-            br
-            h4 Campaign Video
-            = render partial:'videos/form', locals:{f: f}
+            .help-block.italic Suggested size: 800x400 px
+            = render partial:'pictures/banner_form', locals:{f: f}
+        .col-md-12
+          br
+          br
+          h4 Campaign Video
+          = render partial:'videos/form', locals:{f: f}
 
-        = f.input :step, as: :hidden, input_html:{value: :story} 
-        br
-        .text-center
-          = f.actions do
-            = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+      = f.input :step, as: :hidden, input_html:{value: :story} 
+      br
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
