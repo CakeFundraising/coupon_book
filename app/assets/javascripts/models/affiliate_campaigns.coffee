@@ -31,6 +31,8 @@ CakeCouponBook.affiliate_campaigns.validation = ->
         required: true
       'affiliate_campaign[coupon_book_id]':
         required: true
+      'affiliate_campaign[check_recipient_name]': 
+        required: true
       'affiliate_campaign[avatar_picture_attributes][uri]':
         required: true
       'affiliate_campaign[location_attributes][address]': 

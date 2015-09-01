@@ -10,9 +10,9 @@ class AffiliateCampaign < ActiveRecord::Base
   validates :organization_name, :url, :story, presence: true, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
 
   validates_associated :avatar_picture, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
-  #validates_associated :location, if: :coupon?
+  validates_associated :location, if: ->(c){ c.persisted? and !c.use_stripe }
 
-  accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :location, update_only: true, reject_if: ->(attrs){ attrs[:address].blank? }
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }

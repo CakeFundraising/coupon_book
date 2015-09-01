@@ -125,6 +125,8 @@ en:
       community:
         slug: Promoter Leaderboard Url
         commission_percentage: Affiliate Commission
+      affiliate_campaign:
+        check_recipient_name: Recipient Name
   application:
     name: EatsForGood
     company: "Eats For Good, LLC"

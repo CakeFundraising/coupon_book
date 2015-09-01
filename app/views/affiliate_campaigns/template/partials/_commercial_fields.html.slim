@@ -1,8 +1,12 @@
 .row
+  .col-md-3
   .col-md-6
-    = f.input :first_name
-  .col-md-6
-    = f.input :last_name
-  .col-md-12
-    = f.input :phone
-    = f.input :email
+    .row
+      .col-md-6
+        = f.input :first_name
+      .col-md-6
+        = f.input :last_name
+      .col-md-12
+        = f.input :phone
+        = f.input :email
+  .col-md-3

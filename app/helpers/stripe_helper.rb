@@ -24,4 +24,14 @@ module StripeHelper
       content_tag(:span, "Go to Stripe Dashboard")
     end
   end
+
+  def stripe_link(text=nil)
+    if text.nil?
+      link_to 'https://stripe.com', target: :_blank do
+        yield
+      end
+    else
+      link_to text, 'https://stripe.com', target: :_blank
+    end
+  end
 end

@@ -39,8 +39,8 @@
                   button#donate_button.btn.btn-success.btn-md Donate
 
   .stripe-powered
-    .pull-right 
-      = link_to 'https://stripe.com', target: :blank do
+    .pull-right
+      = stripe_link do
         = image_tag 'powered_by_stripe.png'
 
 javascript:
