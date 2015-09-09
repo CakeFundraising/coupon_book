@@ -48,7 +48,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :affiliate_campaigns do
+  resources :affiliate_campaigns, path: :group_campaigns do
     member do
       scope :edit do
         get :join
