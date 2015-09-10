@@ -3,6 +3,7 @@ class AffiliateCampaignsController < InheritedResources::Base
   load_and_authorize_resource
 
   include AffiliateCampaignTemplateController
+  include AffiliatePageActions
 
   def index
     @campaigns = current_affiliate.affiliate_campaigns.latest.decorate

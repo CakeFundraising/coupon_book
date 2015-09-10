@@ -23,11 +23,13 @@ class AffiliateCampaign < ActiveRecord::Base
 
   delegate :name, :end_date, :current_sales_cents, :status, to: :coupon_book
 
+  scope :preloaded, ->{ eager_load([:coupon_book]) }
+
   #Slugs
   def slug_candidates
     [
       :organization_name,
-      :id
+      [:organization_name, :id]
     ]
   end
 

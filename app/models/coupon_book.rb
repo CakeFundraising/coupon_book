@@ -90,7 +90,6 @@ class CouponBook < ActiveRecord::Base
   end
 
   def current_sales_cents
-    #purchases.count*self.price_cents
     purchases.sum(:amount_cents)
   end
 

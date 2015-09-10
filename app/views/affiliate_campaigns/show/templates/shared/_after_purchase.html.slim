@@ -1,0 +1,28 @@
+#after_purchase_modal.modal.fade
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true" &times;
+        h2.modal-title.text-center Thank You #{params[:name]}!
+      .modal-body
+        .row
+          .col-md-12.text-center
+            .email
+              span Your Deal Vouchers were emailed to: 
+              strong = params[:email]
+            .share
+              h3 Keep the positive energy going!
+
+              = render partial: 'layouts/share_buttons', locals:{url: coupon_book_url(@coupon_book), title: nil}
+
+              .most-important
+                span Sharing on Facebook is the single
+                .bolder most important thing you can do!
+      .modal-footer
+        h5.text-center 
+          | If you do not receive your vouchers, please check your spam filter or contact us at 
+          span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

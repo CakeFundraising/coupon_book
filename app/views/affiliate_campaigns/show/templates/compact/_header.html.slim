@@ -1,0 +1,78 @@
+- cache [:templates, :compact, :header, :headpage, @coupon_book] do
+  .campaign-banner
+    .container
+      .row
+        .col-md-12.col-sm-12
+          span.top_banner.text-center = @coupon_book.name
+
+  #headpage
+    .container
+      .row-fluid.text-center
+        .col-md-12
+          h3.title
+            span Give today & get deals worth 
+            span.bolder = @coupon_book.no_discount_price
+            span  donated by 
+            span = anchor_link "#{@coupon_book.coupons.count} popular Restaurants below!", :coupons
+            span.bolder  Every penny helps!
+        .col-md-4.col-sm-4.give.head-col
+          .link
+            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+              span.glyphicon.glyphicon-heart
+              span.text Give
+          .text
+            span As little as 
+            span.bolder = @coupon_book.price
+        .col-md-4.col-sm-4.help.head-col
+          .link
+            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+              span.glyphicon.glyphicon-globe
+              span.text Support
+          .text 
+            = @coupon_book.fr_name
+        .col-md-4.col-sm-4.get.head-col
+          .link
+            = content_tag(:a, href:"#coupons") do
+              span.glyphicon.glyphicon-gift
+              span.text Receive
+          .text
+            span All #{@coupon_book.coupons.count} Deals instantly! 
+
+.container.compact-container
+  .row
+    .col-md-8.col-sm-8
+      - cache [:templates, :compact, :header, :container, :first_col, @coupon_book] do
+        .sidebar.first_col
+          .book-label.label Support #{@coupon_book.fr_name}!
+          .banner 
+            .edit-button 
+              = campaign_edit_button(@coupon_book)
+            = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
+            .sharer
+              .addthis_sharing_toolbox
+          .headline
+            h3.blue-color = @coupon_book.headline
+            p.story.expander = @coupon_book.story
+    .col-md-4.col-sm-4
+      - cache [:templates, :compact, :header, :container, :second_col, @coupon_book] do
+        .sidebar
+          .row
+            .col-md-12
+              #buttons
+                div = campaign_buy_button(@coupon_book, "Donate Now", donate_coupon_book_path(@coupon_book))
+                .do-good.text-center.help-block Do good and treat yourself too!
+                .see-restaurants
+                  = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+                    span See  
+                    span.boldest All #{@coupon_book.coupons.count}
+                    span  Deals!
+      - if @purchases.any?
+        br
+        #purchases.sidebar
+          .headbar.text-center = t('titles.coupon_book.purchase_list')
+          ul.no-list
+            = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+      .flag_book.text-right
+        = flag_book_link
+
+
