@@ -1,4 +1,8 @@
 class AffiliateCampaign < ActiveRecord::Base
+  extend FriendlyId
+
+  friendly_id :slug_candidates, use: [:slugged, :history]
+
   belongs_to :affiliate
   belongs_to :coupon_book
 
@@ -18,4 +22,16 @@ class AffiliateCampaign < ActiveRecord::Base
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 
   delegate :name, :end_date, :current_sales_cents, :status, to: :coupon_book
+
+  #Slugs
+  def slug_candidates
+    [
+      :organization_name,
+      :id
+    ]
+  end
+
+  def should_generate_new_friendly_id?
+    organization_name.present? ? organization_name_changed? : false
+  end
 end

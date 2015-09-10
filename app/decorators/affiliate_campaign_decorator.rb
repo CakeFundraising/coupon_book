@@ -1,6 +1,8 @@
 class AffiliateCampaignDecorator < ApplicationDecorator
   delegate_all
 
+  decorates_association :coupon_book
+
   def to_s
     object.name
   end

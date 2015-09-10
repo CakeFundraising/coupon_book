@@ -55,6 +55,9 @@ CakeCouponBook::Application.routes.draw do
         get :get_paid
         get :share
       end
+
+      get :donate
+      get :checkout
     end
     collection do
       get :book_preview

@@ -54,7 +54,7 @@ CakeCouponBook.affiliate_campaigns.preview = ->
   select.change ->
     book_id = this.value
     
-    $.get "/affiliate_campaigns/book_preview?coupon_book_id=#{book_id}", (data) ->
+    $.get "/group_campaigns/book_preview?coupon_book_id=#{book_id}", (data) ->
       container.html data
       return
     return

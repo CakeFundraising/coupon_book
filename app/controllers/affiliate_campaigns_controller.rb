@@ -1,6 +1,8 @@
 class AffiliateCampaignsController < InheritedResources::Base
-  include AffiliateCampaignTemplateController
+  defaults resource_class: AffiliateCampaign.friendly
   load_and_authorize_resource
+
+  include AffiliateCampaignTemplateController
 
   def index
     @campaigns = current_affiliate.affiliate_campaigns.latest.decorate
