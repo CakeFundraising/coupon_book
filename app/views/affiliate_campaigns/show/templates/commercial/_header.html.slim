@@ -12,5 +12,5 @@
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         .buy_button_section.col-md-2.col-sm-3
           .save.text-center Save #{@coupon_book.no_discount_price} instantly!
-          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_coupon_book_path(@coupon_book), 'success-transparent')
+          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
   .hero-screen

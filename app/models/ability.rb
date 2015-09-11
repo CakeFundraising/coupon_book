@@ -28,6 +28,7 @@ class Ability
     can :read, :all
 
     can [:start_discount, :start_pr_box, :donate, :checkout], CouponBook
+    can [:donate, :checkout], AffiliateCampaign
     can :click, Coupon
   end
 end

@@ -1,0 +1,2 @@
+module AffiliateCampaignHelper
+end

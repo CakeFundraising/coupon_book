@@ -2,12 +2,12 @@
   .col-xs-10.col-xs-push-1
     br
     br
-    = buy_book_widget_button(@coupon_book, 'success')
+    = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success')
     br
     br
 
 .floating-right
-  = buy_book_widget_button(@coupon_book, 'success-transparent')
+  = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
 
 - if @first_category.present?
   #coupons.col-xs-12
