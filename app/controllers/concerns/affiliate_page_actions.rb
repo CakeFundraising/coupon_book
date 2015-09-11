@@ -2,7 +2,7 @@ module AffiliatePageActions
   extend ActiveSupport::Concern
   
   included do
-    before_action :allow_launched_book, only: :donate 
+    before_action :allow_launched_book, only: [:donate, :checkout]
     before_action :redirect_old_slug, only: [:show]
   end
 
@@ -26,7 +26,8 @@ module AffiliatePageActions
   end
 
   def donate
-    @coupon_book = resource.decorate
+    @affiliate_campaign = resource.decorate
+    @coupon_book = @affiliate_campaign.coupon_book
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
     @purchase = @coupon_book.purchases.build
 
@@ -38,7 +39,8 @@ module AffiliatePageActions
   end
 
   def checkout
-    @coupon_book = resource.decorate
+    @affiliate_campaign = resource.decorate
+    @coupon_book = @affiliate_campaign.coupon_book
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
     @purchase = @coupon_book.purchases.build(amount: @coupon_book.object.price.to_i)
 
@@ -52,7 +54,7 @@ module AffiliatePageActions
   protected
 
   def allow_launched_book
-    redirect_to affiliate_campaign_path(resource) unless resource.launched?
+    redirect_to affiliate_campaign_path(resource) unless resource.coupon_book.launched?
   end
 
   def redirect_old_slug
