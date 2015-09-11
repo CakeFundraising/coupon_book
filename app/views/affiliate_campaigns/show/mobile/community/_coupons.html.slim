@@ -1,0 +1,24 @@
+.row-fluid
+  .col-xs-10.col-xs-push-1
+    br
+    br
+    = buy_book_widget_button(@coupon_book, 'success')
+    br
+    br
+
+.floating-right
+  = buy_book_widget_button(@coupon_book, 'success-transparent')
+
+- if @first_category.present?
+  #coupons.col-xs-12
+    .row-fluid
+      .col-md-12
+        h1.category-title.text-center = @first_category.name
+
+        .items
+          = render partial:"coupons/show/templates/#{CouponBook::COUPON_TEMPLATES[:mobile]}", collection: @discounts, as: :coupon
+    #remote-items.row-fluid
+      .col-md-12.text-center
+        span#spinner.hidden = image_tag 'loading.gif'
+        = link_to 'See More', load_remaining_discounts_categories_path(coupon_book_id: @coupon_book), remote: true, class: 'btn btn-primary btn-lg', id:'see-more-link'
+      br
