@@ -1,4 +1,5 @@
 class AffiliateCampaign < ActiveRecord::Base
+  include Screenshotable
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]

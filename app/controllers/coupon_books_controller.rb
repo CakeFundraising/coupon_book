@@ -6,7 +6,6 @@ class CouponBooksController < InheritedResources::Base
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
   before_action :block_fr, only: [:start_discount, :start_pr_box]
-  #before_action :redirect_to_billing, only: :launch
 
   def index
     @coupon_books = current_fundraiser.coupon_books.latest.decorate
@@ -98,16 +97,6 @@ class CouponBooksController < InheritedResources::Base
   def redirect_to_pr_box_template
     redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_merchant.present?
   end
-
-  # def redirect_to_billing
-  #   unless resource.fundraiser.stripe_publishable_key.present?
-  #     if request.xhr?
-  #       render js: "window.location = #{cake_fundraiser_path(:billing).to_json}"
-  #     else
-  #       redirect_to cake_fundraiser_path(:billing)
-  #     end
-  #   end
-  # end
 
   def block_fr
     redirect_to coupon_books_path, alert: "You're not authorized to see this page." if current_fundraiser.present?

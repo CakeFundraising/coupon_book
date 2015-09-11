@@ -15,7 +15,7 @@ class AffiliateCampaignsController < InheritedResources::Base
 
     create! do |success, failure|
       success.html do
-        #update_screenshot(@affiliate_campaign)
+        update_screenshot(@affiliate_campaign)
         redirect_to join_affiliate_campaign_path(@affiliate_campaign)
       end
       failure.html do
@@ -27,7 +27,7 @@ class AffiliateCampaignsController < InheritedResources::Base
   def update
     update! do |success, failure|
       success.html do
-        #update_screenshot(@affiliate_campaign)
+        update_screenshot(@affiliate_campaign)
         redirect_to controller: :affiliate_campaigns, action: params[:affiliate_campaign][:step], id: resource
       end
       failure.html do
@@ -57,5 +57,9 @@ class AffiliateCampaignsController < InheritedResources::Base
         :avatar_crop_w, :avatar_crop_h, :bypass_cloudinary_validation
       ]
     ])
+  end
+
+  def update_screenshot(affiliate_campaign)
+    Resque.enqueue(ResqueSchedule::AffiliateCampaignScreenshot, affiliate_campaign.id, affiliate_campaign_url(affiliate_campaign)) unless Rails.env.test?
   end
 end
