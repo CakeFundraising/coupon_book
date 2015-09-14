@@ -2,6 +2,8 @@ class AffiliateCampaignDecorator < ApplicationDecorator
   delegate_all
 
   decorates_association :coupon_book
+  decorates_association :affiliate
+  decorates_association :avatar_picture
 
   def to_s
     object.name
@@ -18,6 +20,16 @@ class AffiliateCampaignDecorator < ApplicationDecorator
   def meta_title
     book = coupon_book
     book.commercial_template? ? book.fr_name : object.organization_name
+  end
+
+  def url
+    unless object.url.blank?
+      (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
+    end
+  end
+
+  def url_link
+    h.auto_attr_link url, target: :_blank
   end
 
   def shareable_screenshot_url

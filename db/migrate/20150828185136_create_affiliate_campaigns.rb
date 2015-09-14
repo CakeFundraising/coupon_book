@@ -11,7 +11,7 @@ class CreateAffiliateCampaigns < ActiveRecord::Migration
       t.string :slug
       t.string :screenshot_url
       t.string :screenshot_version
-      t.boolean :use_stripe, default: true
+      t.boolean :use_stripe, default: false
       t.string :check_recipient_name
       t.integer :affiliate_id
       t.integer :coupon_book_id

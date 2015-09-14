@@ -60,12 +60,12 @@ ActiveRecord::Schema.define(version: 20150828185136) do
     t.string   "slug"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.boolean  "use_stripe",           default: true
+    t.boolean  "use_stripe",           default: false
     t.string   "check_recipient_name"
     t.integer  "affiliate_id"
     t.integer  "coupon_book_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
   end
 
   create_table "avatar_pictures", force: :cascade do |t|
