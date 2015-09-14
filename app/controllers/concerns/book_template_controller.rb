@@ -53,6 +53,7 @@ module BookTemplateController
 
   def affiliates
     @coupon_book = resource.decorate
+    @affiliate_campaigns = @coupon_book.affiliate_campaigns.decorate
     render 'coupon_books/template/affiliates'
   end
 

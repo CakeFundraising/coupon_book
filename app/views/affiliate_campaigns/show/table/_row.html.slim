@@ -1,0 +1,9 @@
+- cache [:table, :affiliate_campaign, campaign] do
+  tr.campaign
+    td data-title=(Affiliate.model_name.human)
+      = campaign.affiliate
+    td.truncate
+      = link_to 'View', campaign, target: :_blank, class:'btn btn-sm btn-primary'
+      = link_to campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
+        span.glyphicon.glyphicon-trash
+  tr.empty-tr

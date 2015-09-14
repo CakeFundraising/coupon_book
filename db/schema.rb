@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828185136) do
+ActiveRecord::Schema.define(version: 20150914203445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -141,6 +141,18 @@ ActiveRecord::Schema.define(version: 20150828185136) do
     t.integer "coupon_id"
     t.integer "position"
   end
+
+  create_table "commissions", force: :cascade do |t|
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "USD", null: false
+    t.integer  "purchase_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  add_index "commissions", ["owner_type", "owner_id"], name: "index_commissions_on_owner_type_and_owner_id", using: :btree
 
   create_table "communities", force: :cascade do |t|
     t.string   "slug"

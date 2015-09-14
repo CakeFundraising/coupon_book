@@ -46,6 +46,8 @@ class CouponBook < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
+  has_many :commissions, through: :purchases
+  
   has_many :direct_donations, as: :donable
 
   monetize :goal_cents, numericality: {greater_than: MIN_PRICE}
