@@ -14,7 +14,7 @@ class CreateAffiliateCampaigns < ActiveRecord::Migration
       t.boolean :use_stripe, default: false
       t.string :check_recipient_name
       t.integer :affiliate_id
-      t.integer :coupon_book_id
+      t.integer :community_id
 
       t.timestamps null: false
     end

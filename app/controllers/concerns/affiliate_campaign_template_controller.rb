@@ -15,8 +15,8 @@ module AffiliateCampaignTemplateController
   end
 
   def book_preview
-    @book = CouponBook.find(params[:coupon_book_id]).decorate
-    @community = @book.community.decorate
+    @community = Community.find(params[:community_id]).decorate
+    @book = @community.coupon_book.decorate
     render partial:'affiliate_campaigns/template/partials/book_preview', layout: false
   end
 

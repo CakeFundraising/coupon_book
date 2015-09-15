@@ -29,6 +29,7 @@ module AffiliatePageActions
     @affiliate_campaign = resource.decorate
     @coupon_book = @affiliate_campaign.coupon_book
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+
     @purchase = @coupon_book.purchases.build
 
     if mobile_device?
@@ -42,6 +43,7 @@ module AffiliatePageActions
     @affiliate_campaign = resource.decorate
     @coupon_book = @affiliate_campaign.coupon_book
     @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+
     @purchase = @coupon_book.purchases.build(amount: @coupon_book.object.price.to_i)
 
     if mobile_device?

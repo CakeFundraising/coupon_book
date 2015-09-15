@@ -5,7 +5,9 @@ class AffiliateCampaign < ActiveRecord::Base
   friendly_id :slug_candidates, use: [:slugged, :history]
 
   belongs_to :affiliate
-  belongs_to :coupon_book
+  belongs_to :community
+
+  has_one :coupon_book, through: :community
 
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
@@ -13,7 +15,7 @@ class AffiliateCampaign < ActiveRecord::Base
   has_many :purchases, as: :purchasable
   has_many :commissions, through: :purchases
 
-  validates :coupon_book, presence: true
+  validates :community, presence: true
   validates :first_name, :last_name, :phone, :email, presence: true, if: ->(c){ c.persisted? and c.coupon_book.commercial_template? }
   validates :organization_name, :url, :story, presence: true, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
 

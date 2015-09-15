@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20150914203445) do
     t.boolean  "use_stripe",           default: false
     t.string   "check_recipient_name"
     t.integer  "affiliate_id"
-    t.integer  "coupon_book_id"
+    t.integer  "community_id"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
   end

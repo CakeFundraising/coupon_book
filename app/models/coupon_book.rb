@@ -33,7 +33,7 @@ class CouponBook < ActiveRecord::Base
   has_one :video, as: :recordable, dependent: :destroy
 
   has_one :community, dependent: :destroy
-  has_many :affiliate_campaigns, dependent: :destroy
+  has_many :affiliate_campaigns, through: :community
   has_many :affiliates, through: :affiliate_campaigns
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book

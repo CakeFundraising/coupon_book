@@ -29,7 +29,7 @@ CakeCouponBook.affiliate_campaigns.validation = ->
         phoneUS: true
       'affiliate_campaign[url]': 
         required: true
-      'affiliate_campaign[coupon_book_id]':
+      'affiliate_campaign[community_id]':
         required: true
       'affiliate_campaign[check_recipient_name]': 
         required: true
@@ -48,13 +48,13 @@ CakeCouponBook.affiliate_campaigns.validation = ->
 
 CakeCouponBook.affiliate_campaigns.preview = ->
   form = $('.formtastic.affiliate_campaign')
-  select = form.find('select#affiliate_campaign_coupon_book_id')
+  select = form.find('select#affiliate_campaign_community_id')
   container = form.find('#campaign-preview')
 
   select.change ->
     book_id = this.value
     
-    $.get "/group_campaigns/book_preview?coupon_book_id=#{book_id}", (data) ->
+    $.get "/group_campaigns/book_preview?community_id=#{book_id}", (data) ->
       container.html data
       return
     return
