@@ -35,6 +35,7 @@ class CouponBook < ActiveRecord::Base
   has_one :community, dependent: :destroy
   has_many :affiliate_campaigns, through: :community
   has_many :affiliates, through: :affiliate_campaigns
+  has_many :affiliate_purchases, through: :affiliate_campaigns
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
@@ -46,7 +47,6 @@ class CouponBook < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
-  has_many :commissions, through: :purchases
   
   has_many :direct_donations, as: :donable
 

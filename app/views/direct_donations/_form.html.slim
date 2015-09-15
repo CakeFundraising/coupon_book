@@ -44,4 +44,4 @@
         = image_tag 'powered_by_stripe.png'
 
 javascript:
-  CakeCouponBook.direct_donation.donate("#{donable.fr_name}", "#{donable.fundraiser.stripe_publishable_key}", '#{donable.picture.avatar_path}');
+  CakeCouponBook.direct_donation.donate("#{donable.fr_name}", "#{donable.fundraiser.stripe_account.publishable_key}", '#{donable.picture.avatar_path}');

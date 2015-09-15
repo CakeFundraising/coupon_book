@@ -27,7 +27,7 @@ class AffiliateCampaign < ActiveRecord::Base
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 
-  delegate :name, :end_date, :current_sales_cents, :status, to: :coupon_book
+  delegate :name, :end_date, :current_sales_cents, :status, :fee_percentage, :fundraiser, to: :coupon_book
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 

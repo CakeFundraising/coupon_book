@@ -145,14 +145,11 @@ ActiveRecord::Schema.define(version: 20150914203445) do
   create_table "commissions", force: :cascade do |t|
     t.integer  "amount_cents",    default: 0,     null: false
     t.string   "amount_currency", default: "USD", null: false
+    t.integer  "percentage"
     t.integer  "purchase_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
-
-  add_index "commissions", ["owner_type", "owner_id"], name: "index_commissions_on_owner_type_and_owner_id", using: :btree
 
   create_table "communities", force: :cascade do |t|
     t.string   "slug"

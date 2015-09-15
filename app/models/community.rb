@@ -7,6 +7,8 @@ class Community < ActiveRecord::Base
   belongs_to :coupon_book, inverse_of: :community
   
   has_many :affiliate_campaigns, dependent: :destroy
+  has_many :purchases, through: :affiliate_campaigns
+  has_many :commissions, through: :purchases
 
   #Slug
   def should_generate_new_friendly_id?

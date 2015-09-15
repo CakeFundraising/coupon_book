@@ -28,9 +28,9 @@ module AffiliatePageActions
   def donate
     @affiliate_campaign = resource.decorate
     @coupon_book = @affiliate_campaign.coupon_book
-    @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
-
-    @purchase = @coupon_book.purchases.build
+    
+    @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
+    @purchase = @affiliate_campaign.purchases.build
 
     if mobile_device?
       render('affiliate_campaigns/donate/mobile', layout: 'layouts/books/mobile')
@@ -42,9 +42,9 @@ module AffiliatePageActions
   def checkout
     @affiliate_campaign = resource.decorate
     @coupon_book = @affiliate_campaign.coupon_book
-    @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
-
-    @purchase = @coupon_book.purchases.build(amount: @coupon_book.object.price.to_i)
+    
+    @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
+    @purchase = @affiliate_campaign.purchases.build(amount: @coupon_book.object.price.to_i)
 
     if mobile_device?
       render('affiliate_campaigns/checkout/mobile', layout: 'layouts/books/mobile')

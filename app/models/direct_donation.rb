@@ -24,7 +24,7 @@ class DirectDonation < ActiveRecord::Base
         statement_descriptor: "Book ##{self.donable.id} Donation",
         application_fee: application_fee
       },
-        stripe_account: self.donable.fundraiser.stripe_account_id
+        stripe_account: self.donable.fundraiser.stripe_account.uid
       )
       store_transaction(charge)
     rescue Stripe::CardError => e
@@ -41,7 +41,7 @@ class DirectDonation < ActiveRecord::Base
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.donable.fundraiser.stripe_account_token)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.donable.fundraiser.stripe_account.token)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,

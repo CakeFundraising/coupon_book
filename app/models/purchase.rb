@@ -19,6 +19,7 @@ class Purchase < ActiveRecord::Base
   end
 
   after_create do
+    Commission.create_from_purchase!(self) #create Commision
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
   end
 
@@ -52,10 +53,10 @@ class Purchase < ActiveRecord::Base
             email: self.email
           },
           receipt_email: self.email,
-          statement_descriptor: "EFG.org #{self.purchasable.class} ##{self.purchasable.id}",
+          statement_descriptor: "EatsForGood Donation",
           application_fee: application_fee
         },
-          stripe_account: self.purchasable.fundraiser.stripe_account_id
+          stripe_account: self.purchasable.fundraiser.stripe_account.uid
         )
         store_transaction(charge)
       rescue Stripe::CardError => e
@@ -72,7 +73,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.purchasable.fundraiser.stripe_account_token)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.purchasable.fundraiser.stripe_account.token)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,
