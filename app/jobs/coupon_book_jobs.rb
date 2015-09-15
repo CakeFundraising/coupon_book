@@ -1,4 +1,18 @@
 module ResqueSchedule
+  class CampaignEnd 
+    extend Resque::Plugins::Retry
+    @queue = :high
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform
+      CouponBook.to_end.each do |campaign|
+        campaign.end
+      end
+    end
+  end
+
   class BookScreenshot
     extend Resque::Plugins::Retry
     @queue = :high

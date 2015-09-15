@@ -87,6 +87,15 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
+  def end
+    past!
+    #notify_end
+  end
+
+  def notify_end
+    CampaignNotification.campaign_ended(self.id, fundraiser.id).deliver
+  end
+
   def no_discount_price
     coupons.sum(:price_cents)/100
   end
