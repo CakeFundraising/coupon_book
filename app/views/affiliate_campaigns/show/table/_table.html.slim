@@ -4,6 +4,8 @@
       thead.cf
         tr
           th = Affiliate.model_name.human
+          th = AffiliateCampaign.human_attribute_name :total_sales
+          th = AffiliateCampaign.human_attribute_name :sales_count
           th
       tbody
         = render partial:'affiliate_campaigns/show/table/row', collection: campaigns, as: :campaign

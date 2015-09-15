@@ -2,8 +2,17 @@
   tr.campaign
     td data-title=(Affiliate.model_name.human)
       = campaign.affiliate
+    td data-title=(AffiliateCampaign.human_attribute_name :total_sales)
+      = campaign.current_sales
+    td data-title=(AffiliateCampaign.human_attribute_name :sales_count)
+      = campaign.purchases.count
     td.truncate
-      = link_to 'View', campaign, target: :_blank, class:'btn btn-sm btn-primary'
+      = link_to 'View Campaign', campaign, target: :_blank, class:'btn btn-sm btn-success'
+
+      = link_to "More Info", "#campaign_modal_#{campaign.id}", class: "btn btn-sm btn-default", data: {toggle: :modal}
+
       = link_to campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
         span.glyphicon.glyphicon-trash
+
+      = render partial:'affiliate_campaigns/show/table/more_modal', locals:{campaign: campaign}
   tr.empty-tr

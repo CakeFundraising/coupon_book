@@ -27,7 +27,8 @@ class AffiliateCampaign < ActiveRecord::Base
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 
-  delegate :name, :end_date, :current_sales_cents, :status, :fee_percentage, :fundraiser, to: :coupon_book
+  delegate :name, :end_date, :status, :fee_percentage, :fundraiser, to: :coupon_book
+  delegate :commission_percentage, to: :community
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
@@ -41,5 +42,13 @@ class AffiliateCampaign < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     organization_name.present? ? organization_name_changed? : false
+  end
+
+  def current_sales_cents
+    purchases.sum(:amount_cents)
+  end
+
+  def current_commission_cents
+    commissions.sum(:amount_cents)
   end
 end
