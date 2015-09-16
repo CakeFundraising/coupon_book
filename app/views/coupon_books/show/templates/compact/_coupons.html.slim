@@ -5,13 +5,16 @@
         .col-md-12.text-center
           span.banner-heading = t('banners.coupon_book.coupons', count: @coupon_book.coupons.count).html_safe
 
-.row.book-nav
-  .nav-section.col-md-12.col-sm-9.text-center
-    h4.title = t('banners.coupon_book.categories_subtitle').html_safe
-    ul.nav.nav-pills.popular
-      = render partial:'categories/show/book_nav', collection: @categories, as: :category
-  .buy_button_section.col-md-3.col-sm-3
-    = campaign_buy_button(@coupon_book, "Donate Now", donate_coupon_book_path(@coupon_book), 'success-transparent')
+.book-nav
+  .container
+    .row
+      .nav-section.col-md-12.col-sm-9
+        h4.title.text-center = t('banners.coupon_book.categories_subtitle').html_safe
+        h4.nav-title = t('banners.coupon_book.coupons', count: @coupon_book.coupons.count).html_safe
+        ul.nav.nav-pills.popular
+          = render partial:'categories/show/book_nav', collection: @categories, as: :category
+      .buy_button_section.col-md-3.col-sm-3
+        = coupon_book_buy_button(@coupon_book, 'success-transparent')
 
 = render partial:'coupon_books/show/templates/shared/after_purchase'
 
