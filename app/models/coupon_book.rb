@@ -35,7 +35,7 @@ class CouponBook < ActiveRecord::Base
   has_one :community, dependent: :destroy
   has_many :affiliate_campaigns, through: :community
   has_many :affiliates, through: :affiliate_campaigns
-  has_many :affiliate_purchases, through: :affiliate_campaigns
+  has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
@@ -75,6 +75,7 @@ class CouponBook < ActiveRecord::Base
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
 
+  #Actions
   def launch!
     #notify_launch if self.launched! and self.update_attribute(:visible, true)
     self.launched!
@@ -89,13 +90,15 @@ class CouponBook < ActiveRecord::Base
 
   def end
     past!
-    #notify_end
+    notify_end
   end
 
   def notify_end
-    CampaignNotification.campaign_ended(self.id, fundraiser.id).deliver
+    CampaignMailer.campaign_ended(self.id).deliver_now
+    CampaignMailer.affiliate_invoices(self.id).deliver_now if self.affiliate_campaigns.any?
   end
 
+  #Analytics
   def no_discount_price
     coupons.sum(:price_cents)/100
   end
