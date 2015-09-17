@@ -51,7 +51,7 @@ export default class CollectionCoupons extends Component {
       <div className="coupons-column">
         <h2>Available Discounts
           <Button
-            href="/coupons/new"
+            href="/discounts/new"
             type="link"
             className="btn btn-success btn-sm pull-right">
             Add Discount
