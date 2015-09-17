@@ -1,1 +1,32 @@
-h1 Merchant Dashboard
+= display_meta("My Dashboard")
+
+h1.dash-head My Dashboard
+
+.row
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = current_merchant.coupons.count
+          p.boldest = t('semantic.number_of', model: 'Discounts')
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = current_merchant.total_vouchers_sold
+          p.boldest Total Discounts Sold
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = current_merchant.total_unique_clicks
+          p.boldest Total Unique Clicks
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = current_merchant.total_clicks
+          p.boldest Total Clicks

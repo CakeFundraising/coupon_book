@@ -84,7 +84,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :collections_coupons, only: [:create, :destroy]
 
-  resources :coupons do
+  resources :coupons, path: :discounts do
     member do
       get :download
       get :click
@@ -103,7 +103,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :pr_boxes, except: [:index, :show]
+  resources :pr_boxes, except: :show
 
   resources :coupon_sponsors
 

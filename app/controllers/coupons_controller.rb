@@ -9,6 +9,10 @@ class CouponsController < InheritedResources::Base
     :launching
   ]
 
+  def index
+    @coupons = current_merchant.coupons.decorate
+  end
+
   def new
     @coupon = current_merchant.present? ? Coupon.build_sp_coupon(current_merchant) : Coupon.build_fr_coupon(current_fundraiser)
   end

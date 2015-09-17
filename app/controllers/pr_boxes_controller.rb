@@ -1,6 +1,10 @@
 class PrBoxesController < InheritedResources::Base
   before_action :set_collection, only: :create
 
+  def index
+    @pr_boxes = current_merchant.pr_boxes.decorate
+  end
+
   def create
     @pr_box = PrBox.new(permitted_params[:pr_box])
     @pr_box.origin_collection = @collection

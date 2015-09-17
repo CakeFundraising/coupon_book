@@ -1,31 +1,23 @@
-h1 Listing coupons
-
-table
-  thead
-    tr
-      th Position
-      th Title
-      th Description
-      th Terms and conditions
-      th Url
-      th Expires at
-      th
-      th
-      th
-
-  tbody
-    - @coupons.each do |coupon|
-      tr
-        td = coupon.position
-        td = coupon.title
-        td = coupon.description
-        td = coupon.terms_and_conditions
-        td = coupon.url
-        td = coupon.expires_at
-        td = link_to 'Show', coupon
-        td = link_to 'Edit', edit_coupon_path(coupon)
-        td = link_to 'Destroy', coupon, data: {:confirm => 'Are you sure?'}, :method => :delete
-
 br
+= link_to 'Create a Discount', new_coupon_path, class:'btn btn-primary pull-right'
 
-= link_to 'New Coupon', new_coupon_path
+h1.dash-head My Discounts
+
+- if @coupons.any?
+  #no-more-tables
+    table.table.table-hover.table-bordered.table-striped.data-table#sponsor-coupons
+      thead
+        tr.cf
+          th = Coupon.model_name.human
+          th = Coupon.human_attribute_name :expires_at
+          th = Coupon.human_attribute_name :universal
+          th = Coupon.human_attribute_name :fundraiser
+          th = t('semantic.number_of', model: 'Discounts Sold')
+          th = Coupon.human_attribute_name :unique_clicks
+          th = Coupon.human_attribute_name :total_clicks
+          th = Coupon.human_attribute_name :status
+          th
+      tbody
+        = render partial:'coupons/show/sponsor/row', collection: @coupons, as: :coupon 
+- else
+  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.coupons'), in_profile: true}
