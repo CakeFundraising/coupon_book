@@ -1,3 +1,11 @@
-h1.text-center Edit PR Box
+= display_meta("Edit PR Box")
+
+br
+= link_to 'Cancel', pr_boxes_path, class:'pull-right'
+
+.headline.text-center
+  h1 Edit PR Box
+  h4.text-muted Set PR box title, images, story, and other data.
+  br
 
 == render 'form'

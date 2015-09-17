@@ -1,6 +1,5 @@
 .row
-  .col-md-3
-  .campaign-nav.col-md-6.text-center  
+  .campaign-nav.col-md-6
     - if @coupon.persisted?
       ul.nav.nav-pills
         = wizard_menu_item(edit_coupon_path(@coupon), t('links.wizards.coupon.sponsor'))
@@ -14,6 +13,7 @@
           a href="" = t('links.wizards.coupon.discount')
         li 
           a href="" = t('links.wizards.coupon.launch')
+  .col-md-3
   .campaign-nav.col-md-3
     - if @coupon.persisted?
       ul.nav.nav-pills

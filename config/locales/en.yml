@@ -108,6 +108,9 @@ en:
       coupon:
         one: Discount
         other: Discounts
+      pr_box:
+        one: PR Box
+        other: PR Boxes
     attributes:
       category:
         name: Category Name

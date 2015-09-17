@@ -1,3 +1,11 @@
-h1.text-center New PR Box
+= display_meta("New PR Box")
+
+br
+= link_to 'Cancel', pr_boxes_path, class:'pull-right'
+
+.headline.text-center
+  h1 New PR Box
+  h4.text-muted Set your deal title, image, terms of use, and other data.
+  br
 
 == render 'form'
