@@ -41,7 +41,19 @@
   border: 7px solid rgba(0,0,0,.1);
   margin-bottom: 25px;
 }
-.sponsors-cir {
+.affiliates-cir {
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  color: #fff;
+  padding: 40px 15px;
+  margin: 0 auto;
+  background-color: $brand-purple;
+  border-radius: 500px;
+  border: 7px solid rgba(0,0,0,.1);
+  margin-bottom: 25px;
+}
+.merchants-cir {
   width: 250px;
   height: 250px;
   text-align: center;

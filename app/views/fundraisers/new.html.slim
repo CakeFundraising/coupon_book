@@ -1,0 +1,31 @@
+= display_meta("Account Setup")
+
+.wizard-wrap
+  .headline.text-center
+    h1 Tell us about yourself
+    h4.text-muted An organization, an individual or any good cause can raise money on Cake.
+    br
+
+  = semantic_form_for @user, url: registration_update_fundraiser_path(@user) do |f|
+    = f.inputs do
+      .row
+        .col-md-12
+          h3 Basic Information
+          p.text-muted Add a picture, a contact phone, and your address.
+          br
+        .col-md-6
+          = render partial:'avatar_pictures/form', locals:{f: f}
+        .col-md-6
+          = f.input :phone
+          = render partial:'locations/form', locals:{f: f}
+      .row.section-wrapper
+        .col-md-12
+          h3 Tax Status
+          p.text-muted Specify if you or your Organization is a tax exempt.
+          br
+        .col-md-12
+          = f.input :tax_exempt
+      br
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

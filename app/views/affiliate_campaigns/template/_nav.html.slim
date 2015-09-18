@@ -1,0 +1,25 @@
+- if @campaign.persisted?
+  .row
+    .campaign-nav.col-md-8
+      ul.nav.nav-pills
+        = wizard_menu_item(edit_affiliate_campaign_path(@campaign), t('links.wizards.affiliate_campaign.campaign'))
+        = wizard_menu_item(join_affiliate_campaign_path(@campaign), t('links.wizards.affiliate_campaign.join'))
+        = wizard_menu_item(get_paid_affiliate_campaign_path(@campaign), t('links.wizards.affiliate_campaign.get_paid'))
+        = wizard_menu_item(share_affiliate_campaign_path(@campaign), t('links.wizards.affiliate_campaign.share'))
+    .campaign-nav.col-md-4.text-right
+      - if @campaign.persisted?
+        ul.nav.nav-pills
+          li = link_to 'Preview', @campaign
+          li = link_to 'Delete', @campaign, data: {confirm: 'Are you sure?'}, method: :delete
+- else
+  .row
+    .campaign-nav.col-md-12.text-center
+      ul.nav.nav-pills
+        li.active
+          a data-toggle="tab" href="#main" = t('links.wizards.affiliate_campaign.campaign')
+        li 
+          a href="" = t('links.wizards.affiliate_campaign.join')
+        li 
+          a href="" = t('links.wizards.affiliate_campaign.get_paid')
+        li 
+          a href="" = t('links.wizards.affiliate_campaign.share')

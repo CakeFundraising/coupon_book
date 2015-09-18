@@ -1,0 +1,7 @@
+h2 Welcome #{@resource.first_name}!
+
+p Thank you for registering with Eats for Good, you can confirm your account by clicking on the link below:
+
+p = link_to 'Confirm my Account', confirmation_url(@resource, confirmation_token: @token), class:'btn btn-primary'
+
+p Enjoy!

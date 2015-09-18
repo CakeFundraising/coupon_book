@@ -1,0 +1,17 @@
+= display_meta("Getting Paid")
+
+#withdraw.wizard-wrap
+  .headline
+    h1 Getting Paid
+    h4.text-muted Manage your Stripe account.
+    br
+  .row.inputs
+    .col-md-12
+      h3 Your Stripe account
+
+      - if @stripe_account.nil?
+        .text-muted In order to receive donations from consumer you must connect your Stripe account.
+      - else
+        .text-muted Congratulations! Your Stripe account is connected and functional. Now you can receive payments and donations!
+      br
+      = stripe_buttons

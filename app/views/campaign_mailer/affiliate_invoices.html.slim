@@ -1,0 +1,18 @@
+h2 Dear #{@fundraiser},
+
+p It's time to reward your Campaign Affiliates for all what they've done to help your Campaign standout!
+
+P Here is a summary of Affiliate's performance and info so you can send them a check.
+
+table.table
+  thead.cf
+    tr
+      th = Affiliate.model_name.human
+      th = AffiliateCampaign.human_attribute_name :commission_percentage
+      th = AffiliateCampaign.human_attribute_name :sales_count
+      th = AffiliateCampaign.human_attribute_name :total_sales
+      th = AffiliateCampaign.human_attribute_name :total_commission
+  tbody
+    = render partial:'affiliate_campaigns/show/table/affiliate_invoice', collection: @affiliate_campaigns, as: :campaign
+
+p You're entirely responsible for paying your affiliates, Eats For Good is not responsible for any problems between you and your affiliates.

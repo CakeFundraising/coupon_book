@@ -16,7 +16,7 @@ class Charge < ActiveRecord::Base
 
   def token
     if chargeable_type == 'Purchase'
-      chargeable.purchasable.fundraiser.stripe_token
+      chargeable.purchasable.fundraiser.stripe_account.token
     end
   end
 end

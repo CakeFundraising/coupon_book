@@ -2,7 +2,7 @@ module BookPageActions
   extend ActiveSupport::Concern
   
   included do
-    before_action :allow_launched_book, only: :donate 
+    before_action :allow_launched_book, only: [:donate, :checkout]
     before_action :redirect_old_slug, only: [:show]
   end
 

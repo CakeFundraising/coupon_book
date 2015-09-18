@@ -4,13 +4,8 @@ module CouponBookHelper
   end
 
   def status_buttons(coupon_book)
-    unless coupon_book.past?
-      if coupon_book.incomplete?
-        link_to("Launch", launch_coupon_book_path(coupon_book), method: :patch, remote: true, class:'btn btn-success btn-sm launch_button')
-      else
-        content_tag(:div, coupon_book.status, class:'btn btn-sm btn-success disabled')
-      end
-    end
+    color = CouponBook::COLOR_STATUS[coupon_book.status.downcase]
+    content_tag(:div, coupon_book.status, class:"btn btn-sm btn-#{color} disabled")
   end
 
   def screenshot_dowload(coupon_book)
@@ -26,15 +21,15 @@ module CouponBookHelper
     end
   end
 
-  def coupon_book_buy_button(coupon_book, button_color=:success)
-    if coupon_book.launched?
-      link_to 'Donate Now', donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+  def campaign_edit_button(campaign)
+    if can? :edit, campaign and not campaign.past?
+      link_to "Edit Campaign", edit_coupon_book_path(campaign), class:'btn btn-transparent-dark'
     end
   end
 
-  def buy_book_widget_button(coupon_book, button_color=:success)
-    if coupon_book.launched?
-      link_to "Give Now", donate_coupon_book_path(coupon_book), class: "btn btn-#{button_color} btn-xl buy_button", data: {no_turbolink: true}
+  def campaign_buy_button(campaign, text, url, color=:success)
+    if campaign.launched?
+      link_to text, url, class: "btn btn-#{color} btn-xl buy_button", data: {no_turbolink: true}
     end
   end
 
@@ -63,7 +58,6 @@ module CouponBookHelper
   end
 
   def join_mail_list
-    #content_tag(:a, 'Join our email list!', data:{toggle: 'modal', target: '#how_it_works_modal'})
     link_to 'Join our email list!', efg_contact_path, target: :_blank
   end
 

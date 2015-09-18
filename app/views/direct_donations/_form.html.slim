@@ -39,9 +39,9 @@
                   button#donate_button.btn.btn-success.btn-md Donate
 
   .stripe-powered
-    .pull-right 
-      = link_to 'https://stripe.com', target: :blank do
+    .pull-right
+      = stripe_link do
         = image_tag 'powered_by_stripe.png'
 
 javascript:
-  CakeCouponBook.direct_donation.donate("#{donable.fr_name}", "#{donable.fundraiser.stripe_publishable_key}", '#{donable.picture.avatar_path}');
+  CakeCouponBook.direct_donation.donate("#{donable.fr_name}", "#{donable.fundraiser.stripe_account.publishable_key}", '#{donable.picture.avatar_path}');

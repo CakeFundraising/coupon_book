@@ -1,80 +1,55 @@
-class User < Ohm::Model
-  attribute :full_name
-  attribute :email
-  attribute :cake_access_token
+class User < ActiveRecord::Base
+  include Omniauthable
+  include Rolable
 
-  reference :fundraiser, :Fundraiser
-  reference :sponsor, :Sponsor
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  devise :omniauthable, omniauth_providers: [:facebook, :twitter, :stripe_connect]
 
-  unique :email
-  index :cake_access_token
+  validates :first_name, :last_name, :email, presence: true
+  validates :roles, presence: true, if: :persisted?
 
-  alias_method :destroy, :delete
+  has_roles [:fundraiser, :merchant, :affiliate]
 
-  def fetch(cake_id)
-    self[cake_id]
+  has_one :location, as: :locatable, dependent: :destroy
+  has_one :avatar_picture, as: :avatarable, dependent: :destroy
+
+  accepts_nested_attributes_for :location, update_only: true, reject_if: :all_blank
+  accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
+
+  validates_associated :location, if: :persisted?
+  validates_associated :avatar_picture, if: :persisted?
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
-  def self.create_from_token(access_token)
-    data = self.current_user_data(access_token)
-
-    if data.blank?
-      user = nil
-    else
-      if self[data["id"]].present?
-        user = self[data["id"]]
-        user.update(cake_access_token: access_token)
-        self.create_roles(data) if (user.fundraiser? and Fundraiser[user.fundraiser_id].blank?) or (user.sponsor? and Sponsor[user.sponsor_id].blank?)
-      else
-        self.create_roles(data)
-        user = self.create(
-          id:                data["id"],
-          full_name:         data["info"]["full_name"],
-          email:             data["info"]["email"],
-          cake_access_token: access_token,
-          fundraiser_id:     data["info"]["fundraiser_id"],
-          sponsor_id:        data["info"]["sponsor_id"]
-        )
-      end
-    end
-    user
-  end
-
-  def self.find_by_access_token(access_token)
-    if access_token.present?
-      self.find(cake_access_token: access_token).first || self.create_from_token(access_token)
+  #User roles methods
+  def set_fundraiser!
+    unless merchant? or affiliate?
+      self.roles = [:fundraiser]
+      self.type = 'Fundraiser'
+      self.save
     end
   end
 
-  def fundraiser
-    Fundraiser.fetch(self.fundraiser_id.to_i)
-  end
-
-  def sponsor
-    Sponsor.fetch(self.sponsor_id.to_i)
-  end
-
-  def fundraiser?
-    self.fundraiser_id.present?
-  end
-
-  def sponsor?
-    self.sponsor_id.present?
-  end
-
-  private
-
-  def self.current_user_data(access_token)
-    begin
-      Cake::Oauth::User.new(access_token).self
-    rescue OAuth2::Error => e
-      nil
+  def set_merchant!
+    unless fundraiser? or affiliate?
+      self.roles = [:merchant]
+      self.type = 'Merchant'
+      self.save
     end
   end
 
-  def self.create_roles(data)
-    Fundraiser.create_from_data(data["extra"].try(:[], "fundraiser"))
-    Sponsor.create_from_data(data["extra"].try(:[], "sponsor"))
+  def set_affiliate!
+    unless fundraiser? or merchant?
+      self.roles = [:affiliate]
+      self.type = 'Affiliate'
+      self.save
+    end
   end
 
+  def registered!
+    create_collection if self.fundraiser? or self.merchant?
+    update_attribute(:registered, true)
+  end
 end

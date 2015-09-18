@@ -1,0 +1,70 @@
+= affiliate_page_meta(@affiliate_campaign)
+
+= content_for :head do
+  = javascript_include_tag 'donate'
+
+= content_for :navbar do
+  = stylesheet_link_tag 'models/coupon_books/donate'
+  = render partial:'coupon_books/show/templates/compact/navbar'
+
+#donate.row
+  .col-md-8.col-sm-6
+    /- cache [:checkout, :desktop, :form, @coupon_book] do
+    #overlay_loading.hidden
+    #checkout-sidebar.sidebar
+      .title = t('titles.coupon_book.purchase_form.checkout')
+      = render partial:'coupon_books/donate/form'
+      hr
+      .row
+        .col-md-8.col-sm-6
+          .terms 
+            span By continuing you are agreeing to Eats For Good's 
+            span = terms_modal_link
+          .terms 
+            | Payments are processed by 
+            span = stripe_link 'Stripe.com'
+            strong  We do not store your financial information.
+          .terms
+            | For further assistance, contact 
+            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+        .col-md-4.col-sm-6
+          .pull-right 
+            .back
+              = link_to 'Back', @affiliate_campaign, data: {no_turbolink: true}
+            .ssl-secure
+              = image_tag 'ssl-secure.png' 
+  .col-md-4.col-sm-6
+    - cache [:checkout, :desktop, :fr_info, @coupon_book] do
+      #fr-info.sidebar
+        .row
+          .col-md-12.col-sm-12
+            .headbar Proceeds benefit #{@coupon_book.fr_name}
+            .fr-banner 
+              = image_tag @coupon_book.picture.avatar_path, class:'img-responsive'
+            .fr-inf
+              address
+                h4.title
+                  = link_to @coupon_book.url, target: :_blank do
+                    = @coupon_book.fr_name
+                .address_1 = @coupon_book.fundraiser.address_1
+                .address_2 = @coupon_book.fundraiser.address_2
+                abbr.phone title="Phone" = @coupon_book.fundraiser.phone
+            .volunteer-with-us
+              a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
+                span.glyphicon.glyphicon-envelope 
+                span.clickable  #{@coupon_book.visitor_action}
+              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+            .quote = @coupon_book.mission
+      br
+    - if @purchases.any?
+      #purchases.sidebar
+        .headbar = t('titles.coupon_book.purchase_list')
+        ul.no-list
+          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+
+javascript:
+  var current_init = function(){
+    CakeCouponBook.purchases.coupon_book("#{@coupon_book.object.price.to_i}", "#{CakeCouponBook::Application.config.stripe.publishable_key}");
+  };
+  $(document).ready(current_init);
+  $(document).on('page:load', current_init);

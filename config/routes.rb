@@ -1,12 +1,19 @@
 CakeCouponBook::Application.routes.draw do
+  
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, confirmations: :confirmations}
+  
   root to:'home#index'
 
   scope :search, controller: :searches do
     get :search_coupons, path:'coupons'
     get :search_pr_boxes, path:'pr_boxes'
+  end
+
+  namespace :home, path:'/' do
+    get :get_started
   end
 
   mount Resque::Server, at: "/resque"
@@ -17,10 +24,12 @@ CakeCouponBook::Application.routes.draw do
     member do
       scope :edit do
         get :story
+        get :merchants
         get :organize
-        get :share
-        get :customize
         post :save_organize
+        get :affiliates
+        get :launching
+        get :share
       end
       patch :launch
       patch :save_for_launch
@@ -36,6 +45,24 @@ CakeCouponBook::Application.routes.draw do
 
       get :donate
       get :checkout
+    end
+  end
+
+  resources :communities, only: :show
+
+  resources :affiliate_campaigns, path: :group_campaigns do
+    member do
+      scope :edit do
+        get :join
+        get :get_paid
+        get :share
+      end
+
+      get :donate
+      get :checkout
+    end
+    collection do
+      get :book_preview
     end
   end
 
@@ -59,7 +86,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :collections_coupons, only: [:create, :destroy]
 
-  resources :coupons do
+  resources :coupons, path: :discounts do
     member do
       get :download
       get :click
@@ -78,13 +105,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :pr_boxes, except: [:index, :show]
-
-  scope :users, controller: :users do
-    get :sign_in
-    post :new_session
-    delete :sign_out
-  end
+  resources :pr_boxes, except: :show
 
   resources :coupon_sponsors
 
@@ -97,22 +118,37 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  scope :fundraisers, controller: :fundraisers, defaults: {format: :json} do
-    get :collection_coupons
-    get :collection_pr_boxes
+  resources :users, only: :index do
+    collection do
+      patch :roles
+    end
   end
 
-  namespace :dashboard do
-    scope :fundraiser, controller: :fundraiser do
-      get :home, as: :fundraiser_home
-      get :history, as: :fundraiser_history
+  resources :fundraisers do
+    member do
+      patch :registration_update
     end
-    scope :sponsor, controller: :sponsor do
-      get :home, as: :sponsor_home
-      get :history, as: :sponsor_history
-      get :coupons, as: :sponsor_coupons
-      get :pr_boxes, as: :sponsor_pr_boxes
+    collection do
+      get :collection_coupons, defaults: {format: :json}
+      get :collection_pr_boxes, defaults: {format: :json}
     end
+  end
+  resources :merchants do
+    member do
+      patch :registration_update
+    end
+  end
+  resources :affiliates do
+    member do
+      patch :registration_update
+    end
+  end
+
+  namespace :dashboard, path:'' do
+    get :dashboard
+    get :account
+    get :history
+    get :withdraw
   end
 
   match '/404', to: 'errors#file_not_found', via: :all

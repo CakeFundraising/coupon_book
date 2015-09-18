@@ -1,0 +1,32 @@
+= display_meta("Account")
+
+#profile.wizard-wrap
+  = semantic_form_for(@user) do |f|
+    .headline
+      h1 Account Settings
+      h4.text-muted Change your basic account settings.
+      br
+    = f.inputs do
+      .row
+        .col-md-6
+          = render partial:'avatar_pictures/form', locals:{f: f}
+        .col-md-6
+          .row
+            .col-md-6
+              = f.input :first_name, autofocus: true
+            .col-md-6
+              = f.input :last_name
+            .col-md-12
+              = f.input :email, label:'Email Address'
+              = f.input :phone
+              hr
+              = render partial:'locations/form', locals:{f: f}
+              / = f.input :password, autocomplete: "off"
+              / = f.input :password_confirmation, autocomplete: "off", label:'Confirm Password'
+              / i.help-block Leave blank if you don't want to change your password
+              / = f.input :current_password, autocomplete: "off", label:'Enter Password To Confirm Changes'
+              / i.help-block We need your current password to confirm your changes
+      br  
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Update Account', button_html: {class: 'btn btn-success btn-lg btn-block'}        

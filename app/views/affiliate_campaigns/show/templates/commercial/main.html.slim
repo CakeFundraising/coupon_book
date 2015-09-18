@@ -1,0 +1,34 @@
+= affiliate_page_meta(@affiliate_campaign)
+
+= content_for :head do
+  = javascript_include_tag 'coupon_books/templates/commercial'
+
+= content_for :navbar do
+  = stylesheet_link_tag 'models/coupon_books/templates/commercial'
+  = render partial:'coupon_books/show/templates/compact/navbar'
+
+= content_for :header do
+  = render partial:'affiliate_campaigns/show/templates/commercial/header'
+
+= content_for :bottom_section do
+  .main-background
+    = render partial:'coupon_books/show/templates/commercial/coupons'
+
+    = render partial:'coupon_books/show/templates/shared/bottom'
+
+css:
+  .banner.hero{ background-image: url("#{@coupon_book.picture.banner_path}"); }
+
+javascript:
+  var current_init = function(){
+    CakeCouponBook.coupon_books.templates.commercial();
+    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
+  };
+  $(document).ready(current_init);
+
+- if Rails.env.production? and params[:purchased].blank?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.audience);
+- if Rails.env.production? and params[:purchased].present?
+  javascript:
+    $(document).ready(CakeCouponBook.facebook.pixel.conversion("#{@coupon_book.estimated_fee}"));

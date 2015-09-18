@@ -23,7 +23,7 @@ class Picture < ActiveRecord::Base
   validates :avatar, presence: true, if: :persisted?
 
   scope :with_avatar, ->{ where.not(avatar: nil) }
-  scope :sponsor, ->{ where(picturable_type: 'Sponsor') }
+  scope :merchant, ->{ where(picturable_type: 'Merchant') }
   scope :fundraiser, ->{ where(picturable_type: 'Fundraiser') }
 
   before_save do

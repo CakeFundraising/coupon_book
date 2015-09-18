@@ -2,12 +2,12 @@
   .col-xs-10.col-xs-push-1
     br
     br
-    = coupon_book_buy_button(@coupon_book, 'success')
+    = campaign_buy_button(@coupon_book, "Give Now", donate_coupon_book_path(@coupon_book), 'success')
     br
     br
 
 .floating-right
-  = coupon_book_buy_button(@coupon_book, 'success-transparent')
+  = campaign_buy_button(@coupon_book, "Give Now", donate_coupon_book_path(@coupon_book), 'success-transparent')
 
 - if @first_category.present?
   #coupons.col-xs-12

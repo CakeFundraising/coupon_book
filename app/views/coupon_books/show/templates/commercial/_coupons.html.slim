@@ -2,14 +2,9 @@
 
 .container
   .row
-    .col-md-9.col-sm-9.padding-right-out
+    .col-md-12.col-sm-12.padding-right-out
       .benefit
-        span Proceeds benefit 
-        span.boldest = link_to "#{@coupon_book.fr_name}!", @coupon_book.url, target: :_blank
-    .col-md-3.col-sm-3.padding-left-out
-      .donate-save.bolder.text-right
-        div Donate #{@coupon_book.price} or more
-        div Save #{@coupon_book.no_discount_price} instantly!
+        span = @coupon_book.bottom_tagline
 
 .row-fluid
   .container
@@ -21,12 +16,3 @@
           .book-nav-help
             = book_load_all_deals(@coupon_book)
           br
-    .row-fluid
-      .col-md-12.text-center
-        .merchant-donated All Deals, valued at #{@coupon_book.no_discount_price}, were generously donated by the Restaurants & Merchants above
-
-- if @coupon_book.bottom_tagline.present?
-  .container
-    .row
-      .col-md-12.text-center
-        .bottom-tagline = @coupon_book.bottom_tagline

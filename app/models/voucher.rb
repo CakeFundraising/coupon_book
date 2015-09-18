@@ -19,7 +19,7 @@ class Voucher < ActiveRecord::Base
   scope :not_expired, ->{ where("expires_at > ?", Time.zone.now) }
 
   def validate_status(sp_id)
-    if self.owner_type != 'Sponsor' or self.owner_id != sp_id.to_i
+    if self.owner_type != 'Merchant' or self.owner_id != sp_id.to_i
       allowed = false
       message = 'Sorry, you cannot access this Voucher.'
     elsif self.redeemed?
@@ -47,10 +47,6 @@ class Voucher < ActiveRecord::Base
 
   def expired?
     self.expires_at <= Time.zone.now
-  end
-
-  def owner
-    self.owner_type.constantize.fetch(self.owner_id)
   end
 
   private

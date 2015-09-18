@@ -55,13 +55,18 @@
 //= require ./coupon_books/coupon_books
 //= require ./coupon_books/coupon_book_builder
 
+//= require ./models/affiliate_campaigns
+//= require ./models/affiliates
 //= require ./models/browsers
+//= require ./models/fundraisers
 //= require ./models/categories
 //= require ./models/collections
 //= require ./models/coupons
 //= require ./models/direct_donations
+//= require ./models/merchants
 //= require ./models/pictures
 //= require ./models/pr_boxes
 //= require ./models/purchases
+//= require ./models/users
 //= require ./models/subscriptors
 //= require ./models/videos

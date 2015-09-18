@@ -9,9 +9,10 @@ class Coupon < ActiveRecord::Base
   has_statuses :incomplete, :launched, :past
   
   has_one :location, as: :locatable, dependent: :destroy
-  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Sponsor Picture
+  has_one :avatar_picture, as: :avatarable, dependent: :destroy #Merchant Picture
   
   belongs_to :origin_collection, class_name: 'Collection', foreign_key: :collection_id
+  delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy
@@ -47,7 +48,6 @@ class Coupon < ActiveRecord::Base
   alias_method :active?, :launched?
 
   delegate :city, :state, :state_code, :zip_code, :country, :address, to: :location, allow_nil: true
-  delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   searchable do
     text :title, boost: 2
@@ -61,28 +61,28 @@ class Coupon < ActiveRecord::Base
 
   after_create :add_to_collection
 
-  def self.build_sp_coupon(sponsor)
-    collection_id = sponsor.collection.id
+  def self.build_merchant_coupon(merchant)
+    collection_id = merchant.collection.id
     coupon = Coupon.new(
-      sponsor_name: sponsor.name,
-      phone: sponsor.phone,
-      sponsor_url: sponsor.website,
+      sponsor_name: merchant.full_name,
+      phone: merchant.phone,
+      #merchant_url: merchant.website,
       collection_id: collection_id
     )
     coupon.build_location(
-      address: sponsor.location_address,
-      city: sponsor.location_city,
-      zip_code: sponsor.location_zip_code,
-      state_code: sponsor.location_state_code,
-      country_code: sponsor.location_country_code
+      address: merchant.location.address,
+      city: merchant.location.city,
+      zip_code: merchant.location.zip_code,
+      state_code: merchant.location.state_code,
+      country_code: merchant.location.country_code
     )
     coupon.build_avatar_picture(
-      uri: sponsor.avatar,
-      caption: sponsor.avatar_caption,
-      avatar_crop_x: sponsor.avatar_crop_x,
-      avatar_crop_y: sponsor.avatar_crop_y,
-      avatar_crop_w: sponsor.avatar_crop_w,
-      avatar_crop_h: sponsor.avatar_crop_h,
+      uri: merchant.avatar_picture.uri,
+      caption: merchant.avatar_picture.caption,
+      avatar_crop_x: merchant.avatar_picture.avatar_crop_x,
+      avatar_crop_y: merchant.avatar_picture.avatar_crop_y,
+      avatar_crop_w: merchant.avatar_picture.avatar_crop_w,
+      avatar_crop_h: merchant.avatar_picture.avatar_crop_h,
       bypass_cloudinary_validation: true
     )
     coupon

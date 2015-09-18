@@ -1,0 +1,19 @@
+#bs-example-navbar-collapse-1.collapse.navbar-collapse
+  ul.nav.navbar-nav
+    = menu_item "My Dashboard", dashboard_dashboard_path
+    = menu_item "Campaigns", affiliate_campaigns_path
+  ul.nav.navbar-nav.navbar-right
+    = menu_item 'Join Campaign', new_affiliate_campaign_path
+    li.dropdown
+      a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
+        = current_user.full_name
+        span.glyphicon.glyphicon-cog
+        span.caret
+      ul.dropdown-menu
+        = menu_item "Account", dashboard_account_path
+        = menu_item "History", dashboard_history_path
+        = menu_item "Withdraw", dashboard_withdraw_path
+        li.divider
+        = menu_item 'Join Campaign', new_affiliate_campaign_path
+        li.divider
+        = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete

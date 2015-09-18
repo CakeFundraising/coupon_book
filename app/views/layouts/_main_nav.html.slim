@@ -4,27 +4,18 @@ nav.navbar.navbar-default role="navigation"
       /! Brand and toggle get grouped for better mobile display
       /! Collect the nav links, forms, and other content for toggling
       - if current_user.present?
-        - unless current_fundraiser or current_sponsor
-          .navbar-header
-            a.navbar-brand
+        .navbar-header
+          .logo
+            = link_to root_path, class: 'navbar-brand' do
               = image_tag "efg_logo.png"
-            button.navbar-toggle data-target="#navbar-collapse" data-toggle="collapse" type="button" 
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-        - else
-          .navbar-header
-            .logo
-              = link_to root_path, class: 'navbar-brand' do
-                = image_tag "efg_logo.png"
-            button.navbar-toggle data-target="#navbar-collapse" data-toggle="collapse" type="button" 
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
+          button.navbar-toggle data-target="#navbar-collapse" data-toggle="collapse" type="button" 
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
         = render partial:'layouts/nav/fundraiser' if current_user.fundraiser?
-        = render partial:'layouts/nav/sponsor' if current_user.sponsor?
+        = render partial:'layouts/nav/merchant' if current_user.merchant?
+        = render partial:'layouts/nav/affiliate' if current_user.affiliate?
       - else
         .navbar-header
           .logo

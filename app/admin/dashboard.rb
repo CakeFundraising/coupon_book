@@ -84,12 +84,12 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       
-        panel 'Sponsors' do
+        panel 'Merchants' do
           table do
             tr do
               td do
-                strong Sponsor.all.count
-                span 'Total Sponsors'
+                strong Merchant.all.count
+                span 'Total Merchants'
               end
             end
           end

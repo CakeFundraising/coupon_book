@@ -1,27 +1,30 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+
+  before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
-  helper_method :current_user, :current_fundraiser, :current_sponsor, :current_browser, :mobile_device?, :ipad?
+
+  helper_method :current_fundraiser, :current_merchant, :current_affiliate, :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
   end
 
-  def current_user
-    @current_user ||= User.find_by_access_token(session[:access_token])
-  end
-
-  def current_fundraiser
-    @current_fundraiser ||= current_user.fundraiser if current_user.present? and current_user.fundraiser?
-  end
-
-  def current_sponsor
-    @current_sponsor ||= current_user.sponsor if current_user.present? and current_user.sponsor?
-  end
-
   def current_browser
     token = evercookie_get_value(:cfbid)
     @current_browser ||= Browser.find_by_token(token) if token.present?
+  end
+
+  def current_fundraiser
+    @current_fundraiser ||= current_user if current_user.fundraiser?
+  end
+
+  def current_merchant
+    @current_merchant ||= current_user if current_user.merchant?
+  end
+
+  def current_affiliate
+    @current_affiliate ||= current_user if current_user.affiliate?
   end
 
   #Detect Mobile
@@ -38,6 +41,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation)}
+    devise_parameter_sanitizer.for(:account_update){|u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)}
+  end
 
   def set_evercookie(key, value)
     session[:evercookie] = {} unless session[:evercookie].present?
@@ -60,5 +68,19 @@ class ApplicationController < ActionController::Base
 
   def set_cake_access_token
     session[:access_token] = params[:cat] if params[:cat].present?
+  end
+
+  def after_sign_in_path_for(resource)
+    return admin_root_path if resource.is_a? AdminUser
+
+    if resource.registered
+      dashboard_dashboard_path
+    else
+      if resource.roles.any?
+        send("new_#{resource.roles.first.to_s.downcase}_path")
+      else
+        home_get_started_path
+      end
+    end
   end
 end

@@ -1,0 +1,30 @@
+.row
+  .col-md-6
+    .screenshot = screenshot_tag_for @book
+  .col-md-6
+    .row
+      .col-md-6
+        .info
+          h4 Fundraiser
+          div = @book.fundraiser
+        .info
+          h4 Title
+          div = @book.title
+        .info
+          h4 Minimum Donation
+          div = @book.price
+        .info
+          h4 Goal
+          div = @book.goal
+        .info
+          h4 Campaign URL
+          div = @book.url_link
+      .col-md-6
+        .info
+          h4 Availability
+          div Available from #{@book.launch_date} to #{@book.end_date}
+        .info
+          h4 Commission
+          div You will earn #{@community.commission_percentage} of each donation, around #{@community.commission_value} or more!
+        hr
+        = link_to 'See Campaign', @book, target: :_blank, class:'btn btn-primary'

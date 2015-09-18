@@ -10,8 +10,4 @@ class Collection < ActiveRecord::Base
 
   scope :has_coupons, -> { where("coupons_count > 0") }
   scope :empty, -> { where("coupons_count = 0") }
-  
-  def owner
-    self.owner_type.constantize.fetch(self.owner_id)
-  end
 end

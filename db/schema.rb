@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818162721) do
+ActiveRecord::Schema.define(version: 20150914203445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,25 @@ ActiveRecord::Schema.define(version: 20150818162721) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "affiliate_campaigns", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "url"
+    t.string   "organization_name"
+    t.text     "story"
+    t.string   "slug"
+    t.string   "screenshot_url"
+    t.string   "screenshot_version"
+    t.boolean  "use_stripe",           default: false
+    t.string   "check_recipient_name"
+    t.integer  "affiliate_id"
+    t.integer  "community_id"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+  end
+
   create_table "avatar_pictures", force: :cascade do |t|
     t.string   "uri"
     t.string   "caption"
@@ -79,8 +98,8 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.integer  "coupon_book_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "subtitle"
     t.integer  "coupons_count"
+    t.string   "subtitle"
   end
 
   create_table "categories_coupons", force: :cascade do |t|
@@ -123,6 +142,23 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.integer "position"
   end
 
+  create_table "commissions", force: :cascade do |t|
+    t.integer  "amount_cents",    default: 0,     null: false
+    t.string   "amount_currency", default: "USD", null: false
+    t.integer  "percentage"
+    t.integer  "purchase_id"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "communities", force: :cascade do |t|
+    t.string   "slug"
+    t.integer  "commission_percentage"
+    t.integer  "coupon_book_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
   create_table "coupon_books", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -133,25 +169,26 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.string   "url"
     t.string   "headline"
     t.text     "story"
-    t.string   "status",             default: "incomplete"
+    t.string   "status",                       default: "incomplete"
     t.text     "mission"
-    t.boolean  "visible",            default: false
-    t.integer  "goal_cents",         default: 0,            null: false
-    t.string   "goal_currency",      default: "USD",        null: false
-    t.integer  "price_cents",        default: 0,            null: false
-    t.string   "price_currency",     default: "USD",        null: false
-    t.integer  "causes_mask"
-    t.integer  "scopes_mask"
+    t.boolean  "visible",                      default: false
+    t.string   "goal_currency",                default: "USD",        null: false
+    t.integer  "price_cents",                  default: 0,            null: false
+    t.string   "price_currency",               default: "USD",        null: false
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
-    t.float    "fee_percentage",     default: 16.25
+    t.float    "fee_percentage",               default: 16.25
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.string   "template",           default: "compact"
+    t.string   "template",                     default: "commercial"
     t.string   "slug"
     t.string   "bottom_tagline"
+    t.string   "title"
+    t.integer  "goal_cents",         limit: 8, default: 0,            null: false
+    t.integer  "causes_mask",        limit: 8
+    t.integer  "scopes_mask",        limit: 8
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree
@@ -169,18 +206,18 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.string   "phone"
     t.string   "sponsor_url"
     t.text     "multiple_locations"
-    t.boolean  "universal",                   default: false
-    t.string   "status",                      default: "incomplete"
+    t.boolean  "universal",                             default: false
+    t.string   "status",                                default: "incomplete"
     t.text     "custom_terms"
-    t.integer  "merchandise_categories_mask"
-    t.integer  "price_cents",                 default: 0,            null: false
-    t.string   "price_currency",              default: "USD",        null: false
+    t.integer  "price_cents",                           default: 0,            null: false
+    t.string   "price_currency",                        default: "USD",        null: false
     t.string   "sponsor_name"
     t.integer  "collection_id"
-    t.boolean  "order_up",                    default: false
+    t.boolean  "order_up",                              default: false
     t.integer  "extra_clicks_count"
-    t.string   "type",                        default: "Coupon"
+    t.string   "type",                                  default: "Coupon"
     t.string   "flag"
+    t.integer  "merchandise_categories_mask", limit: 8
   end
 
   create_table "direct_donations", force: :cascade do |t|
@@ -274,6 +311,19 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.boolean  "should_notify",    default: true
   end
 
+  create_table "stripe_accounts", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "publishable_key"
+    t.string   "token"
+    t.string   "customer_id"
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "stripe_accounts", ["owner_type", "owner_id"], name: "index_stripe_accounts_on_owner_type_and_owner_id", using: :btree
+
   create_table "subscriptors", force: :cascade do |t|
     t.string   "email"
     t.string   "object_type"
@@ -294,12 +344,12 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.string   "phone"
     t.integer  "roles_mask"
     t.boolean  "registered",             default: false
-    t.string   "email",                  default: "",    null: false
-    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "email",                  default: "",     null: false
+    t.string   "encrypted_password",     default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,     null: false
+    t.integer  "sign_in_count",          default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
@@ -311,8 +361,10 @@ ActiveRecord::Schema.define(version: 20150818162721) do
     t.string   "uid"
     t.string   "auth_token"
     t.string   "auth_secret"
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "type",                   default: "User", null: false
+    t.boolean  "tax_exempt",             default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

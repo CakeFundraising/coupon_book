@@ -1,0 +1,16 @@
+/- cache [:templates, :commercial, :header, :headpage, @coupon_book] do
+.banner.hero
+  .container.edit-button
+    br
+    = affiliate_campaign_edit_button(@affiliate_campaign)
+  .book-nav
+    .container
+      .row
+        .nav-section.col-md-10.col-sm-9
+          .top-message Get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Print at home or use on your phone.
+          ul.nav.nav-pills.popular
+            = render partial:'categories/show/book_nav', collection: @categories, as: :category
+        .buy_button_section.col-md-2.col-sm-3
+          .save.text-center Save #{@coupon_book.no_discount_price} instantly!
+          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
+  .hero-screen

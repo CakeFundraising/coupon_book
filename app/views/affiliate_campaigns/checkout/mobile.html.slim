@@ -1,0 +1,38 @@
+= affiliate_page_meta(@affiliate_campaign)
+
+= content_for :head do
+  = javascript_include_tag 'donate'
+
+= content_for :navbar do
+  = stylesheet_link_tag 'models/coupon_books/donate'
+  = render partial:'coupon_books/show/templates/compact/navbar'
+
+- cache [:donate, :mobile, :form, @coupon_book] do
+  #donate.row.white
+    #overlay_loading.hidden
+    .col-md-12
+        #checkout-sidebar
+          .title = t('titles.coupon_book.purchase_form.checkout')
+          = render partial:'coupon_books/donate/mobile_form'
+          hr
+          .row
+            .col-md-8.col-sm-6.col-xs-12
+              .terms 
+                span By continuing you are agreeing to Eats For Good's 
+                span = terms_modal_link
+              .terms 
+                | Payments are processed by 
+                span = stripe_link 'Stripe.com'
+                strong  We do not store your financial information.
+              .terms
+                | For further assistance, contact 
+                span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+              .terms = link_to 'Back', @affiliate_campaign, data: {no_turbolink: true}
+              
+
+javascript:
+  var current_init = function(){
+    CakeCouponBook.purchases.coupon_book("#{@coupon_book.object.price.to_i}", "#{CakeCouponBook::Application.config.stripe.publishable_key}");
+  };
+  $(document).ready(current_init);
+  $(document).on('page:load', current_init);

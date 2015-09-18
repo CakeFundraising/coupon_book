@@ -7,16 +7,25 @@
           .stat
             span = coupon_book.end_date
           .stat
-            span = coupon_book.goal
-          .stat
             span = coupon_book.current_sales
             
           = render partial:'coupon_books/show/actions', locals:{coupon_book: coupon_book}
             
   .panel-collapse.collapse id=(coupon_book.id)
     .panel-body
-      .content
-        - if coupon_book.items.any?
-          = render partial:'categories/show/row', collection: coupon_book.categories.with_items.decorate, as: :category
-        - else
-          = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.coupons'), in_profile: true}
+      .content.row
+        .col-md-7
+          strong Status: 
+          span = coupon_book.status
+        .col-md-5
+          h4 More Actions
+          = link_to 'Organize', organize_coupon_book_path(coupon_book), class:'btn btn-purple btn-sm'
+          
+          - if coupon_book.incomplete?
+            = link_to 'Launch', launching_coupon_book_path(coupon_book), class:'btn btn-sm btn-success'
+          - else
+            = link_to 'Share', share_coupon_book_path(coupon_book), class:'btn btn-sm btn-warning'
+
+          = link_to 'Affiliates', affiliates_coupon_book_path(coupon_book), class:'btn btn-primary btn-sm'
+          = link_to 'Community', nil, class:'btn btn-info btn-sm'
+          = link_to 'Clone', nil, class:'btn btn-warning btn-sm'

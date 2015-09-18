@@ -1,0 +1,17 @@
+= display_meta("Join")
+
+= render partial:'affiliate_campaigns/template/nav'
+
+.wizard-wrap
+  = semantic_form_for @campaign do |f|
+    .headline.text-center
+      h1 About You
+      h4.text-muted Join this campaign by providing some information about you.
+      br
+    = f.inputs do
+      = render partial:"affiliate_campaigns/template/partials/#{@campaign.coupon_book.template}_fields", locals:{f: f}
+      = f.input :step, as: :hidden, input_html:{value: :get_paid}
+      br
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

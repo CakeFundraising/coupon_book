@@ -14,16 +14,8 @@ $screen-xs-max: 768px;
 }
 
 #book_page_navbar{
-  .navbar-nav > li > a{
-    padding: 5px;
-  }
   .addthis_custom_sharing{
-    padding-top: 0;
-    height: 0;
-    margin-top: -2px;
-  }
-  .navbar-brand{
-    padding-top: 3px;
+    padding-top: 5px;
   }
 }
 

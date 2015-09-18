@@ -1,0 +1,7 @@
+.row
+  .col-md-6
+    = render partial:'avatar_pictures/form', locals:{f: f}
+  .col-md-6
+    = f.input :organization_name
+    = f.input :url
+    = f.input :story, input_html: {class: 'autogrow', rows: 5, cols: 0, maxlength: 300, size: 300, placeholder: '300 words or less' }

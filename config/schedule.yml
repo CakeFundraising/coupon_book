@@ -1,1 +1,7 @@
-
+campaign_end:
+  # every:
+  #   - "1m"
+  cron: "* * * * * America/New_York"
+  class: "ResqueSchedule::CampaignEnd"
+  queue: high
+  description: "Triggers the @coupon_book.end method on campaigns that have reach their end_date"

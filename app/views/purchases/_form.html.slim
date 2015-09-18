@@ -23,4 +23,4 @@
         = link_to 'Continue', nil, class:'btn btn-success btn-xl'
 
 javascript:
-  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable.fr_name}", "#{purchasable.fundraiser.stripe_publishable_key}", '#{purchasable.picture.avatar_path}');
+  CakeCouponBook.purchases.coupon_book(".formtastic.purchase", "#{purchasable.fr_name}", "#{purchasable.fundraiser.stripe_account.publishable_key}", '#{purchasable.picture.avatar_path}');

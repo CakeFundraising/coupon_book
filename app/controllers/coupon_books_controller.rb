@@ -6,66 +6,13 @@ class CouponBooksController < InheritedResources::Base
   before_action :redirect_to_coupon_template, only: :start_discount
   before_action :redirect_to_pr_box_template, only: :start_pr_box
   before_action :block_fr, only: [:start_discount, :start_pr_box]
-  before_action :redirect_to_billing, only: :launch
-
-  TEMPLATE_STEPS = [
-    :basics,
-    :story,
-    :organize,
-    :customize,
-    :share
-  ]
 
   def index
     @coupon_books = current_fundraiser.coupon_books.latest.decorate
   end
   
   include BookPageActions
-
-  #Template steps
-  def basics
-    @coupon_book = resource.decorate
-    render 'coupon_books/template/basics'
-  end
-
-  def story
-    @coupon_book = resource
-    render 'coupon_books/template/story'
-  end
-
-  #Build coupon book
-  def organize
-    @coupon_book = resource
-    render 'coupon_books/template/organize'
-  end
-
-  def save_organize
-    processed_params = resource.process_categories_params(params[:categories])
-    puts 
-    p processed_params
-    puts 
-    saved = resource.update(categories_permitted_params(processed_params))
-    puts
-    p resource.errors.messages
-    puts
-    render text: saved
-  end
-
-  def categories
-    @categories = resource.categories
-    render 'coupon_books/show/categories'
-  end
-
-  def share
-    @coupon_book = resource.decorate
-    render 'coupon_books/template/share'
-  end
-
-  #Launch 
-  def customize
-    @coupon_book = resource.decorate
-    render 'coupon_books/template/customize'
-  end
+  include BookTemplateController
 
   #Default actions
   def create
@@ -144,21 +91,11 @@ class CouponBooksController < InheritedResources::Base
   private
 
   def redirect_to_coupon_template
-    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
+    redirect_to new_coupon_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_merchant.present?
   end
 
   def redirect_to_pr_box_template
-    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_sponsor.present?
-  end
-
-  def redirect_to_billing
-    unless resource.fundraiser.stripe_publishable_key.present?
-      if request.xhr?
-        render js: "window.location = #{cake_fundraiser_path(:billing).to_json}"
-      else
-        redirect_to cake_fundraiser_path(:billing)
-      end
-    end
+    redirect_to new_pr_box_path(fr_collection_id: resource.fundraiser.collection.id) if current_user.present? and current_merchant.present?
   end
 
   def block_fr
@@ -167,7 +104,7 @@ class CouponBooksController < InheritedResources::Base
 
   def permitted_params
     params.permit(coupon_book: [
-      :name, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, :template, :bottom_tagline,
+      :name, :title, :slug, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, :template, :bottom_tagline,
       :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [
@@ -175,14 +112,8 @@ class CouponBooksController < InheritedResources::Base
         :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h,
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
-      categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ]
-    ])
-  end
-
-  def categories_permitted_params(cat_params)
-    cat_params = ActionController::Parameters.new(cat_params)
-    cat_params.permit(categories_attributes: [
-      :id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy]
+      categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ],
+      community_attributes: [:slug, :commission_percentage]
     ])
   end
 

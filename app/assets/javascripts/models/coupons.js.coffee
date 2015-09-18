@@ -6,8 +6,19 @@ CakeCouponBook.coupons.validation = ->
       required: true
 
   $('.formtastic.coupon').validate(
-    ignore: []
+    ignore: ":hidden:not(.uri_input)"
     errorElement: "span"
+    errorPlacement: (error, element)->
+      error.appendTo(element.closest('.input'))
+      return
+    invalidHandler: (event, validator)->
+      picsContainer = $('.uri_input')
+      picsContainer.each ->
+        input = $(this).closest('.input')
+        input.removeClass('hidden')
+        input.find('.form-label').hide()
+        return
+      return
     rules:
       'coupon[sponsor_name]': 
         required: true
@@ -40,11 +51,13 @@ CakeCouponBook.coupons.validation = ->
         minStrict: 1
       'coupon[avatar_picture_attributes][uri]':
         required: true
+      'coupon[picture_attributes][avatar]':
+        required: true
   )
   return
 
 CakeCouponBook.coupons.universal_toggle = (couponId)->
-  url = "/coupons/#{couponId}/universal_toggle"
+  url = "/discounts/#{couponId}/universal_toggle"
   $.ajax
     url: url
     type: 'PATCH'

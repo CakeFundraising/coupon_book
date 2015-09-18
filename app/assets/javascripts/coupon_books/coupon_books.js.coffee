@@ -18,6 +18,8 @@ CakeCouponBook.coupon_books.validation = ->
     rules:
       'coupon_book[name]': 
         required: true
+      'coupon_book[title]': 
+        required: true
       'coupon_book[organization_name]': 
         required: true
       'coupon_book[goal]':
@@ -43,12 +45,16 @@ CakeCouponBook.coupon_books.validation = ->
         required: true
       'coupon_book[picture_attributes][banner]':
         required: true
-      # 'coupon_book[mission]':
-      #   required: true
-      # 'coupon_book[launch_date]':
-      #   required: true
-      # 'coupon_book[end_date]':
-      #   required: true
+      'coupon_book[bottom_tagline]':
+        required: true
+      'coupon_book[launch_date]':
+        required: true
+      'coupon_book[end_date]':
+        required: true
+      'coupon_book[community_attributes][slug]':
+        required: true
+      'coupon_book[community_attributes][commission_percentage]':
+        required: true
   )
   return
 

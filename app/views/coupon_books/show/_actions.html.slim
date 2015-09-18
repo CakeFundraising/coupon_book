@@ -1,16 +1,5 @@
 .stat
-  = status_buttons(coupon_book)
-
-.stat
-  = link_to 'Organize', organize_coupon_book_path(coupon_book), class: 'btn btn-purple btn-sm'
-
-  = link_to coupon_book, class:'btn btn-sm btn-success' do
-    span.glyphicon.glyphicon-eye-open
-
-  = link_to edit_coupon_book_path(coupon_book), class:"btn btn-sm btn-primary" do 
-    span.glyphicon.glyphicon-pencil
-  
-  = link_to 'Share', share_coupon_book_path(coupon_book), class:'btn btn-sm btn-warning'
-
+  = link_to 'View', coupon_book, class:'btn btn-sm btn-success'
+  = link_to 'Edit', edit_coupon_book_path(coupon_book), class:'btn btn-sm btn-primary'
   = link_to coupon_book, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
     span.glyphicon.glyphicon-trash

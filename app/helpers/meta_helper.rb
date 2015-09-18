@@ -53,4 +53,27 @@ module MetaHelper
     end
   end
 
+  def affiliate_page_meta(affiliate_campaign)
+    tags = {
+      title: t('application.meta.og.coupon_books.title', fr: affiliate_campaign.meta_title),
+      og: {
+        title: t('application.meta.og.coupon_books.title', fr: affiliate_campaign.meta_title), 
+        image: affiliate_campaign.shareable_screenshot_url, 
+        description: affiliate_campaign.name, 
+        url: affiliate_campaign_url(affiliate_campaign)
+      },
+      twitter: {
+        card: 'summary',
+        site: t('application.twitter_account'),
+        title: t('application.meta.og.coupon_books.title', fr: affiliate_campaign.meta_title),
+        description: affiliate_campaign.name, 
+        image: affiliate_campaign.shareable_screenshot_url, 
+        url: affiliate_campaign_url(affiliate_campaign)
+      }
+    }
+    content_tag(:span, class: 'meta') do
+      meta tags
+    end
+  end
+
 end

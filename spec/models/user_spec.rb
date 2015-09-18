@@ -1,7 +1,5 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe "create_from_token" do
-    
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end

@@ -22,8 +22,7 @@
             span = terms_modal_link
           .terms 
             | Payments are processed by 
-            span 
-              = link_to "Stripe.com", 'https://stripe.com', target: :_blank
+            span = stripe_link 'Stripe.com'
             strong  We do not store your financial information.
           .terms
             | For further assistance, contact 

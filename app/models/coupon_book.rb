@@ -16,16 +16,27 @@ class CouponBook < ActiveRecord::Base
   MIN_PRICE = ENV['MIN_DONATION'].to_i
 
   COUPON_TEMPLATES = {
-    compact: :rectangle,
     commercial: :grid,
+    community: :grid,
+    compact: :rectangle,
     original: :rectangle,
     mobile: :square
   }
 
+  COLOR_STATUS = {"incomplete" => "danger", "launched" => "success", "past" => "default"}
+
   has_statuses :incomplete, :launched, :past
-  has_templates :compact, :commercial, :original
+  has_templates :commercial, :community, :compact, :original
+
+  belongs_to :fundraiser
 
   has_one :video, as: :recordable, dependent: :destroy
+
+  has_one :community, dependent: :destroy
+  has_many :affiliate_campaigns, through: :community
+  has_many :affiliates, through: :affiliate_campaigns
+  has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
+  
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
   has_many :categories_coupons, through: :categories
@@ -36,6 +47,7 @@ class CouponBook < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
+  
   has_many :direct_donations, as: :donable
 
   monetize :goal_cents, numericality: {greater_than: MIN_PRICE}
@@ -43,9 +55,12 @@ class CouponBook < ActiveRecord::Base
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
+  accepts_nested_attributes_for :community, update_only: true, reject_if: :all_blank
 
   validates :name, :organization_name, :goal, :template, :fundraiser, :avatar, :banner, presence: true
-  validates :headline, :story, :url, :main_cause, presence: true, if: :persisted?
+  validates :url, :main_cause, presence: true, if: :persisted?
+  validates :bottom_tagline, presence: true, if: ->(book){ book.persisted? and book.commercial_template? }
+
   validates :categories, length: {maximum: 15}
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
@@ -53,15 +68,14 @@ class CouponBook < ActiveRecord::Base
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
 
+  scope :affiliated, ->{ includes(:community).where.not(communities: {coupon_book_id: nil}) }
+
   scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
 
-  def fundraiser
-    Fundraiser.fetch(self.fundraiser_id)
-  end
-
+  #Actions
   def launch!
     #notify_launch if self.launched! and self.update_attribute(:visible, true)
     self.launched!
@@ -74,12 +88,22 @@ class CouponBook < ActiveRecord::Base
     end
   end
 
+  def end
+    past!
+    notify_end
+  end
+
+  def notify_end
+    CampaignMailer.campaign_ended(self.id).deliver_now
+    CampaignMailer.affiliate_invoices(self.id).deliver_now if self.affiliate_campaigns.any?
+  end
+
+  #Analytics
   def no_discount_price
     coupons.sum(:price_cents)/100
   end
 
   def current_sales_cents
-    #purchases.count*self.price_cents
     purchases.sum(:amount_cents)
   end
 
@@ -113,7 +137,7 @@ class CouponBook < ActiveRecord::Base
   end
 
   def should_generate_new_friendly_id?
-    organization_name_changed?
+    slug? ? false : slug_changed?
   end
 
   #Templates

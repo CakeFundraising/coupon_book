@@ -3,7 +3,7 @@ class FundraiserDecorator < ApplicationDecorator
   decorates_association :picture
 
   def to_s
-    object.name    
+    object.full_name
   end  
   
   def causes
@@ -42,11 +42,11 @@ class FundraiserDecorator < ApplicationDecorator
   end
 
   def address_1
-    object.location_address
+    object.location.address
   end
 
   def address_2
-    "#{object.location_city}, #{object.location_state_code} #{object.location_zip_code}"
+    "#{object.location.city}, #{object.location.state_code} #{object.location.zip_code}"
   end
 
   def phone

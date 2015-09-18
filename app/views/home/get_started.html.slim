@@ -1,0 +1,31 @@
+= display_meta("Get Started on #{t('application.name')}")
+
+= content_for :right_nav do
+  = menu_item "FAQ", root_path
+  = menu_item "Help", root_path
+
+.header.text-center
+  h1 Let's Get Started!
+  p.text-muted Thanks for signing up. Now, choose your role on #{t('application.name')}.
+
+.row.choose-role
+  .col-md-4.divider-vert
+    .fundraisers-cir
+      h2 Fundraiser
+      p create your free "pay-per-click" campaign today!
+      = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
+  .col-md-4.divider-vert
+    .affiliates-cir
+      h2 Affiliate
+      p create your free "pay-per-click" campaign today!
+      = link_to "Start Now!", roles_users_path(role: :affiliate), method: :patch, class:'btn btn-purple btn-lg start-now-btn'
+  .col-md-4
+    .merchants-cir
+      h2 Merchant
+      p support great causes on a risk free "pay-per-click" basis
+      = link_to "Start Now!", roles_users_path(role: :merchant), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
+.row
+  .col-md-12.text-center
+    p.text-muted.explore
+      span I want to 
+      = link_to 'cancel my account.', registration_path(current_user), method: :delete, data: {confirm: 'Are you sure?'}
