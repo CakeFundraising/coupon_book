@@ -24,12 +24,22 @@ module AccountController
       success.html do
         #send_notification
         resource.registered!
-        redirect_to dashboard_dashboard_path, notice: 'Now start your first Eats for Good Campaign!'
+        redirect_to after_registration_update_path, notice: 'Welcome to Eats For Good!'
       end
     end
   end
 
   protected
+
+  def after_registration_update_path
+    if current_user.fundraiser?
+      new_coupon_book_path
+    elsif current_user.affiliate?
+      new_affiliate_campaign_path
+    else
+      new_coupon_path
+    end
+  end
 
   def check_if_account_created
     redirect_to root_path, alert:"Please sign out and create a new account if you want to create a new account." if current_user.nil?
