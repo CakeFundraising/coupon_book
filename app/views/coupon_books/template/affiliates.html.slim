@@ -3,7 +3,7 @@
 = render partial:'coupon_books/template/nav'
 
 #customize.wizard-wrap
-  - if @coupon_book.community.nil?
+  - if @community.nil?
     .headline.text-center
       h1 Can Affiliates join & promote your Campaign?
       h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
@@ -15,7 +15,7 @@
       br
       #community.collapse
         = semantic_form_for @coupon_book do |f|
-          = render partial:'communities/form', locals:{f: f}
+          = render partial:'communities/fields', locals:{f: f}
           = f.input :step, as: :hidden, input_html:{value: :launching} 
           .text-center
             .text-muted Once you set these settings, they cannot be updated later. Think twice before submitting.
@@ -27,5 +27,22 @@
       /h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
       br
     .inputs
+      h3 Community Settings
+      .row
+        .col-md-6
+          .info
+            strong Community page URL: 
+            span = link_to community_url(@community), community_url(@community), target: :_blank
+        .col-md-6
+          .info
+            strong General Affiliate Commission Percentage: 
+            span = @community.decorate.commission_percentage
+      .row
+        .col-md-12
+          br
+          = link_to "Edit Settings", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
+          = render partial:'communities/edit'
+      hr
+      h4 Affiliates
       = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
     

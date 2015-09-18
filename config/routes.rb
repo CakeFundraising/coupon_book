@@ -48,7 +48,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :communities, only: :show
+  resources :communities, except: [:index, :destroy]
 
   resources :affiliate_campaigns, path: :group_campaigns do
     member do

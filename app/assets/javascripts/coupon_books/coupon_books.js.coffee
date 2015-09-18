@@ -1,6 +1,15 @@
 CakeCouponBook.coupon_books ?= {}
 
 CakeCouponBook.coupon_books.validation = ->
+  $('.formtastic.community').validate(
+    errorElement: "span"
+    rules:
+      'community[slug]':
+        required: true
+      'community[commission_percentage]':
+        required: true
+  )
+
   $('.formtastic.coupon_book').validate(
     ignore: ":hidden:not(.uri_input)"
     errorElement: "span"

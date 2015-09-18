@@ -1,0 +1,12 @@
+#edit_community_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Edit Community Settings
+      .modal-body
+        = render partial:'communities/form'
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

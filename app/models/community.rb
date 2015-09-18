@@ -10,6 +10,9 @@ class Community < ActiveRecord::Base
   has_many :purchases, through: :affiliate_campaigns
   has_many :commissions, through: :purchases
 
+  validates :slug, :commission_percentage, :coupon_book_id, presence: true
+  #validates_numericality_of :commission_percentage, greater_than: :commission_percentage
+
   #Slug
   def should_generate_new_friendly_id?
     slug? ? false : slug_changed?
