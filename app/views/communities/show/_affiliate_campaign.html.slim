@@ -1,0 +1,10 @@
+li.affiliate-campaign
+  = link_to campaign.give_path do
+    .row
+      .col-md-6
+        h4 = campaign.affiliate
+      .col-md-5
+        h4 = campaign.current_sales
+      .col-md-1
+        = link_to campaign.url, target: :_blank do
+          span.glyphicon.glyphicon-info-sign

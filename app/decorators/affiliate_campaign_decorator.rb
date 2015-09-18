@@ -47,4 +47,8 @@ class AffiliateCampaignDecorator < ApplicationDecorator
   def status
     object.status.titleize
   end
+
+  def give_path
+    coupon_book.commercial_template? ? h.checkout_affiliate_campaign_path(self) : h.donate_affiliate_campaign_path(self)
+  end
 end

@@ -4,6 +4,14 @@ class CommunitiesController < InheritedResources::Base
   def show
     @community = resource.decorate
     @coupon_book = @community.coupon_book.decorate
+    @categories = @coupon_book.categories.decorate
+    @first_category = @categories.first
+    @discounts = @first_category.items.object.preloaded.decorate if @first_category.present?
+    @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+
+    @affiliate_campaigns = @community.affiliate_campaigns.decorate
+
+    render 'communities/show/main', layout: 'layouts/books/desktop'
   end
 
   def update
