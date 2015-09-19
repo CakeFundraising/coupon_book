@@ -27,5 +27,7 @@
             = link_to 'Share', share_coupon_book_path(coupon_book), class:'btn btn-sm btn-warning'
 
           = link_to 'Affiliates', affiliates_coupon_book_path(coupon_book), class:'btn btn-primary btn-sm'
-          = link_to 'Community', nil, class:'btn btn-info btn-sm'
+
+          = link_to 'Community', community_path(coupon_book.community), class:'btn btn-info btn-sm' if coupon_book.community.present?
+
           = link_to 'Clone', nil, class:'btn btn-warning btn-sm'

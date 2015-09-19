@@ -17,4 +17,12 @@ class Community < ActiveRecord::Base
   def should_generate_new_friendly_id?
     slug? ? false : slug_changed?
   end
+
+  def total_sales_cents
+    purchases.sum(:amount_cents)
+  end
+
+  def sales_thermometer
+    (total_sales_cents.to_f/coupon_book.goal_cents)*100 unless coupon_book.goal_cents.zero?
+  end
 end

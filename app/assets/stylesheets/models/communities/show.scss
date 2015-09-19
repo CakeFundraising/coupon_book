@@ -16,8 +16,21 @@
   text-align: center;
 }
 
+.goal{
+  overflow: auto;
+  h1{
+    margin-top: 0;
+  }
+}
+.thermometer{
+  clear: both;
+  margin-bottom: 20px;
+}
+
 #icons{
   font-size: 22px;
+  overflow: auto;
+  margin-bottom: 40px;
   .head-col{
     a{
       text-transform: uppercase;
@@ -55,6 +68,24 @@
     }
   }
 }
+
+#affiliates{
+  li.affiliate-campaign{
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 22px;
+    background: white;
+    margin-bottom: 7px;
+    span.glyphicon{
+      margin-top: 8px;
+    }
+    &:hover{
+      box-shadow: 0px 0px 2px #ccc; 
+    }
+  }
+}
+
 .sidebar{
   .headbar{
     font-size: 18px;
@@ -81,6 +112,35 @@
           font-size: 12px;
           margin-top: 14px;
         }
+      }
+    }
+  }
+}
+
+.white{
+  padding-top: 0;
+  margin-top: 30px;
+}
+
+.book-nav{
+  position: relative;
+  margin-bottom: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  box-shadow: 0px 3px 5px #ddd;
+  .popular{
+    padding: 10px 0px !important;
+    text-align: center;
+  }
+  &.affix{
+    .popular{
+      padding-top: 0 !important;
+    }
+    .buy_button_section{
+      margin-top: 0;
+      .btn-xl.buy_button{
+        font-size: 32px !important;
+        padding: 5px 0px !important;
       }
     }
   }

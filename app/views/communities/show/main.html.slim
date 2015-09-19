@@ -1,7 +1,7 @@
 = community_page_meta(@coupon_book)
 
 = content_for :head do
-  = javascript_include_tag 'coupon_books/templates/commercial'
+  = javascript_include_tag 'coupon_books/templates/compact'
 
 = content_for :navbar do
   = stylesheet_link_tag 'models/coupon_books/templates/commercial'
@@ -14,7 +14,7 @@
 
 = content_for :bottom_section do
   .main-background
-    = render partial:'coupon_books/show/templates/commercial/coupons'
+    = render partial:'communities/show/discounts'
 
     = render partial:'coupon_books/show/templates/shared/bottom'
 
@@ -23,7 +23,7 @@ css:
 
 javascript:
   var current_init = function(){
-    CakeCouponBook.coupon_books.templates.commercial();
+    CakeCouponBook.coupon_books.templates.compact();
     CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
   };
   $(document).ready(current_init);
