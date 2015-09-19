@@ -53,10 +53,11 @@
           span.boldest All #{@coupon_book.coupons.count}
           span  Deals!
 
-      br
-      #purchases.sidebar
-        .headbar.text-center = t('titles.coupon_book.purchase_list')
-        ul.no-list
-          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+      - if @purchases.any?
+        br
+        #purchases.sidebar
+          .headbar.text-center = t('titles.coupon_book.purchase_list')
+          ul.no-list
+            = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
       
 
