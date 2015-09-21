@@ -9,6 +9,10 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     object.name
   end
 
+  def affiliate_name
+    object.organization_name || object.full_name
+  end
+
   def end_date
     object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
   end
@@ -50,5 +54,13 @@ class AffiliateCampaignDecorator < ApplicationDecorator
 
   def give_path
     coupon_book.commercial_template? ? h.checkout_affiliate_campaign_path(self) : h.donate_affiliate_campaign_path(self)
+  end
+
+  def visitor_action
+    "Join, Sign Up or Volunteer!"
+  end
+
+  def visitor_url
+    url
   end
 end

@@ -7,7 +7,7 @@ class Community < ActiveRecord::Base
   belongs_to :coupon_book, inverse_of: :community
   
   has_many :affiliate_campaigns, dependent: :destroy
-  has_many :purchases, through: :affiliate_campaigns
+  has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
   has_many :commissions, through: :purchases
 
   validates :slug, :commission_percentage, :coupon_book_id, presence: true
@@ -19,10 +19,14 @@ class Community < ActiveRecord::Base
   end
 
   def total_sales_cents
-    purchases.sum(:amount_cents)
+    affiliate_purchases.sum(:amount_cents) + coupon_book.current_sales_cents
   end
 
   def sales_thermometer
     (total_sales_cents.to_f/coupon_book.goal_cents)*100 unless coupon_book.goal_cents.zero?
+  end
+
+  def purchases
+    (affiliate_purchases + coupon_book.purchases).sort_by(&:created_at).reverse!
   end
 end

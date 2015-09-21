@@ -1,57 +1,55 @@
 .container
   .row
-    .col-md-8
-      #icons.row-fluid.text-center
-        .col-md-4.col-sm-4.help.head-col
-          .link
-            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
-              span.glyphicon.glyphicon-thumbs-up
-              span.text Choose
-          .text Your favorite group!
-        .col-md-4.col-sm-4.give.head-col
-          .link
-            = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
-              span.glyphicon.glyphicon-heart
-              span.text Give
-          .text
-            span As little as 
-            span.bolder = @coupon_book.price
-        .col-md-4.col-sm-4.get.head-col
-          .link
-            = content_tag(:a, href:"#coupons") do
-              span.glyphicon.glyphicon-gift
-              span.text Receive
-          .text
-            span #{@coupon_book.coupons.count} Deals via email! 
-      #affiliates.row-fluid
-        h2 Our Community Groups:
-        p.text-muted click on your favorite!
-        br
-        .row
-          .col-md-12
-            ul.no-list
-              = render partial:'communities/show/affiliate_campaign', collection: @affiliate_campaigns, as: :campaign        
-    .col-md-4
-      .goal
-        h1.pull-left Goal
-        h1.pull-right = @coupon_book.goal
+    .col-md-8.col-sm-8
+      .sidebar
+        #icons.row-fluid.text-center
+          .col-md-4.col-sm-4.help.head-col
+            .link
+              = content_tag(:a, href:"#affiliates") do
+                span.glyphicon.glyphicon-thumbs-up
+                span.text Choose
+            .text Your favorite group!
+          .col-md-4.col-sm-4.give.head-col
+            .link
+              = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
+                span.glyphicon.glyphicon-heart
+                span.text Give
+            .text
+              span As little as 
+              span.bolder = @coupon_book.price
+          .col-md-4.col-sm-4.get.head-col
+            .link
+              = content_tag(:a, href:"#coupons") do
+                span.glyphicon.glyphicon-gift
+                span.text Receive
+            .text
+              span #{@coupon_book.coupons.count} Deals via email! 
+        #affiliates.row-fluid
+          h2 Choose your favorite Good Cause!
+          p.text-muted Click on the good cause below to contribute to their campaign.
+          br
+          = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
+    .col-md-4.col-sm-4
+      .sidebar
+        .goal
+          h1.pull-left Goal
+          h1.pull-right = @coupon_book.goal
 
-      .thermometer
-        .progress.campaign-thermometer
-          .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
-            span.sr-only #{@community.sales_thermometer}% Complete (success)
-        .campaign-stats
-          span
-            span.boldest.raised = @community.total_sales
-          span.pull-right
-            span.boldest = @coupon_book.goal
-            |  Goal
+        .thermometer
+          .progress.campaign-thermometer
+            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
+              span.sr-only #{@community.sales_thermometer}% Complete (success)
+          .campaign-stats
+            span
+              span.boldest.raised = @community.total_sales
+            span.pull-right
+              span.boldest = @coupon_book.goal
 
-      .see-restaurants
-        = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
-          span See  
-          span.boldest All #{@coupon_book.coupons.count}
-          span  Deals!
+        .see-restaurants
+          = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+            span See  
+            span.boldest All #{@coupon_book.coupons.count}
+            span  Deals!
 
       - if @purchases.any?
         br
