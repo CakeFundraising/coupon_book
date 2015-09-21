@@ -17,7 +17,7 @@
           h4 Goal
           div = @book.goal
         .info
-          h4 Campaign URL
+          h4 Fundraiser Website
           div = @book.url_link
       .col-md-6
         .info
@@ -26,5 +26,22 @@
         .info
           h4 Commission
           div You will earn #{@community.commission_percentage} of each donation, around #{@community.commission_value} or more!
+        .info
+          h4 Community Performance
+          .thermometer
+            .progress.campaign-thermometer
+              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
+                span.sr-only #{@community.sales_thermometer}% Complete (success)
+            .campaign-stats
+              span
+                span.boldest.raised = @community.total_sales
+              span.pull-right
+                span.boldest = @book.goal
+                |  Goal
+
         hr
-        = link_to 'See Campaign', @book, target: :_blank, class:'btn btn-primary'
+        .row
+          .col-md-6
+            = link_to 'Preview Campaign', @book, target: :_blank, class:'btn btn-primary btn-sm'
+          .col-md-6
+            = link_to 'Community Page', @community, target: :_blank, class:'btn btn-default btn-sm'

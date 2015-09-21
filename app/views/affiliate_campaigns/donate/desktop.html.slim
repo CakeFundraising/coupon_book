@@ -38,7 +38,7 @@
       #fr-info.sidebar
         .row
           .col-md-12.col-sm-12
-            .headbar = @coupon_book.name
+            .headbar Proceeds benefit #{@affiliate_campaign.organization_name}
             .fr-banner 
               = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive'
             .fr-inf
@@ -50,7 +50,7 @@
               a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
                 span.glyphicon.glyphicon-envelope 
                 span.clickable  #{@coupon_book.visitor_action}
-              = render partial:'subscriptions/volunteer_modal', locals:{object: @affiliate_campaign.affiliate, origin: @coupon_book, position:'coupon_book.volunteer'}
+              = render partial:'subscriptions/volunteer_modal', locals:{object: @affiliate_campaign.affiliate, origin: @affiliate_campaign, position:'coupon_book.volunteer'}
             .quote = @affiliate_campaign.story
       br
     - if @purchases.any?
