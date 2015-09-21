@@ -30,7 +30,9 @@
 #icons{
   font-size: 22px;
   overflow: auto;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
   .head-col{
     a{
       text-transform: uppercase;
@@ -71,6 +73,7 @@
 
 #affiliates{
   table{
+    margin-top: 10px;
     background: white;
     &.table-bordered > thead > tr > th{
       border: 1px solid #ddd;

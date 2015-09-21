@@ -26,9 +26,9 @@
               span #{@coupon_book.coupons.count} Deals via email! 
         #affiliates.row-fluid
           h2 Choose your favorite Good Cause!
-          p.text-muted Click on the good cause below to contribute to their campaign.
-          br
+          p.text-muted Click on one group below to contribute to their campaign.
           = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
+
     .col-md-4.col-sm-4
       .sidebar
         .goal
