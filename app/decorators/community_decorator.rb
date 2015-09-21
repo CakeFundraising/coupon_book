@@ -1,6 +1,12 @@
 class CommunityDecorator < ApplicationDecorator
   delegate_all
 
+  decorates_association :coupon_book
+
+  def to_s
+    coupon_book
+  end
+
   def commission_percentage
     "#{object.commission_percentage}%"
   end

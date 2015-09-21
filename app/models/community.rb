@@ -8,7 +8,7 @@ class Community < ActiveRecord::Base
   
   has_many :affiliate_campaigns, dependent: :destroy
   has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
-  has_many :commissions, through: :purchases
+  has_many :commissions, through: :affiliate_purchases
 
   validates :slug, :commission_percentage, :coupon_book_id, presence: true
   #validates_numericality_of :commission_percentage, greater_than: :commission_percentage
