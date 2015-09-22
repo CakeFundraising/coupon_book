@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914203445) do
+ActiveRecord::Schema.define(version: 20150922194631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -309,6 +309,7 @@ ActiveRecord::Schema.define(version: 20150914203445) do
     t.boolean  "hide_name",        default: false
     t.boolean  "should_charge",    default: true
     t.boolean  "should_notify",    default: true
+    t.text     "comment"
   end
 
   create_table "stripe_accounts", force: :cascade do |t|

@@ -46,6 +46,10 @@
       .row
         .col-md-6.col-xs-6
           = f.input :zip_code, as: :phone, label: false, input_html:{pattern: '[0-9]*', maxlength: 5, placeholder: 'Zip Code', class:'restrictToNumber'}
+      .row
+        .col-md-12.col-xs-12
+          = f.input :comment, label: false, input_html: {rows: 3, maxlength: 140, placeholder: 'Leave a comment. (140 words or less - Optional)'}
+
       = f.input :card_token, as: :hidden, input_html:{id: 'purchase_card_token_input'}
       = f.input :purchasable_id, as: :hidden
       = f.input :purchasable_type, as: :hidden

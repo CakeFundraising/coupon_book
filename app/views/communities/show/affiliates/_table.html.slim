@@ -1,11 +1,11 @@
 - if campaigns.any?
   .table-responsive
-    table.table.table-hover
+    table.table.table-hover.table-fixedheader
       thead
         tr
-          th Group
-          th = AffiliateCampaign.human_attribute_name :total_raised
-          th = AffiliateCampaign.human_attribute_name :about_us
+          th.col-md-8 Group
+          th.col-md-2 = AffiliateCampaign.human_attribute_name :total_raised
+          th.col-md-2 = AffiliateCampaign.human_attribute_name :about_us
       tbody
         = render partial:'communities/show/affiliates/row', collection: campaigns, as: :campaign
 - else
