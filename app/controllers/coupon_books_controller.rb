@@ -99,7 +99,7 @@ class CouponBooksController < InheritedResources::Base
   end
 
   def block_fr
-    redirect_to coupon_books_path, alert: "You're not authorized to see this page." if current_fundraiser.present?
+    redirect_to coupon_books_path, alert: "You're not authorized to see this page." if current_user.present? and current_fundraiser.present?
   end
 
   def permitted_params

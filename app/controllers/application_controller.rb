@@ -72,6 +72,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     return admin_root_path if resource.is_a? AdminUser
+    return redirect_to_url if session[:redirect_to].present?
 
     if resource.registered
       dashboard_dashboard_path
@@ -82,5 +83,11 @@ class ApplicationController < ActionController::Base
         home_get_started_path
       end
     end
+  end
+
+  def redirect_to_url
+    redirect = session[:redirect_to]
+    session.delete(:redirect_to)
+    redirect
   end
 end

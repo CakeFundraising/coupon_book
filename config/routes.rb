@@ -3,7 +3,7 @@ CakeCouponBook::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, confirmations: :confirmations}
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions, confirmations: :confirmations}
   
   root to:'home#index'
 
