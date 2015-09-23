@@ -53,7 +53,7 @@
               a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
                 span.glyphicon.glyphicon-envelope 
                 span.clickable  #{@coupon_book.visitor_action}
-              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @affiliate_campaign, position:'coupon_book.volunteer'}
             .quote = @coupon_book.mission
       br
     - if @purchases.any?

@@ -12,7 +12,8 @@ class Coupon < ActiveRecord::Base
   has_one :avatar_picture, as: :avatarable, dependent: :destroy #Merchant Picture
   
   belongs_to :origin_collection, class_name: 'Collection', foreign_key: :collection_id
-  delegate :owner, :owner_type, :owner_id, to: :origin_collection
+  has_one :owner, through: :origin_collection, source_type:'User'
+  #delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy

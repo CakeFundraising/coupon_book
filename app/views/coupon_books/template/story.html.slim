@@ -11,7 +11,7 @@
         br
       = f.inputs do
         = f.semantic_errors *f.object.errors.keys
-        - unless f.object.commercial_template?
+        - if f.object.compact_template? or f.object.original_template?
           .row
             .col-md-12
               h3 Campaign Headline & Story
@@ -22,7 +22,7 @@
               span.help-block.italic Max 110 characters.
               = f.input :story, input_html: {rows: 7, placeholder: '3,000 words or less', maxlength: 3000}
               span.help-block.italic Tell people why you are raising money and what you plan to do with it, or anything else you like.
-        .row.section-wrapper
+        .row
           .col-md-12
             h3 Campaign Cause Category
             p.text-muted What is your cause?

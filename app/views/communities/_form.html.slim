@@ -1,4 +1,6 @@
-= f.semantic_fields_for :community, f.object.community || f.object.build_community do |c|
-  = c.inputs do
-    = c.input :slug, hint: 'Set a custom url where will be shown a promoter leaderboard and results for this Campaign.'
-    = c.input :commission_percentage, as: :select, collection: commission_percentage, hint: 'Choose the percentage you offer to affiliates in order to participate.'
+= semantic_form_for @community do |f|
+  = f.actions do
+    = f.input :slug, hint: 'Set a custom url where will be shown a promoter leaderboard and results for this Campaign.', prepend: community_page_root_url
+    = f.input :commission_percentage, as: :select, collection: commission_percentage(f.object.commission_percentage), hint: 'Choose the percentage you offer to affiliates in order to participate.'
+  = f.actions do
+    = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

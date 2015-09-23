@@ -3,7 +3,7 @@ CakeCouponBook::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, confirmations: :confirmations}
+  devise_for :users, controllers: {omniauth_callbacks: :omniauth_callbacks, registrations: :registrations, sessions: :sessions, confirmations: :confirmations}
   
   root to:'home#index'
 
@@ -48,7 +48,7 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
-  resources :communities, only: :show
+  resources :communities, except: [:index, :destroy]
 
   resources :affiliate_campaigns, path: :group_campaigns do
     member do

@@ -40,6 +40,10 @@ class AffiliateCampaign < ActiveRecord::Base
     ]
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def should_generate_new_friendly_id?
     organization_name.present? ? organization_name_changed? : false
   end

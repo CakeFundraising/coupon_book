@@ -76,4 +76,27 @@ module MetaHelper
     end
   end
 
+  def community_page_meta(coupon_book)
+    tags = {
+      title: t('application.meta.og.coupon_books.title', fr: coupon_book.fr_name),
+      og: {
+        title: t('application.meta.og.coupon_books.title', fr: coupon_book.fr_name), 
+        image: coupon_book.shareable_screenshot_url, 
+        description: coupon_book.name, 
+        url: coupon_book_url(coupon_book)
+      },
+      twitter: {
+        card: 'summary',
+        site: t('application.twitter_account'),
+        title: t('application.meta.og.coupon_books.title', fr: coupon_book.fr_name),
+        description: coupon_book.name, 
+        image: coupon_book.shareable_screenshot_url, 
+        url: coupon_book_url(coupon_book)
+      }
+    }
+    content_tag(:span, class: 'meta') do
+      meta tags
+    end
+  end
+
 end

@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  before_action :store_redirect_url, only: :new
 
   def create
     build_resource(sign_up_params)
@@ -32,5 +33,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     root_path
+  end
+
+  def store_redirect_url
+    session[:redirect_to] = params[:redirect_to] if params[:redirect_to].present?
   end
 end

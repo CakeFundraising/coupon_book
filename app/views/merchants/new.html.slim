@@ -18,13 +18,6 @@
         .col-md-6
           = f.input :phone
           = render partial:'locations/form', locals:{f: f}
-      .row.section-wrapper
-        .col-md-12
-          h3 Tax Status
-          p.text-muted Specify if you or your Organization is a tax exempt.
-          br
-        .col-md-12
-          = f.input :tax_exempt
       br
       .text-center
         = f.actions do

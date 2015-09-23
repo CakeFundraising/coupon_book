@@ -6,9 +6,9 @@ br
 .row.choose-role 
   .col-md-6.divider-vert
     .fundraisers-cir
-      h2 I'm new to Cake
-      = link_to 'Start Here', cake_new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
+      h2 I'm new to Eats For Good
+      = link_to 'Start Here', new_user_registration_path, class:'btn btn-primary btn-lg start-now-btn'
   .col-md-6
     .sponsors-cir
-      h2 I have a Cake account
-      = link_to 'Sign In', sign_in_path(redirect_to: "new_pr_box_path", redirect_params: {fr_collection_id: @collection_id}), class:'btn btn-success btn-lg start-now-btn'
+      h2 I have a EFG account
+      = link_to 'Sign In', new_user_session_path(redirect_to: "new_pr_box_path", redirect_params: {fr_collection_id: @collection_id}), class:'btn btn-success btn-lg start-now-btn'
