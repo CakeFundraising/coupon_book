@@ -1,0 +1,19 @@
+.row
+  .search-sidebar.col-md-3.hidden-xs.hidden-sm
+    - cache [:search_sidebar, :coupons] do
+      = render 'home/search/search_form', collection: :coupons
+      #filters.panel-group
+        ul.cats
+          h4 Discount Categories
+          - Coupon::CATEGORIES.each do |category|
+            li = link_to category, search_coupons_path(merchandise_categories: category)
+  .col-md-9.col-xs-12
+    .coupons-container.row-fluid.transitions-enabled
+      .coupons
+        - if @collection.any?
+          = render partial: "coupons/show/grid", collection: @collection, as: :coupon
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              = link_to "See All Our Coupons", search_coupons_path, class:'btn btn-primary btn-md'
+        - else
+          .alert.alert-info No results found.

@@ -184,12 +184,143 @@
 
 .supporters{
   background-color:white;
-  
   h3 {
     color: #999999;
   }
   .section-wrapper {
     margin: 5px 0px 25px;
     padding:0px;
+  }
+}
+
+
+
+.home-border {
+  border-right: 1px dotted $gray-light;
+}
+.home-box {
+  border: 1px solid $gray-lighter;
+  background: #fff;
+  margin-bottom: 25px;
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  } 
+}
+.home-box-info {
+  margin: 0;
+}
+.main-info {
+  padding: 15px;
+  height: 142px;
+}
+.main-info-sponsor {
+  padding: 15px;
+}
+.time {
+  border-top: 1px solid $gray-lighter;
+  padding: 15px;
+  text-align: center;
+}
+.view-all {
+  margin: 25px 0;
+}
+.view-all-border {
+  padding-top: 10px;
+  border-bottom: 1px dotted $gray-light;
+  width: 100%;
+  position: relative;
+}
+.easy-band {
+  background: #ff6c54;
+  text-align: center;
+  h2 {
+    color: #fff;
+    margin-bottom: 25px;
+  }
+  h3 {
+    color: black;
+    margin: 25px 0;
+  }
+}
+.center {
+  text-align: center;
+}
+
+#filters{
+  ul{
+    font-size: 13px;
+    padding-left: 0;
+    padding: 0px;
+    margin-bottom: 0px;
+    li{
+      list-style: none;
+      padding: 4px;
+      .link{
+        width: 75%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+ul.cats {
+  list-style: none;
+  li {
+  border-bottom: 1px dotted $gray-light;
+  padding: 5px 0;
+  }
+  a {
+    color: $gray;
+    text-decoration: none;
+  }
+}
+
+.home-quotes {
+  background-image: image-url("success-bkg.jpg");
+
+  .quote:before {
+    color: #fff;
+    content: open-quote;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 1em;
+  }
+
+  .quote:after {
+    color: #fff;
+    content: close-quote;
+    font-family: "minion-pro", Georgia, serif;
+    font-size: 1em;
+  }
+
+  .quote-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .quote {
+    margin-top: 2em;
+    padding-left: 2em;
+    padding-right: 2em;
+    text-align: center;
+  }
+
+  .author {
+    text-align: left;
+    font-style: italic;
+  }
+
+  @media (min-width: 750px){
+    .rwd-break { display: none; }
+  }
+
+  h4 {
+    color: #fff;
   }
 }

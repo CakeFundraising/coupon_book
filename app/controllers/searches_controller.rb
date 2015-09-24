@@ -1,4 +1,37 @@
 class SearchesController < ApplicationController
+  def search_campaigns
+    facets = [:main_cause, :zip_code]
+
+    @search = CouponBook.solr_search(include: [:picture]) do
+      fulltext params[:search]
+      with :status, :launched
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 21
+
+      facets.each do |f|
+        send(:facet, f)
+        
+        if params[f].present?
+          if view_context.is_boolean?(params[f])
+            send(:with, f, view_context.to_boolean(params[f]) ) 
+          else
+            send(:with, f, params[f]) 
+          end
+        end
+      end
+
+    end
+
+    @facets = facets
+    @campaigns = CouponBookDecorator.decorate_collection @search.results
+
+    if request.xhr?
+      render "searches/campaigns", layout: false
+    else
+      render "searches/campaigns"
+    end
+  end
+
   def search_coupons
     facets = [:merchandise_categories]
 

@@ -1,0 +1,26 @@
+- cache [:box, campaign] do 
+  .campaign_grid.col-md-4.col-sm-4.col-xs-12
+    .thumbnail
+      - if campaign.past?
+        span.label.label-danger.overlapped.hero-label Campaign is over
+      .avatar-container
+        = link_to campaign do
+          = campaign.picture.avatar(no_classes: true)
+      .caption
+        h4.truncate = auto_link campaign
+        .location.truncate = campaign.location
+        .cause.truncate = campaign.main_cause
+        hr
+        .fundraiser_name.truncate = campaign.fundraiser
+        hr
+        .thermometer
+          .progress
+            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(campaign.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{campaign.thermometer}%"
+              span.sr-only #{campaign.thermometer}% Complete (success)          
+          .campaign-stats
+            strong = campaign.current_sales
+            span 
+            /Raised
+            span.pull-right 
+            /Goal
+            strong.pull-right = campaign.goal

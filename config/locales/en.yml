@@ -67,6 +67,7 @@ en:
       purchase_list: "Our Friends & Supporters!"
   semantic:
     buy:               Buy
+    search:            Search
     add_resource:      "Add %{resource}"
     add_to_resource:   "Add to %{resource}"
     new_resource:      "New %{resource}"

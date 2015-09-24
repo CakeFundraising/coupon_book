@@ -3,10 +3,7 @@ class HomeController < ApplicationController
   before_action :go_to_registration, only: :index
 
   def index
-    #@purchase = Purchase.first.decorate
-    # @book = @purchase.purchasable
-
-    #render layout:'mailer'
+    @campaigns = CouponBook.popular.decorate
   end
 
   def get_started

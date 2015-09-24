@@ -1,3 +1,105 @@
-h1 Welcome to CakeCoupons!
+= content_for :header do 
+  - cache [:home, :header] do
+    .hero-home
+      = render partial:'home/banner/home_carousel'
+      / = render partial:'home/banner/bg_video'
+      / .home-banner
+      /   section.main-banner.text-center
+      /     h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+      /     h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
 
-/= render template:'voucher_mailer/send_free_voucher'
+      /   section.sign-up-button
+      /     = link_to new_user_registration_path, class:'btn btn-success btn-mega' do
+      /       span.glyphicon.glyphicon-ok
+      /       span  Sign Up Free
+      /   br
+      /   section.logos_carousel.row.hidden-sm.hidden-xs
+      /     #home_carousel.col-md-10.col-md-push-1
+      /       = render partial:'home/banner/carousel', collection: @carousel_pics, as: :pic
+
+    .secondary-navbar
+      ul.nav.nav-pills.popular
+        li.active
+          a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns"
+            span Active Campaigns
+        li
+          = home_tab_button(:community, 'Community Pages')
+        li
+          = home_tab_button(:merchant, 'Restaurants & Merchants')
+        li
+          = home_tab_button(:coupon, 'Best Deals')
+                
+.container.main-home
+  = render partial:'home/search/section'
+
+= content_for :bottom_section do
+  .easy-band
+    .pointer-b
+    h2 Online Fundraising Has Never Been Easier
+    .container
+      .row.center
+        .circle-campaign
+          .totals-centerd
+            /h4 = campaigns_count
+            h4 22
+            p.total-type CAMPAIGNS
+        .circle-sp
+          .totals-centerd
+            /h4 = sponsors_count
+            h4 14
+            p.total-type SPONSORS
+        .circle-raised
+          .totals-centerd
+            /h4 = global_raised
+            h4 $1M
+            p.total-type RAISED
+      h3 Let your friends know that Cake is the best way to raise money online.
+      .share-block-wrap
+        .text-center
+          .share-buttons
+            .addthis_jumbo_share#social
+  .home-quotes
+    .container.quote-container
+      .row
+        h4.boldest.quote Cake Fundraising is a fabulous platform and I’m certain it will be a huge success.
+    .container
+      .row
+        .col-xs-6
+        .col-xs-6
+          h4.boldest.author
+            | - Robin Clause
+              <br class='rwd-break' />
+                (Coca-Cola)
+    .container.quote-container
+      .row
+        h4.boldest.quote Your platform is very interesting and I think has the chance to revolutionize how non-profits and similar entities raise funds.
+    .container
+      .row
+        .col-xs-6
+        .col-xs-6
+          h4.boldest.author
+            | - Jason Herndon
+              <br class='rwd-break' />
+                (Lupus Foundation)
+    br
+    br
+
+  .supporters
+    .container
+      .row.text-center
+        br
+        h3 OUR SUPPORTERS
+      .row.section-wrapper.text-center
+        img src='/assets/partners/logo_bj.gif'/
+        img src='/assets/partners/logo_techc.gif'/
+        img src='/assets/partners/logo_etc.gif'/
+        img src='/assets/partners/logo_tb.gif'/
+        /img src='/assets/partners/logo_chitrib.gif'/
+        /img src='/assets/partners/logo_cnn.gif'/
+        /img src='/assets/partners/logo_forbes.gif'/
+        /img src='/assets/partners/logo_huff.gif'/
+        /img src='/assets/partners/logo_mashable.gif'/
+        /img src='/assets/partners/logo_nyt.gif'/
+        /img src='/assets/partners/logo_tc.gif'/
+        img src='/assets/partners/logo_tech.gif'/
+

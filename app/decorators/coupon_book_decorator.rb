@@ -57,6 +57,10 @@ class CouponBookDecorator < ApplicationDecorator
     object.scopes.join(", ")
   end
 
+  def location
+    [object.fundraiser.location.city, object.fundraiser.location.state_code].join(', ')
+  end
+
   def visitor_action
     return "Join, Sign Up or Volunteer!" if object.visitor_action.blank?
     object.visitor_action

@@ -8,12 +8,16 @@ CakeCouponBook::Application.routes.draw do
   root to:'home#index'
 
   scope :search, controller: :searches do
+    get :search_campaigns, path:'campaigns'
+    get :search_merchants, path:'merchants'
+    get :search_communities, path:'communities'
     get :search_coupons, path:'coupons'
     get :search_pr_boxes, path:'pr_boxes'
   end
 
   namespace :home, path:'/' do
     get :get_started
+    get :load_tab
   end
 
   mount Resque::Server, at: "/resque"
