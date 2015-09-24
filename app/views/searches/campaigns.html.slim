@@ -18,7 +18,7 @@
       .campaigns-container.row-fluid.transitions-enabled
         .campaigns
           - if @campaigns.any?
-            = render partial: "campaigns/show/grid", collection: @campaigns, as: :campaign
+            = render partial: "coupon_books/show/grid", collection: @campaigns, as: :campaign
           - else
             .alert.alert-info No results found.
             

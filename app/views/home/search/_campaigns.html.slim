@@ -1,8 +1,11 @@
 .row
+  .col-md-12.no-padding
+    = render 'home/search/search_form', collection: :campaigns
+    br
   .search-sidebar.col-md-3.hidden-xs.hidden-sm
     - cache [:search_sidebar, :campaigns] do
-      = render 'home/search/search_form', collection: :campaigns
       #filters.panel-group
+        h3.title Categories
         ul.cats
           - CouponBook::CAUSES.each do |cause|
             li = link_to cause, search_campaigns_path(main_cause: cause)
