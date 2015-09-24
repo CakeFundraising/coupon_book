@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
   validates_associated :location, if: :persisted?
   validates_associated :avatar_picture, if: :persisted?
 
+  delegate :zip_code, :city, :state_code, to: :location
+
   def full_name
     "#{first_name} #{last_name}"
   end

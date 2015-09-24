@@ -279,6 +279,22 @@ ul.cats {
     text-decoration: none;
   }
 }
+.campaign_grid, .sponsor_grid, .coupon_grid, .fundraiser_grid {
+  padding-left: 5px;
+  padding-right: 5px;
+  .thumbnail {
+    background-color: #fff;
+    padding:0px;
+  }
+  .img-thumbnail{
+    padding: 0px;
+    margin: 0px;
+    border:0px;
+    border-radius: 0px;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+  }
+}
 
 .home-quotes {
   background-image: image-url("success-bkg.jpg");

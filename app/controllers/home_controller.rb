@@ -9,6 +9,13 @@ class HomeController < ApplicationController
   def get_started
   end
 
+  def load_tab
+    model = params[:model].camelize
+
+    @collection = "#{model}Decorator".constantize.decorate_collection model.constantize.popular
+    render partial:"home/search/#{params[:model].pluralize}"
+  end
+
   protected
 
   def block_registered_user

@@ -65,6 +65,8 @@ class CouponBook < ActiveRecord::Base
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
 
+  delegate :zip_code, :city, :state_code, to: :fundraiser
+
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
 

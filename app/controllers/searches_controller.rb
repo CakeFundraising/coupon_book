@@ -32,6 +32,39 @@ class SearchesController < ApplicationController
     end
   end
 
+  def search_communities
+    facets = [:main_cause, :zip_code]
+
+    @search = Community.solr_search(include: [:coupon_book]) do
+      fulltext params[:search]
+      with :status, :launched
+      order_by :created_at, :desc
+      paginate page: params[:page], per_page: 21
+
+      facets.each do |f|
+        send(:facet, f)
+        
+        if params[f].present?
+          if view_context.is_boolean?(params[f])
+            send(:with, f, view_context.to_boolean(params[f]) ) 
+          else
+            send(:with, f, params[f]) 
+          end
+        end
+      end
+
+    end
+
+    @facets = facets
+    @communities = CommunityDecorator.decorate_collection @search.results
+
+    if request.xhr?
+      render "searches/communities", layout: false
+    else
+      render "searches/communities"
+    end
+  end
+
   def search_coupons
     facets = [:merchandise_categories]
 

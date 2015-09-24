@@ -13,6 +13,33 @@ class Community < ActiveRecord::Base
   validates :slug, :commission_percentage, :coupon_book_id, presence: true
   #validates_numericality_of :commission_percentage, greater_than: :commission_percentage
 
+  delegate :title, :headline, :organization_name, :story, :mission, :fundraiser, :zip_code, :city, :state_code, :status, :main_cause, :active?, to: :coupon_book
+
+  scope :latest, ->{ order('communities.created_at DESC') }
+  scope :preloaded, ->{ eager_load(:coupon_book) }
+  scope :launched, ->{ preloaded.where(coupon_books: {status: :launched}) }
+
+  scope :popular, ->{ launched.latest }
+
+    #Solr
+  searchable do
+    text :title, boost: 5
+    text :headline, :organization_name, boost: 3
+    text :story, :mission, :main_cause, :zip_code, :fundraiser, :city, :state_code
+
+    boolean :active, using: :active?
+
+    string :main_cause
+    
+    string :zip_code do
+      fundraiser.location.zip_code  
+    end
+
+    string :status
+
+    time :created_at
+  end
+
   #Slug
   def should_generate_new_friendly_id?
     slug? ? false : slug_changed?

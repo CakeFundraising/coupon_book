@@ -1,0 +1,25 @@
+- cache [:box, community, community.coupon_book] do 
+  .campaign_grid.col-md-4.col-sm-4.col-xs-12
+    .thumbnail
+      - if community.coupon_book.past?
+        span.label.label-danger.overlapped.hero-label Campaign is over
+      .avatar-container
+        = link_to community do
+          = community.coupon_book.picture.avatar(no_classes: true)
+      .caption
+        h4.truncate = auto_link community
+        .location.truncate = community.coupon_book.location
+        hr
+        .fundraiser_name.truncate = community.coupon_book.fr_name
+        hr
+        .thermometer
+          .progress
+            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{community.sales_thermometer}%"
+              span.sr-only #{community.sales_thermometer}% Complete (success)          
+          .campaign-stats
+            strong = community.total_sales
+            span 
+            /Raised
+            span.pull-right 
+            /Goal
+            strong.pull-right = community.coupon_book.goal
