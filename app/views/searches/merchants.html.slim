@@ -1,0 +1,31 @@
+= display_meta("Search Merchants")
+
+#search_merchants
+  h1.dash-head Search Merchants
+
+  .row
+    .col-md-3
+      = render 'layouts/search/search_form', collection: :merchants
+
+      .controls
+        .counter
+          span.boldest #{@merchants.total_count} merchants 
+          span match the criteria
+
+      #filters.panel-group
+       = render partial:'layouts/search/filter', collection: @facets, as: :facet
+       hr
+       = link_to t('helpers.filters.clear'), search_merchants_path, class:'btn btn-primary'
+    .col-md-9
+      .merchants-container.row.transitions-enabled
+        .merchants
+          - if @merchants.any?
+            = render partial: "merchants/grid", collection: @merchants, as: :merchant
+          - else
+            .alert.alert-info No results found.
+
+    = pagination(@merchants)
+
+javascript:
+  CakeCouponBook.collections.init();
+  CakeCouponBook.search.page("#merchants-search", "#search_merchants");

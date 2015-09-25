@@ -114,6 +114,9 @@ class CouponBook < ActiveRecord::Base
 
     string :status
 
+    integer :coupon_ids, references: Coupon, multiple: true
+    integer :pr_box_ids, references: PrBox, multiple: true
+
     time :created_at
 
     integer :fundraiser_id

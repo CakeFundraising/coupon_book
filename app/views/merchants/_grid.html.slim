@@ -1,0 +1,10 @@
+- cache [:box, merchant] do
+  .merchant_grid.col-md-4.col-sm-4.col-xs-12
+    .thumbnail
+      .avatar-container 
+        = link_to search_coupons_path(collection_id: merchant.collection.id) do
+          = merchant.avatar_picture.uri(no_classes: true)
+      .caption
+        h4.truncate = link_to merchant, search_coupons_path(collection_id: merchant.collection.id)
+        .location.truncate = merchant.location
+        .cause.truncate #{ merchant.coupons_count } Coupons

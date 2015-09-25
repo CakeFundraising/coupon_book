@@ -1,0 +1,12 @@
+- cache [:box, coupon] do
+  .coupon_grid.col-md-4
+    .thumbnail
+      .avatar-container
+        = link_to search_campaigns_path(coupon_ids: coupon.id) do
+          = coupon.picture.avatar
+      .caption
+        h4.truncate = link_to coupon, search_campaigns_path(coupon_ids: coupon.id)
+        .sponsor = coupon.sponsor_name
+        .location.truncate = coupon.main_location
+        hr
+        .description.truncate = coupon.trunc_description

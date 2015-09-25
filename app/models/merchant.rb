@@ -4,6 +4,9 @@ class Merchant < User
   has_many :pr_boxes, through: :collection
   has_many :vouchers, as: :owner
 
+  scope :latest, ->{ order('users.created_at DESC') }
+  scope :popular, ->{ latest }
+
   #Analytics
   def total_unique_clicks
     collection.extra_clicks.count

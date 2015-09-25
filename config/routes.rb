@@ -12,6 +12,7 @@ CakeCouponBook::Application.routes.draw do
     get :search_merchants, path:'merchants'
     get :search_communities, path:'communities'
     get :search_coupons, path:'coupons'
+    get :search_universal_coupons, path:'universal_coupons'
     get :search_pr_boxes, path:'pr_boxes'
   end
 

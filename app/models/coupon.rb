@@ -45,6 +45,11 @@ class Coupon < ActiveRecord::Base
 
   scope :preloaded, ->{ eager_load([:location, :picture, :avatar_picture]) }
 
+  scope :coupon, -> {where(type: 'Coupon')}
+  scope :pr_box, -> {where(type: 'PrBox')}
+
+  scope :popular, -> { preloaded.coupon.latest }
+
   alias_method :sp_picture, :avatar_picture
   alias_method :active?, :launched?
 
@@ -58,6 +63,7 @@ class Coupon < ActiveRecord::Base
     string :merchandise_categories, multiple: true
     boolean :universal
     time :created_at
+    integer :collection_id
   end
 
   after_create :add_to_collection
