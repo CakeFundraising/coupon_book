@@ -16,6 +16,6 @@
           = render partial: "communities/grid", collection: @collection, as: :community
           .row
             .col-md-12.col-sm-12.col-xs-12
-              = link_to "See All Our Causes", search_communities_path, class:'btn btn-primary btn-md'
+              = link_to "See All Communities", search_communities_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

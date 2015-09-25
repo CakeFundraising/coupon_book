@@ -16,6 +16,6 @@
           = render partial: "coupon_books/show/grid", collection: @campaigns, as: :campaign
           .row
             .col-md-12.col-sm-12.col-xs-12
-              = link_to "See All Our Good Causes", search_campaigns_path, class:'btn btn-primary btn-md'
+              = link_to "See All Campaigns", search_campaigns_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.

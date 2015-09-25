@@ -16,6 +16,6 @@
           = render partial: "merchants/grid", collection: @collection, as: :merchant
           .row
             .col-md-12.col-sm-12.col-xs-12
-              = link_to "See All Our Sponsors", search_merchants_path, class:'btn btn-primary btn-md'
+              = link_to "See All Merchants", search_merchants_path, class:'btn btn-primary btn-md'
         - else
           .alert.alert-info No results found.
