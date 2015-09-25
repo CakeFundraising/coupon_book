@@ -4,9 +4,10 @@
   h1.dash-head Search Merchants
 
   .row
-    .col-md-3
+    .col-md-12
       = render 'layouts/search/search_form', collection: :merchants
-
+      br
+    .col-md-3
       .controls
         .counter
           span.boldest #{@merchants.total_count} merchants 

@@ -4,9 +4,10 @@
   h1.dash-head Universal Deals
 
   .row
-    .col-md-3
+    .col-md-12
       = render 'layouts/search/search_form', collection: :coupons
-
+      br
+    .col-md-3
       .controls
         .counter
           span.boldest #{@coupons.total_count} coupons 

@@ -4,8 +4,10 @@
   h1.dash-head Search Communities
   
   .row
-    .col-md-3
+    .col-md-12
       = render 'layouts/search/search_form', collection: :communities
+      br
+    .col-md-3
       .controls
         .counter 
           span.boldest #{@communities.total_count} communities 

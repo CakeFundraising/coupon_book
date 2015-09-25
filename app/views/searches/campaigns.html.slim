@@ -4,8 +4,10 @@
   h1.dash-head Search Campaigns
   
   .row
-    .col-md-3
+    .col-md-12
       = render 'layouts/search/search_form', collection: :campaigns
+      br
+    .col-md-3
       .controls
         .counter 
           span.boldest #{@campaigns.total_count} campaigns 
