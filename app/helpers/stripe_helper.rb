@@ -10,7 +10,7 @@ module StripeHelper
   end
 
   def stripe_buttons
-    account = current_fundraiser || current_affiliate
+    account = current_fundraiser || current_affiliate || current_media_affiliate
 
     if account.stripe_account?
       go_to_stripe
