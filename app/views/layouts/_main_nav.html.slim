@@ -16,6 +16,7 @@ nav.navbar.navbar-default role="navigation"
         = render partial:'layouts/nav/fundraiser' if current_user.fundraiser?
         = render partial:'layouts/nav/merchant' if current_user.merchant?
         = render partial:'layouts/nav/affiliate' if current_user.affiliate?
+        = render partial:'layouts/nav/media_affiliate' if current_user.media_affiliate?
       - else
         .navbar-header
           .logo

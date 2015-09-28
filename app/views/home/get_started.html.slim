@@ -9,21 +9,26 @@
   p.text-muted Thanks for signing up. Now, choose your role on #{t('application.name')}.
 
 .row.choose-role
-  .col-md-4.divider-vert
-    .fundraisers-cir
+  .col-md-3
+    .registration-circle.success
       h2 Fundraiser
-      p Create a Fundraising Campaign from scracth!
+      p Create a Fundraising Campaign from scratch!
       = link_to "Start Now!", roles_users_path(role: :fundraiser), method: :patch, class:'btn btn-success btn-lg start-now-btn'
-  .col-md-4.divider-vert
-    .affiliates-cir
-      h2 Affiliate
-      p Join a Campaign today!
-      = link_to "Start Now!", roles_users_path(role: :affiliate), method: :patch, class:'btn btn-purple btn-lg start-now-btn'
-  .col-md-4
-    .merchants-cir
+  .col-md-3
+    .registration-circle.primary
       h2 Merchant
       p Contribute a deal to support a Good Cause today!
       = link_to "Start Now!", roles_users_path(role: :merchant), method: :patch, class:'btn btn-primary btn-lg start-now-btn'
+  .col-md-3
+    .registration-circle.purple
+      h2 Affiliate
+      p Promote yourself joining a Campaign today!
+      = link_to "Start Now!", roles_users_path(role: :affiliate), method: :patch, class:'btn btn-purple btn-lg start-now-btn'
+  .col-md-3
+    .registration-circle.warning
+      h2 Media Affiliate
+      p Earn money by helping great Causes!
+      = link_to "Start Now!", roles_users_path(role: :media_affiliate), method: :patch, class:'btn btn-warning btn-lg start-now-btn'
 .row
   .col-md-12.text-center
     p.text-muted.explore

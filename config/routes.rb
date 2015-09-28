@@ -148,6 +148,11 @@ CakeCouponBook::Application.routes.draw do
       patch :registration_update
     end
   end
+  resources :media_affiliates do
+    member do
+      patch :registration_update
+    end
+  end
 
   namespace :dashboard, path:'' do
     get :dashboard
