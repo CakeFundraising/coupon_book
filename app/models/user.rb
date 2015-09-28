@@ -19,6 +19,17 @@ class User < ActiveRecord::Base
   validates_associated :location, if: :persisted?
   validates_associated :avatar_picture, if: :persisted?
 
+  delegate :zip_code, :city, :state_code, to: :location
+
+  searchable do
+    text :first_name, :last_name, boost: 2
+    text :email, :zip_code, :city, :state_code
+    string :type
+    boolean :registered
+    boolean :tax_exempt
+    time :created_at
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end

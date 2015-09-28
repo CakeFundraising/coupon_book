@@ -65,8 +65,15 @@ en:
         donate: Every dollar helps! Enter your donation.
         checkout: Every dollar helps! Enter amount below.
       purchase_list: "Our Friends & Supporters!"
+    searches:
+      input: 
+        campaigns: "Search by Zip Code, Campaign title, Fundraiser Name..."
+        communities: "Search by Zip Code, Fundraiser Name..."
+        merchants: "Search by Name, Zip Code, City..."
+        coupons: "Search by Merchant Name, Zip Code, Category..."
   semantic:
     buy:               Buy
+    search:            Search
     add_resource:      "Add %{resource}"
     add_to_resource:   "Add to %{resource}"
     new_resource:      "New %{resource}"

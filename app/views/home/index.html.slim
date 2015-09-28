@@ -1,3 +1,96 @@
-h1 Welcome to CakeCoupons!
+= content_for :header do 
+  - cache [:home, :header] do
+    .hero-home
+      = render partial:'home/banner/home_carousel'
+      / = render partial:'home/banner/bg_video'
+      / .home-banner
+      /   section.main-banner.text-center
+      /     h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+      /     h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
 
-/= render template:'voucher_mailer/send_free_voucher'
+      /   section.sign-up-button
+      /     = link_to new_user_registration_path, class:'btn btn-success btn-mega' do
+      /       span.glyphicon.glyphicon-ok
+      /       span  Sign Up Free
+      /   br
+      /   section.logos_carousel.row.hidden-sm.hidden-xs
+      /     #home_carousel.col-md-10.col-md-push-1
+      /       = render partial:'home/banner/carousel', collection: @carousel_pics, as: :pic
+
+    .secondary-navbar
+      ul.nav.nav-pills.popular
+        li.active
+          a data-toggle="tab" id="tab-campaigns" href="#pop-campaigns"
+            span Active Campaigns
+        li
+          = home_tab_button(:community, 'Community Pages')
+        li
+          = home_tab_button(:merchant, 'Restaurants & Merchants')
+        li
+          = home_tab_button(:coupon, 'Best Deals')
+                
+.container.main-home
+  = render partial:'home/search/section'
+
+= content_for :bottom_section do
+  .quotes
+    .container
+      .row
+        .col-md-6.col-sm-6.first_col
+          .boldest.text-center 
+            h2 Need to raise money for your good cause?
+            h3 Join Eats for Good today!
+          .row
+            .col-md-3
+            .col-md-6
+              = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
+              h4.boldest Fundraising has never been easier!
+            .col-md-3
+        .col-md-6.col-sm-6
+          .boldest.text-center 
+            h2 Restaurants & Merchants
+            h3 Give back and win new customers!
+          .row
+            .col-md-3
+            .col-md-6
+              = link_to 'Create a Deal Today!', efg_how_works_path, target: :_blank, class:'btn btn-warning btn-xl buy-button'
+              h4.boldest Take 5 minutes to help!
+            .col-md-3
+
+  / .easy-band
+  /   h2 Online Fundraising Has Never Been Easier
+  /   .container
+  /     .row.center
+  /       .circle-campaign
+  /         .totals-centerd
+  /           /h4 = campaigns_count
+  /           h4 22
+  /           p.total-type CAMPAIGNS
+  /       .circle-sp
+  /         .totals-centerd
+  /           /h4 = sponsors_count
+  /           h4 14
+  /           p.total-type SPONSORS
+  /       .circle-raised
+  /         .totals-centerd
+  /           /h4 = global_raised
+  /           h4 $1M
+  /           p.total-type RAISED
+  /     h3 Let your friends know that Cake is the best way to raise money online.
+  /     .share-block-wrap
+  /       .text-center
+  /         .share-buttons
+  /           .addthis_jumbo_share#social
+
+  .supporters
+    .container
+      .row.text-center
+        br
+        h3 OUR SUPPORTERS
+      .row.section-wrapper.text-center
+        = image_tag('partners/logo_bj.gif')
+        = image_tag('partners/logo_techc.gif')
+        = image_tag('partners/logo_etc.gif')
+        = image_tag('partners/logo_tb.gif')
+        = image_tag('partners/logo_tech.gif')
+

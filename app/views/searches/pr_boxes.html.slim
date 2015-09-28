@@ -4,9 +4,10 @@
   h1.dash-head Universal PR Boxes
 
   .row
-    .col-md-3
+    .col-md-12
       = render 'layouts/search/search_form', collection: :pr_boxes
-
+      br
+    .col-md-3
       .controls
         .counter
           span.boldest #{@pr_boxes.total_count} PR Boxes 

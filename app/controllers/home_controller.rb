@@ -3,13 +3,17 @@ class HomeController < ApplicationController
   before_action :go_to_registration, only: :index
 
   def index
-    #@purchase = Purchase.first.decorate
-    # @book = @purchase.purchasable
-
-    #render layout:'mailer'
+    @campaigns = CouponBook.popular.limit(12).decorate
   end
 
   def get_started
+  end
+
+  def load_tab
+    model = params[:model].camelize
+
+    @collection = "#{model}Decorator".constantize.decorate_collection model.constantize.popular.limit(12)
+    render partial:"home/search/#{params[:model].pluralize}"
   end
 
   protected

@@ -109,6 +109,7 @@ end
 gem 'american_date'
 gem 'jquery-validation-rails'
 gem 'acts_as_list'
+#gem 'high_voltage'
 
 #Admin panel
 gem 'activeadmin', github: 'activeadmin'

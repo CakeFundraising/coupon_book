@@ -1,0 +1,30 @@
+= display_meta("Search Communities")
+
+#search_communities
+  h1.dash-head Search Communities
+  
+  .row
+    .col-md-12
+      = render 'layouts/search/search_form', collection: :communities
+      br
+    .col-md-3
+      .controls
+        .counter 
+          span.boldest #{@communities.total_count} communities 
+          span match the criteria
+      
+      #filters.panel-group
+        = render partial:'layouts/search/filter', collection: @facets, as: :facet
+        = link_to t('helpers.filters.clear'), search_communities_path, class:'btn btn-primary'
+    .col-md-9
+      .communities-container.row-fluid.transitions-enabled
+        .communities
+          - if @communities.any?
+            = render partial: "communities/grid", collection: @communities, as: :community
+          - else
+            .alert.alert-info No results found.
+            
+    = pagination(@communities)
+
+javascript:
+  Cake.search.page("#communities-search", "#search_communities");

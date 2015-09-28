@@ -65,15 +65,67 @@ class CouponBook < ActiveRecord::Base
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
 
+  delegate :zip_code, :city, :state_code, to: :fundraiser
+
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
 
   scope :affiliated, ->{ includes(:community).where.not(communities: {coupon_book_id: nil}) }
+  scope :popular, ->{ preloaded.launched.latest }
 
   scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }
   scope :active, ->{ not_past.where("end_date > ?", Time.zone.now) }
+
+  #Solr
+  searchable do
+    text :title, boost: 5
+    text :headline, :organization_name, boost: 3
+    text :story, :mission, :main_cause, :name
+
+    text :fundraiser do
+      fundraiser.full_name
+    end
+
+    text :zip_code do
+      fundraiser.location.zip_code  
+    end
+
+    text :city do
+      fundraiser.location.city  
+    end
+
+    text :state_code do
+      fundraiser.location.state_code  
+    end
+
+    boolean :tax_exempt do
+      fundraiser.tax_exempt
+    end
+
+    boolean :active, using: :active?
+
+    string :main_cause
+    
+    string :zip_code do
+      fundraiser.location.zip_code  
+    end
+
+    string :status
+
+    integer :coupon_ids, references: Coupon, multiple: true
+    integer :pr_box_ids, references: PrBox, multiple: true
+
+    time :created_at
+
+    integer :fundraiser_id
+  end
+
+  #Status
+  def active?
+    end_date >= Date.today and status != 'past'
+  end
 
   #Actions
   def launch!

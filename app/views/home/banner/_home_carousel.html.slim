@@ -1,0 +1,32 @@
+#home-carousel.carousel.slide data-ride="carousel" 
+  /! Indicators
+  ol.carousel-indicators
+    li.active data-slide-to="0" data-target="#home-carousel" 
+    li data-slide-to="1" data-target="#home-carousel" 
+    li data-slide-to="2" data-target="#home-carousel" 
+  /! Wrapper for slides
+  .carousel-inner role="listbox" 
+    .item.active
+      /= cl_image_tag("1400X700_banner_wrgnlu.jpg")
+      = cl_image_tag("slider-1_qmfa8w.jpg")
+      .carousel-caption
+        h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+        h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
+    .item
+      = cl_image_tag("slider-1_qmfa8w.jpg")
+      .carousel-caption
+        h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+        h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
+    .item
+      = cl_image_tag("slider-1_qmfa8w.jpg")
+      /= cl_image_tag("Screen_Shot_2015-09-22_at_11.27.59_AM_aywvdj.jpg")
+      .carousel-caption
+        h1.boldest Create Win/Win Social Media Partnerships in Minutes!
+        h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership PlatformS
+  /! Controls
+  a.left.carousel-control data-slide="prev" href="#home-carousel" role="button" 
+    span.glyphicon.glyphicon-chevron-left aria-hidden="true" 
+    span.sr-only Previous
+  a.right.carousel-control data-slide="next" href="#home-carousel" role="button" 
+    span.glyphicon.glyphicon-chevron-right aria-hidden="true" 
+    span.sr-only Next

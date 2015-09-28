@@ -1,0 +1,21 @@
+.row
+  .col-md-12.no-padding
+    = render 'home/search/search_form', collection: :merchants
+    br
+  .search-sidebar.col-md-3.hidden-xs.hidden-sm
+    - cache [:search_sidebar, :merchants] do
+      #filters.panel-group
+        h3.title Categories
+        ul.cats
+          - Coupon::CATEGORIES.each do |category|
+            li = link_to category, search_merchants_path(merchandise_categories: category)
+  .col-md-9.col-xs-12
+    .merchants-container.row-fluid.transitions-enabled
+      .merchants
+        - if @collection.any?
+          = render partial: "merchants/grid", collection: @collection, as: :merchant
+          .row
+            .col-md-12.col-sm-12.col-xs-12
+              = link_to "See All Merchants", search_merchants_path, class:'btn btn-primary btn-md'
+        - else
+          .alert.alert-info No results found.

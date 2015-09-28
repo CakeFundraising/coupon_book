@@ -61,6 +61,11 @@ input[type="checkbox"]{
 .search-form {
   input{
     height:auto;
+    &[type="submit"]{
+      background: none;
+      border: none;
+      font-size: 22px;
+    }
   }
 }
 address {
