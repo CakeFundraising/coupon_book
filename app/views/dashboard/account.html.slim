@@ -19,6 +19,7 @@
             .col-md-12
               = f.input :email, label:'Email Address'
               = f.input :phone
+              = f.input :url
               hr
               = render partial:'locations/form', locals:{f: f}
               / = f.input :password, autocomplete: "off"

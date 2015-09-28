@@ -27,6 +27,9 @@ CakeCouponBook.affiliates.validation = ->
       'affiliate[phone]':
         required: true
         phoneUS: true
+      'affiliate[url]':
+        required: true
+        url: true
       'affiliate[location_attributes][address]': 
         required: true
       'affiliate[location_attributes][city]': 

@@ -27,6 +27,9 @@ CakeCouponBook.merchants.validation = ->
       'merchant[phone]':
         required: true
         phoneUS: true
+      'merchant[url]':
+        required: true
+        url: true
       'merchant[location_attributes][address]': 
         required: true
       'merchant[location_attributes][city]': 

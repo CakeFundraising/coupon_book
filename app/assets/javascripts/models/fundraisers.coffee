@@ -27,6 +27,9 @@ CakeCouponBook.fundraisers.validation = ->
       'fundraiser[phone]':
         required: true
         phoneUS: true
+      'fundraiser[url]':
+        required: true
+        url: true
       'fundraiser[location_attributes][address]': 
         required: true
       'fundraiser[location_attributes][city]': 
