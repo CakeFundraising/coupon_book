@@ -71,6 +71,21 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :media_affiliate_campaigns, path: :media_campaigns do
+    member do
+      scope :edit do
+        get :get_paid
+        get :share
+      end
+
+      get :donate
+      get :checkout
+    end
+    collection do
+      get :book_preview
+    end
+  end
+
   resources :categories do
     collection do
       get :load_all_discounts

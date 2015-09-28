@@ -63,6 +63,7 @@
 //= require ./models/collections
 //= require ./models/coupons
 //= require ./models/direct_donations
+//= require ./models/media_affiliate_campaigns
 //= require ./models/media_affiliates
 //= require ./models/merchants
 //= require ./models/pictures

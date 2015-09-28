@@ -25,6 +25,11 @@ class Ability
       can [:update, :destroy, :book_preview] + AffiliateCampaignsController::TEMPLATE_STEPS, AffiliateCampaign, affiliate_id: user.id
     end
 
+    if user.media_affiliate?
+      can :create, MediaAffiliateCampaign
+      can [:update, :destroy, :book_preview] + MediaAffiliateCampaignsController::TEMPLATE_STEPS, MediaAffiliateCampaign, media_affiliate_id: user.id
+    end
+
     can :read, :all
 
     can [:start_discount, :start_pr_box, :donate, :checkout], CouponBook
