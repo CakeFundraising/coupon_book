@@ -2,3 +2,4 @@
   = c.inputs do
     = c.input :slug, hint: 'Set a custom url where will be shown a promoter leaderboard and results for this Campaign.', prepend: community_page_root_url
     = c.input :commission_percentage, as: :select, collection: commission_percentage(c.object.commission_percentage), hint: 'Choose the percentage you offer to affiliates in order to participate.'
+    = f.input :media_commission_percentage, as: :select, collection: commission_percentage(f.object.media_commission_percentage), hint: 'Choose the percentage you offer to media affiliates in order to participate.'

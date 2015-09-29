@@ -29,20 +29,35 @@
     .inputs
       h3 Community Settings
       .row
-        .col-md-6
+        .col-md-4
           .info
             strong Community page URL: 
             span = link_to community_url(@community), community_url(@community), target: :_blank
-        .col-md-6
+        .col-md-4
           .info
-            strong General Affiliate Commission Percentage: 
+            strong Affiliate Commission Percentage: 
             span = @community.decorate.commission_percentage
+        .col-md-4
+          .info
+            strong Media Affiliate Commission Percentage: 
+            span = @community.decorate.media_commission_percentage
       .row
         .col-md-12
           br
           = link_to "Edit Settings", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
           = render partial:'communities/edit'
       hr
-      h4 Affiliates
-      = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
+      #affiliates
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist" 
+          li.active role="presentation" 
+            a aria-controls="affiliates" data-toggle="tab" href="#affiliates" role="tab" Affiliates
+          li role="presentation" 
+            a aria-controls="media_affiliates" data-toggle="tab" href="#media_affiliates" role="tab" Media Affiliates
+        /! Tab panes
+        .tab-content
+          #affiliates.tab-pane.active role="tabpanel"
+            = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
+          #media_affiliates.tab-pane role="tabpanel"
+            = render partial:'media_affiliate_campaigns/show/table/table', locals:{campaigns: @media_affiliate_campaigns}
     

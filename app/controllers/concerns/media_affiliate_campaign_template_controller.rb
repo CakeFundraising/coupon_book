@@ -34,6 +34,7 @@ module MediaAffiliateCampaignTemplateController
   def share
     @campaign = resource.decorate
     @book = @campaign.coupon_book.decorate
+    @community = @campaign.community.decorate
     render 'media_affiliate_campaigns/template/share'
   end
 

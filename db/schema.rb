@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150928172531) do
+ActiveRecord::Schema.define(version: 20150929153110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,10 +153,13 @@ ActiveRecord::Schema.define(version: 20150928172531) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "slug"
-    t.integer  "commission_percentage"
     t.integer  "coupon_book_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "media_commission_percentage", default: 0
+    t.integer  "commission_percentage",       default: 0
+    t.string   "screenshot_url"
+    t.string   "screenshot_version"
   end
 
   create_table "coupon_books", force: :cascade do |t|

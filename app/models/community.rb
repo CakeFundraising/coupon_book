@@ -1,6 +1,8 @@
 class Community < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
+  
+  include Screenshotable
 
   COMMISSION = (5..100).step(5).to_a
 
@@ -10,7 +12,9 @@ class Community < ActiveRecord::Base
   has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
   has_many :commissions, through: :affiliate_purchases
 
-  validates :slug, :commission_percentage, :coupon_book_id, presence: true
+  has_many :media_affiliate_campaigns, dependent: :destroy
+
+  validates :slug, :commission_percentage, :media_commission_percentage, :coupon_book_id, presence: true
   #validates_numericality_of :commission_percentage, greater_than: :commission_percentage
 
   delegate :title, :headline, :organization_name, :story, :mission, :fundraiser, :zip_code, :city, :state_code, :status, :main_cause, :active?, to: :coupon_book
@@ -21,7 +25,7 @@ class Community < ActiveRecord::Base
 
   scope :popular, ->{ launched.latest }
 
-    #Solr
+  #Solr
   searchable do
     text :title, boost: 5
     text :headline, :organization_name, boost: 3
