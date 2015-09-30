@@ -5,7 +5,10 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   has_one :coupon_book, through: :community
   has_one :location, as: :locatable, dependent: :destroy
 
-  validates :community, presence: true
+  has_many :commissions, as: :commissionable
+  has_many :purchases, through: :commissions
+
+  validates :community, :media_affiliate, presence: true
 
   validates_associated :location, if: ->(c){ c.persisted? and !c.use_stripe }
 
@@ -16,15 +19,17 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
   delegate :name, :end_date, :status, :fee_percentage, :fundraiser, to: :coupon_book
-  #delegate :commission_percentage, to: :community
+
+  before_save do
+    self.token = SecureRandom.uuid if self.token.blank?
+    self.commission_percentage = community.media_commission_percentage if self.commission_percentage.zero?
+  end
 
   def current_sales_cents
-    #purchases.sum(:amount_cents)
-    0
+    purchases.sum(:amount_cents)
   end
 
   def current_commission_cents
-    #commissions.sum(:amount_cents)
-    0
+    commissions.sum(:amount_cents)
   end
 end

@@ -49,6 +49,7 @@ class CouponBook < ActiveRecord::Base
   has_many :vouchers, through: :categories_coupons
 
   has_many :purchases, as: :purchasable
+  has_many :commissions, as: :commissionable
   
   has_many :direct_donations, as: :donable
 

@@ -57,7 +57,7 @@ class PurchasesController < InheritedResources::Base
     params.permit(purchase: [
       :first_name, :last_name, :zip_code, :comment, :purchasable_type, 
       :purchasable_id, :card_token, :amount, :email, :hide_name,
-      commissions_attributes: [:owner_type, :owner_id]
+      commissions_attributes: [:commissionable_type, :commissionable_id]
     ])
   end
 

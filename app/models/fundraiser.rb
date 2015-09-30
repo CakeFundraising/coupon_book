@@ -6,5 +6,4 @@ class Fundraiser < User
   has_many :coupon_books, dependent: :destroy
   has_many :subscriptors, as: :object
   has_many :vouchers, as: :owner
-  has_many :commissions, as: :owner
 end

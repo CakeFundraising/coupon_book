@@ -32,8 +32,8 @@ module AffiliatePageActions
     @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
     
     @purchase = @affiliate_campaign.purchases.build
-    @commissions = @purchase.commissions.build(owner: @affiliate_campaign.affiliate)
-    @commissions << @purchase.commissions.build(owner_type: 'MediaAffiliate', owner_id: cookies[:ma_id]) if cookies[:ma_id].present? #Media Affiliate Commission
+    @commissions = @purchase.commissions.build(commissionable: @affiliate_campaign)
+    @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: cookies[:macid]) if cookies[:macid].present? #Media Affiliate Commission
 
     if mobile_device?
       render('affiliate_campaigns/donate/mobile', layout: 'layouts/books/mobile')
@@ -49,8 +49,8 @@ module AffiliatePageActions
     @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
     
     @purchase = @affiliate_campaign.purchases.build(amount: @coupon_book.object.price.to_i)
-    @commissions = @purchase.commissions.build(owner: @affiliate_campaign.affiliate)
-    @commissions << @purchase.commissions.build(owner_type: 'MediaAffiliate', owner_id: cookies[:ma_id]) if cookies[:ma_id].present? #Media Affiliate Commission
+    @commissions = @purchase.commissions.build(commissionable: @affiliate_campaign)
+    @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: cookies[:macid]) if cookies[:macid].present? #Media Affiliate Commission
 
     if mobile_device?
       render('affiliate_campaigns/checkout/mobile', layout: 'layouts/books/mobile')

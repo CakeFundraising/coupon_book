@@ -1,6 +1,6 @@
 - if campaigns.any?
   #no-more-tables
-    table#affiliate_campaigns.table.table-hover.table-bordered.table-striped.data-table
+    table#media_affiliate_campaigns.table.table-hover.table-bordered.table-striped.data-table
       thead.cf
         tr
           th = Affiliate.model_name.human
@@ -8,6 +8,6 @@
           th = AffiliateCampaign.human_attribute_name :sales_count
           th
       tbody
-        = render partial:'affiliate_campaigns/show/table/row', collection: campaigns, as: :campaign
+        = render partial:'media_affiliate_campaigns/show/table/row', collection: campaigns, as: :campaign
 - else
   = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.affiliates'), in_profile: true}

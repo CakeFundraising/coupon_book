@@ -12,6 +12,10 @@ class MediaAffiliateCampaignDecorator < ApplicationDecorator
     object.media_affiliate.full_name
   end
 
+  def phone
+    object.media_affiliate.phone
+  end
+
   def end_date
     object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
   end
@@ -25,7 +29,10 @@ class MediaAffiliateCampaignDecorator < ApplicationDecorator
   end
 
   def commission_percentage
-    #"#{object.commission_percentage}%"
-    "15%"
-  end  
+    "#{object.commission_percentage}%"
+  end
+
+  def community_page_url
+    h.community_url(object.community, macid: object, token: object.token)   
+  end 
 end

@@ -4,7 +4,7 @@ class CreateCommissions < ActiveRecord::Migration
       t.monetize :amount
       t.integer :percentage
       t.integer :purchase_id
-      t.references :owner, polymorphic: true, index: true
+      t.references :commissionable, polymorphic: true, index: true
 
       t.timestamps null: false
     end

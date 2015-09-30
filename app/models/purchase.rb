@@ -47,7 +47,8 @@ class Purchase < ActiveRecord::Base
   def create_fr_commission!
     percentage = 100 - commissions.sum(:percentage)
     amount_cents = ((percentage*self.amount_cents)/100.0).round
-    self.commissions.create(owner: self.purchasable.fundraiser, percentage: percentage, amount_cents: amount_cents)
+    commissionable = self.purchasable.try(:coupon_book) || self.purchasable
+    self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)
   end
 
   private

@@ -13,7 +13,7 @@ class AffiliateCampaign < ActiveRecord::Base
   has_one :location, as: :locatable, dependent: :destroy
 
   has_many :purchases, as: :purchasable
-  has_many :commissions, through: :purchases
+  has_many :commissions, as: :commissionable
 
   validates :community, presence: true
   validates :first_name, :last_name, :phone, :email, presence: true, if: ->(c){ c.persisted? and c.coupon_book.commercial_template? }
@@ -31,6 +31,10 @@ class AffiliateCampaign < ActiveRecord::Base
   delegate :affiliate_commission_percentage, to: :community
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
+
+  before_save do
+    self.commission_percentage = community.affiliate_commission_percentage if self.commission_percentage.zero?
+  end
 
   #Slugs
   def slug_candidates

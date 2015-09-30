@@ -1,4 +1,4 @@
-.modal.fade id="campaign_modal_#{campaign.id}"
+.modal.fade id="media_campaign_modal_#{campaign.id}"
   .modal-dialog
     .modal-content
       .modal-header
@@ -10,7 +10,7 @@
           .col-md-6
             h4 Affiliate Info
             address.black
-              h5.title = campaign.affiliate
+              h5.title = campaign.affiliate_name
               .address_1 = campaign.location.address
               .address_2 = campaign.location
               abbr.phone title="Phone" = campaign.phone

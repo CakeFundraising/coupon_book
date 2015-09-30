@@ -10,9 +10,9 @@
         h4 Share
         p.text-muted Share this URL with friends and supporters. Urge them to reshare with their social network.
         br
-        .share-link-box = community_url(@community)
+        .share-link-box = @campaign.community_page_url
         br
-        = render partial:'layouts/share_buttons', locals:{url: community_url(@community), title: 'Support my Campaign at @EatsForGood and enjoy deal vouchers!'}
+        = render partial:'layouts/share_buttons', locals:{url: @campaign.community_page_url, title: 'Support my Campaign at @EatsForGood and enjoy deal vouchers!'}
       .col-md-6
         h4 Campaign Screenshot
         p.text-muted Use this image when sharing with your friends and supporters, or in your website. 

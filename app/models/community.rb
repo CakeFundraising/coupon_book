@@ -14,7 +14,7 @@ class Community < ActiveRecord::Base
 
   has_many :media_affiliate_campaigns, dependent: :destroy
 
-  validates :slug, :affiliate_commission_percentage, :fr_commission_percentage, :media_commission_percentage, :coupon_book_id, presence: true
+  validates :slug, :affiliate_commission_percentage, :media_commission_percentage, :coupon_book_id, presence: true
   validate :commissions_sum
 
   delegate :title, :headline, :organization_name, :story, :mission, :fundraiser, :zip_code, :city, :state_code, :status, :main_cause, :active?, to: :coupon_book
@@ -24,8 +24,6 @@ class Community < ActiveRecord::Base
   scope :launched, ->{ preloaded.where(coupon_books: {status: :launched}) }
 
   scope :popular, ->{ launched.latest }
-
-  before_save :update_fr_commission
 
   #Solr
   searchable do
@@ -68,9 +66,5 @@ class Community < ActiveRecord::Base
   def commissions_sum
     sum = self.affiliate_commission_percentage + self.media_commission_percentage
     errors.add(:media_commission_percentage, "The sum of Affiliate and Media commissions can't be more than 100%") if sum > 100
-  end
-
-  def update_fr_commission
-    self.fr_commission_percentage = (100 - self.affiliate_commission_percentage - self.media_commission_percentage)
   end
 end
