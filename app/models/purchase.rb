@@ -1,12 +1,17 @@
 class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true
-  has_one :commission
   has_one :charge, as: :chargeable
+
+  has_many :commissions, dependent: :destroy
   has_many :vouchers, dependent: :destroy
+
+  delegate :community, to: :purchasable
 
   attr_accessor :card_number, :exp_month, :exp_year, :cvc, :email_confirmation
 
   monetize :amount_cents
+
+  accepts_nested_attributes_for :commissions, reject_if: :all_blank
 
   validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
 
@@ -19,7 +24,7 @@ class Purchase < ActiveRecord::Base
   end
 
   after_create do
-    Commission.create_from_purchase!(self) #create Commision
+    self.create_fr_commission!
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
   end
 
@@ -37,6 +42,12 @@ class Purchase < ActiveRecord::Base
 
   def resend_emails
     Resque.enqueue(ResqueSchedule::ResendEmails, self.id)
+  end
+
+  def create_fr_commission!
+    percentage = 100 - commissions.sum(:percentage)
+    amount_cents = ((percentage*self.amount_cents)/100.0).round
+    self.commissions.create(owner: self.purchasable.fundraiser, percentage: percentage, amount_cents: amount_cents)
   end
 
   private
@@ -87,5 +98,5 @@ class Purchase < ActiveRecord::Base
       fee_details: balance_transaction.fee_details.map(&:to_hash)
     ).save
   end
-
+  
 end

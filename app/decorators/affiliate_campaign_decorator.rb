@@ -25,8 +25,8 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     h.humanized_money_with_symbol (object.current_commission_cents/100.0)
   end
 
-  def commission_percentage
-    "#{object.commission_percentage}%"
+  def affiliate_commission_percentage
+    "#{object.affiliate_commission_percentage}%"
   end
 
   def meta_title

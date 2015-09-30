@@ -23,11 +23,11 @@
               = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
   - else
     .headline.text-center
-      h1 Campaign Affiliates
+      h1 Campaign Community
       /h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
       br
     .inputs
-      h3 Community Settings
+      h3 General Settings
       .row
         .col-md-4
           .info
@@ -35,11 +35,11 @@
             span = link_to community_url(@community), community_url(@community), target: :_blank
         .col-md-4
           .info
-            strong Affiliate Commission Percentage: 
-            span = @community.decorate.commission_percentage
+            strong Affiliate Commission: 
+            span = @community.decorate.affiliate_commission_percentage
         .col-md-4
           .info
-            strong Media Affiliate Commission Percentage: 
+            strong Media Affiliate Commission: 
             span = @community.decorate.media_commission_percentage
       .row
         .col-md-12
@@ -47,7 +47,7 @@
           = link_to "Edit Settings", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
           = render partial:'communities/edit'
       hr
-      #affiliates
+      #affiliates-tabs
         /! Nav tabs
         ul.nav.nav-tabs role="tablist" 
           li.active role="presentation" 
