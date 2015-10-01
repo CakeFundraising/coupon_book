@@ -63,6 +63,8 @@ CakeCouponBook::Application.routes.draw do
         get :share
       end
 
+      patch :update_commission
+
       get :donate
       get :checkout
     end
@@ -77,6 +79,8 @@ CakeCouponBook::Application.routes.draw do
         get :get_paid
         get :share
       end
+
+      patch :update_commission
 
       get :donate
       get :checkout

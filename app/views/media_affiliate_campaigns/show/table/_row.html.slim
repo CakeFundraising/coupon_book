@@ -6,11 +6,15 @@
       = campaign.current_sales
     td data-title=(AffiliateCampaign.human_attribute_name :sales_count)
       = campaign.purchases.count
+    td data-title=(AffiliateCampaign.human_attribute_name :commission_percentage)
+      = campaign.commission_percentage
     td.truncate
       = link_to "More Info", "#media_campaign_modal_#{campaign.id}", class: "btn btn-sm btn-default", data: {toggle: :modal}
+      = render partial:'media_affiliate_campaigns/show/table/more_modal', locals:{campaign: campaign}
+
+      = link_to "Edit", "#update_media_#{campaign.id}", class: "btn btn-sm btn-primary", data: {toggle: :modal}
+      = render partial:'media_affiliate_campaigns/show/table/edit_modal', locals:{campaign: campaign}
 
       = link_to campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
         span.glyphicon.glyphicon-trash
-
-      = render partial:'media_affiliate_campaigns/show/table/more_modal', locals:{campaign: campaign}
   tr.empty-tr

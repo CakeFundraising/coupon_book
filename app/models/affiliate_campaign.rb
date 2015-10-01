@@ -8,6 +8,7 @@ class AffiliateCampaign < ActiveRecord::Base
   belongs_to :community
 
   has_one :coupon_book, through: :community
+  has_one :fundraiser, through: :coupon_book
 
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy

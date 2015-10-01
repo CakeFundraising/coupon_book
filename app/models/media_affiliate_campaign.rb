@@ -3,6 +3,8 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   belongs_to :community
 
   has_one :coupon_book, through: :community
+  has_one :fundraiser, through: :coupon_book
+
   has_one :location, as: :locatable, dependent: :destroy
 
   has_many :commissions, as: :commissionable

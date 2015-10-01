@@ -35,6 +35,17 @@ class MediaAffiliateCampaignsController < InheritedResources::Base
     end
   end
 
+  def update_commission
+    update! do |success, failure|
+      success.html do
+        redirect_to affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), notice: 'Commission updated.'
+      end
+      failure.html do
+        redirect_to affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), alert: 'There was an error when trying to update the Commission.'
+      end
+    end
+  end
+
   def destroy
     destroy! do |success, failure|
       success.html do
@@ -48,7 +59,7 @@ class MediaAffiliateCampaignsController < InheritedResources::Base
   def permitted_params
     params.permit(media_affiliate_campaign: [
       :first_name, :last_name, :phone, :email, :url, :organization_name, :story, :community_id,
-      :use_stripe, :recipient_name,
+      :use_stripe, :recipient_name, :commission_percentage,
       location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
       avatar_picture_attributes: [
         :id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, 

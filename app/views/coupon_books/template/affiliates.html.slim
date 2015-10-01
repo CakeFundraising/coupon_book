@@ -29,18 +29,19 @@
     .inputs
       h3 General Settings
       .row
-        .col-md-4
+        .col-md-12
           .info
             strong Community page URL: 
             span = link_to community_url(@community), community_url(@community), target: :_blank
-        .col-md-4
+          br
           .info
             strong Affiliate Commission: 
             span = @community.decorate.affiliate_commission_percentage
-        .col-md-4
           .info
             strong Media Affiliate Commission: 
             span = @community.decorate.media_commission_percentage
+          .info
+            p.text-muted These values will be applied to new Affiliates' commissions at the moment they join your campaign. For a more granular control use the Edit button on the list below.
       .row
         .col-md-12
           br

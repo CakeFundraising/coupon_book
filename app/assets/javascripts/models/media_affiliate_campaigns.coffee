@@ -18,6 +18,8 @@ CakeCouponBook.media_affiliate_campaigns.validation = ->
     rules:
       'media_affiliate_campaign[community_id]':
         required: true
+      'media_affiliate_campaign[commission_percentage]':
+        required: true
       'media_affiliate_campaign[recipient_name]': 
         required: true
       'media_affiliate_campaign[location_attributes][address]': 

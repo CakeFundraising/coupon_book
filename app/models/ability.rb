@@ -13,6 +13,9 @@ class Ability
       #Coupon
       can :create, Coupon
       can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user
+
+      can :update_commission, AffiliateCampaign, fundraiser: user
+      can :update_commission, MediaAffiliateCampaign, fundraiser: user
     end
 
     if user.merchant?
