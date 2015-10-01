@@ -2,7 +2,7 @@ module AffiliatePageActions
   extend ActiveSupport::Concern
   
   included do
-    before_action :allow_launched_book, only: [:donate, :checkout]
+    before_action :allow_launched_book, :validate_media_affiliate_token, only: [:donate, :checkout]
     before_action :redirect_old_slug, only: [:show]
   end
 
@@ -26,43 +26,44 @@ module AffiliatePageActions
   end
 
   def donate
-    @affiliate_campaign = resource.decorate
-    @coupon_book = @affiliate_campaign.coupon_book
-    
-    @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
-    
-    @purchase = @affiliate_campaign.purchases.build
-    @commissions = @purchase.commissions.build(commissionable: @affiliate_campaign)
-    @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: cookies[:macid]) if cookies[:macid].present? #Media Affiliate Commission
-
-    if mobile_device?
-      render('affiliate_campaigns/donate/mobile', layout: 'layouts/books/mobile')
-    else
-      render('affiliate_campaigns/donate/desktop', layout: 'layouts/books/desktop')
-    end
+    purchase_method(:donate)
   end
 
   def checkout
-    @affiliate_campaign = resource.decorate
-    @coupon_book = @affiliate_campaign.coupon_book
-    
-    @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
-    
-    @purchase = @affiliate_campaign.purchases.build(amount: @coupon_book.object.price.to_i)
-    @commissions = @purchase.commissions.build(commissionable: @affiliate_campaign)
-    @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: cookies[:macid]) if cookies[:macid].present? #Media Affiliate Commission
-
-    if mobile_device?
-      render('affiliate_campaigns/checkout/mobile', layout: 'layouts/books/mobile')
-    else
-      render('affiliate_campaigns/checkout/desktop', layout: 'layouts/books/desktop')
-    end
+    purchase_method(:checkout, true)
   end
 
   protected
 
+  def purchase_method(method, pre_amount=false)
+    @affiliate_campaign = resource.decorate
+    @coupon_book = @affiliate_campaign.coupon_book
+    
+    @purchases = PurchaseDecorator.decorate_collection @affiliate_campaign.purchases.latest.first(5)
+
+    amount = @coupon_book.object.price.to_i if pre_amount
+    @purchase = @affiliate_campaign.purchases.build(amount: amount)
+
+    @commissions = []
+    @commissions << @purchase.commissions.build(commissionable: @affiliate_campaign)
+    @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: params[:macid]) if params[:macid].present? #Media Affiliate Commission
+
+    if mobile_device?
+      render("affiliate_campaigns/#{method}/mobile", layout: 'layouts/books/mobile')
+    else
+      render("affiliate_campaigns/#{method}/desktop", layout: 'layouts/books/desktop')
+    end
+  end
+
   def allow_launched_book
     redirect_to affiliate_campaign_path(resource) unless resource.coupon_book.launched?
+  end
+
+  def validate_media_affiliate_token
+    if params[:macid].present?
+      mac = MediaAffiliateCampaign.find_by_id(params[:macid])
+      redirect_to request.path if mac.nil? or mac.try(:token) != params[:token]
+    end
   end
 
   def redirect_old_slug

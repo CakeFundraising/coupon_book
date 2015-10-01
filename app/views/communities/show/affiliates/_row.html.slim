@@ -1,11 +1,11 @@
-- cache [:community, :table, :affiliate_campaign, campaign] do
-  tr.campaign
-    td.col-md-8.col-sm-6 data-title="Group"
-      = link_to campaign.give_path, data: {no_turbolink: true} do
-        = campaign.affiliate_name
+tr.campaign
+  td.col-md-8.col-sm-6 data-title="Group"
+    = link_to campaign.give_path(request.query_parameters), data: {no_turbolink: true} do
+      = campaign.affiliate_name
+  - cache [:community, :table, :affiliate_campaign, campaign] do
     td.col-md-2.col-sm-4 data-title=(AffiliateCampaign.human_attribute_name :total_raised)
       = campaign.current_sales
     td.col-md-2.col-sm-2 data-title=(AffiliateCampaign.human_attribute_name :about_us)
       = link_to campaign.url, target: :_blank do
         span.glyphicon.glyphicon-info-sign
-  tr.empty-tr
+tr.empty-tr

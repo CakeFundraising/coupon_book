@@ -14,7 +14,7 @@
         ul.nav.nav-pills.popular
           = render partial:'categories/show/book_nav', collection: @categories, as: :category
       .buy_button_section.col-md-3.col-sm-3
-        = campaign_buy_button(@coupon_book, "Give Now", donate_coupon_book_path(@coupon_book), 'success-transparent')
+        = campaign_buy_button(@coupon_book, "Give Now", donate_coupon_book_path(@coupon_book, request.query_parameters), 'success-transparent')
 
 = render partial:'coupon_books/show/templates/shared/after_purchase'
 
