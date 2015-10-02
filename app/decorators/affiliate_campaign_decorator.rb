@@ -13,6 +13,10 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     object.organization_name || object.full_name
   end
 
+  def fr_name
+    coupon_book.fr_name
+  end
+
   def end_date
     object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
   end

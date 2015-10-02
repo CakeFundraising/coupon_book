@@ -26,7 +26,7 @@ class CouponBookDecorator < ApplicationDecorator
   end
 
   def fr_name
-    (object.organization_name || object.fundraiser.name)
+    (object.organization_name || object.fundraiser.full_name)
   end
 
   def current_sales
