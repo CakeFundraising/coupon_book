@@ -7,6 +7,7 @@ class Voucher < ActiveRecord::Base
   belongs_to :purchase
   belongs_to :owner, polymorphic: true
 
+  delegate :purchasable, to: :purchase
   delegate :coupon, :coupon_book, to: :categories_coupon
   delegate :multiple_locations, :custom_terms, to: :coupon
 

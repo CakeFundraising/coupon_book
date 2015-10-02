@@ -26,8 +26,7 @@ class PurchasesController < InheritedResources::Base
   #Vouchers
   def vouchers
     @purchase = resource
-    @book = resource.purchasable.decorate
-    @fundraiser = @book.fundraiser
+    @campaign = resource.purchasable.decorate
     @vouchers = resource.vouchers.decorate
 
     respond_to do |format|
