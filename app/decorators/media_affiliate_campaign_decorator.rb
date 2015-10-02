@@ -2,7 +2,7 @@ class MediaAffiliateCampaignDecorator < ApplicationDecorator
   delegate_all
 
   decorates_association :coupon_book
-  decorates_association :media_affiliate
+  #decorates_association :media_affiliate
 
   def to_s
     object.name
