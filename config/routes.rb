@@ -142,6 +142,12 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :vouchers, only: :index do
+    member do
+      patch :redeem
+    end
+  end
+
   resources :users, only: :index do
     collection do
       patch :roles
