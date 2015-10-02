@@ -11,4 +11,8 @@ class VoucherDecorator < ApplicationDecorator
     object.expires_at.strftime("%m/%d/%Y") unless object.expires_at.nil?
   end
 
+  def fr_name
+    purchasable.decorate.fr_name
+  end
+
 end

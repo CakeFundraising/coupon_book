@@ -110,4 +110,6 @@ CakeCouponBook.validations.init = ->
   CakeCouponBook.fundraisers.validation()
   CakeCouponBook.merchants.validation()
   CakeCouponBook.affiliate_campaigns.validation()
+  CakeCouponBook.media_affiliates.validation()
+  CakeCouponBook.media_affiliate_campaigns.validation()
   return

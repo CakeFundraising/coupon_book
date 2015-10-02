@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :email, presence: true
   validates :roles, presence: true, if: :persisted?
 
-  has_roles [:fundraiser, :merchant, :affiliate]
+  has_roles [:fundraiser, :merchant, :affiliate, :media_affiliate]
 
   has_one :location, as: :locatable, dependent: :destroy
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates_associated :location, if: :persisted?
   validates_associated :avatar_picture, if: :persisted?
 
-  delegate :zip_code, :city, :state_code, to: :location
+  delegate :zip_code, :city, :state_code, to: :location, allow_nil: true
 
   searchable do
     text :first_name, :last_name, boost: 2
@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   #User roles methods
   def set_fundraiser!
-    unless merchant? or affiliate?
+    unless merchant? or affiliate? or media_affiliate?
       self.roles = [:fundraiser]
       self.type = 'Fundraiser'
       self.save
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
   end
 
   def set_merchant!
-    unless fundraiser? or affiliate?
+    unless fundraiser? or affiliate? or media_affiliate?
       self.roles = [:merchant]
       self.type = 'Merchant'
       self.save
@@ -52,9 +52,17 @@ class User < ActiveRecord::Base
   end
 
   def set_affiliate!
-    unless fundraiser? or merchant?
+    unless fundraiser? or merchant? or media_affiliate?
       self.roles = [:affiliate]
       self.type = 'Affiliate'
+      self.save
+    end
+  end
+
+  def set_media_affiliate!
+    unless fundraiser? or merchant? or affiliate?
+      self.roles = [:media_affiliate]
+      self.type = 'MediaAffiliate'
       self.save
     end
   end

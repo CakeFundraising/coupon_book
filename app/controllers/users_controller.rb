@@ -14,6 +14,9 @@ class UsersController < ApplicationController
     elsif role == 'affiliate'
       current_user.set_affiliate!
       redirect_to new_affiliate_path
+    elsif role == 'media_affiliate'
+      current_user.set_media_affiliate!
+      redirect_to new_media_affiliate_path
     else
       redirect_to home_get_started_path, alert:"That role does not exist. Sorry."
     end

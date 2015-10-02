@@ -1,25 +1,28 @@
 .voucher
   .row.voucher-headline
-    .col-md-3.col-xs-12
-      = link_to root_path do
-        = image_tag 'efg_logo.png', class:'img-responsive'
-    .col-md-9.col-xs-12
+    .col-md-12.col-xs-12
       .voucher-number
         span.red Voucher: 
         span = voucher.number
-
   .row.coupon-content
     .col-xs-12
       h2 = voucher.coupon
       h4.sp_name = voucher.coupon.sponsor_name
-  
   .row
-    .col-md-8.col-xs-12
+    .col-md-12.col-xs-12
       h2.expires
         span.blue-text Expires: 
         span = voucher.expires_at_american
-
-    .col-md-4.col-xs-12
+    .col-md-12.col-xs-12
+      = render partial:'coupons/show/terms', locals:{coupon: voucher.coupon}
+      a data-toggle="modal" data-target="#coupon_terms_#{voucher.coupon.id}" Terms & Conditions
+  br
+  .row
+    .col-md-12.col-xs-12
       .row
         .qrcode-table
           = raw RQRCode::QRCode.new(voucher.number).as_html
+  br
+  .row
+    .col-md-12.col-xs-12
+      = redeem_button(voucher)

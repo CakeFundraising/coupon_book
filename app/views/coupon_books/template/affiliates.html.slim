@@ -23,26 +23,42 @@
               = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
   - else
     .headline.text-center
-      h1 Campaign Affiliates
+      h1 Campaign Community
       /h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
       br
     .inputs
-      h3 Community Settings
+      h3 General Settings
       .row
-        .col-md-6
+        .col-md-12
           .info
             strong Community page URL: 
             span = link_to community_url(@community), community_url(@community), target: :_blank
-        .col-md-6
+          br
           .info
-            strong General Affiliate Commission Percentage: 
-            span = @community.decorate.commission_percentage
+            strong Affiliate Commission: 
+            span = @community.decorate.affiliate_commission_percentage
+          .info
+            strong Media Affiliate Commission: 
+            span = @community.decorate.media_commission_percentage
+          .info
+            p.text-muted These values will be applied to new Affiliates' commissions at the moment they join your campaign. For a more granular control use the Edit button on the list below.
       .row
         .col-md-12
           br
           = link_to "Edit Settings", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
           = render partial:'communities/edit'
       hr
-      h4 Affiliates
-      = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
+      #affiliates-tabs
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist" 
+          li.active role="presentation" 
+            a aria-controls="affiliates" data-toggle="tab" href="#affiliates" role="tab" Affiliates
+          li role="presentation" 
+            a aria-controls="media_affiliates" data-toggle="tab" href="#media_affiliates" role="tab" Media Affiliates
+        /! Tab panes
+        .tab-content
+          #affiliates.tab-pane.active role="tabpanel"
+            = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
+          #media_affiliates.tab-pane role="tabpanel"
+            = render partial:'media_affiliate_campaigns/show/table/table', locals:{campaigns: @media_affiliate_campaigns}
     

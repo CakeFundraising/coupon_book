@@ -26,8 +26,7 @@ class PurchasesController < InheritedResources::Base
   #Vouchers
   def vouchers
     @purchase = resource
-    @book = resource.purchasable.decorate
-    @fundraiser = @book.fundraiser
+    @campaign = resource.purchasable.decorate
     @vouchers = resource.vouchers.decorate
 
     respond_to do |format|
@@ -54,7 +53,11 @@ class PurchasesController < InheritedResources::Base
   end
 
   def permitted_params
-    params.permit(purchase: [:first_name, :last_name, :zip_code, :comment, :purchasable_type, :purchasable_id, :card_token, :amount, :email, :hide_name])
+    params.permit(purchase: [
+      :first_name, :last_name, :zip_code, :comment, :purchasable_type, 
+      :purchasable_id, :card_token, :amount, :email, :hide_name,
+      commissions_attributes: [:commissionable_type, :commissionable_id]
+    ])
   end
 
   def validate_token

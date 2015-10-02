@@ -29,6 +29,8 @@ CakeCouponBook.affiliate_campaigns.validation = ->
         phoneUS: true
       'affiliate_campaign[url]': 
         required: true
+      'affiliate_campaign[commission_percentage]': 
+        required: true
       'affiliate_campaign[community_id]':
         required: true
       'affiliate_campaign[check_recipient_name]': 

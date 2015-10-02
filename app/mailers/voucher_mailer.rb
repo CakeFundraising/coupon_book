@@ -1,15 +1,14 @@
 class VoucherMailer < ApplicationMailer
   def download_page(purchase)
     @purchase = purchase.decorate
-    @book = @purchase.purchasable
+    @campaign = @purchase.purchasable
 
-    mail(to: purchase.email, subject: "Download your deal vouchers from #{@book.fr_name}")
+    mail(to: purchase.email, subject: "Download your deal vouchers from #{@campaign.fr_name}")
   end
 
   def send_vouchers(purchase)
     @purchase = purchase.decorate
-    @book = @purchase.purchasable.decorate
-    @fundraiser = @book.fundraiser
+    @campaign = @purchase.purchasable.decorate
     @vouchers = purchase.vouchers.decorate
 
     attachments["Vouchers.pdf"] = WickedPdf.new.pdf_from_string(
@@ -22,7 +21,7 @@ class VoucherMailer < ApplicationMailer
       }
     )
       
-    mail(to: purchase.email, subject: "Enjoy rewards from #{@book.fr_name}")
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@campaign.fr_name}")
   end
 
   def send_free_voucher(purchase)

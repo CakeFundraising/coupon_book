@@ -7,6 +7,7 @@ class Voucher < ActiveRecord::Base
   belongs_to :purchase
   belongs_to :owner, polymorphic: true
 
+  delegate :purchasable, to: :purchase
   delegate :coupon, :coupon_book, to: :categories_coupon
   delegate :multiple_locations, :custom_terms, to: :coupon
 
@@ -18,11 +19,11 @@ class Voucher < ActiveRecord::Base
   scope :expired, ->{ where("expires_at <= ?", Time.zone.now) }
   scope :not_expired, ->{ where("expires_at > ?", Time.zone.now) }
 
-  def validate_status(sp_id)
-    if self.owner_type != 'Merchant' or self.owner_id != sp_id.to_i
-      allowed = false
-      message = 'Sorry, you cannot access this Voucher.'
-    elsif self.redeemed?
+  def validate_status(sp_id=nil)
+    # if self.owner_type != 'Merchant' or self.owner_id != sp_id.to_i
+    #   allowed = false
+    #   message = 'Sorry, you cannot access this Voucher.'
+    if self.redeemed?
       allowed = false
       message = 'Sorry, this Voucher has been redeemed already.'
     elsif self.expired?
@@ -41,8 +42,13 @@ class Voucher < ActiveRecord::Base
 
   def redeem!(sp_id)
     status = validate_status(sp_id)
-    self.redeemed! if status[:allowed]
-    status
+    
+    if status[:allowed]
+      self.redeemed!
+      {allowed: true, message: "Voucher ##{self.number} redeemed!"}
+    else
+      status
+    end
   end
 
   def expired?

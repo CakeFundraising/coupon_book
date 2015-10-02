@@ -16,7 +16,11 @@ class CommunitiesController < InheritedResources::Base
 
   def update
     update! do |success, failure|
+      failure.html do
+        redirect_to affiliates_coupon_book_path(@community.coupon_book), alert: @community.errors.messages.values.join('\n')
+      end
       success.html do
+        update_screenshot(@community)
         redirect_to affiliates_coupon_book_path(@community.coupon_book), notice: 'Community settings successfully updated.'
       end
     end
@@ -25,6 +29,10 @@ class CommunitiesController < InheritedResources::Base
   private
   
   def permitted_params
-    params.permit(community: [:slug, :commission_percentage])
+    params.permit(community: [:slug, :affiliate_commission_percentage, :media_commission_percentage])
+  end
+
+  def update_screenshot(community)
+    Resque.enqueue(ResqueSchedule::CommunityScreenshot, community.id, community_url(community)) unless Rails.env.test?
   end
 end

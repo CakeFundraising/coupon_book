@@ -8,12 +8,13 @@ class AffiliateCampaign < ActiveRecord::Base
   belongs_to :community
 
   has_one :coupon_book, through: :community
+  has_one :fundraiser, through: :coupon_book
 
   has_one :avatar_picture, as: :avatarable, dependent: :destroy
   has_one :location, as: :locatable, dependent: :destroy
 
   has_many :purchases, as: :purchasable
-  has_many :commissions, through: :purchases
+  has_many :commissions, as: :commissionable
 
   validates :community, presence: true
   validates :first_name, :last_name, :phone, :email, presence: true, if: ->(c){ c.persisted? and c.coupon_book.commercial_template? }
@@ -27,10 +28,14 @@ class AffiliateCampaign < ActiveRecord::Base
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 
-  delegate :name, :end_date, :status, :fee_percentage, :fundraiser, to: :coupon_book
-  delegate :commission_percentage, to: :community
+  delegate :name, :end_date, :status, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
+  delegate :affiliate_commission_percentage, to: :community
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
+
+  before_save do
+    self.commission_percentage = community.affiliate_commission_percentage if self.commission_percentage.zero?
+  end
 
   #Slugs
   def slug_candidates

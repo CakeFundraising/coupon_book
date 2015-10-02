@@ -113,7 +113,7 @@ class CouponBooksController < InheritedResources::Base
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
       categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ],
-      community_attributes: [:slug, :commission_percentage]
+      community_attributes: [:slug, :affiliate_commission_percentage]
     ])
   end
 

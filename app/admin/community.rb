@@ -5,5 +5,5 @@ ActiveAdmin.register Community do
     link_to "See Page", community_path(id: resource)
   end
 
-  permit_params :slug, :commission_percentage
+  permit_params :slug, :affiliate_commission_percentage, :media_commission_percentage
 end

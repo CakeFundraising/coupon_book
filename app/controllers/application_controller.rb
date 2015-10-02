@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   before_action :set_cake_access_token
 
-  helper_method :current_fundraiser, :current_merchant, :current_affiliate, :current_browser, :mobile_device?, :ipad?
+  helper_method :current_fundraiser, :current_merchant, :current_affiliate, :current_media_affiliate, :current_browser, :mobile_device?, :ipad?
 
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_url, alert: exception.message
@@ -25,6 +25,10 @@ class ApplicationController < ActionController::Base
 
   def current_affiliate
     @current_affiliate ||= current_user if current_user.affiliate?
+  end
+
+  def current_media_affiliate
+    @current_media_affiliate ||= current_user if current_user.media_affiliate?
   end
 
   #Detect Mobile

@@ -8,8 +8,8 @@ module CouponBookHelper
     content_tag(:div, coupon_book.status, class:"btn btn-sm btn-#{color} disabled")
   end
 
-  def screenshot_dowload(coupon_book)
-    link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + coupon_book_url(coupon_book), class:'btn btn-primary', download: 'deal_book.jpg'
+  def screenshot_dowload(object)
+    link_to "Download", 'http://res.cloudinary.com/cakefundraising/image/url2png/' + polymorphic_url(object), class:'btn btn-primary', download: 'deal_book.jpg'
   end
 
   def visibility_buttons(coupon_book)

@@ -1,0 +1,26 @@
+.wizard-wrap
+  .headline.text-center
+    h1 Campaign Launched! Start sharing!
+    br
+  .inputs
+    h3 You are ready to promote your Campaign and earn money for your cause!
+    hr
+    .row
+      .col-md-6
+        h4 Share
+        p.text-muted Share this URL with friends and supporters. Urge them to reshare with their social network.
+        br
+        .share-link-box = @campaign.community_page_url
+        br
+        = render partial:'layouts/share_buttons', locals:{url: @campaign.community_page_url, title: 'Support my Campaign at @EatsForGood and enjoy deal vouchers!'}
+      .col-md-6
+        h4 Campaign Screenshot
+        p.text-muted Use this image when sharing with your friends and supporters, or in your website. 
+        = screenshot_tag_for @community
+        br
+        = screenshot_dowload @community
+
+    hr
+    h4 
+      span You can monitor you sales and performance on your 
+      span = link_to 'Account Dashboard', dashboard_dashboard_path

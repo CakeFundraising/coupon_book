@@ -13,6 +13,9 @@ class Ability
       #Coupon
       can :create, Coupon
       can [:update, :destroy, :launch, :universal_toggle] + CouponsController::TEMPLATE_STEPS, Coupon, owner: user
+
+      can :update_commission, AffiliateCampaign, fundraiser: user
+      can :update_commission, MediaAffiliateCampaign, fundraiser: user
     end
 
     if user.merchant?
@@ -23,6 +26,11 @@ class Ability
     if user.affiliate?
       can :create, AffiliateCampaign
       can [:update, :destroy, :book_preview] + AffiliateCampaignsController::TEMPLATE_STEPS, AffiliateCampaign, affiliate_id: user.id
+    end
+
+    if user.media_affiliate?
+      can :create, MediaAffiliateCampaign
+      can [:update, :destroy, :book_preview] + MediaAffiliateCampaignsController::TEMPLATE_STEPS, MediaAffiliateCampaign, media_affiliate_id: user.id
     end
 
     can :read, :all

@@ -1,0 +1,47 @@
+.row
+  .col-md-6
+    .screenshot = screenshot_tag_for @book
+  .col-md-6
+    .row
+      .col-md-6
+        .info
+          h4 Fundraiser
+          div = @book.fundraiser
+        .info
+          h4 Title
+          div = @book.title
+        .info
+          h4 Minimum Donation
+          div = @book.price
+        .info
+          h4 Goal
+          div = @book.goal
+        .info
+          h4 Fundraiser Website
+          div = @book.url_link
+      .col-md-6
+        .info
+          h4 Availability
+          div Available from #{@book.launch_date} to #{@book.end_date}
+        .info
+          h4 Commission
+          div You will earn #{@community.media_commission_percentage} of each donation, around #{@community.media_commission_value} or more!
+        .info
+          h4 Community Performance
+          .thermometer
+            .progress.campaign-thermometer
+              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
+                span.sr-only #{@community.sales_thermometer}% Complete (success)
+            .campaign-stats
+              span
+                span.boldest.raised = @community.total_sales
+              span.pull-right
+                span.boldest = @book.goal
+                |  Goal
+
+        hr
+        .row
+          .col-md-6
+            = link_to 'Preview Campaign', @book, target: :_blank, class:'btn btn-primary btn-sm'
+          .col-md-6
+            = link_to 'Community Page', @community, target: :_blank, class:'btn btn-default btn-sm'

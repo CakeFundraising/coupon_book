@@ -63,6 +63,25 @@ CakeCouponBook::Application.routes.draw do
         get :share
       end
 
+      patch :update_commission
+
+      get :donate
+      get :checkout
+    end
+    collection do
+      get :book_preview
+    end
+  end
+
+  resources :media_affiliate_campaigns, path: :media_campaigns do
+    member do
+      scope :edit do
+        get :get_paid
+        get :share
+      end
+
+      patch :update_commission
+
       get :donate
       get :checkout
     end
@@ -123,6 +142,12 @@ CakeCouponBook::Application.routes.draw do
     end
   end
 
+  resources :vouchers, only: :index do
+    member do
+      patch :redeem
+    end
+  end
+
   resources :users, only: :index do
     collection do
       patch :roles
@@ -144,6 +169,11 @@ CakeCouponBook::Application.routes.draw do
     end
   end
   resources :affiliates do
+    member do
+      patch :registration_update
+    end
+  end
+  resources :media_affiliates do
     member do
       patch :registration_update
     end

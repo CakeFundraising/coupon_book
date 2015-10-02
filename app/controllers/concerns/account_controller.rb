@@ -36,6 +36,8 @@ module AccountController
       new_coupon_book_path
     elsif current_user.affiliate?
       new_affiliate_campaign_path
+    elsif current_user.media_affiliate?
+      new_media_affiliate_campaign_path
     else
       new_coupon_path
     end

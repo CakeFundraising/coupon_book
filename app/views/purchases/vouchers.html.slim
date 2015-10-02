@@ -1,11 +1,12 @@
 .download-vouchers-page
   .row
-    .col-md-4.col-md-push-8
-      = link_to 'Download your Vouchers', vouchers_purchase_path(@purchase, token: @purchase.token, format: :pdf), class:'btn btn-success btn-xl download-vouchers'
+    - unless mobile_device?
+      .col-md-4.col-md-push-8
+        = link_to 'Download your Vouchers', vouchers_purchase_path(@purchase, token: @purchase.token, format: :pdf), class:'btn btn-success btn-xl download-vouchers'
 
     .col-md-12.text-center
       .main-title Thank You for Supporting: 
-      .title-fr #{@fundraiser}!
+      .title-fr #{@campaign}!
       
       h2.enjoy-headline Enjoy your rewards!
 

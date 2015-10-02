@@ -6,8 +6,10 @@ CakeCouponBook.coupon_books.validation = ->
     rules:
       'community[slug]':
         required: true
-      'community[commission_percentage]':
-        required: true
+      # 'community[affiliate_commission_percentage]':
+      #   required: true
+      # 'community[media_commission_percentage]':
+      #   required: true
   )
 
   $('.formtastic.coupon_book').validate(

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922194631) do
+ActiveRecord::Schema.define(version: 20150930213059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,12 +60,13 @@ ActiveRecord::Schema.define(version: 20150922194631) do
     t.string   "slug"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.boolean  "use_stripe",           default: false
+    t.boolean  "use_stripe",            default: false
     t.string   "check_recipient_name"
     t.integer  "affiliate_id"
     t.integer  "community_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "commission_percentage", default: 0
   end
 
   create_table "avatar_pictures", force: :cascade do |t|
@@ -143,20 +144,27 @@ ActiveRecord::Schema.define(version: 20150922194631) do
   end
 
   create_table "commissions", force: :cascade do |t|
-    t.integer  "amount_cents",    default: 0,     null: false
-    t.string   "amount_currency", default: "USD", null: false
+    t.integer  "amount_cents",        default: 0,     null: false
+    t.string   "amount_currency",     default: "USD", null: false
     t.integer  "percentage"
     t.integer  "purchase_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.integer  "commissionable_id"
+    t.string   "commissionable_type"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
+
+  add_index "commissions", ["commissionable_type", "commissionable_id"], name: "index_commissions_on_commissionable_type_and_commissionable_id", using: :btree
 
   create_table "communities", force: :cascade do |t|
     t.string   "slug"
-    t.integer  "commission_percentage"
     t.integer  "coupon_book_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "media_commission_percentage",     default: 0
+    t.integer  "affiliate_commission_percentage", default: 0
+    t.string   "screenshot_url"
+    t.string   "screenshot_version"
   end
 
   create_table "coupon_books", force: :cascade do |t|
@@ -269,6 +277,17 @@ ActiveRecord::Schema.define(version: 20150922194631) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "media_affiliate_campaigns", force: :cascade do |t|
+    t.boolean  "use_stripe",            default: false
+    t.string   "recipient_name"
+    t.integer  "media_affiliate_id"
+    t.integer  "community_id"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "commission_percentage", default: 0
+    t.string   "token"
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string   "avatar"
     t.string   "avatar_caption"
@@ -366,6 +385,7 @@ ActiveRecord::Schema.define(version: 20150922194631) do
     t.datetime "updated_at",                              null: false
     t.string   "type",                   default: "User", null: false
     t.boolean  "tax_exempt",             default: false
+    t.string   "url"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

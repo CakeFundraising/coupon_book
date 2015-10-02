@@ -13,7 +13,6 @@ class Coupon < ActiveRecord::Base
   
   belongs_to :origin_collection, class_name: 'Collection', foreign_key: :collection_id
   has_one :owner, through: :origin_collection, source_type:'User'
-  #delegate :owner, :owner_type, :owner_id, to: :origin_collection
 
   has_many :categories_coupons, dependent: :destroy
   has_many :collections_coupons, dependent: :destroy
@@ -73,7 +72,6 @@ class Coupon < ActiveRecord::Base
     coupon = Coupon.new(
       sponsor_name: merchant.full_name,
       phone: merchant.phone,
-      #merchant_url: merchant.website,
       collection_id: collection_id
     )
     coupon.build_location(

@@ -1,0 +1,3 @@
+ActiveAdmin.register MediaAffiliateCampaign do
+  decorate_with MediaAffiliateCampaignDecorator
+end
