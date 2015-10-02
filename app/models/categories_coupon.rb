@@ -11,7 +11,7 @@ class CategoriesCoupon < ActiveRecord::Base
 
   def create_voucher(purchase_id)
     unless self.coupon.pr_box?
-      self.vouchers.create(purchase_id: purchase_id, expires_at: self.coupon.expires_at, owner_type: self.coupon.owner_type, owner_id: self.coupon.owner_id)
+      self.vouchers.create(purchase_id: purchase_id, expires_at: self.coupon.expires_at, owner: self.coupon.owner)
     end
   end
 end
