@@ -7,13 +7,4 @@
     br
   .row.inputs
     .col-md-12
-      h3 Your Stripe account
-
-      - if @stripe_account.nil?
-        .text-muted In order to receive donations from consumer you must connect your Stripe account.
-        br
-        = stripe_connect_button
-      - else
-        .text-muted Congratulations! Your Stripe account is connected and functional. Now you can receive payments and donations!
-        br
-        = go_to_stripe
+      = render partial:'stripe/get_paid_page'

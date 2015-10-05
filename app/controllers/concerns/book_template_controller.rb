@@ -1,7 +1,10 @@
 module BookTemplateController
   extend ActiveSupport::Concern
+  include Referrer
 
   included do
+    before_action :save_referrer, only: :launching, unless: ->{ current_fundraiser.stripe_account? } 
+
     TEMPLATE_STEPS = [
       :basics,
       :story,
@@ -68,7 +71,6 @@ module BookTemplateController
     @coupon_book = resource.decorate
     render 'coupon_books/template/share'
   end
-
 
   private
 

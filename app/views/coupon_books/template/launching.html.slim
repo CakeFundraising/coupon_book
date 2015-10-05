@@ -13,8 +13,7 @@
         - if current_fundraiser.stripe_account?
           = link_to 'Launch Now', launch_coupon_book_path(@coupon_book), method: :patch, class:'btn btn-success btn-lg'
         - else
-          .text-muted Before launching your campaign, you must connect an Stripe account where your funds will be deposited after each sale.
-          = stripe_connect_button
+          = render partial:'stripe/connect'
       .col-md-2
         h4 OR
       .col-md-4

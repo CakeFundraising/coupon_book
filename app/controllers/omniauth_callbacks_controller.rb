@@ -1,4 +1,8 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  include Referrer
+
+  after_action :destroy_referrer, only: :stripe_connect
+
   def facebook
     callback_of("Facebook")
   end
@@ -8,23 +12,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def stripe_connect
-    if current_fundraiser.present?
-      @stripe_account = current_fundraiser.create_stripe_account(request.env["omniauth.auth"])
+    @stripe_account = current_user.create_stripe_account(request.env["omniauth.auth"])
+    redirect_url = session[:referrer_url] || dashboard_get_paid_path
 
-      if @stripe_account
-        redirect_to dashboard_get_paid_path, notice: "Thanks for connecting your Stripe accout. Now you can receive payments and donations!" 
-      else
-        redirect_to dashboard_get_paid_path, alert: t('errors.stripe_account.account_taken')
-      end 
-    elsif current_affiliate.present?
-      @stripe_account = current_affiliate.create_stripe_account(request.env["omniauth.auth"])
-      
-      if @stripe_account
-        redirect_to dashboard_get_paid_path, notice: "Please add your credit card data to make automatic payments. This sensitive information is not being saved in our servers." 
-      else
-        redirect_to dashboard_get_paid_path, alert: t('errors.stripe_account.account_taken')
-      end
-    end
+    if @stripe_account
+      redirect_to redirect_url, notice: "Thanks for connecting your Stripe accout. Now you can receive payments and donations!" 
+    else
+      redirect_to redirect_url, alert: t('errors.stripe_account.account_taken')
+    end 
   end
 
   private
