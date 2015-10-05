@@ -1,14 +1,14 @@
 .wizard-wrap
   .headline.text-center
-    h1 Campaign Launched! Start sharing!
+    h1 The Campaign is Live! Start sharing!
     br
   .inputs
-    h3 You are ready to promote your Campaign and earn money for your cause!
+    h3 You are ready to earn commission by helping a great cause to fundraise. Thank you!
     hr
     .row
       .col-md-6
-        h4 Share
-        p.text-muted Share this URL with friends and supporters. Urge them to reshare with their social network.
+        h4 Share 
+        p.text-muted Share this URL with your social network. To earn a commission, donors must follow this link to the Campaign Community Page and make a donation to a good cause. Urge your followers to reshare too!
         br
         #campaign_url.share-link-box = @campaign.community_page_url
         button.btn.btn-primary.pull-right.clipboard data-clipboard-target="campaign_url" Copy
@@ -16,7 +16,7 @@
         = render partial:'layouts/share_buttons', locals:{url: @campaign.community_page_url, title: 'Support my Campaign at @EatsForGood and enjoy deal vouchers!'}
       .col-md-6
         h4 Campaign Screenshot
-        p.text-muted Use this image when sharing with your friends and supporters, or in your website. 
+        p.text-muted You may use this image if you choose when sharing information about the Campaign with your social network.
         = screenshot_tag_for @community
         br
         = screenshot_dowload @community
