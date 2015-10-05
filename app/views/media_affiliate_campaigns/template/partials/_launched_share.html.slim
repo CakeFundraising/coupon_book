@@ -10,7 +10,8 @@
         h4 Share
         p.text-muted Share this URL with friends and supporters. Urge them to reshare with their social network.
         br
-        .share-link-box = @campaign.community_page_url
+        #campaign_url.share-link-box = @campaign.community_page_url
+        button.btn.btn-primary.pull-right.clipboard data-clipboard-target="campaign_url" Copy
         br
         = render partial:'layouts/share_buttons', locals:{url: @campaign.community_page_url, title: 'Support my Campaign at @EatsForGood and enjoy deal vouchers!'}
       .col-md-6
