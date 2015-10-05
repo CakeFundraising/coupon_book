@@ -1,0 +1,10 @@
+- if current_user.stripe_account?
+  h2 Stripe Account
+  .help-block Congratulations, your Stripe account has been connected correctly. Now you can receive online payments!
+  = go_to_stripe
+- else
+  h2 Connect your Stripe account
+  .help-block 
+    span = stripe_link 'Stripe.com'
+    span  enables you to attach your bank account in order to receive online payments easily and securely.
+  = stripe_connect_button
