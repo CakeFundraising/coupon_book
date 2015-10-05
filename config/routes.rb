@@ -183,7 +183,7 @@ CakeCouponBook::Application.routes.draw do
     get :dashboard
     get :account
     get :history
-    get :withdraw
+    get :get_paid
   end
 
   match '/404', to: 'errors#file_not_found', via: :all
