@@ -67,6 +67,7 @@ export default class CategoryItem extends Component {
     const opacity = isDragging ? 0 : 1;
     const display = _destroy ? 'none' : 'block';
     const editPath = itemType === 'COUPON' ? '/deals/' : '/pr_boxes/';
+    const modalTarget = itemType === 'COUPON' ? 'coupon-' : 'pr-box-';
 
     return connectDropTarget(connectDragSource(
       <li style={{ opacity: opacity, display: display }} className="category-item" id={'coupons_' + id}  key={key}>
@@ -76,7 +77,7 @@ export default class CategoryItem extends Component {
         </span>
         <Button iconType='remove' className="btn btn-sm pull-right btn-danger" onClickEvent={removeItem.bind(this, id, itemType)}>Delete</Button>
         <Button href={editPath + id + '/edit'} iconType="pencil" className="btn btn-sm pull-right btn-primary">Edit</Button>
-        <Button iconType="eye-open" className="btn btn-sm pull-right btn-success" data-target={'#preview-coupon-' + id} data-toggle="modal">Preview </Button>
+        <Button iconType="eye-open" className="btn btn-sm pull-right btn-success" dTarget={'#preview-' + modalTarget + id} dToggle="modal">Preview </Button>
       </li>
     ));
   }

@@ -12,7 +12,7 @@ export default class CouponActions extends Component {
           <Button
             iconType="eye-open"
             className={'btn btn-sm btn-success'}
-            dTarget={'#preview-coupon-' + itemId}
+            dTarget={'#preview-pr-box-' + itemId}
             dToggle="modal">Preview
           </Button>
         </li>

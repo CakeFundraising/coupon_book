@@ -17,5 +17,8 @@
 
 = render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
 
+= render partial:'coupons/modal', collection: @coupons, as: :coupon
+= render partial:'pr_boxes/modal', collection: @pr_boxes, as: :pr_box
+
 javascript:
   CakeCouponBook.coupon_books.organize("#{@coupon_book.id}");
