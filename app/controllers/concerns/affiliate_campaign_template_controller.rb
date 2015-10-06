@@ -20,11 +20,11 @@ module AffiliateCampaignTemplateController
     render partial:'affiliate_campaigns/template/partials/book_preview', layout: false
   end
 
-  def edit
-    @campaign = resource.decorate
-    @book = @campaign.coupon_book.decorate
-    @community = @book.community.decorate
-  end
+  # def edit
+  #   @campaign = resource.decorate
+  #   @book = @campaign.coupon_book.decorate
+  #   @community = @book.community.decorate
+  # end
 
   def join
     @campaign = campaign_with_account_data.decorate

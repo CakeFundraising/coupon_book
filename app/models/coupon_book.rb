@@ -38,6 +38,7 @@ class CouponBook < ActiveRecord::Base
   has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
   
   has_many :media_affiliate_campaigns, through: :community
+  has_many :media_affiliates, through: :media_affiliate_campaigns
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
@@ -159,11 +160,19 @@ class CouponBook < ActiveRecord::Base
   end
 
   def current_sales_cents
-    purchases.sum(:amount_cents)
+    purchases.sum(:amount_cents) + affiliate_purchases.sum(:amount_cents)
+  end
+
+  def current_commission_cents
+    commissions.sum(:amount_cents)
   end
 
   def thermometer
     (current_sales_cents.to_f/goal_cents)*100 unless goal_cents.zero?
+  end
+
+  def affiliates_count
+    affiliates.count + media_affiliates.count
   end
 
   #Direct Donations

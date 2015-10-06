@@ -4,6 +4,7 @@
     = f.input :name
     /= f.input :subtitle
     = f.input :coupon_book_id, as: :hidden
-  = f.actions do
-    .text-center
-      = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+    br
+    = f.actions do
+      .text-center
+        = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

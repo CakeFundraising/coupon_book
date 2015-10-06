@@ -1,9 +1,9 @@
-= display_meta('My Discounts')
+= display_meta('My Deals')
 
 br
-= link_to 'Create a Discount', new_coupon_path, class:'btn btn-primary pull-right'
+= link_to 'Create a Deal', new_coupon_path, class:'btn btn-primary pull-right'
 
-h1.dash-head My Discounts
+h1.dash-head My Deals
 
 - if @coupons.any?
   #no-more-tables
@@ -14,7 +14,7 @@ h1.dash-head My Discounts
           th = Coupon.human_attribute_name :expires_at
           th = Coupon.human_attribute_name :universal
           th = Coupon.human_attribute_name :fundraiser
-          th = t('semantic.number_of', model: 'Discounts Sold')
+          th = t('semantic.number_of', model: 'Deals Sold')
           th = Coupon.human_attribute_name :unique_clicks
           th = Coupon.human_attribute_name :total_clicks
           th = Coupon.human_attribute_name :status

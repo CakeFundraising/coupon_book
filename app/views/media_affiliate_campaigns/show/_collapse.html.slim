@@ -5,36 +5,59 @@
         .panel-title = campaign
         ul.panel-title-right.bolder
           .stat
-            span = campaign.end_date
+            h5.no-margin.black End Date
+            div = campaign.end_date
           .stat
-            span = campaign.current_commission_amount
+            h5.no-margin.black My Commission
+            div = campaign.current_commission_amount
             
           .stat
-            = link_to 'Edit', edit_media_affiliate_campaign_path(campaign), class:'btn btn-sm btn-primary'
+            = link_to 'View', campaign.community_page_url, target: :_blank, class:'btn btn-success btn-sm'
+            = link_to 'Edit', get_paid_media_affiliate_campaign_path(campaign), class:'btn btn-sm btn-primary'
             = link_to campaign, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
               span.glyphicon.glyphicon-trash
 
   .panel-collapse.collapse id=(campaign.id)
     .panel-body
-      .content.row
-        .col-md-7
-          .info
-            h4 Sales count:
-            div = campaign.purchases.count
-          .info
-            h4 Total Sales amount:
-            div = campaign.current_sales
-          .info
-            h4 Total Commission amount:
-            div = campaign.current_commission_amount
-          .info
-            h4 Commission Percentage:
-            div = campaign.commission_percentage
-          .info
-            h4 Status:
-            div = campaign.status
-        .col-md-5
-          h4 More Actions
-          = link_to 'Share', share_media_affiliate_campaign_path(campaign), class:'btn btn-sm btn-warning'
-          = link_to 'Community', campaign.community_page_url, class:'btn btn-info btn-sm'
+      .content
+        .row
+          .col-md-3
+            .row
+              .col-xs-12.text-center
+                p.donation-stats = campaign.purchases.count
+                p.boldest Total Donors
+          .col-md-3
+            .row
+              .col-xs-12.text-center
+                p.donation-stats = campaign.current_sales
+                p.boldest Total Donations
+          .col-md-3
+            .row
+              .col-xs-12.text-center
+                p.donation-stats = campaign.current_commission_amount
+                p.boldest Commission Earned to Date
+          .col-md-3
+            .row
+              .col-xs-12.text-center
+                p.donation-stats = campaign.commission_percentage
+                p.boldest Commission Rate
+        hr
+        .row
+          .col-md-12
+            h3.no-margin-top Campaign
+          .col-md-3
+            strong Status: 
+            span = campaign.status
+          .col-md-3
+            strong Minimum Donation: 
+            span = campaign.price
+          .col-md-3
+            strong Goal: 
+            span = campaign.goal
+          .col-md-3
+            strong Start and End Dates: 
+            span #{campaign.launch_date} to #{campaign.end_date}
+
+          /= link_to 'Share', share_media_affiliate_campaign_path(campaign), class:'btn btn-sm btn-warning'
+          
 

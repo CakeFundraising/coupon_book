@@ -51,6 +51,12 @@ h1.name {
   }
 }
 
+h1, h2, h3, h4, h5, h6{
+  &.no-margin-top{
+    margin-top: 0;
+  }
+}
+
 h2{
   @media (max-width: $screen-sm-max) {
     font-size: 28px;

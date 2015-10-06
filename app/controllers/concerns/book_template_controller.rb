@@ -31,6 +31,8 @@ module BookTemplateController
   #Build coupon book
   def organize
     @coupon_book = resource
+    @coupons = current_fundraiser.collection.coupons.decorate
+    @pr_boxes = current_fundraiser.collection.pr_boxes.decorate
     render 'coupon_books/template/organize'
   end
 

@@ -8,14 +8,14 @@ h1.dash-head My Dashboard
       .row
         .col-xs-12.text-center
           p.donation-stats = current_merchant.coupons.count
-          p.boldest = t('semantic.number_of', model: 'Discounts')
+          p.boldest = t('semantic.number_of', model: 'Deals')
 
   .col-md-3
     .sidebar-bkg
       .row
         .col-xs-12.text-center
           p.donation-stats = current_merchant.total_vouchers_sold
-          p.boldest Total Discounts Sold
+          p.boldest Total Deals Sold
 
   .col-md-3
     .sidebar-bkg
