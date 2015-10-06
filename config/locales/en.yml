@@ -23,6 +23,12 @@ en:
   tooltips:
     purchases:
       cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
+  formtastic:
+    hints:
+      community:
+        slug: "Choose a custom url for your Campaign's Community page."
+        affiliate_commission_percentage: Set the percentage the Good Cause Affiliate will receive of each donation made via an Affiliate Campaign Page.
+        media_commission_percentage: Set the percentage the Media Affiliate will receive of each donation made via the Campaign Community Page by a donor secured by that Media Affiliate.
   links:
     user:
       sign_in: Sign In
@@ -31,7 +37,7 @@ en:
     wizards:
       coupon:
         sponsor: Merchant
-        discount: Deal/Discount
+        discount: Deal
         news: News
         launch: Launch
       coupon_book: 
@@ -113,11 +119,14 @@ en:
   activerecord: 
     models:
       coupon:
-        one: Discount
-        other: Discounts
+        one: Deal
+        other: Deals
       pr_box:
         one: PR Box
         other: PR Boxes
+      affiliate:
+        one: Affiliate Fundraiser
+        other: Affiliate Fundraisers
     attributes:
       category:
         name: Category Name
@@ -134,10 +143,14 @@ en:
       purchase:
         hide_name: Hide your name from everyone but the organizer
       community:
-        slug: Promoter Leaderboard Url
-        commission_percentage: Affiliate Commission
+        slug: Custom Community Page URL
+        affiliate_commission_percentage: Affiliate Fundraiser Commission Rate
+        media_commission_percentage: Media Affiliate Commission Rate
       affiliate_campaign:
+        commission_percentage: Commission Rate
         check_recipient_name: Recipient Name
+      media_affiliate_campaign:
+        commission_percentage: Commission Rate
   application:
     name: EatsForGood
     company: "Eats For Good, LLC"

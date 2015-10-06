@@ -49,12 +49,12 @@ export default class CollectionCoupons extends Component {
 
     return (
       <div className="coupons-column">
-        <h2>Available Discounts
+        <h2>Available Deals
           <Button
-            href="/discounts/new"
+            href="/deals/new"
             type="link"
             className="btn btn-success btn-sm pull-right">
-            Add Discount
+            Add Deal
           </Button>
         </h2>
         <ul className={className} id={cssId}>

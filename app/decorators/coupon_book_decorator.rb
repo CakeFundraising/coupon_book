@@ -29,10 +29,6 @@ class CouponBookDecorator < ApplicationDecorator
     (object.organization_name || object.fundraiser.full_name)
   end
 
-  def current_sales
-    h.humanized_money_with_symbol (object.current_sales_cents/100.0)
-  end
-
   def price
     h.humanized_money_with_symbol object.price
   end
@@ -98,7 +94,16 @@ class CouponBookDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.total_donations_and_sales
   end
 
+  def current_sales
+    h.humanized_money_with_symbol (object.current_sales_cents/100.0)
+  end
+
+  def current_commission_amount
+    h.humanized_money_with_symbol (object.current_commission_cents/100.0)
+  end
+
   def purchases_count
-    h.number_to_human(object.purchases.count, units: :numbers, format: '%n%u')
+    count = object.purchases.count + object.affiliate_purchases.count
+    h.number_to_human(count, units: :numbers, format: '%n%u')
   end
 end

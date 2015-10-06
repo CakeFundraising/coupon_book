@@ -66,7 +66,7 @@ export default class CategoryItem extends Component {
     const { id, title, itemType, sponsorName, key, isDragging, connectDragSource, connectDropTarget, removeItem, _destroy } = this.props;
     const opacity = isDragging ? 0 : 1;
     const display = _destroy ? 'none' : 'block';
-    const editPath = itemType === 'COUPON' ? '/discounts/' : '/pr_boxes/';
+    const editPath = itemType === 'COUPON' ? '/deals/' : '/pr_boxes/';
 
     return connectDropTarget(connectDragSource(
       <li style={{ opacity: opacity, display: display }} className="category-item" id={'coupons_' + id}  key={key}>
