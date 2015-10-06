@@ -1,15 +1,24 @@
 .wizard-wrap
   .headline.text-center
-    h1 Campaign Launched! Start sharing!
+    h1 This Campaign is Live! Start sharing!
     br
   .inputs
-    h4 You are ready to promote your Campaign and earn money for your cause!
-    h4 Share this URL with friends and supporters. Urge them to reshare with their social network.
-    br
-    .share-link-box = affiliate_campaign_url(@campaign)
-    br
-    = render partial:'layouts/share_buttons', locals:{url: affiliate_campaign_url(@campaign), title: 'Support my Campaign in EatsForGood and enjoy deal vouchers!'}
-    br
+    .row
+      .col-md-6
+        h4 Share 
+        p.text-muted Share this URL with your social network. To earn a commission, donors must follow this link to the Campaign Community Page and make a donation to a good cause. Urge your followers to reshare too!
+        br
+        #campaign_url.share-link-box = affiliate_campaign_url(@campaign)
+        button.btn.btn-primary.pull-right.clipboard data-clipboard-target="campaign_url" Copy
+        br
+        = render partial:'layouts/share_buttons', locals:{url: affiliate_campaign_url(@campaign), title: 'Support my Campaign in EatsForGood and enjoy deal vouchers!'}
+      .col-md-6
+        h4 Campaign Screenshot
+        p.text-muted You may use this image if you choose when sharing information about the Campaign with your social network.
+        = screenshot_tag_for @campaign
+        br
+        = screenshot_dowload @campaign
+    hr
     h4 
       span You can monitor you sales and performance on your 
       span = link_to 'Account Dashboard', dashboard_dashboard_path

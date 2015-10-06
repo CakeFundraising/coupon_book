@@ -12,7 +12,7 @@
             div = campaign.current_commission_amount
             
           .stat
-            = link_to 'Preview', campaign.community_page_url, target: :_blank, class:'btn btn-success btn-sm'
+            = link_to 'View', campaign.community_page_url, target: :_blank, class:'btn btn-success btn-sm'
             = link_to 'Edit', get_paid_media_affiliate_campaign_path(campaign), class:'btn btn-sm btn-primary'
             = link_to campaign, data: {:confirm => 'Are you sure?'}, :method => :delete, class:'btn btn-sm btn-danger'
               span.glyphicon.glyphicon-trash

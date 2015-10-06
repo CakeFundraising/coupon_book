@@ -6,7 +6,7 @@
   = semantic_form_for @campaign do |f|
     .headline.text-center
       h1 About You
-      h4.text-muted Join this campaign by providing some information about you.
+      h4.text-muted Tell Donors a little about your organization and cause
       br
     = f.inputs do
       = render partial:"affiliate_campaigns/template/partials/#{@campaign.coupon_book.template}_fields", locals:{f: f}
