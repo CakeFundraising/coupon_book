@@ -9,7 +9,7 @@ module ResqueSchedule
     def self.perform
       commissions = Commission.group_by_commissionable.pending
       commissions.each do |c|
-        c.commissionable.transfer!(c.total_cents) if c.total_cents > 1000
+        c.commissionable.transfer!(c.total_cents)
       end
     end
   end

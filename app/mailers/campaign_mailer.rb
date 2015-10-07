@@ -15,4 +15,12 @@ class CampaignMailer < ApplicationMailer
 
     mail(to: @fundraiser.object.email, subject: "Reward your Campaign Affiliates!")
   end
+
+  def commissions_transferred(campaign_id, amount_cents)
+    @coupon_book = find_coupon_book(campaign_id)
+    @fundraiser = @coupon_book.fundraiser
+    @amount = amount_cents/100.0
+
+    mail(to: @fundraiser.object.email, subject: "Your commission has been transferred!")
+  end
 end

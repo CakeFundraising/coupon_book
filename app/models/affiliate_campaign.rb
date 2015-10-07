@@ -65,8 +65,11 @@ class AffiliateCampaign < ActiveRecord::Base
 
   #Transfers
   def after_transfer
-    #notify_transfer
-    self.commissions.pending.update_all(status: :paid)
+    pending_commissions = self.commissions.pending
+    amount_cents = pending_commissions.sum(:amount_cents)
+
+    pending_commissions.update_all(status: :paid)
+    AffiliateCampaignMailer.commissions_transferred(self.id, amount_cents).deliver_now
   end
 
   def stripe_available?
