@@ -1,5 +1,6 @@
 class AffiliateCampaign < ActiveRecord::Base
   include Screenshotable
+  include Transferable
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
@@ -30,6 +31,7 @@ class AffiliateCampaign < ActiveRecord::Base
 
   delegate :name, :end_date, :status, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
   delegate :affiliate_commission_percentage, to: :community
+  delegate :stripe_account, :stripe_account?, to: :affiliate
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
@@ -59,5 +61,15 @@ class AffiliateCampaign < ActiveRecord::Base
 
   def current_commission_cents
     commissions.sum(:amount_cents)
+  end
+
+  #Transfers
+  def after_transfer
+    #notify_transfer
+    self.commissions.pending.update_all(status: :paid)
+  end
+
+  def stripe_available?
+    use_stripe and stripe_account?
   end
 end

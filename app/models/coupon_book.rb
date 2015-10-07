@@ -7,6 +7,7 @@ class CouponBook < ActiveRecord::Base
   include Screenshotable
   include VisitorActions
   include Templatable
+  include Transferable
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
@@ -35,9 +36,12 @@ class CouponBook < ActiveRecord::Base
   has_one :community, dependent: :destroy
   has_many :affiliate_campaigns, through: :community
   has_many :affiliates, through: :affiliate_campaigns
+
   has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
+  has_many :affiliate_commissions, through: :affiliate_campaigns, source: :commissions
   
   has_many :media_affiliate_campaigns, through: :community
+  has_many :media_commissions, through: :media_affiliate_campaigns, source: :commissions
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
   
@@ -68,7 +72,7 @@ class CouponBook < ActiveRecord::Base
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
 
-  delegate :zip_code, :city, :state_code, to: :fundraiser
+  delegate :zip_code, :city, :state_code, :stripe_account, :stripe_account?, to: :fundraiser
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
@@ -204,6 +208,16 @@ class CouponBook < ActiveRecord::Base
   def estimated_fee
     percentage = (self.fee_percentage/100)
     (self.price*percentage)
+  end
+
+  def stripe_available?
+    stripe_account?
+  end
+
+  #Transfers
+  def after_transfer
+    #notify_transfer
+    self.commissions.pending.update_all(status: :paid)
   end
 
   #Vouchers

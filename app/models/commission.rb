@@ -6,6 +6,11 @@ class Commission < ActiveRecord::Base
 
   monetize :amount_cents
 
+  scope :paid, -> { where(paid: true) }
+  scope :pending, -> { where(paid: false) }
+
+  scope :group_by_commissionable, -> { select('commissions.commissionable_type, commissions.commissionable_id, SUM(commissions.amount_cents) AS total_cents').group(:commissionable_type, :commissionable_id) }
+
   before_save :set_percentage_and_amount, unless: :coupon_book_commissionable?
 
   def coupon_book_commissionable?
