@@ -27,7 +27,7 @@
                   span.help-block.italic Keep it simple. Max 80 characters.
                 .col-md-6
                   = f.input :expires_at, as: :string, label: 'Expires On', input_html:{class:'datepicker coupon_expires_at', value: f.object.decorate.expires_at_american}
-                  = f.input :price, label: 'Estimated Retail Value of Discount', input_html:{class: 'coupon_unit_donation default-zero', placeholder: '20.00'}, :prepend => '$'
+                  = f.input :price, label: 'Estimated Retail Value of Deal', input_html:{class: 'coupon_unit_donation default-zero', placeholder: '20.00'}, :prepend => '$'
                 .col-md-6
                   = f.input :promo_code, input_html:{class: 'coupon_promo_code', size: 20, maxlength: 20, placeholder: '20 characters or less'}
                   = f.input :url

@@ -4,7 +4,7 @@
   #main.container
     .inputs
       - if current_merchant.present?
-        h1 Make this a Universal Discount!
+        h1 Make this a Universal Deal!
         p.text-muted Any other good cause may sell this discount while it remains valid
         = semantic_form_for @coupon do |f|
           = f.inputs do
@@ -29,6 +29,6 @@
           - else
             = link_to 'Return to My Coupons', coupons_path, class:'btn btn-primary btn-lg'
             
-          = link_to 'Add Another Discount', new_coupon_path, class:'btn btn-success btn-lg'
+          = link_to 'Add Another Deal', new_coupon_path, class:'btn btn-success btn-lg'
 
         

@@ -3,7 +3,7 @@
     = menu_item "My Dashboard", dashboard_dashboard_path
     = menu_item "Campaigns", media_affiliate_campaigns_path
   ul.nav.navbar-nav.navbar-right
-    = menu_item 'Join Campaign', new_media_affiliate_campaign_path
+    = menu_item 'Promote Campaign', new_media_affiliate_campaign_path
     li.dropdown
       a.user-logged-in.dropdown-toggle data-toggle="dropdown" href="#" 
         = current_user.full_name
@@ -14,6 +14,6 @@
         = menu_item "History", dashboard_history_path
         = menu_item "Get Paid", dashboard_get_paid_path
         li.divider
-        = menu_item 'Join Campaign', new_media_affiliate_campaign_path
+        = menu_item 'Promote Campaign', new_media_affiliate_campaign_path
         li.divider
         = menu_item t("links.user.sign_out"), destroy_user_session_path, method: :delete

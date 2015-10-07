@@ -11,8 +11,8 @@ CakeCouponBook::Application.routes.draw do
     get :search_campaigns, path:'campaigns'
     get :search_merchants, path:'merchants'
     get :search_communities, path:'communities'
-    get :search_coupons, path:'coupons'
-    get :search_universal_coupons, path:'universal_coupons'
+    get :search_coupons, path:'deals'
+    get :search_universal_coupons, path:'universal_deals'
     get :search_pr_boxes, path:'pr_boxes'
   end
 
@@ -110,7 +110,7 @@ CakeCouponBook::Application.routes.draw do
 
   resources :collections_coupons, only: [:create, :destroy]
 
-  resources :coupons, path: :discounts do
+  resources :coupons, path: :deals do
     member do
       get :download
       get :click

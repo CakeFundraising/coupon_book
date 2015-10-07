@@ -15,6 +15,6 @@
       = link_to "Edit", "#update_media_#{campaign.id}", class: "btn btn-sm btn-primary", data: {toggle: :modal}
       = render partial:'media_affiliate_campaigns/show/table/edit_modal', locals:{campaign: campaign}
 
-      = link_to campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
-        span.glyphicon.glyphicon-trash
+      / = link_to campaign, data: {confirm: 'Are you sure?'}, method: :delete, class:'btn btn-sm btn-danger'
+      /   span.glyphicon.glyphicon-trash
   tr.empty-tr

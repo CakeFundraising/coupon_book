@@ -8,26 +8,26 @@
           h4 Fundraiser
           div = @book.fundraiser
         .info
-          h4 Title
+          h4 Campaign Title
           div = @book.title
         .info
           h4 Minimum Donation
           div = @book.price
         .info
-          h4 Goal
+          h4 Campaign Goal
           div = @book.goal
         .info
           h4 Fundraiser Website
           div = @book.url_link
       .col-md-6
         .info
-          h4 Availability
+          h4 Campaign Start and End Dates
           div Available from #{@book.launch_date} to #{@book.end_date}
         .info
           h4 Commission
           div You will earn #{@community.media_commission_percentage} of each donation, around #{@community.media_commission_value} or more!
         .info
-          h4 Community Performance
+          h4 Campaign Performance
           .thermometer
             .progress.campaign-thermometer
               .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"

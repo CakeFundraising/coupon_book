@@ -3,10 +3,10 @@
     table#media_affiliate_campaigns.table.table-hover.table-bordered.table-striped.data-table
       thead.cf
         tr
-          th = Affiliate.model_name.human
-          th = AffiliateCampaign.human_attribute_name :total_sales
-          th = AffiliateCampaign.human_attribute_name :sales_count
-          th = AffiliateCampaign.human_attribute_name :commission_percentage
+          th = MediaAffiliate.model_name.human
+          th = AffiliateCampaign.human_attribute_name :total_donations
+          th = AffiliateCampaign.human_attribute_name :total_donors
+          th = AffiliateCampaign.human_attribute_name :commission_rate
           th
       tbody
         = render partial:'media_affiliate_campaigns/show/table/row', collection: campaigns, as: :campaign

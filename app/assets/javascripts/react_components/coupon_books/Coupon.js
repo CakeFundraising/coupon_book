@@ -55,7 +55,7 @@ export default class Coupon extends Component {
           <span className="coupon-item--title">{title}</span>
           <span className="coupon-item--owner">{sponsorName}</span>
         </span>
-        <CouponActions className="couponActions" itemId={id} itemType="coupons" />
+        <CouponActions className="couponActions" itemId={id} itemType="deals" />
       </li>
     );
   }

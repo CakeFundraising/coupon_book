@@ -22,7 +22,7 @@ class MediaAffiliateCampaign < ActiveRecord::Base
 
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
-  delegate :name, :end_date, :status, :fee_percentage, :fundraiser, to: :coupon_book
+  delegate :name, :launch_date, :end_date, :status, :fee_percentage, :fundraiser, :price, :goal, to: :coupon_book
   delegate :stripe_account, :stripe_account?, to: :media_affiliate
 
   before_save do

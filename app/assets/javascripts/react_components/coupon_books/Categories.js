@@ -178,7 +178,7 @@ export default class Categories extends Component {
 
     return (
       <div className="categories-column">
-        <h2>Discount Book Categories
+        <h2>Deal Book Categories
           <Button
             //data-target="#category"
             //data-toggle="modal"
@@ -187,7 +187,8 @@ export default class Categories extends Component {
             className="btn btn-success btn-sm pull-right">
             Add Category
           </Button>
-        </h2>      
+        </h2>
+        <div className='text-muted'>You must add at least one category to create a Deal Book.</div>
         <ul className={className} id={id}>
           {categories.map((category, index) => {
             return (

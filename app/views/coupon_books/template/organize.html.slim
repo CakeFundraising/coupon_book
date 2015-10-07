@@ -4,8 +4,9 @@
 
 .row
   .col-md-12.text-center
-    h1.dash-head Get & Organize Your Deals!
-
+    h1.dash-head Create & Organize Your Deals!
+    h4.text-muted You can add any Deal and Public Relation announcement you like by selecting them from the Universal Deals and Universal PR Boxes tabs selected in the navigation bar above.
+    br
 .tab-content.wizard-wrap
   #organize.tab-pane.active
     .inputs
@@ -15,6 +16,9 @@
           = link_to 'Continue', affiliates_coupon_book_path(@coupon_book), class:'btn btn-primary btn-lg pull-right'
 
 = render partial:'categories/form/modal', locals: {category: @coupon_book.categories.build}
+
+= render partial:'coupons/modal', collection: @coupons, as: :coupon
+= render partial:'pr_boxes/modal', collection: @pr_boxes, as: :pr_box
 
 javascript:
   CakeCouponBook.coupon_books.organize("#{@coupon_book.id}");

@@ -29,7 +29,7 @@ class AffiliateCampaign < ActiveRecord::Base
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
 
-  delegate :name, :end_date, :status, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
+  delegate :name, :launch_date, :end_date, :status, :price, :goal, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
   delegate :affiliate_commission_percentage, to: :community
   delegate :stripe_account, :stripe_account?, to: :affiliate
 

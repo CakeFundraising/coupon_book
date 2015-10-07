@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:facebook, :twitter, :stripe_connect]
 
   validates :first_name, :last_name, :email, presence: true
-  validates :roles, presence: true, if: :persisted?
+  validates :phone, :url, :roles, presence: true, if: :persisted?
 
   has_roles [:fundraiser, :merchant, :affiliate, :media_affiliate]
 

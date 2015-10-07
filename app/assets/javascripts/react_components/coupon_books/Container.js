@@ -59,14 +59,14 @@ export default class Container extends Component {
         <div className="col-md-6" role="tabpanel">
           <ul className="nav nav-tabs" role="tablist">
             <li className="active" role="presentation">
-              <a aria-controls="discounts" data-toggle="tab" href="#my-discounts" role="tab">Discounts</a>
+              <a aria-controls="deals" data-toggle="tab" href="#my-deals" role="tab">Deals</a>
             </li>
             <li role="presentation">
               <a aria-controls="pr-boxes" data-toggle="tab" href="#pr-boxes" role="tab">PR Boxes</a>
             </li>
           </ul>
           <div className="tab-content">
-            <div className="tab-pane active" id="my-discounts" role="tabpanel">
+            <div className="tab-pane active" id="my-deals" role="tabpanel">
               <CollectionCoupons 
                 cssId="collection-coupons" 
                 className="collection-coupons" 

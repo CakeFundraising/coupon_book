@@ -17,8 +17,24 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     coupon_book.fr_name
   end
 
+  def launch_date
+    object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
+  end
+
   def end_date
     object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
+  end
+
+  def status
+    object.status.titleize
+  end
+
+  def price
+    h.humanized_money_with_symbol object.price
+  end
+
+  def goal
+    h.humanized_money_with_symbol object.goal
   end
 
   def current_sales
@@ -50,10 +66,6 @@ class AffiliateCampaignDecorator < ApplicationDecorator
 
   def shareable_screenshot_url
     object.screenshot_url.split('url2png').join('url2png/w_1200,h_600,c_fill,g_north,r_10') unless object.screenshot_url.blank?
-  end
-
-  def status
-    object.status.titleize
   end
 
   def give_path(params)

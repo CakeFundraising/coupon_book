@@ -1,9 +1,9 @@
 .row
   .col-md-10
-    h1.dash-head Campaigns
+    h1.dash-head Promoted Campaigns
   .col-md-2
     br
-    = link_to 'Join Campaign', new_media_affiliate_campaign_path, class:'btn btn-primary btn-md'
+    = link_to 'Promote Campaign', new_media_affiliate_campaign_path, class:'btn btn-primary btn-md'
 
 #campaigns.panel-group role="tablist" aria-multiselectable="true"
   - if @campaigns.any?
