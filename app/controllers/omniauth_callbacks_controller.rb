@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def stripe_connect
     @stripe_account = current_user.create_stripe_account(request.env["omniauth.auth"])
-    redirect_url = session[:referrer_url] || dashboard_get_paid_path
+    redirect_url = session[:referrer_url] || dashboard_stripe_path
 
     if @stripe_account
       redirect_to redirect_url, notice: "Thanks for connecting your Stripe accout. Now you can receive payments and donations!" 
