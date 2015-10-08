@@ -1,17 +1,11 @@
 class CouponBookDecorator < ApplicationDecorator
+  include CampaignDecorator
+  
   delegate_all
 
   decorates_association :picture
   decorates_association :video
   decorates_association :fundraiser, with: FundraiserDecorator
-
-  def launch_date
-    object.launch_date.strftime("%m/%d/%Y") if object.launch_date.present?
-  end
-
-  def end_date
-    object.end_date.strftime("%m/%d/%Y") if object.end_date.present?
-  end
 
   def end_date_countdown
     object.end_date.strftime("%Y/%m/%d %H:%M:%S")
@@ -21,28 +15,12 @@ class CouponBookDecorator < ApplicationDecorator
     "#{launch_date} to #{end_date}"
   end
 
-  def to_s
-    object.name
-  end
-
   def fr_name
     (object.organization_name || object.fundraiser.full_name)
   end
 
-  def price
-    h.humanized_money_with_symbol object.price
-  end
-
-  def goal
-    h.humanized_money_with_symbol object.goal
-  end
-
   def no_discount_price
     h.humanized_money_with_symbol object.no_discount_price
-  end
-
-  def status
-    object.status.titleize
   end
 
   def causes
@@ -92,14 +70,6 @@ class CouponBookDecorator < ApplicationDecorator
   
   def total_donations_and_sales
     h.humanized_money_with_symbol object.total_donations_and_sales
-  end
-
-  def current_sales
-    h.humanized_money_with_symbol (object.current_sales_cents/100.0)
-  end
-
-  def current_commission_amount
-    h.humanized_money_with_symbol (object.current_commission_cents/100.0)
   end
 
   def purchases_count

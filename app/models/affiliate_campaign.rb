@@ -1,6 +1,6 @@
 class AffiliateCampaign < ActiveRecord::Base
   include Screenshotable
-  include Transferable
+  include Campaign
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
@@ -53,14 +53,6 @@ class AffiliateCampaign < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     organization_name.present? ? organization_name_changed? : false
-  end
-
-  def current_sales_cents
-    purchases.sum(:amount_cents)
-  end
-
-  def current_commission_cents
-    commissions.sum(:amount_cents)
   end
 
   #Transfers

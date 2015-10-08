@@ -7,7 +7,7 @@ class CouponBook < ActiveRecord::Base
   include Screenshotable
   include VisitorActions
   include Templatable
-  include Transferable
+  include Campaign
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
@@ -161,14 +161,6 @@ class CouponBook < ActiveRecord::Base
   #Analytics
   def no_discount_price
     coupons.sum(:price_cents)/100
-  end
-
-  def current_sales_cents
-    purchases.sum(:amount_cents) + affiliate_purchases.sum(:amount_cents)
-  end
-
-  def current_commission_cents
-    commissions.sum(:amount_cents)
   end
 
   def thermometer

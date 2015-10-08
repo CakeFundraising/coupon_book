@@ -1,4 +1,4 @@
-= display_meta("Getting Paid")
+= display_meta("Stripe - Getting Paid")
 
 #withdraw.wizard-wrap
   .headline
@@ -9,13 +9,11 @@
     .col-md-12
       /! Nav tabs
       ul.nav.nav-tabs role="tablist" 
+        li role="presentation" 
+          = link_to 'Transfers', dashboard_transfers_path
         li.active role="presentation" 
           a aria-controls="stripe" data-toggle="tab" href="#stripe" role="tab" Stripe
-        li role="presentation" 
-          a aria-controls="transfers" data-toggle="tab" href="#transfers" role="tab" Transfers
       /! Tab panes
       .tab-content
         #stripe.tab-pane.active role="tabpanel"
           = render partial:'stripe/get_paid_page'
-        #transfers.tab-pane role="tabpanel"
-          = render partial:'transfers/collapse', collection: @campaigns, as: :campaign

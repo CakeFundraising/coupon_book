@@ -1,5 +1,5 @@
 class MediaAffiliateCampaign < ActiveRecord::Base
-  include Transferable
+  include Campaign
 
   belongs_to :media_affiliate
   belongs_to :community
@@ -28,14 +28,6 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   before_save do
     self.token = SecureRandom.uuid if self.token.blank?
     self.commission_percentage = community.media_commission_percentage if self.commission_percentage.zero?
-  end
-
-  def current_sales_cents
-    purchases.sum(:amount_cents)
-  end
-
-  def current_commission_cents
-    commissions.sum(:amount_cents)
   end
 
   #Transfers

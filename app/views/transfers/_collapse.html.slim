@@ -8,8 +8,14 @@
             h5.no-margin.black End Date
             div = campaign.end_date
           .stat
-            h5.no-margin.black My Commission
-            div = campaign.current_commission_amount
+            h5.no-margin.black Total Commission
+            div = campaign.total_commission
+          .stat
+            h5.no-margin.black Pending Commission
+            div = campaign.pending_commission
+          .stat
+            h5.no-margin.black Paid Commission
+            div = campaign.paid_commission
 
   .panel-collapse.collapse id=(campaign.id)
     .panel-body
