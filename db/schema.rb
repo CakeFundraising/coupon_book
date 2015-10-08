@@ -153,6 +153,7 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.boolean  "paid",                default: false
+    t.integer  "transfer_id"
   end
 
   add_index "commissions", ["commissionable_type", "commissionable_id"], name: "index_commissions_on_commissionable_type_and_commissionable_id", using: :btree
@@ -365,8 +366,8 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.string   "kind"
     t.integer  "amount_cents",           default: 0,     null: false
     t.string   "amount_currency",        default: "USD", null: false
-    t.integer  "total_fee_cents",        default: 0,     null: false
-    t.string   "total_fee_currency",     default: "USD", null: false
+    t.integer  "app_fee_cents",          default: 0,     null: false
+    t.string   "app_fee_currency",       default: "USD", null: false
     t.string   "status"
     t.integer  "transferable_id"
     t.string   "transferable_type"

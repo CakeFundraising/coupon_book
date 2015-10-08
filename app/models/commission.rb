@@ -1,5 +1,6 @@
 class Commission < ActiveRecord::Base
   belongs_to :purchase
+  belongs_to :transfer
   belongs_to :commissionable, polymorphic: true
 
   delegate :purchasable, :community, to: :purchase

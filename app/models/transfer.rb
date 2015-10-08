@@ -1,8 +1,9 @@
 class Transfer < ActiveRecord::Base
   belongs_to :transferable, polymorphic: true
+  has_many :commissions
 
   monetize :amount_cents
-  monetize :total_fee_cents
+  monetize :app_fee_cents
 
   def resource
     Stripe::Transfer.retrieve(self.stripe_id)

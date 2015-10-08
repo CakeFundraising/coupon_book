@@ -5,7 +5,7 @@ class CreateTransfers < ActiveRecord::Migration
       t.string :balance_transaction_id
       t.string :kind
       t.monetize :amount
-      t.monetize :total_fee
+      t.monetize :app_fee
       t.string :status
       t.references :transferable, polymorphic: true, index: true
 

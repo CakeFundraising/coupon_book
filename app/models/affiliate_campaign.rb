@@ -64,11 +64,7 @@ class AffiliateCampaign < ActiveRecord::Base
   end
 
   #Transfers
-  def after_transfer
-    pending_commissions = self.commissions.pending
-    amount_cents = pending_commissions.sum(:amount_cents)
-
-    pending_commissions.update_all(status: :paid)
+  def after_transfer(amount_cents)
     AffiliateCampaignMailer.commissions_transferred(self.id, amount_cents).deliver_now
   end
 

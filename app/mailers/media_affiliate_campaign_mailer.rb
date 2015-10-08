@@ -5,6 +5,6 @@ class MediaAffiliateCampaignMailer < ApplicationMailer
     @affiliate = @campaign.media_affiliate
     @amount = amount_cents/100.0
 
-    mail(to: @affiliate.object.email, subject: "Your commission has been transferred!")
+    mail(to: @affiliate.email, subject: "Your commission has been transferred!")
   end
 end
