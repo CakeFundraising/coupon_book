@@ -66,6 +66,7 @@ en:
       coupon_books: Campaigns
       coupons: Coupons
       affiliates: Affiliates
+      transfers: Transfers
     coupon_book:
       purchase_form:
         donate: Every dollar helps! Enter your donation.

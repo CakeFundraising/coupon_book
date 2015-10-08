@@ -9,7 +9,7 @@
             span = campaign.end_date
           .stat
             h5.no-margin.black My Commission
-            span = campaign.current_commission_amount
+            span = campaign.total_commission
             
           .stat
             = link_to 'View', campaign, target: :_blank, class:'btn btn-sm btn-success'
@@ -37,7 +37,7 @@
           .col-md-3
             .row
               .col-xs-12.text-center
-                p.donation-stats = campaign.current_commission_amount
+                p.donation-stats = campaign.total_commission
                 p.boldest Commission Earned to Date
           .col-md-3
             .row

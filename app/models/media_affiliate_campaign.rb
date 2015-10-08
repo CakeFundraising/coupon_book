@@ -1,4 +1,6 @@
 class MediaAffiliateCampaign < ActiveRecord::Base
+  include Campaign
+
   belongs_to :media_affiliate
   belongs_to :community
 
@@ -21,17 +23,19 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
   delegate :name, :launch_date, :end_date, :status, :fee_percentage, :fundraiser, :price, :goal, to: :coupon_book
+  delegate :stripe_account, :stripe_account?, to: :media_affiliate
 
   before_save do
     self.token = SecureRandom.uuid if self.token.blank?
     self.commission_percentage = community.media_commission_percentage if self.commission_percentage.zero?
   end
 
-  def current_sales_cents
-    purchases.sum(:amount_cents)
+  #Transfers
+  def after_transfer(amount_cents)
+    MediaAffiliateCampaignMailer.commissions_transferred(self.id, amount_cents).deliver_now
   end
 
-  def current_commission_cents
-    commissions.sum(:amount_cents)
+  def stripe_available?
+    use_stripe and stripe_account?
   end
 end

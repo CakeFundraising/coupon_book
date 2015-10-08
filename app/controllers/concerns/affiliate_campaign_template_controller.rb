@@ -1,7 +1,10 @@
 module AffiliateCampaignTemplateController
   extend ActiveSupport::Concern
+  include Referrer
 
   included do
+    before_action :save_referrer, only: :get_paid, unless: ->{ current_affiliate.stripe_account? } 
+
     TEMPLATE_STEPS = [
       :campaign,
       :join,

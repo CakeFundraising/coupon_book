@@ -6,33 +6,15 @@
   = semantic_form_for @campaign do |f|
     = f.inputs do
       .headline.text-center
-        h1 Get Paid
-        h4.text-muted Choose which method you are more comfortable with
+        h1 Send me a Check
+        h4.text-muted Add your personal information, we'll send it to the Campaign's Organizer who will send you a check after the Campaign ends.
         br
       .row
-        .col-md-12.text-center
-          = f.input :use_stripe, as: :boolean_button, label: false, input_html: {on_text: 'Online Payment', off_text: 'Check', on_classes: 'btn-success btn-lg', off_classes: 'btn-default btn-lg', collapsible:{parent: '#get_paid_panel', on_panel:'#stripe_panel', off_panel:'#check_panel'} }
-      .row.text-center
-        #get_paid_panel.panel-group aria-multiselectable="true" role="tablist" 
-          .panel
-            #stripe_panel.panel-collapse.collapse aria-labelledby="stripe" role="tabpanel" class=('in' if f.object.use_stripe)
-              .panel-body
-                h2 Connect your Stripe account
-                .help-block 
-                  span = stripe_link 'Stripe.com'
-                  span  enables you to attach your bank account in order to receive online payments easily and securely.
-                = stripe_buttons
-          .panel
-            #check_panel.panel-collapse.collapse aria-labelledby="check" role="tabpanel" class=('in' unless f.object.use_stripe)
-              .panel-body
-                h2 Send me a Check
-                .help-block Add your personal information, we'll send it to the Campaign's Organizer who will send you a check after the Campaign ends.
-                .row
-                  .col-md-3
-                  .col-md-6
-                    = f.input :check_recipient_name
-                    = render partial:'locations/form', locals:{f: f}
-                  .col-md-3
+        .col-md-3
+        .col-md-6
+          = f.input :check_recipient_name
+          = render partial:'locations/form', locals:{f: f}
+        .col-md-3
 
         = f.input :step, as: :hidden, input_html:{value: :share}
       br

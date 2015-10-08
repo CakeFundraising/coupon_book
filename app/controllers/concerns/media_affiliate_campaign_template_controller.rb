@@ -1,7 +1,10 @@
 module MediaAffiliateCampaignTemplateController
   extend ActiveSupport::Concern
+  include Referrer
 
   included do
+    before_action :save_referrer, only: :get_paid, unless: ->{ current_media_affiliate.stripe_account? } 
+
     TEMPLATE_STEPS = [
       :community,
       :get_paid,

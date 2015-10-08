@@ -13,8 +13,12 @@ class DashboardController < ApplicationController
     render "dashboard/history/#{current_user.roles.first}"
   end
 
-  def withdraw
+  #Get Paid
+  def transfers
+    @campaigns = current_user.campaigns.decorate
+  end
+
+  def stripe
     @stripe_account = current_user.try(:stripe_account)
-    render "dashboard/withdraw/#{current_user.roles.first}"
   end
 end

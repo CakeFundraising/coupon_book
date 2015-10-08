@@ -5,3 +5,9 @@ campaign_end:
   class: "ResqueSchedule::CampaignEnd"
   queue: high
   description: "Triggers the @coupon_book.end method on campaigns that have reach their end_date"
+commission_transfers:
+  # at: 1:30
+  cron: "30 1 * * * America/New_York"
+  class: "ResqueSchedule::CommissionTransfer"
+  queue: high
+  description: "Transfers all commissions to users' Stripe Accounts."

@@ -1,0 +1,19 @@
+= display_meta("Stripe - Getting Paid")
+
+#withdraw.wizard-wrap
+  .headline
+    h1 Getting Paid
+    h4.text-muted Manage your Stripe account and check your transfers.
+    br
+  .row.inputs
+    .col-md-12
+      /! Nav tabs
+      ul.nav.nav-tabs role="tablist" 
+        li role="presentation" 
+          = link_to 'Transfers', dashboard_transfers_path
+        li.active role="presentation" 
+          a aria-controls="stripe" data-toggle="tab" href="#stripe" role="tab" Stripe
+      /! Tab panes
+      .tab-content
+        #stripe.tab-pane.active role="tabpanel"
+          = render partial:'stripe/get_paid_page'

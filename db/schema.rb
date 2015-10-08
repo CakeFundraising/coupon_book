@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930213059) do
+ActiveRecord::Schema.define(version: 20151007191915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,8 @@ ActiveRecord::Schema.define(version: 20150930213059) do
     t.string   "commissionable_type"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.boolean  "paid",                default: false
+    t.integer  "transfer_id"
   end
 
   add_index "commissions", ["commissionable_type", "commissionable_id"], name: "index_commissions_on_commissionable_type_and_commissionable_id", using: :btree
@@ -357,6 +359,23 @@ ActiveRecord::Schema.define(version: 20150930213059) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
+
+  create_table "transfers", force: :cascade do |t|
+    t.string   "stripe_id"
+    t.string   "balance_transaction_id"
+    t.string   "kind"
+    t.integer  "amount_cents",           default: 0,     null: false
+    t.string   "amount_currency",        default: "USD", null: false
+    t.integer  "app_fee_cents",          default: 0,     null: false
+    t.string   "app_fee_currency",       default: "USD", null: false
+    t.string   "status"
+    t.integer  "transferable_id"
+    t.string   "transferable_type"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  add_index "transfers", ["transferable_type", "transferable_id"], name: "index_transfers_on_transferable_type_and_transferable_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name"

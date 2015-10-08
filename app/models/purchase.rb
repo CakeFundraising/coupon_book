@@ -45,9 +45,12 @@ class Purchase < ActiveRecord::Base
   end
 
   def create_fr_commission!
-    percentage = 100 - commissions.sum(:percentage)
+    percentage = 100 - commissions.sum(:percentage) - self.purchasable.fee_percentage
+    percentage = 0 if percentage < 0
+
     amount_cents = ((percentage*self.amount_cents)/100.0).round
     commissionable = self.purchasable.try(:coupon_book) || self.purchasable
+
     self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)
   end
 
@@ -65,11 +68,9 @@ class Purchase < ActiveRecord::Base
             email: self.email
           },
           receipt_email: self.email,
-          statement_descriptor: "EatsForGood Donation",
-          application_fee: application_fee
-        },
-          stripe_account: self.purchasable.fundraiser.stripe_account.uid
-        )
+          statement_descriptor: "EatsForGood Donation"
+          #application_fee: application_fee
+        })
         store_transaction(charge)
       rescue Stripe::CardError => e
         self.errors.add(:stripe, e.message)
@@ -85,7 +86,7 @@ class Purchase < ActiveRecord::Base
   end
 
   def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction, self.purchasable.fundraiser.stripe_account.token)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
 
     self.build_charge(
       stripe_id: stripe_transaction.id,

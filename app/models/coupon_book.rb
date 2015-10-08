@@ -7,6 +7,7 @@ class CouponBook < ActiveRecord::Base
   include Screenshotable
   include VisitorActions
   include Templatable
+  include Campaign
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]
@@ -35,9 +36,12 @@ class CouponBook < ActiveRecord::Base
   has_one :community, dependent: :destroy
   has_many :affiliate_campaigns, through: :community
   has_many :affiliates, through: :affiliate_campaigns
+
   has_many :affiliate_purchases, through: :affiliate_campaigns, source: :purchases
+  has_many :affiliate_commissions, through: :affiliate_campaigns, source: :commissions
   
   has_many :media_affiliate_campaigns, through: :community
+  has_many :media_commissions, through: :media_affiliate_campaigns, source: :commissions
   has_many :media_affiliates, through: :media_affiliate_campaigns
   
   has_many :categories, -> { order("categories.position ASC") }, dependent: :destroy, inverse_of: :coupon_book
@@ -69,7 +73,7 @@ class CouponBook < ActiveRecord::Base
 
   #validates :visitor_url, format: {with: DOMAIN_NAME_REGEX, message: I18n.t('errors.url')}, allow_blank: true
 
-  delegate :zip_code, :city, :state_code, to: :fundraiser
+  delegate :zip_code, :city, :state_code, :stripe_account, :stripe_account?, to: :fundraiser
 
   scope :latest, ->{ order('coupon_books.created_at DESC') }
   scope :with_categories, ->{ eager_load(:categories) }
@@ -159,14 +163,6 @@ class CouponBook < ActiveRecord::Base
     coupons.sum(:price_cents)/100
   end
 
-  def current_sales_cents
-    purchases.sum(:amount_cents) + affiliate_purchases.sum(:amount_cents)
-  end
-
-  def current_commission_cents
-    commissions.sum(:amount_cents)
-  end
-
   def thermometer
     (current_sales_cents.to_f/goal_cents)*100 unless goal_cents.zero?
   end
@@ -213,6 +209,15 @@ class CouponBook < ActiveRecord::Base
   def estimated_fee
     percentage = (self.fee_percentage/100)
     (self.price*percentage)
+  end
+
+  def stripe_available?
+    stripe_account?
+  end
+
+  #Transfers
+  def after_transfer(amount_cents)
+    CampaignMailer.commissions_transferred(self.id, amount_cents).deliver_now
   end
 
   #Vouchers

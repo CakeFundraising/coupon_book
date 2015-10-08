@@ -1,0 +1,19 @@
+= display_meta("Transfers - Getting Paid")
+
+#withdraw.wizard-wrap
+  .headline
+    h1 Getting Paid
+    h4.text-muted Manage your Stripe account and check your transfers.
+    br
+  .row.inputs
+    .col-md-12
+      /! Nav tabs
+      ul.nav.nav-tabs role="tablist" 
+        li.active role="presentation"
+          a aria-controls="transfers" data-toggle="tab" href="#transfers" role="tab" Transfers
+        li role="presentation" 
+          = link_to 'Stripe', dashboard_stripe_path
+      /! Tab panes
+      .tab-content
+        #transfers.tab-pane.active role="tabpanel"
+          = render partial:'transfers/collapse', collection: @campaigns, as: :campaign
