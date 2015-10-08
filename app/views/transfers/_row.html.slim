@@ -1,0 +1,8 @@
+- cache [:table, :transfer, transfer] do
+  tr.transfer
+    td data-title=(Transfer.human_attribute_name :amount)
+      = transfer.amount
+    td data-title=(Transfer.human_attribute_name :transfer_date)
+      = transfer.transfer_date
+    td data-title=(Transfer.human_attribute_name :status)
+      = transfer.status

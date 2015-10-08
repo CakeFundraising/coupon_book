@@ -15,6 +15,7 @@ class DashboardController < ApplicationController
 
   def get_paid
     @stripe_account = current_user.try(:stripe_account)
+    @campaigns = current_user.campaigns.decorate
     render "dashboard/get_paid/#{current_user.roles.first}"
   end
 end

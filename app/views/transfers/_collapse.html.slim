@@ -1,0 +1,29 @@
+.campaign.panel.panel-default
+  .panel-heading role='tab'
+    a data-parent="#campaigns" data-toggle="collapse" href="##{campaign.id}"
+      .container-fluid
+        .panel-title = campaign
+        ul.panel-title-right.bolder
+          .stat
+            h5.no-margin.black End Date
+            div = campaign.end_date
+          .stat
+            h5.no-margin.black My Commission
+            div = campaign.current_commission_amount
+
+  .panel-collapse.collapse id=(campaign.id)
+    .panel-body
+      .content
+        - if campaign.transfers.any?
+          #no-more-tables
+            table#transfers.table.table-hover.table-bordered.table-striped.data-table
+              thead.cf
+                tr
+                  th = Transfer.human_attribute_name :amount
+                  th = Transfer.human_attribute_name :transfer_date
+                  th = Transfer.human_attribute_name :status
+                  th
+              tbody
+                = render partial:'transfers/row', collection: campaign.transfers.decorate, as: :transfer
+        - else
+          = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.transfers'), in_profile: true}
