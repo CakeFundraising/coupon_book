@@ -28,7 +28,6 @@
                   th = Transfer.human_attribute_name :amount
                   th = Transfer.human_attribute_name :transfer_date
                   th = Transfer.human_attribute_name :status
-                  th
               tbody
                 = render partial:'transfers/row', collection: campaign.transfers.decorate, as: :transfer
         - else
