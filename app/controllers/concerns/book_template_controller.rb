@@ -11,6 +11,7 @@ module BookTemplateController
       :merchants,
       :organize,
       :affiliates,
+      :media_affiliates,
       :launching,
       :share
     ]
@@ -60,8 +61,25 @@ module BookTemplateController
     @coupon_book = resource.decorate
     @community = @coupon_book.community
     @affiliate_campaigns = @coupon_book.affiliate_campaigns.decorate
-    @media_affiliate_campaigns = @coupon_book.media_affiliate_campaigns.decorate
     render 'coupon_books/template/affiliates'
+  end
+
+  def update_affiliate_campaign_rate
+    update! do |success, failure|
+      success.html do
+        redirect_to affiliates_coupon_book_path(resource), notice: 'Affiliate rate updated.'
+      end
+      failure.html do
+        redirect_to affiliates_coupon_book_path(resource), alert: 'There was an error.'
+      end
+    end
+  end
+
+  def media_affiliates
+    @coupon_book = resource.decorate
+    @community = @coupon_book.community
+    @media_affiliate_campaigns = @coupon_book.media_affiliate_campaigns.decorate
+    render 'coupon_books/template/media_affiliates'
   end
 
   def launching

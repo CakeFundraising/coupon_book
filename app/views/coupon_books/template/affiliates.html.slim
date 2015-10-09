@@ -4,62 +4,47 @@
 
 #customize.wizard-wrap
   - if @community.nil?
-    .headline.text-center
-      h1 Can Affiliates join & promote your Campaign?
-      h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
-      br
-    .inputs
-      .text-center
-        button.btn.btn-success.btn-lg aria-controls="community" aria-expanded="false" data-target="#community" data-toggle="collapse" type="button" Yes
-        = link_to 'No', launching_coupon_book_path(@coupon_book), class:'btn btn-danger btn-lg'
-      br
-      #community.collapse
-        = semantic_form_for @coupon_book do |f|
-          = render partial:'communities/fields', locals:{f: f}
-          = f.input :step, as: :hidden, input_html:{value: :launching} 
-          .text-center
-            .text-muted Once you set these settings, they cannot be updated later. Think twice before submitting.
-            = f.actions do
-              = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}
+    = render partial:'coupon_books/template/affiliates/no_affiliates'
   - else
-    .headline.text-center
-      h1 Campaign Community
-      /h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
-      br
     .inputs
-      h3 General Settings
       .row
         .col-md-12
+          .pull-right
+            = link_to "Edit", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
+            = render partial:'communities/edit'
+          
+          h3 Campaign Community
           .info
-            strong Community page URL: 
+            strong Community Page URL: 
             span = link_to community_url(@community), community_url(@community), target: :_blank
           br
           .info
-            strong Affiliate Commission: 
+            strong Affiliate Community Page Commission Rate: 
             span = @community.decorate.affiliate_commission_percentage
-          .info
-            strong Media Affiliate Commission: 
-            span = @community.decorate.media_commission_percentage
+            span  of each donation
+          / .info
+          /   strong Media Affiliate Commission: 
+          /   span = @community.decorate.media_commission_percentage
           br
           .info
-            p.text-muted * These Commission Rates apply to all Affiliates. To especify a custom Commission Rate, use the Affiliate's edit button below.
+            p.text-muted * This sets the Affiliate commission rate when a donation is made via the Community Page. To especify a custom Commission Rate, use the Affiliate's edit button below.
+      hr
       .row
         .col-md-12
+          .pull-right
+            = link_to "Edit", "#edit_campaign_rate", class: "btn btn-sm btn-primary", data: {toggle: :modal}
+            = render partial:'coupon_books/template/affiliates/affiliate_campaign_rate'
+
+          h3 Fundraiser Affiliate Campaigns
+          .info
+            strong Affiliate Campaign Page Commission Rate: 
+            span = @coupon_book.affiliate_campaign_rate
+            span  of each donation
           br
-          = link_to "Edit Settings", "#edit_community_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
-          = render partial:'communities/edit'
+          .info
+            p.text-muted * This sets the Affiliate commission rate when a donation is made via the Affiliate's Campaign Page. To especify a custom Commission Rate, use the Affiliate's edit button below.
       hr
-      #affiliates-tabs
-        /! Nav tabs
-        ul.nav.nav-tabs role="tablist" 
-          li.active role="presentation" 
-            a aria-controls="affiliates" data-toggle="tab" href="#affiliates" role="tab" Affiliates
-          li role="presentation" 
-            a aria-controls="media_affiliates" data-toggle="tab" href="#media_affiliates" role="tab" Media Affiliates
-        /! Tab panes
-        .tab-content
-          #affiliates.tab-pane.active role="tabpanel"
-            = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}
-          #media_affiliates.tab-pane role="tabpanel"
-            = render partial:'media_affiliate_campaigns/show/table/table', locals:{campaigns: @media_affiliate_campaigns}
-    
+      .row
+        .col-md-12
+          h3 Fundraiser Affiliates
+          = render partial:'affiliate_campaigns/show/table/table', locals:{campaigns: @affiliate_campaigns}

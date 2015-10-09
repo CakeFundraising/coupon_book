@@ -61,7 +61,7 @@ class AffiliateCampaignsController < InheritedResources::Base
   def permitted_params
     params.permit(affiliate_campaign: [
       :first_name, :last_name, :phone, :email, :url, :organization_name, :story, :community_id,
-      :use_stripe, :check_recipient_name, :commission_percentage,
+      :use_stripe, :check_recipient_name, :community_rate, :campaign_rate,
       location_attributes: [:address, :city, :zip_code, :state_code, :country_code],
       avatar_picture_attributes: [
         :id, :uri, :caption, :avatar_crop_x, :avatar_crop_y, 

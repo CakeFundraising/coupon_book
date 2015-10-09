@@ -2,6 +2,5 @@
   = f.actions do
     = f.input :slug, prepend: community_page_root_url
     = f.input :affiliate_commission_percentage, as: :select, collection: commission_percentage(f.object.affiliate_commission_percentage)
-    = f.input :media_commission_percentage, as: :select, collection: commission_percentage(f.object.media_commission_percentage)
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

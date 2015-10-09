@@ -1,0 +1,10 @@
+= display_meta("Campaign Media Affiliates")
+
+= render partial:'coupon_books/template/nav'
+
+#customize.wizard-wrap
+  - if @community.nil?
+    = render partial:'coupon_books/template/affiliates/no_media_affiliates'
+  - else
+    h3 Media Affiliates
+    = render partial:'media_affiliate_campaigns/show/table/table', locals:{campaigns: @media_affiliate_campaigns}

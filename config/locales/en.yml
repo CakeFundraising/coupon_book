@@ -25,9 +25,11 @@ en:
       cvc: "For your safety and security, Stripe requires that you enter your CVC (Card Verification Code). For MasterCard, Visa, and Discover, the CVC is the last three digits in the signature area on the back of your card. For American Express, the CVC is a group of four digits on front of the card."
   formtastic:
     hints:
+      coupon_book:
+        affiliate_campaign_rate: Set the percentage the Good Cause Affiliate will receive of each donation made via an Affiliate Campaign Page.
       community:
         slug: "Choose a custom url for your Campaign's Community page."
-        affiliate_commission_percentage: Set the percentage the Good Cause Affiliate will receive of each donation made via an Affiliate Campaign Page.
+        affiliate_commission_percentage: Set the percentage the Good Cause Affiliate will receive of each donation made via the Community Page.
         media_commission_percentage: Set the percentage the Media Affiliate will receive of each donation made via the Campaign Community Page by a donor secured by that Media Affiliate.
   links:
     user:
@@ -145,7 +147,7 @@ en:
         hide_name: Hide your name from everyone but the organizer
       community:
         slug: Custom Community Page URL
-        affiliate_commission_percentage: Affiliate Fundraiser Commission Rate
+        affiliate_commission_percentage: Affiliate Community Page Commission Rate
         media_commission_percentage: Media Affiliate Commission Rate
       affiliate_campaign:
         commission_percentage: Commission Rate

@@ -37,7 +37,8 @@ class AffiliateCampaign < ActiveRecord::Base
   scope :preloaded, ->{ eager_load([:coupon_book]) }
 
   before_save do
-    self.commission_percentage = community.affiliate_commission_percentage if self.commission_percentage.zero?
+    self.community_rate = community.affiliate_commission_percentage if self.community_rate.zero?
+    self.campaign_rate = coupon_book.affiliate_campaign_rate if self.campaign_rate.zero?
   end
 
   #Slugs

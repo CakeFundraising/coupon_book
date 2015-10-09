@@ -6,7 +6,8 @@
           th = Affiliate.model_name.human(count: 2)
           th = AffiliateCampaign.human_attribute_name :total_donations
           th = AffiliateCampaign.human_attribute_name :total_donors
-          th = AffiliateCampaign.human_attribute_name :commission_rate
+          th = AffiliateCampaign.human_attribute_name :community_rate
+          th = AffiliateCampaign.human_attribute_name :campaign_rate
           th
       tbody
         = render partial:'affiliate_campaigns/show/table/row', collection: campaigns, as: :campaign
