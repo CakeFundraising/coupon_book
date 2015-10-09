@@ -1,5 +1,6 @@
 class MediaAffiliateCampaign < ActiveRecord::Base
-  include Campaign
+  include Transferable
+  include Analytics
 
   belongs_to :media_affiliate
   belongs_to :community

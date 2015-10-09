@@ -1,6 +1,5 @@
-module Campaign
+module Analytics
   extend ActiveSupport::Concern
-  include Transferable
 
   def current_sales_cents
     purchases.sum(:amount_cents)

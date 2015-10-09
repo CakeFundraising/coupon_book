@@ -1,7 +1,9 @@
 h2 Welcome #{@resource.first_name}!
 
-p Thank you for registering with Eats for Good, you can confirm your account by clicking on the link below:
+p Thank you for your interest in becoming an Eats For Good member! Please click on the following link to confirm your email address and continue with the registration process. 
 
-p = link_to 'Confirm my Account', confirmation_url(@resource, confirmation_token: @token), class:'btn btn-primary'
+p = link_to 'Confirm Email', confirmation_url(@resource, confirmation_token: @token), class:'btn btn-primary'
 
 p Enjoy!
+
+p P.S.: Please do not share the link in this email with anyone as it is unique to your account. In case you experience any difficulties, please do not hesitate to contact us via support@eatsforgood.com

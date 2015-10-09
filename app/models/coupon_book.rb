@@ -7,7 +7,8 @@ class CouponBook < ActiveRecord::Base
   include Screenshotable
   include VisitorActions
   include Templatable
-  include Campaign
+  include Transferable
+  include Analytics
   extend FriendlyId
 
   friendly_id :slug_candidates, use: [:slugged, :history]

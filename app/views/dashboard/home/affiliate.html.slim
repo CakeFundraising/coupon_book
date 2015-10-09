@@ -1,1 +1,32 @@
-h1 Affiliate Dashboard
+= display_meta("My Dashboard")
+
+h1.dash-head My Dashboard
+
+.row
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = @user.affiliate_campaigns.count
+          p.boldest = t('semantic.number_of', model: 'Campaigns')
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = @user.current_sales
+          p.boldest Total Sales
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = @user.total_commission
+          p.boldest Total Raised
+
+  .col-md-3
+    .sidebar-bkg
+      .row
+        .col-xs-12.text-center
+          p.donation-stats = @user.pending_commission
+          p.boldest Total Outstanding

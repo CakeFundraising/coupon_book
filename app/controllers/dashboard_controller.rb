@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   before_action :authenticate_user!
 
   def dashboard
+    @user = current_user.decorate
     render "dashboard/home/#{current_user.roles.first}"
   end
 

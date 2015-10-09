@@ -1,4 +1,5 @@
 class AffiliateCampaignDecorator < ApplicationDecorator
+  include AnalyticsDecorator
   include CampaignDecorator
   
   delegate_all

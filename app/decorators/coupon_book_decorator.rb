@@ -1,4 +1,5 @@
 class CouponBookDecorator < ApplicationDecorator
+  include AnalyticsDecorator
   include CampaignDecorator
   
   delegate_all

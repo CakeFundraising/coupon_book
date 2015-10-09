@@ -1,4 +1,5 @@
 class MediaAffiliateCampaignDecorator < ApplicationDecorator
+  include AnalyticsDecorator
   include CampaignDecorator
   
   delegate_all

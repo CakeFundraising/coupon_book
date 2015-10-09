@@ -1,4 +1,5 @@
 class AffiliateDecorator < ApplicationDecorator
+  include AnalyticsDecorator
   delegate_all
 
   def to_s
