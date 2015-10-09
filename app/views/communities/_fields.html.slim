@@ -1,5 +1,4 @@
 = f.semantic_fields_for :community, f.object.community || f.object.build_community do |c|
-  = c.inputs do
-    = c.input :slug, prepend: community_page_root_url
-    = c.input :affiliate_commission_percentage, as: :select, collection: commission_percentage(c.object.affiliate_commission_percentage)
-    /= c.input :media_commission_percentage, as: :select, collection: commission_percentage(c.object.media_commission_percentage)
+  = c.input :slug, prepend: community_page_root_url
+  = c.input :affiliate_commission_percentage, as: :select, collection: commission_percentage(c.object.affiliate_commission_percentage)
+  /= c.input :media_commission_percentage, as: :select, collection: commission_percentage(c.object.media_commission_percentage)

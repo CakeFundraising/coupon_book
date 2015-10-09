@@ -10,6 +10,7 @@
   #community.collapse
     = semantic_form_for @coupon_book do |f|
       = render partial:'communities/fields', locals:{f: f}
+      = f.input :affiliate_campaign_rate, as: :select, collection: commission_percentage(@coupon_book.object.affiliate_campaign_rate)
       = f.input :step, as: :hidden, input_html:{value: :media_affiliates} 
       .text-center
         = f.actions do

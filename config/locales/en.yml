@@ -136,6 +136,7 @@ en:
       coupon_book:
         headline: Campaign Headline
         story: Tell your story
+        affiliate_campaign_rate: Affiliate Campaign Page Commission Rate
       coupon:
         sponsor_name: Merchant Name
         phone: Contact Phone

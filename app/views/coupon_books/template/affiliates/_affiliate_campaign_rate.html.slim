@@ -8,7 +8,7 @@
       .modal-body
         = semantic_form_for @coupon_book, url: update_affiliate_campaign_rate_coupon_book_path do |f|
           = f.actions do
-            = f.input :affiliate_campaign_rate, as: :select, collection: Community::COMMISSION
+            = f.input :affiliate_campaign_rate, as: :select, collection: commission_percentage(@coupon_book.object.affiliate_campaign_rate)
           = f.actions do
             = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
     /! /.modal-content
