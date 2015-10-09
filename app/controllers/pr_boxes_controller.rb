@@ -2,7 +2,7 @@ class PrBoxesController < InheritedResources::Base
   before_action :set_collection, only: :create
 
   def index
-    @pr_boxes = current_merchant.pr_boxes.decorate
+    @pr_boxes = current_merchant.pr_boxes.page(params[:page]).per(20).decorate
   end
 
   def create

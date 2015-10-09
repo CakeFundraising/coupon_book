@@ -10,7 +10,7 @@ class CouponsController < InheritedResources::Base
   ]
 
   def index
-    @coupons = current_merchant.coupons.decorate
+    @coupons = current_merchant.coupons.page(params[:page]).per(20).decorate
   end
 
   def new
