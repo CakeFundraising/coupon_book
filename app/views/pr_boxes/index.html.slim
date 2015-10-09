@@ -5,23 +5,25 @@ br
 
 h1.dash-head My PR Boxes
 
-- if @pr_boxes.any?
-  #no-more-tables
-    table.table.table-hover.table-bordered.table-striped.data-table#sponsor-coupons
-      thead
-        tr.cf
-          th = PrBox.model_name.human
-          / th = Coupon.human_attribute_name :expires_at
-          / th = Coupon.human_attribute_name :universal
-          / th = Coupon.human_attribute_name :fundraiser
-          / th = t('semantic.number_of', model: 'Deals Sold')
-          / th = Coupon.human_attribute_name :unique_clicks
-          / th = Coupon.human_attribute_name :total_clicks
-          / th = Coupon.human_attribute_name :status
-          th
-      tbody
-        = render partial:'pr_boxes/show/row', collection: @pr_boxes, as: :pr_box 
-- else
-  = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pr_boxes'), in_profile: true}
+.wizard-wrap
+  .inputs
+    - if @pr_boxes.any?
+      #no-more-tables
+        table.table.table-hover.table-bordered.table-striped.data-table#sponsor-coupons
+          thead
+            tr.cf
+              th = PrBox.model_name.human
+              / th = Coupon.human_attribute_name :expires_at
+              / th = Coupon.human_attribute_name :universal
+              / th = Coupon.human_attribute_name :fundraiser
+              / th = t('semantic.number_of', model: 'Deals Sold')
+              / th = Coupon.human_attribute_name :unique_clicks
+              / th = Coupon.human_attribute_name :total_clicks
+              / th = Coupon.human_attribute_name :status
+              th
+          tbody
+            = render partial:'pr_boxes/show/row', collection: @pr_boxes, as: :pr_box 
+    - else
+      = render partial:'layouts/no_results', locals:{object: t('titles.empty_results.pr_boxes'), in_profile: true}
 
-= paginate @pr_boxes
+    = pagination @pr_boxes
