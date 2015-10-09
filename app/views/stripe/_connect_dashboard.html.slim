@@ -1,0 +1,12 @@
+- unless @user.stripe_account?
+  .row
+    .col-md-12
+      .alert.alert-warning.alert-dismissible
+        button.close aria-label="Close" data-dismiss="alert" type="button" 
+          span aria-hidden="true"  &times;
+          
+        h2 Please connect your Stripe account!
+        .help-block 
+          span = stripe_link 'Stripe.com'
+          span  enables you to attach your bank account in order to receive online payments easily and securely.
+        = stripe_connect_button

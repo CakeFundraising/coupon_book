@@ -1,4 +1,6 @@
 class FundraiserDecorator < ApplicationDecorator
+  include AnalyticsDecorator
+  
   delegate_all
   decorates_association :picture
 

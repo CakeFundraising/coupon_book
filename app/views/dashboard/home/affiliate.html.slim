@@ -2,6 +2,8 @@
 
 h1.dash-head My Dashboard
 
+= render partial:'stripe/connect_dashboard'
+
 .row
   .col-md-3
     .sidebar-bkg
@@ -30,3 +32,4 @@ h1.dash-head My Dashboard
         .col-xs-12.text-center
           p.donation-stats = @user.pending_commission
           p.boldest Total Outstanding
+

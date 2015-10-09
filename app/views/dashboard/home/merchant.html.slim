@@ -7,26 +7,26 @@ h1.dash-head My Dashboard
     .sidebar-bkg
       .row
         .col-xs-12.text-center
-          p.donation-stats = current_merchant.coupons.count
+          p.donation-stats = @user.coupons.count
           p.boldest = t('semantic.number_of', model: 'Deals')
 
   .col-md-3
     .sidebar-bkg
       .row
         .col-xs-12.text-center
-          p.donation-stats = current_merchant.total_vouchers_sold
+          p.donation-stats = @user.total_vouchers_sold
           p.boldest Total Deals Sold
 
   .col-md-3
     .sidebar-bkg
       .row
         .col-xs-12.text-center
-          p.donation-stats = current_merchant.total_unique_clicks
+          p.donation-stats = @user.total_unique_clicks
           p.boldest Total Unique Clicks
 
   .col-md-3
     .sidebar-bkg
       .row
         .col-xs-12.text-center
-          p.donation-stats = current_merchant.total_clicks
+          p.donation-stats = @user.total_clicks
           p.boldest Total Clicks
