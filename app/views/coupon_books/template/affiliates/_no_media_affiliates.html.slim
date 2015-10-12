@@ -9,7 +9,7 @@
   br
   #community.collapse
     = semantic_form_for @coupon_book do |f|
-      = render partial:'communities/fields', locals:{f: f}
+      = render partial:'communities/media_affiliate_fields', locals:{f: f}
       = f.input :step, as: :hidden, input_html:{value: :launching} 
       .text-center
         = f.actions do

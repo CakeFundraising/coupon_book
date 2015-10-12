@@ -17,11 +17,11 @@ class CommunitiesController < InheritedResources::Base
   def update
     update! do |success, failure|
       failure.html do
-        redirect_to affiliates_coupon_book_path(@community.coupon_book), alert: @community.errors.messages.values.join('\n')
+        redirect_to request.referrer, alert: @community.errors.messages.values.join('\n')
       end
       success.html do
         update_screenshot(@community)
-        redirect_to affiliates_coupon_book_path(@community.coupon_book), notice: 'Community settings successfully updated.'
+        redirect_to request.referrer, notice: 'Community settings successfully updated.'
       end
     end
   end

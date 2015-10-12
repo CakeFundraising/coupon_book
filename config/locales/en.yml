@@ -68,6 +68,7 @@ en:
       coupon_books: Campaigns
       coupons: Coupons
       affiliates: Affiliates
+      media_affiliates: Media Affiliates
       transfers: Transfers
     coupon_book:
       purchase_form:
