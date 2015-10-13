@@ -45,7 +45,7 @@ module AffiliatePageActions
     @purchase = @affiliate_campaign.purchases.build(amount: amount)
 
     @commissions = []
-    @commissions << @purchase.commissions.build(commissionable: @affiliate_campaign)
+    @commissions << @purchase.commissions.build(commissionable: @affiliate_campaign, fcp: params[:fcp])
     @commissions << @purchase.commissions.build(commissionable_type: 'MediaAffiliateCampaign', commissionable_id: params[:macid]) if params[:macid].present? #Media Affiliate Commission
 
     if mobile_device?

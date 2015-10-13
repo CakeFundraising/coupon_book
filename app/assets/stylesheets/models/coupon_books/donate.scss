@@ -159,6 +159,7 @@ $screen-xs-max: 768px;
       li{
         padding: 10px 20px;
         border-bottom: 1px solid #ddd;
+        word-wrap: break-word;
         .amount{
           font-size: 22px;
           margin-right: 10px;

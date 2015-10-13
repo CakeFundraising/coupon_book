@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151009200559) do
+ActiveRecord::Schema.define(version: 20151013145047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,10 +116,10 @@ ActiveRecord::Schema.define(version: 20151009200559) do
     t.string   "stripe_id"
     t.string   "balance_transaction_id"
     t.string   "kind"
-    t.integer  "amount_cents",           default: 0,     null: false
-    t.string   "amount_currency",        default: "USD", null: false
-    t.integer  "total_fee_cents",        default: 0,     null: false
-    t.string   "total_fee_currency",     default: "USD", null: false
+    t.integer  "gross_amount_cents",     default: 0,     null: false
+    t.string   "gross_amount_currency",  default: "USD", null: false
+    t.integer  "fee_cents",              default: 0,     null: false
+    t.string   "fee_currency",           default: "USD", null: false
     t.boolean  "paid"
     t.boolean  "captured"
     t.json     "fee_details"
@@ -127,6 +127,8 @@ ActiveRecord::Schema.define(version: 20151009200559) do
     t.integer  "chargeable_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "net_amount_cents",       default: 0,     null: false
+    t.string   "net_amount_currency",    default: "USD", null: false
   end
 
   add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
