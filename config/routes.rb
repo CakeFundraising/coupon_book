@@ -33,6 +33,7 @@ CakeCouponBook::Application.routes.draw do
         get :organize
         post :save_organize
         get :affiliates
+        get :media_affiliates
         get :launching
         get :share
       end
@@ -40,6 +41,8 @@ CakeCouponBook::Application.routes.draw do
       patch :save_for_launch
       patch :toggle_visibility
       patch :update_order
+
+      patch :update_affiliate_campaign_rate
 
       get :start_discount
       get :start_pr_box

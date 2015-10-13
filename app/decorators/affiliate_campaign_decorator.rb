@@ -16,8 +16,12 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     coupon_book.fr_name
   end
 
-  def commission_percentage
-    "#{object.commission_percentage}%"
+  def community_rate
+    "#{object.community_rate}%"
+  end
+
+  def campaign_rate
+    "#{object.campaign_rate}%"
   end
 
   def meta_title

@@ -1,0 +1,16 @@
+.headline.text-center
+  h1 Can Media Affiliates share your Campaign?
+  h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
+  br
+.inputs
+  .text-center
+    button.btn.btn-success.btn-lg aria-controls="community" aria-expanded="false" data-target="#community" data-toggle="collapse" type="button" Yes
+    = link_to 'No', launching_coupon_book_path(@coupon_book), class:'btn btn-danger btn-lg'
+  br
+  #community.collapse
+    = semantic_form_for @coupon_book do |f|
+      = render partial:'communities/media_affiliate_fields', locals:{f: f}
+      = f.input :step, as: :hidden, input_html:{value: :launching} 
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

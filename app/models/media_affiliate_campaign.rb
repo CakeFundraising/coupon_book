@@ -20,8 +20,9 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   accepts_nested_attributes_for :location, update_only: true, reject_if: ->(attrs){ attrs[:address].blank? }
 
   scope :latest, ->{ order('media_affiliate_campaigns.created_at DESC') }
-
   scope :preloaded, ->{ eager_load([:coupon_book]) }
+  scope :use_stripe, -> { where(use_stripe: true) }
+  scope :use_check, -> { where(use_stripe: false) }
 
   delegate :name, :launch_date, :end_date, :status, :fee_percentage, :fundraiser, :price, :goal, to: :coupon_book
   delegate :stripe_account, :stripe_account?, to: :media_affiliate

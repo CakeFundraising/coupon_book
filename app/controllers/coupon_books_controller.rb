@@ -105,7 +105,7 @@ class CouponBooksController < InheritedResources::Base
   def permitted_params
     params.permit(coupon_book: [
       :name, :title, :slug, :organization_name, :mission, :launch_date, :end_date, :story, :custom_pledge_levels, :goal, :template, :bottom_tagline,
-      :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, causes: [],
+      :headline, :step, :url, :main_cause, :sponsor_alias, :visitor_url, :visitor_action, :visible, :price, :affiliate_campaign_rate, causes: [],
       scopes: [], video_attributes: [:id, :url, :auto_show],
       picture_attributes: [
         :id, :banner, :avatar, :avatar_caption,
@@ -113,7 +113,7 @@ class CouponBooksController < InheritedResources::Base
         :banner_crop_x, :banner_crop_y, :banner_crop_w, :banner_crop_h
       ],
       categories_attributes: [:id, :position, categories_coupons_attributes: [:id, :position, :coupon_id, :category_id, :_destroy] ],
-      community_attributes: [:slug, :affiliate_commission_percentage]
+      community_attributes: [:slug, :affiliate_commission_percentage, :media_commission_percentage]
     ])
   end
 

@@ -10,8 +10,8 @@ class CampaignMailer < ApplicationMailer
   def affiliate_invoices(campaign_id)
     @coupon_book = find_coupon_book(campaign_id)
     @fundraiser = @coupon_book.fundraiser
-    @affiliate_campaigns = @coupon_book.affiliate_campaigns.decorate
-    @media_campaigns = @coupon_book.media_affiliate_campaigns.decorate
+    @affiliate_campaigns = @coupon_book.affiliate_campaigns.use_check.decorate
+    @media_campaigns = @coupon_book.media_affiliate_campaigns.use_check.decorate
 
     mail(to: @fundraiser.object.email, subject: "Reward your Campaign Affiliates!")
   end
@@ -20,6 +20,7 @@ class CampaignMailer < ApplicationMailer
     @coupon_book = find_coupon_book(campaign_id)
     @fundraiser = @coupon_book.fundraiser
     @amount = amount_cents/100.0
+    @date = Date.today.strftime("%m/%d/%Y")
 
     mail(to: @fundraiser.object.email, subject: "Your commission has been transferred!")
   end

@@ -62,9 +62,11 @@ CakeCouponBook.coupon_books.validation = ->
         required: true
       'coupon_book[end_date]':
         required: true
+      'coupon_book[affiliate_campaign_rate]':
+        required: true
       'coupon_book[community_attributes][slug]':
         required: true
-      'coupon_book[community_attributes][commission_percentage]':
+      'coupon_book[community_attributes][affiliate_commission_percentage]':
         required: true
   )
   return

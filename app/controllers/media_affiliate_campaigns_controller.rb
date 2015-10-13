@@ -38,10 +38,10 @@ class MediaAffiliateCampaignsController < InheritedResources::Base
   def update_commission
     update! do |success, failure|
       success.html do
-        redirect_to affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), notice: 'Commission updated.'
+        redirect_to media_affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), notice: 'Commission updated.'
       end
       failure.html do
-        redirect_to affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), alert: 'There was an error when trying to update the Commission.'
+        redirect_to media_affiliates_coupon_book_path(@media_affiliate_campaign.coupon_book), alert: 'There was an error when trying to update the Commission.'
       end
     end
   end

@@ -1,8 +1,9 @@
 class Charge < ActiveRecord::Base
   belongs_to :chargeable, polymorphic: true
 
-  monetize :amount_cents
-  monetize :total_fee_cents
+  monetize :gross_amount_cents
+  monetize :net_amount_cents
+  monetize :fee_cents
 
   def resource
     Stripe::Charge.retrieve(self.stripe_id, token)
@@ -13,7 +14,7 @@ class Charge < ActiveRecord::Base
   end
 
   private
-
+  
   def token
     if chargeable_type == 'Purchase'
       chargeable.purchasable.fundraiser.stripe_account.token

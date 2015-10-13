@@ -1,0 +1,2 @@
+= f.semantic_fields_for :community, f.object.community || f.object.build_community do |c|
+  = c.input :media_commission_percentage, as: :select, collection: media_commission_rate(c.object.affiliate_commission_percentage)

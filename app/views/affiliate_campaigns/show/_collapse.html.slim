@@ -24,7 +24,7 @@
     .panel-body
       .content
         .row
-          .col-md-3
+          .col-md-2
             .row
               .col-xs-12.text-center
                 p.donation-stats = campaign.purchases.count
@@ -39,11 +39,16 @@
               .col-xs-12.text-center
                 p.donation-stats = campaign.total_commission
                 p.boldest Commission Earned to Date
-          .col-md-3
+          .col-md-2
             .row
               .col-xs-12.text-center
-                p.donation-stats = campaign.commission_percentage
-                p.boldest Commission Rate
+                p.donation-stats = campaign.campaign_rate
+                p.boldest Campaign Commission Rate
+          .col-md-2
+            .row
+              .col-xs-12.text-center
+                p.donation-stats = campaign.community_rate
+                p.boldest Community Commission Rate
         hr
         .row
           .col-md-12

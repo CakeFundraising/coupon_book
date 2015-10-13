@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151007191915) do
+ActiveRecord::Schema.define(version: 20151013145047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,13 +60,14 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.string   "slug"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.boolean  "use_stripe",            default: false
+    t.boolean  "use_stripe",           default: false
     t.string   "check_recipient_name"
     t.integer  "affiliate_id"
     t.integer  "community_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.integer  "commission_percentage", default: 0
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "community_rate",       default: 0
+    t.integer  "campaign_rate",        default: 0
   end
 
   create_table "avatar_pictures", force: :cascade do |t|
@@ -115,10 +116,10 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.string   "stripe_id"
     t.string   "balance_transaction_id"
     t.string   "kind"
-    t.integer  "amount_cents",           default: 0,     null: false
-    t.string   "amount_currency",        default: "USD", null: false
-    t.integer  "total_fee_cents",        default: 0,     null: false
-    t.string   "total_fee_currency",     default: "USD", null: false
+    t.integer  "gross_amount_cents",     default: 0,     null: false
+    t.string   "gross_amount_currency",  default: "USD", null: false
+    t.integer  "fee_cents",              default: 0,     null: false
+    t.string   "fee_currency",           default: "USD", null: false
     t.boolean  "paid"
     t.boolean  "captured"
     t.json     "fee_details"
@@ -126,6 +127,8 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.integer  "chargeable_id"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.integer  "net_amount_cents",       default: 0,     null: false
+    t.string   "net_amount_currency",    default: "USD", null: false
   end
 
   add_index "charges", ["balance_transaction_id"], name: "index_charges_on_balance_transaction_id", unique: true, using: :btree
@@ -179,26 +182,27 @@ ActiveRecord::Schema.define(version: 20151007191915) do
     t.string   "url"
     t.string   "headline"
     t.text     "story"
-    t.string   "status",                       default: "incomplete"
+    t.string   "status",                            default: "incomplete"
     t.text     "mission"
-    t.boolean  "visible",                      default: false
-    t.string   "goal_currency",                default: "USD",        null: false
-    t.integer  "price_cents",                  default: 0,            null: false
-    t.string   "price_currency",               default: "USD",        null: false
+    t.boolean  "visible",                           default: false
+    t.string   "goal_currency",                     default: "USD",        null: false
+    t.integer  "price_cents",                       default: 0,            null: false
+    t.string   "price_currency",                    default: "USD",        null: false
     t.string   "main_cause"
     t.string   "visitor_url"
     t.string   "visitor_action"
-    t.float    "fee_percentage",               default: 16.25
+    t.float    "fee_percentage",                    default: 16.25
     t.string   "organization_name"
     t.string   "screenshot_url"
     t.string   "screenshot_version"
-    t.string   "template",                     default: "commercial"
+    t.string   "template",                          default: "commercial"
     t.string   "slug"
     t.string   "bottom_tagline"
     t.string   "title"
-    t.integer  "goal_cents",         limit: 8, default: 0,            null: false
-    t.integer  "causes_mask",        limit: 8
-    t.integer  "scopes_mask",        limit: 8
+    t.integer  "goal_cents",              limit: 8, default: 0,            null: false
+    t.integer  "causes_mask",             limit: 8
+    t.integer  "scopes_mask",             limit: 8
+    t.integer  "affiliate_campaign_rate",           default: 0
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree

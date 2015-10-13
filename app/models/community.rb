@@ -4,7 +4,7 @@ class Community < ActiveRecord::Base
   
   include Screenshotable
 
-  COMMISSION = (0..100).step(5).to_a
+  COMMISSION = (50..100).step(5).to_a
 
   belongs_to :coupon_book, inverse_of: :community
   

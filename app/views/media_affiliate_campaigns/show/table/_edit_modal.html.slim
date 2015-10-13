@@ -7,7 +7,7 @@
         h3.modal-title Set a custom Commission Rate for this Affiliate
       .modal-body
         = semantic_form_for campaign.object, url: update_commission_media_affiliate_campaign_path(campaign) do |f|
-          = f.input :commission_percentage, as: :select, collection: commission_percentage(f.object.commission_percentage)
+          = f.input :commission_percentage, as: :select, collection: media_commission_rate(campaign.community.affiliate_commission_percentage)
           = f.actions do
             = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
     /! /.modal-content

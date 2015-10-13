@@ -77,4 +77,8 @@ class CouponBookDecorator < ApplicationDecorator
     count = object.purchases.count + object.affiliate_purchases.count
     h.number_to_human(count, units: :numbers, format: '%n%u')
   end
+
+  def affiliate_campaign_rate
+    "#{object.affiliate_campaign_rate}%"
+  end
 end

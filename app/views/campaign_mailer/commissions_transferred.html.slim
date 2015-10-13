@@ -1,5 +1,7 @@
 h2 Dear #{@fundraiser},
 
-p We have transferred your commission (#{ number_to_currency(@amount) }) of your #{link_to 'Campaign', coupon_book_url(@coupon_book)} to your Stripe Account!
+p Today #{@date}, we have transferred your outstanding commission (#{ number_to_currency(@amount) }) for your #{link_to 'Campaign', coupon_book_url(@coupon_book)} to your Stripe Account!
+
+p You can check all your transfers #{ link_to 'here', dashboard_transfers_url }.
 
 p Thank you for trusting Eats for Good!

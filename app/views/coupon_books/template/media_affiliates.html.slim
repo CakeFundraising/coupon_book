@@ -1,0 +1,33 @@
+= display_meta("Campaign Media Affiliates")
+
+= render partial:'coupon_books/template/nav'
+
+#customize.wizard-wrap
+  - if @community.media_commission_percentage.zero?
+    = render partial:'coupon_books/template/affiliates/no_media_affiliates'
+  - else
+    .inputs
+      .row
+        .col-md-12
+          .pull-right
+            = link_to "Edit", "#edit_macr_modal", class: "btn btn-sm btn-primary", data: {toggle: :modal}
+            = render partial:'communities/edit_media_affiliate'
+
+          h3 Community Media Affiliate Commission Rate 
+          .info
+            strong Media Affiliate Rate: 
+            span = @community.decorate.media_commission_percentage
+          br
+          .info
+            p.text-muted * This sets the Media Affiliate commission rate when a donation is made via the Community Page. To especify a custom Commission Rate, use the Affiliate's edit button below.
+      hr
+      .row
+        .col-md-12      
+          h3 Media Affiliates
+          = render partial:'media_affiliate_campaigns/show/table/table', locals:{campaigns: @media_affiliate_campaigns}
+      .row
+        .col-md-12
+          - if @coupon_book.launched?
+            = link_to 'Continue', share_coupon_book_path(@coupon_book), class:'btn btn-success btn-lg pull-right'
+          - else
+            = link_to 'Continue', launching_coupon_book_path(@coupon_book), class:'btn btn-success btn-lg pull-right'

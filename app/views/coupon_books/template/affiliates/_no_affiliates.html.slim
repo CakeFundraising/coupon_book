@@ -1,0 +1,17 @@
+.headline.text-center
+  h1 Can Fundraiser Affiliates join your Campaign?
+  h4.text-muted Affiliates will colaborate sharing your campaign in exchange for a small percentage of each donation.
+  br
+.inputs
+  .text-center
+    button.btn.btn-success.btn-lg aria-controls="community" aria-expanded="false" data-target="#community" data-toggle="collapse" type="button" Yes
+    = link_to 'No', media_affiliates_coupon_book_path(@coupon_book), class:'btn btn-danger btn-lg'
+  br
+  #community.collapse
+    = semantic_form_for @coupon_book do |f|
+      = render partial:'communities/fields', locals:{f: f}
+      = f.input :affiliate_campaign_rate, as: :select, collection: commission_rate_options(@coupon_book.object.affiliate_campaign_rate)
+      = f.input :step, as: :hidden, input_html:{value: :media_affiliates} 
+      .text-center
+        = f.actions do
+          = f.action :submit, label: 'Save & Continue', button_html: {class: 'btn btn-success btn-lg'}

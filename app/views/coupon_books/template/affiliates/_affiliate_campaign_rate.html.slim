@@ -1,0 +1,16 @@
+#edit_campaign_rate.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Edit Affiliate Campaign Rate
+      .modal-body
+        = semantic_form_for @coupon_book, url: update_affiliate_campaign_rate_coupon_book_path do |f|
+          = f.actions do
+            = f.input :affiliate_campaign_rate, as: :select, collection: commission_rate_options(@coupon_book.object.affiliate_campaign_rate)
+          = f.actions do
+            = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

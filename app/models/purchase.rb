@@ -1,6 +1,6 @@
 class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true
-  has_one :charge, as: :chargeable
+  has_one :charge, as: :chargeable, dependent: :destroy
 
   has_many :commissions, dependent: :destroy
   has_many :vouchers, dependent: :destroy
@@ -15,9 +15,11 @@ class Purchase < ActiveRecord::Base
 
   validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
 
-  before_validation :stripe_charge_card
-
   scope :latest, ->{ order('purchases.created_at DESC') }
+
+  delegate :net_amount, :net_amount_cents, to: :charge
+
+  before_validation :stripe_charge_card
 
   after_initialize do
     self.token = SecureRandom.uuid if self.token.blank?
@@ -45,10 +47,10 @@ class Purchase < ActiveRecord::Base
   end
 
   def create_fr_commission!
-    percentage = 100 - commissions.sum(:percentage) - self.purchasable.fee_percentage
+    percentage = 100 - commissions.sum(:percentage)
     percentage = 0 if percentage < 0
 
-    amount_cents = ((percentage*self.amount_cents)/100.0).round
+    amount_cents = ((percentage*self.net_amount_cents)/100.0).round
     commissionable = self.purchasable.try(:coupon_book) || self.purchasable
 
     self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)
@@ -69,7 +71,6 @@ class Purchase < ActiveRecord::Base
           },
           receipt_email: self.email,
           statement_descriptor: "EatsForGood Donation"
-          #application_fee: application_fee
         })
         store_transaction(charge)
       rescue Stripe::CardError => e
@@ -92,9 +93,9 @@ class Purchase < ActiveRecord::Base
       stripe_id: stripe_transaction.id,
       balance_transaction_id: stripe_transaction.balance_transaction,
       kind: stripe_transaction.object,
-      amount_cents: stripe_transaction.amount,
-      amount_currency: stripe_transaction.currency.upcase,
-      total_fee_cents: balance_transaction.fee,
+      gross_amount_cents: stripe_transaction.amount,
+      net_amount_cents: (stripe_transaction.amount - balance_transaction.fee - application_fee),
+      fee_cents: balance_transaction.fee + application_fee,
       paid: stripe_transaction.paid,
       captured: stripe_transaction.captured,
       fee_details: balance_transaction.fee_details.map(&:to_hash)

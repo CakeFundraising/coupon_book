@@ -1,0 +1,16 @@
+#edit_macr_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Edit Media Affiliate Rate
+      .modal-body
+        = semantic_form_for @community do |f|
+          = f.actions do
+            = f.input :media_commission_percentage, as: :select, collection: media_commission_rate(f.object.affiliate_commission_percentage)
+          = f.actions do
+            = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

@@ -6,10 +6,12 @@ tr.campaign
       .address_2 = campaign.location
       abbr.phone title="Phone" = campaign.phone
   td
-    = campaign.commission_percentage
+    = campaign.campaign_rate
+  td
+    = campaign.community_rate
   td
     = campaign.purchases.count
   td
     = campaign.current_sales
   td
-    strong = campaign.total_commission
+    strong = campaign.pending_commission
