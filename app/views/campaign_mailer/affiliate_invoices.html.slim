@@ -4,29 +4,33 @@ p It's time to reward your Campaign Affiliates for all what they've done to help
 
 P Here is a summary of Affiliate's performance and info so you can send them a check.
 
-br
-h3 Affiliates
-table.table
-  thead.cf
-    tr
-      th = Affiliate.model_name.human
-      th = AffiliateCampaign.human_attribute_name :commission_percentage
-      th = AffiliateCampaign.human_attribute_name :sales_count
-      th = AffiliateCampaign.human_attribute_name :total_sales
-      th = AffiliateCampaign.human_attribute_name :total_commission
-  tbody
-    = render partial:'affiliate_campaigns/show/table/affiliate_invoice', collection: @affiliate_campaigns, as: :campaign
-br
-h3 Media Affiliates
-table.table
-  thead.cf
-    tr
-      th = Affiliate.model_name.human
-      th = AffiliateCampaign.human_attribute_name :commission_percentage
-      th = AffiliateCampaign.human_attribute_name :sales_count
-      th = AffiliateCampaign.human_attribute_name :total_sales
-      th = AffiliateCampaign.human_attribute_name :total_commission
-  tbody
-    = render partial:'media_affiliate_campaigns/show/table/affiliate_invoice', collection: @media_campaigns, as: :campaign
+- if @affiliate_campaigns.any?
+  br
+  h3 Affiliates
+  table.table
+    thead.cf
+      tr
+        th = Affiliate.model_name.human
+        th = AffiliateCampaign.human_attribute_name :campaign_rate
+        th = AffiliateCampaign.human_attribute_name :community_rate
+        th = AffiliateCampaign.human_attribute_name :sales_count
+        th = AffiliateCampaign.human_attribute_name :total_sales
+        th = AffiliateCampaign.human_attribute_name :total_commission
+    tbody
+      = render partial:'affiliate_campaigns/show/table/affiliate_invoice', collection: @affiliate_campaigns, as: :campaign
+
+- if @media_campaigns.any?
+  br
+  h3 Media Affiliates
+  table.table
+    thead.cf
+      tr
+        th = Affiliate.model_name.human
+        th = AffiliateCampaign.human_attribute_name :commission_percentage
+        th = AffiliateCampaign.human_attribute_name :sales_count
+        th = AffiliateCampaign.human_attribute_name :total_sales
+        th = AffiliateCampaign.human_attribute_name :total_commission
+    tbody
+      = render partial:'media_affiliate_campaigns/show/table/affiliate_invoice', collection: @media_campaigns, as: :campaign
 
 p You're entirely responsible for paying your affiliates, Eats For Good is not responsible for any problems that might occur between you and your affiliates in this regard.

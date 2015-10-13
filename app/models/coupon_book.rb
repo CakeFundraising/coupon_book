@@ -156,7 +156,7 @@ class CouponBook < ActiveRecord::Base
 
   def notify_end
     CampaignMailer.campaign_ended(self.id).deliver_now
-    CampaignMailer.affiliate_invoices(self.id).deliver_now if self.affiliate_campaigns.any?
+    CampaignMailer.affiliate_invoices(self.id).deliver_now if self.affiliate_campaigns.use_check.any? or self.media_affiliate_campaigns.use_check.any?
   end
 
   #Analytics
