@@ -20,6 +20,7 @@ class CampaignMailer < ApplicationMailer
     @coupon_book = find_coupon_book(campaign_id)
     @fundraiser = @coupon_book.fundraiser
     @amount = amount_cents/100.0
+    @date = Date.today.strftime("%m/%d/%Y")
 
     mail(to: @fundraiser.object.email, subject: "Your commission has been transferred!")
   end
