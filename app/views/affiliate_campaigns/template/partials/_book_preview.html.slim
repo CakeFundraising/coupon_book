@@ -24,8 +24,9 @@
           h4 Campaign Start and End Dates
           div Available from #{@book.launch_date} to #{@book.end_date}
         .info
-          h4 Commission
-          div You will earn #{@community.affiliate_commission_percentage} of each donation, around #{@community.affiliate_commission_value} or more!
+          h4 Commissions
+          div #{@community.affiliate_commission_percentage} of each donation on the Community Page.
+          div #{@book.affiliate_campaign_rate} of each donation on your own Campaign page.
         .info
           h4 Campaign Performance
           .thermometer
