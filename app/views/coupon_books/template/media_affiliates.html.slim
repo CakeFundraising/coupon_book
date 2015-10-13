@@ -3,7 +3,7 @@
 = render partial:'coupon_books/template/nav'
 
 #customize.wizard-wrap
-  - if @community.media_commission_percentage.zero?
+  - if @community.blank? or @community.media_commission_percentage.zero?
     = render partial:'coupon_books/template/affiliates/no_media_affiliates'
   - else
     .inputs
