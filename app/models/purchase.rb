@@ -50,7 +50,7 @@ class Purchase < ActiveRecord::Base
     percentage = 100 - commissions.sum(:percentage)
     percentage = 0 if percentage < 0
 
-    amount_cents = ((percentage*self.net_amount_cents)/100.0).round
+    amount_cents = ((percentage*self.net_amount_cents)/100.0).floor
     commissionable = self.purchasable.try(:coupon_book) || self.purchasable
 
     self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)

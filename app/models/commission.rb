@@ -37,7 +37,7 @@ class Commission < ActiveRecord::Base
       self.percentage = commissionable.commission_percentage
     end
 
-    self.amount_cents = ((self.percentage*purchase.net_amount_cents)/100.0).round
+    self.amount_cents = ((self.percentage*purchase.net_amount_cents)/100.0).floor
   end
 
 end
