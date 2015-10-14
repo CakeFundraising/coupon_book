@@ -2,5 +2,7 @@
   = f.actions do
     = f.input :slug, prepend: community_page_root_url
     = f.input :affiliate_commission_percentage, as: :select, collection: commission_rate_options(f.object.affiliate_commission_percentage)
+    .alert.alert-warning
+      span Increasing the Affiliate rate here will affect your current Media Affiliates rate in your Community Page. We'll automatically decrease the Media Affiliate rate once you confirm this change. Are you sure about this?
   = f.actions do
     = f.action :submit, label: 'Save', button_html: {class: 'btn btn-success btn-lg'}

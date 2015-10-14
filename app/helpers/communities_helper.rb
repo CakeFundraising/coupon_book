@@ -1,6 +1,6 @@
 module CommunitiesHelper
   def commission_rate_options(percentage=0)
-    Community::COMMISSION.select{|v| v >= percentage }.map{|v| ["#{v}%", v]}
+    Community::COMMISSION.map{|v| ["#{v}%", v]}
   end
 
   def media_commission_rate(affiliate_rate)

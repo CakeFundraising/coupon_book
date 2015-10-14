@@ -61,6 +61,7 @@
 //= require ./models/fundraisers
 //= require ./models/categories
 //= require ./models/collections
+//= require ./models/communities
 //= require ./models/coupons
 //= require ./models/direct_donations
 //= require ./models/media_affiliate_campaigns
