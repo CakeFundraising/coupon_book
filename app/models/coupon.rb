@@ -70,7 +70,7 @@ class Coupon < ActiveRecord::Base
   def self.build_merchant_coupon(merchant)
     collection_id = merchant.collection.id
     coupon = Coupon.new(
-      sponsor_name: merchant.full_name,
+      sponsor_name: merchant.organization_name || merchant.full_name,
       phone: merchant.phone,
       collection_id: collection_id
     )

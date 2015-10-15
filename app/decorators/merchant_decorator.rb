@@ -4,7 +4,7 @@ class MerchantDecorator < ApplicationDecorator
   decorates_association :avatar_picture
 
   def to_s
-    object.full_name
+    object.organization_name || object.full_name
   end
 
   def location
