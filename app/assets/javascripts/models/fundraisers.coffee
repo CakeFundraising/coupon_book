@@ -20,6 +20,8 @@ CakeCouponBook.fundraisers.validation = ->
         required: true
       'fundraiser[last_name]': 
         required: true
+      'fundraiser[organization_name]':
+        required: true
       'fundraiser[email]': 
         required: true
       'fundraiser[avatar_picture_attributes][uri]':

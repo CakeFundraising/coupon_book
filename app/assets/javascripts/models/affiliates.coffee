@@ -22,6 +22,8 @@ CakeCouponBook.affiliates.validation = ->
         required: true
       'affiliate[last_name]': 
         required: true
+      'affiliate[organization_name]': 
+        required: true
       'affiliate[email]': 
         required: true
       'affiliate[phone]':

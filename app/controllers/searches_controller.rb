@@ -104,7 +104,7 @@ class SearchesController < ApplicationController
 
   #### COUPONS ####
   def search_coupons
-    facets = [:merchandise_categories]
+    facets = [:merchandise_categories, :collection_id]
 
     @search = Coupon.solr_search(include: [:picture]) do
       fulltext params[:search]

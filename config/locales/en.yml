@@ -156,6 +156,8 @@ en:
         check_recipient_name: Recipient Name
       media_affiliate_campaign:
         commission_percentage: Commission Rate
+      user:
+        url: Website
   application:
     name: EatsForGood
     company: "Eats For Good, LLC"

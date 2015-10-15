@@ -4,6 +4,8 @@ class Merchant < User
   has_many :pr_boxes, through: :collection
   has_many :vouchers, as: :owner
 
+  validates :organization_name, presence: true, if: :registered
+
   scope :latest, ->{ order('users.created_at DESC') }
   scope :popular, ->{ latest }
 

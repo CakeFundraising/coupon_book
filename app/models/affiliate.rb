@@ -10,4 +10,6 @@ class Affiliate < User
   has_many :subscriptors, as: :object
 
   alias_method :campaigns, :affiliate_campaigns
+
+  validates :organization_name, presence: true, if: :registered
 end

@@ -12,4 +12,6 @@ class Fundraiser < User
   has_many :vouchers, as: :owner
 
   alias_method :campaigns, :coupon_books
+
+  validates :organization_name, presence: true, if: :registered
 end

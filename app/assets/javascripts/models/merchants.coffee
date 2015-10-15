@@ -22,6 +22,8 @@ CakeCouponBook.merchants.validation = ->
         required: true
       'merchant[last_name]': 
         required: true
+      'merchant[organization_name]':
+        required: true
       'merchant[email]': 
         required: true
       'merchant[phone]':
