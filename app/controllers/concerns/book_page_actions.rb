@@ -2,7 +2,7 @@ module BookPageActions
   extend ActiveSupport::Concern
   
   included do
-    before_action :allow_launched_book, :validate_media_affiliate_token, only: [:donate, :checkout]
+    before_action :validate_media_affiliate_token, only: [:donate, :checkout]
     before_action :redirect_old_slug, only: [:show]
   end
 

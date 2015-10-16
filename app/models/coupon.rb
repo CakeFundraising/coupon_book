@@ -47,7 +47,7 @@ class Coupon < ActiveRecord::Base
   scope :coupon, -> {where(type: 'Coupon')}
   scope :pr_box, -> {where(type: 'PrBox')}
 
-  scope :popular, -> { preloaded.coupon.latest }
+  scope :popular, -> { preloaded.coupon.launched.latest }
 
   alias_method :sp_picture, :avatar_picture
   alias_method :active?, :launched?

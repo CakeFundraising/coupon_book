@@ -5,7 +5,7 @@
 
 = content_for :navbar do
   = stylesheet_link_tag 'models/coupon_books/donate'
-  = render partial:'coupon_books/show/templates/compact/navbar'
+  = render partial:'coupon_books/show/templates/shared/navbar'
 
 - cache [:donate, :mobile, :form, @affiliate_campaign] do
   #donate.row.white

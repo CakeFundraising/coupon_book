@@ -59,7 +59,10 @@
     .row
       .col-md-6.col-md-push-3.text-center
         = f.actions do
-          = f.action :submit, label: 'Continue', button_html: {class: 'btn btn-success btn-xl'}
+          - if @coupon_book.launched?
+            = f.action :submit, label: 'Continue', button_html: {class: 'btn btn-success btn-xl'}
+          - else
+            = link_to 'Continue', nil, class: 'btn btn-success btn-xl', disabled: true
     br
     .row.text-center
       = stripe_link do

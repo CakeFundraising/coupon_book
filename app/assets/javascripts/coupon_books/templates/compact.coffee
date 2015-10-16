@@ -74,6 +74,8 @@ seeAll = ->
   button = loadTarget.find('#see-more-link')
   spinner = loadTarget.find('#spinner')
 
+  CakeCouponBook.coupon_books.templates.dealSeeAllLink()
+
   button.click ->
     spinner.removeClass('hidden')
     $(this).hide()
@@ -87,6 +89,16 @@ seeAll = ->
     spinner.hide()
     button.show()
     alert "There was an error, please reload this page and try again."
+    return
+  return
+
+CakeCouponBook.coupon_books.templates.dealSeeAllLink = ->
+  loadTarget = $('#remote-items')
+  dealLinks = loadTarget.find('.see-more-box')
+  button = loadTarget.find('#see-more-link')
+
+  dealLinks.click ->
+    button.click()
     return
   return
 

@@ -28,9 +28,7 @@ module CouponBookHelper
   end
 
   def campaign_buy_button(campaign, text, url, color=:success)
-    if campaign.launched?
-      link_to text, url, class: "btn btn-#{color} btn-xl buy_button", data: {no_turbolink: true}
-    end
+    link_to text, url, class: "btn btn-#{color} btn-xl buy_button", data: {no_turbolink: true}
   end
 
   def category_load_button(category)
