@@ -49,12 +49,12 @@
         - unless f.object.commercial_template?
           .row.section-wrapper
             .col-md-12
-              h3 Inspirational Thought or Quote
+              h3 Share a little about your group or cause
               p.text-muted Have fun! Add your favorite words of wisdom.
               br
             .col-md-12
-              = f.input :mission, as: :text, label: false, input_html: {rows: 2, placeholder: '140 characters or less', maxlength: 140}
-              span.help-block.italic Max 140 characters.
+              = f.input :mission, as: :text, label: false, input_html: {rows: 2, placeholder: '500 characters or less', maxlength: 500}
+              span.help-block.italic Max 500 characters.
           .row.section-wrapper
             .col-md-12
               h3 Recruit New Supporters
