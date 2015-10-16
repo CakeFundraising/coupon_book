@@ -33,6 +33,11 @@ class AffiliateCampaign < ActiveRecord::Base
   scope :use_stripe, -> { where(use_stripe: true) }
   scope :use_check, -> { where(use_stripe: false) }
 
+  scope :launched, -> { preloaded.where(coupon_books: {status: :launched}) }
+  scope :incomplete, -> { preloaded.where(coupon_books: {status: :incomplete}) }
+  scope :past, -> { preloaded.where(coupon_books: {status: :past}) }
+  scope :not_past, -> { preloaded.where.not(coupon_books: {status: :past}) }
+
   delegate :name, :launch_date, :end_date, :status, :price, :goal, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
   delegate :affiliate_commission_percentage, to: :community
   delegate :stripe_account, :stripe_account?, to: :affiliate

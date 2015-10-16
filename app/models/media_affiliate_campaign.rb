@@ -25,6 +25,11 @@ class MediaAffiliateCampaign < ActiveRecord::Base
   scope :use_stripe, -> { where(use_stripe: true) }
   scope :use_check, -> { where(use_stripe: false) }
 
+  scope :launched, -> { preloaded.where(coupon_books: {status: :launched}) }
+  scope :incomplete, -> { preloaded.where(coupon_books: {status: :incomplete}) }
+  scope :past, -> { preloaded.where(coupon_books: {status: :past}) }
+  scope :not_past, -> { preloaded.where.not(coupon_books: {status: :past}) }
+
   scope :rate_bigger_than, ->(rate){ where('media_affiliate_campaigns.commission_percentage > ?', rate) }
 
   delegate :name, :launch_date, :end_date, :status, :fee_percentage, :fundraiser, :price, :goal, to: :coupon_book

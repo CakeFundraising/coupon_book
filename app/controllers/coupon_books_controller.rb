@@ -8,7 +8,7 @@ class CouponBooksController < InheritedResources::Base
   before_action :block_fr, only: [:start_discount, :start_pr_box]
 
   def index
-    @coupon_books = current_fundraiser.coupon_books.latest.decorate
+    @coupon_books = current_fundraiser.coupon_books.not_past.latest.decorate
   end
   
   include BookPageActions

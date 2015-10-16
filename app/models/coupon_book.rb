@@ -80,8 +80,9 @@ class CouponBook < ActiveRecord::Base
   scope :with_categories, ->{ eager_load(:categories) }
 
   scope :affiliated, ->{ includes(:community).where.not(communities: {coupon_book_id: nil}) }
-  scope :popular, ->{ preloaded.launched.latest }
+  scope :media_affiliated, -> { includes(:community).where.not(communities: {media_commission_percentage: 0}) }
 
+  scope :popular, ->{ preloaded.launched.latest }
   scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }
 
   scope :to_end, ->{ not_past.where("end_date <= ?", Time.zone.now) }

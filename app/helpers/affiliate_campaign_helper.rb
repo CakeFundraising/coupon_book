@@ -5,7 +5,11 @@ module AffiliateCampaignHelper
     end
   end
 
-  def affiliate_campaign_coummity_options
+  def affiliate_campaign_community_options
     CouponBook.affiliated.map{|cb| [cb.name, cb.community.id]}
+  end
+
+  def media_affiliate_campaign_community_options
+    CouponBook.media_affiliated.map{|cb| [cb.name, cb.community.id]}
   end
 end

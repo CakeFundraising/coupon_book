@@ -4,7 +4,7 @@ class MediaAffiliateCampaignsController < InheritedResources::Base
   include MediaAffiliateCampaignTemplateController
 
   def index
-    @campaigns = current_media_affiliate.media_affiliate_campaigns.latest.decorate
+    @campaigns = current_media_affiliate.media_affiliate_campaigns.not_past.latest.decorate
   end
 
   #Default actions

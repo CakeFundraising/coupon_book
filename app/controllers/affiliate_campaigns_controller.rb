@@ -6,7 +6,7 @@ class AffiliateCampaignsController < InheritedResources::Base
   include AffiliatePageActions
 
   def index
-    @campaigns = current_affiliate.affiliate_campaigns.latest.decorate
+    @campaigns = current_affiliate.affiliate_campaigns.not_past.latest.decorate
   end
 
   #Default actions
