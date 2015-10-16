@@ -7,32 +7,32 @@
   = stylesheet_link_tag 'models/coupon_books/donate'
   = render partial:'coupon_books/show/templates/shared/navbar'
 
+/- cache [:donate, :desktop, :form, @coupon_book] do
 #donate.row
   .col-md-8.col-sm-6
-    - cache [:donate, :desktop, :form, @coupon_book] do
-      #overlay_loading.hidden
-      #donation-sidebar.sidebar
-        .title = t('titles.coupon_book.purchase_form.donate')
-        = render partial:'coupon_books/donate/form'
-        hr
-        .row
-          .col-md-8.col-sm-6
-            .terms 
-              span By continuing you are agreeing to Eats For Good's 
-              span = terms_modal_link
-            .terms 
-              | Payments are processed by 
-              span = stripe_link 'Stripe.com'
-              strong  We do not store your financial information.
-            .terms
-              | For further assistance, contact 
-              span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-          .col-md-4.col-sm-6
-            .pull-right 
-              .back
-                = link_to 'Back', @coupon_book, data: {no_turbolink: true}
-              .ssl-secure
-                = image_tag 'ssl-secure.png'
+    #overlay_loading.hidden
+    #donation-sidebar.sidebar
+      .title = t('titles.coupon_book.purchase_form.donate')
+      = render partial:'coupon_books/donate/form'
+      hr
+      .row
+        .col-md-8.col-sm-6
+          .terms 
+            span By continuing you are agreeing to Eats For Good's 
+            span = terms_modal_link
+          .terms 
+            | Payments are processed by 
+            span = stripe_link 'Stripe.com'
+            strong  We do not store your financial information.
+          .terms
+            | For further assistance, contact 
+            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+        .col-md-4.col-sm-6
+          .pull-right 
+            .back
+              = link_to 'Back', @coupon_book, data: {no_turbolink: true}
+            .ssl-secure
+              = image_tag 'ssl-secure.png'
   .col-md-4.col-sm-6
     - cache [:donate, :desktop, :fr_info, @coupon_book] do
       #fr-info.sidebar
