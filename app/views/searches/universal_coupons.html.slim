@@ -1,11 +1,11 @@
 = display_meta("Search Deals")
 
-#search_coupons
+#search_universal_coupons
   h1.dash-head Universal Deals
 
   .row
     .col-md-12
-      = render 'layouts/search/search_form', collection: :coupons
+      = render 'layouts/search/search_form', collection: :universal_coupons
       br
     .col-md-3
       .controls
@@ -29,4 +29,4 @@
 
 javascript:
   CakeCouponBook.collections.init();
-  CakeCouponBook.search.page("#coupons-search", "#search_coupons");
+  CakeCouponBook.search.page("#universal_coupons-search", "#search_universal_coupons");

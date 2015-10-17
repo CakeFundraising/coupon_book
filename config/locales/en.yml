@@ -81,6 +81,8 @@ en:
         communities: "Search by Zip Code, Fundraiser Name..."
         merchants: "Search by Name, Zip Code, City..."
         coupons: "Search by Merchant Name, Zip Code, Category..."
+        universal_coupons: "Search by Merchant Name, Zip Code, Category..."
+        pr_boxes: "Search by Merchant Name, Zip Code, Category..."
   semantic:
     buy:               Buy
     search:            Search
