@@ -57,7 +57,7 @@ CakeCouponBook.coupons.validation = ->
   return
 
 CakeCouponBook.coupons.universal_toggle = (couponId)->
-  url = "/discounts/#{couponId}/universal_toggle"
+  url = "/deals/#{couponId}/universal_toggle"
   $.ajax
     url: url
     type: 'PATCH'
