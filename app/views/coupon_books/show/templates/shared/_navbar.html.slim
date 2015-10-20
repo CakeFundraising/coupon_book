@@ -23,7 +23,7 @@
     - if @coupon_book.incomplete?
       .alert.alert-warning
         h4 Campaign Preview Only. 
-        p This Campaign is scheduled to go live on #{@coupon_book.launch_date}. There is still time to join this campaign as a merchant or good cause!
+        p This Campaign is scheduled to go live on #{@coupon_book.launch_date}. There is still time to #{ link_to 'join', new_user_registration_path } this campaign as a merchant or good cause! 
     - elsif @coupon_book.past?
       .alert.alert-danger
         h4 Sorry, this Campaign is no longer active.
