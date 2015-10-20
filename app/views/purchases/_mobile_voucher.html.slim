@@ -13,9 +13,11 @@
       h2.expires
         span.blue-text Expires: 
         span = voucher.expires_at_american
+      hr
     .col-md-12.col-xs-12
-      = render partial:'coupons/show/terms', locals:{coupon: voucher.coupon}
-      a data-toggle="modal" data-target="#coupon_terms_#{voucher.coupon.id}" Terms & Conditions
+      h4.no-margin Vendor Terms & Conditions
+      p.expander-50 = voucher.coupon.terms
+      a data-toggle="modal" data-target="#coupon_terms_modal" Terms of Use
   br
   .row
     .col-md-12.col-xs-12

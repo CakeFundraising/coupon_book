@@ -1,18 +1,11 @@
-.modal.fade.coupon_terms_modal id="coupon_terms_#{coupon.id}"
+#coupon_terms_modal.modal.fade.coupon_terms_modal
   .modal-dialog.modal-lg
     .modal-content
       .modal-header
         button.close aria-hidden="true" data-dismiss="modal" type="button" &times;
-        h1.modal-title Terms & Conditions
+        h1.modal-title Deals Terms & Conditions
       .modal-body
-        - if coupon.custom_terms.present?
-          .vendor_terms
-            h3 Vendor Terms & Conditions
-            p = coupon.custom_terms
-          br
-        .universal_terms
-          h3 Universal Terms & Conditions
-          p = t('application.terms_and_conditions.coupons').html_safe
+        p = t('application.terms_and_conditions.coupons').html_safe
       .modal-footer
         button.btn.btn-default data-dismiss="modal" type="button" Close
     /! /.modal-content

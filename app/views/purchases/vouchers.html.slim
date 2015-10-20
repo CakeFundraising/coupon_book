@@ -15,6 +15,7 @@
     .col-md-12
       - if mobile_device?
         = render partial:'purchases/mobile_voucher', collection: @vouchers, as: :voucher
+        = render partial:'coupons/show/terms'
       - else
         = render partial:'purchases/voucher', collection: @vouchers, as: :voucher
   

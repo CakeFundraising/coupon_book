@@ -74,6 +74,7 @@ seeAll = ->
 
   button.on("ajax:success", (e, data, status, xhr) ->
     loadTarget.html(data)
+    CakeCouponBook.expander()
     scrollNav()
     return
   ).on "ajax:error", (e, xhr, status, error) ->

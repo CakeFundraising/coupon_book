@@ -22,4 +22,10 @@ CakeCouponBook.expander = ->
     widow: 4
     expandEffect: "show"
     userCollapseText: "Close"
+
+  $('.expander-50').expander
+    slicePoint: 50
+    widow: 4
+    expandEffect: "show"
+    userCollapseText: "Close"
   return

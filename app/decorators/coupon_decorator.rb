@@ -72,4 +72,8 @@ class CouponDecorator < ApplicationDecorator
   def universal
     h.b object.universal
   end
+
+  def terms
+    object.custom_terms || 'None.'
+  end
 end

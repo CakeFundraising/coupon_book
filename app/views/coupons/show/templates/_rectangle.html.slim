@@ -17,11 +17,14 @@
               div.coupon-content
                 h2 = coupon.trunc_title(80)
                 hr
-                p.expander-350 = coupon.description
+                p.expander-150 = coupon.description
+                hr
+                .vendor_terms
+                  h4.no-margin Vendor Terms & Conditions
+                  p.expander-50 = coupon.terms 
                 .row.terms.clear
                   .col-sm-12
-                    = render partial:'coupons/show/terms', locals:{coupon: coupon}
-                    a data-toggle="modal" data-target="#coupon_terms_#{coupon.id}" Terms of Use
+                    a data-toggle="modal" data-target="#coupon_terms_modal" Terms of Use
             .col-md-4.text-center.hidden-sm.padding-right-out
               div = coupon_pic(coupon)
         
