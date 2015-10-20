@@ -1,0 +1,6 @@
+br
+- if @purchases.any?
+  #purchases.sidebar
+    .headbar = t('titles.coupon_book.purchase_list')
+    ul.no-list
+      = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase

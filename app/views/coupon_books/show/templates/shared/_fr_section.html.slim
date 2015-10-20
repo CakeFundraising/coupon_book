@@ -26,7 +26,7 @@
               a.text-muted data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
                 span.glyphicon.glyphicon-envelope 
                 span.clickable  #{@coupon_book.visitor_action}
-              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, origin: @coupon_book, position:'coupon_book.volunteer'}
+              = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, fr_name: @coupon_book.fr_name, origin: @coupon_book, position:'coupon_book.volunteer'}
       .col-md-8.col-sm-6.col-xs-12.campaign-story
         /h3 = coupon_book_fr_website_link(@coupon_book.headline)
         h3
