@@ -5,28 +5,27 @@
         #icons.row-fluid.text-center
           .col-md-4.col-sm-4.help.head-col
             .link
-              = content_tag(:a, href:"#affiliates") do
-                span.glyphicon.glyphicon-thumbs-up
-                span.text Choose
-            .text Your favorite group!
+              = content_tag(:a) do
+                span.number 1
+                span.word Choose
+            .text Your favorite group
           .col-md-4.col-sm-4.give.head-col
             .link
-              = link_to donate_coupon_book_path(@coupon_book), data: {no_turbolink: true} do
-                span.glyphicon.glyphicon-heart
-                span.text Give
+              = content_tag(:a) do
+                span.number 2
+                span.word Give
             .text
               span As little as 
               span.bolder = @coupon_book.price
           .col-md-4.col-sm-4.get.head-col
             .link
               = content_tag(:a, href:"#coupons") do
-                span.glyphicon.glyphicon-gift
-                span.text Receive
+                span.number 3
+                span.word Receive
             .text
-              span #{@coupon_book.coupons.count} Deals via email! 
+              span #{@coupon_book.coupons.count} Deals via email
+              div Save #{@coupon_book.no_discount_price} instantly!
         #affiliates.row-fluid
-          h2 Choose your favorite Good Cause!
-          p.text-muted Click on one group below to contribute to their campaign.
           = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
 
     .col-md-4.col-sm-4
