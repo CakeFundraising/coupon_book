@@ -28,7 +28,7 @@ class CouponBook < ActiveRecord::Base
   COLOR_STATUS = {"incomplete" => "danger", "launched" => "success", "past" => "default"}
 
   has_statuses :incomplete, :launched, :past
-  has_templates :commercial, :community, :compact, :original
+  has_templates :commercial, :community, :compact
 
   belongs_to :fundraiser
 
