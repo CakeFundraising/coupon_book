@@ -20,6 +20,10 @@ class CouponBookDecorator < ApplicationDecorator
     (object.organization_name || object.fundraiser.full_name)
   end
 
+  def owner_name
+    fr_name
+  end
+
   def no_discount_price
     h.humanized_money_with_symbol object.no_discount_price
   end

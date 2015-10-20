@@ -16,6 +16,10 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     coupon_book.fr_name
   end
 
+  def owner_name
+    coupon_book.commercial_template? ? fr_name : affiliate_name
+  end
+
   def community_rate
     "#{object.community_rate}%"
   end

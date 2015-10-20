@@ -65,7 +65,7 @@ class Purchase < ActiveRecord::Base
           amount: self.amount_cents,
           currency: self.amount_currency.downcase,
           source: self.card_token,
-          description: "Donation from #{self.email} to #{self.purchasable.fr_name}",
+          description: "Donation from #{self.email} to #{self.purchasable.decorate.fr_name} at EatsForGood.com",
           metadata:{
             email: self.email
           },
