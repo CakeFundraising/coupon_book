@@ -85,4 +85,8 @@ class CouponBookDecorator < ApplicationDecorator
   def affiliate_campaign_rate
     "#{object.affiliate_campaign_rate}%"
   end
+
+  def give_path(params)
+    object.commercial_template? ? h.checkout_coupon_book_path(object, params) : h.donate_coupon_book_path(object, params)
+  end
 end

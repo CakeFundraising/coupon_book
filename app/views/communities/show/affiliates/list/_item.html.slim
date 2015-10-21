@@ -1,0 +1,10 @@
+li.affiliate-campaign
+  .row-fluid
+    .col-xs-8.no-padding
+      .affiliate-name = link_to campaign.affiliate_name, campaign.url, target: :_blank
+    .col-xs-4.no-padding
+      .row-fluid
+        .col-xs-6.no-padding
+          .raised = campaign.current_sales
+        .col-xs-6.no-padding
+          .donate = link_to 'Donate', campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true}, class: 'btn btn-sm btn-success'

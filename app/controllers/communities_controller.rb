@@ -11,7 +11,11 @@ class CommunitiesController < InheritedResources::Base
 
     @affiliate_campaigns = @community.affiliate_campaigns.decorate
 
-    render 'communities/show/main', layout: 'layouts/books/desktop'
+    if mobile_device?
+      render 'communities/show/mobile/main', layout: 'layouts/books/mobile'
+    else
+      render 'communities/show/main', layout: 'layouts/books/desktop'
+    end
   end
 
   def update

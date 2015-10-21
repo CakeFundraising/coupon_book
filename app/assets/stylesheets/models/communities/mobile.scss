@@ -1,0 +1,118 @@
+@import 'shared/variables';
+
+#book_page_navbar{
+  margin-bottom: 0;
+}
+
+.top_banner_mobile{
+  font-size: 22px;
+  text-align: center;
+  padding: 8px 0px;
+}
+
+#campaign-performance{
+  padding-top: 12px;
+  background: white;
+  box-shadow: 0px 0px 3px #ccc;
+  .goal{
+    overflow: auto;
+    h1{
+      margin-top: 0;
+    }
+  }
+  .thermometer{
+    clear: both;
+    margin-bottom: 20px;
+  }
+}
+
+
+#icons{
+  font-size: 22px;
+  overflow: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 20px;
+  padding-top: 2px;
+  border-bottom: 1px solid #eee;
+  .head-col{
+    margin-top: 10px;
+    a{
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 28px;
+      text-decoration: none;
+      color: #555;
+      .glyphicon{
+        margin-right: 8px;
+        top: 3px;
+      }
+      .number{
+        margin-right: 5px;
+        padding: 3px 12px;
+        border-radius: 50%;
+      }
+      .word{
+        color: #333;
+      }
+    }
+    .text{
+      color: #777;
+      margin-top: 5px;
+      font-size: 20px;
+    }
+  }
+  .give{
+    .number{
+      color: $brand-success;
+      border: 2px solid $brand-success;
+      &:hover{
+        color: darken($brand-success, 15%);
+        border: 2px solid darken($brand-success, 15%);
+      }
+    }
+  }
+  .get{
+    .number{
+      color: $brand-warning;
+      border: 2px solid $brand-warning;
+      &:hover{
+        color: darken($brand-warning, 15%);
+        border: 2px solid darken($brand-warning, 15%);
+      }
+    }
+  }
+  .help{
+    .number{
+      color: $brand-primary;
+      border: 2px solid $brand-primary;
+      &:hover{
+        color: darken($brand-primary, 15%);
+        border: 2px solid darken($brand-primary, 15%);
+      }
+    }
+  }
+}
+
+#affiliates{
+  li.affiliate-campaign{
+    clear: both;
+    margin-top: 10px;
+    overflow: auto;
+    .affiliate-name{
+      margin-top: 4px;    
+      a{
+        font-size: 20px;
+      }
+    }
+    .raised{
+      font-size: 20px;
+      margin-top: 4px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.bottom-tagline{
+  display: none;
+}
