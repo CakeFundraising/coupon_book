@@ -81,6 +81,7 @@ class CouponBook < ActiveRecord::Base
 
   scope :affiliated, ->{ includes(:community).where.not(communities: {coupon_book_id: nil}) }
   scope :media_affiliated, -> { includes(:community).where.not(communities: {media_commission_percentage: 0}) }
+  scope :commercial_or_community, -> { where('coupon_books.template = ? OR coupon_books.template = ?', :community, :commercial) }
 
   scope :popular, ->{ preloaded.launched.latest }
   scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }
