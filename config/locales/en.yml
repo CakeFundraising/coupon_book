@@ -143,7 +143,7 @@ en:
       coupon:
         sponsor_name: Merchant Name
         phone: Contact Phone
-        sponsor_url: "Merchant website url"
+        url: Website
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
       location:
         state_code: State

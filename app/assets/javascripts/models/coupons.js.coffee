@@ -24,9 +24,6 @@ CakeCouponBook.coupons.validation = ->
         required: true
       'coupon[phone]': 
         required: true
-      'coupon[sponsor_url]': 
-        required: true
-        url: true
       'coupon[location_attributes][address]': 
         required: true
       'coupon[location_attributes][city]': 

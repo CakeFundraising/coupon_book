@@ -18,7 +18,7 @@ module CouponsHelper
   end
 
   def coupon_sp_pic(coupon)
-    picture_rollover(coupon.avatar_picture.uri, click_coupon_path(coupon, url: coupon.sponsor_url)) do
+    picture_rollover(coupon.avatar_picture.uri, click_coupon_path(coupon, url: coupon.url)) do
       content_tag(:div, 'Visit our') + content_tag(:div, 'website!')
     end
   end

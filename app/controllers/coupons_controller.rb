@@ -98,7 +98,7 @@ class CouponsController < InheritedResources::Base
   def permitted_params
     params.permit(
       coupon: [
-        :position, :title, :description, :promo_code, :terms, :url, :sponsor_url, 
+        :position, :title, :description, :promo_code, :terms, :url,
         :multiple_locations, :phone, :expires_at, :coupon_book_id, :category_id,
         :price, :custom_terms, :sponsor_name, :collection_id, :order_up,
         merchandise_categories: [],

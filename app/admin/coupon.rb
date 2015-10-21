@@ -23,7 +23,7 @@ ActiveAdmin.register Coupon do
       row :promo_code
       row :url_link
       row :multiple_locations
-      row :sponsor_url
+      
       row :sponsor_name
       row :phone
       row :custom_terms
@@ -56,7 +56,6 @@ ActiveAdmin.register Coupon do
       f.input :url
       f.input :expires_at, as: :string, input_html:{class: 'datepicker'}
       f.input :multiple_locations
-      f.input :sponsor_url
       f.input :sponsor_name
       f.input :phone
       f.input :custom_terms
@@ -69,6 +68,6 @@ ActiveAdmin.register Coupon do
     f.actions
   end
 
-  permit_params :title, :description, :price, :url, :expires_at, :multiple_locations, :sponsor_url, 
+  permit_params :title, :description, :price, :url, :expires_at, :multiple_locations, 
   :sponsor_name, :phone, :custom_terms, :collection_id, :status, :universal, :order_up
 end
