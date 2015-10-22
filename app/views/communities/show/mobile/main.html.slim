@@ -1,7 +1,7 @@
 = community_page_meta(@coupon_book)
 
 = content_for :head do
-  = javascript_include_tag 'coupon_books/templates/compact'
+  = javascript_include_tag 'coupon_books/templates/mobile'
 
 = content_for :navbar do
   = stylesheet_link_tag 'models/communities/mobile'
@@ -22,8 +22,8 @@ css:
 
 javascript:
   var current_init = function(){
-    CakeCouponBook.coupon_books.templates.compact();
-    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{coupon_book_url(@coupon_book)}");
+    CakeCouponBook.coupon_books.mobileShow();
+    CakeCouponBook.addThis.share.coupon_book("#{@coupon_book.fr_name}", "#{community_url(@community)}");
   };
   $(document).ready(current_init);
 

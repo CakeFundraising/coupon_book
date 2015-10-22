@@ -3,5 +3,5 @@
     .col-md-12
       h1.category-title.text-center = category.name
 
-  .row.items
+  .row-fluid.items
     = render partial:"coupons/show/templates/#{template}", collection: category.items, as: :coupon
