@@ -7,13 +7,13 @@ class CommunitiesController < InheritedResources::Base
     @categories = @coupon_book.categories.decorate
     @first_category = @categories.first
     @discounts = @first_category.items.object.preloaded.decorate if @first_category.present?
-    @purchases = PurchaseDecorator.decorate_collection @community.purchases.first(5)
 
     @affiliate_campaigns = @community.affiliate_campaigns.decorate
 
     if mobile_device?
       render 'communities/show/mobile/main', layout: 'layouts/books/mobile'
     else
+      @purchases = PurchaseDecorator.decorate_collection @community.purchases.first(5)
       render 'communities/show/desktop/main', layout: 'layouts/books/desktop'
     end
   end
