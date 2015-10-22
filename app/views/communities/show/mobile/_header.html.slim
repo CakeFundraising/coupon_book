@@ -5,5 +5,3 @@
       .top_banner_logo
         = content_tag :a, href:'#learn-more-banner' do
           = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
-      / .campaign-banner.top_banner_mobile
-      /   = t('banners.coupon_book.header.mobile.commercial.last', fr: @coupon_book.fr_name, no_discount: @coupon_book.no_discount_price).html_safe

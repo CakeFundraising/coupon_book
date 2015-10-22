@@ -9,6 +9,7 @@ module AffiliatePageActions
   def show
     @affiliate_campaign = AffiliateCampaign.preloaded.friendly.find(params[:id]).decorate
     @coupon_book = @affiliate_campaign.coupon_book
+    @community = @affiliate_campaign.community.decorate
 
     if mobile_device?
       @first_category = @coupon_book.categories.first
