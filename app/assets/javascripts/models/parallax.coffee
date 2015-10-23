@@ -1,6 +1,9 @@
 CakeCouponBook.parallax ?= {}
 
 CakeCouponBook.parallax.init = ->
-  console.log 'Hola desde Turbolinks!'
-  $('.parallax-window').parallax()
+  $('.parallax-window').parallax(
+    naturalWidth: 1440,
+    naturalHeight: 900,
+    bleed: 60
+  )
   return
