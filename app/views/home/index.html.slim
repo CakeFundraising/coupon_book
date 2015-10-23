@@ -1,21 +1,9 @@
 = content_for :header do 
+  = javascript_include_tag 'vendor/parallax.min'
+
   - cache [:home, :header] do
     .hero-home
-      = render partial:'home/banner/home_carousel'
-      / = render partial:'home/banner/bg_video'
-      / .home-banner
-      /   section.main-banner.text-center
-      /     h1.boldest Create Win/Win Social Media Partnerships in Minutes!
-      /     h2.hidden-sm.hidden-xs The World's #1 Digital Sponsorship & Partnership Platform
-
-      /   section.sign-up-button
-      /     = link_to new_user_registration_path, class:'btn btn-success btn-mega' do
-      /       span.glyphicon.glyphicon-ok
-      /       span  Sign Up Free
-      /   br
-      /   section.logos_carousel.row.hidden-sm.hidden-xs
-      /     #home_carousel.col-md-10.col-md-push-1
-      /       = render partial:'home/banner/carousel', collection: @carousel_pics, as: :pic
+      = render partial:'home/banner/static'
 
     .secondary-navbar
       ul.nav.nav-pills.popular

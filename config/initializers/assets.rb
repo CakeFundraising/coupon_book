@@ -23,5 +23,6 @@ Rails.application.config.assets.precompile += [
   'coupon_books/templates/original.js',
   'coupon_books/templates/compact.js',
   'coupon_books/templates/commercial.js',
-  'coupon_books/templates/mobile.js'
+  'coupon_books/templates/mobile.js',
+  'vendor/parallax.min.js'
 ]
