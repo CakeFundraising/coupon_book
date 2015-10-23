@@ -17,6 +17,7 @@
 //= require jquery.Jcrop
 //= require ./vendor/jquery.countdown.min
 //= require ./vendor/jquery.expander.min
+//= require ./vendor/parallax.min
 
 //= require turbolinks
 //= require modernizr

@@ -6,8 +6,7 @@
           span.glyphicon.glyphicon-play-circle
           span  Watch the Video
     ul.nav.navbar-nav
-      = menu_item "Success Stories", efg_how_works_path, {target: :_blank}
-      /= menu_item "Raise Money to do Good Deeds!", efg_faq_path, {target: :_blank}
+      = menu_item "Success Stories", about_page_path('success_stories')
     ul.nav-cta.navbar-right
       = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}
       = menu_item t("links.user.sign_up"), new_user_registration_path, {class: "btn-signup btn btn-success"}
