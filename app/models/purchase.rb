@@ -1,5 +1,5 @@
 class Purchase < ActiveRecord::Base
-  belongs_to :purchasable, polymorphic: true
+  belongs_to :purchasable, polymorphic: true, touch: true
   has_one :charge, as: :chargeable, dependent: :destroy
 
   has_many :commissions, dependent: :destroy
