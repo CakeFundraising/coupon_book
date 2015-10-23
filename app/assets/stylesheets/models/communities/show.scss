@@ -1,6 +1,6 @@
 @import 'shared/variables';
 
-.banner.hero{
+.parallax-window{
   margin-bottom: 30px;
 }
 
@@ -104,6 +104,9 @@
       max-height: 450px;
       td{
         font-size: 20px;
+        .affiliate-website{
+          margin-left: 10px;
+        }
       }
     }
   }

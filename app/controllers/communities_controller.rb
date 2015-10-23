@@ -8,7 +8,7 @@ class CommunitiesController < InheritedResources::Base
     @first_category = @categories.first
     @discounts = @first_category.items.object.preloaded.decorate if @first_category.present?
 
-    @affiliate_campaigns = @community.affiliate_campaigns.decorate
+    @affiliate_campaigns = @community.affiliate_campaigns.order_by_raised.decorate
 
     if mobile_device?
       render 'communities/show/mobile/main', layout: 'layouts/books/mobile'

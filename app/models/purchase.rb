@@ -27,6 +27,7 @@ class Purchase < ActiveRecord::Base
 
   after_create do
     self.create_fr_commission!
+    self.update_purchasable_raised!
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
   end
 
@@ -54,6 +55,11 @@ class Purchase < ActiveRecord::Base
     commissionable = self.purchasable.try(:coupon_book) || self.purchasable
 
     self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)
+  end
+
+  def update_purchasable_raised!
+    previous = self.purchasable.raised_cents
+    self.purchasable.update_attribute(:raised_cents, self.amount_cents + previous)
   end
 
   private

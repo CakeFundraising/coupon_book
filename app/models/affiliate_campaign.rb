@@ -18,6 +18,8 @@ class AffiliateCampaign < ActiveRecord::Base
   has_many :purchases, as: :purchasable
   has_many :commissions, as: :commissionable
 
+  monetize :raised_cents
+
   validates :community, presence: true
   validates :first_name, :last_name, :phone, :email, presence: true, if: ->(c){ c.persisted? and c.coupon_book.commercial_template? }
   validates :organization_name, :url, :story, presence: true, if: ->(c){ c.persisted? and c.coupon_book.community_template? }
@@ -29,7 +31,7 @@ class AffiliateCampaign < ActiveRecord::Base
   accepts_nested_attributes_for :avatar_picture, update_only: true, reject_if: :all_blank
 
   scope :latest, ->{ order('affiliate_campaigns.created_at DESC') }
-  scope :preloaded, ->{ eager_load([:coupon_book]) }
+  scope :preloaded, ->{ eager_load(:coupon_book) }
   scope :use_stripe, -> { where(use_stripe: true) }
   scope :use_check, -> { where(use_stripe: false) }
 
@@ -38,10 +40,11 @@ class AffiliateCampaign < ActiveRecord::Base
   scope :past, -> { preloaded.where(coupon_books: {status: :past}) }
   scope :not_past, -> { preloaded.where.not(coupon_books: {status: :past}) }
 
+  scope :order_by_raised, ->{ order(raised_cents: :desc) }
+
   delegate :name, :launch_date, :end_date, :status, :price, :goal, :fee_percentage, :fundraiser, :categories_coupons, to: :coupon_book
   delegate :affiliate_commission_percentage, to: :community
   delegate :stripe_account, :stripe_account?, to: :affiliate
-
 
   before_save do
     self.community_rate = community.affiliate_commission_percentage if self.community_rate.zero?

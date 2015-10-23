@@ -61,6 +61,7 @@ class CouponBook < ActiveRecord::Base
 
   monetize :goal_cents, numericality: {greater_than: MIN_PRICE}
   monetize :price_cents, numericality: {greater_than_or_equal_to: MIN_PRICE}
+  monetize :raised_cents
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
