@@ -1,106 +1,105 @@
 h1 Start a Fundraiser with Eats For Good
 br
-iframe allowfullscreen="1" frameborder="0" height="315" src="https://www.youtube.com/embed/iw6Uj7q2EEI" width="560" 
+.row
+  .col-md-8
+    iframe allowfullscreen="1" frameborder="0" height="315" src="https://www.youtube.com/embed/iw6Uj7q2EEI" width="560" 
+    
+    h2 Frequently Asked Questions
+    #faq.panel-group aria-multiselectable="true" role="tablist" 
+      .panel.panel-default
+        #one.panel-heading role="tab" 
+          h4.panel-title
+            a aria-controls="collapseOne" aria-expanded="true" data-parent="#faq" data-toggle="collapse" href="#collapseOne" role="button" 
+              | How do I raise funds with Eats For Good?
+        #collapseOne.panel-collapse.collapse.in aria-labelledby="one" role="tabpanel" 
+          .panel-body
+            div Here's how it works: 
+            ol 
+              li As a Pro Fundraiser, you arrange discounts donated by local restaurants and merchants and create a digital deal book for your Good Cause and any Affiliate Fundraisers you bring on board
+              li You and your Affiliate Fundraisers share your digital deal book with your social networks of supporters and friends via email, Facebook & Twitter.
+              li Supporters click Buy Now! and proceeds from sales go to you! In addition, you earn a commission on funds raised by your Affiliate Fundraisers too.
 
-h2 Frequently Asked Questions
-#faq.panel-group aria-multiselectable="true" role="tablist" 
-  .panel.panel-default
-    #one.panel-heading role="tab" 
-      h4.panel-title
-        a aria-controls="collapseOne" aria-expanded="true" data-parent="#faq" data-toggle="collapse" href="#collapseOne" role="button" 
-          | How do I raise funds with Eats For Good?
-    #collapseOne.panel-collapse.collapse.in aria-labelledby="one" role="tabpanel" 
-      .panel-body
-        div Here's how it works: 
-        ol 
-          li Eats For Good arranges discounts donated by local restaurants  and merchants and creates a digital deal book for your group 
-          li You share your digital book with your social network of supporters and friends via email, Facebook & Twitter. 
-          li Your supporters click Buy Now! and proceeds from sales go to you!
+      .panel.panel-default
+        #two.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseTwo" role="button" 
+              | Are there any upfront costs to participate?
+        #collapseTwo.panel-collapse.collapse aria-labelledby="two" role="tabpanel" 
+          .panel-body
+            | Nope.
 
-  .panel.panel-default
-    #two.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapseTwo" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseTwo" role="button" 
-          | Are there any upfront costs to participate?
-    #collapseTwo.panel-collapse.collapse aria-labelledby="two" role="tabpanel" 
-      .panel-body
-        | Nope.
+      .panel.panel-default
+        #three.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapseThree" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseThree" role="button" 
+              | Money and Fees
+        #collapseThree.panel-collapse.collapse aria-labelledby="three" role="tabpanel" 
+          .panel-body
+            strong Fixed Fees
+            p 
+              | The credit card processor, #{link_to 'Stripe.com', 'https://stripe.com', target: :_blank}, has fixed fees of $0.30 per transaction and 2.2%. On a $10 donation, these fees are 5.2%.
+              | In addition, EatsforGood.com has a 5% base platform fee, or $0.50 on a $10 donation.
+              | Together, Stripe and platform fees equal $1.02 on a $10 donation.
+              | If you secure all your own Restaurant & Merchant discounts, you keep 100% of net funds raised, or $8.98 on a $10 donation.
+            strong Affiliate Fundraiser Commissions
+            p In addition, you can earn a commission on all funds raised by your Affiliate Fundraisers. You set the commission percentage. You can earn up to 50% of net funds raised by your Affiliate Fundraiser partners.
 
-  .panel.panel-default
-    #three.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapseThree" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseThree" role="button" 
-          | How much of my time with this take?
-    #collapseThree.panel-collapse.collapse aria-labelledby="three" role="tabpanel" 
-      .panel-body
-        div 25 minutes! Here's your commitment. 
-        ol
-          li 5 minutes to sign up.
-          li 10 minutes to email blast your list of friends & followers 
-          li 5 minutes to tweet and post your campaign on Facebook. 
-          li 5 minutes to deposit your check!
+      .panel.panel-default
+        #six.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapseSix" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseSix" role="button" 
+              | Do I need a Stripe.com Account?
+        #collapseSix.panel-collapse.collapse aria-labelledby="six" role="tabpanel" 
+          .panel-body
+            div Yes. #{link_to 'Stripe.com', 'https://stripe.com', target: :_blank} is a credit card processor and payment gateway like Pay Pal. Many marketplace websites, like Kickstarter and Cake, use Stripe. Creating a Stripe account is easy. Simply go to Stripe.com and follow the instructions to create a new account. You will be prompted to connect your account by EatsforGood when you create your first fundraising campaign.
 
-  .panel.panel-default
-    #four.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapseFour" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseFour" role="button" 
-          | How much Does My Organization keep of each dollar?
-    #collapseFour.panel-collapse.collapse aria-labelledby="four" role="tabpanel" 
-      .panel-body
-        | Up to 70%!
+      .panel.panel-default
+        #four.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapseFour" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseFour" role="button" 
+              | I accept large donations from supporters too?
+        #collapseFour.panel-collapse.collapse aria-labelledby="four" role="tabpanel" 
+          .panel-body
+            div Absolutely! You set a minimum donation for a consumer to purchase your digital deal book. There is no upper limit a donor may contribute.
+      
+      .panel.panel-default
+        #seven.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapse7" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse7" role="button" 
+              | Do I have to share my email list and social media contacts?
+        #collapse7.panel-collapse.collapse aria-labelledby="seven" role="tabpanel" 
+          .panel-body
+            | Nope. Never.
+      
+      .panel.panel-default
+        #nine.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapse9" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse9" role="button" 
+              | Must my organization be a certified 501(c)(3)?
+        #collapse9.panel-collapse.collapse aria-labelledby="nine" role="tabpanel" 
+          .panel-body
+            | No. Eats for Good is committed to helping all good causes raise funds.
+      
+      .panel.panel-default
+        #ten.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapse10" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse10" role="button" 
+              | Taxes issues?
+        #collapse10.panel-collapse.collapse aria-labelledby="ten" role="tabpanel" 
+          .panel-body
+            | Consult your tax adviser.
+      
+      .panel.panel-default
+        #eight.panel-heading role="tab" 
+          h4.panel-title
+            a.collapsed aria-controls="collapse8" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse8" role="button" 
+              | More Questions?
+        #collapse8.panel-collapse.collapse aria-labelledby="eight" role="tabpanel" 
+          .panel-body
+            div Feel free to contact #{mail_to 'joe@eatsforgood.org', 'Joe@eatsforgood.org' } or call 814 470 6465 8 am to 8 pm EST with any questions or to request a live demo and fundraising advice.
   
-  .panel.panel-default
-    #five.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapseFive" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseFive" role="button" 
-          | Is Eats For Good a Nonprofit?
-    #collapseFive.panel-collapse.collapse aria-labelledby="five" role="tabpanel" 
-      .panel-body
-        | ​Eats for Good is a philanthropic organization that organizes inclusive, community-wide fundraising opportunites for good causes that leverage win/win partnerships with local merchants and restaurants. We are currently seeking 501(c)(3) tax exempt status.
-  
-  .panel.panel-default
-    #six.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapseSix" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapseSix" role="button" 
-          | Do I need a Stripe.com Account?
-    #collapseSix.panel-collapse.collapse aria-labelledby="six" role="tabpanel" 
-      .panel-body
-        div Although strongly adviced you don't need a Stripe account to get started. #{link_to 'Stripe.com', 'https://stripe.com', target: :_blank} is a payment gateway like Pay Pal. Many marketplace websites, like Kickstarter and Cake, use Stripe. We use Stripe to transfer your supporters' donations to your bank account. If you don't have a Stripe account, we'll just mail you a check. 
-  
-  .panel.panel-default
-    #seven.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapse7" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse7" role="button" 
-          | Do I have to share my email list?
-    #collapse7.panel-collapse.collapse aria-labelledby="seven" role="tabpanel" 
-      .panel-body
-        | Nope. Never.
-  
-  .panel.panel-default
-    #eight.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapse8" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse8" role="button" 
-          | How do I maximize this excellent opportunity?
-    #collapse8.panel-collapse.collapse aria-labelledby="eight" role="tabpanel" 
-      .panel-body
-        | ​Be prepared. Have your email list organized. Gather together and organize friends who will share your campaign with their friends and on Facebook and Twitter. Recruit an army of social media advocates and champions. Most importantly, compose a great cover letter that boosts your open rate. Be enthusiastic and positive!
-  
-  .panel.panel-default
-    #nine.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapse9" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse9" role="button" 
-          | Must my organization be a certified 501(c)(3)?
-    #collapse9.panel-collapse.collapse aria-labelledby="nine" role="tabpanel" 
-      .panel-body
-        | No. Eats for Good is committed to helping all good causes raise funds.
-  
-  .panel.panel-default
-    #ten.panel-heading role="tab" 
-      h4.panel-title
-        a.collapsed aria-controls="collapse10" aria-expanded="false" data-parent="#faq" data-toggle="collapse" href="#collapse10" role="button" 
-          | What about taxes?
-    #collapse10.panel-collapse.collapse aria-labelledby="ten" role="tabpanel" 
-      .panel-body
-        | Consult your tax adviser.
-  
+  .col-md-4
+    iframe.google-form src="https://docs.google.com/forms/d/1hpGsWbSJkQDoECeGMxVGPF3KqIESxUhYKjAGm8Ng7uQ/viewform?embedded=true&hl=en" width="360" height="880" frameborder="0" marginheight="0" marginwidth="0"> Loading...
+    p.text-muted The Eats for Good staff will create a digital deal book for you for you to offer friends and supporters. We'll even market it for free to the entire community! Make connections with new potential donors and volunteers too. We handle all the details so you can focus on your mission.
+
 

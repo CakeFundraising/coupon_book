@@ -1,6 +1,4 @@
 = content_for :header do
-  = javascript_include_tag 'home'
-
   - cache [:home, :header] do
     .hero-home
       = render partial:'home/banner/static'
@@ -21,6 +19,8 @@
   = render partial:'home/search/section'
 
 = content_for :bottom_section do
+  = javascript_include_tag 'home'
+
   .quotes
     .container
       .row
