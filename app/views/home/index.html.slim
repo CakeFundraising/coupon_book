@@ -21,54 +21,7 @@
 = content_for :bottom_section do
   = javascript_include_tag 'home'
 
-  .quotes
-    .container
-      .row
-        .col-md-6.col-sm-6.first_col
-          .boldest.text-center 
-            h2 Need to raise money for your good cause?
-            h3 Join Eats for Good today!
-          .row
-            .col-md-3
-            .col-md-6
-              = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
-              h4.boldest Fundraising has never been easier!
-            .col-md-3
-        .col-md-6.col-sm-6
-          .boldest.text-center 
-            h2 Restaurants & Merchants
-            h3 Give back and win new customers!
-          .row
-            .col-md-3
-            .col-md-6
-              = link_to 'Create a Deal Today!', efg_how_works_path, target: :_blank, class:'btn btn-warning btn-xl buy-button'
-              h4.boldest Take 5 minutes to help!
-            .col-md-3
-
-  / .easy-band
-  /   h2 Online Fundraising Has Never Been Easier
-  /   .container
-  /     .row.center
-  /       .circle-campaign
-  /         .totals-centerd
-  /           /h4 = campaigns_count
-  /           h4 22
-  /           p.total-type CAMPAIGNS
-  /       .circle-sp
-  /         .totals-centerd
-  /           /h4 = sponsors_count
-  /           h4 14
-  /           p.total-type SPONSORS
-  /       .circle-raised
-  /         .totals-centerd
-  /           /h4 = global_raised
-  /           h4 $1M
-  /           p.total-type RAISED
-  /     h3 Let your friends know that Cake is the best way to raise money online.
-  /     .share-block-wrap
-  /       .text-center
-  /         .share-buttons
-  /           .addthis_jumbo_share#social
+  = render partial:'layouts/purple_get_started'
 
   .supporters
     .container

@@ -61,18 +61,10 @@ html lang="en"
               = link_to "Press", about_page_path('press')
             li
               = link_to "Contact", efg_contact_path, target: :_blank
-            / li
-            /   = link_to "Privacy", cake_about_page_path('privacy'), target: :_blank
             li = terms_modal_link
 
-        / .col-md-4.col-sm-4.col-xs-4
-        /   h4 Learn
-        /   ul
-        /     li
-        /       = link_to "FAQs", cake_help_page_path('faq')
         .follow-us.col-md-6.col-sm-6.col-xs-6
           h4 Follow Us
-          //div.addthis_custom_follow
           ul
             li
               = link_to t('application.social.accounts.facebook'), target: :_blank, title: 'Follow on Facebook', class:'social-buttons'
