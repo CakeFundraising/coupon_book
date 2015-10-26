@@ -6,11 +6,7 @@
     font-size: 26px;
   }
 }
-// h1 span {
-//   float: left;
-//   margin-right: 20px;
-//   margin-bottom: 10px;
-// }
+
 .dash-head {
   padding: 10px 0px 0px;
   display: inline-block;
@@ -97,4 +93,7 @@ hr{
 
 .black{
   color: black;
+}
+.gray{
+  color: $gray;
 }
