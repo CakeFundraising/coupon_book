@@ -1,6 +1,11 @@
 // Coupon Styles ---------------------------------------
 .coupon-label{
   font-size: 18px;
+  &.overlapped{
+    position: absolute;
+    z-index: 9;
+    top: -15px;
+  }
 }
 .coupon-wrapper{
   margin-bottom: 35px;
