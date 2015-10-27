@@ -9,6 +9,7 @@ init = ->
 
 turboInit = ->
   CakeCouponBook.addThis.init()
+  CakeCouponBook.parallax.init()
   return
 
 $(document).ready(init)

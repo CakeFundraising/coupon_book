@@ -24,3 +24,4 @@
 //= require ./models/browsers
 //= require ./models/subscriptors
 //= require ./models/videos
+//= require ./models/parallax
