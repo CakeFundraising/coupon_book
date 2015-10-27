@@ -13,21 +13,7 @@
     #donation-sidebar
       .title = t('titles.coupon_book.purchase_form.donate')
       = render partial:'coupon_books/donate/partials/mobile_form'
-      hr
-      .row
-        .col-md-8.col-sm-6.col-xs-12
-          .terms 
-            span By continuing you are agreeing to Eats For Good's 
-            span = terms_modal_link
-          .terms 
-            | Payments are processed by 
-            span = stripe_link 'Stripe.com'
-            strong  We do not store your financial information.
-          .terms
-            | For further assistance, contact 
-            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-          .terms = link_to 'Back', @coupon_book, data: {no_turbolink: true}
-              
+      = render partial:'coupon_books/donate/partials/purchase_form_footer_mobile', locals:{campaign: @coupon_book}
 
 javascript:
   var current_init = function(){

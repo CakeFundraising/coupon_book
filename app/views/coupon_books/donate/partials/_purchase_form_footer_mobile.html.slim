@@ -1,6 +1,6 @@
 hr
 .row
-  .col-md-8.col-sm-6
+  .col-md-8.col-sm-6.col-xs-12
     .terms
       strong All sales are final.
     .terms 
@@ -13,9 +13,4 @@ hr
     .terms
       | For further assistance, contact 
       span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-  .col-md-4.col-sm-6
-    .pull-right 
-      .back
-        = link_to 'Back', campaign, data: {no_turbolink: true}
-      .ssl-secure
-        = image_tag 'ssl-secure.png'
+    .terms = link_to 'Back', campaign, data: {no_turbolink: true}
