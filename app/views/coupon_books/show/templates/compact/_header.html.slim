@@ -45,8 +45,7 @@
         .sidebar.first_col
           .book-label.label Support #{@coupon_book.fr_name}!
           .banner 
-            .edit-button 
-              = campaign_edit_button(@coupon_book)
+            = campaign_edit_button(@coupon_book)
             = image_tag @coupon_book.picture.banner_path, class:'img-responsive'
             .sharer
               .addthis_sharing_toolbox

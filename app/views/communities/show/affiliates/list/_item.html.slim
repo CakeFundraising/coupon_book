@@ -2,7 +2,7 @@ li.affiliate-campaign
   .row-fluid
     .col-xs-8.no-padding
       .affiliate-name 
-        = link_to campaign.affiliate_name, campaign
+        = link_to campaign.affiliate_name, campaign, data: {no_turbolink: true}
     .col-xs-4.no-padding
       .row-fluid
         .col-xs-6.no-padding
