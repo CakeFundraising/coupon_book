@@ -12,8 +12,8 @@
   .col-md-9.col-xs-12
     .communities-container.row-fluid.transitions-enabled
       .communities
-        - if @collection.any?
-          = render partial: "communities/grid", collection: @collection, as: :community
+        - if @communities.any?
+          = render partial: "communities/grid", collection: @communities, as: :community
           .row
             .col-md-12.col-sm-12.col-xs-12
               = link_to "See All Communities", search_communities_path, class:'btn btn-primary btn-md'
