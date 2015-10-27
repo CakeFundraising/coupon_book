@@ -2,7 +2,7 @@
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav
       = menu_item "About", about_page_path('efg')
-      = menu_item "Success Stories", about_page_path('success_stories')
+      /= menu_item "Success Stories", about_page_path('success_stories')
     ul.nav-cta.navbar-right
       = menu_item t("links.user.sign_in"), new_user_session_path, {class: "btn-signup btn btn-primary"}
       = menu_item t("links.user.sign_up"), new_user_registration_path, {class: "btn-signup btn btn-success"}

@@ -12,29 +12,11 @@
     #overlay_loading.hidden
     #donation-sidebar.sidebar
       .title = t('titles.coupon_book.purchase_form.donate')
-      = render partial:'coupon_books/donate/form'
-      hr
-      .row
-        .col-md-8.col-sm-6
-          .terms 
-            span By continuing you are agreeing to Eats For Good's 
-            span = terms_modal_link
-          .terms 
-            | Payments are processed by 
-            span = stripe_link 'Stripe.com'
-            strong  We do not store your financial information.
-          .terms
-            | For further assistance, contact 
-            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-        .col-md-4.col-sm-6
-          .pull-right 
-            .back
-              = link_to 'Back', @coupon_book, data: {no_turbolink: true}
-            .ssl-secure
-              = image_tag 'ssl-secure.png'
+      = render partial:'coupon_books/donate/partials/form'
+      = render partial:'coupon_books/donate/partials/purchase_form_footer', locals:{campaign: @coupon_book}
   .col-md-4.col-sm-6
-    = render partial:'coupon_books/donate/fr_sidebar'
-    = render partial:'coupon_books/donate/purchases_sidebar'
+    = render partial:'coupon_books/donate/partials/fr_sidebar'
+    = render partial:'coupon_books/donate/partials/purchases_sidebar'
 
 javascript:
   var current_init = function(){

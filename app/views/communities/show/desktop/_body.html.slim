@@ -55,6 +55,6 @@
         #purchases.sidebar
           .headbar.text-center = t('titles.coupon_book.purchase_list')
           ul.no-list
-            = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+            = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase
       
 

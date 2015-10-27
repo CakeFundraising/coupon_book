@@ -1,0 +1,19 @@
+hr
+.row
+  .col-md-8.col-sm-6
+    .terms 
+      span By continuing you are agreeing to Eats For Good's 
+      span = terms_modal_link
+    .terms 
+      | Payments are processed by 
+      span = stripe_link 'Stripe.com'
+      strong  We do not store your financial information.
+    .terms
+      | For further assistance, contact 
+      span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
+  .col-md-4.col-sm-6
+    .pull-right 
+      .back
+        = link_to 'Back', campaign, data: {no_turbolink: true}
+      .ssl-secure
+        = image_tag 'ssl-secure.png'
