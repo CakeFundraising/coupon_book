@@ -6,6 +6,7 @@
 
 //= require ./vendor/jquery.countdown.min
 //= require ./vendor/jquery.expander.min
+//= require ./vendor/parallax.min
 
 //= require ./evercookie/evercookie
 //= require ./evercookie/swfobject-2.2.min
@@ -23,3 +24,4 @@
 //= require ./models/browsers
 //= require ./models/subscriptors
 //= require ./models/videos
+//= require ./models/parallax

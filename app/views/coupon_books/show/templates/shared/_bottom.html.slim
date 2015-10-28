@@ -4,37 +4,20 @@
       i.glyphicon.glyphicon-chevron-up
   /! /top-link-block
 
+  = render partial:'coupons/show/terms'
+
+  .container
+    .row
+      .col-md-12.col-sm-12.padding-right-out
+        .bottom-tagline.text-center Eat/Drink/Play -> Give Back!
+
   .container
     .row
       .col-md-12
         .share_campaign.text-center
           h1 Keep the positive energy going!
           = render partial:'layouts/share_buttons'
-          / .most-important
-          /   span.bolder Sharing on Facebook is the single
-          /   .bolder most important thing you can do to help us!
+          .most-important Share this with your family and friends
 
-  .quotes
-    .container
-      .row
-        .col-md-6.col-sm-6.first_col
-          .boldest.text-center 
-            h2 Need to raise money for your good cause?
-            h3 Join Eats for Good today!
-          .row
-            .col-md-3
-            .col-md-6
-              = link_to 'Get Started Today!', efg_home_path, target: :_blank, class:'btn btn-success btn-xl buy-button'
-              h4.boldest Fundraising has never been easier!
-            .col-md-3
-        .col-md-6.col-sm-6
-          .boldest.text-center 
-            h2 Restaurants & Merchants
-            h3 Give back and win new customers!
-          .row
-            .col-md-3
-            .col-md-6
-              = link_to 'Create a Deal Today!', efg_how_works_path, target: :_blank, class:'btn btn-warning btn-xl buy-button'
-              h4.boldest Take 5 minutes to help!
-            .col-md-3
+  = render partial:'layouts/purple_get_started'
 

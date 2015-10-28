@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   before_action :go_to_registration, only: :index
 
   def index
-    @campaigns = CouponBook.popular.limit(12).decorate
+    @communities = Community.popular.limit(12).decorate
   end
 
   def get_started

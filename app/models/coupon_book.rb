@@ -28,7 +28,7 @@ class CouponBook < ActiveRecord::Base
   COLOR_STATUS = {"incomplete" => "danger", "launched" => "success", "past" => "default"}
 
   has_statuses :incomplete, :launched, :past
-  has_templates :commercial, :community, :compact, :original
+  has_templates :commercial, :community, :compact
 
   belongs_to :fundraiser
 
@@ -61,6 +61,7 @@ class CouponBook < ActiveRecord::Base
 
   monetize :goal_cents, numericality: {greater_than: MIN_PRICE}
   monetize :price_cents, numericality: {greater_than_or_equal_to: MIN_PRICE}
+  monetize :raised_cents
 
   accepts_nested_attributes_for :categories, allow_destroy: true, reject_if: :all_blank
   accepts_nested_attributes_for :video, update_only: true, reject_if: proc {|attrs| attrs[:url].blank? }
@@ -81,6 +82,7 @@ class CouponBook < ActiveRecord::Base
 
   scope :affiliated, ->{ includes(:community).where.not(communities: {coupon_book_id: nil}) }
   scope :media_affiliated, -> { includes(:community).where.not(communities: {media_commission_percentage: 0}) }
+  scope :commercial_or_community, -> { where('coupon_books.template = ? OR coupon_books.template = ?', :community, :commercial) }
 
   scope :popular, ->{ preloaded.launched.latest }
   scope :preloaded, ->{ eager_load([:direct_donations, :picture, :video]) }

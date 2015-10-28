@@ -1,0 +1,60 @@
+.container
+  .row
+    .col-md-8.col-sm-8
+      .sidebar
+        #icons.row-fluid.text-center
+          .col-md-4.col-sm-4.help.head-col
+            .link
+              = content_tag(:a) do
+                span.number 1
+                span.word Choose
+            .text Your favorite group
+          .col-md-4.col-sm-4.give.head-col
+            .link
+              = content_tag(:a) do
+                span.number 2
+                span.word Give
+            .text
+              span As little as 
+              span.bolder = @coupon_book.price
+          .col-md-4.col-sm-4.get.head-col
+            .link
+              = content_tag(:a, href:"#coupons") do
+                span.number 3
+                span.word Receive
+            .text
+              span #{@coupon_book.coupons.count} Deals via email
+              div Save #{@coupon_book.no_discount_price} instantly!
+        #affiliates.row-fluid
+          = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
+
+    .col-md-4.col-sm-4
+      .sidebar
+        .goal
+          h1.pull-left Goal
+          h1.pull-right = @coupon_book.goal
+
+        .thermometer
+          .progress.campaign-thermometer
+            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
+              span.sr-only #{@community.sales_thermometer}% Complete (success)
+          .campaign-stats
+            span
+              span.boldest.raised = @community.total_sales
+            span.pull-right
+              span.boldest = @coupon_book.goal
+
+        .see-restaurants
+          = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
+            span See  
+            span.boldest All #{@coupon_book.coupons.count}
+            span  Deals!
+
+      - if @purchases.any?
+        br
+        #purchases.sidebar
+          .headbar.text-center = t('titles.coupon_book.purchase_list')
+          ul.no-list
+            = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase
+      
+

@@ -3,19 +3,26 @@
   border:0px;
   overflow: hidden;
   padding-bottom: 0;
-  background-image: url('hero-home.jpg');
+  background: transparent;
 
   h1 {
-    padding: 0 1em;
     margin-top: 0;
     text-shadow: 0px 0px 2px black;
-    font-size: 3em;
+    font-size: 39px;
     margin-bottom: 30px;
+    color: white;
+    text-transform: uppercase;
   }
   h2{
-    color: #FFFFFF;
+    color: white;
     text-shadow: 0px 0px 2px black;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
+  }
+  h3{
+    color: white;
+    font-size: 26px;
+    margin-top: 20px;
+    text-shadow: 0px 0px 2px black;
   }
 
   .row.vertical-align {

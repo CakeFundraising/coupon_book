@@ -81,6 +81,8 @@ en:
         communities: "Search by Zip Code, Fundraiser Name..."
         merchants: "Search by Name, Zip Code, City..."
         coupons: "Search by Merchant Name, Zip Code, Category..."
+        universal_coupons: "Search by Merchant Name, Zip Code, Category..."
+        pr_boxes: "Search by Merchant Name, Zip Code, Category..."
   semantic:
     buy:               Buy
     search:            Search
@@ -141,7 +143,7 @@ en:
       coupon:
         sponsor_name: Merchant Name
         phone: Contact Phone
-        sponsor_url: "Merchant website url"
+        url: Website
         multiple_locations: "If you have multiple locations please indicate where this discount will be accepted: "
       location:
         state_code: State
@@ -193,7 +195,7 @@ en:
         <p>Please review this Agreement periodically for changes. If you do not agree to any of this Agreement or any changes to this Agreement, do not use, access or continue to access the Site or discontinue any use of the Site immediately.</p>
         <p><strong>Contact Us</strong><br />If you have any questions about this Agreement, please contact us.</p>
       coupons: >
-        <strong>THE MERCHANT HAS DONATED THE ABOVE DEAL TO HELP SUPPORT THE PARTICIPATING NONPROFITS. PLEASE THANK THE MERCHANTS FOR ITS GENEROSITY.</strong>
+        <strong>THE MERCHANT HAS DONATED THIS DEAL TO HELP SUPPORT THE PARTICIPATING NONPROFITS. PLEASE THANK THE MERCHANTS FOR ITS GENEROSITY.</strong>
         <strong>SUMMARY OF IMPORTANT TERMS & CONDITIONS:</strong>
         VOUCHERS ARE ISSUED FOR PROMOTIONAL PURPOSES ONLY;  
         VOUCHERS MUST BE REDEEMED IN THEIR ENTIRETY IN ONE VISIT TO A MERCHANT;  

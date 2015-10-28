@@ -20,6 +20,10 @@ class CouponBookDecorator < ApplicationDecorator
     (object.organization_name || object.fundraiser.full_name)
   end
 
+  def owner_name
+    fr_name
+  end
+
   def no_discount_price
     h.humanized_money_with_symbol object.no_discount_price
   end
@@ -80,5 +84,9 @@ class CouponBookDecorator < ApplicationDecorator
 
   def affiliate_campaign_rate
     "#{object.affiliate_campaign_rate}%"
+  end
+
+  def give_path(params)
+    object.commercial_template? ? h.checkout_coupon_book_path(object, params) : h.donate_coupon_book_path(object, params)
   end
 end

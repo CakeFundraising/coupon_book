@@ -23,7 +23,7 @@ class Coupon < ActiveRecord::Base
   has_many :collections, through: :collections_coupons
 
   validates :collection_id, :sponsor_name, presence: true
-  validates :phone, :sponsor_url, presence: true, if: :coupon?
+  validates :phone, presence: true, if: :coupon?
   validates :title, :description, :expires_at, :url, presence: true, if: -> (coupon){ coupon.coupon? and coupon.persisted? }
   validates :terms, acceptance: true, if: -> (coupon){ coupon.coupon? and coupon.new_record? }
 
@@ -56,7 +56,7 @@ class Coupon < ActiveRecord::Base
 
   searchable do
     text :title, boost: 2
-    text :promo_code, :description, :sponsor_url, :multiple_locations, :sponsor_name, :city, :state_code, :state, :zip_code
+    text :promo_code, :description, :multiple_locations, :sponsor_name, :city, :state_code, :state, :zip_code
     string :status
     string :type
     string :merchandise_categories, multiple: true
@@ -116,6 +116,6 @@ class Coupon < ActiveRecord::Base
   private
 
   def add_to_collection
-    self.collections_coupons.create(collection_id: self.collection_id) #Add coupon to owner's collection
+    self.collections_coupons.create(collection_id: self.collection_id) #Add coupon to owner'ss collection
   end
 end

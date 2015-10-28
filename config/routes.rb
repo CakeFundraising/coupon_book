@@ -21,6 +21,9 @@ CakeCouponBook::Application.routes.draw do
     get :load_tab
   end
 
+  #Static pages
+  get "/about/*id" => 'about#show', as: :about_page, format: false
+
   mount Resque::Server, at: "/resque"
 
   resources :direct_donations, only: :create

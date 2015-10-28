@@ -1,5 +1,5 @@
 class Purchase < ActiveRecord::Base
-  belongs_to :purchasable, polymorphic: true
+  belongs_to :purchasable, polymorphic: true, touch: true
   has_one :charge, as: :chargeable, dependent: :destroy
 
   has_many :commissions, dependent: :destroy
@@ -27,6 +27,7 @@ class Purchase < ActiveRecord::Base
 
   after_create do
     self.create_fr_commission!
+    self.update_purchasable_raised!
     Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
   end
 
@@ -56,6 +57,11 @@ class Purchase < ActiveRecord::Base
     self.commissions.create(commissionable: commissionable, percentage: percentage, amount_cents: amount_cents)
   end
 
+  def update_purchasable_raised!
+    previous = self.purchasable.raised_cents
+    self.purchasable.update_attribute(:raised_cents, self.amount_cents + previous)
+  end
+
   private
 
   def stripe_charge_card
@@ -65,7 +71,7 @@ class Purchase < ActiveRecord::Base
           amount: self.amount_cents,
           currency: self.amount_currency.downcase,
           source: self.card_token,
-          description: "Purchase from #{self.email} to #{self.purchasable.class} ##{self.purchasable.id}",
+          description: "Donation from #{self.email} to #{self.purchasable.decorate.fr_name} at EatsForGood.com",
           metadata:{
             email: self.email
           },

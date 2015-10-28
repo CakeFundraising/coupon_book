@@ -1,9 +1,9 @@
 class VoucherMailer < ApplicationMailer
   def download_page(purchase)
     @purchase = purchase.decorate
-    @campaign = @purchase.purchasable
+    @campaign = @purchase.purchasable.decorate
 
-    mail(to: purchase.email, subject: "Download your deal vouchers from #{@campaign.fr_name}")
+    mail(to: purchase.email, subject: "Download your deal vouchers from #{@campaign.owner_name}")
   end
 
   def send_vouchers(purchase)
@@ -21,7 +21,7 @@ class VoucherMailer < ApplicationMailer
       }
     )
       
-    mail(to: purchase.email, subject: "Enjoy rewards from #{@campaign.fr_name}")
+    mail(to: purchase.email, subject: "Enjoy rewards from #{@campaign.owner_name}")
   end
 
   def send_free_voucher(purchase)

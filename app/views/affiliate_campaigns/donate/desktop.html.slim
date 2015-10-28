@@ -1,4 +1,4 @@
-= book_page_meta(@coupon_book)
+= affiliate_page_meta(@affiliate_campaign)
 
 = content_for :head do
   = javascript_include_tag 'donate'
@@ -7,57 +7,16 @@
   = stylesheet_link_tag 'models/coupon_books/donate'
   = render partial:'coupon_books/show/templates/shared/navbar'
 
-/- cache [:donate, :desktop, :form, @coupon_book] do
 #donate.row
   .col-md-8.col-sm-6
     #overlay_loading.hidden
     #donation-sidebar.sidebar
       .title = t('titles.coupon_book.purchase_form.donate')
-      = render partial:'coupon_books/donate/form'
-      hr
-      .row
-        .col-md-8.col-sm-6
-          .terms 
-            span By continuing you are agreeing to Eats For Good's 
-            span = terms_modal_link
-          .terms 
-            | Payments are processed by 
-            span = stripe_link 'Stripe.com'
-            strong  We do not store your financial information.
-          .terms
-            | For further assistance, contact 
-            span = mail_to "help@eatsforgood.org", "help@eatsforgood.org"
-        .col-md-4.col-sm-6
-          .pull-right 
-            .back
-              = link_to 'Back', @affiliate_campaign, data: {no_turbolink: true}
-            .ssl-secure
-              = image_tag 'ssl-secure.png'
+      = render partial:'coupon_books/donate/partials/form'
+      = render partial:'coupon_books/donate/partials/purchase_form_footer', locals:{campaign: @affiliate_campaign}
   .col-md-4.col-sm-6
-    - cache [:donate, :desktop, :fr_info, @affiliate_campaign] do
-      #fr-info.sidebar
-        .row
-          .col-md-12.col-sm-12
-            .headbar Proceeds benefit #{@affiliate_campaign.organization_name}
-            .fr-banner 
-              = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive'
-            .fr-inf
-              address
-                h4.title
-                  = link_to @affiliate_campaign.url, target: :_blank do
-                    = @affiliate_campaign.organization_name
-            .volunteer-with-us
-              a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
-                span.glyphicon.glyphicon-envelope 
-                span.clickable  #{@coupon_book.visitor_action}
-              = render partial:'subscriptions/volunteer_modal', locals:{object: @affiliate_campaign.affiliate, origin: @affiliate_campaign, position:'coupon_book.volunteer'}
-            .quote = @affiliate_campaign.story
-      br
-    - if @purchases.any?
-      #purchases.sidebar
-        .headbar = t('titles.coupon_book.purchase_list')
-        ul.no-list
-          = render partial:'coupon_books/donate/purchase', collection: @purchases, as: :purchase
+    = render partial:'affiliate_campaigns/donate/fr_sidebar'
+    = render partial:'coupon_books/donate/partials/purchases_sidebar'
 
 javascript:
   var current_init = function(){

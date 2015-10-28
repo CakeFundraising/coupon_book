@@ -11,7 +11,7 @@
         br
       = f.inputs do
         = f.semantic_errors *f.object.errors.keys
-        - if f.object.compact_template? or f.object.original_template?
+        - if f.object.compact_template?
           .row
             .col-md-12
               h3 Campaign Headline & Story

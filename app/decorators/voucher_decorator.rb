@@ -12,7 +12,7 @@ class VoucherDecorator < ApplicationDecorator
   end
 
   def fr_name
-    purchasable.decorate.fr_name
+    purchasable.decorate.owner_name
   end
 
 end

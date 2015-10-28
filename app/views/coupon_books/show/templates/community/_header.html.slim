@@ -1,8 +1,5 @@
-/- cache [:templates, :community, :header, :headpage, @coupon_book] do
-.banner.hero
-  .container.edit-button
-    br
-    = campaign_edit_button(@coupon_book)
+.parallax-window data-parallax="scroll" data-position="top center" data-image-src=(@coupon_book.picture.banner_path)
+  = campaign_edit_button(@coupon_book)
   .book-nav
     .container
       .row

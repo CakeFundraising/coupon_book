@@ -17,6 +17,7 @@
 //= require jquery.Jcrop
 //= require ./vendor/jquery.countdown.min
 //= require ./vendor/jquery.expander.min
+//= require ./vendor/parallax.min
 
 //= require turbolinks
 //= require modernizr
@@ -67,6 +68,7 @@
 //= require ./models/media_affiliate_campaigns
 //= require ./models/media_affiliates
 //= require ./models/merchants
+//= require ./models/parallax
 //= require ./models/pictures
 //= require ./models/pr_boxes
 //= require ./models/purchases

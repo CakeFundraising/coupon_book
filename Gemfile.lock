@@ -234,6 +234,7 @@ GEM
     hashie (3.4.2)
     heroku-deflater (0.5.3)
       rack (>= 1.4.5)
+    high_voltage (2.4.0)
     hiredis (0.6.0)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -628,6 +629,7 @@ DEPENDENCIES
   grape-jbuilder
   grape-swagger
   heroku-deflater
+  high_voltage
   inherited_resources!
   jbuilder
   jcrop-rails-v2

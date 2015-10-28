@@ -11,7 +11,7 @@ class Picture < ActiveRecord::Base
   }
 
   BANNER_SIZES = {
-    large: [2000, 1000],
+    large: [1400, 700],
     medium: [280, 140]
   }
 

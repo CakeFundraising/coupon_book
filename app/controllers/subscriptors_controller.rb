@@ -4,7 +4,7 @@ class SubscriptorsController < InheritedResources::Base
   def create
     create! do |success, failure|
       success.html do
-        redirect_to resource.origin, notice: "Thank you for contacting #{object}. Sign up for a free Eats For Good account today, and you'd be one step closer to partnering with #{object}!"
+        redirect_to resource.origin, notice: "Thank you for contacting us. Sign up for a free Eats For Good account today!"
       end
     end
   end

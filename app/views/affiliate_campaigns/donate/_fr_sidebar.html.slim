@@ -1,0 +1,18 @@
+- cache [:purchase, :fr_sidebar, @affiliate_campaign] do
+  #fr-info.sidebar
+    .row
+      .col-md-12.col-sm-12
+        .headbar Proceeds benefit #{@affiliate_campaign.affiliate_name}
+        .fr-banner 
+          = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive'
+        .fr-inf
+          address
+            h4.title
+              = link_to @affiliate_campaign.url, target: :_blank do
+                = @affiliate_campaign.affiliate_name
+        .volunteer-with-us
+          a data-toggle='modal' data-target='#coupon_book_volunteer_subs_modal' 
+            span.glyphicon.glyphicon-envelope 
+            span.clickable  #{@coupon_book.visitor_action}
+          = render partial:'subscriptions/volunteer_modal', locals:{object: @affiliate_campaign.affiliate, fr_name: @affiliate_campaign.affiliate_name, origin: @affiliate_campaign, position:'coupon_book.volunteer'}
+        .quote = @affiliate_campaign.story

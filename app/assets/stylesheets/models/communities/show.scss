@@ -1,6 +1,6 @@
 @import 'shared/variables';
 
-.banner.hero{
+.parallax-window{
   margin-bottom: 30px;
 }
 
@@ -32,6 +32,7 @@
   overflow: auto;
   margin-bottom: 15px;
   padding-bottom: 20px;
+  padding-top: 2px;
   border-bottom: 1px solid #eee;
   .head-col{
     a{
@@ -39,33 +40,52 @@
       font-weight: bold;
       font-size: 30px;
       text-decoration: none;
+      color: #555;
       .glyphicon{
         margin-right: 8px;
         top: 3px;
       }
+      .number{
+        margin-right: 5px;
+        padding: 3px 12px;
+        border-radius: 50%;
+      }
+      .word{
+        color: #333;
+      }
+    }
+    .text{
+      color: #777;
+      margin-top: 5px;
     }
   }
   .give{
-    a{
+    .number{
       color: $brand-success;
+      border: 2px solid $brand-success;
       &:hover{
         color: darken($brand-success, 15%);
+        border: 2px solid darken($brand-success, 15%);
       }
     }
   }
   .get{
-    a{
+    .number{
       color: $brand-warning;
+      border: 2px solid $brand-warning;
       &:hover{
         color: darken($brand-warning, 15%);
+        border: 2px solid darken($brand-warning, 15%);
       }
     }
   }
   .help{
-    a{
+    .number{
       color: $brand-primary;
+      border: 2px solid $brand-primary;
       &:hover{
         color: darken($brand-primary, 15%);
+        border: 2px solid darken($brand-primary, 15%);
       }
     }
   }
@@ -84,6 +104,9 @@
       max-height: 450px;
       td{
         font-size: 20px;
+        .affiliate-website{
+          margin-left: 10px;
+        }
       }
     }
   }

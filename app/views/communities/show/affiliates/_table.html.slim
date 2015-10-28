@@ -3,9 +3,9 @@
     table.table.table-hover.table-fixedheader
       thead
         tr
-          th.col-md-8.col-sm-6 Group
+          th.col-md-8.col-sm-6 Good Cause
           th.col-md-2.col-sm-4 = AffiliateCampaign.human_attribute_name :total_raised
-          th.col-md-2.col-sm-2 = AffiliateCampaign.human_attribute_name :about_us
+          th.col-md-2.col-sm-2 = AffiliateCampaign.human_attribute_name :click_to_help!
       tbody
         = render partial:'communities/show/affiliates/row', collection: campaigns, as: :campaign
 - else

@@ -475,3 +475,11 @@ ul.no-list{
   clear:both; 
   page-break-after:always; 
 }
+
+.parallax-window {
+  &.home{
+    min-height: 450px;
+  }
+  min-height: 350px;
+  position: relative;
+}

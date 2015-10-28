@@ -24,9 +24,6 @@ CakeCouponBook.coupons.validation = ->
         required: true
       'coupon[phone]': 
         required: true
-      'coupon[sponsor_url]': 
-        required: true
-        url: true
       'coupon[location_attributes][address]': 
         required: true
       'coupon[location_attributes][city]': 
@@ -57,7 +54,7 @@ CakeCouponBook.coupons.validation = ->
   return
 
 CakeCouponBook.coupons.universal_toggle = (couponId)->
-  url = "/discounts/#{couponId}/universal_toggle"
+  url = "/deals/#{couponId}/universal_toggle"
   $.ajax
     url: url
     type: 'PATCH'

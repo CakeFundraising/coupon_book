@@ -23,7 +23,10 @@ module CouponBookHelper
 
   def campaign_edit_button(campaign)
     if can? :edit, campaign and not campaign.past?
-      link_to "Edit Campaign", edit_coupon_book_path(campaign), class:'btn btn-transparent-dark'
+      content_tag(:div, class:'container edit-button') do
+        content_tag(:br)+
+        link_to("Edit Campaign", edit_coupon_book_path(campaign), class:'btn btn-transparent-dark')
+      end
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015162359) do
+ActiveRecord::Schema.define(version: 20151023210700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,8 @@ ActiveRecord::Schema.define(version: 20151015162359) do
     t.datetime "updated_at",                           null: false
     t.integer  "community_rate",       default: 0
     t.integer  "campaign_rate",        default: 0
+    t.integer  "raised_cents",         default: 0,     null: false
+    t.string   "raised_currency",      default: "USD", null: false
   end
 
   create_table "avatar_pictures", force: :cascade do |t|
@@ -203,6 +205,8 @@ ActiveRecord::Schema.define(version: 20151015162359) do
     t.integer  "causes_mask",             limit: 8
     t.integer  "scopes_mask",             limit: 8
     t.integer  "affiliate_campaign_rate",           default: 0
+    t.integer  "raised_cents",                      default: 0,            null: false
+    t.string   "raised_currency",                   default: "USD",        null: false
   end
 
   add_index "coupon_books", ["slug"], name: "index_coupon_books_on_slug", unique: true, using: :btree
@@ -218,7 +222,6 @@ ActiveRecord::Schema.define(version: 20151015162359) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "phone"
-    t.string   "sponsor_url"
     t.text     "multiple_locations"
     t.boolean  "universal",                             default: false
     t.string   "status",                                default: "incomplete"

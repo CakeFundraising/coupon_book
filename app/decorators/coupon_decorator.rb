@@ -39,12 +39,6 @@ class CouponDecorator < ApplicationDecorator
     h.auto_attr_link url, target: :_blank
   end
 
-  def sponsor_url
-    unless object.sponsor_url.blank?
-      (object.sponsor_url=~/^https?:\/\//).nil? ? "http://#{object.sponsor_url}" : object.sponsor_url
-    end
-  end
-
   def address
     object.location.address
   end
@@ -71,5 +65,9 @@ class CouponDecorator < ApplicationDecorator
 
   def universal
     h.b object.universal
+  end
+
+  def terms
+    object.custom_terms || 'None.'
   end
 end
