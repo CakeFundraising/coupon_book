@@ -60,6 +60,7 @@ class Purchase < ActiveRecord::Base
   def update_purchasable_raised!
     previous = self.purchasable.raised_cents
     self.purchasable.update_attribute(:raised_cents, self.amount_cents + previous)
+    self.community.touch if self.purchasable.is_a?(AffiliateCampaign) # Clear Community sales cache
   end
 
   private
