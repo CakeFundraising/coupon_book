@@ -161,7 +161,7 @@ en:
       user:
         url: Website
   application:
-    name: EatsForGood
+    name: Eats For Good
     company: "Eats For Good, LLC"
     twitter_account: "@EatsForGood"
     social:
@@ -171,25 +171,25 @@ en:
         linkedin: https://www.linkedin.com/company/baltimore-eats-for-good
         instagram: https://instagram.com/eatsforgood/
     meta:
-      description: "Create Win/Win Social Media Partnerships in Minutes! The World's #1 Digital Sponsorship & Partnership Platform"
-      keywords: "Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship"
+      description: "Discover the Digital Deal Book Fundraising Platform"
+      keywords: "Deal Book, Causes, Cause Marketing, Social Partnership, Media Partnership, Sponsorship, Fundraising"
       og: 
-        title: "CakeCauseMarketing - The World's #1 Digital Sponsorship & Partnership Platform."
+        title: "Eats For Good - Discover the Digital Deal Book Fundraising Platform."
         coupon_books:
           title: "Support %{fr}!"
         fundraisers:
-          title: "%{fr} on CakeCauseMarketing"
+          title: "%{fr} on Eats For Good"
         sponsors:
-          title: "%{sp} on CakeCauseMarketing"
+          title: "%{sp} on Eats For Good"
     terms_and_conditions:
       standard: >
-        <h1>CakeCauseMarketing Terms and Conditions ('Agreement')</h1>
-        <p>Please read these Terms and Conditions ('Agreement', 'Terms and Conditions') carefully before using CakeCauseMarketing.com ('the Site') operated by CakeCauseMarketing ('us','we', or 'our'). This Agreement sets forth the legally binding terms and conditions for your use of the Site at CakeCauseMarketing.com.</p>
+        <h1>Eats For Good Terms and Conditions ('Agreement')</h1>
+        <p>Please read these Terms and Conditions ('Agreement', 'Terms and Conditions') carefully before using EatsForGood.com ('the Site') operated by Eats For Good ('us','we', or 'our'). This Agreement sets forth the legally binding terms and conditions for your use of the Site at EatsForGood.com.</p>
         <p>By accessing or using the Site in any manner, including, but not limited to, visiting or browsing the Site or contributing content or other materials to the Site, you agree to be bound by these Terms and Conditions. Capitalized terms are defined in this Agreement.</p>
-        <p><strong>Intellectual Property</strong><br />The Site and its original content, features and functionality are owned by CakeCauseMarketing and are protected by international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws.</p>
+        <p><strong>Intellectual Property</strong><br />The Site and its original content, features and functionality are owned by Eats For Good and are protected by international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws.</p>
         <p><strong>Termination</strong><br />We may terminate your access to the Site, without cause or notice, which may result in the forfeiture and destruction of all information associated with you. All provisions of this Agreement that by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
-        <p><strong>Links To Other Sites</strong><br />Our Site may contain links to third-party sites that are not owned or controlled by CakeCauseMarketing.</p>
-        <p>CakeCauseMarketing has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party sites or services. We strongly advise you to read the terms and conditions and privacy policy of any third-party site that you visit.</p>
+        <p><strong>Links To Other Sites</strong><br />Our Site may contain links to third-party sites that are not owned or controlled by Eats For Good.</p>
+        <p>Eats For Good has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party sites or services. We strongly advise you to read the terms and conditions and privacy policy of any third-party site that you visit.</p>
         <p><strong>Governing Law</strong><br />This Agreement (and any further rules, polices, or guidelines incorporated by reference) shall be governed and construed in accordance with the laws of Maryland, United States, without giving effect to any principles of conflicts of law.</p>
         <p><strong>Changes To This Agreement</strong><br />We reserve the right, at our sole discretion, to modify or replace these Terms and Conditions by posting the updated terms on the Site. Your continued use of the Site after any such changes constitutes your acceptance of the new Terms and Conditions.</p>
         <p>Please review this Agreement periodically for changes. If you do not agree to any of this Agreement or any changes to this Agreement, do not use, access or continue to access the Site or discontinue any use of the Site immediately.</p>
@@ -444,7 +444,7 @@ en:
           Additional Terms &amp; Conditions
         </h4>
         <p>
-            Eats For Good, LLC &amp; Cake Fundraising, Inc. and/or its affiliates ("Cake") provide Eatsforgood. CakeCauseMarketing.com and its products or services to
+            Eats For Good, LLC &amp; Cake Fundraising, Inc. and/or its affiliates ("Cake") provide Eatsforgood. EatsForGood.com and its products or services to
             you subject to the following conditions. If you visit or shop through our Sites, you accept these conditions. Please read them carefully, because they
             contain important disclosures and information regarding terms of sale, among other terms that may affect your legal rights.
         </p>
@@ -453,7 +453,7 @@ en:
         </h5>
         <p>
             The &#8220;Terms&#8221; consist of these Conditions of Use, the Cake Privacy Policy and any supplemental terms, legal notices and other communications
-            provided to you. These Terms govern your use of the website offered by Cake at www.CakeCauseMarketing.com (including any mobile, touch, merchant-specific,
+            provided to you. These Terms govern your use of the website offered by Cake at www.EatsForGood.com (including any mobile, touch, merchant-specific,
             city-specific or other area-specific versions or sections) (each a &#8220;Site&#8221;), and all products or services accessed through the Sites
             (collectively &#8220;Services&#8221;). These Terms constitute a binding legal agreement (&#8220;Agreement,&#8221; though we may use &#8220;Terms&#8221;
             interchangeably with &#8220;Agreement&#8221; herein) in electronic form between you (&#8220;you,&#8221; &#8220;your&#8221; and/or &#8220;yourself&#8221;)
