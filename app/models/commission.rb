@@ -11,6 +11,9 @@ class Commission < ActiveRecord::Base
 
   scope :paid, -> { where(paid: true) }
   scope :pending, -> { where(paid: false) }
+  scope :coupon_book_commissionable, -> { where(commissionable_type: 'CouponBook') }
+  scope :affiliate_commissionable, -> { where(commissionable_type: 'AffiliateCampaign') }
+  scope :media_commissionable, -> { where(commissionable_type: 'MediaAffiliateCampaign') }
 
   scope :group_by_commissionable, -> { select('commissions.commissionable_type, commissions.commissionable_id, SUM(commissions.amount_cents) AS total_cents').group(:commissionable_type, :commissionable_id).having('SUM(commissions.amount_cents) > ?', 1000) }
 

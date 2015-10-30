@@ -5,15 +5,17 @@ FactoryGirl.define do
     headline { Faker::Lorem.sentence }
     story { Faker::Lorem.paragraph }
     mission { Faker::Lorem.paragraph }
+    organization_name { Faker::Name.name }
     launch_date { Time.now + 3.days }
     end_date { Time.now + 4.months }
-    goal {rand(999) + 1 }
     causes { CouponBook::CAUSES.sample(5) }
     main_cause { CouponBook::CAUSES.sample }
     scopes { CouponBook::SCOPES.sample(2) }
-    picture
-    fundraiser
+    goal_cents {rand(999) + 10000 }
+    price_cents {rand(999) + 10000 }
     status :launched
+    fundraiser
+    picture
 
     factory :incomplete_campaign do
       status :incomplete

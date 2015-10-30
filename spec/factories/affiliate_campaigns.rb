@@ -1,14 +1,15 @@
 FactoryGirl.define do
   factory :affiliate_campaign do
-    first_name "MyString"
-last_name "MyString"
-phone "MyString"
-email "MyString"
-url "MyString"
-organization_name "MyString"
-story "MyText"
-affiliate_id 1
-coupon_book_id 1
+    organization_name { Faker::Name.name }
+    first_name { Faker::Name.first_name }
+    last_name { Faker::Name.last_name }
+    phone { Faker::PhoneNumber.phone_number }
+    email { Faker::Internet.email }
+    story { Faker::Lorem.paragraph }
+    url { Faker::Internet.url }
+    coupon_book
+    affiliate
+    community
   end
 
 end

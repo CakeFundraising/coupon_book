@@ -1,8 +1,9 @@
 FactoryGirl.define do
   factory :community do
     slug "MyString"
-commission_percentage 1
-coupon_book_id 1
+    affiliate_commission_percentage { rand(99) + 1 }
+    media_commission_percentage { 100 - affiliate_commission_percentage }
+    coupon_book
   end
 
 end

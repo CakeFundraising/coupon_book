@@ -1,9 +1,8 @@
 FactoryGirl.define do
   factory :media_affiliate_campaign do
-    use_stripe false
-recipient_name "MyString"
-media_affiliate_id 1
-community_id 1
+    recipient_name { Faker::Name.name }
+    media_affiliate
+    community
   end
 
 end

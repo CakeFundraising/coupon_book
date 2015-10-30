@@ -65,7 +65,7 @@ class Purchase < ActiveRecord::Base
   private
 
   def stripe_charge_card
-    unless Rails.env.test? or self.persisted? or !self.should_charge
+    unless self.persisted? or !self.should_charge
       begin
         charge = Stripe::Charge.create({
           amount: self.amount_cents,
