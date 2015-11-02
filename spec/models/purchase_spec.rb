@@ -1,49 +1,52 @@
 require 'rails_helper'
 
 RSpec.describe Purchase, type: :model do
-  it { should validate_presence_of(:first_name) }
-  it { should validate_presence_of(:last_name) }
-  it { should validate_presence_of(:zip_code) }
-  it { should validate_presence_of(:purchasable) }
-  it { should validate_presence_of(:card_token) }
-  it { should validate_presence_of(:amount_cents) }
-  it { should validate_presence_of(:email) }
-  it { should validate_presence_of(:token) }
+  describe "Model validity" do
+    subject { FactoryGirl.build(:purchase, should_charge: false, card_token: 'sdasdasdasd') }
 
-  it { should belong_to(:purchasable) }
-  it { should have_one(:charge).dependent(:destroy) }
+    it { should validate_presence_of(:first_name) }
+    it { should validate_presence_of(:last_name) }
+    it { should validate_presence_of(:zip_code) }
+    it { should validate_presence_of(:purchasable) }
+    it { should validate_presence_of(:card_token) }
+    it { should validate_presence_of(:amount_cents) }
+    it { should validate_presence_of(:email) }
+    it { should validate_presence_of(:token) }
 
-  it { should have_many(:commissions).dependent(:destroy) }
-  it { should have_many(:vouchers).dependent(:destroy) }
+    it { should belong_to(:purchasable) }
+    it { should have_one(:charge).dependent(:destroy) }
 
-  it { should accept_nested_attributes_for(:commissions) }
+    it { should have_many(:commissions).dependent(:destroy) }
+    it { should have_many(:vouchers).dependent(:destroy) }
+
+    it { should accept_nested_attributes_for(:commissions) }
+  end
 
   describe "Charge" do
-    it 'creates a charge' do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+
+    let!(:purchase) { FactoryGirl.create(:purchase) }
+    let!(:charge) { purchase.charge }
+
+    it 'creates a charge object' do
       expect{
-        FactoryGirl.create(:purchase, should_notify: false)
+        FactoryGirl.create(:purchase)
       }.to change{ Charge.count }.by(1)
     end
 
     it 'stores the right gross amount' do
-      purchase = FactoryGirl.create(:purchase, should_notify: false)
-      charge = purchase.charge
       expect(charge.gross_amount_cents).to eql(purchase.amount_cents)
     end
 
     it 'stores the right fee' do
-      purchase = FactoryGirl.create(:purchase, should_notify: false)
-      charge = purchase.charge
-
       expected_fee = purchase.send(:application_fee) + FactoryHelpers.stripe_fee_cents(purchase.amount_cents)
 
       expect(charge.fee_cents).to eql(expected_fee)
     end
 
     it 'stores the right net amount' do
-      purchase = FactoryGirl.create(:purchase, should_notify: false)
-      charge = purchase.charge
-
       expected_fee = purchase.send(:application_fee) + FactoryHelpers.stripe_fee_cents(purchase.amount_cents)
       expected_net = purchase.amount_cents - expected_fee
 
@@ -51,18 +54,22 @@ RSpec.describe Purchase, type: :model do
     end
   end
 
+  describe "Commissions" do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
 
-  describe "After Purchase actions" do
-    context 'Campaign Purchase' do
-      context 'in Campaign page' do
+    context 'Campaign page' do
+      context 'No Media Affiliate' do
+        let!(:purchase) { FactoryGirl.create(:purchase) }
+
         it 'creates a FR commission' do
           expect{
-            FactoryGirl.create(:purchase, should_notify: false)
+            FactoryGirl.create(:purchase)
           }.to change{ Commission.coupon_book_commissionable.count }.by(1)
         end
 
         it 'FR commission should have the total purchase amount' do
-          purchase = FactoryGirl.create(:purchase, should_notify: false)
           commission = Commission.coupon_book_commissionable.last
 
           expect(commission.amount_cents).to equal(purchase.net_amount_cents)
@@ -73,69 +80,189 @@ RSpec.describe Purchase, type: :model do
           coupon_book = FactoryGirl.create(:coupon_book)
 
           expect(coupon_book.raised_cents).to equal(0)
-          purchase = FactoryGirl.create(:purchase, purchasable: coupon_book, should_notify: false)
+          purchase = FactoryGirl.create(:purchase, purchasable: coupon_book)
           expect(coupon_book.raised_cents).to equal(purchase.amount_cents)
         end
       end
 
-      context "with Media Affiliate" do
+      context 'with Media Affiliate' do
         it 'creates a FR commission' do
           expect{
-            FactoryGirl.create(:purchase, should_notify: false)
+            FactoryGirl.create(:fr_media_purchase)
           }.to change{ Commission.coupon_book_commissionable.count }.by(1)
         end
 
         it 'creates a MediaAffiliate commission' do
           expect{
-            FactoryGirl.create(:purchase, should_notify: false)
+            FactoryGirl.create(:fr_media_purchase)
           }.to change{ Commission.media_commissionable.count }.by(1)
         end
 
-        it 'should have the total purchase amount' do
-          purchase = FactoryGirl.create(:purchase, should_notify: false)
-          commission = Commission.coupon_book_commissionable.last
-          expect(commission.amount_cents).to equal(purchase.net_amount_cents)
-          expect(commission.percentage).to equal(100)
+        it 'the MediaAffiliate commission should store the right amount' do
+          purchase = FactoryGirl.create(:fr_media_purchase)
+          commission = Commission.media_commissionable.last
+
+          expected_percentage = commission.commissionable.commission_percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(commission.amount_cents).to equal(expected_commission)
+          expect(commission.percentage).to equal(expected_percentage)
         end
 
-        it 'should update CouponBook raised amount attribute' do
-          coupon_book = FactoryGirl.create(:coupon_book)
+        it 'the FR commission should store the amount remaining' do
+          purchase = FactoryGirl.create(:fr_media_purchase)
 
-          expect(coupon_book.raised_cents).to equal(0)
-          purchase = FactoryGirl.create(:purchase, purchasable: coupon_book, should_notify: false)
-          expect(coupon_book.raised_cents).to equal(purchase.amount_cents)
+          media_commission = Commission.media_commissionable.last
+          fr_commission = Commission.coupon_book_commissionable.last
+
+          expected_percentage = 100 - media_commission.percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(fr_commission.amount_cents).to equal(expected_commission)
+          expect(fr_commission.percentage).to equal(expected_percentage)
         end
       end
-    end
 
-    # describe 'AffiliateCampaign Purchase' do
-    #   describe "in Campaign page" do
-    #     it 'creates a FR commission and a Affiliate commission' do
-    #       let(:creating_a_purchase) { -> { FactoryGirl.create(:affiliate_purchase, should_notify: false) } }
+    end #End Campaign page
 
-    #       expect(creating_a_recipe).to change{ Commission.coupon_book_commissionable.count }.by(1)
-    #       expect(creating_a_recipe).to change{ Commission.affiliate_commissionable.count }.by(1)
-    #     end
+    context "Affiliate Campaign page" do
+      context 'No Media Affiliate' do
+        it 'creates a FR commission' do
+          expect{
+            FactoryGirl.create(:affiliate_campaign_purchase)
+          }.to change{ Commission.coupon_book_commissionable.count }.by(1)
+        end
 
-    #     it 'the Affilite commission should be specified by the AffiliateCampaign rate' do
-    #       purchase = FactoryGirl.create(:affiliate_purchase, should_notify: false)
-    #       affiliate_campaign = purchase.affiliate_campaign
-    #       affiliate_commission = Commission.affiliate_commissionable.last
+        it 'creates a Affiliate commission' do
+          expect{
+            FactoryGirl.create(:affiliate_campaign_purchase)
+          }.to change{ Commission.affiliate_commissionable.count }.by(1)
+        end
 
-    #       expect(affiliate_commission.amount_cents).to equal(purchase.net_amount_cents)
-    #       expect(affiliate_commission.percentage).to equal(affiliate_campaign.campaign_rate)
-    #     end
+        it 'the Affiliate commission should store the right amount' do
+          purchase = FactoryGirl.create(:affiliate_campaign_purchase)
+          commission = Commission.affiliate_commissionable.last
 
-    #     it 'should update CouponBook raised amount attribute' do
-    #       coupon_book = FactoryGirl.create(:coupon_book)
+          expected_percentage = commission.commissionable.campaign_rate
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
 
-    #       expect(coupon_book.raised_cents).to equal(0)
-    #       purchase = FactoryGirl.create(:purchase, purchasable: coupon_book, should_notify: false)
-    #       expect(coupon_book.raised_cents).to equal(purchase.amount_cents)
-    #     end
-    #   end
-    # end
+          expect(commission.amount_cents).to equal(expected_commission)
+          expect(commission.percentage).to equal(expected_percentage)
+        end
 
-  end
+        it 'the FR commission should store the amount remaining' do
+          purchase = FactoryGirl.create(:affiliate_campaign_purchase)
+
+          affiliate_commission = Commission.affiliate_commissionable.last
+          fr_commission = Commission.coupon_book_commissionable.last
+
+          expected_percentage = 100 - affiliate_commission.percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(fr_commission.amount_cents).to equal(expected_commission)
+          expect(fr_commission.percentage).to equal(expected_percentage)
+        end
+
+      end
+    end #End Affiliate Campaign page
+
+    context 'Community Page' do
+      context "Affiliate Campaign page" do
+        it 'creates a FR commission' do
+          expect{
+            FactoryGirl.create(:affiliate_community_purchase)
+          }.to change{ Commission.coupon_book_commissionable.count }.by(1)
+        end
+
+        it 'creates a Affiliate commission' do
+          expect{
+            FactoryGirl.create(:affiliate_community_purchase)
+          }.to change{ Commission.affiliate_commissionable.count }.by(1)
+        end
+
+        it 'the Affiliate commission should store the right amount' do
+          purchase = FactoryGirl.create(:affiliate_community_purchase)
+          commission = Commission.affiliate_commissionable.last
+
+          expected_percentage = commission.commissionable.community_rate
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(commission.amount_cents).to equal(expected_commission)
+          expect(commission.percentage).to equal(expected_percentage)
+        end
+
+        it 'the FR commission should store the amount remaining' do
+          purchase = FactoryGirl.create(:affiliate_community_purchase)
+
+          affiliate_commission = Commission.affiliate_commissionable.last
+          fr_commission = Commission.coupon_book_commissionable.last
+
+          expected_percentage = 100 - affiliate_commission.percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(fr_commission.amount_cents).to equal(expected_commission)
+          expect(fr_commission.percentage).to equal(expected_percentage)
+        end
+      end # End Affiliate Campaign page
+
+      context 'Affiliate Campaign page with MediaAffiliate' do
+        it 'creates a FR commission' do
+          expect{
+            FactoryGirl.create(:affiliate_and_media_community_purchase)
+          }.to change{ Commission.coupon_book_commissionable.count }.by(1)
+        end
+
+        it 'creates a Affiliate commission' do
+          expect{
+            FactoryGirl.create(:affiliate_and_media_community_purchase)
+          }.to change{ Commission.affiliate_commissionable.count }.by(1)
+        end
+
+        it 'creates a MediaAffiliate commission' do
+          expect{
+            FactoryGirl.create(:affiliate_and_media_community_purchase)
+          }.to change{ Commission.media_commissionable.count }.by(1)
+        end
+
+        it 'the MediaAffiliate commission should store the right amount' do
+          purchase = FactoryGirl.create(:affiliate_and_media_community_purchase)
+          commission = Commission.media_commissionable.last
+
+          expected_percentage = commission.commissionable.commission_percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(commission.amount_cents).to equal(expected_commission)
+          expect(commission.percentage).to equal(expected_percentage)
+        end
+
+        it 'the Affiliate commission should store the right amount' do
+          purchase = FactoryGirl.create(:affiliate_and_media_community_purchase)
+          commission = Commission.affiliate_commissionable.last
+
+          expected_percentage = commission.commissionable.community_rate
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(commission.amount_cents).to equal(expected_commission)
+          expect(commission.percentage).to equal(expected_percentage)
+        end
+
+        it 'the FR commission should store the amount remaining' do
+          purchase = FactoryGirl.create(:affiliate_and_media_community_purchase)
+
+          affiliate_commission = Commission.affiliate_commissionable.last
+          media_commission = Commission.media_commissionable.last
+          fr_commission = Commission.coupon_book_commissionable.last
+
+          expected_percentage = 100 - affiliate_commission.percentage - media_commission.percentage
+          expected_commission = ((expected_percentage*purchase.net_amount_cents)/100.0).floor
+
+          expect(fr_commission.amount_cents).to equal(expected_commission)
+          expect(fr_commission.percentage).to equal(expected_percentage)
+        end
+      end # End Affiliate Campaign page with MediaAffiliate
+
+    end #End Community Page
+
+  end #End Commissions
 
 end

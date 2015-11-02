@@ -9,20 +9,8 @@ module FactoryHelpers
     (amount_cents*(CakeCouponBook::APPLICATION_FEE/100)).round
   end
 
-  def stripe_card_token(key)
-    WebMock.disable!
-    token = Stripe::Token.create(
-      {
-        card: {
-          number: "4000000000000077",
-          exp_month: 12,
-          exp_year: 2018,
-          cvc: "314"
-        }
-      }, 
-      key
-    )
-    token.id
+  def stripe_card_token
+    StripeMock.create_test_helper.generate_card_token
   end
 
   def stripe_bank_account_token

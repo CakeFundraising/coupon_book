@@ -7,6 +7,8 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     story { Faker::Lorem.paragraph }
     url { Faker::Internet.url }
+    community_rate { rand(50..100) }
+    campaign_rate { rand(50..100) }
     coupon_book
     affiliate
     community

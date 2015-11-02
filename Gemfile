@@ -149,6 +149,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'shoulda-matchers', require: false
   gem 'launchy'
+  gem 'stripe-ruby-mock', require: 'stripe_mock'
 end
 
 group :production do

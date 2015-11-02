@@ -87,13 +87,21 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def stripe_fee_cents(amount_cents)
+    (amount_cents*(CakeCouponBook::STRIPE_FEE/100)).round + 30
+  end
+
   def application_fee
     percentage = (self.purchasable.fee_percentage/100)
     (self.amount_cents*percentage).round
   end
 
-  def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
+  def store_transaction(stripe_transaction)
+    if Rails.env.test?
+      balance_transaction = OpenStruct.new(fee: stripe_fee_cents(stripe_transaction.amount), fee_details:[{amount: stripe_fee_cents(stripe_transaction.amount), application: application_fee}])
+    else
+      balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
+    end
 
     self.build_charge(
       stripe_id: stripe_transaction.id,
