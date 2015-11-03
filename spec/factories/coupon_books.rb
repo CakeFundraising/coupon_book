@@ -26,5 +26,12 @@ FactoryGirl.define do
       launch_date { Time.now - 4.months }
       end_date { Time.now - 2.months }
     end
+
+    factory :coupon_book_with_coupons do
+      after(:create) do |coupon_book, evaluator|
+        FactoryGirl.create(:category_with_coupons, coupon_book: coupon_book)
+      end
+    end
+
   end
 end

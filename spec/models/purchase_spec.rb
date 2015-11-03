@@ -22,6 +22,80 @@ RSpec.describe Purchase, type: :model do
     it { should accept_nested_attributes_for(:commissions) }
   end
 
+  describe "Model methods" do
+    let(:stripe_helper) { StripeMock.create_test_helper }
+    before { StripeMock.start }
+    after { StripeMock.stop }
+
+    describe "#update_purchasable_raised!" do
+      it 'should update the CouponBook raised attribute' do
+        coupon_book = FactoryGirl.create(:coupon_book)
+        purchase = FactoryGirl.build(:purchase, purchasable: coupon_book)
+
+        expect{
+          purchase.save
+        }.to change{ coupon_book.raised_cents }.by(purchase.amount_cents)
+      end
+
+      it 'should not touch the CouponBook Community object' do
+        coupon_book = FactoryGirl.create(:coupon_book)
+        community = FactoryGirl.create(:community, coupon_book: coupon_book)
+        purchase = FactoryGirl.build(:purchase, purchasable: coupon_book)
+
+        expect{
+          purchase.save
+        }.to_not change{ community.updated_at }
+      end
+
+      it 'should update the AffiliateCampaign raised attribute' do
+        affiliate_campaign = FactoryGirl.create(:affiliate_campaign)
+        purchase = FactoryGirl.build(:purchase, purchasable: affiliate_campaign)
+
+        expect{
+          purchase.save
+        }.to change{ affiliate_campaign.raised_cents }.by(purchase.amount_cents)
+      end
+
+      it 'should touch the AffiliateCampaign Community object' do
+        affiliate_campaign = FactoryGirl.create(:affiliate_campaign)
+        purchase = FactoryGirl.build(:purchase, purchasable: affiliate_campaign)
+
+        expect{
+          purchase.save
+        }.to change{ affiliate_campaign.community.updated_at }
+      end
+    end #End-update_purchasable_raised!
+
+    describe "#create_vouchers!" do
+      let(:stripe_helper) { StripeMock.create_test_helper }
+      before { StripeMock.start }
+      after { StripeMock.stop }
+
+      let!(:purchase) { FactoryGirl.create(:purchase, purchasable: FactoryGirl.create(:coupon_book_with_coupons)) }
+
+      it 'should create vouchers if none present' do
+        expect{
+          purchase.create_vouchers!
+        }.to change{ purchase.vouchers.count }
+      end
+
+      it 'should not create new vouchers if any already present' do
+        purchase.create_vouchers!
+
+        expect{
+          purchase.create_vouchers!
+        }.to_not change{ purchase.vouchers.count }
+      end
+
+      it 'should create one voucher per coupon' do
+        coupon_book = purchase.purchasable
+        purchase.create_vouchers!
+
+        expect(coupon_book.coupons.count).to eql(coupon_book.vouchers.count)
+      end
+    end
+  end
+
   describe "Charge" do
     let(:stripe_helper) { StripeMock.create_test_helper }
     before { StripeMock.start }
