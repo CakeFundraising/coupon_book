@@ -1,10 +1,16 @@
 FactoryGirl.define do
   factory :voucher do
-    number "MyString"
-categories_coupon_id 1
-status "MyString"
-expires_at "2015-06-12 12:19:22"
-owner_email "MyString"
-  end
+    number { rand(9999999).to_s }
+    expires_at { Time.now + 4.months }
+    categories_coupon
+    association :purchase, factory: :mock_purchase
 
+    factory :redeemed_voucher do
+      status :redeemed
+    end
+
+    factory :expired_voucher do
+      expires_at { Time.now - 4.months }
+    end
+  end
 end

@@ -9,6 +9,12 @@ FactoryGirl.define do
     association :purchasable, factory: :coupon_book
     should_notify false
 
+    factory :mock_purchase do
+      card_token 'asdasdasdasdasd'
+      should_charge false
+      charge
+    end
+
     factory :fr_media_purchase do
       after(:build) do |purchase, evaluator|
         purchase.commissions << FactoryGirl.build(:commission, purchase: purchase, commissionable: FactoryGirl.create(:media_affiliate_campaign))

@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :category do
     sequence(:name){|n| "Category #{n}" }
+    coupon_book
 
     factory :category_with_coupons do
       after(:create) do |category, evaluator|
