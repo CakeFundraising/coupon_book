@@ -23,6 +23,16 @@ ActiveAdmin.register Purchase do
     end
   end
 
+  filter :coupon_book, as: :polymorphic_select, on: :purchasable, collection: proc{ CouponBook.all }
+  filter :affiliate_campaign, as: :polymorphic_select, on: :purchasable, collection: proc{ AffiliateCampaign.all }
+  filter :email
+  filter :amount_cents
+  filter :created_at
+  filter :first_name
+  filter :last_name
+  filter :zip_code
+  filter :comment
+
   action_item only:[:show] do
     link_to "Resend Email", resend_emails_admin_purchase_path(resource), method: :patch
   end
