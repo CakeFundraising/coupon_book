@@ -19,4 +19,6 @@ RSpec.describe CouponBook, type: :model do
 
     it { should accept_nested_attributes_for(:categories) }
   end
+
+  it_behaves_like "a transferable object"
 end

@@ -11,6 +11,7 @@ FactoryGirl.define do
 
     factory :fundraiser, class: Fundraiser do
       type 'Fundraiser'
+      stripe_account
     end
 
     factory :merchant, class: Merchant do
@@ -19,10 +20,12 @@ FactoryGirl.define do
 
     factory :affiliate, class: Affiliate do
       type 'Affiliate'
+      stripe_account
     end
 
     factory :media_affiliate, class: MediaAffiliate do
       type 'MediaAffiliate'
+      stripe_account
     end
   end
 end
