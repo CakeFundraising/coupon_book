@@ -10,7 +10,7 @@ module Transferable
       stripe_transfer(amount_cents)
       after_transfer(amount_cents)
     else
-      SystemMailer.no_funds(amount_cents).deliver_now unless balance_available?(amount_cents)
+      SystemMailer.no_funds(amount_cents).deliver_now unless balance_available?(amount_cents) or Rails.env.test?
       #puts 'Stripe is not available' unless stripe_available?
     end
   end
@@ -36,11 +36,12 @@ module Transferable
   end
 
   def store_transfer(stripe_transfer)
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transfer.balance_transaction)
+    bt_id = stripe_transfer.try(:balance_transaction)
+    balance_transaction = Stripe::BalanceTransaction.retrieve(bt_id)
 
     transfer = self.transfers.create(
       stripe_id: stripe_transfer.id,
-      balance_transaction_id: stripe_transfer.balance_transaction,
+      balance_transaction_id: bt_id,
       kind: stripe_transfer.object,
       amount_cents: stripe_transfer.amount,
       amount_currency: stripe_transfer.currency.upcase,
