@@ -4,7 +4,7 @@ class MailersController < ApplicationController
     @contact.request = request
     
     if @contact.deliver
-      redirect_to root_path, notice: 'Thank you for your message!'
+      redirect_to root_path, notice: "Thank you for your message! We'll contact you soon."
     else 
       flash[:alert] = 'There was an error when sending your message. Check your form fields.'
       render 'about/contact' 
