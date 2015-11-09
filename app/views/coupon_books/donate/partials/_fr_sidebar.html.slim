@@ -18,4 +18,4 @@
             span.glyphicon.glyphicon-envelope 
             span.clickable  #{@coupon_book.visitor_action}
           = render partial:'subscriptions/volunteer_modal', locals:{object: @coupon_book.fundraiser, fr_name: @coupon_book.fr_name, origin: @coupon_book, position:'coupon_book.volunteer'}
-        .quote = @coupon_book.mission
+        .quote.expander-250 = @coupon_book.mission
