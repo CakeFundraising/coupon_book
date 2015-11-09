@@ -41,6 +41,14 @@ $screen-xs-max: 768px;
       }
     }
     .formtastic.purchase{
+      #gift-accordion{
+        .checkbox{
+          margin-bottom: 0;
+        }
+        .panel-body{
+          border-top: 0;
+        }
+      }
       .cards{
         display: block;
         width: 58px;

@@ -167,6 +167,15 @@ class Purchase
         'purchase[cvc]':
           required: true
           cvc: "#purchase_card_number"
+        'purchase[gift_attributes][first_name]':
+          required: "#gift-checkbox:checked"
+        'purchase[gift_attributes][last_name]':
+          required: "#gift-checkbox:checked"
+        'purchase[gift_attributes][email]':
+          required: "#gift-checkbox:checked"
+        'purchase[gift_attributes][email_confirmation]':
+          required: "#gift-checkbox:checked"
+          equalTo: "#purchase_gift_attributes_email"
     )
     return
 

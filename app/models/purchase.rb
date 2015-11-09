@@ -2,6 +2,8 @@ class Purchase < ActiveRecord::Base
   belongs_to :purchasable, polymorphic: true, touch: true
   has_one :charge, as: :chargeable, dependent: :destroy
 
+  has_one :gift, dependent: :destroy
+
   has_many :commissions, dependent: :destroy
   has_many :vouchers, dependent: :destroy
 
@@ -11,6 +13,7 @@ class Purchase < ActiveRecord::Base
 
   monetize :amount_cents
 
+  accepts_nested_attributes_for :gift, reject_if: :all_blank
   accepts_nested_attributes_for :commissions, reject_if: :all_blank
 
   validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true

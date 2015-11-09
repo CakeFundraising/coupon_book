@@ -121,7 +121,9 @@ en:
       #coupons: "You get <span class='boldest'>all %{count}</span> deals donated by the <span class='boldest'>Restaurants & Merchants below!</span>"
       coupons: "Get <span class='boldest'>all %{count}</span> deal vouchers via email instantly! Print at home or use on your phone.</span>"
       categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
-      we_will_email: "* Your digital <span class='bolder'>Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."
+      we_will_email: "* Your <span class='bolder'>Digital Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."
+      gift_email: "* We'll email this <span class='bolder'> Digital Deal Book</span> from EatsforGood.com to your friend's email address you provide above and a copy to you."
+      gift_desc: "Provide your friend's personal information:"
   activerecord: 
     models:
       coupon:

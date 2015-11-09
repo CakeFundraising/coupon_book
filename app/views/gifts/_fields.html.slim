@@ -1,0 +1,23 @@
+#gift-accordion.panel-group
+  .panel
+    .panel-heading.no-padding
+      h4.panel-title
+      .checkbox
+        label data-target="#collapseOne" data-toggle="collapse" 
+          input#gift-checkbox type="checkbox" Send as a gift
+    #collapseOne.panel-collapse.collapse
+      br
+      .panel-body.no-padding
+        = f.semantic_fields_for :gift, f.object.gift || f.object.build_gift do |g|
+          .row
+            .col-md-12
+              span.help-block = t('banners.coupon_book.gift_desc').html_safe
+            .col-md-6
+              = g.input :first_name, label: false, input_html:{placeholder: 'First Name'}
+              = g.input :email, label: false, input_html:{placeholder: 'Email *'}
+            .col-md-6
+              = g.input :last_name, label: false, input_html:{placeholder: 'Last Name'}
+              = g.input :email_confirmation, label: false, input_html:{placeholder: 'Confirm Email'}
+            .col-md-12
+              = g.input :comment, label: false, input_html: {rows: 3, maxlength: 140, placeholder: 'Send a message. (140 words or less - Optional)'}
+              span.help-block = t('banners.coupon_book.gift_email').html_safe
