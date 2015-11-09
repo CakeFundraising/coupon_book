@@ -253,6 +253,12 @@ ul li, ol li {
 .text-muted{
   color: #999;
 }
+.divider{
+  border-bottom: 1px solid #eee;
+  display: block;
+  height: 1px;
+  margin-bottom: 10px;
+}
 /* ---------------------------------------------------
     RESPONSIVENESS
     Nuke it from orbit. It's the only way to be sure.

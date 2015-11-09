@@ -1,12 +1,22 @@
-h2 Dear #{@purchase.first_name},
+h2 Dear #{@name},
 
-h3 Thank you for supporting #{@campaign.fr_name}!
+- if @gift.present?
+  p #{@purchaser_name} has sent you these Eats For Good vouchers as a gift!
+
+  - if @gift.comment.present?
+    p.italic "#{@gift.comment}"
+    .divider
+     
+- else
+  h3 Thank you for supporting #{@campaign.fr_name}!
 
 p
   | Your Eats For Good Deal Vouchers are attached as a PDF file. 
   | Simply download and print vouchers to redeem. 
   | Each voucher is individually numbered and may be used only one time. 
   | Please review each voucher for additional terms and conditions.
+
+p Also, you can access your Eats for Good Deal Vouchers #{link_to 'online at any time here', vouchers_purchase_url(@purchase, token: @purchase.token)}. 
 
 .share
   .box

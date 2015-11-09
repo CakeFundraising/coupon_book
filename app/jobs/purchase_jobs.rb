@@ -11,7 +11,6 @@ module ResqueSchedule
       purchase = Purchase.find purchase_id
       purchase.create_vouchers!
       VoucherMailer.send_vouchers(purchase).deliver_now
-      VoucherMailer.download_page(purchase).deliver_now
     end
   end
 
