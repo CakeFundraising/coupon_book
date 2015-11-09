@@ -11,4 +11,21 @@ h1 About Eats For Good
     h4 Eats for Good is a new platform. Our mission is to help good causes earn revenues to support their missions by helping them create real, measurable value for their donors and business partners.
     h4 Please contact #{mail_to 'joe@eatsforgood.org', 'joe@eatsforgood.org' } for more information.
 
+    hr
+    
+    .follow-us
+      h4 Follow Us
+      ul
+        li
+          = link_to t('application.social.accounts.facebook'), target: :_blank, title: 'Follow on Facebook', class:'social-buttons'
+            span.facebook
+        li
+          = link_to t('application.social.accounts.twitter'), target: :_blank, title: 'Follow on Twitter', class:'social-buttons'
+            span.twitter
+        li
+          = link_to t('application.social.accounts.linkedin'), target: :_blank, title: 'Follow on LinkedIn', class:'social-buttons'
+            span.linkedin
+        li
+          = link_to t('application.social.accounts.instagram'), target: :_blank, title: 'Follow on Instagram', class:'social-buttons'
+            span.instagram
 br

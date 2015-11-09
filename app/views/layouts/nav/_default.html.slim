@@ -1,6 +1,7 @@
 - cache :default_navbar do 
   #bs-example-navbar-collapse-1.collapse.navbar-collapse
     ul.nav.navbar-nav
+      = menu_item "How it works", about_page_path('how')
       = menu_item "About", about_page_path('efg')
       /= menu_item "Success Stories", about_page_path('success_stories')
     ul.nav-cta.navbar-right
