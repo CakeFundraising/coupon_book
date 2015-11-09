@@ -43,11 +43,14 @@ $screen-xs-max: 768px;
     .formtastic.purchase{
       #gift-accordion{
         margin-bottom: 10px;
-        .checkbox{
-          margin-bottom: 0;
-        }
-        .panel-body{
-          border-top: 0;
+        .panel{
+          box-shadow: none;
+          .panel-body{
+            border-top: 0;
+          }
+          .checkbox{
+            margin-bottom: 0;
+          }
         }
       }
       .cards{
