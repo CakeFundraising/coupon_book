@@ -205,6 +205,10 @@ CakeCouponBook::Application.routes.draw do
     patch :fingerprint
   end
 
+  namespace :mailers do
+    post :contact
+  end
+
   # Adds routes for evercookie under namespace (path)
   scope "#{Evercookie.get_namespace}" do
     # route for js file to set cookie
