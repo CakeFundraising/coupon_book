@@ -5,7 +5,7 @@
         tr
           th.col-md-7.col-sm-6 Good Cause
           th.col-md-2.col-sm-3 = AffiliateCampaign.human_attribute_name :total_raised
-          th.col-md-3.col-sm-3 = AffiliateCampaign.human_attribute_name :click_to_help!
+          th.col-md-3.col-sm-3
       tbody
         = render partial:'communities/show/affiliates/row', collection: campaigns, as: :campaign
 - else
