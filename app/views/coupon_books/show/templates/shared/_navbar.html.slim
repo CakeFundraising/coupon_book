@@ -13,9 +13,9 @@
               span.icon-bar
         .collapse.navbar-collapse
           ul.nav.navbar-nav.navbar-left
-            li = how_efg_works_link(' See how it works')
+            = menu_item "How it works", about_page_path('how')
+            = menu_item "About", about_page_path('about')
           ul.nav.navbar-nav.navbar-right
-            li = join_mail_list
             li = book_page_top_share
 
 .row-fluid
