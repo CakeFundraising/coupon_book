@@ -1,11 +1,11 @@
 tr.campaign
-  td.col-md-8.col-sm-6 data-title="Group"
+  td.col-md-7.col-sm-6 data-title="Group"
     = link_to campaign, data: {no_turbolink: true} do
       = campaign.affiliate_name
-  td.col-md-2.col-sm-4 data-title=(AffiliateCampaign.human_attribute_name :total_raised)
+  td.col-md-2.col-sm-3 data-title=(AffiliateCampaign.human_attribute_name :total_raised)
     = campaign.current_sales
-  td.col-md-2.col-sm-2 data-title=(AffiliateCampaign.human_attribute_name :about_us)
-    = link_to 'Donate', campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true}, class: 'btn btn-sm btn-success'
+  td.col-md-3.col-sm-3 data-title=(AffiliateCampaign.human_attribute_name :about_us)
+    = link_to "Give #{@coupon_book.price}+", campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true}, class: 'btn btn-sm btn-success'
     = link_to campaign.url, target: :_blank, class:'affiliate-website gray' do
       span.glyphicon.glyphicon-globe
 tr.empty-tr
