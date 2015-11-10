@@ -65,6 +65,10 @@ class Purchase < ActiveRecord::Base
     self.community.touch if self.purchasable.is_a?(AffiliateCampaign) # Clear Community sales cache
   end
 
+  def gift?
+    gift.present?
+  end
+
   private
 
   def stripe_charge_card

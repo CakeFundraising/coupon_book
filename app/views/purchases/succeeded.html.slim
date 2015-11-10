@@ -2,8 +2,14 @@
   .col-md-12.text-center
     h1 Thank You #{@purchase.first_name}!
 
-    h3.black Your Deal Vouchers were emailed to: 
-    h2.blue-color = @purchase.email
+    - if @purchase.gift?
+      h3.black Your Gift Deal Vouchers were emailed to 
+      h2.blue-color = @purchase.gift.email
+      h3.black  and a copy was emailed to you at 
+      h2.blue-color = @purchase.email
+    - else
+      h3.black Your Deal Vouchers were emailed to: 
+      h2.blue-color = @purchase.email
 .row
   .col-md-5.text-center.divider-vert
     hr

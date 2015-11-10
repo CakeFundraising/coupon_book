@@ -8,9 +8,16 @@
       .modal-body
         .row
           .col-md-12.text-center
-            .email
-              span Your Deal Vouchers were emailed to: 
-              strong = params[:email]
+            - if params[:gift]
+              .email
+                span Your Gift Deal Vouchers were emailed to 
+                strong = params[:gifts_email]
+                span  and a copy was emailed to you at 
+                strong = params[:buyers_email]
+            - else
+              .email
+                span Your Deal Vouchers were emailed to: 
+                strong = params[:email]
             .share
               h3 Keep the positive energy going!
 
