@@ -30,7 +30,7 @@ module AffiliateCampaignTemplateController
   # end
 
   def join
-    @campaign = campaign_with_account_data.decorate
+    @campaign = campaign_with_account_data
     render 'affiliate_campaigns/template/join'
   end
 
