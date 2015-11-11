@@ -21,6 +21,7 @@ class PrBoxDecorator < ApplicationDecorator
     end
   end
 
+  #Pics
   def main_pic(options={})
     pic = object.picture
 
