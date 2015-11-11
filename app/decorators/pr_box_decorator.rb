@@ -20,4 +20,19 @@ class PrBoxDecorator < ApplicationDecorator
       (object.url=~/^https?:\/\//).nil? ? "http://#{object.url}" : object.url
     end
   end
+
+  def main_pic(options={})
+    pic = object.picture
+
+    if pic.avatar.present?
+      classes = options.key?(:no_classes) ? '' : 'img-thumbnail img-responsive img-loaded'
+      transformations = [
+        {crop: :crop, width: pic.avatar_crop_w, height: pic.avatar_crop_h, x: pic.avatar_crop_x, y: pic.avatar_crop_y},
+        :coupon_rectangle_main
+      ]
+      h.cl_image_tag(pic.avatar, sign_url: true, transformation: transformations, quality: :jpegmini, class: classes)
+    else
+      h.image_tag 'placeholder_avatar.png', class: 'img-thumbnail img-responsive img-default-avatar'
+    end
+  end
 end

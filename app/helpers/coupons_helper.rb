@@ -1,10 +1,10 @@
 module CouponsHelper
   def coupon_pic(coupon)
     if coupon.url.nil?
-      coupon.picture.avatar
+      coupon.main_pic
     else
       # Link with rollover
-      picture_rollover(coupon.picture.avatar, click_coupon_path(coupon, url: coupon.url)) do
+      picture_rollover(coupon.main_pic, click_coupon_path(coupon, url: coupon.url)) do
         content_tag(:div, 'Click to learn more') + content_tag(:div, 'about this offer!')
       end
     end
@@ -18,13 +18,13 @@ module CouponsHelper
   end
 
   def coupon_sp_pic(coupon)
-    picture_rollover(coupon.avatar_picture.uri, click_coupon_path(coupon, url: coupon.url)) do
+    picture_rollover(coupon.sp_pic, click_coupon_path(coupon, url: coupon.url)) do
       content_tag(:div, 'Visit our') + content_tag(:div, 'website!')
     end
   end
 
   def coupon_see_all_pic(coupon)
-    picture_ajax_rollover(coupon.avatar_picture.uri) do
+    picture_ajax_rollover(coupon.sp_pic) do
       link_to('#!', class:'expand see-more-box') do
         content_tag(:div, 'See all') + content_tag(:div, 'Deals')
       end
