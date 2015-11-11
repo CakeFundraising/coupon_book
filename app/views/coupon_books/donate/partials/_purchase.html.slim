@@ -1,6 +1,6 @@
-li
-  span.date.pull-right = purchase.created_at
-  span.amount = purchase.amount
-  span.user = purchase.user
-  - if purchase.comment.present?
+- cache [:sidebar, :purchase, purchase] do
+  li
+    span.date.pull-right = purchase.created_at
+    span.amount = purchase.amount
+    span.user = purchase.user
     .text-muted = purchase.comment
