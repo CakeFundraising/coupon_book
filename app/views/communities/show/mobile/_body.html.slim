@@ -16,29 +16,30 @@
             span.boldest = @coupon_book.goal
 
     .col-md-12.col-xs-12
-      #icons.row-fluid.text-center
-        .col-xs-12.help.head-col.no-padding
-          .link.pull-left
-            = content_tag(:a) do
-              span.number 1
-              span.word Choose
-          .text.pull-right Your favorite group
-        .col-xs-12.give.head-col.no-padding
-          .link.pull-left
-            = content_tag(:a) do
-              span.number 2
-              span.word Give
-          .text.pull-right
-            span As little as 
-            span.bolder = @coupon_book.price
-        .col-xs-12.get.head-col.no-padding
-          .link.pull-left
-            = content_tag(:a, href:"#coupons") do
-              span.number 3
-              span.word Receive
-          .text.pull-right
-            span #{@coupon_book.coupons.count} Deals via email
-            div Save #{@coupon_book.no_discount_price} instantly!
+      - cache [:templates, :mobile, :community, :body, :icons, @coupon_book] do
+        #icons.row-fluid.text-center
+          .col-xs-12.help.head-col.no-padding
+            .link.pull-left
+              = content_tag(:a) do
+                span.number 1
+                span.word Choose
+            .text.pull-right Your favorite group
+          .col-xs-12.give.head-col.no-padding
+            .link.pull-left
+              = content_tag(:a) do
+                span.number 2
+                span.word Give
+            .text.pull-right
+              span As little as 
+              span.bolder = @coupon_book.price
+          .col-xs-12.get.head-col.no-padding
+            .link.pull-left
+              = content_tag(:a, href:"#coupons") do
+                span.number 3
+                span.word Receive
+            .text.pull-right
+              span #{@coupon_book.coupons.count} Deals via email
+              div Save #{@coupon_book.no_discount_price} instantly!
       ul#affiliates.row-fluid.no-list
         = render partial:'communities/show/affiliates/list/item', collection: @affiliate_campaigns, as: :campaign
 

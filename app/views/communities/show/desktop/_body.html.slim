@@ -2,29 +2,30 @@
   .row
     .col-md-8.col-sm-8
       .sidebar
-        #icons.row-fluid.text-center
-          .col-md-4.col-sm-4.help.head-col
-            .link
-              = content_tag(:a) do
-                span.number 1
-                span.word Choose
-            .text Your favorite group
-          .col-md-4.col-sm-4.give.head-col
-            .link
-              = content_tag(:a) do
-                span.number 2
-                span.word Give
-            .text
-              span As little as 
-              span.bolder = @coupon_book.price
-          .col-md-4.col-sm-4.get.head-col
-            .link
-              = content_tag(:a, href:"#coupons") do
-                span.number 3
-                span.word Receive
-            .text
-              span #{@coupon_book.coupons.count} Deals via email
-              div Save #{@coupon_book.no_discount_price} instantly!
+        - cache [:community, :body, :icons, @coupon_book] do
+          #icons.row-fluid.text-center
+            .col-md-4.col-sm-4.help.head-col
+              .link
+                = content_tag(:a) do
+                  span.number 1
+                  span.word Choose
+              .text Your favorite group
+            .col-md-4.col-sm-4.give.head-col
+              .link
+                = content_tag(:a) do
+                  span.number 2
+                  span.word Give
+              .text
+                span As little as 
+                span.bolder = @coupon_book.price
+            .col-md-4.col-sm-4.get.head-col
+              .link
+                = content_tag(:a, href:"#coupons") do
+                  span.number 3
+                  span.word Receive
+              .text
+                span #{@coupon_book.coupons.count} Deals via email
+                div Save #{@coupon_book.no_discount_price} instantly!
         #affiliates.row-fluid
           = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
 

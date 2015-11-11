@@ -53,6 +53,6 @@ class VoucherMailer < ApplicationMailer
       }
     )
       
-    mail(to: purchase.email, subject: "Thank you from Baltimore Eats for Good!")
+    mail(to: purchase.email, subject: "Thank you from Eats for Good!")
   end
 end
