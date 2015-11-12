@@ -101,5 +101,6 @@ CakeCouponBook.coupon_books.templates.commercial = ->
   categoriesNav()
   seeAll()
   CakeCouponBook.subscriptors.validation()
+  CakeCouponBook.consumers.validation()
   #CakeCouponBook.impressions.rendered(impression_id)
   return

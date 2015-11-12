@@ -23,5 +23,6 @@
 
 //= require ./models/browsers
 //= require ./models/subscriptors
+//= require ./models/consumers
 //= require ./models/videos
 //= require ./models/parallax

@@ -36,6 +36,8 @@ CakeCouponBook.media_affiliates.validation = ->
         required: true
       'media_affiliate[location_attributes][zip_code]': 
         required: true
+        minlength: 5
+        maxlength: 5
       'media_affiliate[location_attributes][state_code]': 
         required: true
   )

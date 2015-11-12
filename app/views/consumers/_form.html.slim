@@ -1,0 +1,16 @@
+= semantic_form_for Consumer.new(origin: origin) do |f|
+  = f.actions do
+    .row
+      .col-md-6
+        = f.input :first_name, input_html: {placeholder: 'First Name'}, label: false
+      .col-md-6
+        = f.input :last_name, input_html: {placeholder: 'Last Name'}, label: false
+    .row
+      .col-md-6
+        = f.input :email, input_html: {placeholder: 'Email'}, label: false
+      .col-md-6
+        = f.input :zip_code, input_html: {placeholder: 'Zip Code'}, label: false
+    = f.input :origin_id, as: :hidden
+    = f.input :origin_type, as: :hidden
+  = f.actions do
+    = f.action :submit, label: 'Submit', button_html: {class: 'btn btn-success btn-lg'}

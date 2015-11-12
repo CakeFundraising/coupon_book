@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109145307) do
+ActiveRecord::Schema.define(version: 20151112150501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,6 +173,19 @@ ActiveRecord::Schema.define(version: 20151109145307) do
     t.string   "screenshot_url"
     t.string   "screenshot_version"
   end
+
+  create_table "consumers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "zip_code"
+    t.integer  "origin_id"
+    t.string   "origin_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "consumers", ["origin_type", "origin_id"], name: "index_consumers_on_origin_type_and_origin_id", using: :btree
 
   create_table "coupon_books", force: :cascade do |t|
     t.datetime "created_at"

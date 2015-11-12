@@ -38,6 +38,8 @@ CakeCouponBook.fundraisers.validation = ->
         required: true
       'fundraiser[location_attributes][zip_code]': 
         required: true
+        minlength: 5
+        maxlength: 5
       'fundraiser[location_attributes][state_code]': 
         required: true
   )

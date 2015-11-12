@@ -1,5 +1,14 @@
 class CampaignMailer < ApplicationMailer
 
+  def campaign_launched(campaign_id)
+    @coupon_book = CouponBook.find(campaign_id)
+    @campaign = (@coupon_book.community || @coupon_book).decorate
+
+    emails = @coupon_book.consumers.map(&:email).join(',')
+
+    mail(to: emails, subject: "Eats For Good Campaign has launched! Check it out!")
+  end
+
   def campaign_ended(campaign_id)
     @coupon_book = find_coupon_book(campaign_id)
     @fundraiser = @coupon_book.fundraiser

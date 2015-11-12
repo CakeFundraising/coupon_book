@@ -59,12 +59,12 @@
 //= require ./models/affiliate_campaigns
 //= require ./models/affiliates
 //= require ./models/browsers
-//= require ./models/fundraisers
 //= require ./models/categories
 //= require ./models/collections
 //= require ./models/communities
 //= require ./models/coupons
 //= require ./models/direct_donations
+//= require ./models/fundraisers
 //= require ./models/media_affiliate_campaigns
 //= require ./models/media_affiliates
 //= require ./models/merchants

@@ -38,6 +38,8 @@ CakeCouponBook.merchants.validation = ->
         required: true
       'merchant[location_attributes][zip_code]': 
         required: true
+        minlength: 5
+        maxlength: 5
       'merchant[location_attributes][state_code]': 
         required: true
   )

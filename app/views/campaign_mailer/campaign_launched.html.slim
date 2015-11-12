@@ -1,0 +1,9 @@
+h2 Hi there!
+
+p #{@campaign} is live at Eats For Good! 
+
+p = link_to 'See Campaign', polymorphic_url(@campaign), class:'btn btn-primary share-link'
+
+p Now you can enjoy #{@campaign.no_discount_price} on deals for just #{@campaign.price}, and help #{@campaign.fr_name} at the same time! 
+
+p Get rewarded for doing good!

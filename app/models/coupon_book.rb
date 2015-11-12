@@ -8,6 +8,7 @@ class CouponBook < ActiveRecord::Base
   include VisitorActions
   include Templatable
   include Transferable
+  include Consumerable
   include Analytics
   extend FriendlyId
 
@@ -144,6 +145,7 @@ class CouponBook < ActiveRecord::Base
     #notify_launch if self.launched! and self.update_attribute(:visible, true)
     self.launched!
     self.update_attribute(:visible, true)
+    Resque.enqueue(ResqueSchedule::NotifyLaunch, self.id)
   end
 
   def notify_launch

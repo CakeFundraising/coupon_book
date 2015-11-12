@@ -48,4 +48,17 @@ module ResqueSchedule
       Community.find(community_id).update_screenshot(url)
     end
   end
+
+  class NotifyLaunch
+    extend Resque::Plugins::Retry
+    @queue = :high
+
+    @retry_limit = 3
+    @retry_delay = 60
+
+    def self.perform(book_id)
+      CouponBook.find(book_id).notify_launch_consumers
+    end
+  end
+
 end

@@ -84,5 +84,6 @@ CakeCouponBook.coupon_books.templates.original = (end_date, impression_id)->
   backToTop()
   categoriesNav()
   CakeCouponBook.subscriptors.validation()
+  CakeCouponBook.consumers.validation()
   #CakeCouponBook.impressions.rendered(impression_id)
   return

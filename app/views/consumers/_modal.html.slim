@@ -1,0 +1,12 @@
+#consumer-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-label="Close" data-dismiss="modal" type="button" 
+          span aria-hidden="true"  &times;
+        h4.modal-title Get updates about #{origin}
+      .modal-body
+        = render partial:'consumers/form', locals:{origin: origin}
+    /! /.modal-content
+  /! /.modal-dialog
+/! /.modal

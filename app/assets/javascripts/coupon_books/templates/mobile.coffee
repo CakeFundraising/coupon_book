@@ -43,6 +43,7 @@ seeMore = ->
 CakeCouponBook.coupon_books.mobileShow = ->
   toggleNav()
   CakeCouponBook.subscriptors.validation()
+  CakeCouponBook.consumers.validation()
   showBuyButton()
   seeMore()
   return

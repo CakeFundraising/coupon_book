@@ -205,6 +205,8 @@ CakeCouponBook::Application.routes.draw do
     patch :fingerprint
   end
 
+  resources :consumers, only: :create
+
   namespace :mailers do
     post :contact
   end
