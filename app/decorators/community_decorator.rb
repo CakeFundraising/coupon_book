@@ -2,7 +2,7 @@ class CommunityDecorator < ApplicationDecorator
   delegate_all
   decorates_association :coupon_book
 
-  delegate :no_discount_price, :price, :to_s, to: :coupon_book
+  delegate :no_discount_price, :price, :to_s, :fr_name, to: :coupon_book
 
   def titleized_slug
     object.slug.titleize

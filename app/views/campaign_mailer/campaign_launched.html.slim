@@ -1,9 +1,16 @@
-h2 Hi there!
+h2 Hi #{@consumer.first_name || 'there'}!
 
 p #{@campaign} is live at Eats For Good! 
 
 p = link_to 'See Campaign', polymorphic_url(@campaign), class:'btn btn-primary share-link'
 
-p Now you can enjoy #{@campaign.no_discount_price} on deals for just #{@campaign.price}, and help #{@campaign.fr_name} at the same time! 
+p 
+  span Now you can save 
+  strong = @campaign.no_discount_price
+  span  on deals for just 
+  strong = @campaign.price
+  span , and help 
+  strong = @campaign.fr_name
+  span  at the same time! 
 
 p Get rewarded for doing good!
