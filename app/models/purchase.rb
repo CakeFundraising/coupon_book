@@ -7,8 +7,6 @@ class Purchase < ActiveRecord::Base
   has_many :commissions, dependent: :destroy
   has_many :vouchers, dependent: :destroy
 
-  delegate :community, to: :purchasable
-
   attr_accessor :card_number, :exp_month, :exp_year, :cvc, :email_confirmation
 
   monetize :amount_cents
@@ -16,10 +14,11 @@ class Purchase < ActiveRecord::Base
   accepts_nested_attributes_for :gift, reject_if: proc {|attrs| attrs.any?{|k,v| v.blank?} }
   accepts_nested_attributes_for :commissions, reject_if: :all_blank
 
-  validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true
+  validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount_cents, :email, :token, presence: true
 
   scope :latest, ->{ order('purchases.created_at DESC') }
 
+  delegate :community, to: :purchasable
   delegate :net_amount, :net_amount_cents, to: :charge
 
   before_validation :stripe_charge_card
@@ -94,13 +93,21 @@ class Purchase < ActiveRecord::Base
     end
   end
 
+  def stripe_fee_cents(amount_cents)
+    (amount_cents*(CakeCouponBook::STRIPE_FEE/100)).round + 30
+  end
+
   def application_fee
     percentage = (self.purchasable.fee_percentage/100)
     (self.amount_cents*percentage).round
   end
 
-  def store_transaction(stripe_transaction) 
-    balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
+  def store_transaction(stripe_transaction)
+    if Rails.env.test?
+      balance_transaction = OpenStruct.new(fee: stripe_fee_cents(stripe_transaction.amount), fee_details:[{amount: stripe_fee_cents(stripe_transaction.amount), application: application_fee}])
+    else
+      balance_transaction = Stripe::BalanceTransaction.retrieve(stripe_transaction.balance_transaction)
+    end
 
     self.build_charge(
       stripe_id: stripe_transaction.id,

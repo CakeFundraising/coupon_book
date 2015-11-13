@@ -11,10 +11,10 @@ class Voucher < ActiveRecord::Base
   delegate :coupon, :coupon_book, to: :categories_coupon
   delegate :multiple_locations, :custom_terms, to: :coupon
 
-  validates :number, :expires_at, :categories_coupon_id, :purchase_id, presence: true
-  validates :number, uniqueness: true
+  validates :expires_at, :categories_coupon_id, :purchase_id, presence: true
+  validates :number, uniqueness: true, if: :persisted?
 
-  after_initialize :set_number
+  before_save :set_number
 
   scope :expired, ->{ where("expires_at <= ?", Time.zone.now) }
   scope :not_expired, ->{ where("expires_at > ?", Time.zone.now) }

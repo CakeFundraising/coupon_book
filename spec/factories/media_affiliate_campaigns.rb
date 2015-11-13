@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :media_affiliate_campaign do
-    use_stripe false
-recipient_name "MyString"
-media_affiliate_id 1
-community_id 1
+    recipient_name { Faker::Name.name }
+    commission_percentage { rand(0..50) }
+    media_affiliate
+    community
   end
 
 end

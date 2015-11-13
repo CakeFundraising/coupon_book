@@ -2,10 +2,14 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
 require 'capybara/rspec'
 require 'simplecov'
 require 'shoulda/matchers'
 require 'webmock/rspec'
+require 'cancan/matchers'
+require 'money-rails/test_helpers'
+require 'sunspot_test/rspec'
 
 SimpleCov.start 'rails'
 
@@ -56,6 +60,13 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.include Devise::TestHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
+  config.include UserMacros
+  config.include FactoryHelpers
+  config.include FactoryGirl::Syntax::Methods
+  config.include MoneyRails::TestHelpers
+
   config.before(:suite) do
     DatabaseCleaner.clean_with :truncation
     WebMock.disable_net_connect!(allow_localhost: true)
@@ -79,12 +90,12 @@ RSpec.configure do |config|
   config.before(:each, ohm: true) do
     DatabaseCleaner.strategy = :truncation
   end
-  
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
 
-  # config.after(:each) do
-  #   DatabaseCleaner.clean
-  # end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
 end
