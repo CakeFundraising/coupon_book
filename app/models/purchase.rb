@@ -13,7 +13,7 @@ class Purchase < ActiveRecord::Base
 
   monetize :amount_cents
 
-  accepts_nested_attributes_for :gift, reject_if: :all_blank
+  accepts_nested_attributes_for :gift, reject_if: proc {|attrs| attrs.any?{|k,v| v.blank?} }
   accepts_nested_attributes_for :commissions, reject_if: :all_blank
 
   validates :first_name, :last_name, :zip_code, :purchasable, :card_token, :amount, :email, :token, presence: true

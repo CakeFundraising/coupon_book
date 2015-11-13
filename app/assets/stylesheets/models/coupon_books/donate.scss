@@ -41,6 +41,10 @@ $screen-xs-max: 768px;
       }
     }
     .formtastic.purchase{
+      .gift-title{
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
       #gift-accordion{
         margin-bottom: 10px;
         .panel{

@@ -14,12 +14,17 @@
           .row
             .col-md-12
               span.help-block = t('banners.coupon_book.gift_desc').html_safe
+          .row
             .col-md-6
               = g.input :first_name, label: false, input_html:{placeholder: 'First Name'}
+            .col-md-6
               = g.input :last_name, label: false, input_html:{placeholder: 'Last Name'}
+          .row
             .col-md-6
               = g.input :email, label: false, input_html:{placeholder: 'Email *'}
+            .col-md-6
               = g.input :email_confirmation, label: false, input_html:{placeholder: 'Confirm Email'}
+          .row
             .col-md-12
               = g.input :comment, label: false, input_html: {rows: 3, maxlength: 140, placeholder: 'Send a message. (140 words or less - Optional)'}
               span.help-block = t('banners.coupon_book.gift_email').html_safe
