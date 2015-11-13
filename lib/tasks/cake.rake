@@ -23,7 +23,6 @@ namespace :cake do
     end
   end
 
-
   # https://dl.dropboxusercontent.com/s/as25m053o66j1iy/Test%20Contacts.xlsx?dl=0
   desc "Create and send vouchers given remote contacts file"
   task :send_vouchers, [:book_id, :file_url] => [:environment] do |t, args|
@@ -46,6 +45,17 @@ namespace :cake do
         )
         Resque.enqueue(ResqueSchedule::SendFreeVoucher, purchase.id)
       end
+    end
+  end
+
+  desc "Update all books screenshots"
+  task remove_coupon_duplicates: :environment do
+    query = CategoriesCoupon.select(:coupon_id).group(:coupon_id, :category_id).having("count(*) > 1").count
+
+    query.each do |cc|
+      count = cc.last
+      doubles = CategoriesCoupon.where(coupon_id: cc.first.first, category_id: cc.first.last).first(count-1)
+      doubles.each(&:destroy)
     end
   end
 

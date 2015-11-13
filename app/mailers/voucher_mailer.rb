@@ -1,18 +1,4 @@
 class VoucherMailer < ApplicationMailer
-  # def download_page(purchase)
-  #   @purchase = purchase.decorate
-  #   @campaign = @purchase.purchasable.decorate
-  #   gift = purchase.gift
-
-  #   if gift.nil?
-  #     @name = @purchase.first_name
-  #     mail(to: purchase.email, subject: "Download your deal vouchers from #{@campaign.owner_name}")
-  #   else
-  #     @name = gift.first_name
-  #     mail(to: gift.email, cc: purchase.email, subject: "Download your deal vouchers from #{@campaign.owner_name}")
-  #   end
-  # end
-
   def send_vouchers(purchase)
     @purchase = purchase.decorate
     @campaign = @purchase.purchasable.decorate
