@@ -11,7 +11,8 @@ module ResqueSchedule
       purchase = Purchase.find purchase_id
       purchase.update_purchasable_raised!
       purchase.create_vouchers!
-      VoucherMailer.send_vouchers(purchase).deliver_now
+
+      VoucherMailer.send_vouchers(purchase).deliver_now if purchase.should_notify
     end
   end
 

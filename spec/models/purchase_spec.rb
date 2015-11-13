@@ -33,7 +33,7 @@ RSpec.describe Purchase, type: :model do
         purchase = FactoryGirl.build(:purchase, purchasable: coupon_book)
 
         expect{
-          purchase.save
+          purchase.update_purchasable_raised!
         }.to change{ coupon_book.raised_cents }.by(purchase.amount_cents)
       end
 
@@ -43,7 +43,7 @@ RSpec.describe Purchase, type: :model do
         purchase = FactoryGirl.build(:purchase, purchasable: coupon_book)
 
         expect{
-          purchase.save
+          purchase.update_purchasable_raised!
         }.to_not change{ community.updated_at }
       end
 
@@ -52,7 +52,7 @@ RSpec.describe Purchase, type: :model do
         purchase = FactoryGirl.build(:purchase, purchasable: affiliate_campaign)
 
         expect{
-          purchase.save
+          purchase.update_purchasable_raised!
         }.to change{ affiliate_campaign.raised_cents }.by(purchase.amount_cents)
       end
 
@@ -61,7 +61,7 @@ RSpec.describe Purchase, type: :model do
         purchase = FactoryGirl.build(:purchase, purchasable: affiliate_campaign)
 
         expect{
-          purchase.save
+          purchase.update_purchasable_raised!
         }.to change{ affiliate_campaign.community.updated_at }
       end
     end #End-update_purchasable_raised!
@@ -94,6 +94,7 @@ RSpec.describe Purchase, type: :model do
         expect(coupon_book.coupons.count).to eql(coupon_book.vouchers.count)
       end
     end
+
   end
 
   describe "Charge" do
@@ -148,14 +149,6 @@ RSpec.describe Purchase, type: :model do
 
           expect(commission.amount_cents).to equal(purchase.net_amount_cents)
           expect(commission.percentage).to equal(100)
-        end
-
-        it 'should update CouponBook raised amount attribute' do
-          coupon_book = FactoryGirl.create(:coupon_book)
-
-          expect(coupon_book.raised_cents).to equal(0)
-          purchase = FactoryGirl.create(:purchase, purchasable: coupon_book)
-          expect(coupon_book.raised_cents).to equal(purchase.amount_cents)
         end
       end
 

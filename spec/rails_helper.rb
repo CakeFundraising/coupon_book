@@ -2,7 +2,8 @@
 ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f} #Require Support
+Dir[File.expand_path(File.join(Rails.root,'app','jobs','**','*.rb'))].each {|f| require f} #Require Jobs
 require 'capybara/rspec'
 require 'simplecov'
 require 'shoulda/matchers'

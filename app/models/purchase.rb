@@ -29,7 +29,7 @@ class Purchase < ActiveRecord::Base
 
   after_create do
     self.create_fr_commission!
-    Resque.enqueue(ResqueSchedule::AfterPurchase, self.id) if self.should_notify
+    Resque.enqueue(ResqueSchedule::AfterPurchase, self.id)
   end
 
   def create_vouchers!
