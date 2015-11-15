@@ -1,6 +1,6 @@
 tr.campaign
   td.col-md-7.col-sm-6 data-title="Group"
-    = link_to campaign, data: {no_turbolink: true} do
+    = link_to campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true} do
       = campaign.affiliate_name
   td.col-md-2.col-sm-3 data-title=(AffiliateCampaign.human_attribute_name :total_raised)
     = campaign.current_sales

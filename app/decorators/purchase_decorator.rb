@@ -29,6 +29,6 @@ class PurchaseDecorator < ApplicationDecorator
   end
 
   def created_at
-    h.time_ago_in_words(object.created_at, include_seconds: true)
+    h.timeago_tag(object.created_at)
   end
 end

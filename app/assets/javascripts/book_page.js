@@ -3,6 +3,7 @@
 //= require jquery.validate
 //= require turbolinks
 //= require bootstrap
+//= require rails-timeago
 
 //= require ./vendor/jquery.countdown.min
 //= require ./vendor/jquery.expander.min

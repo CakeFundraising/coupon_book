@@ -8,4 +8,4 @@ li.affiliate-campaign
         .col-xs-5.no-padding
           .raised = campaign.current_sales
         .col-xs-7.no-padding
-          .donate = link_to 'Donate', campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true}, class: 'btn btn-sm btn-success'
+          .donate = link_to "Give #{@coupon_book.price}+", campaign.give_path({fcp: 1}.merge(request.query_parameters)), data: {no_turbolink: true}, class: 'btn btn-sm btn-success'

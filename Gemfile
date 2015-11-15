@@ -21,6 +21,7 @@ gem 'font_assets'
 gem 'browserify-rails'
 
 #JS
+gem 'rails-timeago'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 
 #Views
