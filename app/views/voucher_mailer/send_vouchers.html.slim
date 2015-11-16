@@ -22,7 +22,7 @@ p Also, you may redeem your Eats for Good Deal Vouchers with your phone through 
   .box
     h3 Keep the positive energy going!
 
-    p = link_to 'Share on Facebook', fb_share_dialog_url(polymorphic_url(@campaign, l_source: :email)), class:'btn btn-primary share-link'
+    p = link_to 'Share on Facebook', fb_share_url(polymorphic_url(@campaign, l_source: :email)), class:'btn btn-primary share-link'
 
     p 
       span Sharing on Facebook is the  
