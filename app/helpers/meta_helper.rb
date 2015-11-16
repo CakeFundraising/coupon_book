@@ -99,4 +99,9 @@ module MetaHelper
     end
   end
 
+  def fb_share_dialog_url(url)
+    params = {app_id: ENV['FB_APP_ID'], href: url, redirect_uri: url, display: 'popup'}.to_param
+    "https://www.facebook.com/dialog/share?#{params}"
+  end
+
 end
