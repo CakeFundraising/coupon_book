@@ -1,4 +1,6 @@
 class VoucherMailer < ApplicationMailer
+  helper :meta
+
   def send_vouchers(purchase)
     @purchase = purchase.decorate
     @campaign = @purchase.purchasable.decorate
