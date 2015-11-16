@@ -58,4 +58,8 @@ class AffiliateCampaignDecorator < ApplicationDecorator
   def visitor_url
     url
   end
+
+  def avatar_pic_path
+    object.avatar_picture.present? ? avatar_picture.uri_path : coupon_book.picture.avatar_path
+  end
 end
