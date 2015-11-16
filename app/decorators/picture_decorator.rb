@@ -51,6 +51,18 @@ class PictureDecorator < ApplicationDecorator
     end
   end
 
+  def mobile_banner_path
+    if object.banner.present?
+      transformations = [
+        {crop: :crop, width: object.banner_crop_w, height: object.banner_crop_h, x: object.banner_crop_x, y: object.banner_crop_y},
+        :banner_mobile
+      ]
+      h.cl_image_path(object.banner, sign_url: true, transformation: transformations, quality: :jpegmini)
+    else
+      h.image_path 'placeholder_banner.png', class: 'img-thumbnail img-responsive'
+    end
+  end
+
   def qrcode_path(options={})
     if object.qrcode.present?
       options = {crop: :crop, width: object.qrcode_crop_w, height: object.qrcode_crop_h, x: object.qrcode_crop_x, y: object.qrcode_crop_y, quality: :jpegmini, sign_url: true}.merge options
