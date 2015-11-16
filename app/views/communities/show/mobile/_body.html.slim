@@ -14,6 +14,9 @@
             span.boldest.raised = @community.total_sales
           span.pull-right
             span.boldest = @coupon_book.goal
+      
+      .see-how.pull-right
+        = link_to 'How it works?', about_page_path('donor')
 
     .col-md-12.col-xs-12
       - cache [:templates, :mobile, :community, :body, :icons, @coupon_book] do

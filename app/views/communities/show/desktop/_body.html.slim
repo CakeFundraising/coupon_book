@@ -52,6 +52,9 @@
             span  Deals! Save 
             span.boldest #{@coupon_book.no_discount_price}!
 
+        .see-how
+          = link_to 'How it works?', about_page_path('donor'), target: :_blank
+
       - if @purchases.any?
         br
         #purchases.sidebar
