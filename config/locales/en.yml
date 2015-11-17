@@ -112,6 +112,7 @@ en:
   banners:
     coupon_book:
       header:
+        desktop: "Support <span class='boldest'>%{fr}!</span>"
         mobile:
           shared:
             first: "<div class='first'>Support <a href='#learn-more-banner'><span class='boldest'>%{fr}!</span></a></div>"

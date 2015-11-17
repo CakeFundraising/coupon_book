@@ -15,13 +15,10 @@
             .col-md-12.text-center
               .book-nav-help
                 = book_load_all_deals(@coupon_book)
-          br
-          .row-fluid
-            .col-md-12.text-center
-              .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
+              br
       .col-md-4
         .sidebar
-          = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
+          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
 
           .thermometer
             .progress.campaign-thermometer
@@ -33,7 +30,7 @@
               span.pull-right
                 span.boldest = @coupon_book.goal
 
-          = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
+          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
 
         - if @purchases.any?
           br
@@ -42,25 +39,3 @@
             ul.no-list
               = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase
 
-/ .container
-/   .row
-/     .col-md-9.padding-right-out
-/       .benefit
-/         span Proceeds benefit 
-/         span.boldest = link_to "#{@affiliate_campaign.organization_name}!", @affiliate_campaign.url, target: :_blank
-/     .col-md-3.col-sm-3.padding-left-out
-/       .donate-save.bolder.text-right
-/         div Donate #{@coupon_book.price} or more
-/         div Save #{@coupon_book.no_discount_price} instantly!
-
-/ .row-fluid
-/   .container
-/     #remote-items.tab-content
-/       = render partial:'categories/show/book_tab', collection: @categories, as: :category
-/       br
-/       .row-fluid.clear
-/         .col-md-12.text-center
-/           .book-nav-help
-/             = book_load_all_deals(@coupon_book)
-/           br
-    
