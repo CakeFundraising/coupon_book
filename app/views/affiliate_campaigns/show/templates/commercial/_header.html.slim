@@ -1,5 +1,5 @@
 .parallax-window data-parallax="scroll" data-position="top center" data-image-src=(@coupon_book.picture.banner_path)
-  .top_banner.campaign-banner.commercial-banner = t('banners.coupon_book.header.desktop', fr: @affiliate_campaign.affiliate_name).html_safe
+  .top_banner.campaign-banner.commercial-banner = t('banners.coupon_book.header.desktop', fr: @coupon_book.fr_name).html_safe
   = affiliate_campaign_edit_button(@affiliate_campaign)
 
   .banner-headline

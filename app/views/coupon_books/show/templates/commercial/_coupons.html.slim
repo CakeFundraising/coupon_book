@@ -4,8 +4,8 @@
   .container
     .row
       .col-md-8
-        .book-nav
-          .top-message Support #{@affiliate_campaign.affiliate_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
+        #main-headline
+          .top-message Support #{@coupon_book.fr_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
@@ -17,17 +17,24 @@
                 = book_load_all_deals(@coupon_book)
               br
       .col-md-4
-        #campaign-performance.sidebar
-          .goal
-            h1.pull-left Goal
-            h1.pull-right = @coupon_book.goal
+        .sidebar
+          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
 
           .thermometer
             .progress.campaign-thermometer
-              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
-                span.sr-only #{@community.sales_thermometer}% Complete (success)
+              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@coupon_book.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@coupon_book.thermometer}%"
+                span.sr-only #{@coupon_book.thermometer}% Complete (success)
             .campaign-stats
               span
-                span.boldest.raised = @community.total_sales
+                span.boldest.raised = @coupon_book.current_sales
               span.pull-right
                 span.boldest = @coupon_book.goal
+
+          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_coupon_book_path(@coupon_book), 'success-transparent')
+
+        - if @purchases.any?
+          br
+          #purchases.sidebar
+            .headbar.text-center = t('titles.coupon_book.purchase_list')
+            ul.no-list
+              = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase

@@ -5,7 +5,7 @@
     .row
       .col-md-8
         #main-headline
-          .top-message Support #{@affiliate_campaign.affiliate_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
+          .top-message Support #{@coupon_book.fr_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
