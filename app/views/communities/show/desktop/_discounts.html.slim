@@ -21,7 +21,7 @@
 .row-fluid
   .container
     #remote-items.tab-content
-      = render partial:'categories/show/book_tab', collection: @categories, as: :category
+      = render partial:'categories/show/book_tab', collection: @categories, as: :category, locals:{coupon_size_class: 'col-md-4 col-sm-6'}
       br
       .row-fluid.clear
         .col-md-12.text-center
