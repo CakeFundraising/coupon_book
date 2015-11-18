@@ -4,4 +4,4 @@
       h1.category-title.text-center = category.name
 
   .row-fluid.items
-    = render partial:"coupons/show/templates/#{template}", collection: category.items, as: :coupon
+    = render customize_partial_path(category.items, "show/templates/#{template}")
