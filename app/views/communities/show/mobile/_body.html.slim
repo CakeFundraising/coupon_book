@@ -5,20 +5,6 @@
         h2.pull-left Total Donations
         h1.pull-right = @community.total_sales
 
-      / .goal
-      /   h1.pull-left Goal
-      /   h1.pull-right = @coupon_book.goal
-
-      / .thermometer
-      /   .progress.campaign-thermometer
-      /     .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
-      /       span.sr-only #{@community.sales_thermometer}% Complete (success)
-      /   .campaign-stats
-      /     span
-      /       span.boldest.raised = @community.total_sales
-      /     span.pull-right
-      /       span.boldest = @coupon_book.goal
-      
     .col-md-12.col-xs-12
       - cache [:templates, :mobile, :community, :body, :icons, @coupon_book] do
         #icons.row-fluid.text-center

@@ -2,8 +2,8 @@ class ContactMailer < MailForm::Base
   include Formats
 
   TOPICS = {
-    'justin@eatsforgood.com' => ['Fundraising and Sponsorships', 'Concern or Complaint'],
-    'joe@eatsforgood.com' => ['Press and Media', 'Investor Relations'],
+    'justin@eatsforgood.org' => ['Fundraising and Sponsorships', 'Concern or Complaint'],
+    'joe@eatsforgood.org' => ['Press and Media', 'Investor Relations'],
     'bismark64@gmail.com' => ['Technical Help and Bug Fixes']
   }
 
@@ -22,7 +22,7 @@ class ContactMailer < MailForm::Base
     {
       subject: "Contact from #{name}",
       from: 'EatsForGood.com <no-reply@eatsforgood.com>',
-      to: 'bismark64@gmail.com'
+      to: get_recipient
     }
   end  
 end
