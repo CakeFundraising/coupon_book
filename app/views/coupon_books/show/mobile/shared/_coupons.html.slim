@@ -1,18 +1,9 @@
 .row-fluid
   #campaign-performance.col-md-12.col-xs-12
-    .goal
-      h1.pull-left Goal
-      h1.pull-right = @coupon_book.goal
-
-    .thermometer
-      .progress.campaign-thermometer
-        .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@coupon_book.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@coupon_book.thermometer}%"
-          span.sr-only #{@coupon_book.thermometer}% Complete (success)
-      .campaign-stats
-        span
-          span.boldest.raised = @coupon_book.current_sales
-        span.pull-right
-          span.boldest = @coupon_book.goal
+    .total-donations
+      div Total Donations
+      h1 = @coupon_book.current_sales
+    
     .button
       = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success')
     br
