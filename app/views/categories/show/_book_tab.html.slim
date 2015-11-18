@@ -1,10 +1,1 @@
-- if category_counter.zero?
-  .tab-pane.active id="pop-#{category.name.parameterize.underscore}"
-    .col-md-12.col-sm-12
-      .row.items
-        - if defined? coupon_size_class
-          = render partial:"coupons/show/templates/#{@coupon_book.coupon_template}", collection: @discounts, as: :coupon, locals:{coupon_size_class: coupon_size_class}
-        - else
-          = render partial:"coupons/show/templates/#{@coupon_book.coupon_template}", collection: @discounts, as: :coupon, locals:{coupon_size_class: 'col-md-6 col-sm-6'}
-- else
-  .tab-pane.tab-pane-remote id="pop-#{category.name.parameterize.underscore}"
+.tab-pane.tab-pane-remote id="pop-#{category.name.parameterize.underscore}"

@@ -212,6 +212,7 @@
 .popular{
   padding-bottom: 10px;
   padding-top: 10px;
+  margin-top: 0;
   & > li{
     @media (max-width: $screen-sm-max) {
       margin: 5px;

@@ -35,7 +35,7 @@ module CouponBookHelper
   end
 
   def category_load_button(category)
-    link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}", callback:'CakeCouponBook.coupon_books.templates.dealSeeAllLink()', cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
+    link_to nil, data:{toggle: 'remoteTab', href: discounts_category_path(category), target: "#pop-#{category.name.parameterize.underscore}", callback:'CakeCouponBook.coupon_books.templates.dealSeeAllLink()', cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
       content_tag(:span, category.name)
     end
   end
