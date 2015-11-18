@@ -22,7 +22,7 @@ class ContactMailer < MailForm::Base
     {
       subject: "Contact from #{name}",
       from: 'EatsForGood.com <no-reply@eatsforgood.com>',
-      to: get_recipient
+      to: 'bismark64@gmail.com'
     }
   end  
 end
