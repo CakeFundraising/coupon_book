@@ -5,7 +5,7 @@
     .row
       .col-md-8
         #main-headline
-          .top-message Support #{@coupon_book.fr_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
+          .top-message = t('banners.coupon_book.headline', fr: @coupon_book.fr_name, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
@@ -21,20 +21,21 @@
               .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
 
       .col-md-4
-        #campaign-performance.sidebar
-          .total-donations
-            div Total Donations
-            h1 = @coupon_book.current_sales
+        - cache [:coupon_book, :templates, :community, :campaign_performance_sidebar, @coupon_book] do
+          #campaign-performance.sidebar
+            .total-donations
+              div Total Donations
+              h1 = @coupon_book.current_sales
 
-          = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
+            = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
 
-          .fb-share-button 
-            = link_to fb_share_url(coupon_book_url(@coupon_book)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
-              i.fa.fa-facebook
-              | Share on Facebook
+            .fb-share-button 
+              = link_to fb_share_url(coupon_book_url(@coupon_book)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+                i.fa.fa-facebook
+                | Share on Facebook
 
-          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
-          h4.org-name = @coupon_book.fr_name
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
+            h4.org-name = @coupon_book.fr_name
 
         - if @purchases.any?
           br

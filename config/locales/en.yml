@@ -119,7 +119,7 @@ en:
             last: "<div class='last'><span class='boldest'>Donate %{price}</span> or more & get a Deal Book with exclusive deals worth %{no_discount} donated by <span class='boldest'>%{count} popular Restaurants below!</span></div>"
           commercial:
             last: "<div class='last'>Proceeds from sales benefit <span class='boldest'>%{fr}</span> & you save <span class='boldest'>%{no_discount}</span> too!</div>"
-      #coupons: "You get <span class='boldest'>all %{count}</span> deals donated by the <span class='boldest'>Restaurants & Merchants below!</span>"
+      headline: "Proceeds benefit <span class='boldest'>%{fr}</span> and you get <span class='boldest'>all %{count}</span> deal vouchers via email instantly! <span class='boldest'>Save %{no_discount}!</span>"
       coupons: "Get <span class='boldest'>all %{count}</span> deal vouchers via email instantly! Print at home or use on your phone.</span>"
       categories_subtitle: Click on each Category to see all the Deals included in your digital Deal Book!
       we_will_email: "* Your <span class='bolder'>Digital Deal Book</span> will be emailed from EatsforGood.com to the email address you provide above."

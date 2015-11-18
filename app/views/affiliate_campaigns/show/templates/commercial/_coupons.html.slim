@@ -5,7 +5,7 @@
     .row
       .col-md-8
         #main-headline
-          .top-message Support #{@coupon_book.fr_name} and get all #{@coupon_book.coupons.count} deal vouchers via email instantly! Save #{@coupon_book.no_discount_price}!
+          .top-message = t('banners.coupon_book.headline', fr: @coupon_book.fr_name, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
