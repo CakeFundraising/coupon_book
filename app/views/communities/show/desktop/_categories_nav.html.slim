@@ -1,0 +1,3 @@
+li 
+  = link_to nil, data:{toggle: 'remoteTab', href: discounts_category_path(category, coupon_columns: 'three_column'), target: "#pop-#{category.name.parameterize.underscore}", callback:'CakeCouponBook.coupon_books.templates.dealSeeAllLink()', cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
+    = content_tag(:span, category.name)

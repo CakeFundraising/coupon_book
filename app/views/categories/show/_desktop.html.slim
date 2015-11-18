@@ -5,4 +5,4 @@
 
   .row-fluid.items
     .col-md-12
-      = render partial:"coupons/show/templates/#{template}", collection: category.items, as: :coupon
+      = render customize_partial_path(category.items, "show/templates/#{template}/#{columns}")

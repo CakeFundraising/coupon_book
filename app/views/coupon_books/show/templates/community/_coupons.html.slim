@@ -1,26 +1,45 @@
 = render partial:'coupon_books/show/templates/shared/after_purchase'
 
-.container
-  .row
-    .col-md-9.padding-right-out
-      .benefit
-        span Proceeds benefit 
-        span.boldest = link_to "#{@coupon_book.fr_name}!", @coupon_book.url, target: :_blank
-    .col-md-3.col-sm-3.padding-left-out
-      .donate-save.bolder.text-right
-        div Donate #{@coupon_book.price} or more
-        div Save #{@coupon_book.no_discount_price} instantly!
-
 .row-fluid
   .container
-    #remote-items.tab-content
-      = render partial:'categories/show/book_tab', collection: @categories, as: :category
-      br
-      .row-fluid.clear
-        .col-md-12.text-center
-          .book-nav-help
-            = book_load_all_deals(@coupon_book)
+    .row
+      .col-md-8
+        #main-headline
+          .top-message = t('banners.coupon_book.headline', fr: @coupon_book.fr_name, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
+          ul.nav.nav-pills.popular
+            = render partial:'categories/show/book_nav', collection: @categories, as: :category
+        #remote-items.tab-content
+          = render partial:'categories/show/book_tab', collection: @categories, as: :category
           br
-    .row-fluid
-      .col-md-12.text-center
-        .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
+          .row-fluid.clear
+            .col-md-12.text-center
+              .book-nav-help
+                = book_load_all_deals(@coupon_book, {coupon_columns: 'two_column'})
+          br
+          .row-fluid
+            .col-md-12.text-center
+              .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
+
+      .col-md-4
+        - cache [:coupon_book, :templates, :community, :campaign_performance_sidebar, @coupon_book] do
+          #campaign-performance.sidebar
+            .total-donations
+              div Total Donations
+              h1 = @coupon_book.current_sales
+
+            = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
+
+            .fb-share-button 
+              = link_to fb_share_url(coupon_book_url(@coupon_book)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+                i.fa.fa-facebook
+                | Share on Facebook
+
+            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
+            h4.org-name = @coupon_book.fr_name
+
+        - if @purchases.any?
+          br
+          #purchases.sidebar
+            .headbar.text-center = t('titles.coupon_book.purchase_list')
+            ul.no-list
+              = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase

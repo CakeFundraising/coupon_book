@@ -45,43 +45,36 @@ $screen-xs-max: 768px;
   }
 }
 
-.hero-screen {
-  background-image:image-url('hero-screen.png');
-  background-repeat: repeat-x;
-  height:350px;
-}
-
-.book-nav{
-  position: absolute;
-  width: 100%;
-  box-shadow: none;
-  margin: 0;
-  &.affix-top{
+.parallax-window{
+  margin-bottom: 20px;
+  .commercial-banner{
+    font-size: 32px;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    background: rgba(8,193,220,0.85);
+  }
+  .banner-headline{
+    position: absolute;
     bottom: 0;
     padding: 0;
-    .popular{
-      padding: 0;
-    }
+    width: 100%;
+    color: white;
+    font-size: 30px;
   }
-  &.affix{
-    margin-top: -10px;
-    .top-message{
-      color: #555;
-      text-shadow: none;
-      font-size: 18px;
-    }
-    .buy_button_section{
-      margin-top: -16px;
-      .save{
-        margin-top: 7px;
-        color: #555;
-        text-shadow: none;
-      }
-      .btn-xl.buy_button{
-        font-size: 30px !important;
-        padding: 2px 0px !important;
-      }
-    }
+  .hero-screen {
+    background-image:image-url('hero-screen.png');
+    background-repeat: repeat-x;
+    height:350px;
+  }
+}
+
+#main-headline{
+  .top-message{
+    color: #555;
+    text-shadow: none;
+    font-size: 28px;
+    margin-bottom: 10px;
   }
   .popular{
     text-align: left;
@@ -92,10 +85,14 @@ $screen-xs-max: 768px;
       }
     }
   }
-  .top-message{
-    color: white;
-    font-size: 22px;
-    text-shadow: 0px 0px 5px black;
+}
+
+.sidebar{
+  .org-pic{
+    margin: 0 auto;
+  }
+  .thermometer{
+    margin: 15px 0px;
   }
 }
 

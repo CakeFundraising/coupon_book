@@ -5,7 +5,7 @@ remoteTabs = ->
     e.preventDefault()
 
     $this = $(this)
-    loadUrl = $this.attr('href')
+    loadUrl = $this.attr('data-href')
     $targ = $($this.attr('data-target'))
     callback = $this.attr('data-callback')
 

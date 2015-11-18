@@ -53,6 +53,28 @@
     font-size: 18px;
   }
 }
+
+#campaign-performance{
+  .total-donations{
+    text-align: center;
+    h1{
+      margin: 0;
+      font-size: 42px;
+    }
+    margin-bottom: 15px;
+  }
+  .fb-share-button{
+    margin: 20px 0px;
+  }
+  .org-pic{
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .org-name{
+    margin-bottom: 0;
+  }
+}
+
 .timer-ital {
   font-style: italic;
 }
@@ -476,6 +498,33 @@ span.banner-heading{
     padding: 10px 20px;
     -webkit-border-radius: 5px 5px 0 0;
     border-radius: 5px 5px 0 0;
+  }
+  &#purchases{
+    .headbar{
+      font-size: 18px;
+      border-bottom: 1px solid #ddd;
+      text-transform: uppercase;
+    }
+    ul{
+      margin: -15px -20px -20px;
+      li{
+        padding: 10px 20px;
+        border-bottom: 1px solid #ddd;
+        word-wrap: break-word;
+        .amount{
+          font-size: 22px;
+          margin-right: 10px;
+          color: $brand-primary;
+        }
+        .user{
+          font-size: 18px;
+        }
+        .date{
+          color: #999;
+          font-size: 12px;
+        }
+      }
+    }
   }
 }
 

@@ -35,16 +35,16 @@ module CouponBookHelper
   end
 
   def category_load_button(category)
-    link_to discounts_category_path(category), data:{toggle: 'remoteTab', target: "#pop-#{category.name.parameterize.underscore}", callback:'CakeCouponBook.coupon_books.templates.dealSeeAllLink()', cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
+    link_to nil, data:{toggle: 'remoteTab', href: discounts_category_path(category), target: "#pop-#{category.name.parameterize.underscore}", callback:'CakeCouponBook.coupon_books.templates.dealSeeAllLink()', cid: category.id}, id:"tab-#{category.name.parameterize.underscore}", class:'book-nav-link' do
       content_tag(:span, category.name)
     end
   end
 
-  def book_load_all_deals(book)
+  def book_load_all_deals(book, params={})
     content_tag(:span, class:'hidden', id:'spinner') do
       image_tag 'loading.gif'
     end +
-    link_to('See All Deals', load_all_discounts_categories_path(coupon_book_id: book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link')
+    link_to('See All Deals', load_all_discounts_categories_path({coupon_book_id: book}.merge(params)), remote: true, class:'btn btn-default btn-lg', id:'see-more-link')
   end
 
   def how_efg_works_link(text="How Eats for Good works!")

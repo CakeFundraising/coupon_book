@@ -39,5 +39,7 @@ module CakeCouponBook
     config.to_prepare do
       Devise::Mailer.layout "mailer"
     end
+
+    config.browserify_rails.commandline_options = "-t coffeeify --extension=\".coffee\""
   end
 end

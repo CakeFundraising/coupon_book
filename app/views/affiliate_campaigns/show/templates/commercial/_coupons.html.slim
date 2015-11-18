@@ -1,0 +1,41 @@
+= render partial:'coupon_books/show/templates/shared/after_purchase'
+
+.row-fluid
+  .container
+    .row
+      .col-md-8
+        #main-headline
+          .top-message = t('banners.coupon_book.headline', fr: @coupon_book.fr_name, count: @coupon_book.coupons.count, no_discount: @coupon_book.no_discount_price).html_safe
+          ul.nav.nav-pills.popular
+            = render partial:'categories/show/book_nav', collection: @categories, as: :category
+        #remote-items.tab-content
+          = render partial:'categories/show/book_tab', collection: @categories, as: :category
+          br
+          .row-fluid.clear
+            .col-md-12.text-center
+              .book-nav-help
+                = book_load_all_deals(@coupon_book, {coupon_columns: 'two_column'})
+              br
+      .col-md-4
+        #campaign-performance.sidebar
+          .total-donations
+            div Total Donations
+            h1 = @community.total_sales
+
+          = campaign_buy_button(@coupon_book, "#{@coupon_book.price} Buy", checkout_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
+
+          .fb-share-button 
+            = link_to fb_share_url(affiliate_campaign_url(@affiliate_campaign)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+              i.fa.fa-facebook
+              | Share on Facebook
+
+          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
+          h4.org-name = @coupon_book.fr_name
+
+        - if @purchases.any?
+          br
+          #purchases.sidebar
+            .headbar.text-center = t('titles.coupon_book.purchase_list')
+            ul.no-list
+              = render partial:'coupon_books/donate/partials/purchase', collection: @purchases, as: :purchase
+

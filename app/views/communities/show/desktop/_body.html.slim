@@ -30,27 +30,21 @@
           = render partial:'communities/show/affiliates/table', locals:{campaigns: @affiliate_campaigns}
 
     .col-md-4.col-sm-4
-      .sidebar
-        .goal
-          h1.pull-left Goal
-          h1.pull-right = @coupon_book.goal
+      #campaign-performance.sidebar
+        .total-donations
+          div Total Donations
+          h1 = @community.total_sales
 
-        .thermometer
-          .progress.campaign-thermometer
-            .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
-              span.sr-only #{@community.sales_thermometer}% Complete (success)
-          .campaign-stats
-            span
-              span.boldest.raised = @community.total_sales
-            span.pull-right
-              span.boldest = @coupon_book.goal
+        .fb-share-button 
+          = link_to fb_share_url(community_url(@community)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+            i.fa.fa-facebook
+            | Share on Facebook
 
         .see-restaurants
           = content_tag(:a, href:"#coupons", class:'btn btn-warning btn-xl') do
             span See  
             span.boldest All #{@coupon_book.coupons.count}
-            span  Deals! Save 
-            span.boldest #{@coupon_book.no_discount_price}!
+            span  Deals!
 
         .see-how
           = link_to 'How it works?', about_page_path('donor'), target: :_blank

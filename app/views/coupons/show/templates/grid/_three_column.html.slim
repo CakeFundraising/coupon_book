@@ -1,0 +1,12 @@
+- coupon = three_column
+- cache [:coupon_box, :grid, :three_column, coupon] do
+  .coupon-wrapper.coupon-grid.padding-left-out.col-md-4.col-sm-6
+    .coupon-label.overlapped.label.label-warning Save #{coupon.retail_value}
+    .coupon-box.clearfix
+      .col-md-6.col-sm-6.no-padding
+        = coupon_see_all_pic(coupon)
+      .col-md-6.col-sm-6.padding-right-out
+        .row
+          .col-md-12
+            h4.sp_name = coupon.sponsor_name
+            h2.coupon_title = coupon.trunc_title(60)
