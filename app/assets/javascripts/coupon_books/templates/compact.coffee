@@ -1,7 +1,7 @@
 CakeCouponBook.coupon_books ?= {}
 CakeCouponBook.coupon_books.templates ?= {}
 
-CategoriesNav = require('./categories.coffee');
+CategoriesNav = require('./categories_nav.coffee');
 
 boxOverlay = ->
   $(".overlay-img").mouseenter(->

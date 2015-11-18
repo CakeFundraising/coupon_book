@@ -27,7 +27,7 @@
         h1.category-title.text-center = @first_category.name
 
         .items
-          = render partial:"coupons/show/templates/#{CouponBook::COUPON_TEMPLATES[:mobile]}", collection: @discounts, as: :coupon
+          = render customize_partial_path(@discounts, "show/templates/#{CouponBook::COUPON_TEMPLATES[:mobile]}")
     #remote-items.row-fluid
       .col-md-12.text-center
         span#spinner.hidden = image_tag 'loading.gif'

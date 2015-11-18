@@ -32,7 +32,10 @@ class CategoriesController < InheritedResources::Base
   def discounts
     @category = resource
     @discounts = @category.items.preloaded.decorate
+    
     @coupon_template = get_coupon_template(@category.coupon_book)
+    @coupon_columns = params[:coupon_columns] || 'two_column'
+    @partial_path = "show/templates/#{@coupon_template}/#{@coupon_columns}"
 
     render layout: false
   end
@@ -52,13 +55,15 @@ class CategoriesController < InheritedResources::Base
   def load_all_discounts
     @coupon_book = CouponBook.friendly.find(params[:coupon_book_id])
     @categories = @coupon_book.categories.with_items.decorate
+
+    @coupon_columns = params[:coupon_columns] || 'one_column'
     @coupon_template = :rectangle
 
     render layout: false
   end
 
   private
-  
+
   def category_params
     params.require(:category).permit(:name, :subtitle, :position, :coupon_book_id)
   end

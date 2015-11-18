@@ -155,21 +155,6 @@
   }
 }
 
-#home-pop{
-  .popular{
-    padding-top: 0;
-    text-align: center;
-    li{
-      display: inline-block;
-      float: none;
-      a{
-        font-size: 18px;
-        text-transform: none;
-      }
-    }
-  }
-}
-
 .circle-campaign, .circle-sp, .circle-raised {
   border: 20px solid #08c1dc;
   height: 250px;

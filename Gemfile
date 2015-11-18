@@ -34,6 +34,7 @@ gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap'
 gem 'draper'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
+gem 'partial_path_customizer'
 
 #Storage
 gem 'pg'

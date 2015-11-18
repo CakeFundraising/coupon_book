@@ -40,11 +40,11 @@ module CouponBookHelper
     end
   end
 
-  def book_load_all_deals(book)
+  def book_load_all_deals(book, params={})
     content_tag(:span, class:'hidden', id:'spinner') do
       image_tag 'loading.gif'
     end +
-    link_to('See All Deals', load_all_discounts_categories_path(coupon_book_id: book), remote: true, class:'btn btn-default btn-lg', id:'see-more-link')
+    link_to('See All Deals', load_all_discounts_categories_path({coupon_book_id: book}.merge(params)), remote: true, class:'btn btn-default btn-lg', id:'see-more-link')
   end
 
   def how_efg_works_link(text="How Eats for Good works!")

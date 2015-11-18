@@ -109,10 +109,10 @@ class CategoriesNav
 
   init: ->
     @setAffixes()
-    @initNavScrolling()
     @seeAll()
     @dealSeeAll()
     @loadFirstCategory()
+    @initNavScrolling()
     return
 
 module.exports = CategoriesNav

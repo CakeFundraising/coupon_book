@@ -1,0 +1,15 @@
+- pr_box = two_column
+- cache [:pr_box, :box, :rectangle, :two_column, pr_box] do 
+  .row.coupon-wrapper.coupon-rectangle
+    .coupon-label.label.label-success = pr_box.flag
+    .coupon-box.clearfix
+      .col-md-12.col-xs-12
+        .row
+          .col-md-4.col-xs-12.pr_box_pic_col
+            = coupon_pic(pr_box)
+            .coupon-edge.hidden-xs.hidden-sm
+          .col-md-8.col-xs-12
+            div.coupon-content
+              h2 = pr_box.trunc_title(80)
+              hr
+              p.expander-250 = pr_box.description

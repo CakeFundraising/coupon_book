@@ -1,16 +1,14 @@
-- if coupon.pr_box?
-  = render partial:'pr_boxes/show/templates/square', locals:{pr_box: coupon}
-- else
-  - cache [:coupon_box, :square, coupon] do
-    .coupon-wrapper.coupon-square
-      .coupon-label.label.label-warning Save #{coupon.retail_value}
-      .coupon-box.clearfix
-        .col-md-2.col-sm-2.sp-box.no-padding
-          = coupon.avatar_picture.uri
-          h4.sp_name_mobile
-            = coupon.sponsor_name
-        .col-md-10.col-xs-12.no-padding
-          .row
-            .col-md-6.col-xs-12
-              div.coupon-content-mobile
-                h2 = coupon.trunc_title(70)
+- coupon = square
+- cache [:coupon_box, :square, coupon] do
+  .coupon-wrapper.coupon-square
+    .coupon-label.label.label-warning Save #{coupon.retail_value}
+    .coupon-box.clearfix
+      .col-md-2.col-sm-2.sp-box.no-padding
+        = coupon.avatar_picture.uri
+        h4.sp_name_mobile
+          = coupon.sponsor_name
+      .col-md-10.col-xs-12.no-padding
+        .row
+          .col-md-6.col-xs-12
+            div.coupon-content-mobile
+              h2 = coupon.trunc_title(70)
