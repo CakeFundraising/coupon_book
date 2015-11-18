@@ -20,20 +20,20 @@
             .col-md-12.text-center
               .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
       .col-md-4
-        .sidebar
-          = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
-
-          .thermometer
-            .progress.campaign-thermometer
-              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@community.sales_thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@community.sales_thermometer}%"
-                span.sr-only #{@community.sales_thermometer}% Complete (success)
-            .campaign-stats
-              span
-                span.boldest.raised = @community.total_sales
-              span.pull-right
-                span.boldest = @coupon_book.goal
+        #campaign-performance.sidebar
+          .total-donations
+            div Total Donations
+            h1 = @community.total_sales
 
           = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
+
+          .fb-share-button 
+            = link_to fb_share_url(affiliate_campaign_url(@affiliate_campaign)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+              i.fa.fa-facebook
+              | Share on Facebook
+
+          = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
+          h4.org-name = @affiliate_campaign.affiliate_name
 
         - if @purchases.any?
           br

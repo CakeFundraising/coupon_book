@@ -53,6 +53,29 @@
     font-size: 18px;
   }
 }
+
+#campaign-performance{
+  .total-donations{
+    text-align: center;
+    h1{
+      margin: 0;
+      font-size: 42px;
+    }
+    overflow: auto;
+    margin-bottom: 15px;
+  }
+  .fb-share-button{
+    margin: 20px 0px;
+  }
+  .org-pic{
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+  }
+  .org-name{
+    margin-bottom: 0;
+  }
+}
+
 .timer-ital {
   font-style: italic;
 }

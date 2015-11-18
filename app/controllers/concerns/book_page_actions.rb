@@ -16,9 +16,7 @@ module BookPageActions
       render("coupon_books/show/mobile/#{@coupon_book.template}/main", layout: 'layouts/books/mobile')
     else
       @categories = @coupon_book.categories.decorate
-      @first_category = @categories.first
-      @discounts = @first_category.items.object.preloaded.decorate if @first_category.present?
-      @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.first(5)
+      @purchases = PurchaseDecorator.decorate_collection @coupon_book.purchases.latest.limit(10)
 
       render("coupon_books/show/templates/#{@coupon_book.template}/main", layout: 'layouts/books/desktop')
     end

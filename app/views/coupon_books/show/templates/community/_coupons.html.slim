@@ -19,21 +19,22 @@
           .row-fluid
             .col-md-12.text-center
               .merchant-donated All Deals were generously donated by the Restaurants & Merchants above
-      .col-md-4
-        .sidebar
-          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
 
-          .thermometer
-            .progress.campaign-thermometer
-              .progress-bar.progress-bar-success.progress-bar-striped.active roll="progressbar" aria-valuenow=(@coupon_book.thermometer) aria-valuemin="0" aria-valuemax="100" style="width: #{@coupon_book.thermometer}%"
-                span.sr-only #{@coupon_book.thermometer}% Complete (success)
-            .campaign-stats
-              span
-                span.boldest.raised = @coupon_book.current_sales
-              span.pull-right
-                span.boldest = @coupon_book.goal
+      .col-md-4
+        #campaign-performance.sidebar
+          .total-donations
+            div Total Donations
+            h1 = @coupon_book.current_sales
 
           = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
+
+          .fb-share-button 
+            = link_to fb_share_url(coupon_book_url(@coupon_book)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
+              i.fa.fa-facebook
+              | Share on Facebook
+
+          = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
+          h4.org-name = @coupon_book.fr_name
 
         - if @purchases.any?
           br
