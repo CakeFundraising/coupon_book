@@ -29,6 +29,8 @@
               = link_to fb_share_url(affiliate_campaign_url(@affiliate_campaign)), target: :_blank, class:'btn btn-xl btn-social btn-facebook' do
                 i.fa.fa-facebook
                 | Share on Facebook
+                
+            .see-how = link_to 'How it works?', about_page_path('donor'), target: :_blank
 
             = link_to @coupon_book.url, target: :_blank do
               = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'

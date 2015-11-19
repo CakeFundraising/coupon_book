@@ -33,6 +33,8 @@
                 i.fa.fa-facebook
                 | Share on Facebook
 
+            .see-how = link_to 'How it works?', about_page_path('donor'), target: :_blank
+
             = link_to @affiliate_campaign.url, target: :_blank do
               = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
             h4.org-name 
