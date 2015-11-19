@@ -151,6 +151,31 @@
   }
 }
 
+@media (max-width: $screen-xs-max) {
+  #steps{
+    padding-bottom: 10px;
+    .head-col{
+      margin-top: 8px;
+      .link{
+        a{
+          font-size: 22px;
+          .number{
+            margin-right: 5px;
+            padding: 3px 9px;
+            border-radius: 50%;
+            font-size: 18px;
+          }
+        }
+      }
+      .text{
+        color: #777;
+        margin-top: 5px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
 .timer-ital {
   font-style: italic;
 }
