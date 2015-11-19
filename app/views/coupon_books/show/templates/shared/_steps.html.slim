@@ -1,0 +1,23 @@
+#steps.row-fluid.text-center.sidebar.campaign-steps
+  .col-md-4.col-sm-4.give.head-col
+    .link
+      = content_tag(:a) do
+        span.number 1
+        span.word Give
+    .text
+      span As little as 
+      span.bolder = price
+  .col-md-4.col-sm-4.help.head-col
+    .link
+      = content_tag(:a) do
+        span.number 2
+        span.word To
+    .text = org_name
+  .col-md-4.col-sm-4.get.head-col
+    .link
+      = content_tag(:a, href:"#coupons") do
+        span.number 3
+        span.word Receive
+    .text
+      span #{coupons_count} Deals via email
+      div Save #{saving} instantly!

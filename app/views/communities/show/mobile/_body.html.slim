@@ -6,8 +6,8 @@
         h1.pull-right = @community.total_sales
 
     .col-md-12.col-xs-12
-      - cache [:templates, :mobile, :community, :body, :icons, @coupon_book] do
-        #icons.row-fluid.text-center
+      - cache [:templates, :mobile, :community, :body, :steps, @coupon_book] do
+        #steps.row-fluid.text-center
           .col-xs-12.help.head-col.no-padding
             .link.pull-left
               = content_tag(:a) do
