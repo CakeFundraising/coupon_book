@@ -4,9 +4,12 @@ ActiveAdmin.register Purchase do
   index do
     selectable_column
 
+    column :full_name
     column :email
     column :amount
-    column :purchasable
+    column :purchasable do |p|
+      link_to p.purchasable, purchasable_path(p)
+    end
     
     actions
   end
@@ -15,10 +18,17 @@ ActiveAdmin.register Purchase do
     attributes_table do
       row :id
       row :email
-      row :card_token
+      row :full_name
       row :amount
-      row :vouchers_count
-      row :purchasable
+      row :purchasable do
+        link_to p.purchasable, purchasable_path(p)
+      end
+      row :vouchers_page do
+        link_to 'See Page', vouchers_purchase_path(p, token: p.token), target: :_blank
+      end
+      row :vouchers_count do
+        link_to p.vouchers_count, admin_vouchers_path(q: {purchase_id_eq: p.id}, order: :id_desc), target: :_blank
+      end
       row :created_at
     end
   end
@@ -41,6 +51,15 @@ ActiveAdmin.register Purchase do
     resource.resend_emails
     redirect_to resource_path, notice: "Emails re-sent to: #{resource.object.email}"
   end
+
+  controller do
+    helper_method :purchasable_path
+
+    def purchasable_path(p)
+      p.purchasable.is_a?(CouponBook) ? admin_coupon_book_path(p.purchasable) :  admin_affiliate_campaign_path(p.purchasable)
+    end
+  end
+
 
   permit_params :first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email
 end

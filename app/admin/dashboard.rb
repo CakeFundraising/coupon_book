@@ -63,8 +63,8 @@ ActiveAdmin.register_page "Dashboard" do
                 span 'Total Sales'
               end
               td do
-                strong link_to Purchase.last.email, admin_purchase_path(Purchase.last)
-                span 'Last Sale'
+                strong 'Last Sale'
+                span link_to Purchase.last.email, admin_purchase_path(Purchase.last)
               end
             end
           end
