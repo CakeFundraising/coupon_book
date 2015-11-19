@@ -58,7 +58,7 @@
 
 //= require ./models/affiliate_campaigns
 //= require ./models/affiliates
-//= require ./models/browsers
+// require ./models/browsers
 //= require ./models/categories
 //= require ./models/collections
 //= require ./models/communities

@@ -2,8 +2,8 @@ window.CakeCouponBook ?= {}
 
 init = ->
   CakeCouponBook.expander()
-  CakeCouponBook.browsers.fingerprint()
   CakeCouponBook.utils.init()
+  #CakeCouponBook.browsers.fingerprint()
   #CakeCouponBook.direct_donation.init()
   return
 

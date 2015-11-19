@@ -22,7 +22,7 @@
 //= require ./utils
 //= require ./expander
 
-//= require ./models/browsers
+// require ./models/browsers
 //= require ./models/subscriptors
 //= require ./models/consumers
 //= require ./models/videos
