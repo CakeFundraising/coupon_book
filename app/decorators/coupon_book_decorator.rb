@@ -89,4 +89,9 @@ class CouponBookDecorator < ApplicationDecorator
   def give_path(params)
     object.commercial_template? ? h.checkout_coupon_book_path(object, params) : h.donate_coupon_book_path(object, params)
   end
+
+  def raised
+    h.humanized_money_with_symbol object.raised
+  end
+  
 end

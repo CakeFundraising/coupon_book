@@ -59,6 +59,10 @@ class AffiliateCampaignDecorator < ApplicationDecorator
     url
   end
 
+  def raised
+    h.humanized_money_with_symbol object.raised
+  end
+
   def avatar_pic_path
     object.avatar_picture.present? ? avatar_picture.uri_path : coupon_book.picture.avatar_path
   end
