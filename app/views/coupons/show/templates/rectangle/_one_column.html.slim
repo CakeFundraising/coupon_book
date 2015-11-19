@@ -6,7 +6,7 @@
       .col-md-2.col-sm-6.sp-box
         = coupon_sp_pic(coupon)
         h4.sp_name 
-          = link_to click_coupon_path(coupon, url: coupon.url) do
+          = link_to coupon.url do
             = coupon.sponsor_name
         .hidden-sm = coupon_main_location(coupon)          
       .col-md-10.col-sm-6

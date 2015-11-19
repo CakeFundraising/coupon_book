@@ -10,10 +10,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: exception.message
   end
 
-  def current_browser
-    token = evercookie_get_value(:cfbid)
-    @current_browser ||= Browser.find_by_token(token) if token.present?
-  end
+  # def current_browser
+  #   token = evercookie_get_value(:cfbid)
+  #   @current_browser ||= Browser.find_by_token(token) if token.present?
+  # end
 
   def current_fundraiser
     @current_fundraiser ||= current_user if current_user.fundraiser?
@@ -51,24 +51,24 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update){|u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :current_password)}
   end
 
-  def set_evercookie(key, value)
-    session[:evercookie] = {} unless session[:evercookie].present?
-    session[:evercookie][key] = value
-  end
+  # def set_evercookie(key, value)
+  #   session[:evercookie] = {} unless session[:evercookie].present?
+  #   session[:evercookie][key] = value
+  # end
 
-  def evercookie_get_value(key)
-    session[:evercookie].present? ? session[:evercookie][key] : nil
-  end
+  # def evercookie_get_value(key)
+  #   session[:evercookie].present? ? session[:evercookie][key] : nil
+  # end
 
-  def evercookie_is_set?(key, value = nil)
-    if session[:evercookie].blank?
-      false
-    elsif value.nil?
-      session[:evercookie][key].present?
-    else
-      session[:evercookie][key].present? and session[:evercookie][key] == value
-    end
-  end
+  # def evercookie_is_set?(key, value = nil)
+  #   if session[:evercookie].blank?
+  #     false
+  #   elsif value.nil?
+  #     session[:evercookie][key].present?
+  #   else
+  #     session[:evercookie][key].present? and session[:evercookie][key] == value
+  #   end
+  # end
 
   def set_cake_access_token
     session[:access_token] = params[:cat] if params[:cat].present?
