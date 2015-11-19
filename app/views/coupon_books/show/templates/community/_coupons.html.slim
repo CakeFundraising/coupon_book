@@ -1,11 +1,11 @@
-= render partial:'coupon_books/show/templates/shared/after_purchase'
+-= render partial:'coupon_books/show/templates/shared/after_purchase'
 
 .row-fluid
   .container
     .row
       .col-md-8
         #main-headline
-          = render partial:'coupon_books/show/templates/shared/steps', locals:{price: @coupon_book.price, org_name: @coupon_book.fr_name, coupons_count: @coupon_book.coupons.count, saving: @coupon_book.no_discount_price}
+          = render partial:'coupon_books/show/templates/shared/steps', locals:{price: @coupon_book.price, org_name: org_link(@coupon_book.fr_name, @coupon_book.url), coupons_count: @coupon_book.coupons.count, saving: @coupon_book.no_discount_price}
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
@@ -34,8 +34,10 @@
                 i.fa.fa-facebook
                 | Share on Facebook
 
-            = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
-            h4.org-name = @coupon_book.fr_name
+            = link_to @coupon_book.url, target: :_blank do
+              = image_tag @coupon_book.picture.avatar_path, class:'img-responsive org-pic'
+            h4.org-name 
+              = link_to @coupon_book.fr_name, @coupon_book.url, target: :_blank
 
         - if @purchases.any?
           br

@@ -87,28 +87,34 @@
     border: 1px solid #ddd;
   }
   .head-col{
-    a{
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 30px;
-      text-decoration: none;
-      color: #555;
-      .glyphicon{
-        margin-right: 8px;
-        top: 3px;
-      }
-      .number{
-        margin-right: 5px;
-        padding: 3px 12px;
-        border-radius: 50%;
-      }
-      .word{
-        color: #333;
+    .link{
+      a{
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: 30px;
+        text-decoration: none;
+        color: #555;
+        .glyphicon{
+          margin-right: 8px;
+          top: 3px;
+        }
+        .number{
+          margin-right: 5px;
+          padding: 3px 12px;
+          border-radius: 50%;
+        }
+        .word{
+          color: #333;
+        }
       }
     }
     .text{
       color: #777;
       margin-top: 5px;
+      a{
+        color: #777;
+        text-decoration: underline;
+      }
     }
   }
   .give{

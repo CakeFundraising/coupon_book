@@ -5,7 +5,7 @@
     .row
       .col-md-8
         #main-headline
-          = render partial:'coupon_books/show/templates/shared/steps', locals:{price: @coupon_book.price, org_name: @affiliate_campaign.affiliate_name, coupons_count: @coupon_book.coupons.count, saving: @coupon_book.no_discount_price}
+          = render partial:'coupon_books/show/templates/shared/steps', locals:{price: @coupon_book.price, org_name: org_link(@affiliate_campaign.affiliate_name, @affiliate_campaign.url), coupons_count: @coupon_book.coupons.count, saving: @coupon_book.no_discount_price}
           ul.nav.nav-pills.popular
             = render partial:'categories/show/book_nav', collection: @categories, as: :category
         #remote-items.tab-content
@@ -33,8 +33,10 @@
                 i.fa.fa-facebook
                 | Share on Facebook
 
-            = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
-            h4.org-name = @affiliate_campaign.affiliate_name
+            = link_to @affiliate_campaign.url, target: :_blank do
+              = image_tag @affiliate_campaign.avatar_picture.uri_path, class:'img-responsive org-pic'
+            h4.org-name 
+              = link_to @affiliate_campaign.affiliate_name, @affiliate_campaign.url, target: :_blank
 
         - if @purchases.any?
           br

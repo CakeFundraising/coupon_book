@@ -73,4 +73,7 @@ module CouponBookHelper
     end
   end
 
+  def org_link(org_name, url)
+    link_to org_name, url, target: :_blank
+  end
 end
