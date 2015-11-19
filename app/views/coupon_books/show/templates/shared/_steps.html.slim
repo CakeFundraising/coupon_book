@@ -12,7 +12,7 @@
       = content_tag(:a) do
         span.number 2
         span.word To
-    .text = org_name
+    .text.bolder = org_name
   .col-md-4.col-sm-4.get.head-col
     .link
       = content_tag(:a) do
@@ -20,4 +20,6 @@
         span.word Receive
     .text
       span #{coupons_count} Deals via email
-      div Save #{saving} instantly!
+      div 
+        span.bolder Save #{saving} 
+        span instantly!
