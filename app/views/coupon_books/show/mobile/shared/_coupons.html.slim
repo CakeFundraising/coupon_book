@@ -1,15 +1,16 @@
-.row-fluid
-  #campaign-performance.col-md-12.col-xs-12
-    .total-donations
-      div Total Donations
-      h1 = @coupon_book.current_sales
-    
-    .button
-      = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success')
-    br
+- cache [:coupon_book, :mobile, :templates, :shared, :campaign_performance_sidebar, @coupon_book] do
+  .row-fluid
+    #campaign-performance.col-md-12.col-xs-12
+      .total-donations
+        div Total Donations
+        h1 = @coupon_book.current_sales
+      
+      .button
+        = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success')
+      br
 
-.floating-right
-  = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
+  .floating-right
+    = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_coupon_book_path(@coupon_book), 'success-transparent')
 
 - if @first_category.present?
   #coupons.col-xs-12

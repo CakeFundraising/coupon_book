@@ -1,15 +1,16 @@
-.row-fluid
-  #campaign-performance.col-md-12.col-xs-12
-    .total-donations
-      div Total Donations
-      h1 = @community.total_sales
-          
-    .button
-      = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success')
-    br
+- cache [:affiliate_campaign, :mobile, :templates, :shared, :campaign_performance_sidebar, @affiliate_campaign] do
+  .row-fluid
+    #campaign-performance.col-md-12.col-xs-12
+      .total-donations
+        div Total Donations
+        h1 = @affiliate_campaign.current_sales
+            
+      .button
+        = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success')
+      br
 
-.floating-right
-  = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
+  .floating-right
+    = campaign_buy_button(@coupon_book, "Give #{@coupon_book.price}+", donate_affiliate_campaign_path(@affiliate_campaign), 'success-transparent')
 
 - if @first_category.present?
   #coupons.col-xs-12
