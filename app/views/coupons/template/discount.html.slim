@@ -42,6 +42,9 @@
             = f.input :merchandise_categories, as: :select, collection: Coupon::CATEGORIES, label: false, input_html: {size: 10}, multiple: true
         .row.section-wrapper
           .col-md-12
+            = f.input :order_up
+        .row.section-wrapper
+          .col-md-12
             h3 Terms & Conditions
             p.text-muted Add additional limitations or conditions to this particular deal. Both your and Eats For Good terms will be displayed in the vouchers.
             br

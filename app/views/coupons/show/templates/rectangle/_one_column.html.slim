@@ -1,6 +1,8 @@
 - coupon = one_column
-- cache [:coupon_box, :rectangle, :one_column, coupon] do
-  .coupon-wrapper.coupon-rectangle
+.coupon-wrapper.coupon-rectangle
+  - if coupon.order_up
+    .order-up-label.label = image_tag 'orderup.png'
+  - cache [:coupon_box, :rectangle, :one_column, coupon] do
     .coupon-label.label.label-warning Save #{coupon.retail_value}
     .row.coupon-box.clearfix
       .col-md-2.col-sm-6.sp-box

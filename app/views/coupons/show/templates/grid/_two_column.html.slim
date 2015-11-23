@@ -1,6 +1,8 @@
 - coupon = two_column
-- cache [:coupon_box, :grid, :two_column, coupon] do
-  .coupon-wrapper.coupon-grid.padding-left-out.col-md-6.col-sm-6
+.coupon-wrapper.coupon-grid.padding-left-out.col-md-6.col-sm-6
+  - if coupon.order_up
+    .order-up-label.mini.label = image_tag 'orderup.png'
+  - cache [:coupon_box, :grid, :two_column, coupon] do
     .coupon-label.overlapped.label.label-warning Save #{coupon.retail_value}
     .coupon-box.clearfix
       .col-md-6.col-sm-6.no-padding
