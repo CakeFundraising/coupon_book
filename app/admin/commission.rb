@@ -34,6 +34,20 @@ ActiveAdmin.register Commission do
   filter :amount_cents
   filter :created_at
 
+  show title: proc {|c| "Commission ##{c.id}" } do |c|
+    attributes_table do
+      row :id
+      row :amount
+      row :gross_amount
+      row :percentage
+      row :purchase
+      row :commissionable
+      row :created_at
+      row :paid
+      row :tranfer
+    end
+  end
+
   csv do
     column :full_name
     column :email do |c|

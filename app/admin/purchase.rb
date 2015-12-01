@@ -39,7 +39,7 @@ ActiveAdmin.register Purchase do
       table_for p.commissions.decorate do
         column :commissionable do |c|
           text = c.commissionable.try(:slug) || "Campaign ##{c.commissionable_id}"
-          link_to text, commissionable_path(c)
+          link_to text, admin_commission_path(c)
         end
         column :amount
       end
@@ -66,14 +66,10 @@ ActiveAdmin.register Purchase do
   end
 
   controller do
-    helper_method :purchasable_path, :commissionable_path
+    helper_method :purchasable_path
 
     def purchasable_path(p)
       p.purchasable.is_a?(CouponBook) ? admin_coupon_book_path(p.purchasable) :  admin_affiliate_campaign_path(p.purchasable)
-    end
-
-    def commissionable_path(c)
-      c.commissionable.is_a?(CouponBook) ? admin_coupon_book_path(c.commissionable) :  admin_affiliate_campaign_path(c.commissionable)
     end
   end
 
