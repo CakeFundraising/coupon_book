@@ -61,6 +61,12 @@ ActiveAdmin.register Purchase do
     end
   end
 
+  csv do
+    column :full_name
+    column :plain_email
+    column :amount
+    column :zip_code
+  end
 
   permit_params :first_name, :last_name, :zip_code, :purchasable_type, :purchasable_id, :card_token, :amount_cents, :email
 end

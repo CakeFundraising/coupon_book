@@ -8,6 +8,7 @@ ActiveAdmin.register Commission do
 
     column :full_name
     column :email
+    column :gross_amount
     column :amount
     column :commissionable do |c|
       text = c.commissionable.try(:slug) || "Campaign ##{c.commissionable_id}"
@@ -35,6 +36,7 @@ ActiveAdmin.register Commission do
   csv do
     column :full_name
     column :plain_email
+    column :gross_amount
     column :amount
     column :paid
   end

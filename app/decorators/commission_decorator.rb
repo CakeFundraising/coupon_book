@@ -8,4 +8,8 @@ class CommissionDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.amount
   end
 
+  def gross_amount
+    purchase.amount
+  end
+
 end
