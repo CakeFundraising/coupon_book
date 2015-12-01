@@ -9,7 +9,7 @@ class CommissionDecorator < ApplicationDecorator
   end
 
   def gross_amount
-    purchase.object.amount
+    purchase.amount
   end
 
 end

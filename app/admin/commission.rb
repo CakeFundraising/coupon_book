@@ -39,7 +39,9 @@ ActiveAdmin.register Commission do
     column :email do |c|
       c.plain_email
     end
-    column :gross_amount
+    column :gross_amount do |c|
+      c.object.purchase.amount
+    end
     column :net_amount do |c|
       c.object.amount
     end
