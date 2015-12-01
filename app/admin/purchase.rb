@@ -21,6 +21,8 @@ ActiveAdmin.register Purchase do
       row :email
       row :full_name
       row :amount
+      row :net_amount
+      row :fee_amount
       row :purchasable do
         link_to p.purchasable, purchasable_path(p)
       end
@@ -31,6 +33,16 @@ ActiveAdmin.register Purchase do
         link_to p.vouchers_count, admin_vouchers_path(q: {purchase_id_eq: p.id}, order: :id_desc), target: :_blank
       end
       row :created_at
+    end
+
+    panel 'Commissions' do
+      table_for p.commissions.decorate do
+        column :commissionable do |c|
+          text = c.commissionable.try(:slug) || "Campaign ##{c.commissionable_id}"
+          link_to text, commissionable_path(c)
+        end
+        column :amount
+      end
     end
   end
 
@@ -54,10 +66,14 @@ ActiveAdmin.register Purchase do
   end
 
   controller do
-    helper_method :purchasable_path
+    helper_method :purchasable_path, :commissionable_path
 
     def purchasable_path(p)
       p.purchasable.is_a?(CouponBook) ? admin_coupon_book_path(p.purchasable) :  admin_affiliate_campaign_path(p.purchasable)
+    end
+
+    def commissionable_path(c)
+      c.commissionable.is_a?(CouponBook) ? admin_coupon_book_path(c.commissionable) :  admin_affiliate_campaign_path(c.commissionable)
     end
   end
 

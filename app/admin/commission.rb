@@ -28,6 +28,7 @@ ActiveAdmin.register Commission do
 
   filter :coupon_book, as: :polymorphic_select, on: :commissionable, collection: proc{ CouponBook.all.map{|cb| [cb.slug, cb.id] } }
   filter :affiliate_campaign, as: :polymorphic_select, on: :commissionable, collection: proc{ AffiliateCampaign.all.map{|ac| [ac.slug || "Campaign ##{ac.id}", ac.id] } }
+  filter :media_affiliate_campaign, as: :polymorphic_select, on: :commissionable, collection: proc{ MediaAffiliateCampaign.all.map{|mac| ["Campaign ##{mac.id}", mac.id] } }
   filter :purchase, as: :select, collection: proc{ Purchase.all.map{|p| ["Purchase ##{p.id}", p.id] } }
   filter :email
   filter :amount_cents
@@ -35,10 +36,13 @@ ActiveAdmin.register Commission do
 
   csv do
     column :full_name
-    column :plain_email
+    column :email do |c|
+      c.plain_email
+    end
     column :gross_amount
-    column :amount
-    column :paid
+    column :net_amount do |c|
+      c.object.amount
+    end
   end
 
   #permit_params :slug, :affiliate_commission_percentage, :media_commission_percentage

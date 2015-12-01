@@ -19,7 +19,7 @@ class Purchase < ActiveRecord::Base
   scope :latest, ->{ order('purchases.created_at DESC') }
 
   delegate :community, to: :purchasable
-  delegate :net_amount, :net_amount_cents, to: :charge
+  delegate :net_amount, :net_amount_cents, :fee, :fee_details, to: :charge
 
   before_validation :stripe_charge_card
 

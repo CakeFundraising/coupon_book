@@ -10,6 +10,14 @@ class PurchaseDecorator < ApplicationDecorator
     h.humanized_money_with_symbol object.amount
   end
 
+  def net_amount
+    h.humanized_money_with_symbol object.net_amount
+  end
+
+  def fee_amount
+    h.humanized_money_with_symbol object.fee
+  end
+
   def form_amount
     amount = object.amount.to_i
     amount = amount.zero? ? '' : amount
