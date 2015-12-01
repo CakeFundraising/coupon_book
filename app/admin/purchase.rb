@@ -8,7 +8,8 @@ ActiveAdmin.register Purchase do
     column :email
     column :amount
     column :purchasable do |p|
-      link_to p.purchasable, purchasable_path(p)
+      text = p.purchasable.try(:slug) || "Campaign ##{p.purchasable_id}"
+      link_to text, purchasable_path(p)
     end
     
     actions
@@ -33,8 +34,8 @@ ActiveAdmin.register Purchase do
     end
   end
 
-  filter :coupon_book, as: :polymorphic_select, on: :purchasable, collection: proc{ CouponBook.all }
-  filter :affiliate_campaign, as: :polymorphic_select, on: :purchasable, collection: proc{ AffiliateCampaign.all }
+  filter :coupon_book, as: :polymorphic_select, on: :purchasable, collection: proc{ CouponBook.all.map{|cb| [cb.slug, cb.id] } }
+  filter :affiliate_campaign, as: :polymorphic_select, on: :purchasable, collection: proc{ AffiliateCampaign.all.map{|ac| [ac.slug || "Campaign ##{ac.id}", ac.id] } }
   filter :email
   filter :amount_cents
   filter :created_at

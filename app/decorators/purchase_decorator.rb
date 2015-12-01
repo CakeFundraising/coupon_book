@@ -20,6 +20,10 @@ class PurchaseDecorator < ApplicationDecorator
     h.auto_mail object
   end
 
+  def plain_email
+    object.email
+  end
+
   def user
     if object.first_name.present? and object.last_name.present? and !object.hide_name
       full_name
